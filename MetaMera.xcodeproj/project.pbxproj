@@ -21,6 +21,9 @@
 		38A21267282A09C200B56E03 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38A21265282A09C200B56E03 /* SignUpViewController.xib */; };
 		38A21269282A104200B56E03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38A21231282A064300B56E03 /* Main.storyboard */; };
 		38A2126C282A9CCC00B56E03 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A2126B282A9CCC00B56E03 /* Icon.png */; };
+		38A2126E282CD13000B56E03 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38A2126D282CD13000B56E03 /* GoogleService-Info.plist */; };
+		38A2126F282CD13000B56E03 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38A2126D282CD13000B56E03 /* GoogleService-Info.plist */; };
+		38A21270282CD13000B56E03 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38A2126D282CD13000B56E03 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +62,7 @@
 		38A21265282A09C200B56E03 /* SignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		38A21268282A0E3E00B56E03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		38A2126B282A9CCC00B56E03 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		38A2126D282CD13000B56E03 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,7 @@
 		38A2122A282A064300B56E03 /* MetaMera */ = {
 			isa = PBXGroup;
 			children = (
+				38A2126D282CD13000B56E03 /* GoogleService-Info.plist */,
 				38A2126A282A9C8A00B56E03 /* Image */,
 				38A21268282A0E3E00B56E03 /* Info.plist */,
 				38A2125A282A066000B56E03 /* Views */,
@@ -278,6 +283,9 @@
 				Base,
 			);
 			mainGroup = 38A2121F282A064300B56E03;
+			packageReferences = (
+				38A21273282CD20C00B56E03 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 38A21229282A064300B56E03 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -300,6 +308,7 @@
 				38A21263282A091500B56E03 /* TopViewController.xib in Resources */,
 				38A21238282A064400B56E03 /* LaunchScreen.storyboard in Resources */,
 				38A21235282A064400B56E03 /* Assets.xcassets in Resources */,
+				38A2126E282CD13000B56E03 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +316,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38A2126F282CD13000B56E03 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +324,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38A21270282CD13000B56E03 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,7 +519,7 @@
 				DEVELOPMENT_TEAM = JH5QRQ7596;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MetaMera/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MetaMera;
+				INFOPLIST_KEY_CFBundleDisplayName = "Meta-Mera";
 				INFOPLIST_KEY_NSCameraUsageDescription = "カメラ使う";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "他のユーザのつぶやきを表示するために使用します。";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "他のユーザのつぶやきを表示するために使用します。";
@@ -520,6 +531,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -543,7 +555,7 @@
 				DEVELOPMENT_TEAM = JH5QRQ7596;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MetaMera/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MetaMera;
+				INFOPLIST_KEY_CFBundleDisplayName = "Meta-Mera";
 				INFOPLIST_KEY_NSCameraUsageDescription = "カメラ使う";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "他のユーザのつぶやきを表示するために使用します。";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "他のユーザのつぶやきを表示するために使用します。";
@@ -555,6 +567,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -684,6 +697,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		38A21273282CD20C00B56E03 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 38A21220282A064300B56E03 /* Project object */;
 }
