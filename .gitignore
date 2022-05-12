@@ -1,6 +1,15 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/swift,macos,unity
-# Edit at https://www.toptal.com/developers/gitignore?templates=swift,macos,unity
+# Created by https://www.toptal.com/developers/gitignore/api/firebase,macos,swift,unity
+# Edit at https://www.toptal.com/developers/gitignore?templates=firebase,macos,swift,unity
+
+### Firebase ###
+.idea
+**/node_modules/*
+**/.firebaserc
+
+### Firebase Patch ###
+.runtimeconfig.json
+.firebase/
 
 ### macOS ###
 # General
@@ -191,4 +200,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-# End of https://www.toptal.com/developers/gitignore/api/swift,macos,unity
+# End of https://www.toptal.com/developers/gitignore/api/firebase,macos,swift,unity
