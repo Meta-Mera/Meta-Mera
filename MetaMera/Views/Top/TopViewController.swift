@@ -31,8 +31,9 @@ class TopViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
     @IBAction func PushSignUp(_ sender: Any) {
-        let vc = SignUpViewController()
+       let vc = SignUpViewController()
         let navController = UINavigationController(rootViewController: vc)
         self.present(navController, animated: true)
         

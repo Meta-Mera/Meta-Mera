@@ -141,9 +141,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         arView.reloadInputViews()
         
         let vc = TopViewController()
+        print("test1")
         let navController = UINavigationController(rootViewController: vc)
+        print("test2")
         navController.modalPresentationStyle = .fullScreen
+        print("test3")
         self.present(navController, animated: true)
+        print("test4")
     }
     @IBAction func PushHideButton(_ sender: Any) {
         arView.debugOptions.remove(.showSceneUnderstanding)
