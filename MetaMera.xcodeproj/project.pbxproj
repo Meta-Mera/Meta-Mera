@@ -24,6 +24,21 @@
 		38A2126E282CD13000B56E03 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38A2126D282CD13000B56E03 /* GoogleService-Info.plist */; };
 		38A2126F282CD13000B56E03 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38A2126D282CD13000B56E03 /* GoogleService-Info.plist */; };
 		38A21270282CD13000B56E03 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38A2126D282CD13000B56E03 /* GoogleService-Info.plist */; };
+		38A21276282CE02B00B56E03 /* 07YsashisaGothicTegaki.otf in Resources */ = {isa = PBXBuildFile; fileRef = 38A21275282CE02B00B56E03 /* 07YsashisaGothicTegaki.otf */; };
+		38A21277282CE02B00B56E03 /* 07YsashisaGothicTegaki.otf in Resources */ = {isa = PBXBuildFile; fileRef = 38A21275282CE02B00B56E03 /* 07YsashisaGothicTegaki.otf */; };
+		38A21278282CE02B00B56E03 /* 07YsashisaGothicTegaki.otf in Resources */ = {isa = PBXBuildFile; fileRef = 38A21275282CE02B00B56E03 /* 07YsashisaGothicTegaki.otf */; };
+		38A2127B282CE0DB00B56E03 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A21279282CE0DB00B56E03 /* ARViewController.swift */; };
+		38A2127C282CE0DB00B56E03 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A21279282CE0DB00B56E03 /* ARViewController.swift */; };
+		38A2127D282CE0DB00B56E03 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A21279282CE0DB00B56E03 /* ARViewController.swift */; };
+		38A2127E282CE0DB00B56E03 /* ARViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38A2127A282CE0DB00B56E03 /* ARViewController.xib */; };
+		38A2127F282CE0DB00B56E03 /* ARViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38A2127A282CE0DB00B56E03 /* ARViewController.xib */; };
+		38A21280282CE0DB00B56E03 /* ARViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38A2127A282CE0DB00B56E03 /* ARViewController.xib */; };
+		38A21282282CE15800B56E03 /* utakata-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 38A21281282CE15800B56E03 /* utakata-Regular.otf */; };
+		38A21283282CE15800B56E03 /* utakata-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 38A21281282CE15800B56E03 /* utakata-Regular.otf */; };
+		38A21284282CE15800B56E03 /* utakata-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 38A21281282CE15800B56E03 /* utakata-Regular.otf */; };
+		38A21286282CE3AF00B56E03 /* bokutachi.otf in Resources */ = {isa = PBXBuildFile; fileRef = 38A21285282CE3AF00B56E03 /* bokutachi.otf */; };
+		38A21287282CE3AF00B56E03 /* bokutachi.otf in Resources */ = {isa = PBXBuildFile; fileRef = 38A21285282CE3AF00B56E03 /* bokutachi.otf */; };
+		38A21288282CE3AF00B56E03 /* bokutachi.otf in Resources */ = {isa = PBXBuildFile; fileRef = 38A21285282CE3AF00B56E03 /* bokutachi.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +78,11 @@
 		38A21268282A0E3E00B56E03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		38A2126B282A9CCC00B56E03 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		38A2126D282CD13000B56E03 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		38A21275282CE02B00B56E03 /* 07YsashisaGothicTegaki.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = 07YsashisaGothicTegaki.otf; path = "../../../../Downloads/YasashisaGothic-TEGAKI/07YsashisaGothicTegaki.otf"; sourceTree = "<group>"; };
+		38A21279282CE0DB00B56E03 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
+		38A2127A282CE0DB00B56E03 /* ARViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ARViewController.xib; sourceTree = "<group>"; };
+		38A21281282CE15800B56E03 /* utakata-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "utakata-Regular.otf"; sourceTree = "<group>"; };
+		38A21285282CE3AF00B56E03 /* bokutachi.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = bokutachi.otf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +133,7 @@
 		38A2122A282A064300B56E03 /* MetaMera */ = {
 			isa = PBXGroup;
 			children = (
+				38A21274282CDFB900B56E03 /* Font */,
 				38A2126D282CD13000B56E03 /* GoogleService-Info.plist */,
 				38A2126A282A9C8A00B56E03 /* Image */,
 				38A21268282A0E3E00B56E03 /* Info.plist */,
@@ -174,6 +195,8 @@
 		38A2125D282A067400B56E03 /* AR */ = {
 			isa = PBXGroup;
 			children = (
+				38A21279282CE0DB00B56E03 /* ARViewController.swift */,
+				38A2127A282CE0DB00B56E03 /* ARViewController.xib */,
 			);
 			path = AR;
 			sourceTree = "<group>";
@@ -193,6 +216,16 @@
 				38A2126B282A9CCC00B56E03 /* Icon.png */,
 			);
 			path = Image;
+			sourceTree = "<group>";
+		};
+		38A21274282CDFB900B56E03 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				38A21285282CE3AF00B56E03 /* bokutachi.otf */,
+				38A21275282CE02B00B56E03 /* 07YsashisaGothicTegaki.otf */,
+				38A21281282CE15800B56E03 /* utakata-Regular.otf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,7 +317,6 @@
 			);
 			mainGroup = 38A2121F282A064300B56E03;
 			packageReferences = (
-				38A21273282CD20C00B56E03 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 38A21229282A064300B56E03 /* Products */;
 			projectDirPath = "";
@@ -302,12 +334,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38A21286282CE3AF00B56E03 /* bokutachi.otf in Resources */,
 				38A2126C282A9CCC00B56E03 /* Icon.png in Resources */,
+				38A21276282CE02B00B56E03 /* 07YsashisaGothicTegaki.otf in Resources */,
 				38A21267282A09C200B56E03 /* SignUpViewController.xib in Resources */,
 				38A21269282A104200B56E03 /* Main.storyboard in Resources */,
+				38A21282282CE15800B56E03 /* utakata-Regular.otf in Resources */,
 				38A21263282A091500B56E03 /* TopViewController.xib in Resources */,
 				38A21238282A064400B56E03 /* LaunchScreen.storyboard in Resources */,
 				38A21235282A064400B56E03 /* Assets.xcassets in Resources */,
+				38A2127E282CE0DB00B56E03 /* ARViewController.xib in Resources */,
 				38A2126E282CD13000B56E03 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,7 +352,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38A21283282CE15800B56E03 /* utakata-Regular.otf in Resources */,
 				38A2126F282CD13000B56E03 /* GoogleService-Info.plist in Resources */,
+				38A21287282CE3AF00B56E03 /* bokutachi.otf in Resources */,
+				38A2127F282CE0DB00B56E03 /* ARViewController.xib in Resources */,
+				38A21277282CE02B00B56E03 /* 07YsashisaGothicTegaki.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,7 +364,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38A21284282CE15800B56E03 /* utakata-Regular.otf in Resources */,
 				38A21270282CD13000B56E03 /* GoogleService-Info.plist in Resources */,
+				38A21288282CE3AF00B56E03 /* bokutachi.otf in Resources */,
+				38A21280282CE0DB00B56E03 /* ARViewController.xib in Resources */,
+				38A21278282CE02B00B56E03 /* 07YsashisaGothicTegaki.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +382,7 @@
 				38A21262282A091500B56E03 /* TopViewController.swift in Sources */,
 				38A2122E282A064300B56E03 /* ViewController.swift in Sources */,
 				38A2122C282A064300B56E03 /* AppDelegate.swift in Sources */,
+				38A2127B282CE0DB00B56E03 /* ARViewController.swift in Sources */,
 				38A21230282A064300B56E03 /* Experience.rcproject in Sources */,
 				38A21266282A09C200B56E03 /* SignUpViewController.swift in Sources */,
 			);
@@ -348,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38A21242282A064400B56E03 /* MetaMeraTests.swift in Sources */,
+				38A2127C282CE0DB00B56E03 /* ARViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +401,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38A2127D282CE0DB00B56E03 /* ARViewController.swift in Sources */,
 				38A2124E282A064400B56E03 /* MetaMeraUITestsLaunchTests.swift in Sources */,
 				38A2124C282A064400B56E03 /* MetaMeraUITests.swift in Sources */,
 			);
@@ -697,17 +744,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		38A21273282CD20C00B56E03 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 38A21220282A064300B56E03 /* Project object */;
 }
