@@ -10,12 +10,17 @@
 		38A2122C282A064300B56E03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2122B282A064300B56E03 /* AppDelegate.swift */; };
 		38A2122E282A064300B56E03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2122D282A064300B56E03 /* ViewController.swift */; };
 		38A21230282A064300B56E03 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 38A2122F282A064300B56E03 /* Experience.rcproject */; };
-		38A21233282A064300B56E03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38A21231282A064300B56E03 /* Main.storyboard */; };
 		38A21235282A064400B56E03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38A21234282A064400B56E03 /* Assets.xcassets */; };
 		38A21238282A064400B56E03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38A21236282A064400B56E03 /* LaunchScreen.storyboard */; };
 		38A21242282A064400B56E03 /* MetaMeraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A21241282A064400B56E03 /* MetaMeraTests.swift */; };
 		38A2124C282A064400B56E03 /* MetaMeraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2124B282A064400B56E03 /* MetaMeraUITests.swift */; };
 		38A2124E282A064400B56E03 /* MetaMeraUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2124D282A064400B56E03 /* MetaMeraUITestsLaunchTests.swift */; };
+		38A21262282A091500B56E03 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A21260282A091500B56E03 /* TopViewController.swift */; };
+		38A21263282A091500B56E03 /* TopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38A21261282A091500B56E03 /* TopViewController.xib */; };
+		38A21266282A09C200B56E03 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A21264282A09C200B56E03 /* SignUpViewController.swift */; };
+		38A21267282A09C200B56E03 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38A21265282A09C200B56E03 /* SignUpViewController.xib */; };
+		38A21269282A104200B56E03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38A21231282A064300B56E03 /* Main.storyboard */; };
+		38A2126C282A9CCC00B56E03 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A2126B282A9CCC00B56E03 /* Icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +53,12 @@
 		38A21247282A064400B56E03 /* MetaMeraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MetaMeraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38A2124B282A064400B56E03 /* MetaMeraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaMeraUITests.swift; sourceTree = "<group>"; };
 		38A2124D282A064400B56E03 /* MetaMeraUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaMeraUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		38A21260282A091500B56E03 /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
+		38A21261282A091500B56E03 /* TopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopViewController.xib; sourceTree = "<group>"; };
+		38A21264282A09C200B56E03 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		38A21265282A09C200B56E03 /* SignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
+		38A21268282A0E3E00B56E03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		38A2126B282A9CCC00B56E03 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,10 +109,11 @@
 		38A2122A282A064300B56E03 /* MetaMera */ = {
 			isa = PBXGroup;
 			children = (
+				38A2126A282A9C8A00B56E03 /* Image */,
+				38A21268282A0E3E00B56E03 /* Info.plist */,
+				38A2125A282A066000B56E03 /* Views */,
 				38A2122B282A064300B56E03 /* AppDelegate.swift */,
-				38A2122D282A064300B56E03 /* ViewController.swift */,
 				38A2122F282A064300B56E03 /* Experience.rcproject */,
-				38A21231282A064300B56E03 /* Main.storyboard */,
 				38A21234282A064400B56E03 /* Assets.xcassets */,
 				38A21236282A064400B56E03 /* LaunchScreen.storyboard */,
 			);
@@ -123,6 +135,59 @@
 				38A2124D282A064400B56E03 /* MetaMeraUITestsLaunchTests.swift */,
 			);
 			path = MetaMeraUITests;
+			sourceTree = "<group>";
+		};
+		38A2125A282A066000B56E03 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				38A2125E282A067C00B56E03 /* SignUp */,
+				38A2125D282A067400B56E03 /* AR */,
+				38A2125C282A066F00B56E03 /* Main */,
+				38A2125B282A066800B56E03 /* Top */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		38A2125B282A066800B56E03 /* Top */ = {
+			isa = PBXGroup;
+			children = (
+				38A21260282A091500B56E03 /* TopViewController.swift */,
+				38A21261282A091500B56E03 /* TopViewController.xib */,
+			);
+			path = Top;
+			sourceTree = "<group>";
+		};
+		38A2125C282A066F00B56E03 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				38A2122D282A064300B56E03 /* ViewController.swift */,
+				38A21231282A064300B56E03 /* Main.storyboard */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		38A2125D282A067400B56E03 /* AR */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AR;
+			sourceTree = "<group>";
+		};
+		38A2125E282A067C00B56E03 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				38A21264282A09C200B56E03 /* SignUpViewController.swift */,
+				38A21265282A09C200B56E03 /* SignUpViewController.xib */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		38A2126A282A9C8A00B56E03 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				38A2126B282A9CCC00B56E03 /* Icon.png */,
+			);
+			path = Image;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,9 +294,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38A2126C282A9CCC00B56E03 /* Icon.png in Resources */,
+				38A21267282A09C200B56E03 /* SignUpViewController.xib in Resources */,
+				38A21269282A104200B56E03 /* Main.storyboard in Resources */,
+				38A21263282A091500B56E03 /* TopViewController.xib in Resources */,
 				38A21238282A064400B56E03 /* LaunchScreen.storyboard in Resources */,
 				38A21235282A064400B56E03 /* Assets.xcassets in Resources */,
-				38A21233282A064300B56E03 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,9 +324,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38A21262282A091500B56E03 /* TopViewController.swift in Sources */,
 				38A2122E282A064300B56E03 /* ViewController.swift in Sources */,
 				38A2122C282A064300B56E03 /* AppDelegate.swift in Sources */,
 				38A21230282A064300B56E03 /* Experience.rcproject in Sources */,
+				38A21266282A09C200B56E03 /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,12 +507,17 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JH5QRQ7596;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_FILE = MetaMera/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MetaMera;
+				INFOPLIST_KEY_NSCameraUsageDescription = "カメラ使う";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "他のユーザのつぶやきを表示するために使用します。";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "他のユーザのつぶやきを表示するために使用します。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -467,12 +542,17 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JH5QRQ7596;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_FILE = MetaMera/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MetaMera;
+				INFOPLIST_KEY_NSCameraUsageDescription = "カメラ使う";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "他のユーザのつぶやきを表示するために使用します。";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "他のユーザのつぶやきを表示するために使用します。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
