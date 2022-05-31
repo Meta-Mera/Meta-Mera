@@ -5,6 +5,7 @@
 //  Created by Jim on 2022/05/10.
 //
 
+
 import UIKit
 import RealityKit
 import ARKit
@@ -196,7 +197,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        //print("locations = \(locValue.latitude) \(locValue.longitude)")
         SubLabel.text = "Location:\n \(locValue.latitude) \n \(locValue.longitude)"
     }
 }

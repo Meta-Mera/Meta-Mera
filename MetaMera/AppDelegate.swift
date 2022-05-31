@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        sleep(2)
+        FirebaseApp.configure()
+        sleep(1)
+        window = UIWindow()
+        window?.rootViewController = UIStoryboard.instantiateInitialViewController(.init(name: "TopViewController", bundle: .main))()
+        window?.makeKeyAndVisible()
+        
+//        window = UIWindow()
+//        window?.makeKeyAndVisible()
+//
+//        // 2. 最初に表示する画面を設定
+//        let rootViewController = StartUpViewController()
+//        window?.rootViewController = rootViewController
+        
         return true
     }
 
