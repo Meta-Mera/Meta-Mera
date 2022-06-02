@@ -215,7 +215,6 @@
 		38A2122A282A064300B56E03 /* MetaMera */ = {
 			isa = PBXGroup;
 			children = (
-				389680592844585D008E1302 /* AR */,
 				38A212C42831DB1500B56E03 /* MetaMera.entitlements */,
 				38A21289282CEB8200B56E03 /* GoogleService-Info.plist */,
 				38A21274282CDFB900B56E03 /* Font */,
@@ -223,6 +222,7 @@
 				38A21268282A0E3E00B56E03 /* Info.plist */,
 				382713EF28332648004BEB01 /* AppDelegate.swift */,
 				389024C52835DAD4004DC3F3 /* UIColor-Extension.swift */,
+				389680592844585D008E1302 /* AR */,
 				38A2125A282A066000B56E03 /* Views */,
 				38A2122F282A064300B56E03 /* Experience.rcproject */,
 				38A21234282A064400B56E03 /* Assets.xcassets */,

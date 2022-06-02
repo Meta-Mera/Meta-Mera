@@ -125,8 +125,8 @@
                         <action selector="pushCreateAccountButton:" destination="-1" eventType="touchUpInside" id="dGZ-Dy-nTZ"/>
                     </connections>
                 </button>
-                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="asd-cX-DLY">
-                    <rect key="frame" x="54.666666666666657" y="707.33333333333337" width="304.66666666666674" height="20"/>
+                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="asd-cX-DLY">
+                    <rect key="frame" x="54.666666666666657" y="708" width="304.66666666666674" height="20"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アカウントを持っている方は" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyc-zE-hnC">
                             <rect key="frame" x="0.0" y="0.0" width="225.33333333333334" height="20"/>
@@ -182,7 +182,7 @@
                 <constraint firstItem="Dbw-N0-hee" firstAttribute="top" secondItem="8vf-xU-6Ld" secondAttribute="bottom" constant="60" id="r2s-YM-kmH"/>
                 <constraint firstAttribute="trailing" secondItem="6pt-qa-Mzk" secondAttribute="trailing" id="rtX-MA-s0k"/>
                 <constraint firstItem="Dbw-N0-hee" firstAttribute="centerX" secondItem="nXZ-9Q-KiS" secondAttribute="centerX" id="wdO-k3-qEY"/>
-                <constraint firstItem="asd-cX-DLY" firstAttribute="top" secondItem="Dbw-N0-hee" secondAttribute="bottom" constant="80" id="zb2-d8-bxs"/>
+                <constraint firstItem="asd-cX-DLY" firstAttribute="top" relation="lessThanOrEqual" secondItem="Dbw-N0-hee" secondAttribute="bottom" constant="80" id="zb2-d8-bxs"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="121.875"/>
         </view>

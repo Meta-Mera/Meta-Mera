@@ -13,6 +13,8 @@ import UIKit
 
 class ArObject {
     
+    var ar = ARViewController()
+    
     func buildDemoData() -> [LocationAnnotationNode] {
         var nodes: [LocationAnnotationNode] = []
 
@@ -42,6 +44,29 @@ class ArObject {
 
         return nodes
     }
+    
+    func addSceneModels() {
+        // 1. Don't try to add the models to the scene until we have a current location
+        guard ar.sceneLocationView.sceneLocationManager.currentLocation != nil else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                self?.addSceneModels()
+            }
+            return
+        }
+        
+        buildDemoData().forEach {
+            ar.sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0)
+            ar.sceneLocationView.moveSceneHeadingAntiClockwise()
+        }
+
+        // There are many different ways to add lighting to a scene, but even this mechanism (the absolute simplest)
+        // keeps 3D objects fron looking flat
+        ar.sceneLocationView.autoenablesDefaultLighting = true
+        //sceneLocationView.useTrueNorth = false
+        
+
+    }
+
     
     
     

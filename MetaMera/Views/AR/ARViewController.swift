@@ -14,12 +14,14 @@ import SceneKit
 import CoreLocation
 
 
-class ARViewController: UIViewController, UITextFieldDelegate {
+class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate {
     
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var arView: ARView!
     @IBOutlet weak var ChatTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
+    
+    var arObject = ArObject()
     
     var sceneLocationView = SceneLocationView()
     
@@ -42,8 +44,23 @@ class ARViewController: UIViewController, UITextFieldDelegate {
         }
         
         // MARK: ここからARのやつのやつ
+        
+        sceneLocationView.showAxesNode = true
+        sceneLocationView.locationNodeTouchDelegate = self
+//        sceneLocationView.delegate = self // Causes an assertionFailure - use the `arViewDelegate` instead:
+        sceneLocationView.arViewDelegate = self
+        sceneLocationView.locationNodeTouchDelegate = self
+        
+        
+        arObject.addSceneModels()
+        
+        
         sceneLocationView.run()
         view.addSubview(sceneLocationView)
+        
+        sceneLocationView.frame = arView.bounds
+        
+        sceneLocationView.run()
         
         // Do any additional setup after loading the view.
     }
