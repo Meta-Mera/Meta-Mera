@@ -101,16 +101,12 @@ class SignInViewController: UIViewController {
     }
 
     private func presentToARViewController(){
-        if let vc = UIStoryboard.instantiateInitialViewController(.init(name: "ARViewController", bundle: .main))() as? ARViewController {
-            let navController = UINavigationController(rootViewController: vc)
-            navController.modalPresentationStyle = .fullScreen
-            self.present(navController, animated: true)
-        }
+        Goto.ARView(view: self)
     }
 
     @objc func gotoTopView(_ sender: Any) {
         print("push back")
-        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        //self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
         Goto.Top(view: self, completion: nil)
     }
     

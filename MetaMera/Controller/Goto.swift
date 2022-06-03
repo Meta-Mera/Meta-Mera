@@ -29,4 +29,12 @@ class Goto : UIViewController{
         //navController.modalTransitionStyle = .partialCurl
         view.present(navController, animated: true)
     }
+    
+    class func ARView(view: UIViewController){
+        if let vc = UIStoryboard.instantiateInitialViewController(.init(name: "ARViewController", bundle: .main))() as? ARViewController {
+            let navController = UINavigationController(rootViewController: vc)
+            navController.modalPresentationStyle = .fullScreen
+            view.present(navController, animated: true)
+        }
+    }
 }
