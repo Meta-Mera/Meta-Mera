@@ -27,7 +27,7 @@
                     <rect key="frame" x="60" y="275.66666666666663" width="255" height="440.66666666666663"/>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="nMl-pJ-47B">
-                    <rect key="frame" x="21" y="655" width="333.33333333333331" height="83"/>
+                    <rect key="frame" x="21" y="645" width="333.33333333333331" height="83"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="RRh-3w-sB0">
                             <rect key="frame" x="0.0" y="0.0" width="116.66666666666667" height="83"/>
@@ -44,13 +44,13 @@
                 <constraint firstItem="8HU-xH-gTG" firstAttribute="top" relation="lessThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="250" id="5gl-mg-ldo"/>
                 <constraint firstItem="Vms-vG-qL1" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="7qW-dk-IGd"/>
                 <constraint firstItem="8HU-xH-gTG" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="90" id="9qt-SN-F91"/>
-                <constraint firstItem="nMl-pJ-47B" firstAttribute="centerY" relation="lessThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="320" id="AIV-bZ-knj"/>
+                <constraint firstItem="nMl-pJ-47B" firstAttribute="centerY" relation="lessThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="300" id="AIV-bZ-knj"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="8HU-xH-gTG" secondAttribute="bottom" constant="80" id="BzJ-EQ-psA"/>
                 <constraint firstItem="nMl-pJ-47B" firstAttribute="top" relation="lessThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="bottom" constant="-154" id="Coc-Xa-46l"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8HU-xH-gTG" secondAttribute="trailing" constant="60" id="Fop-X0-2GB"/>
                 <constraint firstItem="Vms-vG-qL1" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="PbJ-cz-rXO"/>
                 <constraint firstAttribute="trailing" secondItem="Vms-vG-qL1" secondAttribute="trailing" id="SC3-Wu-2S8"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="nMl-pJ-47B" secondAttribute="bottom" constant="40" id="emS-wS-HMb"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="nMl-pJ-47B" secondAttribute="bottom" constant="50" id="emS-wS-HMb"/>
                 <constraint firstItem="8HU-xH-gTG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="50" id="gDA-IS-fSY"/>
                 <constraint firstItem="8HU-xH-gTG" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="pPw-Og-E6P"/>
                 <constraint firstItem="nMl-pJ-47B" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="y7Q-Oe-UZP"/>
