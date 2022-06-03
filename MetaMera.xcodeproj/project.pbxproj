@@ -20,6 +20,7 @@
 		38968057283F04CE008E1302 /* StartUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38968055283F04CE008E1302 /* StartUpViewController.swift */; };
 		38968058283F04CE008E1302 /* StartUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38968056283F04CE008E1302 /* StartUpViewController.xib */; };
 		3896805B28445926008E1302 /* ArObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3896805A28445926008E1302 /* ArObject.swift */; };
+		3896805E284A4CAE008E1302 /* Goto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3896805D284A4CAE008E1302 /* Goto.swift */; };
 		38A2122C282A064300B56E03 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2122B282A064300B56E03 /* TopViewController.swift */; };
 		38A2122E282A064300B56E03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2122D282A064300B56E03 /* ViewController.swift */; };
 		38A21230282A064300B56E03 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 38A2122F282A064300B56E03 /* Experience.rcproject */; };
@@ -84,6 +85,7 @@
 		38968055283F04CE008E1302 /* StartUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartUpViewController.swift; sourceTree = "<group>"; };
 		38968056283F04CE008E1302 /* StartUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartUpViewController.xib; sourceTree = "<group>"; };
 		3896805A28445926008E1302 /* ArObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArObject.swift; sourceTree = "<group>"; };
+		3896805D284A4CAE008E1302 /* Goto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goto.swift; sourceTree = "<group>"; };
 		38A21228282A064300B56E03 /* MetaMera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetaMera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38A2122B282A064300B56E03 /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		38A2122D282A064300B56E03 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +192,14 @@
 			path = AR;
 			sourceTree = "<group>";
 		};
+		3896805C284A4C90008E1302 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3896805D284A4CAE008E1302 /* Goto.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		38A2121F282A064300B56E03 = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +232,7 @@
 				38A21268282A0E3E00B56E03 /* Info.plist */,
 				382713EF28332648004BEB01 /* AppDelegate.swift */,
 				389024C52835DAD4004DC3F3 /* UIColor-Extension.swift */,
+				3896805C284A4C90008E1302 /* Controller */,
 				389680592844585D008E1302 /* AR */,
 				38A2125A282A066000B56E03 /* Views */,
 				38A2122F282A064300B56E03 /* Experience.rcproject */,
@@ -596,6 +607,7 @@
 			files = (
 				38968057283F04CE008E1302 /* StartUpViewController.swift in Sources */,
 				382713F028332648004BEB01 /* AppDelegate.swift in Sources */,
+				3896805E284A4CAE008E1302 /* Goto.swift in Sources */,
 				382713882831F95F004BEB01 /* SignInViewController.swift in Sources */,
 				38271474283472C0004BEB01 /* ChatViewController.swift in Sources */,
 				38A2122E282A064300B56E03 /* ViewController.swift in Sources */,

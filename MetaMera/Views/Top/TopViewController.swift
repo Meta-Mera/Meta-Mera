@@ -11,8 +11,8 @@ import RealityKit
 
 class TopViewController: UIViewController {
     
-    @IBOutlet weak var SignUpImage: UIImageView!
     @IBOutlet weak var SignInImage: UIImageView!
+    @IBOutlet weak var SignUpImage: UIImageView!
     
     
     override func viewDidLoad() {
@@ -30,19 +30,11 @@ class TopViewController: UIViewController {
 
     
     @objc func PushSignUp(_ sender: Any) {
-        let vc = SignUpViewController()
-        let navController = UINavigationController(rootViewController: vc)
-        navController.modalPresentationStyle = .fullScreen
-        //navController.modalTransitionStyle = .partialCurl
-        self.present(navController, animated: true)
+        Goto.SignUp(view: self)
         
     }
     @objc func PushSignIn(_ sender: Any) {
-        let vc = SignInViewController()
-        let navController = UINavigationController(rootViewController: vc)
-        navController.modalPresentationStyle = .fullScreen
-        //navController.modalTransitionStyle = .partialCurl
-        self.present(navController, animated: true)
+        Goto.SignIn(view: self)
     }
     
 }

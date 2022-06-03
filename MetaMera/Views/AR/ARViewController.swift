@@ -14,14 +14,16 @@ import SceneKit
 import CoreLocation
 
 
-class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate {
+class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate, CLLocationManagerDelegate {
     
-    @IBOutlet weak var arView: ARView!
     @IBOutlet weak var contentView: UIView!
+    //    @IBOutlet weak var arView: ARView!
+    @IBOutlet weak var textLabel: UILabel!
     
     var updateInfoLabelTimer: Timer?
     
     var sceneLocationView = SceneLocationView()
+    var locationManager = CLLocationManager()
     
     private lazy var chatView: ChatViewController = {
         let view = ChatViewController()
@@ -36,10 +38,22 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         do {
             let boxAnchor = try Experience.loadBox()
-            arView.scene.anchors.append(boxAnchor)
+            //arView.scene.anchors.append(boxAnchor)
+            //sceneLocationView
         }catch {
             print("error")
         }
+        
+        //MARK: 位置情報のやつっぽい
+        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.headingFilter = kCLHeadingFilterNone
+        locationManager.pausesLocationUpdatesAutomatically = false
+        locationManager.delegate = self
+        locationManager.startUpdatingHeading()
+        locationManager.startUpdatingLocation()
+
+        locationManager.requestWhenInUseAuthorization()
         
         // MARK: ここからARのやつのやつ
         
@@ -67,16 +81,16 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         addSceneModels()
         
         
-        sceneLocationView.run()
-        view.addSubview(sceneLocationView)
+//        sceneLocationView.run()
+        contentView.addSubview(sceneLocationView)
         
-        sceneLocationView.frame = contentView.bounds
+        sceneLocationView.frame = .zero
         
-        sceneLocationView.run()
+//        sceneLocationView.run()
         
         // Do any additional setup after loading the view.
         
-        updateInfoLabelTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { [weak self] _ in
+        updateInfoLabelTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
             self?.updateInfoLabel()
         }
     }
@@ -107,8 +121,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        pauseAnimation()
         super.viewWillDisappear(animated)
+        pauseAnimation()
     }
     
     
@@ -120,8 +134,13 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     }
 
     func restartAnimation() {
-        print("run")
-        sceneLocationView.run()
+        sceneLocationView.isPlaying = true
+        DispatchQueue.main.async { [weak self] in
+            
+            print("run")
+            self?.sceneLocationView.run()
+        }
+        
     }
     
     func buildDemoData() -> [LocationAnnotationNode] {
@@ -247,9 +266,13 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             let heading = sceneLocationView.sceneLocationManager.locationManager.heading,
             let headingAccuracy = sceneLocationView.sceneLocationManager.locationManager.headingAccuracy {
             let yDegrees = (((0 - eulerAngles.y.radiansToDegrees) + 360).truncatingRemainder(dividingBy: 360) ).short
-            print(" Heading: \(yDegrees)° • \(Float(heading).short)° • \(headingAccuracy)°\n")
+            textLabel.text = " Heading: \(yDegrees)° • \(Float(heading).short)° • \(headingAccuracy)°\n"
         }
     }
+    
+    // MARK: 位置情報のやつ
+    
+    
     
 }
 

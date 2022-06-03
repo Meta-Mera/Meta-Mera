@@ -16,21 +16,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <arView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MC5-vd-247">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0g4-UK-JMB">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                            </arView>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="aaaaaaaaaaaaaaaa" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ApQ-CF-4sq">
+                                <rect key="frame" x="24" y="726" width="366" height="36"/>
+                                <color key="backgroundColor" red="0.70552110180412364" green="0.70552110180412364" blue="0.70552110180412364" alpha="0.54346082182873134" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="MC5-vd-247" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="QzD-Ls-RDS"/>
-                            <constraint firstItem="MC5-vd-247" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="cgI-Jc-hro"/>
-                            <constraint firstItem="MC5-vd-247" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="gqr-lw-B16"/>
-                            <constraint firstItem="MC5-vd-247" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="skT-Cl-0i6"/>
+                            <constraint firstItem="0g4-UK-JMB" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="AKa-hc-EY4"/>
+                            <constraint firstItem="0g4-UK-JMB" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="D6g-GO-x6z"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ApQ-CF-4sq" secondAttribute="trailing" constant="24" id="H1I-Uc-TY2"/>
+                            <constraint firstItem="0g4-UK-JMB" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="HZK-Ny-kpi"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="ApQ-CF-4sq" secondAttribute="bottom" constant="100" id="K1t-Py-zl6"/>
+                            <constraint firstItem="ApQ-CF-4sq" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="PcH-oI-zZB"/>
+                            <constraint firstAttribute="bottom" secondItem="0g4-UK-JMB" secondAttribute="bottom" id="fiY-bz-BOt"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="arView" destination="MC5-vd-247" id="D02-Kj-FOe"/>
+                        <outlet property="contentView" destination="0g4-UK-JMB" id="gmO-ii-G2K"/>
+                        <outlet property="textLabel" destination="ApQ-CF-4sq" id="81X-84-tgj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

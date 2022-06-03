@@ -9,7 +9,6 @@ import ARCL
 import ARKit
 import MapKit
 import SceneKit
-import UIKit
 
 class ArObject {
     

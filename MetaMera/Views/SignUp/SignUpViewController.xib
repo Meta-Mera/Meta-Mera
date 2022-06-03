@@ -149,8 +149,8 @@
                         <constraint firstAttribute="height" constant="20" id="tpP-Sk-oeZ"/>
                     </constraints>
                 </stackView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="背景_登録画面付きver3" translatesAutoresizingMaskIntoConstraints="NO" id="lU0-nB-PcQ">
-                    <rect key="frame" x="-7" y="-15" width="428" height="926"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="登録項目" translatesAutoresizingMaskIntoConstraints="NO" id="lU0-nB-PcQ">
+                    <rect key="frame" x="58.666666666666657" y="244.99999999999997" width="297" height="406.33333333333326"/>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="6pt-qa-Mzk">
                     <rect key="frame" x="0.0" y="729" width="414" height="83"/>
@@ -190,7 +190,7 @@
     <resources>
         <image name="Next" width="113.66666412353516" height="82"/>
         <image name="back" width="116.66666412353516" height="83"/>
-        <image name="背景_登録画面付きver3" width="428" height="926"/>
+        <image name="登録項目" width="297" height="406.33334350585938"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

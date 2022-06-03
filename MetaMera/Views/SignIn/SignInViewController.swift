@@ -18,28 +18,35 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    @IBOutlet weak var backImage: UIImageView!
-    @IBOutlet weak var nextImage: UIImageView!
+    @IBOutlet weak var nextButtonImage: UIImageView!
+    @IBOutlet weak var backButtonImage: UIImageView!
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        backImage.isUserInteractionEnabled = true
+        backButtonImage.isUserInteractionEnabled = true
+        backButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gotoTopView(_:))))
+        
+        nextButtonImage.isUserInteractionEnabled = true
+        nextButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backDoor(_:))))
         
         
         //NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardDidShowNotification, object: nil)
         //NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardDidHideNotification, object: nil)
         
-
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
-        //TODO: 配布時必ずバックドアを消すこと
-        //backDoor()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //TODO: 配布時必ずバックドアを消すこと
+    }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -69,7 +76,7 @@ class SignInViewController: UIViewController {
     
 
 
-    @IBAction func PushSignIn(_ sender: Any) {
+    @objc func PushSignIn(_ sender: Any) {
         self.view.endEditing(true)
         HUD.show(.progress, onView: view)
         
@@ -101,18 +108,34 @@ class SignInViewController: UIViewController {
         }
     }
 
-    @IBAction func gotoSignUp(_ sender: Any) {
-        let vc = SignUpViewController()
-        let navController = UINavigationController(rootViewController: vc)
-        navController.modalPresentationStyle = .fullScreen
-        self.present(navController, animated: true)
+    @objc func gotoTopView(_ sender: Any) {
+        print("push back")
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        Goto.Top(view: self, completion: nil)
     }
     
-//    private func backDoor(){
+    @objc func backDoor(_ sender: Any){
+        print("push next")
+        HUD.show(.progress, onView: view)
 //        passwordTextField.text = "123456"
 //        emailTextField.text = "g019c1045@g.neec.ac.jp"
 //        SignInButton.isEnabled = true
-//    }
+        
+        Auth.auth().signIn(withEmail: "g019c1045@g.neec.ac.jp", password: "123456") { res, err in
+            if let err = err {
+                print("ログイン情報の取得に失敗",err)
+                HUD.hide { (_) in
+                    HUD.flash(.error, delay: 1)
+                }
+                return
+            }
+            HUD.hide { (_) in
+                HUD.flash(.success, onView: self.view, delay: 1) { (_) in
+                    self.presentToARViewController()
+                }
+            }
+        }
+    }
 }
 
 extension SignInViewController: UITextFieldDelegate {

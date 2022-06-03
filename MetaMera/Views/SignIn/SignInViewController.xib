@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -10,22 +10,24 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignInViewController" customModule="MetaMera" customModuleProvider="target">
             <connections>
+                <outlet property="backButtonImage" destination="RRh-3w-sB0" id="mHS-LI-dpA"/>
+                <outlet property="nextButtonImage" destination="xLD-6u-NOs" id="D7z-zm-ctS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="背景ver2" translatesAutoresizingMaskIntoConstraints="NO" id="Vms-vG-qL1">
-                    <rect key="frame" x="-19" y="-41" width="428" height="926"/>
+                    <rect key="frame" x="0.0" y="-57" width="375" height="926"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="登録項目ver3" translatesAutoresizingMaskIntoConstraints="NO" id="8HU-xH-gTG">
-                    <rect key="frame" x="48.333333333333343" y="301.66666666666663" width="293.66666666666663" height="440.66666666666663"/>
+                    <rect key="frame" x="60" y="275.66666666666663" width="255" height="440.66666666666663"/>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="nMl-pJ-47B">
-                    <rect key="frame" x="28.333333333333343" y="690" width="333.33333333333326" height="83"/>
+                    <rect key="frame" x="21" y="655" width="333.33333333333331" height="83"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="RRh-3w-sB0">
                             <rect key="frame" x="0.0" y="0.0" width="116.66666666666667" height="83"/>
@@ -39,16 +41,21 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="8HU-xH-gTG" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="100" id="4Pn-0a-gNd"/>
+                <constraint firstItem="8HU-xH-gTG" firstAttribute="top" relation="lessThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="250" id="5gl-mg-ldo"/>
                 <constraint firstItem="Vms-vG-qL1" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="7qW-dk-IGd"/>
-                <constraint firstItem="nMl-pJ-47B" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="bottom" constant="-154" id="Coc-Xa-46l"/>
-                <constraint firstItem="8HU-xH-gTG" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="D1r-2z-VyE"/>
+                <constraint firstItem="8HU-xH-gTG" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="90" id="9qt-SN-F91"/>
+                <constraint firstItem="nMl-pJ-47B" firstAttribute="centerY" relation="lessThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="320" id="AIV-bZ-knj"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="8HU-xH-gTG" secondAttribute="bottom" constant="80" id="BzJ-EQ-psA"/>
+                <constraint firstItem="nMl-pJ-47B" firstAttribute="top" relation="lessThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="bottom" constant="-154" id="Coc-Xa-46l"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8HU-xH-gTG" secondAttribute="trailing" constant="60" id="Fop-X0-2GB"/>
                 <constraint firstItem="Vms-vG-qL1" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="PbJ-cz-rXO"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="nMl-pJ-47B" secondAttribute="bottom" constant="40" id="emS-wS-HMb"/>
-                <constraint firstItem="8HU-xH-gTG" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="xlE-da-4Ds"/>
+                <constraint firstAttribute="trailing" secondItem="Vms-vG-qL1" secondAttribute="trailing" id="SC3-Wu-2S8"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="nMl-pJ-47B" secondAttribute="bottom" constant="40" id="emS-wS-HMb"/>
+                <constraint firstItem="8HU-xH-gTG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="50" id="gDA-IS-fSY"/>
+                <constraint firstItem="8HU-xH-gTG" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="pPw-Og-E6P"/>
                 <constraint firstItem="nMl-pJ-47B" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="y7Q-Oe-UZP"/>
             </constraints>
-            <point key="canvasLocation" x="136.80000000000001" y="85.714285714285722"/>
+            <point key="canvasLocation" x="134.78260869565219" y="84.782608695652186"/>
         </view>
     </objects>
     <resources>
