@@ -129,7 +129,7 @@ class SignUpViewController: UIViewController {
                         }
                         return
                     }
-                    self.addUserInfoToFirestore(email: email)
+                    self.addUserInfoToFirestore(email: email, profileImageName: "")
                 }
             }else{
                 HUD.hide { (_) in
@@ -143,12 +143,17 @@ class SignUpViewController: UIViewController {
         }
     }
     
-    private func addUserInfoToFirestore(email: String){
+    private func addUserInfoToFirestore(email: String, profileImageName: String){
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
         guard let userId = self.userIdTextField.text  else { return }
         
-        let docData = ["email": email, "userId": userId, "createAt": Timestamp(), "Log": [String]().self, "Recommended": [String]().self ] as [String : Any]
+        let docData = ["email": email,
+                       "userId": userId,
+                       "profileImage": profileImageName, //TODO: プロフィール画像を保存できるようにする
+                       "Log": [String]().self,
+                       "Recommended": [String]().self,
+                       "createAt": Timestamp()] as [String : Any]
         let userRef = Firestore.firestore().collection("users").document(uid)
         
         userRef.setData(docData) { (err) in
