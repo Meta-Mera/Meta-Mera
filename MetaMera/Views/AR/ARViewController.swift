@@ -205,6 +205,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         nodes.append(applePark16)
         let applePark17 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 100, text: "100", color: UIColor.green)
         nodes.append(applePark17)
+        
 
         return nodes
     }
@@ -222,6 +223,11 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0)
             sceneLocationView.moveSceneHeadingAntiClockwise()
         }
+        
+        let cubeNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
+        cubeNode.position = SCNVector3(0, 0, -0.2) // SceneKit/AR coordinates are in meters
+        
+        sceneLocationView.scene.rootNode.addChildNode(cubeNode)
 
         // There are many different ways to add lighting to a scene, but even this mechanism (the absolute simplest)
         // keeps 3D objects fron looking flat
@@ -244,6 +250,17 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
 
     func buildViewNode(latitude: CLLocationDegrees, longitude: CLLocationDegrees,
                        altitude: CLLocationDistance, text: String, color: UIColor) -> LocationAnnotationNode {
+        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let location = CLLocation(coordinate: coordinate, altitude: altitude)
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        label.text = text
+        label.backgroundColor = color
+        label.textAlignment = .center
+        return LocationAnnotationNode(location: location, view: label)
+    }
+    
+    func buildViewNode(latitude: CLLocationDegrees, longitude: CLLocationDegrees,
+                       altitude: CLLocationDistance, text: String, color: UIColor, d3Object: SCNNode) -> LocationAnnotationNode {
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let location = CLLocation(coordinate: coordinate, altitude: altitude)
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))

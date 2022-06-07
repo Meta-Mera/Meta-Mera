@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "背景_登録画面付きver3.png",
+      "filename" : "背景_ver1.pdf",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "背景_登録画面付きver3-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "背景_登録画面付きver3-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

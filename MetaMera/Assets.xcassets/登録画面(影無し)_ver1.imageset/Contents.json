@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "登録項目ver2.png",
+      "filename" : "登録画面(影無し)_ver1.pdf",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "登録項目ver2-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "登録項目ver2-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
