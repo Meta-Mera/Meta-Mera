@@ -35,9 +35,6 @@
 		38A21267282A09C200B56E03 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38A21265282A09C200B56E03 /* SignUpViewController.xib */; };
 		38A21269282A104200B56E03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38A21231282A064300B56E03 /* Main.storyboard */; };
 		38A2126C282A9CCC00B56E03 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A2126B282A9CCC00B56E03 /* Icon.png */; };
-		38A21276282CE02B00B56E03 /* 07YsashisaGothicTegaki.otf in Resources */ = {isa = PBXBuildFile; fileRef = 38A21275282CE02B00B56E03 /* 07YsashisaGothicTegaki.otf */; };
-		38A21277282CE02B00B56E03 /* 07YsashisaGothicTegaki.otf in Resources */ = {isa = PBXBuildFile; fileRef = 38A21275282CE02B00B56E03 /* 07YsashisaGothicTegaki.otf */; };
-		38A21278282CE02B00B56E03 /* 07YsashisaGothicTegaki.otf in Resources */ = {isa = PBXBuildFile; fileRef = 38A21275282CE02B00B56E03 /* 07YsashisaGothicTegaki.otf */; };
 		38A2127B282CE0DB00B56E03 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A21279282CE0DB00B56E03 /* ARViewController.swift */; };
 		38A2127C282CE0DB00B56E03 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A21279282CE0DB00B56E03 /* ARViewController.swift */; };
 		38A2127D282CE0DB00B56E03 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A21279282CE0DB00B56E03 /* ARViewController.swift */; };
@@ -106,7 +103,6 @@
 		38A21265282A09C200B56E03 /* SignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		38A21268282A0E3E00B56E03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		38A2126B282A9CCC00B56E03 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		38A21275282CE02B00B56E03 /* 07YsashisaGothicTegaki.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = 07YsashisaGothicTegaki.otf; path = "../../../../Downloads/YasashisaGothic-TEGAKI/07YsashisaGothicTegaki.otf"; sourceTree = "<group>"; };
 		38A21279282CE0DB00B56E03 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		38A21281282CE15800B56E03 /* utakata-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "utakata-Regular.otf"; sourceTree = "<group>"; };
 		38A21285282CE3AF00B56E03 /* bokutachi.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = bokutachi.otf; sourceTree = "<group>"; };
@@ -336,7 +332,6 @@
 			isa = PBXGroup;
 			children = (
 				38A21285282CE3AF00B56E03 /* bokutachi.otf */,
-				38A21275282CE02B00B56E03 /* 07YsashisaGothicTegaki.otf */,
 				38A21281282CE15800B56E03 /* utakata-Regular.otf */,
 			);
 			path = Font;
@@ -473,7 +468,6 @@
 				382713EE28328998004BEB01 /* TopViewController.storyboard in Resources */,
 				3827147728347B95004BEB01 /* send.png in Resources */,
 				38968054283F03B1008E1302 /* StartUpStoryboard.storyboard in Resources */,
-				38A21276282CE02B00B56E03 /* 07YsashisaGothicTegaki.otf in Resources */,
 				38A21267282A09C200B56E03 /* SignUpViewController.xib in Resources */,
 				382713892831F95F004BEB01 /* SignInViewController.xib in Resources */,
 				382713F22833423A004BEB01 /* ARViewController.storyboard in Resources */,
@@ -495,7 +489,6 @@
 				38A21283282CE15800B56E03 /* utakata-Regular.otf in Resources */,
 				38A21287282CE3AF00B56E03 /* bokutachi.otf in Resources */,
 				38A2128B282CEB8200B56E03 /* GoogleService-Info.plist in Resources */,
-				38A21277282CE02B00B56E03 /* 07YsashisaGothicTegaki.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,7 +499,6 @@
 				38A21284282CE15800B56E03 /* utakata-Regular.otf in Resources */,
 				38A21288282CE3AF00B56E03 /* bokutachi.otf in Resources */,
 				38A2128C282CEB8200B56E03 /* GoogleService-Info.plist in Resources */,
-				38A21278282CE02B00B56E03 /* 07YsashisaGothicTegaki.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
