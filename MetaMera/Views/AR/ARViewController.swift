@@ -19,6 +19,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     @IBOutlet weak var contentView: UIView!
     //    @IBOutlet weak var arView: ARView!
     @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var ProfileImage: UIImageView!
+    
     
     var updateInfoLabelTimer: Timer?
     
@@ -43,6 +45,12 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         }catch {
             print("error")
         }
+        
+        //MARK: プロフィール画像
+        ProfileImage.layer.cornerRadius = 25
+        ProfileImage.isUserInteractionEnabled = true
+        ProfileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pushProfileImage(_:))))
+        
         
         //MARK: 位置情報のやつっぽい
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
@@ -95,6 +103,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         }
     }
     
+    
     override var inputAccessoryView: UIView? {
         get {
             return chatView
@@ -117,6 +126,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
         restartAnimation()
     }
     
@@ -125,8 +135,17 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         pauseAnimation()
     }
     
+    //MARK: - プロフィール画像関連
     
-    // MARK: ここからAR
+    @objc func pushProfileImage(_ sender: Any){
+        print("Push profile image")
+        Goto.Profile(view: self)
+    }
+    
+    //MARK: プロフィール画像関連 -
+    
+    
+    // MARK: - ここからAR
     
     func pauseAnimation() {
         print("pause")
@@ -286,8 +305,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             textLabel.text = " Heading: \(yDegrees)° • \(Float(heading).short)° • \(headingAccuracy)°\n"
         }
     }
-    
-    // MARK: 位置情報のやつ
+    // MARK: ARのやつ -
+    // MARK: - 位置情報のやつ
     
     
     

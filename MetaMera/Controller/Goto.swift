@@ -15,6 +15,7 @@ class Goto : UIViewController{
     }
     
     class func SignIn(view: UIViewController){
+        print("Goto-SignIn was called.")
         let vc = SignInViewController()
         let navController = UINavigationController(rootViewController: vc)
         navController.modalPresentationStyle = .fullScreen
@@ -23,6 +24,7 @@ class Goto : UIViewController{
     }
     
     class func SignUp(view: UIViewController){
+        print("Goto-SignUp was called.")
         let vc = SignUpViewController()
         let navController = UINavigationController(rootViewController: vc)
         navController.modalPresentationStyle = .fullScreen
@@ -31,10 +33,18 @@ class Goto : UIViewController{
     }
     
     class func ARView(view: UIViewController){
+        print("Goto-ARView was called.")
         if let vc = UIStoryboard.instantiateInitialViewController(.init(name: "ARViewController", bundle: .main))() as? ARViewController {
             let navController = UINavigationController(rootViewController: vc)
             navController.modalPresentationStyle = .fullScreen
             view.present(navController, animated: true)
         }
+    }
+    
+    class func Profile(view: UIViewController){
+        print("Goto-Profile was called.")
+        let vc = UIStoryboard(name: "ProfileViewController", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        vc.modalPresentationStyle = .fullScreen
+        view.present(vc, animated: true, completion: nil)
     }
 }
