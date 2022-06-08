@@ -37,7 +37,7 @@
                         </imageView>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="100" id="fYx-LT-aKy"/>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="fYx-LT-aKy"/>
                     </constraints>
                 </stackView>
             </subviews>

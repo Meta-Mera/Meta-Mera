@@ -11,9 +11,9 @@ import MapKit
 
 class ProfileViewController: UIViewController {
     
-    
     @IBOutlet weak var MapView: MKMapView!
-    @IBOutlet weak var Segment: UISegmentedControl!
+    @IBOutlet weak var ProfileImage: UIImageView!
+    @IBOutlet weak var changeProfileImageButton: UIButton!
     
     let displayDebugging = true
     
@@ -30,8 +30,54 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        ProfileImage.layer.cornerRadius = 25
+        changeProfileImageButton.layer.cornerRadius = 13
+        
+        MapView.translatesAutoresizingMaskIntoConstraints = false
         // Do any additional setup after loading the view.
+    }
+    
+    //User Location
+    var userLocation = MKUserLocation()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        MapView.delegate = self
+//        MapView.isZoomEnabled = true
+//        MapView.isScrollEnabled = true
+//        MapView.isRotateEnabled = true
+        MapView.mapType = .hybrid
+        //MapView.isUserLocationVisible = true
+        MapView.isPitchEnabled = true
+        
+        // 縮尺を設定
+//        var region:MKCoordinateRegion = MapView.region
+//        region.center = CLLocationCoordinate2DMake(userLocation)
+//        region.span.latitudeDelta = 0.02
+//        region.span.longitudeDelta = 0.02
+//
+//        MapView.setRegion(region,animated:true)
+        
+        moveTo(center: CLLocationCoordinate2DMake(35.624929, 139.341696), animated: false)
+        
+    }
+    
+    private func moveTo(
+        center location: CLLocationCoordinate2D,
+        animated: Bool,
+        span: CLLocationDegrees = 0.01) {
+        
+        let coordinateSpan = MKCoordinateSpan(
+            latitudeDelta: span,
+            longitudeDelta: span
+        )
+        let coordinateRegion = MKCoordinateRegion(
+            center: location,
+            span: coordinateSpan
+        )
+        MapView.setRegion(
+            coordinateRegion,
+            animated: animated
+        )
     }
 
 
@@ -83,5 +129,25 @@ class ProfileViewController: UIViewController {
             }
         }
     }
+    
+    private func MAPLoad(){
+        
+    }
+    
+    
+    @IBAction func pushChangeImage(_ sender: Any) {
+        print("change image")
+    }
+    
+}
 
+extension ProfileViewController: MKMapViewDelegate{
+    
+    func mapViewWillStartLoadingMap(_ mapView: MKMapView) {
+        print("map 起動")
+    }
+    
+    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
+        print("map 起動完了")
+    }
 }
