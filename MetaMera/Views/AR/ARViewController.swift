@@ -225,6 +225,9 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         let applePark17 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 100, text: "100", color: UIColor.green)
         nodes.append(applePark17)
         
+        let spaceNeedle = buildNode(latitude: 35.624929, longitude: 139.341696, altitude: 175, imageName: "pin")
+        nodes.append(spaceNeedle)
+        
 
         return nodes
     }
@@ -320,11 +323,25 @@ extension ARViewController: ChatViewControllerDelegate{
 
 extension ARViewController: LNTouchDelegate {
     func annotationNodeTouched(node: AnnotationNode) {
+        if let nodeView = node.view{
+            // Do stuffs with the nodeView
+            // ...
+            print("[nodeView]: ",nodeView)
+        }
+        if let nodeImage = node.image{
+            // Do stuffs with the nodeImage
+            // ...
+            print("[nodeImage]: ",nodeImage)
+        }
         
     }
     
     func locationNodeTouched(node: LocationNode) {
+        guard let name = node.tag else { return }
+        guard let selectedNode = node.childNodes.first(where: { $0.geometry is SCNBox }) else { return }
         
+        print("name: "+name)
+        print("selectedNode: ",selectedNode)
     }
     
 

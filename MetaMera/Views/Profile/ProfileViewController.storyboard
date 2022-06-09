@@ -16,12 +16,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dfz-Uh-5DQ">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfz-Uh-5DQ">
                                 <rect key="frame" x="0.0" y="363.66666666666674" width="390" height="446.33333333333326"/>
                             </mapView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2pn-rV-0xI">
-                                <rect key="frame" x="0.0" y="363.66666666666674" width="390" height="446.33333333333326"/>
-                            </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ロゴ" translatesAutoresizingMaskIntoConstraints="NO" id="C14-IF-Xmx">
                                 <rect key="frame" x="40" y="74" width="100" height="100"/>
                                 <constraints>
@@ -58,24 +55,20 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="2pn-rV-0xI" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="3wY-VN-Ake"/>
                             <constraint firstItem="Yma-hK-cHB" firstAttribute="centerY" secondItem="C14-IF-Xmx" secondAttribute="centerY" id="6Qf-ga-Zow"/>
                             <constraint firstItem="1jf-cV-IEI" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="40" id="7d6-cN-uyQ"/>
                             <constraint firstItem="KjA-LA-qIX" firstAttribute="top" secondItem="Yma-hK-cHB" secondAttribute="bottom" constant="2" id="Kfa-Td-qo1"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="dfz-Uh-5DQ" secondAttribute="bottom" id="NzS-ve-h72"/>
-                            <constraint firstItem="2pn-rV-0xI" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="363.5" id="TLp-fT-bkm"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="dfz-Uh-5DQ" secondAttribute="trailing" id="VFs-bj-Bng"/>
                             <constraint firstItem="1jf-cV-IEI" firstAttribute="top" secondItem="C14-IF-Xmx" secondAttribute="bottom" constant="80" id="X7f-hO-qsG"/>
                             <constraint firstItem="1jf-cV-IEI" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="Ypi-ty-DxA"/>
                             <constraint firstItem="C14-IF-Xmx" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="40" id="cRP-iE-GdZ"/>
+                            <constraint firstItem="dfz-Uh-5DQ" firstAttribute="top" secondItem="1jf-cV-IEI" secondAttribute="bottom" constant="78.666666666666742" id="eaU-jF-7Wx"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Yma-hK-cHB" secondAttribute="trailing" constant="90" id="gXE-7D-p2k"/>
-                            <constraint firstItem="2pn-rV-0xI" firstAttribute="top" secondItem="dfz-Uh-5DQ" secondAttribute="top" id="jM9-xZ-Kjc"/>
                             <constraint firstItem="KjA-LA-qIX" firstAttribute="leading" secondItem="C14-IF-Xmx" secondAttribute="trailing" constant="35" id="mid-U9-sZM"/>
                             <constraint firstItem="C14-IF-Xmx" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="30" id="q95-Np-soh"/>
                             <constraint firstItem="Yma-hK-cHB" firstAttribute="leading" secondItem="C14-IF-Xmx" secondAttribute="trailing" constant="30" id="sy3-bK-2vq"/>
                             <constraint firstItem="dfz-Uh-5DQ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="t70-97-jN7"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="2pn-rV-0xI" secondAttribute="trailing" id="tkV-Pf-hqm"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="2pn-rV-0xI" secondAttribute="bottom" id="tlS-NN-WVc"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="1jf-cV-IEI" secondAttribute="trailing" constant="40" id="xYv-g4-IbF"/>
                         </constraints>
                     </view>

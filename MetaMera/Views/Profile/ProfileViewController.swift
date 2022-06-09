@@ -43,30 +43,27 @@ class ProfileViewController: UIViewController {
     var userLocation = MKUserLocation()
     
     override func viewWillAppear(_ animated: Bool) {
-        //MapView.delegate = self
-        //MapView.isZoomEnabled = true
-        //MapView.isScrollEnabled = true
-        //MapView.isRotateEnabled = true
-        MapView.mapType = .standard
-        //MapView.showsCompass = true
-        
+        MapView.delegate = self
+
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLHeadingFilterNone
         locationManager.startUpdatingLocation()
         
         MapView.showsUserLocation = true
-        //MapView.isPitchEnabled = true
         
         // 縮尺を設定
-//        var region:MKCoordinateRegion = MapView.region
-//        region.center = CLLocationCoordinate2DMake(userLocation)
-//        region.span.latitudeDelta = 0.02
-//        region.span.longitudeDelta = 0.02
-//
-//        MapView.setRegion(region,animated:true)
+        //var region:MKCoordinateRegion = MapView.region
+        let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
+        let region = MKCoordinateRegion(center: MapView.userLocation.coordinate, span: span)
         
-        moveTo(center: CLLocationCoordinate2DMake(35.624929, 139.341696), animated: true)
+
+        MapView.setRegion(region,animated:true)
+        
+        
+        //moveTo(center: MapView.userLocation, animated: true)
+        
+        
         
     }
     
@@ -89,6 +86,16 @@ class ProfileViewController: UIViewController {
         )
     }
 
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
     
     @objc func updateUserLocation() {
         guard let currentLocation = ar.sceneLocationView.sceneLocationManager.currentLocation else {
@@ -142,11 +149,4 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: MKMapViewDelegate{
     
-    func mapViewWillStartLoadingMap(_ mapView: MKMapView) {
-        print("map 起動")
-    }
-    
-    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
-        print("map 起動完了")
-    }
 }
