@@ -38,15 +38,24 @@ class ProfileViewController: UIViewController {
     }
     
     //User Location
+    let locationManager:CLLocationManager = CLLocationManager()
+    
     var userLocation = MKUserLocation()
     
     override func viewWillAppear(_ animated: Bool) {
         MapView.delegate = self
-//        MapView.isZoomEnabled = true
-//        MapView.isScrollEnabled = true
-//        MapView.isRotateEnabled = true
-        MapView.mapType = .hybrid
-        //MapView.isUserLocationVisible = true
+        MapView.isZoomEnabled = true
+        MapView.isScrollEnabled = true
+        MapView.isRotateEnabled = true
+        MapView.mapType = .standard
+        MapView.showsCompass = true
+        
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = kCLHeadingFilterNone
+        locationManager.startUpdatingLocation()
+        
+        MapView.showsUserLocation = true
         MapView.isPitchEnabled = true
         
         // 縮尺を設定
@@ -57,7 +66,7 @@ class ProfileViewController: UIViewController {
 //
 //        MapView.setRegion(region,animated:true)
         
-        moveTo(center: CLLocationCoordinate2DMake(35.624929, 139.341696), animated: false)
+        moveTo(center: CLLocationCoordinate2DMake(35.624929, 139.341696), animated: true)
         
     }
     
