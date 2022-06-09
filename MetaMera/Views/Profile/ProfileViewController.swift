@@ -43,12 +43,12 @@ class ProfileViewController: UIViewController {
     var userLocation = MKUserLocation()
     
     override func viewWillAppear(_ animated: Bool) {
-        MapView.delegate = self
-        MapView.isZoomEnabled = true
-        MapView.isScrollEnabled = true
-        MapView.isRotateEnabled = true
+        //MapView.delegate = self
+        //MapView.isZoomEnabled = true
+        //MapView.isScrollEnabled = true
+        //MapView.isRotateEnabled = true
         MapView.mapType = .standard
-        MapView.showsCompass = true
+        //MapView.showsCompass = true
         
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -56,7 +56,7 @@ class ProfileViewController: UIViewController {
         locationManager.startUpdatingLocation()
         
         MapView.showsUserLocation = true
-        MapView.isPitchEnabled = true
+        //MapView.isPitchEnabled = true
         
         // 縮尺を設定
 //        var region:MKCoordinateRegion = MapView.region
@@ -89,16 +89,6 @@ class ProfileViewController: UIViewController {
         )
     }
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     @objc func updateUserLocation() {
         guard let currentLocation = ar.sceneLocationView.sceneLocationManager.currentLocation else {
