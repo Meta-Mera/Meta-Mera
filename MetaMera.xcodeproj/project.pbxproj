@@ -22,7 +22,7 @@
 		3896805B28445926008E1302 /* ArObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3896805A28445926008E1302 /* ArObject.swift */; };
 		3896805E284A4CAE008E1302 /* Goto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3896805D284A4CAE008E1302 /* Goto.swift */; };
 		38968068284C76C8008E1302 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38968066284C76C8008E1302 /* ProfileViewController.swift */; };
-		3896806B284C7755008E1302 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3896806A284C7755008E1302 /* Profile.storyboard */; };
+		3896806B284C7755008E1302 /* ProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3896806A284C7755008E1302 /* ProfileViewController.storyboard */; };
 		38A2122C282A064300B56E03 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2122B282A064300B56E03 /* TopViewController.swift */; };
 		38A2122E282A064300B56E03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2122D282A064300B56E03 /* ViewController.swift */; };
 		38A21230282A064300B56E03 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 38A2122F282A064300B56E03 /* Experience.rcproject */; };
@@ -86,7 +86,7 @@
 		3896805A28445926008E1302 /* ArObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArObject.swift; sourceTree = "<group>"; };
 		3896805D284A4CAE008E1302 /* Goto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goto.swift; sourceTree = "<group>"; };
 		38968066284C76C8008E1302 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		3896806A284C7755008E1302 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		3896806A284C7755008E1302 /* ProfileViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileViewController.storyboard; sourceTree = "<group>"; };
 		38A21228282A064300B56E03 /* MetaMera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetaMera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38A2122B282A064300B56E03 /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		38A2122D282A064300B56E03 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				38968066284C76C8008E1302 /* ProfileViewController.swift */,
-				3896806A284C7755008E1302 /* Profile.storyboard */,
+				3896806A284C7755008E1302 /* ProfileViewController.storyboard */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -475,7 +475,7 @@
 				38A21269282A104200B56E03 /* Main.storyboard in Resources */,
 				38A21282282CE15800B56E03 /* utakata-Regular.otf in Resources */,
 				38968058283F04CE008E1302 /* StartUpViewController.xib in Resources */,
-				3896806B284C7755008E1302 /* Profile.storyboard in Resources */,
+				3896806B284C7755008E1302 /* ProfileViewController.storyboard in Resources */,
 				38A21238282A064400B56E03 /* LaunchScreen.storyboard in Resources */,
 				38A2128A282CEB8200B56E03 /* GoogleService-Info.plist in Resources */,
 				38A21235282A064400B56E03 /* Assets.xcassets in Resources */,
