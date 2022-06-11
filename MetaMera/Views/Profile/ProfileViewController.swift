@@ -16,6 +16,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var changeProfileImageButton: UIButton!
     
     let displayDebugging = true
+    private var isInitialMoveToMap: Bool = true
     
     var ar = ARViewController()
 
@@ -49,19 +50,22 @@ class ProfileViewController: UIViewController {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLHeadingFilterNone
         locationManager.startUpdatingLocation()
+        locationManager.delegate = self
         
         MapView.showsUserLocation = true
         
         // 縮尺を設定
         //var region:MKCoordinateRegion = MapView.region
-        let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
-        let region = MKCoordinateRegion(center: MapView.userLocation.coordinate, span: span)
+//        let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
+//        let region = MKCoordinateRegion(center: MapView.userLocation.coordinate, span: span)
         
 
-        MapView.setRegion(region,animated:true)
+//        MapView.setRegion(region,animated:true)
+        updateUserLocation()
         
         
-        //moveTo(center: MapView.userLocation, animated: true)
+        moveTo(center: MapView.userLocation.coordinate, animated: true)
+        //print(MapView.userLocation.coordinate)
         
         
         
@@ -72,18 +76,20 @@ class ProfileViewController: UIViewController {
         animated: Bool,
         span: CLLocationDegrees = 0.01) {
         
-        let coordinateSpan = MKCoordinateSpan(
-            latitudeDelta: span,
-            longitudeDelta: span
-        )
-        let coordinateRegion = MKCoordinateRegion(
-            center: location,
-            span: coordinateSpan
-        )
-        MapView.setRegion(
-            coordinateRegion,
-            animated: animated
-        )
+//        let coordinateSpan = MKCoordinateSpan(
+//            latitudeDelta: span,
+//            longitudeDelta: span
+//        )
+//        let coordinateRegion = MKCoordinateRegion(
+//            center: location,
+//            span: coordinateSpan
+//        )
+            MapView.centerCoordinate = location
+            MapView.region = .init(center: location, span: .init(latitudeDelta: span, longitudeDelta: span))
+//        MapView.setRegion(
+//            coordinateRegion,
+//            animated: animated
+//        )
     }
 
 
@@ -149,4 +155,26 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: MKMapViewDelegate{
     
+}
+
+
+extension ProfileViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        // 位置情報
+        guard let location = manager.location?.coordinate else {
+            return
+        }
+        
+        if isInitialMoveToMap {
+            // map表示 現在地に移動
+            moveTo(
+                center: .init(
+                    latitude: location.latitude,
+                    longitude: location.longitude
+                ),
+                animated: true
+            )
+            isInitialMoveToMap.toggle()
+        }
+    }
 }

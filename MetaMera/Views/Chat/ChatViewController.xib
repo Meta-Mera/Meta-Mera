@@ -19,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="511" height="118"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="三橋は404" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CJv-GQ-Drg">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="ここにチャットを入力" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CJv-GQ-Drg">
                     <rect key="frame" x="20" y="10" width="411" height="64"/>
                     <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <color key="textColor" systemColor="labelColor"/>
