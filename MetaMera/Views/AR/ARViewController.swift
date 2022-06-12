@@ -21,18 +21,22 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var ProfileImage: UIImageView!
     
+
+    @IBOutlet weak var LeftDownButton: UIButton!
+    
+    
     
     var updateInfoLabelTimer: Timer?
     
     var sceneLocationView = SceneLocationView()
     var locationManager = CLLocationManager()
     
-    private lazy var chatView: ChatViewController = {
-        let view = ChatViewController()
-        view.frame = .init(x: 0, y: 0, width: view.frame.width, height: 100)
-        view.delegate = self
-        return view
-    }()
+//    private lazy var chatView: ChatViewController = {
+//        let view = ChatViewController()
+//        view.frame = .init(x: 0, y: 0, width: view.frame.width, height: 100)
+//        view.delegate = self
+//        return view
+//    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,22 +105,34 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         updateInfoLabelTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
             self?.updateInfoLabel()
         }
+        
+        //MARK: - 左下のボタンのやーつ
+        
+                             
+        LeftDownButton.layer.cornerRadius = 13
+        LeftDownButton.imageView?.contentMode = .scaleAspectFill
+        LeftDownButton.imageEdgeInsets = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
+        LeftDownButton.contentHorizontalAlignment = .fill
+        LeftDownButton.contentVerticalAlignment = .fill
+        LeftDownButton.isEnabled = false
+        
+        //MARK: 左下のボタンのやーつ -
     }
     
     
-    override var inputAccessoryView: UIView? {
-        get {
-            return chatView
-        }
-    }
-    
-    override var canBecomeFirstResponder: Bool {
-        return true
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
+//    override var inputAccessoryView: UIView? {
+//        get {
+//            return chatView
+//        }
+//    }
+//
+//    override var canBecomeFirstResponder: Bool {
+//        return true
+//    }
+//
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        self.view.endEditing(true)
+//    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -228,13 +244,13 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         let spaceNeedle = buildNode(latitude: 35.624929, longitude: 139.341696, altitude: 175, imageName: "DSC09698",size: 0.125)
         nodes.append(spaceNeedle)
         
-        let spaceNeedle2 = buildNode(latitude: 35.624929, longitude: 139.341696, altitude: 250, imageName: "DSC00984",size: 0.0001)
+        let spaceNeedle2 = buildNode(latitude: 35.624929, longitude: 139.341696, altitude: 350, imageName: "DSC00984",size: 0.0001)
         nodes.append(spaceNeedle2)
         
         let spaceNeedle3 = buildNode(latitude: 35.625029, longitude: 139.341696, altitude: 175, imageName: "DSC01324",size: 0.0001)
         nodes.append(spaceNeedle3)
         
-        let spaceNeedle4 = buildNode(latitude: 35.625029, longitude: 139.341696, altitude: 250, imageName: "DSC01510",size: 0.005)
+        let spaceNeedle4 = buildNode(latitude: 35.625029, longitude: 139.341696, altitude: 350, imageName: "DSC01510",size: 0.005)
         nodes.append(spaceNeedle4)
         
 
