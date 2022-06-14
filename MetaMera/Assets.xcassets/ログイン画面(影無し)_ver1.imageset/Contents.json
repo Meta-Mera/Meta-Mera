@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "ログイン画面(影無し)_ver1-3.png",
+      "filename" : "ログイン画面(影無し)_ver1-3.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "ログイン画面(影無し)_ver1-4.png",
+      "filename" : "ログイン画面(影無し)_ver1-4.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "ログイン画面(影無し)_ver1.png",
+      "filename" : "ログイン画面(影無し)_ver1.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
