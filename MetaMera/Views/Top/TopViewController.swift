@@ -11,8 +11,10 @@ import RealityKit
 
 class TopViewController: UIViewController {
     
-    @IBOutlet weak var SignInImage: UIImageView!
-    @IBOutlet weak var SignUpImage: UIImageView!
+    
+    @IBOutlet weak var logoImageView: UIImageView!
+    @IBOutlet weak var signInImageView: UIImageView!
+    @IBOutlet weak var signUpImageView: UIImageView!
     
     
     override func viewDidLoad() {
@@ -20,12 +22,36 @@ class TopViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        SignUpImage.isUserInteractionEnabled = true
-        SignUpImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(PushSignUp)))
+        signUpImageView.isUserInteractionEnabled = true
+        signUpImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(PushSignUp)))
         
         
-        SignInImage.isUserInteractionEnabled = true
-        SignInImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(PushSignIn)))
+        signInImageView.isUserInteractionEnabled = true
+        signInImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(PushSignIn)))
+        
+        
+        UIView.animate(withDuration: 1.0,
+                       delay: 1.0,
+                       options: UIView.AnimationOptions.curveEaseOut,
+                       animations: { () in
+            self.logoImageView.center.y -= 50.0
+            
+        }, completion: { (Bool) in
+            self.logoImageView.center.y -= 50.0
+            self.signInImageView.isHidden = false
+            self.signUpImageView.isHidden = false
+            UIView.animate(withDuration: 1.0,
+                           delay: 1.0,
+                           options: UIView.AnimationOptions.curveEaseOut,
+                           animations: { () in
+                self.logoImageView.center.y -= 50.0
+                self.signInImageView.center.y -= 50.0
+                self.signUpImageView.center.y -= 50.0
+                
+            }, completion: { (Bool) in
+                
+            })
+        })
     }
 
     

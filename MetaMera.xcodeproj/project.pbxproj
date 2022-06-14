@@ -18,7 +18,6 @@
 		389024C62835DAD4004DC3F3 /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389024C52835DAD4004DC3F3 /* UIColor-Extension.swift */; };
 		38968054283F03B1008E1302 /* StartUpStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38968053283F03B1008E1302 /* StartUpStoryboard.storyboard */; };
 		38968057283F04CE008E1302 /* StartUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38968055283F04CE008E1302 /* StartUpViewController.swift */; };
-		38968058283F04CE008E1302 /* StartUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38968056283F04CE008E1302 /* StartUpViewController.xib */; };
 		3896805B28445926008E1302 /* ArObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3896805A28445926008E1302 /* ArObject.swift */; };
 		3896805E284A4CAE008E1302 /* Goto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3896805D284A4CAE008E1302 /* Goto.swift */; };
 		38968068284C76C8008E1302 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38968066284C76C8008E1302 /* ProfileViewController.swift */; };
@@ -84,7 +83,6 @@
 		389024C52835DAD4004DC3F3 /* UIColor-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Extension.swift"; sourceTree = "<group>"; };
 		38968053283F03B1008E1302 /* StartUpStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StartUpStoryboard.storyboard; sourceTree = "<group>"; };
 		38968055283F04CE008E1302 /* StartUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartUpViewController.swift; sourceTree = "<group>"; };
-		38968056283F04CE008E1302 /* StartUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartUpViewController.xib; sourceTree = "<group>"; };
 		3896805A28445926008E1302 /* ArObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArObject.swift; sourceTree = "<group>"; };
 		3896805D284A4CAE008E1302 /* Goto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goto.swift; sourceTree = "<group>"; };
 		38968066284C76C8008E1302 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -183,7 +181,6 @@
 			children = (
 				38968053283F03B1008E1302 /* StartUpStoryboard.storyboard */,
 				38968055283F04CE008E1302 /* StartUpViewController.swift */,
-				38968056283F04CE008E1302 /* StartUpViewController.xib */,
 			);
 			path = StartUp;
 			sourceTree = "<group>";
@@ -489,7 +486,6 @@
 				38A21269282A104200B56E03 /* Main.storyboard in Resources */,
 				38A21282282CE15800B56E03 /* utakata-Regular.otf in Resources */,
 				38F4F14728517D9100C3119D /* SetProfileImage.storyboard in Resources */,
-				38968058283F04CE008E1302 /* StartUpViewController.xib in Resources */,
 				3896806B284C7755008E1302 /* ProfileViewController.storyboard in Resources */,
 				38A21238282A064400B56E03 /* LaunchScreen.storyboard in Resources */,
 				38A2128A282CEB8200B56E03 /* GoogleService-Info.plist in Resources */,

@@ -19,13 +19,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="ZZm-B4-XLM">
-                                <rect key="frame" x="102.66666666666667" y="472" width="222.66666666666663" height="202"/>
+                                <rect key="frame" x="214" y="573" width="0.0" height="0.0"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sign_in (1)" translatesAutoresizingMaskIntoConstraints="NO" id="ihG-pB-ATF">
-                                        <rect key="frame" x="0.0" y="0.0" width="222.66666666666666" height="81"/>
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sign_in (1)" translatesAutoresizingMaskIntoConstraints="NO" id="ihG-pB-ATF">
+                                        <rect key="frame" x="0.0" y="0.0" width="222.66666666666666" height="0.0"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sign_up (1)" translatesAutoresizingMaskIntoConstraints="NO" id="36K-kK-ANE">
-                                        <rect key="frame" x="0.0" y="121" width="222.66666666666666" height="81"/>
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sign_up (1)" translatesAutoresizingMaskIntoConstraints="NO" id="36K-kK-ANE">
+                                        <rect key="frame" x="0.0" y="0.0" width="222.66666666666666" height="0.0"/>
                                     </imageView>
                                 </subviews>
                             </stackView>
@@ -55,8 +55,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="SignInImage" destination="ihG-pB-ATF" id="qLK-yS-TeW"/>
-                        <outlet property="SignUpImage" destination="36K-kK-ANE" id="QtP-1T-pAT"/>
+                        <outlet property="logoImageView" destination="OoH-k2-pZQ" id="sPc-f1-zk0"/>
+                        <outlet property="signInImageView" destination="ihG-pB-ATF" id="unZ-A0-SaP"/>
+                        <outlet property="signUpImageView" destination="36K-kK-ANE" id="Kli-gF-vTb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

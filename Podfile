@@ -9,6 +9,7 @@ target 'MetaMera' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'
   pod 'PKHUD', '~> 5.0' 
   pod 'ARCL' 
 

@@ -156,6 +156,7 @@ class SignUpViewController: UIViewController {
                        "createAt": Timestamp()] as [String : Any]
         let userRef = Firestore.firestore().collection("users").document(uid)
         
+        
         userRef.setData(docData) { (err) in
             if let err = err {
                 print("Firestoreへの登録に失敗しました: \(err)" )

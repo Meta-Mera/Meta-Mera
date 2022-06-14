@@ -26,8 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        window?.makeKeyAndVisible()
 //
 //        // 2. 最初に表示する画面を設定
-//        let rootViewController = StartUpViewController()
-//        window?.rootViewController = rootViewController
+//        window = UIWindow()
+//        window?.rootViewController = UIStoryboard.instantiateInitialViewController(.init(name: "StartUpStoryboard", bundle: .main))()
+//        window?.makeKeyAndVisible()
         
         return true
     }

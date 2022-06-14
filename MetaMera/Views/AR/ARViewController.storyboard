@@ -28,42 +28,29 @@
                                     <constraint firstAttribute="width" constant="50" id="Yl1-hI-Tca"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="aaaaaaaaaaaaaaaa" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ApQ-CF-4sq">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="aaaaaaaaaaaaaaa" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ApQ-CF-4sq">
                                 <rect key="frame" x="24" y="622" width="327" height="36"/>
                                 <color key="backgroundColor" red="0.70552110180412364" green="0.70552110180412364" blue="0.70552110180412364" alpha="0.54346082182873134" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y0j-ZC-rus">
-                                <rect key="frame" x="30" y="722" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="97b-6B-tuJ"/>
-                                    <constraint firstAttribute="width" constant="40" id="BKG-2w-Qjw"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="ロゴ"/>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="y0j-ZC-rus" secondAttribute="bottom" constant="50" id="2OG-ha-93X"/>
                             <constraint firstItem="0g4-UK-JMB" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="AKa-hc-EY4"/>
                             <constraint firstItem="0g4-UK-JMB" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="D6g-GO-x6z"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ApQ-CF-4sq" secondAttribute="trailing" constant="24" id="H1I-Uc-TY2"/>
                             <constraint firstItem="0g4-UK-JMB" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="HZK-Ny-kpi"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="ApQ-CF-4sq" secondAttribute="bottom" constant="120" id="K1t-Py-zl6"/>
-                            <constraint firstItem="y0j-ZC-rus" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="MUx-VS-AV6"/>
                             <constraint firstItem="ApQ-CF-4sq" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="PcH-oI-zZB"/>
                             <constraint firstAttribute="bottom" secondItem="0g4-UK-JMB" secondAttribute="bottom" id="fiY-bz-BOt"/>
-                            <constraint firstItem="ApQ-CF-4sq" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="bottom" constant="-190" id="vqF-DK-wrB"/>
                             <constraint firstItem="GNl-nI-ajh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="wHm-Iv-cef"/>
                             <constraint firstItem="GNl-nI-ajh" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="60" id="yeO-Uv-1g2"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="LeftDownButton" destination="y0j-ZC-rus" id="bq8-Ah-PpM"/>
                         <outlet property="ProfileImage" destination="GNl-nI-ajh" id="QYn-Zh-0uI"/>
                         <outlet property="contentView" destination="0g4-UK-JMB" id="gmO-ii-G2K"/>
                         <outlet property="textLabel" destination="ApQ-CF-4sq" id="81X-84-tgj"/>
