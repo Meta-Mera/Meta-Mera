@@ -31,7 +31,10 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     @IBOutlet weak var selectCategoryButton: UIButton!
     
     
-    
+    private lazy var plusButtonLongTapGuester: UILongPressGestureRecognizer = {
+        let guester = UILongPressGestureRecognizer(target: self, action: #selector(plusButtonLongTapped(_:)))
+        return guester
+    }()
     
     
     var updateInfoLabelTimer: Timer?
@@ -44,6 +47,9 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         super.viewDidLoad()
         
         flag = true
+        
+        // プラスボタンにタップジェスチャー追加
+        plusButton.addGestureRecognizer(plusButtonLongTapGuester)
         
         // Load the "Box" scene from the "Experience" Reality File
         
@@ -371,56 +377,72 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     //MARK: - プラスボタンのやつ
     
-    
-    @IBAction func pushPlusButton(_ sender: Any) {
-        print("push plus button")
-        self.backView.alpha = 0
-        backView.isHidden = false
-        plusButton.isHidden = true
-        profileButton.isHidden = false
-        selectCategoryButton.isHidden = false
-        createRoomButton.isHidden = false
-        UIView.animate(withDuration: 0.1,
-                       delay: 0.2,
-                       options: UIView.AnimationOptions.curveEaseOut,
-                       animations: { () in
-            
-
-            self.profileButton.center.y -= 100.0
-            self.profileButton.center.x -= 10.0
-            
-            self.selectCategoryButton.center.x += 80.0
-            self.selectCategoryButton.center.y += 20.0
-            
-            self.createRoomButton.center.x += 60.0
-            self.createRoomButton.center.y -= 60.0
-            
-            self.backView.alpha += 0.5
-            
-        }, completion: { (Bool) in
-//            self.backView.isHidden = false
-        })
+    /// プラスボタン選択時
+    private var isSettingShowing: Bool = false
+    @objc func plusButtonLongTapped(_ sender: Any) {
+        if !isSettingShowing {
+            // 背景設定
+            backView.alpha = 0
+            backView.isHidden = false
+            // プラスボタン非表示
+            plusButton.isHidden = true
+            // 選択ボタン表示
+            profileButton.isHidden = false
+            selectCategoryButton.isHidden = false
+            createRoomButton.isHidden = false
+            // 表示切り替えアニメーション
+            UIView.animate(
+                withDuration: 0.1,
+                delay: 0.2,
+                options: .curveEaseOut,
+                animations: { [weak self] () in
+                    // プロフィールボタン
+                    self?.profileButton.center.y -= 100.0
+                    self?.profileButton.center.x -= 10.0
+                    // カテゴリ選択ボタン
+                    self?.selectCategoryButton.center.x += 80.0
+                    self?.selectCategoryButton.center.y += 20.0
+                    // ルーム作成ボタン
+                    self?.createRoomButton.center.x += 60.0
+                    self?.createRoomButton.center.y -= 60.0
+                    // 背景
+                    self?.backView.alpha += 0.5
+                    
+                    self?.isSettingShowing = true
+                }
+            )
+        }
         
     }
     
+    @IBAction func pushPlusButton(_ sender: Any) {
+        print("plus 普通のタップ")
+    }
+    
     @objc func backTap(){
-        self.profileButton.layer.position.x = 100
         UIView.animate(withDuration: 0.7,
                        delay: 0.2,
-                       options: [UIView.AnimationOptions.curveEaseOut],
-                       animations: { () in
-            
-            self.profileButton.center.y += 100.0
-            
-//            self.profileButton.center.x -= 10.0
-            
-        }, completion: { (Bool) in
-
-//            self.backView.isHidden = true
-//            self.plusButton.isHidden = false
-//            self.profileButton.isHidden = true
-//            self.selectCategoryButton.isHidden = true
-//            self.createRoomButton.isHidden = true
+                       options: [.curveEaseOut],
+                       animations: { [weak self] () in
+            // プロフィールボタン
+            self?.profileButton.center.y += 100.0
+            self?.profileButton.center.x += 10.0
+            // カテゴリ選択ボタン
+            self?.selectCategoryButton.center.x -= 80.0
+            self?.selectCategoryButton.center.y -= 20.0
+            // ルーム作成ボタン
+            self?.createRoomButton.center.x -= 60.0
+            self?.createRoomButton.center.y += 60.0
+        }, completion: { [weak self] (Bool) in
+            // 背景設定
+            self?.backView.isHidden = true
+            // プラスボタン非表示
+            self?.plusButton.isHidden = false
+            // 選択ボタン表示
+            self?.profileButton.isHidden = true
+            self?.selectCategoryButton.isHidden = true
+            self?.createRoomButton.isHidden = true
+            self?.isSettingShowing = false
         })
     }
     
