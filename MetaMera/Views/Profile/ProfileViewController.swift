@@ -253,25 +253,27 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                 return
             }
             
-            // データをアップロード
-            imageRef.putData(imageData, metadata: metaData) { metaData, error in
-                if let error = error {
-                    fatalError(error.localizedDescription)
-                    return
-                }
-                // completion
-                // ダウンロードURLの取得
-                imageRef.downloadURL { url, error in
+            dismiss(animated: true) {
+                // データをアップロード
+                imageRef.putData(imageData, metadata: metaData) { metaData, error in
                     if let error = error {
                         fatalError(error.localizedDescription)
                         return
                     }
-                    guard let downloadURL = url else {
-                        // ダウンロードURL取得失敗
-                        return
+                    // completion
+                    // ダウンロードURLの取得
+                    imageRef.downloadURL { url, error in
+                        if let error = error {
+                            fatalError(error.localizedDescription)
+                            return
+                        }
+                        guard let downloadURL = url else {
+                            // ダウンロードURL取得失敗
+                            return
+                        }
+                        // success
+                        
                     }
-                    // success
-
                 }
             }
             
