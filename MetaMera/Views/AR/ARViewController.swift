@@ -16,12 +16,20 @@ import FirebaseCore
 import FirebaseStorage
 
 
-class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate, CLLocationManagerDelegate {
+class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate {
     
+    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var contentView: UIView!
     //    @IBOutlet weak var arView: ARView!
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var ProfileImage: UIImageView!
+    
+    @IBOutlet weak var plusButton: UIButton!
+    @IBOutlet weak var profileButton: UIButton!
+    @IBOutlet weak var createRoomButton: UIButton!
+    @IBOutlet weak var selectCategoryButton: UIButton!
+    
+    
     
     
     
@@ -54,6 +62,14 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         ProfileImage.isUserInteractionEnabled = true
         ProfileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pushProfileImage(_:))))
         
+        //MARK: プラスボタン系
+        plusButton.layer.cornerRadius = 30
+        profileButton.layer.cornerRadius = 30
+        createRoomButton.layer.cornerRadius = 30
+        selectCategoryButton.layer.cornerRadius = 30
+        plusButton.contentHorizontalAlignment = .center
+        
+        
         
         //MARK: 位置情報のやつっぽい
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
@@ -61,10 +77,12 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         locationManager.headingFilter = kCLHeadingFilterNone
         locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.delegate = self
-        locationManager.startUpdatingHeading()
+//        locationManager.startUpdatingHeading()
         locationManager.startUpdatingLocation()
         
         locationManager.requestWhenInUseAuthorization()
+    
+        mapView.showsUserLocation = true
         
         // MARK: ここからARのやつのやつ
         
@@ -82,7 +100,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         
         
-        sceneLocationView.showAxesNode = true
+        sceneLocationView.showAxesNode = false
         sceneLocationView.locationNodeTouchDelegate = self
         //        sceneLocationView.delegate = self // Causes an assertionFailure - use the `arViewDelegate` instead:
         sceneLocationView.arViewDelegate = self
@@ -154,7 +172,13 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     @objc func pushProfileImage(_ sender: Any){
         print("Push profile image")
-        Goto.Profile(view: self)
+        
+        plusButton.isHidden = false
+        profileButton.isHidden = true
+        selectCategoryButton.isHidden = true
+        createRoomButton.isHidden = true
+        
+//        Goto.Profile(view: self)
     }
     
     //MARK: プロフィール画像関連 -
@@ -243,13 +267,13 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         let spaceNeedle = buildNode(latitude: 35.624929, longitude: 139.341696, altitude: 175, imageName: "drink",size: CGSize(width: 400, height: 300))
         nodes.append(spaceNeedle)
         
-        let spaceNeedle2 = buildNode(latitude: 35.624525, longitude: 139.342277, altitude: 200, imageName: "snow",size: CGSize(width: 200, height: 400))
-        nodes.append(spaceNeedle2)
+//        let spaceNeedle2 = buildNode(latitude: 35.624525, longitude: 139.342277, altitude: 200, imageName: "snow",size: CGSize(width: 200, height: 300))
+//        nodes.append(spaceNeedle2)
         
-        let spaceNeedle3 = buildNode(latitude: 35.624749, longitude: 139.342948, altitude: 175, imageName: "cherry",size: CGSize(width: 400, height: 400))
-        nodes.append(spaceNeedle3)
+//        let spaceNeedle3 = buildNode(latitude: 35.624749, longitude: 139.342948, altitude: 175, imageName: "cherry",size: CGSize(width: 400, height: 400))
+//        nodes.append(spaceNeedle3)
         
-        let spaceNeedle4 = buildNode(latitude: 35.624357, longitude: 139.343087, altitude: 200, imageName: "train",size: CGSize(width: 200, height: 400))
+        let spaceNeedle4 = buildNode(latitude: 35.625050, longitude: 139.3418137, altitude: 180, imageName: "train",size: CGSize(width: 200, height: 300))
         nodes.append(spaceNeedle4)
         
         
@@ -340,9 +364,42 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     // MARK: ARのやつ -
     // MARK: - 位置情報のやつ
     
+    // MARK: 位置情報のやつ -
+    
+    //MARK: - プラスボタンのやつ
+    
+    
+    @IBAction func pushPlusButton(_ sender: Any) {
+        plusButton.isHidden = true
+        profileButton.isHidden = false
+        selectCategoryButton.isHidden = false
+        createRoomButton.isHidden = false
+        UIView.animate(withDuration: 0.3,
+                       delay: 0.2,
+                       options: UIView.AnimationOptions.curveEaseOut,
+                       animations: { () in
+            //self.plusButton.center.y -= 100.0
+            self.profileButton.center.y -= 100.0
+            self.profileButton.center.x -= 10.0
+            
+            self.selectCategoryButton.center.x += 80.0
+            self.selectCategoryButton.center.y += 20.0
+            
+            self.createRoomButton.center.x += 60.0
+            self.createRoomButton.center.y -= 60.0
+            
+        }, completion: { (Bool) in
+            
+        })
+        
+    }
+    
+    //MARK: プラスボタンのやつ -
     
     
 }
+
+
 
 extension ARViewController: ChatViewControllerDelegate{
     func tappedSendButton(text: String) {
@@ -394,3 +451,18 @@ extension UIImage {
     }
 }
 
+var flag: Bool = true
+extension ARViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        print(locations.map { $0.coordinate })
+        if let location = manager.location?.coordinate {
+            let center: CLLocationCoordinate2D = .init(latitude: location.latitude, longitude: location.longitude)
+            if flag {
+                mapView.region = .init(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+                mapView.centerCoordinate = center
+                flag.toggle()
+            }
+        }
+    }
+}
