@@ -24,6 +24,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var ProfileImage: UIImageView!
     
+    @IBOutlet weak var backView: UIView!
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var createRoomButton: UIButton!
@@ -38,15 +39,12 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     var sceneLocationView = SceneLocationView()
     var locationManager = CLLocationManager()
     
-    //    private lazy var chatView: ChatViewController = {
-    //        let view = ChatViewController()
-    //        view.frame = .init(x: 0, y: 0, width: view.frame.width, height: 100)
-    //        view.delegate = self
-    //        return view
-    //    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        flag = true
+        
         // Load the "Box" scene from the "Experience" Reality File
         
         do {
@@ -63,6 +61,11 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         ProfileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pushProfileImage(_:))))
         
         //MARK: プラスボタン系
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                                  action: #selector(backTap))
+        self.backView.addGestureRecognizer(tapGestureRecognizer)
+        
         plusButton.layer.cornerRadius = 30
         profileButton.layer.cornerRadius = 30
         createRoomButton.layer.cornerRadius = 30
@@ -370,15 +373,19 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     
     @IBAction func pushPlusButton(_ sender: Any) {
+        print("push plus button")
+        self.backView.alpha = 0
+        backView.isHidden = false
         plusButton.isHidden = true
         profileButton.isHidden = false
         selectCategoryButton.isHidden = false
         createRoomButton.isHidden = false
-        UIView.animate(withDuration: 0.3,
+        UIView.animate(withDuration: 0.1,
                        delay: 0.2,
                        options: UIView.AnimationOptions.curveEaseOut,
                        animations: { () in
-            //self.plusButton.center.y -= 100.0
+            
+
             self.profileButton.center.y -= 100.0
             self.profileButton.center.x -= 10.0
             
@@ -388,23 +395,52 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             self.createRoomButton.center.x += 60.0
             self.createRoomButton.center.y -= 60.0
             
-        }, completion: { (Bool) in
+            self.backView.alpha += 0.5
             
+        }, completion: { (Bool) in
+//            self.backView.isHidden = false
         })
         
     }
     
+    @objc func backTap(){
+        self.profileButton.layer.position.x = 100
+        UIView.animate(withDuration: 0.7,
+                       delay: 0.2,
+                       options: [UIView.AnimationOptions.curveEaseOut],
+                       animations: { () in
+            
+            self.profileButton.center.y += 100.0
+            
+//            self.profileButton.center.x -= 10.0
+            
+        }, completion: { (Bool) in
+
+//            self.backView.isHidden = true
+//            self.plusButton.isHidden = false
+//            self.profileButton.isHidden = true
+//            self.selectCategoryButton.isHidden = true
+//            self.createRoomButton.isHidden = true
+        })
+    }
+    
+    @IBAction func pushProfileButton(_ sender: Any) {
+        Goto.ChatRoom(view: self)
+    }
+    
+    @IBAction func pushCreateRoom(_ sender: Any) {
+        
+    }
+    
+    @IBAction func pushSelectCategory(_ sender: Any) {
+        
+    }
+    
+    
+    
     //MARK: プラスボタンのやつ -
     
     
-}
-
-
-
-extension ARViewController: ChatViewControllerDelegate{
-    func tappedSendButton(text: String) {
-        print(text)
-    }
 }
 
 extension ARViewController: LNTouchDelegate {

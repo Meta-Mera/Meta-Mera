@@ -43,6 +43,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view alpha="0.0" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="5xn-ya-I9u">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czh-4h-UIa">
                                 <rect key="frame" x="30" y="702" width="60" height="60"/>
                                 <color key="backgroundColor" name="AccentColor"/>
@@ -74,7 +78,7 @@
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="pushPlusButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="xa4-k5-ViW"/>
+                                    <action selector="pushProfileButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="TIW-B5-Ja6"/>
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6FL-tj-Fkr">
@@ -91,7 +95,7 @@
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="pushPlusButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="bmk-mE-agg"/>
+                                    <action selector="pushSelectCategory:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Abn-1J-PQX"/>
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="asd-mO-hrb">
@@ -108,7 +112,7 @@
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="pushPlusButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="WDG-pn-V4P"/>
+                                    <action selector="pushCreateRoom:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="0cb-5i-4ub"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -119,32 +123,37 @@
                             <constraint firstItem="dtr-PO-uBE" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="2gN-lm-jZ3"/>
                             <constraint firstItem="6FL-tj-Fkr" firstAttribute="top" secondItem="asd-mO-hrb" secondAttribute="bottom" constant="20" id="3c6-kN-K6U"/>
                             <constraint firstItem="czh-4h-UIa" firstAttribute="top" secondItem="e4y-40-dW5" secondAttribute="bottom" constant="40" id="A4X-ZC-aCR"/>
-                            <constraint firstItem="0g4-UK-JMB" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="AKa-hc-EY4"/>
+                            <constraint firstItem="0g4-UK-JMB" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="AKa-hc-EY4"/>
                             <constraint firstItem="0g4-UK-JMB" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="D6g-GO-x6z"/>
                             <constraint firstItem="czh-4h-UIa" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="Fjj-OZ-u4D"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ApQ-CF-4sq" secondAttribute="trailing" constant="24" id="H1I-Uc-TY2"/>
-                            <constraint firstItem="0g4-UK-JMB" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="HZK-Ny-kpi"/>
+                            <constraint firstItem="0g4-UK-JMB" firstAttribute="trailing" secondItem="5EZ-qb-Rvc" secondAttribute="trailing" id="HZK-Ny-kpi"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="ApQ-CF-4sq" secondAttribute="bottom" constant="600" id="K1t-Py-zl6"/>
                             <constraint firstAttribute="bottom" secondItem="czh-4h-UIa" secondAttribute="bottom" constant="50" id="Lwe-Zn-nej"/>
                             <constraint firstAttribute="bottom" secondItem="6FL-tj-Fkr" secondAttribute="bottom" constant="30" id="ODN-F9-OtA"/>
                             <constraint firstItem="ApQ-CF-4sq" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="PcH-oI-zZB"/>
                             <constraint firstItem="e4y-40-dW5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="QbO-Nj-K3H"/>
+                            <constraint firstItem="5xn-ya-I9u" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="RgD-EX-jS0"/>
                             <constraint firstItem="dtr-PO-uBE" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="T7c-mN-UZD"/>
                             <constraint firstItem="dtr-PO-uBE" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" constant="275" id="ds8-LA-1ol"/>
                             <constraint firstAttribute="bottom" secondItem="0g4-UK-JMB" secondAttribute="bottom" id="fiY-bz-BOt"/>
                             <constraint firstItem="6FL-tj-Fkr" firstAttribute="leading" secondItem="czh-4h-UIa" secondAttribute="trailing" constant="20" id="gct-Bh-Knv"/>
                             <constraint firstItem="GNl-nI-ajh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="wHm-Iv-cef"/>
+                            <constraint firstItem="5xn-ya-I9u" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="xxf-XG-v1U"/>
                             <constraint firstItem="GNl-nI-ajh" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="60" id="yeO-Uv-1g2"/>
+                            <constraint firstItem="5xn-ya-I9u" firstAttribute="top" secondItem="0g4-UK-JMB" secondAttribute="top" id="yks-3W-EJ0"/>
+                            <constraint firstItem="5xn-ya-I9u" firstAttribute="leading" secondItem="0g4-UK-JMB" secondAttribute="leading" id="yx3-RL-SVR"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="ProfileImage" destination="GNl-nI-ajh" id="QYn-Zh-0uI"/>
+                        <outlet property="backView" destination="5xn-ya-I9u" id="mjy-3B-pEA"/>
                         <outlet property="contentView" destination="0g4-UK-JMB" id="gmO-ii-G2K"/>
-                        <outlet property="createRoomButton" destination="asd-mO-hrb" id="T30-kK-TLC"/>
+                        <outlet property="createRoomButton" destination="asd-mO-hrb" id="HpU-9m-dsS"/>
                         <outlet property="mapView" destination="dtr-PO-uBE" id="sH1-kp-7bb"/>
                         <outlet property="plusButton" destination="czh-4h-UIa" id="OEW-ek-P8V"/>
-                        <outlet property="profileButton" destination="e4y-40-dW5" id="cvI-3w-ERo"/>
-                        <outlet property="selectCategoryButton" destination="6FL-tj-Fkr" id="hc3-Xd-Djx"/>
+                        <outlet property="profileButton" destination="e4y-40-dW5" id="EXc-aP-cfD"/>
+                        <outlet property="selectCategoryButton" destination="6FL-tj-Fkr" id="jlB-V9-DNc"/>
                         <outlet property="textLabel" destination="ApQ-CF-4sq" id="81X-84-tgj"/>
                     </connections>
                 </viewController>

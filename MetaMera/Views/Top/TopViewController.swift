@@ -41,13 +41,18 @@ class TopViewController: UIViewController {
             //self.logoImageView.layer.position = CGPoint(x:0, y:100)
             self.signInImageView.isHidden = false
             self.signUpImageView.isHidden = false
+            self.signInImageView.alpha = 0
+            self.signUpImageView.alpha = 0
             UIView.animate(withDuration: 1.0,
                            delay: 0.0,
                            options: UIView.AnimationOptions.curveEaseOut,
                            animations: { () in
 //                self.logoImageView.center.y -= 20.0
                 self.signInImageView.center.y -= 50.0
+                self.signInImageView.alpha += 0.7
+                
                 self.signUpImageView.center.y -= 50.0
+                self.signUpImageView.alpha += 0.7
                 
             }, completion: { (Bool) in
                 
