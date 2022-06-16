@@ -162,13 +162,6 @@ class ProfileViewController: UIViewController {
     
     
     @IBAction func pushChangeImage(_ sender: Any) {
-        // カメラロール呼び出し
-        //let picker = UIImagePickerController()
-        //present(picker, animated: true)
-        //picker.delegate = self
-        // 写真選択
-        // 画像をデータに変換
-        // firestorageにアップロード
         //iOS14に対応
         if #available(iOS 14.0, *) {
             PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
@@ -201,7 +194,7 @@ class ProfileViewController: UIViewController {
         }
         
         
-        // 顕現
+        // 権限
         let authPhotoLibraryStatus = PHPhotoLibrary.authorizationStatus()
         // 許可されてる場合のみ
         if authPhotoLibraryStatus == .authorized {
@@ -212,9 +205,6 @@ class ProfileViewController: UIViewController {
             
             
         }
-        
-        //        guard let imageData = image.jpegData(compressionQuality: 0.3)
-        //                let imageRef = Storage.storage().reference().child("")
         print("change image")
     }
     
@@ -251,10 +241,9 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             // 格納先 reference
-//            let imageRef = FirebaseStorage.Storage.storage().reference().child("test/test.jpg")
             let path = FirebaseStorage.Storage.storage().reference(forURL: "gs://metamera-e2b4b.appspot.com")
-            let imageRef = path.child("test").child("test.jpeg")
-            //            let userRef = db.collection("").document()
+            let imageRef = path.child("profile").child("test.jpeg")
+            
             // メタデータ
             let metaData = FirebaseStorage.StorageMetadata()
             metaData.contentType = "image/jpeg"
@@ -263,25 +252,28 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             guard let imageData = selectedImage.jpegData(compressionQuality: 0.5) else {
                 return
             }
-            // データをアップロード
-            imageRef.putData(imageData, metadata: metaData) { metaData, error in
-                if let error = error {
-                    fatalError(error.localizedDescription)
-                    return
-                }
-                // completion
-                // ダウンロードURLの取得
-                imageRef.downloadURL { url, error in
+            
+            dismiss(animated: true) {
+                // データをアップロード
+                imageRef.putData(imageData, metadata: metaData) { metaData, error in
                     if let error = error {
                         fatalError(error.localizedDescription)
                         return
                     }
-                    guard let downloadURL = url else {
-                        // ダウンロードURL取得失敗
-                        return
+                    // completion
+                    // ダウンロードURLの取得
+                    imageRef.downloadURL { url, error in
+                        if let error = error {
+                            fatalError(error.localizedDescription)
+                            return
+                        }
+                        guard let downloadURL = url else {
+                            // ダウンロードURL取得失敗
+                            return
+                        }
+                        // success
+                        
                     }
-                    // success
-                    
                 }
             }
             

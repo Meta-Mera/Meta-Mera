@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //sleep(1)
         window = UIWindow()
-        window?.rootViewController = UIStoryboard.instantiateInitialViewController(.init(name: "TopViewController", bundle: .main))()
+        window?.rootViewController = UIStoryboard.instantiateInitialViewController(.init(name: "ProfileViewController", bundle: .main))()
         window?.makeKeyAndVisible()
         
 //        window = UIWindow()
