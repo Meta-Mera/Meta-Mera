@@ -18,15 +18,15 @@ class ChatViewController: UIView{
     
     weak var delegate: ChatViewControllerDelegate?
     
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//
-//        nibInit()
-//        setupViews()
-//        autoresizingMask = .flexibleHeight
-//
-//        inputChatText.delegate = self
-//    }
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        nibInit()
+        setupViews()
+        autoresizingMask = .flexibleHeight
+
+        inputChatText.delegate = self
+    }
     
     private func setupViews(){
         
@@ -47,23 +47,23 @@ class ChatViewController: UIView{
         return .zero
     }
     
-//    private func nibInit(){
-//        let nib = UINib(nibName: "ChatViewController", bundle: nil)
-//        guard let view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
-//
-//        view.frame = self.bounds
-//        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-//        self.addSubview(view)
-//    }
+    private func nibInit(){
+        let nib = UINib(nibName: "ChatViewController", bundle: nil)
+        guard let view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
+
+        view.frame = self.bounds
+        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        self.addSubview(view)
+    }
     
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     
-//    @IBAction func tappedSendButton(_ sender: Any) {
-//        guard inputChatText.text != nil else { return }
-//    }
+    @IBAction func tappedSendButton(_ sender: Any) {
+        guard inputChatText.text != nil else { return }
+    }
     
 }
 

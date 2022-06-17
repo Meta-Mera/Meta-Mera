@@ -10,11 +10,17 @@ import UIKit
 
 class chatRoomController: UIViewController, UITextFieldDelegate{
     
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var userIcon: UIImageView!
+    private let cellId = "cellId"
+    
+    @IBOutlet weak var chatRoomTableView: UITableView!
     
     override func viewDidLoad() {
-        userIcon.layer.cornerRadius = 30
+        super.viewDidLoad()
+        
+        chatRoomTableView.delegate = self
+        chatRoomTableView.dataSource = self
+//        chatRoomTableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        chatRoomTableView.register(UINib(nibName: "chatRoomTableViewCell", bundle: nil) , forCellReuseIdentifier: cellId)
     }
     
     private lazy var chatView: ChatViewController = {
@@ -38,10 +44,6 @@ class chatRoomController: UIViewController, UITextFieldDelegate{
         self.view.endEditing(true)
     }
     
-    
-    @IBAction func pushBackButton(_ sender: Any) {
-        self.dismiss(animated: true)
-    }
 }
 
 
@@ -50,4 +52,24 @@ extension chatRoomController: ChatViewControllerDelegate{
     func tappedSendButton(text: String) {
         print(text)
     }
+}
+
+extension chatRoomController: UITableViewDelegate, UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 250
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        cell.backgroundColor = .purple
+        return cell
+        
+    }
+    
+    
 }

@@ -18,12 +18,17 @@ import FirebaseStorage
 
 class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate {
     
+    //AR系
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var contentView: UIView!
-    //    @IBOutlet weak var arView: ARView!
+
+    //多分いらなくなります
+    //現在位置を表示するためのやつ
     @IBOutlet weak var textLabel: UILabel!
+    //プロフィール画面に移行する用だけど多分プラスボタン系に結合されると思う
     @IBOutlet weak var ProfileImage: UIImageView!
     
+    //プラスボタン系
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var profileButton: UIButton!
@@ -31,21 +36,24 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     @IBOutlet weak var selectCategoryButton: UIButton!
     
     
+    //プラスボタンを長押しした時用のやつ
     private lazy var plusButtonLongTapGuester: UILongPressGestureRecognizer = {
         let guester = UILongPressGestureRecognizer(target: self, action: #selector(plusButtonLongTapped(_:)))
         return guester
     }()
     
-    
+    //ループ用のやつ
     var updateInfoLabelTimer: Timer?
     
+    //AR系2
     var sceneLocationView = SceneLocationView()
     var locationManager = CLLocationManager()
     
-    
+    //MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //画面遷移した時だけ現在位置を表示するためにTrueにするよ
         flag = true
         
         // プラスボタンにタップジェスチャー追加
@@ -67,7 +75,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         ProfileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pushProfileImage(_:))))
         
         //MARK: プラスボタン系
-        
         let tapGestureRecognizer = UITapGestureRecognizer(target: self,
                                                                   action: #selector(backTap))
         self.backView.addGestureRecognizer(tapGestureRecognizer)
@@ -93,7 +100,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
         mapView.showsUserLocation = true
         
-        // MARK: ここからARのやつのやつ
+        // MARK: - ここからARのやつのやつ
         
         NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification,
                                                object: nil,
@@ -111,7 +118,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         sceneLocationView.showAxesNode = false
         sceneLocationView.locationNodeTouchDelegate = self
-        //        sceneLocationView.delegate = self // Causes an assertionFailure - use the `arViewDelegate` instead:
+//        sceneLocationView.delegate = self // Causes an assertionFailure - use the `arViewDelegate` instead:
         sceneLocationView.arViewDelegate = self
         sceneLocationView.locationNodeTouchDelegate = self
         
@@ -119,30 +126,18 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         addSceneModels()
         
         
-        //        sceneLocationView.run()
+//        sceneLocationView.run()
         contentView.addSubview(sceneLocationView)
         
         sceneLocationView.frame = .zero
         
-        //        sceneLocationView.run()
+//        sceneLocationView.run()
         
         // Do any additional setup after loading the view.
         
         updateInfoLabelTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
             self?.updateInfoLabel()
         }
-        
-        //MARK: - 左下のボタンのやーつ
-        
-        
-        //        LeftDownButton.layer.cornerRadius = 13
-        //        LeftDownButton.imageView?.contentMode = .scaleAspectFill
-        //        LeftDownButton.imageEdgeInsets = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
-        //        LeftDownButton.contentHorizontalAlignment = .fill
-        //        LeftDownButton.contentVerticalAlignment = .fill
-        //        LeftDownButton.isEnabled = false
-        
-        //MARK: 左下のボタンのやーつ -
     }
     
     
@@ -160,15 +155,20 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     //        self.view.endEditing(true)
     //    }
     
+    //MARK: わかんない！
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         sceneLocationView.frame = view.bounds
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        //MARK: ナビゲーションコントローラーを隠すよ！
         navigationController?.setNavigationBarHidden(true, animated: false)
+        
         restartAnimation()
     }
     
@@ -179,15 +179,10 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     //MARK: - プロフィール画像関連
     
+    //MARK: プロフィール画面に遷移するよ！
     @objc func pushProfileImage(_ sender: Any){
         print("Push profile image")
-        
-        plusButton.isHidden = false
-        profileButton.isHidden = true
-        selectCategoryButton.isHidden = true
-        createRoomButton.isHidden = true
-        
-//        Goto.Profile(view: self)
+        Goto.Profile(view: self)
     }
     
     //MARK: プロフィール画像関連 -
@@ -195,11 +190,13 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     // MARK: - ここからAR
     
+    //MARK: ARを止めるよ！
     func pauseAnimation() {
         print("pause")
         sceneLocationView.pause()
     }
     
+    //MARK: ARを再開するよ！
     func restartAnimation() {
         sceneLocationView.isPlaying = true
         DispatchQueue.main.async { [weak self] in
@@ -210,6 +207,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
     }
     
+    //MARK: ここで座標に基づいたオブジェクトを設置してるよ
     func buildDemoData() -> [LocationAnnotationNode] {
         var nodes: [LocationAnnotationNode] = []
         
@@ -289,6 +287,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         return nodes
     }
     
+    //MARK: まだ勉強してるよ！
     func addSceneModels() {
         // 1. Don't try to add the models to the scene until we have a current location
         guard sceneLocationView.sceneLocationManager.currentLocation != nil else {
@@ -318,7 +317,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     
     
-    
+    //MARK: - ここからオブジェクトを生成するためのやつだよ
+
     func buildNode(latitude: CLLocationDegrees, longitude: CLLocationDegrees,
                    altitude: CLLocationDistance, imageName: String, size: CGSize) -> LocationAnnotationNode {
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -370,6 +370,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             textLabel.text = " Heading: \(yDegrees)° • \(Float(heading).short)° • \(headingAccuracy)°"
         }
     }
+    //MARK: ここからオブジェクトを生成するためのやつだよ -
+    
     // MARK: ARのやつ -
     // MARK: - 位置情報のやつ
     
@@ -465,6 +467,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
 }
 
+
+//MARK: ARのオブジェクトをタップしたときに呼び出される
 extension ARViewController: LNTouchDelegate {
     func annotationNodeTouched(node: AnnotationNode) {
         if let nodeView = node.view{
@@ -491,6 +495,7 @@ extension ARViewController: LNTouchDelegate {
     
 }
 
+//MARK: Imageのサイズを変更する
 extension UIImage {
     // resize image
     func reSizeImage(reSize:CGSize)->UIImage {
@@ -509,6 +514,8 @@ extension UIImage {
     }
 }
 
+
+//MARK: 位置情報のやつ
 var flag: Bool = true
 extension ARViewController: CLLocationManagerDelegate {
     

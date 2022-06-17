@@ -10,10 +10,12 @@ import UIKit
 
 class Goto : UIViewController{
     
+    
     class func Top(view: UIViewController, completion: (() -> Void)?){
         view.view.window?.rootViewController?.dismiss(animated: true, completion: completion)
     }
     
+    //TODO: SignInの画面に移行できるように戻すこと！！
     class func SignIn(view: UIViewController){
         if let vc = UIStoryboard.instantiateInitialViewController(.init(name: "ARViewController", bundle: .main))() as? ARViewController {
             let navController = UINavigationController(rootViewController: vc)
