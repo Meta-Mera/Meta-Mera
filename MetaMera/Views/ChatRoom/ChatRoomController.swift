@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 
-class chatRoomController: UIViewController, UITextFieldDelegate{
+class ChatRoomController: UIViewController, UITextFieldDelegate{
     
-    private let cellId = "chatRoomTableViewCell"
+    private let cellId = "ChatRoomTableViewCell"
     
     @IBOutlet weak var chatRoomTableView: UITableView!
     
@@ -19,7 +19,7 @@ class chatRoomController: UIViewController, UITextFieldDelegate{
         
         chatRoomTableView.delegate = self
         chatRoomTableView.dataSource = self
-        chatRoomTableView.register(UINib(nibName: "chatRoomTableViewCell", bundle: nil) , forCellReuseIdentifier: cellId)
+        chatRoomTableView.register(UINib(nibName: "ChatRoomTableViewCell", bundle: nil) , forCellReuseIdentifier: cellId)
     }
     
     private lazy var chatView: ChatViewController = {
@@ -47,13 +47,13 @@ class chatRoomController: UIViewController, UITextFieldDelegate{
 
 
 
-extension chatRoomController: ChatViewControllerDelegate{
+extension ChatRoomController: ChatViewControllerDelegate{
     func tappedSendButton(text: String) {
         print(text)
     }
 }
 
-extension chatRoomController: UITableViewDelegate, UITableViewDataSource{
+extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 250
@@ -64,7 +64,7 @@ extension chatRoomController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! chatRoomTableViewCell
+        let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatRoomTableViewCell
         cell.backgroundColor = .lightGray
         return cell
         

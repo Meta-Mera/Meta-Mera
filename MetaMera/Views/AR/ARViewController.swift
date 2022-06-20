@@ -236,52 +236,54 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         //        let pikesPeak = buildLayerNode(latitude: 38.8405322, longitude: -105.0442048, altitude: 4705, layer: pikesPeakLayer)
         //        nodes.append(pikesPeak)
         
-        let applePark1 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 200, text: "200", color: UIColor.green)
-        nodes.append(applePark1)
-        let applePark2 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 210, text: "210", color: UIColor.green)
-        nodes.append(applePark2)
-        let applePark3 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 230, text: "230", color: UIColor.green)
-        nodes.append(applePark3)
-        let applePark4 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 280, text: "280", color: UIColor.green)
-        nodes.append(applePark4)
-        let applePark5 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 290, text: "290", color: UIColor.green)
-        nodes.append(applePark5)
-        let applePark6 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 310, text: "310", color: UIColor.green)
-        nodes.append(applePark6)
-        let applePark7 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 320, text: "320", color: UIColor.green)
-        nodes.append(applePark7)
-        
-        let applePark8 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 190, text: "190", color: UIColor.green)
-        nodes.append(applePark8)
-        let applePark9 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 180, text: "180", color: UIColor.green)
-        nodes.append(applePark9)
-        let applePark10 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 170, text: "170", color: UIColor.green)
-        nodes.append(applePark10)
-        let applePark11 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 160, text: "160", color: UIColor.green)
-        nodes.append(applePark11)
-        let applePark12 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 150, text: "150", color: UIColor.green)
-        nodes.append(applePark12)
-        let applePark13 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 140, text: "140", color: UIColor.green)
-        nodes.append(applePark13)
-        let applePark14 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 130, text: "130", color: UIColor.green)
-        nodes.append(applePark14)
-        let applePark15 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 120, text: "120", color: UIColor.green)
-        nodes.append(applePark15)
-        let applePark16 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 110, text: "110", color: UIColor.green)
-        nodes.append(applePark16)
-        let applePark17 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 100, text: "100", color: UIColor.green)
-        nodes.append(applePark17)
+//        let applePark1 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 200, text: "200", color: UIColor.green)
+//        nodes.append(applePark1)
+//        let applePark2 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 210, text: "210", color: UIColor.green)
+//        nodes.append(applePark2)
+//        let applePark3 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 230, text: "230", color: UIColor.green)
+//        nodes.append(applePark3)
+//        let applePark4 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 280, text: "280", color: UIColor.green)
+//        nodes.append(applePark4)
+//        let applePark5 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 290, text: "290", color: UIColor.green)
+//        nodes.append(applePark5)
+//        let applePark6 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 310, text: "310", color: UIColor.green)
+//        nodes.append(applePark6)
+//        let applePark7 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 320, text: "320", color: UIColor.green)
+//        nodes.append(applePark7)
+//
+//        let applePark8 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 190, text: "190", color: UIColor.green)
+//        nodes.append(applePark8)
+//        let applePark9 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 180, text: "180", color: UIColor.green)
+//        nodes.append(applePark9)
+//        let applePark10 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 170, text: "170", color: UIColor.green)
+//        nodes.append(applePark10)
+//        let applePark11 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 160, text: "160", color: UIColor.green)
+//        nodes.append(applePark11)
+//        let applePark12 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 150, text: "150", color: UIColor.green)
+//        nodes.append(applePark12)
+//        let applePark13 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 140, text: "140", color: UIColor.green)
+//        nodes.append(applePark13)
+//        let applePark14 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 130, text: "130", color: UIColor.green)
+//        nodes.append(applePark14)
+//        let applePark15 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 120, text: "120", color: UIColor.green)
+//        nodes.append(applePark15)
+//        let applePark16 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 110, text: "110", color: UIColor.green)
+//        nodes.append(applePark16)
+//        let applePark17 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 100, text: "100", color: UIColor.green)
+//        nodes.append(applePark17)
         
         let spaceNeedle = buildNode(latitude: 35.624929, longitude: 139.341696, altitude: 175, imageName: "drink",size: CGSize(width: 400, height: 300))
+        spaceNeedle.scaleRelativeToDistance = true
         nodes.append(spaceNeedle)
         
-//        let spaceNeedle2 = buildNode(latitude: 35.624525, longitude: 139.342277, altitude: 200, imageName: "snow",size: CGSize(width: 200, height: 300))
-//        nodes.append(spaceNeedle2)
+        let nike = buildNode(latitude: 35.70561533774642, longitude: 139.57692592332617, altitude: 175, imageName: "shoes",size: CGSize(width: 400, height: 300))
+        nike.scaleRelativeToDistance = true
+        nodes.append(nike)
         
-//        let spaceNeedle3 = buildNode(latitude: 35.624749, longitude: 139.342948, altitude: 175, imageName: "cherry",size: CGSize(width: 400, height: 400))
-//        nodes.append(spaceNeedle3)
+        
         
         let spaceNeedle4 = buildNode(latitude: 35.625050, longitude: 139.3418137, altitude: 180, imageName: "train",size: CGSize(width: 200, height: 300))
+        spaceNeedle4.scaleRelativeToDistance = true
         nodes.append(spaceNeedle4)
         
         
@@ -473,6 +475,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
 //MARK: ARのオブジェクトをタップしたときに呼び出される
 extension ARViewController: LNTouchDelegate {
     func annotationNodeTouched(node: AnnotationNode) {
+        print(node)
         if let nodeView = node.view{
             // Do stuffs with the nodeView
             // ...
