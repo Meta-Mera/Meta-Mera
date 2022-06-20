@@ -13,6 +13,7 @@ class ChatRoomTableViewCell: UITableViewCell {
     @IBOutlet weak var userIconImageView: UIImageView!
     @IBOutlet weak var dateLabelView: UILabel!
     
+    
     override class func awakeFromNib() {
         super.awakeFromNib()
         
