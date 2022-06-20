@@ -10,7 +10,7 @@ import UIKit
 
 class chatRoomController: UIViewController, UITextFieldDelegate{
     
-    private let cellId = "cellId"
+    private let cellId = "chatRoomTableViewCell"
     
     @IBOutlet weak var chatRoomTableView: UITableView!
     
@@ -19,7 +19,6 @@ class chatRoomController: UIViewController, UITextFieldDelegate{
         
         chatRoomTableView.delegate = self
         chatRoomTableView.dataSource = self
-//        chatRoomTableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         chatRoomTableView.register(UINib(nibName: "chatRoomTableViewCell", bundle: nil) , forCellReuseIdentifier: cellId)
     }
     
@@ -65,8 +64,8 @@ extension chatRoomController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        cell.backgroundColor = .purple
+        let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! chatRoomTableViewCell
+        cell.backgroundColor = .lightGray
         return cell
         
     }

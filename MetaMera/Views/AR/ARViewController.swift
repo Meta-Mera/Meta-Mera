@@ -14,6 +14,7 @@ import SceneKit
 import CoreLocation
 import FirebaseCore
 import FirebaseStorage
+import AudioToolbox
 
 
 class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate {
@@ -370,19 +371,14 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             textLabel.text = " Heading: \(yDegrees)° • \(Float(heading).short)° • \(headingAccuracy)°"
         }
     }
-    //MARK: ここからオブジェクトを生成するためのやつだよ -
-    
-    // MARK: ARのやつ -
-    // MARK: - 位置情報のやつ
-    
-    // MARK: 位置情報のやつ -
-    
+    //MARK: ここまでオブジェクトを生成するためのやつだよ -
     //MARK: - プラスボタンのやつ
     
     /// プラスボタン選択時
     private var isSettingShowing: Bool = false
     @objc func plusButtonLongTapped(_ sender: Any) {
         if !isSettingShowing {
+            AudioServicesPlaySystemSound(1519)
             // 背景設定
             backView.alpha = 0
             backView.isHidden = false
@@ -422,10 +418,16 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     }
     
     @objc func backTap(){
-        UIView.animate(withDuration: 0.7,
-                       delay: 0.2,
+        
+        profileButton.layer.position = plusButton.layer.position
+        
+        UIView.animate(withDuration: 0.2,
+                       delay: 0,
                        options: [.curveEaseOut],
                        animations: { [weak self] () in
+            
+            self?.profileButton.layer.position = self!.plusButton.layer.position
+            
             // プロフィールボタン
             self?.profileButton.center.y += 100.0
             self?.profileButton.center.x += 10.0

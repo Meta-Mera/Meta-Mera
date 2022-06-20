@@ -40,12 +40,17 @@
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="fYx-LT-aKy"/>
                     </constraints>
                 </stackView>
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5AF-p4-tnt">
+                    <rect key="frame" x="0.0" y="44" width="390" height="636"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Vms-vG-qL1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2DC-6e-Jjp"/>
                 <constraint firstItem="nMl-pJ-47B" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="bottom" constant="-164" id="6Vj-sE-vMo"/>
+                <constraint firstItem="5AF-p4-tnt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="9MR-Dg-D9N"/>
                 <constraint firstItem="nMl-pJ-47B" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="AdN-ti-Yz9"/>
                 <constraint firstItem="Epc-6j-IYW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="KGC-v8-2mj"/>
                 <constraint firstItem="Epc-6j-IYW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="200" id="Khd-5G-pbL"/>
@@ -54,6 +59,9 @@
                 <constraint firstItem="Vms-vG-qL1" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Sfz-ju-a8W"/>
                 <constraint firstAttribute="bottom" secondItem="Vms-vG-qL1" secondAttribute="bottom" id="VSK-u9-TW1"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Epc-6j-IYW" secondAttribute="bottom" constant="80" id="XNA-Bl-oM2"/>
+                <constraint firstItem="nMl-pJ-47B" firstAttribute="top" secondItem="5AF-p4-tnt" secondAttribute="bottom" id="g2L-Bc-5Dt"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5AF-p4-tnt" secondAttribute="trailing" id="hbQ-eL-Pci"/>
+                <constraint firstItem="Epc-6j-IYW" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="200" id="iDo-ZZ-U5O"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="nMl-pJ-47B" secondAttribute="trailing" id="mRR-SK-tgM"/>
                 <constraint firstItem="nMl-pJ-47B" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="bottom" constant="-130" id="n3z-la-rdB"/>
                 <constraint firstItem="Vms-vG-qL1" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="qap-zj-lUf"/>
