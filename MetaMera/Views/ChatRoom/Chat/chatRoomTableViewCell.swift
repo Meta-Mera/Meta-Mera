@@ -9,9 +9,8 @@ import UIKit
 
 class chatRoomTableViewCell: UITableViewCell {
     
-    
-    @IBOutlet weak var userIconImageView: UIImageView!
     @IBOutlet weak var messageTextView: UITextView!
+    @IBOutlet weak var userIconImageView: UIImageView!
     
     
     override class func awakeFromNib() {
