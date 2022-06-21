@@ -1,8 +1,8 @@
 //
-//  chatRoomTableViewCell.swift
+//  ChatRoomTableViewCell.swift
 //  MetaMera
 //
-//  Created by Jim on 2022/06/17.
+//  Created by 松丸真 on 2022/06/21.
 //
 
 import UIKit
@@ -10,21 +10,23 @@ import UIKit
 class ChatRoomTableViewCell: UITableViewCell {
     
     @IBOutlet weak var userIconImageView: UIImageView!
-    //    @IBOutlet weak var messageTextView: UITextView!
-//    @IBOutlet weak var userIconImageView: UIImageView!
-//    @IBOutlet weak var dateLabelView: UILabel!
+    @IBOutlet weak var messageTextView: UITextView!
+    @IBOutlet weak var dateLabel: UILabel!
     
-    
-    override class func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
-        
-//        self.userIconImageView.layer.cornerRadius = 30
-//        messageTextView.layer.cornerRadius = 15
+        // Initialization code
+        configView()
     }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
     }
     
+    private func configView() {
+        userIconImageView.layer.cornerRadius = 30.0
+        messageTextView.layer.cornerRadius = 10.0
+    }
 }
- 
