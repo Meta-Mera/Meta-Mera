@@ -242,7 +242,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             // 格納先 reference
             let path = FirebaseStorage.Storage.storage().reference(forURL: "gs://metamera-e2b4b.appspot.com")
-            let imageRef = path.child("profile").child("test.jpeg")
+            let localImageRef = path.child("profile").child("test.jpeg")
             
             // メタデータ
             let metaData = FirebaseStorage.StorageMetadata()
@@ -255,14 +255,14 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             
             dismiss(animated: true) {
                 // データをアップロード
-                imageRef.putData(imageData, metadata: metaData) { metaData, error in
+                localImageRef.putData(imageData, metadata: metaData) { metaData, error in
                     if let error = error {
                         fatalError(error.localizedDescription)
                         return
                     }
                     // completion
                     // ダウンロードURLの取得
-                    imageRef.downloadURL { url, error in
+                    localImageRef.downloadURL { url, error in
                         if let error = error {
                             fatalError(error.localizedDescription)
                             return
@@ -272,6 +272,23 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                             return
                         }
                         // success
+                        // ダウンロードURLより画像をダウンロード
+//                        let remoteImageRef = path.child("profile").child("test.jpeg")
+//                        remoteImageRef.data(maxSize: <#Int64#>, completion: {(data, error) in
+////                        remoteImageRef.data(maxSize: 2 * 1024 * 1024, completion: {(data, error) in
+//                            if let e = error {
+//                                print(e)
+//                                return
+//                            }
+//                            guard let imageData = data else {
+//                                return
+//                            }
+//                            self.mainImageView.image = UIImage(data: imageData)
+//                        })
+                        
+//                        let remoteImageRef = path.child("profile").child("test.jpeg")
+//                        remoteImageRef.getData(maxSize: <#T##Int64#>, completion: <#T##((Data?, Error?) -> Void)##((Data?, Error?) -> Void)##(Data?, Error?) -> Void#>)
+                        print(downloadURL)
                         
                     }
                 }
