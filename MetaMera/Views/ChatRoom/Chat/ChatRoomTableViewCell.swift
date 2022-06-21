@@ -9,15 +9,16 @@ import UIKit
 
 class ChatRoomTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var userIconImageView: UIImageView!
-    @IBOutlet weak var dateLabelView: UILabel!
+    //    @IBOutlet weak var messageTextView: UITextView!
+//    @IBOutlet weak var userIconImageView: UIImageView!
+//    @IBOutlet weak var dateLabelView: UILabel!
     
     
     override class func awakeFromNib() {
         super.awakeFromNib()
         
-//        userIconImageView.layer.cornerRadius = 30
+//        self.userIconImageView.layer.cornerRadius = 30
 //        messageTextView.layer.cornerRadius = 15
     }
     

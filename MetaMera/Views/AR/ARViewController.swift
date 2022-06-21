@@ -122,6 +122,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
 //        sceneLocationView.delegate = self // Causes an assertionFailure - use the `arViewDelegate` instead:
         sceneLocationView.arViewDelegate = self
         sceneLocationView.locationNodeTouchDelegate = self
+        sceneLocationView.orientToTrueNorth = false
         
         
         addSceneModels()
@@ -302,7 +303,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         buildDemoData().forEach {
             sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0)
-            sceneLocationView.moveSceneHeadingAntiClockwise()
+//            sceneLocationView.moveSceneHeadingAntiClockwise()
+            sceneLocationView.moveSceneHeadingClockwise()
         }
         
         //        let cubeNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
@@ -498,6 +500,12 @@ extension ARViewController: LNTouchDelegate {
     }
     
     
+}
+
+extension UIImageView {
+    func getFileName() -> String? {
+        return self.image?.accessibilityIdentifier
+    }
 }
 
 //MARK: Imageのサイズを変更する

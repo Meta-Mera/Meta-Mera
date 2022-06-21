@@ -51,9 +51,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="dateLabelView" destination="MdD-zw-dNV" id="w4t-l7-A4p"/>
-                <outlet property="messageTextView" destination="FwN-OQ-2mA" id="9nZ-O3-XZE"/>
-                <outlet property="userIconImageView" destination="WS5-C8-27W" id="ZE4-UH-ZeB"/>
+                <outlet property="userIconImageView" destination="WS5-C8-27W" id="B3g-bx-bfD"/>
             </connections>
             <point key="canvasLocation" x="464.49275362318843" y="107.8125"/>
         </tableViewCell>
