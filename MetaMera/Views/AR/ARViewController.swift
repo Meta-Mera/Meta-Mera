@@ -80,11 +80,29 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                                                                   action: #selector(backTap))
         self.backView.addGestureRecognizer(tapGestureRecognizer)
         
-        plusButton.layer.cornerRadius = 30
+        
+        plusButton.imageView?.contentMode = .scaleAspectFill
+        profileButton.imageView?.contentMode = .scaleAspectFill
+        createRoomButton.imageView?.contentMode = .scaleAspectFill
+        selectCategoryButton.imageView?.contentMode = .scaleAspectFill
+
+        plusButton.contentHorizontalAlignment = .fill
+        profileButton.contentHorizontalAlignment = .fill
+        createRoomButton.contentHorizontalAlignment = .fill
+        selectCategoryButton.contentHorizontalAlignment = .fill
+
+        plusButton.contentVerticalAlignment = .fill
+        profileButton.contentVerticalAlignment = .fill
+        createRoomButton.contentVerticalAlignment = .fill
+        selectCategoryButton.contentVerticalAlignment = .fill
+        
+        plusButton.contentHorizontalAlignment = .center
+        
+        plusButton.layer.cornerRadius = 50
         profileButton.layer.cornerRadius = 30
         createRoomButton.layer.cornerRadius = 30
         selectCategoryButton.layer.cornerRadius = 30
-        plusButton.contentHorizontalAlignment = .center
+        
         
         
         
@@ -274,13 +292,25 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
 //        nodes.append(applePark17)
         
         let spaceNeedle = buildNode(latitude: 35.624929, longitude: 139.341696, altitude: 175, imageName: "drink",size: CGSize(width: 400, height: 300))
-        spaceNeedle.scaleRelativeToDistance = true
+//        spaceNeedle.scaleRelativeToDistance = true
+        spaceNeedle.tag = "drink"
         nodes.append(spaceNeedle)
         
         let nike = buildNode(latitude: 35.70561533774642, longitude: 139.57692592332617, altitude: 175, imageName: "shoes",size: CGSize(width: 400, height: 300))
         nike.scaleRelativeToDistance = true
         nodes.append(nike)
         
+//        36.35801663766492, 138.63498898207519
+        
+        let karuizawa = buildNode(latitude: 36.35801663766492, longitude: 138.63498898207519, altitude: 1000, imageName: "snow",size: CGSize(width: 200, height: 300))
+        karuizawa.scaleRelativeToDistance = true
+        nodes.append(karuizawa)
+        
+//        35.62510858464141, 139.24366875641377
+        
+        let takaosan = buildNode(latitude: 35.62510858464141, longitude: 139.24366875641377, altitude: 610, imageName: "road",size: CGSize(width: 200, height: 300))
+        takaosan.scaleRelativeToDistance = true
+        nodes.append(takaosan)
         
         
         let spaceNeedle4 = buildNode(latitude: 35.625050, longitude: 139.3418137, altitude: 180, imageName: "train",size: CGSize(width: 200, height: 300))
@@ -303,8 +333,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         buildDemoData().forEach {
             sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0)
-//            sceneLocationView.moveSceneHeadingAntiClockwise()
-            sceneLocationView.moveSceneHeadingClockwise()
+            sceneLocationView.moveSceneHeadingAntiClockwise()
+//            sceneLocationView.moveSceneHeadingClockwise()
         }
         
         //        let cubeNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
@@ -334,6 +364,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             return LocationAnnotationNode(location: location, image: image)
             
         }
+        
         return LocationAnnotationNode(location: location, image: image)
     }
     
@@ -477,10 +508,12 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
 //MARK: ARのオブジェクトをタップしたときに呼び出される
 extension ARViewController: LNTouchDelegate {
     func annotationNodeTouched(node: AnnotationNode) {
-        print(node)
+        print("[tapEvent]: ", node.view?.tag as Any)
+        print("[findNodes]: ", sceneLocationView.findNodes(tagged: "drink"))
         if let nodeView = node.view{
             // Do stuffs with the nodeView
             // ...
+            
             print("[nodeView]: ",nodeView)
         }
         if let nodeImage = node.image{

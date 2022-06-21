@@ -17,18 +17,18 @@ class Goto : UIViewController{
     
     //TODO: SignInの画面に移行できるように戻すこと！！
     class func SignIn(view: UIViewController){
-        if let vc = UIStoryboard.instantiateInitialViewController(.init(name: "ARViewController", bundle: .main))() as? ARViewController {
-            let navController = UINavigationController(rootViewController: vc)
-            navController.modalPresentationStyle = .fullScreen
-            view.present(navController, animated: true)
-        }
+//        if let vc = UIStoryboard.instantiateInitialViewController(.init(name: "ARViewController", bundle: .main))() as? ARViewController {
+//            let navController = UINavigationController(rootViewController: vc)
+//            navController.modalPresentationStyle = .fullScreen
+//            view.present(navController, animated: true)
+//        }
         
-//        print("Goto-SignIn was called.")
-//        let vc = SignInViewController()
-//        let navController = UINavigationController(rootViewController: vc)
-//        navController.modalPresentationStyle = .fullScreen
-//        //navController.modalTransitionStyle = .partialCurl
-//        view.present(navController, animated: true)
+        print("Goto-SignIn was called.")
+        let vc = SignInViewController()
+        let navController = UINavigationController(rootViewController: vc)
+        navController.modalPresentationStyle = .fullScreen
+        //navController.modalTransitionStyle = .partialCurl
+        view.present(navController, animated: true)
         
         
     }
