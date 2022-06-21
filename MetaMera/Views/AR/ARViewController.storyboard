@@ -54,16 +54,11 @@
                                     <constraint firstAttribute="height" constant="60" id="67s-ZO-deV"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Button">
+                                <state key="normal">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <imageReference key="image" image="プラス" symbolScale="large"/>
+                                    <imageReference key="image" image="プラス" symbolScale="large"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
                                 </state>
-                                <buttonConfiguration key="configuration" style="plain">
-                                    <imageReference key="image" image="プラス" symbolScale="large"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
-                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
                                 <connections>
                                     <action selector="pushPlusButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="QXh-mE-iBq"/>
                                 </connections>
@@ -78,14 +73,9 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <imageReference key="image" image="プロフィール" symbolScale="large"/>
+                                    <imageReference key="image" image="プロフィール" symbolScale="large"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
                                 </state>
-                                <buttonConfiguration key="configuration" style="plain" title="">
-                                    <imageReference key="image" image="プロフィール" symbolScale="large"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
-                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
                                 <connections>
                                     <action selector="pushProfileButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="TIW-B5-Ja6"/>
                                 </connections>
@@ -100,14 +90,9 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <imageReference key="image" image="カテゴリー選択" symbolScale="large"/>
+                                    <imageReference key="image" image="カテゴリー選択" symbolScale="large"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
                                 </state>
-                                <buttonConfiguration key="configuration" style="plain" title="">
-                                    <imageReference key="image" image="カテゴリー選択" symbolScale="large"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
-                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
                                 <connections>
                                     <action selector="pushSelectCategory:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Abn-1J-PQX"/>
                                 </connections>
@@ -125,11 +110,6 @@
                                     <imageReference key="image" image="ルーム作成" symbolScale="large"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
                                 </state>
-                                <buttonConfiguration key="configuration" style="plain" title="">
-                                    <imageReference key="image" image="ルーム作成" symbolScale="large"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
-                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
                                 <connections>
                                     <action selector="pushCreateRoom:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="0cb-5i-4ub"/>
                                 </connections>
@@ -182,9 +162,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="カテゴリー選択" width="85.333335876464844" height="85.333335876464844"/>
-        <image name="プラス" width="85.333335876464844" height="85.333335876464844"/>
-        <image name="プロフィール" width="85.333335876464844" height="85.333335876464844"/>
+        <image name="カテゴリー選択" width="85.333335876464844" height="85.333335876464844"/>
+        <image name="プラス" width="85.333335876464844" height="85.333335876464844"/>
+        <image name="プロフィール" width="85.333335876464844" height="85.333335876464844"/>
         <image name="ルーム作成" width="85.333335876464844" height="85.333335876464844"/>
         <image name="ロゴ" width="181.66667175292969" height="139"/>
         <systemColor name="systemBackgroundColor">
