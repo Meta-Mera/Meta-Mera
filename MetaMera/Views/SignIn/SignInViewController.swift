@@ -15,6 +15,11 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var SignInButton: UIButton!
     @IBOutlet weak var toSignUpButton: UIButton!
     
+    
+    
+    @IBOutlet weak var emailLabelView: UILabel!
+    @IBOutlet weak var passwordLabelView: UILabel!
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
@@ -25,6 +30,12 @@ class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        emailTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
+        passwordTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
+        
+        emailLabelView.addBorderBottom(height: 1.0, color: UIColor.lightGray)
+        passwordLabelView.addBorderBottom(height: 1.0, color: UIColor.lightGray)
         
         backButtonImage.isUserInteractionEnabled = true
         backButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gotoTopView(_:))))
@@ -131,6 +142,24 @@ class SignInViewController: UIViewController {
                 }
             }
         }
+    }
+}
+
+extension UITextField {
+    func addBorderBottom(height: CGFloat, color: UIColor) {
+        let border = CALayer()
+        border.frame = CGRect(x: 0, y: self.frame.height - height, width: self.frame.width, height: height)
+        border.backgroundColor = color.cgColor
+        self.layer.addSublayer(border)
+    }
+}
+
+extension UILabel {
+    func addBorderBottom(height: CGFloat, color: UIColor) {
+        let border = CALayer()
+        border.frame = CGRect(x: 0, y: self.frame.height - height, width: self.frame.width, height: height)
+        border.backgroundColor = color.cgColor
+        self.layer.addSublayer(border)
     }
 }
 

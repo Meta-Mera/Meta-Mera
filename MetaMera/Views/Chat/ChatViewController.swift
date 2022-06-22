@@ -36,8 +36,8 @@ class ChatViewController: UIView{
         inputChatText.layer.borderWidth = 1
         
         
-        ChatSendButton.layer.cornerRadius = 13
-        ChatSendButton.imageView?.contentMode = .scaleAspectFill
+//        ChatSendButton.layer.cornerRadius = 10
+//        ChatSendButton.imageView?.contentMode = .scaleAspectFill
         ChatSendButton.contentHorizontalAlignment = .fill
         ChatSendButton.contentVerticalAlignment = .fill
         ChatSendButton.isEnabled = false

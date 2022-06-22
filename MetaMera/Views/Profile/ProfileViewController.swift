@@ -8,6 +8,7 @@
 import ARCL
 import UIKit
 import MapKit
+import PKHUD
 import Photos
 import AVFoundation
 import FirebaseFirestore
@@ -208,6 +209,72 @@ class ProfileViewController: UIViewController {
         print("change image")
     }
     
+    func getFileURL(fileName: String) -> URL {
+        let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        return docDir.appendingPathComponent(fileName)
+    }
+    
+    func updateProfileImage(){
+        let path = getFileURL(fileName: "userIconImage.jpg").path
+        
+        if FileManager.default.fileExists(atPath: path) {
+            if let imageData = UIImage(contentsOfFile: path) {
+                HUD.hide { (_) in
+                    HUD.flash(.success, onView: self.view, delay: 1) { (_) in
+                        self.ProfileImage.image = imageData
+                    }
+                }
+            }
+            else {
+                HUD.hide { (_) in
+                    HUD.flash(.error, delay: 1)
+                }
+                print("Failed to load the image.")
+            }
+        }
+        else {
+            HUD.hide { (_) in
+                HUD.flash(.error, delay: 1)
+            }
+            print("Image file not found.")
+        }
+    }
+    
+    func downloadImage(from url: URL, name: String) {
+        print("Download Started")
+        getData(from: url) { data, response, error in
+            guard let data = data, error == nil else { return }
+            print(response?.suggestedFilename ?? url.lastPathComponent)
+            print("Download Finished")
+            // always update the UI from the main thread
+            DispatchQueue.main.async() { [weak self] in
+                do {
+                    //URLをデータに変換
+                    let imageData = try Data(contentsOf: url)
+                    //データをUIImage(jpg)に変換
+                    let image = UIImage(data: imageData)?.jpegData(compressionQuality: 1.0)
+                    do {
+                        //端末に保存
+                        try image!.write(to: (self!.getFileURL(fileName: name)))
+                        print("Image saved.")
+                        self?.updateProfileImage()
+                    } catch {
+                        HUD.hide { (_) in
+                            HUD.flash(.error, delay: 1)
+                        }
+                        print("Failed to save the image:", error)
+                    }
+                    
+                } catch {
+                    HUD.hide { (_) in
+                        HUD.flash(.error, delay: 1)
+                    }
+                    print("変換失敗")
+                }
+            }
+        }
+    }
+    
 }
 
 extension ProfileViewController: MKMapViewDelegate{
@@ -234,15 +301,43 @@ extension ProfileViewController: CLLocationManagerDelegate {
             isInitialMoveToMap.toggle()
         }
     }
+    
+    //画像保存
+    // DocumentディレクトリのfileURLを取得
+    func getDocumentsURL() -> NSURL {
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] as NSURL
+        return documentsURL
+    }
+    // ディレクトリのパスにファイル名をつなげてファイルのフルパスを作る
+    func fileInDocumentsDirectory(filename: String) -> String {
+        let fileURL = getDocumentsURL().appendingPathComponent(filename)
+        return fileURL!.path
+    }
+    //画像を保存するメソッド
+    func saveImage (image: UIImage, path: String ) -> Bool {
+        let jpgImageData = image.jpegData(compressionQuality:0.5)
+        do {
+            try jpgImageData!.write(to: URL(fileURLWithPath: path), options: .atomic)
+        } catch {
+            print(error)
+            return false
+        }
+        return true
+    }
+    
+    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
 }
 
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             // 格納先 reference
             let path = FirebaseStorage.Storage.storage().reference(forURL: "gs://metamera-e2b4b.appspot.com")
-            let imageRef = path.child("profile").child("test.jpeg")
+            let localImageRef = path.child("profile").child("test.jpeg")
             
             // メタデータ
             let metaData = FirebaseStorage.StorageMetadata()
@@ -252,17 +347,17 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             guard let imageData = selectedImage.jpegData(compressionQuality: 0.5) else {
                 return
             }
-            
+            HUD.show(.progress, onView: view)
             dismiss(animated: true) {
                 // データをアップロード
-                imageRef.putData(imageData, metadata: metaData) { metaData, error in
+                localImageRef.putData(imageData, metadata: metaData) { metaData, error in
                     if let error = error {
                         fatalError(error.localizedDescription)
                         return
                     }
                     // completion
                     // ダウンロードURLの取得
-                    imageRef.downloadURL { url, error in
+                    localImageRef.downloadURL { [self] url, error in
                         if let error = error {
                             fatalError(error.localizedDescription)
                             return
@@ -272,39 +367,11 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                             return
                         }
                         // success
+                        self.downloadImage(from: downloadURL, name: "userIconImage.jpg")
                         
                     }
                 }
             }
-            
-            
-            
-            
-//            let uploadFile = imageRef.putFile(from: selectedImage, metadata: metaData) { metadata, error in
-//                guard let metadata = metadata else {
-//                    return
-//                }
-//            }
-//            //            imageRef.putData(imageData, metadata: metaData) { (metaData, error) in
-//            //                if let error = error {
-//            //                    self.handleError(error: error, msg: "Unable to upload image.")
-//            //                return
-//            //               }
-//
-//            // 5：画像がアップロードされたら、ダウンロードURLを取得
-//            imageRef.downloadURL { (url, error) in
-//                if let error = error {
-//                    fatalError(error.localizedDescription)
-////                    self.handleError(error: error, msg: "Unable to download URL.")
-//                    return
-//                }
-//                guard let url = url else { return }
-//
-//                // 6：新しいドキュメントをFirestoreコレクションにアップロード
-//                // uploadDocumentは関数を用意してあげる
-//                // Firebaseへの登録時の構造体を初期化して、setDataメソッドでデータをセットしてあげる
-//                self.uploadDocument(url: url.absoluteString)
-//            }
         }
     }
 }

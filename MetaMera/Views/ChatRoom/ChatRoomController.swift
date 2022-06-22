@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 
-class chatRoomController: UIViewController, UITextFieldDelegate{
+class ChatRoomController: UIViewController, UITextFieldDelegate{
     
-    private let cellId = "cellId"
+    private let cellId = "ChatRoomTableViewCell"
     
     @IBOutlet weak var chatRoomTableView: UITableView!
     
@@ -19,13 +19,12 @@ class chatRoomController: UIViewController, UITextFieldDelegate{
         
         chatRoomTableView.delegate = self
         chatRoomTableView.dataSource = self
-//        chatRoomTableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
-        chatRoomTableView.register(UINib(nibName: "chatRoomTableViewCell", bundle: nil) , forCellReuseIdentifier: cellId)
+        chatRoomTableView.register(UINib(nibName: "ChatRoomTableViewCell", bundle: nil) , forCellReuseIdentifier: cellId)
     }
     
     private lazy var chatView: ChatViewController = {
         let view = ChatViewController()
-        view.frame = .init(x: 0, y: 0, width: view.frame.width, height: 100)
+        view.frame = .init(x: 0, y: 0, width: view.frame.width, height: 150)
         view.delegate = self
         return view
     }()
@@ -48,16 +47,16 @@ class chatRoomController: UIViewController, UITextFieldDelegate{
 
 
 
-extension chatRoomController: ChatViewControllerDelegate{
+extension ChatRoomController: ChatViewControllerDelegate{
     func tappedSendButton(text: String) {
         print(text)
     }
 }
 
-extension chatRoomController: UITableViewDelegate, UITableViewDataSource{
+extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 250
+        return 150
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -65,8 +64,8 @@ extension chatRoomController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        cell.backgroundColor = .purple
+        let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatRoomTableViewCell
+        cell.backgroundColor = .lightGray
         return cell
         
     }

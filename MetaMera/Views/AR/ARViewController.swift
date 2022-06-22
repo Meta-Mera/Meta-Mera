@@ -14,6 +14,7 @@ import SceneKit
 import CoreLocation
 import FirebaseCore
 import FirebaseStorage
+import AudioToolbox
 
 
 class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate {
@@ -79,11 +80,29 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                                                                   action: #selector(backTap))
         self.backView.addGestureRecognizer(tapGestureRecognizer)
         
-        plusButton.layer.cornerRadius = 30
+        
+        plusButton.imageView?.contentMode = .scaleAspectFill
+        profileButton.imageView?.contentMode = .scaleAspectFill
+        createRoomButton.imageView?.contentMode = .scaleAspectFill
+        selectCategoryButton.imageView?.contentMode = .scaleAspectFill
+
+        plusButton.contentHorizontalAlignment = .fill
+        profileButton.contentHorizontalAlignment = .fill
+        createRoomButton.contentHorizontalAlignment = .fill
+        selectCategoryButton.contentHorizontalAlignment = .fill
+
+        plusButton.contentVerticalAlignment = .fill
+        profileButton.contentVerticalAlignment = .fill
+        createRoomButton.contentVerticalAlignment = .fill
+        selectCategoryButton.contentVerticalAlignment = .fill
+        
+        plusButton.contentHorizontalAlignment = .center
+        
+        plusButton.layer.cornerRadius = 50
         profileButton.layer.cornerRadius = 30
         createRoomButton.layer.cornerRadius = 30
         selectCategoryButton.layer.cornerRadius = 30
-        plusButton.contentHorizontalAlignment = .center
+        
         
         
         
@@ -121,6 +140,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
 //        sceneLocationView.delegate = self // Causes an assertionFailure - use the `arViewDelegate` instead:
         sceneLocationView.arViewDelegate = self
         sceneLocationView.locationNodeTouchDelegate = self
+        sceneLocationView.orientToTrueNorth = false
         
         
         addSceneModels()
@@ -235,52 +255,66 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         //        let pikesPeak = buildLayerNode(latitude: 38.8405322, longitude: -105.0442048, altitude: 4705, layer: pikesPeakLayer)
         //        nodes.append(pikesPeak)
         
-        let applePark1 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 200, text: "200", color: UIColor.green)
-        nodes.append(applePark1)
-        let applePark2 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 210, text: "210", color: UIColor.green)
-        nodes.append(applePark2)
-        let applePark3 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 230, text: "230", color: UIColor.green)
-        nodes.append(applePark3)
-        let applePark4 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 280, text: "280", color: UIColor.green)
-        nodes.append(applePark4)
-        let applePark5 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 290, text: "290", color: UIColor.green)
-        nodes.append(applePark5)
-        let applePark6 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 310, text: "310", color: UIColor.green)
-        nodes.append(applePark6)
-        let applePark7 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 320, text: "320", color: UIColor.green)
-        nodes.append(applePark7)
-        
-        let applePark8 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 190, text: "190", color: UIColor.green)
-        nodes.append(applePark8)
-        let applePark9 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 180, text: "180", color: UIColor.green)
-        nodes.append(applePark9)
-        let applePark10 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 170, text: "170", color: UIColor.green)
-        nodes.append(applePark10)
-        let applePark11 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 160, text: "160", color: UIColor.green)
-        nodes.append(applePark11)
-        let applePark12 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 150, text: "150", color: UIColor.green)
-        nodes.append(applePark12)
-        let applePark13 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 140, text: "140", color: UIColor.green)
-        nodes.append(applePark13)
-        let applePark14 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 130, text: "130", color: UIColor.green)
-        nodes.append(applePark14)
-        let applePark15 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 120, text: "120", color: UIColor.green)
-        nodes.append(applePark15)
-        let applePark16 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 110, text: "110", color: UIColor.green)
-        nodes.append(applePark16)
-        let applePark17 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 100, text: "100", color: UIColor.green)
-        nodes.append(applePark17)
+//        let applePark1 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 200, text: "200", color: UIColor.green)
+//        nodes.append(applePark1)
+//        let applePark2 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 210, text: "210", color: UIColor.green)
+//        nodes.append(applePark2)
+//        let applePark3 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 230, text: "230", color: UIColor.green)
+//        nodes.append(applePark3)
+//        let applePark4 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 280, text: "280", color: UIColor.green)
+//        nodes.append(applePark4)
+//        let applePark5 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 290, text: "290", color: UIColor.green)
+//        nodes.append(applePark5)
+//        let applePark6 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 310, text: "310", color: UIColor.green)
+//        nodes.append(applePark6)
+//        let applePark7 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 320, text: "320", color: UIColor.green)
+//        nodes.append(applePark7)
+//
+//        let applePark8 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 190, text: "190", color: UIColor.green)
+//        nodes.append(applePark8)
+//        let applePark9 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 180, text: "180", color: UIColor.green)
+//        nodes.append(applePark9)
+//        let applePark10 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 170, text: "170", color: UIColor.green)
+//        nodes.append(applePark10)
+//        let applePark11 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 160, text: "160", color: UIColor.green)
+//        nodes.append(applePark11)
+//        let applePark12 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 150, text: "150", color: UIColor.green)
+//        nodes.append(applePark12)
+//        let applePark13 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 140, text: "140", color: UIColor.green)
+//        nodes.append(applePark13)
+//        let applePark14 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 130, text: "130", color: UIColor.green)
+//        nodes.append(applePark14)
+//        let applePark15 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 120, text: "120", color: UIColor.green)
+//        nodes.append(applePark15)
+//        let applePark16 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 110, text: "110", color: UIColor.green)
+//        nodes.append(applePark16)
+//        let applePark17 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 100, text: "100", color: UIColor.green)
+//        nodes.append(applePark17)
         
         let spaceNeedle = buildNode(latitude: 35.624929, longitude: 139.341696, altitude: 175, imageName: "drink",size: CGSize(width: 400, height: 300))
+//        spaceNeedle.scaleRelativeToDistance = true
+        spaceNeedle.tag = "drink"
         nodes.append(spaceNeedle)
         
-//        let spaceNeedle2 = buildNode(latitude: 35.624525, longitude: 139.342277, altitude: 200, imageName: "snow",size: CGSize(width: 200, height: 300))
-//        nodes.append(spaceNeedle2)
+        let nike = buildNode(latitude: 35.70561533774642, longitude: 139.57692592332617, altitude: 175, imageName: "shoes",size: CGSize(width: 400, height: 300))
+        nike.scaleRelativeToDistance = true
+        nodes.append(nike)
         
-//        let spaceNeedle3 = buildNode(latitude: 35.624749, longitude: 139.342948, altitude: 175, imageName: "cherry",size: CGSize(width: 400, height: 400))
-//        nodes.append(spaceNeedle3)
+//        36.35801663766492, 138.63498898207519
+        
+        let karuizawa = buildNode(latitude: 36.35801663766492, longitude: 138.63498898207519, altitude: 1000, imageName: "snow",size: CGSize(width: 200, height: 300))
+        karuizawa.scaleRelativeToDistance = true
+        nodes.append(karuizawa)
+        
+//        35.62510858464141, 139.24366875641377
+        
+        let takaosan = buildNode(latitude: 35.62510858464141, longitude: 139.24366875641377, altitude: 610, imageName: "road",size: CGSize(width: 200, height: 300))
+        takaosan.scaleRelativeToDistance = true
+        nodes.append(takaosan)
+        
         
         let spaceNeedle4 = buildNode(latitude: 35.625050, longitude: 139.3418137, altitude: 180, imageName: "train",size: CGSize(width: 200, height: 300))
+        spaceNeedle4.scaleRelativeToDistance = true
         nodes.append(spaceNeedle4)
         
         
@@ -300,6 +334,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         buildDemoData().forEach {
             sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0)
             sceneLocationView.moveSceneHeadingAntiClockwise()
+//            sceneLocationView.moveSceneHeadingClockwise()
         }
         
         //        let cubeNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
@@ -329,6 +364,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             return LocationAnnotationNode(location: location, image: image)
             
         }
+        
         return LocationAnnotationNode(location: location, image: image)
     }
     
@@ -370,19 +406,14 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             textLabel.text = " Heading: \(yDegrees)° • \(Float(heading).short)° • \(headingAccuracy)°"
         }
     }
-    //MARK: ここからオブジェクトを生成するためのやつだよ -
-    
-    // MARK: ARのやつ -
-    // MARK: - 位置情報のやつ
-    
-    // MARK: 位置情報のやつ -
-    
+    //MARK: ここまでオブジェクトを生成するためのやつだよ -
     //MARK: - プラスボタンのやつ
     
     /// プラスボタン選択時
     private var isSettingShowing: Bool = false
     @objc func plusButtonLongTapped(_ sender: Any) {
         if !isSettingShowing {
+            AudioServicesPlaySystemSound(1519)
             // 背景設定
             backView.alpha = 0
             backView.isHidden = false
@@ -422,10 +453,16 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     }
     
     @objc func backTap(){
-        UIView.animate(withDuration: 0.7,
-                       delay: 0.2,
+        
+        profileButton.layer.position = plusButton.layer.position
+        
+        UIView.animate(withDuration: 0.2,
+                       delay: 0,
                        options: [.curveEaseOut],
                        animations: { [weak self] () in
+            
+            self?.profileButton.layer.position = self!.plusButton.layer.position
+            
             // プロフィールボタン
             self?.profileButton.center.y += 100.0
             self?.profileButton.center.x += 10.0
@@ -471,9 +508,12 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
 //MARK: ARのオブジェクトをタップしたときに呼び出される
 extension ARViewController: LNTouchDelegate {
     func annotationNodeTouched(node: AnnotationNode) {
+        print("[tapEvent]: ", node.view?.tag as Any)
+        print("[findNodes]: ", sceneLocationView.findNodes(tagged: "drink"))
         if let nodeView = node.view{
             // Do stuffs with the nodeView
             // ...
+            
             print("[nodeView]: ",nodeView)
         }
         if let nodeImage = node.image{
@@ -493,6 +533,12 @@ extension ARViewController: LNTouchDelegate {
     }
     
     
+}
+
+extension UIImageView {
+    func getFileName() -> String? {
+        return self.image?.accessibilityIdentifier
+    }
 }
 
 //MARK: Imageのサイズを変更する
