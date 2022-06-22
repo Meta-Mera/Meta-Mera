@@ -24,7 +24,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     
     private lazy var chatView: ChatViewController = {
         let view = ChatViewController()
-        view.frame = .init(x: 0, y: 0, width: view.frame.width, height: 100)
+        view.frame = .init(x: 0, y: 0, width: view.frame.width, height: 150)
         view.delegate = self
         return view
     }()
@@ -56,7 +56,7 @@ extension ChatRoomController: ChatViewControllerDelegate{
 extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 250
+        return 150
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
