@@ -49,7 +49,7 @@
                     <rect key="frame" x="30" y="244" width="330" height="486"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="fEh-Q4-rUA">
-                            <rect key="frame" x="55" y="100" width="220" height="286"/>
+                            <rect key="frame" x="55" y="90" width="220" height="286"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Jl-GZ-Uj7">
                                     <rect key="frame" x="0.0" y="0.0" width="220" height="34"/>
@@ -72,7 +72,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jRu-zY-FuJ">
                                     <rect key="frame" x="0.0" y="84" width="220" height="34"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="exsample@metamera.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JTT-rD-s7d">
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="✍️ exsample@exsample.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JTT-rD-s7d">
                                             <rect key="frame" x="0.0" y="0.0" width="220" height="34"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -109,7 +109,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q9g-vD-O9Z">
                                     <rect key="frame" x="0.0" y="252" width="220" height="34"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nsP-UN-Hy3">
+                                        <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="✍️ password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nsP-UN-Hy3">
                                             <rect key="frame" x="0.0" y="0.0" width="220" height="34"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -130,9 +130,9 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="fEh-Q4-rUA" firstAttribute="leading" secondItem="yyT-CL-Dy7" secondAttribute="leading" constant="55" id="EF8-1I-psK"/>
-                        <constraint firstAttribute="bottom" secondItem="fEh-Q4-rUA" secondAttribute="bottom" constant="100" id="MGv-9v-bQV"/>
+                        <constraint firstAttribute="bottom" secondItem="fEh-Q4-rUA" secondAttribute="bottom" constant="110" id="MGv-9v-bQV"/>
                         <constraint firstAttribute="trailing" secondItem="fEh-Q4-rUA" secondAttribute="trailing" constant="55" id="SbY-ed-1cs"/>
-                        <constraint firstItem="fEh-Q4-rUA" firstAttribute="top" secondItem="yyT-CL-Dy7" secondAttribute="top" constant="100" id="uQG-zR-u4Z"/>
+                        <constraint firstItem="fEh-Q4-rUA" firstAttribute="top" secondItem="yyT-CL-Dy7" secondAttribute="top" constant="90" id="uQG-zR-u4Z"/>
                     </constraints>
                 </view>
             </subviews>

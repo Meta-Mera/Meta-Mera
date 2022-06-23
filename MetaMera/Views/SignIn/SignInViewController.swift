@@ -16,6 +16,9 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var toSignUpButton: UIButton!
     
     
+    @IBOutlet weak var textFieldView: UIView!
+    @IBOutlet weak var backImageView: UIImageView!
+    @IBOutlet weak var haikeiImageView: UIImageView!
     
     @IBOutlet weak var emailLabelView: UILabel!
     @IBOutlet weak var passwordLabelView: UILabel!
@@ -34,6 +37,9 @@ class SignInViewController: UIViewController {
         emailTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
         passwordTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
         
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        
         emailLabelView.addBorderBottom(height: 1.0, color: UIColor.lightGray)
         passwordLabelView.addBorderBottom(height: 1.0, color: UIColor.lightGray)
         
@@ -44,8 +50,8 @@ class SignInViewController: UIViewController {
         nextButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backDoor(_:))))
         
         
-        //NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardDidShowNotification, object: nil)
-        //NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardDidHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardDidHideNotification, object: nil)
         
         // Do any additional setup after loading the view.
     }
@@ -63,26 +69,36 @@ class SignInViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-//    @objc func showKeyboard(notification: Notification){
-//        let keyboardFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
-//
-//        guard let keyboardMinY = keyboardFrame?.minY else { return }
-//        let stackViewMaxY = SignInButton.frame.maxY + 40
-//
-//        let distance = stackViewMaxY - keyboardMinY
-//
-//        let transform = CGAffineTransform(translationX: 0, y: -distance)
-//
-//        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: {
-//            self.view.transform = transform
-//        })
-//    }
+    @objc func showKeyboard(notification: Notification){
+        let keyboardFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
+
+        guard let keyboardMinY = keyboardFrame?.minY else { return }
+        let stackViewMaxY = textFieldView.frame.maxY + 40
+
+        let distance = stackViewMaxY - keyboardMinY
+
+        let transform = CGAffineTransform(translationX: 0, y: -distance)
+
+        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: {
+            //self.view.transform = transform
+            self.textFieldView.transform = transform
+            self.backImageView.transform = transform
+            self.haikeiImageView.transform = transform
+            self.backButtonImage.isHidden = true
+            self.nextButtonImage.isHidden = true
+        })
+    }
     
-//    @objc func hideKeyboard(){
-//        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: {
+    @objc func hideKeyboard(){
+        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: {
 //            self.view.transform = .identity
-//        })
-//    }
+            self.textFieldView.transform = .identity
+            self.backImageView.transform = .identity
+            self.haikeiImageView.transform = .identity
+            self.backButtonImage.isHidden = false
+            self.nextButtonImage.isHidden = false
+        })
+    }
     
     
 
@@ -177,15 +193,15 @@ extension SignInViewController: UITextFieldDelegate {
 //        }
 //    }
     
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        //今フォーカスが当たっているテキストボックスからフォーカスを外す
-//        textField.resignFirstResponder()
-//        //次のTag番号を持っているテキストボックスがあれば、フォーカスする
-//        let nextTag = textField.tag + 1
-//        if let nextTextField: UITextField = self.view.viewWithTag(nextTag) as? UITextField {
-//            nextTextField.becomeFirstResponder()
-//        }
-//        return true
-//    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //今フォーカスが当たっているテキストボックスからフォーカスを外す
+        textField.resignFirstResponder()
+        //次のTag番号を持っているテキストボックスがあれば、フォーカスする
+        let nextTag = textField.tag + 1
+        if let nextTextField: UITextField = self.view.viewWithTag(nextTag) as? UITextField {
+            nextTextField.becomeFirstResponder()
+        }
+        return true
+    }
     
 }
