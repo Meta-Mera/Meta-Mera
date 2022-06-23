@@ -50,6 +50,7 @@
 		38A2128C282CEB8200B56E03 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38A21289282CEB8200B56E03 /* GoogleService-Info.plist */; };
 		38AB508B285AD3A700AF4F80 /* ChatRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB508A285AD3A700AF4F80 /* ChatRoomController.swift */; };
 		38AB508E285AD3B800AF4F80 /* ChatRoomController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */; };
+		38E9AE2228640D8500EB71D6 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E9AE2128640D8500EB71D6 /* Profile.swift */; };
 		38F4F14528517D8400C3119D /* SetProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F4F14428517D8400C3119D /* SetProfileImage.swift */; };
 		38F4F14728517D9100C3119D /* SetProfileImage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38F4F14628517D9100C3119D /* SetProfileImage.storyboard */; };
 		4855586E8B131614D9B1EC7D /* Pods_MetaMeraTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DB4C5FB7A8F89B54ABB658 /* Pods_MetaMeraTests.framework */; };
@@ -116,6 +117,7 @@
 		38A212C42831DB1500B56E03 /* MetaMera.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MetaMera.entitlements; sourceTree = "<group>"; };
 		38AB508A285AD3A700AF4F80 /* ChatRoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomController.swift; sourceTree = "<group>"; };
 		38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatRoomController.storyboard; sourceTree = "<group>"; };
+		38E9AE2128640D8500EB71D6 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		38F4F14428517D8400C3119D /* SetProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetProfileImage.swift; sourceTree = "<group>"; };
 		38F4F14628517D9100C3119D /* SetProfileImage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetProfileImage.storyboard; sourceTree = "<group>"; };
 		44A6594E1AD10EE93D7CD030 /* Pods-MetaMera-MetaMeraUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaMera-MetaMeraUITests.debug.xcconfig"; path = "Target Support Files/Pods-MetaMera-MetaMeraUITests/Pods-MetaMera-MetaMeraUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				389024C52835DAD4004DC3F3 /* UIColor-Extension.swift */,
 				3896805C284A4C90008E1302 /* Controller */,
 				389680592844585D008E1302 /* AR */,
+				38E9AE2028640D3A00EB71D6 /* Profile */,
 				38A2125A282A066000B56E03 /* Views */,
 				38A2122F282A064300B56E03 /* Experience.rcproject */,
 				38A21234282A064400B56E03 /* Assets.xcassets */,
@@ -365,6 +368,14 @@
 				06B1CC132861664900116CF0 /* ChatRoomTableViewCell.xib */,
 			);
 			path = Chat;
+			sourceTree = "<group>";
+		};
+		38E9AE2028640D3A00EB71D6 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				38E9AE2128640D8500EB71D6 /* Profile.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		38F4F14328517D6700C3119D /* ProfileImage */ = {
@@ -653,6 +664,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38E9AE2228640D8500EB71D6 /* Profile.swift in Sources */,
 				38968057283F04CE008E1302 /* StartUpViewController.swift in Sources */,
 				382713F028332648004BEB01 /* AppDelegate.swift in Sources */,
 				3896805E284A4CAE008E1302 /* Goto.swift in Sources */,

@@ -12,11 +12,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignInViewController" customModule="MetaMera" customModuleProvider="target">
             <connections>
                 <outlet property="backButtonImage" destination="RRh-3w-sB0" id="mHS-LI-dpA"/>
+                <outlet property="backImageView" destination="Vms-vG-qL1" id="FcT-9F-AfW"/>
                 <outlet property="emailLabelView" destination="U1O-Mc-o30" id="TPt-eN-iR1"/>
                 <outlet property="emailTextField" destination="JTT-rD-s7d" id="sLm-Hc-wIC"/>
+                <outlet property="haikeiImageView" destination="Epc-6j-IYW" id="w5f-sK-bEd"/>
                 <outlet property="nextButtonImage" destination="xLD-6u-NOs" id="D7z-zm-ctS"/>
                 <outlet property="passwordLabelView" destination="ebA-QX-nrZ" id="HmL-mg-gzi"/>
                 <outlet property="passwordTextField" destination="nsP-UN-Hy3" id="PhT-BT-YoM"/>
+                <outlet property="textFieldView" destination="yyT-CL-Dy7" id="I1p-dC-I7m"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
