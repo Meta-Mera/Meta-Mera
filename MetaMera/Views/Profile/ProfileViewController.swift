@@ -198,7 +198,7 @@ class ProfileViewController: UIViewController {
         // 権限
         let authPhotoLibraryStatus = PHPhotoLibrary.authorizationStatus()
         // 許可されてる場合のみ
-        if authPhotoLibraryStatus == .authorized {
+        if authPhotoLibraryStatus == .authorized || authPhotoLibraryStatus == .limited {
             
             
             present(imagePicker, animated: true)
@@ -243,7 +243,7 @@ class ProfileViewController: UIViewController {
     func downloadImage(from url: URL, name: String) {
         print("Download Started")
         getData(from: url) { data, response, error in
-            guard let data = data, error == nil else { return }
+            guard let _ = data, error == nil else { return }
             print(response?.suggestedFilename ?? url.lastPathComponent)
             print("Download Finished")
             // always update the UI from the main thread
@@ -270,6 +270,71 @@ class ProfileViewController: UIViewController {
                         HUD.flash(.error, delay: 1)
                     }
                     print("変換失敗")
+                }
+            }
+        }
+    }
+    
+    //画像保存
+    // DocumentディレクトリのfileURLを取得
+    func getDocumentsURL() -> NSURL {
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] as NSURL
+        return documentsURL
+    }
+    // ディレクトリのパスにファイル名をつなげてファイルのフルパスを作る
+    func fileInDocumentsDirectory(filename: String) -> String {
+        let fileURL = getDocumentsURL().appendingPathComponent(filename)
+        return fileURL!.path
+    }
+    //画像を保存するメソッド
+    func saveImage (image: UIImage, path: String ) -> Bool {
+        let jpgImageData = image.jpegData(compressionQuality:0.5)
+        do {
+            try jpgImageData!.write(to: URL(fileURLWithPath: path), options: .atomic)
+        } catch {
+            print(error)
+            return false
+        }
+        return true
+    }
+    
+    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+    
+    func saveFirebase(selectedImage: UIImage){
+        // 格納先 reference
+        let path = FirebaseStorage.Storage.storage().reference(forURL: "gs://metamera-e2b4b.appspot.com")
+        let localImageRef = path.child("profile").child("test.jpeg")
+        
+        // メタデータ
+        let metaData = FirebaseStorage.StorageMetadata()
+        metaData.contentType = "image/jpeg"
+                    
+        // UIImageをdata型に変換
+        guard let imageData = selectedImage.jpegData(compressionQuality: 0.5) else {
+            return
+        }
+        HUD.show(.progress, onView: view)
+        dismiss(animated: true) {
+            // データをアップロード
+            localImageRef.putData(imageData, metadata: metaData) { metaData, error in
+                if let error = error {
+                    fatalError(error.localizedDescription)
+                }
+                // completion
+                // ダウンロードURLの取得
+                localImageRef.downloadURL { [self] url, error in
+                    if let error = error {
+                        fatalError(error.localizedDescription)
+                    }
+                    guard let downloadURL = url else {
+                        // ダウンロードURL取得失敗
+                        return
+                    }
+                    // success
+                    self.downloadImage(from: downloadURL, name: "userIconImage.jpg")
+                    
                 }
             }
         }
@@ -302,78 +367,13 @@ extension ProfileViewController: CLLocationManagerDelegate {
         }
     }
     
-    //画像保存
-    // DocumentディレクトリのfileURLを取得
-    func getDocumentsURL() -> NSURL {
-        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] as NSURL
-        return documentsURL
-    }
-    // ディレクトリのパスにファイル名をつなげてファイルのフルパスを作る
-    func fileInDocumentsDirectory(filename: String) -> String {
-        let fileURL = getDocumentsURL().appendingPathComponent(filename)
-        return fileURL!.path
-    }
-    //画像を保存するメソッド
-    func saveImage (image: UIImage, path: String ) -> Bool {
-        let jpgImageData = image.jpegData(compressionQuality:0.5)
-        do {
-            try jpgImageData!.write(to: URL(fileURLWithPath: path), options: .atomic)
-        } catch {
-            print(error)
-            return false
-        }
-        return true
-    }
-    
-    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
-    }
 }
 
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    
-    
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            // 格納先 reference
-            let path = FirebaseStorage.Storage.storage().reference(forURL: "gs://metamera-e2b4b.appspot.com")
-            let localImageRef = path.child("profile").child("test.jpeg")
-            
-            // メタデータ
-            let metaData = FirebaseStorage.StorageMetadata()
-            metaData.contentType = "image/jpeg"
-                        
-            // UIImageをdata型に変換
-            guard let imageData = selectedImage.jpegData(compressionQuality: 0.5) else {
-                return
-            }
-            HUD.show(.progress, onView: view)
-            dismiss(animated: true) {
-                // データをアップロード
-                localImageRef.putData(imageData, metadata: metaData) { metaData, error in
-                    if let error = error {
-                        fatalError(error.localizedDescription)
-                        return
-                    }
-                    // completion
-                    // ダウンロードURLの取得
-                    localImageRef.downloadURL { [self] url, error in
-                        if let error = error {
-                            fatalError(error.localizedDescription)
-                            return
-                        }
-                        guard let downloadURL = url else {
-                            // ダウンロードURL取得失敗
-                            return
-                        }
-                        // success
-                        self.downloadImage(from: downloadURL, name: "userIconImage.jpg")
-                        
-                    }
-                }
-            }
+            self.saveFirebase(selectedImage: selectedImage)
         }
     }
 }
-
-
