@@ -86,16 +86,16 @@ class SignUpViewController: UIViewController {
         
         let transform = CGAffineTransform(translationX: 0, y: -distance)
         
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: { [weak self] in
             //self.view.transform = transform
-            self.stackView.transform = transform
+            self?.stackView.transform = transform
         })
     }
     
     @objc func hideKeyboard(){
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: { [weak self] in
             //self.view.transform = .identity
-            self.stackView.transform = .identity
+            self?.stackView.transform = .identity
         })
         signUp.isHidden = false
     }
@@ -121,7 +121,7 @@ class SignUpViewController: UIViewController {
         
         if password == confirmPassword {
             if(passwordTextField.text!.count >= 6){
-                Auth.auth().createUser(withEmail: email, password: password) { [self] (res, err) in
+                Auth.auth().createUser(withEmail: email, password: password) { [weak self] (res, err) in
                     if let err = err{
                         print("Firebaseの登録に失敗しました: \(err)" )
                         HUD.hide { (_) in
@@ -129,7 +129,7 @@ class SignUpViewController: UIViewController {
                         }
                         return
                     }
-                    self.addUserInfoToFirestore(email: email, profileImageName: "")
+                    self?.addUserInfoToFirestore(email: email, profileImageName: "")
                 }
             }else{
                 HUD.hide { (_) in
@@ -179,8 +179,8 @@ class SignUpViewController: UIViewController {
 //                let data = snapshot?.data()
                 
                 HUD.hide { (_) in
-                    HUD.flash(.success, onView: self.view, delay: 1) { (_) in
-                        self.presentToARViewController()
+                    HUD.flash(.success, onView: self.view, delay: 1) { [weak self] (_) in
+                        self?.presentToARViewController()
                     }
                 }
                 

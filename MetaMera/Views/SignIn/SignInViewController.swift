@@ -27,8 +27,6 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var nextButtonImage: UIImageView!
     @IBOutlet weak var backButtonImage: UIImageView!
     
-    let profile = Profile()
-    
     
     
     override func viewDidLoad() {
@@ -36,16 +34,16 @@ class SignInViewController: UIViewController {
         print(":::::::::::::::  1  :::::::::::::::")
         emailTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
         passwordTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
-        
+
         emailTextField.delegate = self
         passwordTextField.delegate = self
-        
+
         emailLabelView.addBorderBottom(height: 1.0, color: UIColor.lightGray)
         passwordLabelView.addBorderBottom(height: 1.0, color: UIColor.lightGray)
-        
+
         backButtonImage.isUserInteractionEnabled = true
         backButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gotoTopView(_:))))
-        
+
         nextButtonImage.isUserInteractionEnabled = true
         nextButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backDoor(_:))))
         
@@ -90,24 +88,24 @@ class SignInViewController: UIViewController {
 
         let transform = CGAffineTransform(translationX: 0, y: -distance)
 
-        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: { [weak self] in
             //self.view.transform = transform
-            self.textFieldView.transform = transform
-            self.backImageView.transform = transform
-            self.haikeiImageView.transform = transform
-            self.backButtonImage.isHidden = true
-            self.nextButtonImage.isHidden = true
+            self?.textFieldView.transform = transform
+            self?.backImageView.transform = transform
+            self?.haikeiImageView.transform = transform
+            self?.backButtonImage.isHidden = true
+            self?.nextButtonImage.isHidden = true
         })
     }
     
     @objc func hideKeyboard(){
-        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: { [weak self] in
 //            self.view.transform = .identity
-            self.textFieldView.transform = .identity
-            self.backImageView.transform = .identity
-            self.haikeiImageView.transform = .identity
-            self.backButtonImage.isHidden = false
-            self.nextButtonImage.isHidden = false
+            self?.textFieldView.transform = .identity
+            self?.backImageView.transform = .identity
+            self?.haikeiImageView.transform = .identity
+            self?.backButtonImage.isHidden = false
+            self?.nextButtonImage.isHidden = false
         })
     }
     
@@ -130,8 +128,8 @@ class SignInViewController: UIViewController {
                 return
             }
             HUD.hide { (_) in
-                HUD.flash(.success, onView: self.view, delay: 1) { (_) in
-                    self.presentToARViewController()
+                HUD.flash(.success, onView: self.view, delay: 1) { [weak self] (_) in
+                    self?.presentToARViewController()
                 }
             }
         }
@@ -164,9 +162,9 @@ class SignInViewController: UIViewController {
                 return
             }
             HUD.hide { (_) in
-                HUD.flash(.success, onView: self.view, delay: 1) { (_) in
-                    self.profile.userId = Auth.auth().currentUser?.uid ?? ""
-                    self.presentToARViewController()
+                HUD.flash(.success, onView: self.view, delay: 1) { [weak self] (_) in
+                    Profile.shared.userId = Auth.auth().currentUser?.uid ?? ""
+                    self?.presentToARViewController()
                 }
             }
         }

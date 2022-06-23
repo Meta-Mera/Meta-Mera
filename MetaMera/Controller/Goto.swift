@@ -25,6 +25,7 @@ class Goto : UIViewController{
         
         print("Goto-SignIn was called.")
         print("0")
+        
         let vc = SignInViewController()
         print("1")
         let navController = UINavigationController(rootViewController: vc)

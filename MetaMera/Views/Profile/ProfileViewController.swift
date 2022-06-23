@@ -57,8 +57,18 @@ class ProfileViewController: UIViewController {
         imagePicker.delegate = self
         
         //MARK: - FireStorage
-        
-        
+        let uid = Profile.shared.userId
+        print("UID:", uid)
+//        if let image = Profile.shared.updateProfileImage() {
+//            ProfileImage.image = image
+//        }
+        switch Profile.shared.updateProfileImage() {
+        case .success(let image):
+            ProfileImage.image = image
+        case .failure(let error):
+//            PKHUD.
+            break
+        }
     }
     
     //User Location
@@ -123,7 +133,7 @@ class ProfileViewController: UIViewController {
             return
         }
         
-        DispatchQueue.main.async { [weak self ] in
+        DispatchQueue.main.async { [weak self] in
             guard let self = self else {
                 return
             }
@@ -255,7 +265,7 @@ class ProfileViewController: UIViewController {
                     let image = UIImage(data: imageData)?.jpegData(compressionQuality: 1.0)
                     do {
                         //端末に保存
-                        try image!.write(to: (self!.getFileURL(fileName: name)))
+                        try image?.write(to: (self!.getFileURL(fileName: name)))
                         print("Image saved.")
                         self?.updateProfileImage()
                     } catch {
@@ -284,7 +294,7 @@ class ProfileViewController: UIViewController {
     // ディレクトリのパスにファイル名をつなげてファイルのフルパスを作る
     func fileInDocumentsDirectory(filename: String) -> String {
         let fileURL = getDocumentsURL().appendingPathComponent(filename)
-        return fileURL!.path
+        return fileURL?.path
     }
     //画像を保存するメソッド
     func saveImage (image: UIImage, path: String ) -> Bool {
@@ -324,7 +334,7 @@ class ProfileViewController: UIViewController {
                 }
                 // completion
                 // ダウンロードURLの取得
-                localImageRef.downloadURL { [self] url, error in
+                localImageRef.downloadURL { [weak self] url, error in
                     if let error = error {
                         fatalError(error.localizedDescription)
                     }
@@ -333,7 +343,7 @@ class ProfileViewController: UIViewController {
                         return
                     }
                     // success
-                    self.downloadImage(from: downloadURL, name: "userIconImage.jpg")
+                    self?.downloadImage(from: downloadURL, name: "userIconImage.jpg")
                     
                 }
             }
