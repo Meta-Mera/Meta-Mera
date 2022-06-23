@@ -14,7 +14,7 @@ class Profile {
     
     //シングルトン
     var userId = ""
-    let profileViewController = ProfileViewController()
+//    let profileViewController = ProfileViewController()
     
     func getFileURL(fileName: String) -> URL {
         let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -34,7 +34,8 @@ class Profile {
             }
         } else {
             print("Image file not found.")
+            return .failure(NSError(domain: "Image file not found.", code: 400))
         }
-//        return nil
+
     }
 }
