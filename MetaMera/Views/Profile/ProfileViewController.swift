@@ -91,8 +91,8 @@ class ProfileViewController: UIViewController {
         
         
         moveTo(center: MapView.userLocation.coordinate, animated: true)
-        
-        
+        // ローカルファイルからユーザーアイコンを取得・表示する
+        downloadProfileImage()
     }
     
     private func moveTo(
@@ -219,30 +219,30 @@ class ProfileViewController: UIViewController {
         print("change image")
     }
     
+    // ローカルファイルのURL取得
     func getFileURL(fileName: String) -> URL {
         let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         return docDir.appendingPathComponent(fileName)
     }
     
-    func updateProfileImage(){
+    // ローカルファイルから画像取得して表示する
+    func downloadProfileImage(){
         let path = getFileURL(fileName: "userIconImage.jpg").path
         
         if FileManager.default.fileExists(atPath: path) {
             if let imageData = UIImage(contentsOfFile: path) {
                 HUD.hide { (_) in
-                    HUD.flash(.success, onView: self.view, delay: 1) { (_) in
-                        self.ProfileImage.image = imageData
+                    HUD.flash(.success, onView: self.view, delay: 1) { [weak self] (_) in
+                        self?.ProfileImage.image = imageData
                     }
                 }
-            }
-            else {
+            }else {
                 HUD.hide { (_) in
                     HUD.flash(.error, delay: 1)
                 }
                 print("Failed to load the image.")
             }
-        }
-        else {
+        }else {
             HUD.hide { (_) in
                 HUD.flash(.error, delay: 1)
             }
@@ -250,31 +250,36 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    func downloadImage(from url: URL, name: String) {
+    func saveImageFile(url: URL, fileName: String) {
         print("Download Started")
         getData(from: url) { data, response, error in
-            guard let _ = data, error == nil else { return }
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Download Finished")
+            if let error = error {
+                print(error)
+                return
+            }
+//            guard let _ = data, error == nil else { return }
+//            print(response?.suggestedFilename ?? url.lastPathComponent)
+//            print("Download Finished")
             // always update the UI from the main thread
             DispatchQueue.main.async() { [weak self] in
                 do {
                     //URLをデータに変換
                     let imageData = try Data(contentsOf: url)
                     //データをUIImage(jpg)に変換
-                    let image = UIImage(data: imageData)?.jpegData(compressionQuality: 1.0)
-                    do {
-                        //端末に保存
-                        try image?.write(to: (self!.getFileURL(fileName: name)))
-                        print("Image saved.")
-                        self?.updateProfileImage()
-                    } catch {
-                        HUD.hide { (_) in
-                            HUD.flash(.error, delay: 1)
+                    if let jpegImageData = UIImage(data: imageData)?.jpegData(compressionQuality: 1.0),
+                       let saveDocumentPath = self?.getFileURL(fileName: fileName) {
+                        do {
+                            //端末に保存
+                            try jpegImageData.write(to: saveDocumentPath)
+                            print("Image saved.")
+                            HUD.hide()
+                        } catch {
+                            HUD.hide { (_) in
+                                HUD.flash(.error, delay: 1)
+                            }
+                            print("Failed to save the image:", error)
                         }
-                        print("Failed to save the image:", error)
                     }
-                    
                 } catch {
                     HUD.hide { (_) in
                         HUD.flash(.error, delay: 1)
@@ -313,6 +318,8 @@ class ProfileViewController: UIViewController {
     }
     
     func saveFirebase(selectedImage: UIImage){
+        // 画像表示
+        ProfileImage.image = selectedImage
         // 格納先 reference
         let path = FirebaseStorage.Storage.storage().reference(forURL: "gs://metamera-e2b4b.appspot.com")
         let localImageRef = path.child("profile").child(profile.userId+".jpeg")
@@ -342,8 +349,8 @@ class ProfileViewController: UIViewController {
                         // ダウンロードURL取得失敗
                         return
                     }
-                    // success
-                    self?.downloadImage(from: downloadURL, name: "userIconImage.jpg")
+                    // 画像ファイルを保存する
+                    self?.saveImageFile(url: downloadURL, fileName: "userIconImage.jpg")
                     
                 }
             }

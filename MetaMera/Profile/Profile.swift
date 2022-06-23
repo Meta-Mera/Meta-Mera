@@ -14,7 +14,7 @@ class Profile {
     
     //シングルトン
     var userId = ""
-    let profileViewController = ProfileViewController()
+//    let profileViewController = ProfileViewController()
     
     func getFileURL(fileName: String) -> URL {
         let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
