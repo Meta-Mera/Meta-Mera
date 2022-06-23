@@ -294,7 +294,7 @@ class ProfileViewController: UIViewController {
     // ディレクトリのパスにファイル名をつなげてファイルのフルパスを作る
     func fileInDocumentsDirectory(filename: String) -> String {
         let fileURL = getDocumentsURL().appendingPathComponent(filename)
-        return fileURL?.path
+        return fileURL?.path ?? ""
     }
     //画像を保存するメソッド
     func saveImage (image: UIImage, path: String ) -> Bool {

@@ -34,7 +34,8 @@ class Profile {
             }
         } else {
             print("Image file not found.")
+            return .failure(NSError(domain: "Image file not found.", code: 400))
         }
-//        return nil
+
     }
 }
