@@ -39,7 +39,7 @@ class ProfileViewController: UIViewController {
     let db = Firestore.firestore()
     
     let storage = FirebaseStorage.Storage.storage()
-    let profile = Profile()
+    
     
     
     // image
@@ -305,7 +305,7 @@ class ProfileViewController: UIViewController {
     func saveFirebase(selectedImage: UIImage){
         // 格納先 reference
         let path = FirebaseStorage.Storage.storage().reference(forURL: "gs://metamera-e2b4b.appspot.com")
-        let localImageRef = path.child("profile").child(profile.userId+".jpeg")
+        let localImageRef = path.child("profile").child("test.jpeg")
         
         // メタデータ
         let metaData = FirebaseStorage.StorageMetadata()

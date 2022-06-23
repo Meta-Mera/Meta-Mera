@@ -302,9 +302,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
 //        36.35801663766492, 138.63498898207519
         
-        let karuizawa1 = buildNode(latitude: 36.35801663766492, longitude: 138.63498898207519, altitude: 600, imageName: "snow",size: CGSize(width: 200, height: 300))
-        nodes.append(karuizawa1)
-        
         let karuizawa = buildNode(latitude: 36.35801663766492, longitude: 138.63498898207519, altitude: 1000, imageName: "snow",size: CGSize(width: 200, height: 300))
         karuizawa.scaleRelativeToDistance = true
         nodes.append(karuizawa)

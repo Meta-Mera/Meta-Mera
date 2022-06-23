@@ -24,15 +24,11 @@ class Goto : UIViewController{
 //        }
         
         print("Goto-SignIn was called.")
-        print("0")
         let vc = SignInViewController()
-        print("1")
         let navController = UINavigationController(rootViewController: vc)
-        print("2")
         navController.modalPresentationStyle = .fullScreen
-        print("3")
+        //navController.modalTransitionStyle = .partialCurl
         view.present(navController, animated: true)
-        print("4")
         
         
     }
@@ -42,6 +38,7 @@ class Goto : UIViewController{
         let vc = SignUpViewController()
         let navController = UINavigationController(rootViewController: vc)
         navController.modalPresentationStyle = .fullScreen
+        //navController.modalTransitionStyle = .partialCurl
         view.present(navController, animated: true)
     }
     
