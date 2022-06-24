@@ -31,7 +31,6 @@ class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(":::::::::::::::  1  :::::::::::::::")
         emailTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
         passwordTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
 
@@ -55,18 +54,15 @@ class SignInViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print(":::::::::::::::  2  :::::::::::::::")
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print(":::::::::::::::  3  :::::::::::::::")
         super.viewDidAppear(animated)
 //        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardDidShowNotification, object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardDidHideNotification, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        print(":::::::::::::::  4  :::::::::::::::")
         super.viewWillDisappear(animated)
 //        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
 //        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
