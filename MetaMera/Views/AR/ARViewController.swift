@@ -190,7 +190,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         case .success(let image):
             ProfileImage.image = image
         case .failure(let error):
-//            PKHUD.
             break
         }
         
@@ -424,7 +423,12 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     private var isSettingShowing: Bool = false
     @objc func plusButtonLongTapped(_ sender: Any) {
         if !isSettingShowing {
+            
+            
+            //振動
             AudioServicesPlaySystemSound(1519)
+//            AudioServicesPlaySystemSound(1001)
+//            AudioServicesPlaySystemSound(1519)
             // 背景設定
             backView.alpha = 0
             backView.isHidden = false

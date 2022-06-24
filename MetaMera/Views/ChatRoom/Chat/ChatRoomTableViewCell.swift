@@ -28,5 +28,14 @@ class ChatRoomTableViewCell: UITableViewCell {
     private func configView() {
         userIconImageView.layer.cornerRadius = 30.0
         messageTextView.layer.cornerRadius = 10.0
+        
+        backgroundColor = .clear
+        
+        switch Profile.shared.updateProfileImage() {
+        case .success(let image):
+            userIconImageView.image = image
+        case .failure(_):
+            break
+        }
     }
 }

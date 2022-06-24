@@ -24,6 +24,8 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         
         backImageView.isUserInteractionEnabled = true
         backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backView(_:))))
+        
+        chatRoomTableView.backgroundColor = .rgb(red: 118, green: 140, blue: 180)
     }
     
     
@@ -51,6 +53,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("etst")
         self.view.endEditing(true)
     }
     
@@ -67,7 +70,8 @@ extension ChatRoomController: ChatViewControllerDelegate{
 extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        chatRoomTableView.estimatedRowHeight = 20
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -76,7 +80,7 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatRoomTableViewCell
-        cell.backgroundColor = .lightGray
+//        cell.backgroundColor = .lightGray
         return cell
         
     }
