@@ -21,6 +21,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var MapView: MKMapView!
     @IBOutlet weak var ProfileImage: UIImageView!
     @IBOutlet weak var changeProfileImageButton: UIButton!
+    @IBOutlet weak var backImageView: UIImageView!
     
     let displayDebugging = true
     private var isInitialMoveToMap: Bool = true
@@ -39,7 +40,6 @@ class ProfileViewController: UIViewController {
     let db = Firestore.firestore()
     
     let storage = FirebaseStorage.Storage.storage()
-    let profile = Profile()
     
     
     // image
@@ -56,6 +56,9 @@ class ProfileViewController: UIViewController {
         
         imagePicker.delegate = self
         
+        backImageView.isUserInteractionEnabled = true
+        backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backView(_:))))
+        
         //MARK: - FireStorage
         let uid = Profile.shared.userId
         print("UID:", uid)
@@ -65,8 +68,7 @@ class ProfileViewController: UIViewController {
         switch Profile.shared.updateProfileImage() {
         case .success(let image):
             ProfileImage.image = image
-        case .failure(let error):
-//            PKHUD.
+        case .failure(_):
             break
         }
     }
@@ -126,6 +128,12 @@ class ProfileViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    //MARK: 前の画面に戻る
+    @objc func backView(_ sender: Any){
+        print("push back image")
+        self.dismiss(animated: true, completion: nil)
+    }
     
     
     @objc func updateUserLocation() {
@@ -231,21 +239,11 @@ class ProfileViewController: UIViewController {
         
         if FileManager.default.fileExists(atPath: path) {
             if let imageData = UIImage(contentsOfFile: path) {
-                HUD.hide { (_) in
-                    HUD.flash(.success, onView: self.view, delay: 1) { [weak self] (_) in
-                        self?.ProfileImage.image = imageData
-                    }
-                }
+                ProfileImage.image = imageData
             }else {
-                HUD.hide { (_) in
-                    HUD.flash(.error, delay: 1)
-                }
                 print("Failed to load the image.")
             }
         }else {
-            HUD.hide { (_) in
-                HUD.flash(.error, delay: 1)
-            }
             print("Image file not found.")
         }
     }
@@ -272,18 +270,11 @@ class ProfileViewController: UIViewController {
                             //端末に保存
                             try jpegImageData.write(to: saveDocumentPath)
                             print("Image saved.")
-                            HUD.hide()
                         } catch {
-                            HUD.hide { (_) in
-                                HUD.flash(.error, delay: 1)
-                            }
                             print("Failed to save the image:", error)
                         }
                     }
                 } catch {
-                    HUD.hide { (_) in
-                        HUD.flash(.error, delay: 1)
-                    }
                     print("変換失敗")
                 }
             }
@@ -322,7 +313,7 @@ class ProfileViewController: UIViewController {
         ProfileImage.image = selectedImage
         // 格納先 reference
         let path = FirebaseStorage.Storage.storage().reference(forURL: "gs://metamera-e2b4b.appspot.com")
-        let localImageRef = path.child("profile").child(profile.userId+".jpeg")
+        let localImageRef = path.child("profile").child(Profile.shared.userId+".jpeg")
         
         // メタデータ
         let metaData = FirebaseStorage.StorageMetadata()
@@ -332,7 +323,6 @@ class ProfileViewController: UIViewController {
         guard let imageData = selectedImage.jpegData(compressionQuality: 0.5) else {
             return
         }
-        HUD.show(.progress, onView: view)
         dismiss(animated: true) {
             // データをアップロード
             localImageRef.putData(imageData, metadata: metaData) { metaData, error in

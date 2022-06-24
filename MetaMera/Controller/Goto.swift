@@ -12,7 +12,17 @@ class Goto : UIViewController{
     
     
     class func Top(view: UIViewController, completion: (() -> Void)?){
-        view.view.window?.rootViewController?.dismiss(animated: true, completion: completion)
+        let transition = CATransition()
+        transition.duration = 0.25
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromLeft
+        view.view.window?.layer.add(transition, forKey: kCATransition)
+        
+        view.view.window?.rootViewController?.dismiss(animated: false, completion: completion)
+    }
+    
+    class func Back(){
+        
     }
     
     //TODO: SignInの画面に移行できるように戻すこと！！
@@ -24,16 +34,17 @@ class Goto : UIViewController{
 //        }
         
         print("Goto-SignIn was called.")
-        print("0")
-        
         let vc = SignInViewController()
-        print("1")
         let navController = UINavigationController(rootViewController: vc)
-        print("2")
         navController.modalPresentationStyle = .fullScreen
-        print("3")
-        view.present(navController, animated: true)
-        print("4")
+        
+        let transition = CATransition()
+        transition.duration = 0.25
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromRight
+        view.view.window?.layer.add(transition, forKey: kCATransition)
+        
+        view.present(navController, animated: false,completion: nil)
         
         
     }
@@ -51,6 +62,9 @@ class Goto : UIViewController{
         if let vc = UIStoryboard.instantiateInitialViewController(.init(name: "ARViewController", bundle: .main))() as? ARViewController {
             let navController = UINavigationController(rootViewController: vc)
             navController.modalPresentationStyle = .fullScreen
+            
+            
+            
             view.present(navController, animated: true)
         }
     }

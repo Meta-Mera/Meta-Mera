@@ -20,17 +20,27 @@
                                 <rect key="frame" x="0.0" y="294" width="414" height="568"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="矢印(5cm)" translatesAutoresizingMaskIntoConstraints="NO" id="sj5-Yk-ZuO">
+                                <rect key="frame" x="15" y="60" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="Nns-5R-0Ai"/>
+                                    <constraint firstAttribute="width" secondItem="sj5-Yk-ZuO" secondAttribute="height" multiplier="1:1" id="szP-YY-7wc"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="sj5-Yk-ZuO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="EGE-ex-bzA"/>
                             <constraint firstItem="zxR-nD-CH9" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Jbo-8t-74a"/>
+                            <constraint firstItem="sj5-Yk-ZuO" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="ZBG-i9-ZDR"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="zxR-nD-CH9" secondAttribute="trailing" id="ZKU-KP-ym3"/>
                             <constraint firstItem="zxR-nD-CH9" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="250" id="hgo-cU-QeP"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="zxR-nD-CH9" secondAttribute="bottom" id="sF4-Kg-Tyk"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backImageView" destination="sj5-Yk-ZuO" id="hCu-9T-2cn"/>
                         <outlet property="chatRoomTableView" destination="zxR-nD-CH9" id="P8L-be-pPd"/>
                     </connections>
                 </viewController>
@@ -40,6 +50,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="矢印(5cm)" width="1181" height="1181"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
