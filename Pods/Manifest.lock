@@ -616,6 +616,9 @@ PODS:
   - Firebase/Firestore (9.1.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 9.1.0)
+  - Firebase/Storage (9.1.0):
+    - Firebase/CoreOnly
+    - FirebaseStorage (~> 9.1.0)
   - FirebaseAnalytics (9.1.0):
     - FirebaseAnalytics/AdIdSupport (= 9.1.0)
     - FirebaseCore (~> 9.0)
@@ -634,11 +637,13 @@ PODS:
     - GoogleUtilities/Network (~> 7.7)
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
+  - FirebaseAppCheckInterop (9.1.0)
   - FirebaseAuth (9.1.0):
     - FirebaseCore (~> 9.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
     - GoogleUtilities/Environment (~> 7.7)
     - GTMSessionFetcher/Core (< 3.0, >= 1.7)
+  - FirebaseAuthInterop (9.1.0)
   - FirebaseCore (9.1.0):
     - FirebaseCoreDiagnostics (~> 9.0)
     - FirebaseCoreInternal (~> 9.0)
@@ -649,6 +654,8 @@ PODS:
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/Logger (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
+  - FirebaseCoreExtension (9.1.0):
+    - FirebaseCore (~> 9.0)
   - FirebaseCoreInternal (9.1.0):
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
   - FirebaseFirestore (9.1.0):
@@ -669,6 +676,15 @@ PODS:
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/UserDefaults (~> 7.7)
     - PromisesObjC (~> 2.1)
+  - FirebaseStorage (9.1.0):
+    - FirebaseAppCheckInterop (~> 9.0)
+    - FirebaseAuthInterop (~> 9.0)
+    - FirebaseCore (~> 9.0)
+    - FirebaseCoreExtension (~> 9.0)
+    - FirebaseStorageInternal (~> 9.0)
+  - FirebaseStorageInternal (9.1.0):
+    - FirebaseCore (~> 9.0)
+    - GTMSessionFetcher/Core (< 3.0, >= 1.7)
   - GoogleAppMeasurement (9.1.0):
     - GoogleAppMeasurement/AdIdSupport (= 9.1.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
@@ -784,6 +800,7 @@ DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Firestore
+  - Firebase/Storage
   - PKHUD (~> 5.0)
 
 SPEC REPOS:
@@ -793,12 +810,17 @@ SPEC REPOS:
     - BoringSSL-GRPC
     - Firebase
     - FirebaseAnalytics
+    - FirebaseAppCheckInterop
     - FirebaseAuth
+    - FirebaseAuthInterop
     - FirebaseCore
     - FirebaseCoreDiagnostics
+    - FirebaseCoreExtension
     - FirebaseCoreInternal
     - FirebaseFirestore
     - FirebaseInstallations
+    - FirebaseStorage
+    - FirebaseStorageInternal
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
@@ -817,12 +839,17 @@ SPEC CHECKSUMS:
   BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
   Firebase: 91c243d75573ac6e7c9735ec859b72bffb61347d
   FirebaseAnalytics: bf11064790ac96804df1df9ddc0ae45af950d9fc
+  FirebaseAppCheckInterop: 39f963659691a896a4f16065c00183f128ab5d46
   FirebaseAuth: 77247e07732ec5cdb20cc58ef40ad84d2fcce847
+  FirebaseAuthInterop: 81e0af3efc37bde8f58807d5f8e50f40ef18d275
   FirebaseCore: b7bfc258e996eada23b3666bd6b9a22ca092acb8
   FirebaseCoreDiagnostics: 2dabba3412b23b524823325739f45e520f67d1e7
+  FirebaseCoreExtension: c2efdc29b8ffeaa0be3e1bd1fc59758de9b3fe6d
   FirebaseCoreInternal: f3c838ae0b41cd840bbf34f90debfede78d352e5
   FirebaseFirestore: 20b1df7d65058b038745ecebb60f741a10e40a6f
   FirebaseInstallations: a91c74276b544524ce144c8315d8cdbce2dbe30b
+  FirebaseStorage: 1706d112a8a9d39f3b5465d00a0cb75725f16f63
+  FirebaseStorageInternal: d0e5482946dd483dbb2f6a76ef5750b9b5907049
   GoogleAppMeasurement: 8ecc717f2abe3f9ee95a5d38db08827852894acc
   GoogleDataTransport: 5fffe35792f8b96ec8d6775f5eccd83c998d5a3b
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
@@ -835,6 +862,6 @@ SPEC CHECKSUMS:
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
   PromisesObjC: 99b6f43f9e1044bd87a95a60beff28c2c44ddb72
 
-PODFILE CHECKSUM: 06d611a2c69608de7174c87d113c027e1cc88246
+PODFILE CHECKSUM: 789adba1dad5b9fdcc3206ac49b136061d849967
 
 COCOAPODS: 1.11.3

@@ -20,11 +20,11 @@ class ChatViewController: UIView{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         nibInit()
         setupViews()
         autoresizingMask = .flexibleHeight
-        
+
         inputChatText.delegate = self
     }
     
@@ -36,8 +36,8 @@ class ChatViewController: UIView{
         inputChatText.layer.borderWidth = 1
         
         
-        ChatSendButton.layer.cornerRadius = 13
-        ChatSendButton.imageView?.contentMode = .scaleAspectFill
+//        ChatSendButton.layer.cornerRadius = 10
+//        ChatSendButton.imageView?.contentMode = .scaleAspectFill
         ChatSendButton.contentHorizontalAlignment = .fill
         ChatSendButton.contentVerticalAlignment = .fill
         ChatSendButton.isEnabled = false
@@ -50,7 +50,7 @@ class ChatViewController: UIView{
     private func nibInit(){
         let nib = UINib(nibName: "ChatViewController", bundle: nil)
         guard let view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
-        
+
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         self.addSubview(view)

@@ -3,6 +3,7 @@
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,6 +21,12 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.69999999999999996" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dtr-PO-uBE">
+                                <rect key="frame" x="0.0" y="556" width="375" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="QYH-md-mFw"/>
+                                </constraints>
+                            </mapView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ロゴ" translatesAutoresizingMaskIntoConstraints="NO" id="GNl-nI-ajh">
                                 <rect key="frame" x="20" y="60" width="50" height="50"/>
                                 <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="0.47634991496598639" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -28,31 +35,124 @@
                                     <constraint firstAttribute="width" constant="50" id="Yl1-hI-Tca"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="aaaaaaaaaaaaaaaa" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ApQ-CF-4sq">
-                                <rect key="frame" x="24" y="642" width="327" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="aaaaaaaaaaaaaaa" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ApQ-CF-4sq">
+                                <rect key="frame" x="24" y="142" width="327" height="36"/>
                                 <color key="backgroundColor" red="0.70552110180412364" green="0.70552110180412364" blue="0.70552110180412364" alpha="0.54346082182873134" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view alpha="0.0" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="5xn-ya-I9u">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" alpha="0.75" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czh-4h-UIa">
+                                <rect key="frame" x="30" y="702" width="60" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="1vk-5d-9oD"/>
+                                    <constraint firstAttribute="height" constant="60" id="67s-ZO-deV"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <imageReference key="image" image="プラス" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
+                                </state>
+                                <connections>
+                                    <action selector="pushPlusButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="QXh-mE-iBq"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" alpha="0.75" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4y-40-dW5">
+                                <rect key="frame" x="20" y="602" width="60" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="B3P-QP-ciz"/>
+                                    <constraint firstAttribute="width" constant="60" id="cpg-zC-qgD"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <imageReference key="image" image="プロフィール" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
+                                </state>
+                                <connections>
+                                    <action selector="pushProfileButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="TIW-B5-Ja6"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" alpha="0.75" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6FL-tj-Fkr">
+                                <rect key="frame" x="110" y="722" width="60" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Hf8-3j-IJg"/>
+                                    <constraint firstAttribute="width" constant="60" id="evl-nn-Ai0"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <imageReference key="image" image="カテゴリー選択" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
+                                </state>
+                                <connections>
+                                    <action selector="pushSelectCategory:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Abn-1J-PQX"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" alpha="0.75" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="asd-mO-hrb">
+                                <rect key="frame" x="90" y="642" width="60" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="yDg-mV-AIG"/>
+                                    <constraint firstAttribute="width" constant="60" id="yh5-OK-l7b"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <imageReference key="image" image="ルーム作成" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
+                                </state>
+                                <connections>
+                                    <action selector="pushCreateRoom:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="0cb-5i-4ub"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="0g4-UK-JMB" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="AKa-hc-EY4"/>
+                            <constraint firstItem="asd-mO-hrb" firstAttribute="leading" secondItem="e4y-40-dW5" secondAttribute="trailing" constant="10" id="16v-Ku-PmU"/>
+                            <constraint firstItem="dtr-PO-uBE" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="2gN-lm-jZ3"/>
+                            <constraint firstItem="6FL-tj-Fkr" firstAttribute="top" secondItem="asd-mO-hrb" secondAttribute="bottom" constant="20" id="3c6-kN-K6U"/>
+                            <constraint firstItem="czh-4h-UIa" firstAttribute="top" secondItem="e4y-40-dW5" secondAttribute="bottom" constant="40" id="A4X-ZC-aCR"/>
+                            <constraint firstItem="0g4-UK-JMB" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="AKa-hc-EY4"/>
                             <constraint firstItem="0g4-UK-JMB" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="D6g-GO-x6z"/>
+                            <constraint firstItem="czh-4h-UIa" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="Fjj-OZ-u4D"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ApQ-CF-4sq" secondAttribute="trailing" constant="24" id="H1I-Uc-TY2"/>
-                            <constraint firstItem="0g4-UK-JMB" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="HZK-Ny-kpi"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="ApQ-CF-4sq" secondAttribute="bottom" constant="100" id="K1t-Py-zl6"/>
+                            <constraint firstItem="0g4-UK-JMB" firstAttribute="trailing" secondItem="5EZ-qb-Rvc" secondAttribute="trailing" id="HZK-Ny-kpi"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="ApQ-CF-4sq" secondAttribute="bottom" constant="600" id="K1t-Py-zl6"/>
+                            <constraint firstAttribute="bottom" secondItem="czh-4h-UIa" secondAttribute="bottom" constant="50" id="Lwe-Zn-nej"/>
+                            <constraint firstAttribute="bottom" secondItem="6FL-tj-Fkr" secondAttribute="bottom" constant="30" id="ODN-F9-OtA"/>
                             <constraint firstItem="ApQ-CF-4sq" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="PcH-oI-zZB"/>
+                            <constraint firstItem="e4y-40-dW5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="QbO-Nj-K3H"/>
+                            <constraint firstItem="5xn-ya-I9u" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="RgD-EX-jS0"/>
+                            <constraint firstItem="dtr-PO-uBE" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="T7c-mN-UZD"/>
+                            <constraint firstItem="dtr-PO-uBE" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" constant="275" id="ds8-LA-1ol"/>
                             <constraint firstAttribute="bottom" secondItem="0g4-UK-JMB" secondAttribute="bottom" id="fiY-bz-BOt"/>
+                            <constraint firstItem="6FL-tj-Fkr" firstAttribute="leading" secondItem="czh-4h-UIa" secondAttribute="trailing" constant="20" id="gct-Bh-Knv"/>
                             <constraint firstItem="GNl-nI-ajh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="wHm-Iv-cef"/>
+                            <constraint firstItem="5xn-ya-I9u" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="xxf-XG-v1U"/>
                             <constraint firstItem="GNl-nI-ajh" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="60" id="yeO-Uv-1g2"/>
+                            <constraint firstItem="5xn-ya-I9u" firstAttribute="top" secondItem="0g4-UK-JMB" secondAttribute="top" id="yks-3W-EJ0"/>
+                            <constraint firstItem="5xn-ya-I9u" firstAttribute="leading" secondItem="0g4-UK-JMB" secondAttribute="leading" id="yx3-RL-SVR"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="ProfileImage" destination="GNl-nI-ajh" id="QYn-Zh-0uI"/>
+                        <outlet property="backView" destination="5xn-ya-I9u" id="mjy-3B-pEA"/>
                         <outlet property="contentView" destination="0g4-UK-JMB" id="gmO-ii-G2K"/>
+                        <outlet property="createRoomButton" destination="asd-mO-hrb" id="HpU-9m-dsS"/>
+                        <outlet property="mapView" destination="dtr-PO-uBE" id="sH1-kp-7bb"/>
+                        <outlet property="plusButton" destination="czh-4h-UIa" id="OEW-ek-P8V"/>
+                        <outlet property="profileButton" destination="e4y-40-dW5" id="EXc-aP-cfD"/>
+                        <outlet property="selectCategoryButton" destination="6FL-tj-Fkr" id="jlB-V9-DNc"/>
                         <outlet property="textLabel" destination="ApQ-CF-4sq" id="81X-84-tgj"/>
                     </connections>
                 </viewController>
@@ -62,6 +162,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="カテゴリー選択" width="85.333335876464844" height="85.333335876464844"/>
+        <image name="プラス" width="85.333335876464844" height="85.333335876464844"/>
+        <image name="プロフィール" width="85.333335876464844" height="85.333335876464844"/>
+        <image name="ルーム作成" width="85.333335876464844" height="85.333335876464844"/>
         <image name="ロゴ" width="181.66667175292969" height="139"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
