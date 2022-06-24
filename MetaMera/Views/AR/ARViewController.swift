@@ -311,7 +311,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
 //        36.35801663766492, 138.63498898207519
         
         let karuizawa = buildNode(latitude: 36.35801663766492, longitude: 138.63498898207519, altitude: 1000, imageName: "snow",size: CGSize(width: 200, height: 300))
-        karuizawa.scaleRelativeToDistance = true
+//        karuizawa.scaleRelativeToDistance = true
         nodes.append(karuizawa)
         
 //        35.62510858464141, 139.24366875641377
@@ -363,16 +363,19 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     //MARK: - ここからオブジェクトを生成するためのやつだよ
 
     func buildNode(latitude: CLLocationDegrees, longitude: CLLocationDegrees,
-                   altitude: CLLocationDistance, imageName: String, size: CGSize) -> LocationAnnotationNode {
+                   altitude: CLLocationDistance,
+                   imageName: String, size: CGSize) -> LocationAnnotationNode {
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let location = CLLocation(coordinate: coordinate, altitude: altitude)
         guard let image = UIImage(named: imageName)?.reSizeImage(reSize: size) else
         {
             let image = UIImage(named: imageName)!
+            image.accessibilityIdentifier = imageName
             return LocationAnnotationNode(location: location, image: image)
             
         }
-        
+//        image.images?.accessibilityIdentifier = imageName
+        image.accessibilityIdentifier = imageName
         return LocationAnnotationNode(location: location, image: image)
     }
     
@@ -528,7 +531,7 @@ extension ARViewController: LNTouchDelegate {
         if let nodeImage = node.image{
             // Do stuffs with the nodeImage
             // ...
-            print("[nodeImage]: ",nodeImage)
+            print("[nodeImage: getName]", nodeImage.accessibilityIdentifier ?? "null")
         }
         
     }
@@ -552,6 +555,7 @@ extension UIImageView {
 
 //MARK: Imageのサイズを変更する
 extension UIImage {
+    
     // resize image
     func reSizeImage(reSize:CGSize)->UIImage {
         //UIGraphicsBeginImageContext(reSize);
