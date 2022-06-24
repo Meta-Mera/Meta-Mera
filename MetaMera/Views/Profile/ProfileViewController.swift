@@ -93,8 +93,8 @@ class ProfileViewController: UIViewController {
         
         
         moveTo(center: MapView.userLocation.coordinate, animated: true)
-        
-        
+        // ローカルファイルからユーザーアイコンを取得・表示する
+        downloadProfileImage()
     }
     
     private func moveTo(
@@ -141,7 +141,7 @@ class ProfileViewController: UIViewController {
             return
         }
         
-        DispatchQueue.main.async { [weak self ] in
+        DispatchQueue.main.async { [weak self] in
             guard let self = self else {
                 return
             }
@@ -227,12 +227,14 @@ class ProfileViewController: UIViewController {
         print("change image")
     }
     
+    // ローカルファイルのURL取得
     func getFileURL(fileName: String) -> URL {
         let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         return docDir.appendingPathComponent(fileName)
     }
     
-    func updateProfileImage(){
+    // ローカルファイルから画像取得して表示する
+    func downloadProfileImage(){
         let path = getFileURL(fileName: "userIconImage.jpg").path
         
         if FileManager.default.fileExists(atPath: path) {
@@ -246,12 +248,16 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    func downloadImage(from url: URL, name: String) {
+    func saveImageFile(url: URL, fileName: String) {
         print("Download Started")
         getData(from: url) { data, response, error in
-            guard let _ = data, error == nil else { return }
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Download Finished")
+            if let error = error {
+                print(error)
+                return
+            }
+//            guard let _ = data, error == nil else { return }
+//            print(response?.suggestedFilename ?? url.lastPathComponent)
+//            print("Download Finished")
             // always update the UI from the main thread
             DispatchQueue.main.async() { [weak self] in
                 do {
@@ -267,9 +273,7 @@ class ProfileViewController: UIViewController {
                         } catch {
                             print("Failed to save the image:", error)
                         }
-                        print("Failed to save the image:", error)
                     }
-                    
                 } catch {
                     print("変換失敗")
                 }
@@ -286,7 +290,7 @@ class ProfileViewController: UIViewController {
     // ディレクトリのパスにファイル名をつなげてファイルのフルパスを作る
     func fileInDocumentsDirectory(filename: String) -> String {
         let fileURL = getDocumentsURL().appendingPathComponent(filename)
-        return fileURL!.path
+        return fileURL?.path ?? ""
     }
     //画像を保存するメソッド
     func saveImage (image: UIImage, path: String ) -> Bool {
@@ -305,6 +309,8 @@ class ProfileViewController: UIViewController {
     }
     
     func saveFirebase(selectedImage: UIImage){
+        // 画像表示
+        ProfileImage.image = selectedImage
         // 格納先 reference
         let path = FirebaseStorage.Storage.storage().reference(forURL: "gs://metamera-e2b4b.appspot.com")
         let localImageRef = path.child("profile").child(Profile.shared.userId+".jpeg")
@@ -325,7 +331,7 @@ class ProfileViewController: UIViewController {
                 }
                 // completion
                 // ダウンロードURLの取得
-                localImageRef.downloadURL { [self] url, error in
+                localImageRef.downloadURL { [weak self] url, error in
                     if let error = error {
                         fatalError(error.localizedDescription)
                     }
@@ -333,8 +339,8 @@ class ProfileViewController: UIViewController {
                         // ダウンロードURL取得失敗
                         return
                     }
-                    // success
-                    self.downloadImage(from: downloadURL, name: "userIconImage.jpg")
+                    // 画像ファイルを保存する
+                    self?.saveImageFile(url: downloadURL, fileName: "userIconImage.jpg")
                     
                 }
             }
