@@ -33,7 +33,10 @@ class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+<<<<<<< Updated upstream
         
+=======
+>>>>>>> Stashed changes
         emailTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
         passwordTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
         
@@ -57,11 +60,26 @@ class SignInViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+<<<<<<< Updated upstream
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         //TODO: 配布時必ずバックドアを消すこと
+=======
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardDidShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardDidHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
+>>>>>>> Stashed changes
     }
     
     

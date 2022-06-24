@@ -13,6 +13,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     private let cellId = "ChatRoomTableViewCell"
     
     @IBOutlet weak var chatRoomTableView: UITableView!
+    @IBOutlet weak var backImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,16 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         chatRoomTableView.delegate = self
         chatRoomTableView.dataSource = self
         chatRoomTableView.register(UINib(nibName: "ChatRoomTableViewCell", bundle: nil) , forCellReuseIdentifier: cellId)
+        
+        backImageView.isUserInteractionEnabled = true
+        backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backView(_:))))
+    }
+    
+    
+    //MARK: 前の画面に戻る
+    @objc func backView(_ sender: Any){
+        print("push back image")
+        self.dismiss(animated: true, completion: nil)
     }
     
     private lazy var chatView: ChatViewController = {

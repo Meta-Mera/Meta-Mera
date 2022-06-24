@@ -186,6 +186,14 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        switch Profile.shared.updateProfileImage() {
+        case .success(let image):
+            ProfileImage.image = image
+        case .failure(let error):
+//            PKHUD.
+            break
+        }
+        
         //MARK: ナビゲーションコントローラーを隠すよ！
         navigationController?.setNavigationBarHidden(true, animated: false)
         
@@ -486,6 +494,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     }
     
     @IBAction func pushProfileButton(_ sender: Any) {
+        backTap()
         Goto.ChatRoom(view: self)
     }
     

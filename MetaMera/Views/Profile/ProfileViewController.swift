@@ -21,6 +21,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var MapView: MKMapView!
     @IBOutlet weak var ProfileImage: UIImageView!
     @IBOutlet weak var changeProfileImageButton: UIButton!
+    @IBOutlet weak var backImageView: UIImageView!
     
     let displayDebugging = true
     private var isInitialMoveToMap: Bool = true
@@ -41,7 +42,6 @@ class ProfileViewController: UIViewController {
     let storage = FirebaseStorage.Storage.storage()
     
     
-    
     // image
     private var imagePicker = UIImagePickerController()
     
@@ -56,9 +56,21 @@ class ProfileViewController: UIViewController {
         
         imagePicker.delegate = self
         
+        backImageView.isUserInteractionEnabled = true
+        backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backView(_:))))
+        
         //MARK: - FireStorage
-        
-        
+        let uid = Profile.shared.userId
+        print("UID:", uid)
+//        if let image = Profile.shared.updateProfileImage() {
+//            ProfileImage.image = image
+//        }
+        switch Profile.shared.updateProfileImage() {
+        case .success(let image):
+            ProfileImage.image = image
+        case .failure(_):
+            break
+        }
     }
     
     //User Location
@@ -116,6 +128,12 @@ class ProfileViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    //MARK: 前の画面に戻る
+    @objc func backView(_ sender: Any){
+        print("push back image")
+        self.dismiss(animated: true, completion: nil)
+    }
     
     
     @objc func updateUserLocation() {
@@ -219,23 +237,11 @@ class ProfileViewController: UIViewController {
         
         if FileManager.default.fileExists(atPath: path) {
             if let imageData = UIImage(contentsOfFile: path) {
-                HUD.hide { (_) in
-                    HUD.flash(.success, onView: self.view, delay: 1) { (_) in
-                        self.ProfileImage.image = imageData
-                    }
-                }
-            }
-            else {
-                HUD.hide { (_) in
-                    HUD.flash(.error, delay: 1)
-                }
+                ProfileImage.image = imageData
+            }else {
                 print("Failed to load the image.")
             }
-        }
-        else {
-            HUD.hide { (_) in
-                HUD.flash(.error, delay: 1)
-            }
+        }else {
             print("Image file not found.")
         }
     }
@@ -252,23 +258,19 @@ class ProfileViewController: UIViewController {
                     //URLをデータに変換
                     let imageData = try Data(contentsOf: url)
                     //データをUIImage(jpg)に変換
-                    let image = UIImage(data: imageData)?.jpegData(compressionQuality: 1.0)
-                    do {
-                        //端末に保存
-                        try image!.write(to: (self!.getFileURL(fileName: name)))
-                        print("Image saved.")
-                        self?.updateProfileImage()
-                    } catch {
-                        HUD.hide { (_) in
-                            HUD.flash(.error, delay: 1)
+                    if let jpegImageData = UIImage(data: imageData)?.jpegData(compressionQuality: 1.0),
+                       let saveDocumentPath = self?.getFileURL(fileName: fileName) {
+                        do {
+                            //端末に保存
+                            try jpegImageData.write(to: saveDocumentPath)
+                            print("Image saved.")
+                        } catch {
+                            print("Failed to save the image:", error)
                         }
                         print("Failed to save the image:", error)
                     }
                     
                 } catch {
-                    HUD.hide { (_) in
-                        HUD.flash(.error, delay: 1)
-                    }
                     print("変換失敗")
                 }
             }
@@ -305,7 +307,7 @@ class ProfileViewController: UIViewController {
     func saveFirebase(selectedImage: UIImage){
         // 格納先 reference
         let path = FirebaseStorage.Storage.storage().reference(forURL: "gs://metamera-e2b4b.appspot.com")
-        let localImageRef = path.child("profile").child("test.jpeg")
+        let localImageRef = path.child("profile").child(Profile.shared.userId+".jpeg")
         
         // メタデータ
         let metaData = FirebaseStorage.StorageMetadata()
@@ -315,7 +317,6 @@ class ProfileViewController: UIViewController {
         guard let imageData = selectedImage.jpegData(compressionQuality: 0.5) else {
             return
         }
-        HUD.show(.progress, onView: view)
         dismiss(animated: true) {
             // データをアップロード
             localImageRef.putData(imageData, metadata: metaData) { metaData, error in
