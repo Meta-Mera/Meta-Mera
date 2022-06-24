@@ -389,12 +389,11 @@ extension ProfileViewController: CLLocationManagerDelegate {
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let selectedImage = info[.editedImage] as? UIImage {
-            self.saveFirebase(selectedImage: selectedImage)
+        if let editImage = info[.editedImage] as? UIImage {
+            self.saveFirebase(selectedImage: editImage)
+        }else if let originalImage = info[.originalImage] as? UIImage {
+            self.saveFirebase(selectedImage: originalImage)
         }
     }
     
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        if let selectedImage = info[.editedImage] as? UIImage
-//    }
 }
