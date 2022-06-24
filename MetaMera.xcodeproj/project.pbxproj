@@ -177,13 +177,21 @@
 			path = SignIn;
 			sourceTree = "<group>";
 		};
-		38271471283472A6004BEB01 /* Chat */ = {
+		38271471283472A6004BEB01 /* ChatAccessory */ = {
 			isa = PBXGroup;
 			children = (
 				38271472283472C0004BEB01 /* ChatViewController.swift */,
 				38271473283472C0004BEB01 /* ChatViewController.xib */,
 			);
-			path = Chat;
+			path = ChatAccessory;
+			sourceTree = "<group>";
+		};
+		382F6AB0286582BE0056BFA2 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				389024C52835DAD4004DC3F3 /* UIColor-Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		38968052283F0398008E1302 /* StartUp */ = {
@@ -251,7 +259,7 @@
 				38A2126A282A9C8A00B56E03 /* Image */,
 				38A21268282A0E3E00B56E03 /* Info.plist */,
 				382713EF28332648004BEB01 /* AppDelegate.swift */,
-				389024C52835DAD4004DC3F3 /* UIColor-Extension.swift */,
+				382F6AB0286582BE0056BFA2 /* Extension */,
 				3896805C284A4C90008E1302 /* Controller */,
 				389680592844585D008E1302 /* AR */,
 				38E9AE282865641300EB71D6 /* Profile */,
@@ -287,7 +295,6 @@
 				38F4F14328517D6700C3119D /* ProfileImage */,
 				38968063284C7519008E1302 /* Profile */,
 				38968052283F0398008E1302 /* StartUp */,
-				38271471283472A6004BEB01 /* Chat */,
 				382713852831F93D004BEB01 /* SignIn */,
 				38A2125E282A067C00B56E03 /* SignUp */,
 				38A2125D282A067400B56E03 /* AR */,
@@ -354,6 +361,7 @@
 		38AB5089285ACEF400AF4F80 /* ChatRoom */ = {
 			isa = PBXGroup;
 			children = (
+				38271471283472A6004BEB01 /* ChatAccessory */,
 				38AB508F285C442F00AF4F80 /* Chat */,
 				38AB508A285AD3A700AF4F80 /* ChatRoomController.swift */,
 				38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */,
@@ -865,8 +873,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MetaMera/MetaMera.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JH5QRQ7596;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -892,7 +900,7 @@
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jim112o.MetaMera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = MetaMeraDevelop;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -906,8 +914,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MetaMera/MetaMera.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JH5QRQ7596;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -933,7 +941,7 @@
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jim112o.MetaMera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = MetaMeraDevelop;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
