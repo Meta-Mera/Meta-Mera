@@ -48,7 +48,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ProfileImage.layer.cornerRadius = 25
+        ProfileImage.layer.cornerRadius = 50
         changeProfileImageButton.layer.cornerRadius = 13
         
         imagePicker.allowsEditing = true
@@ -63,10 +63,6 @@ class ProfileViewController: UIViewController {
         
         //MARK: - FireStorage
         let uid = Profile.shared.userId
-        print("UID:", uid)
-//        if let image = Profile.shared.updateProfileImage() {
-//            ProfileImage.image = image
-//        }
         switch Profile.shared.updateProfileImage() {
         case .success(let image):
             ProfileImage.image = image
@@ -94,6 +90,10 @@ class ProfileViewController: UIViewController {
         updateUserLocation()
         
         
+//        var test = Profile.shared.getUser(userId: "")
+    
+        
+        
         moveTo(center: MapView.userLocation.coordinate, animated: true)
         // ローカルファイルからユーザーアイコンを取得・表示する
         downloadProfileImage()
@@ -103,33 +103,9 @@ class ProfileViewController: UIViewController {
         center location: CLLocationCoordinate2D,
         animated: Bool,
         span: CLLocationDegrees = 0.01) {
-        
-//        let coordinateSpan = MKCoordinateSpan(
-//            latitudeDelta: span,
-//            longitudeDelta: span
-//        )
-//        let coordinateRegion = MKCoordinateRegion(
-//            center: location,
-//            span: coordinateSpan
-//        )
             MapView.centerCoordinate = location
             MapView.region = .init(center: location, span: .init(latitudeDelta: span, longitudeDelta: span))
-//        MapView.setRegion(
-//            coordinateRegion,
-//            animated: animated
-//        )
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     //MARK: 前の画面に戻る
     @objc func backView(_ sender: Any){
@@ -245,7 +221,7 @@ class ProfileViewController: UIViewController {
     
     // ローカルファイルから画像取得して表示する
     func downloadProfileImage(){
-        let path = getFileURL(fileName: "userIconImage.jpg").path
+        let path = getFileURL(fileName: Profile.shared.userId+".jpeg").path
         
         if FileManager.default.fileExists(atPath: path) {
             if let imageData = UIImage(contentsOfFile: path) {
@@ -265,10 +241,6 @@ class ProfileViewController: UIViewController {
                 print(error)
                 return
             }
-//            guard let _ = data, error == nil else { return }
-//            print(response?.suggestedFilename ?? url.lastPathComponent)
-//            print("Download Finished")
-            // always update the UI from the main thread
             DispatchQueue.main.async() { [weak self] in
                 do {
                     //URLをデータに変換
@@ -338,6 +310,7 @@ class ProfileViewController: UIViewController {
             localImageRef.putData(imageData, metadata: metaData) { metaData, error in
                 if let error = error {
                     fatalError(error.localizedDescription)
+                    print("error",error)
                 }
                 // completion
                 // ダウンロードURLの取得
@@ -350,7 +323,7 @@ class ProfileViewController: UIViewController {
                         return
                     }
                     // 画像ファイルを保存する
-                    self?.saveImageFile(url: downloadURL, fileName: "userIconImage.jpg")
+                    self?.saveImageFile(url: downloadURL, fileName: Profile.shared.userId+".jpeg")
                     
                 }
             }

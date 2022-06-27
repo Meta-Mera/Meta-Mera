@@ -143,7 +143,27 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         sceneLocationView.orientToTrueNorth = false
         
         
+        
         addSceneModels()
+        
+//        var num = 0
+//        Profile.shared.nodeLocationsLatitude.forEach { latitude in
+////            let coordinate
+//            print("num:       ",num)
+//            let pin = MKPointAnnotation()
+//            pin.title = "テストピン"
+//            pin.subtitle = "サブタイトル"
+//            pin.coordinate = CLLocationCoordinate2DMake(latitude, Profile.shared.nodeLocationsLongitude[num])
+//            num+=1
+//            mapView.addAnnotation(pin)
+//        }
+        
+        //36.35801663766492, 138.63498898207519
+        let pin = MKPointAnnotation()
+        pin.title = "テストピン"
+        pin.subtitle = "サブタイトル"
+        pin.coordinate = CLLocationCoordinate2DMake(36.35801663766492, 138.63498898207519)
+        mapView.addAnnotation(pin)
         
         
 //        sceneLocationView.run()
@@ -366,15 +386,31 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                    imageName: String, size: CGSize) -> LocationAnnotationNode {
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let location = CLLocation(coordinate: coordinate, altitude: altitude)
+        let pin = MKPointAnnotation()
+        pin.title = imageName
+        pin.subtitle = "高さ:"+String(altitude)
+        pin.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+        mapView.addAnnotation(pin)
+        let annotation = MKPointAnnotation()
         guard let image = UIImage(named: imageName)?.reSizeImage(reSize: size) else
         {
             let image = UIImage(named: imageName)!
             image.accessibilityIdentifier = imageName
+//            Profile.shared.nodeLocationsLatitude.append(latitude)
+//            Profile.shared.nodeLocationsLongitude.append(longitude)
+            
+            annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+            annotation.title = imageName
+            annotation.subtitle = "高さ"+String(altitude)
+            mapView.addAnnotation(annotation)
             return LocationAnnotationNode(location: location, image: image)
             
         }
-//        image.images?.accessibilityIdentifier = imageName
         image.accessibilityIdentifier = imageName
+        annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+        annotation.title = imageName
+        annotation.subtitle = "高さ"+String(altitude)
+        mapView.addAnnotation(annotation)
         return LocationAnnotationNode(location: location, image: image)
     }
     
@@ -502,7 +538,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     @IBAction func pushProfileButton(_ sender: Any) {
         backTap()
-        Goto.ChatRoom(view: self)
     }
     
     @IBAction func pushCreateRoom(_ sender: Any) {
@@ -536,6 +571,7 @@ extension ARViewController: LNTouchDelegate {
             // Do stuffs with the nodeImage
             // ...
             print("[nodeImage: getName]", nodeImage.accessibilityIdentifier ?? "null")
+            Goto.ChatRoom(view: self, image: node.image!)
         }
         
     }
