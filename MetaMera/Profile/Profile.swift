@@ -7,13 +7,20 @@
 
 import Foundation
 import UIKit
+import Firebase
+import AVFAudio
+import CoreLocation
 
 class Profile {
     
     static let shared = Profile()
     
     //シングルトン
-    var userId = ""
+    var userId: String = ""
+    let userRef = Firestore.firestore().collection("users")
+    var nodeLocationsLatitude = [CLLocationDegrees]()
+    var nodeLocationsLongitude  = [CLLocationDegrees]()
+    
 //    let profileViewController = ProfileViewController()
     
     func getFileURL(fileName: String) -> URL {
@@ -38,4 +45,40 @@ class Profile {
         }
 
     }
+    
+    func getUser(userId: String) -> Void{
+        let userData = userRef.document(userId)
+        
+        userData.getDocument{ (document, error) in
+            if let document = document, document.exists {
+                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                print("Document data: \(dataDescription)")
+                return
+            }else{
+                print("Document does not exist")
+            }
+            
+        }
+        
+    }
+    
+}
+
+extension String {
+    
+//    open func getUserName(_ String)
+//
+//    override func getUserName(_ ) -> String {
+//        let userData = userRef.document(userId)
+//
+//        userData.getDocument{ (document, error) in
+//            if let document = document, document.exists {
+//                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+//                print("Document data: \(dataDescription)")
+//            }else{
+//                print("Document does not exist")
+//            }
+//
+//        }
+//    }
 }
