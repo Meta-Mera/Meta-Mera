@@ -17,6 +17,10 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var backImageView: UIImageView!
     @IBOutlet weak var postImageView: UIImageView!
     
+    static let shared = Profile()
+    
+    var image: UIImage!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +34,10 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         chatRoomTableView.backgroundColor = .rgb(red: 118, green: 140, blue: 180)
     }
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        postImageView.image = image
+    }
     
     //MARK: 前の画面に戻る
     @objc func backView(_ sender: Any){

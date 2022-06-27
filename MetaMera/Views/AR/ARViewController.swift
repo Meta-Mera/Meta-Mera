@@ -571,7 +571,7 @@ extension ARViewController: LNTouchDelegate {
             // Do stuffs with the nodeImage
             // ...
             print("[nodeImage: getName]", nodeImage.accessibilityIdentifier ?? "null")
-//            Goto.ChatRoom(view: self, image: node.image)
+            Goto.ChatRoom(view: self, image: node.image!)
         }
         
     }
