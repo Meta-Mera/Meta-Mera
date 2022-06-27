@@ -16,7 +16,7 @@ class ChatRoomTableViewCell: UITableViewCell {
             let width = estimateFrameForTextView(text: text).width + 20
             
             messageTextViewWidthConstraint.constant = width
-            messageTextView.text = text
+            messageTextView.text = " "+text
         }
     }
     
@@ -39,7 +39,7 @@ class ChatRoomTableViewCell: UITableViewCell {
     }
     
     private func configView() {
-        userIconImageView.layer.cornerRadius = 30.0
+        userIconImageView.layer.cornerRadius = 25.0
         messageTextView.layer.cornerRadius = 10.0
         
         backgroundColor = .clear

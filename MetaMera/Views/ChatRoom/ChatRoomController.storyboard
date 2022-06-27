@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="zxR-nD-CH9">
-                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                                <rect key="frame" x="0.0" y="344" width="414" height="518"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="矢印(5cm)" translatesAutoresizingMaskIntoConstraints="NO" id="sj5-Yk-ZuO">
@@ -27,21 +27,30 @@
                                     <constraint firstAttribute="width" secondItem="sj5-Yk-ZuO" secondAttribute="height" multiplier="1:1" id="szP-YY-7wc"/>
                                 </constraints>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lzN-dy-UpC">
+                                <rect key="frame" x="30" y="94" width="354" height="230"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="zxR-nD-CH9" firstAttribute="top" secondItem="lzN-dy-UpC" secondAttribute="bottom" constant="20" id="8yc-hU-a4A"/>
                             <constraint firstItem="sj5-Yk-ZuO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="EGE-ex-bzA"/>
                             <constraint firstItem="zxR-nD-CH9" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Jbo-8t-74a"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="lzN-dy-UpC" secondAttribute="trailing" constant="30" id="Z3A-Sg-MkV"/>
                             <constraint firstItem="sj5-Yk-ZuO" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="ZBG-i9-ZDR"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="zxR-nD-CH9" secondAttribute="trailing" id="ZKU-KP-ym3"/>
-                            <constraint firstItem="zxR-nD-CH9" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="50" id="hgo-cU-QeP"/>
+                            <constraint firstItem="lzN-dy-UpC" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="c8H-6r-fik"/>
+                            <constraint firstItem="zxR-nD-CH9" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="300" id="hgo-cU-QeP"/>
+                            <constraint firstItem="lzN-dy-UpC" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="mnt-mu-Afw"/>
+                            <constraint firstItem="lzN-dy-UpC" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="50" id="rEU-Qf-2hy"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="zxR-nD-CH9" secondAttribute="bottom" id="sF4-Kg-Tyk"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backImageView" destination="sj5-Yk-ZuO" id="hCu-9T-2cn"/>
                         <outlet property="chatRoomTableView" destination="zxR-nD-CH9" id="P8L-be-pPd"/>
+                        <outlet property="postImageView" destination="lzN-dy-UpC" id="aQ8-LM-B0x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

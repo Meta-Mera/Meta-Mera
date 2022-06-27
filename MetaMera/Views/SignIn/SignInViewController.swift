@@ -160,6 +160,7 @@ class SignInViewController: UIViewController {
             }
             HUD.hide { (_) in
                 HUD.flash(.success, onView: self.view, delay: 1) { (_) in
+                    Profile.shared.userId = Auth.auth().currentUser?.uid ?? "null"
                     self.presentToARViewController()
                 }
             }

@@ -15,6 +15,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var chatRoomTableView: UITableView!
     @IBOutlet weak var backImageView: UIImageView!
+    @IBOutlet weak var postImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
