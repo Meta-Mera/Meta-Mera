@@ -29,7 +29,7 @@ class Profile {
     }
     
     func updateProfileImage() -> Result<UIImage, Error> {
-        let path = getFileURL(fileName: "userIconImage.jpg").path
+        let path = getFileURL(fileName: Profile.shared.userId+".jpeg").path
 
         if FileManager.default.fileExists(atPath: path) {
             if let imageData = UIImage(contentsOfFile: path) {
@@ -37,11 +37,11 @@ class Profile {
                 return .success(imageData)
             } else {
                 print("Failed to load the image.")
-                return .failure(NSError(domain: "Failed to load the image.", code: 400))
+                return .failure(NSError(domain: "Failed to load the image.", code: 404))
             }
         } else {
             print("Image file not found.")
-            return .failure(NSError(domain: "Image file not found.", code: 400))
+            return .failure(NSError(domain: "Image file not found.", code: 404))
         }
 
     }
