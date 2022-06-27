@@ -221,7 +221,7 @@ class ProfileViewController: UIViewController {
     
     // ローカルファイルから画像取得して表示する
     func downloadProfileImage(){
-        let path = getFileURL(fileName: Profile.shared.userId+".jpg").path
+        let path = getFileURL(fileName: Profile.shared.userId+".jpeg").path
         
         if FileManager.default.fileExists(atPath: path) {
             if let imageData = UIImage(contentsOfFile: path) {
@@ -323,7 +323,7 @@ class ProfileViewController: UIViewController {
                         return
                     }
                     // 画像ファイルを保存する
-                    self?.saveImageFile(url: downloadURL, fileName: Profile.shared.userId)
+                    self?.saveImageFile(url: downloadURL, fileName: Profile.shared.userId+".jpeg")
                     
                 }
             }

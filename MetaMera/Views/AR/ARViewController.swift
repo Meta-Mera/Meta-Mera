@@ -391,16 +391,26 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         pin.subtitle = "高さ:"+String(altitude)
         pin.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
         mapView.addAnnotation(pin)
+        let annotation = MKPointAnnotation()
         guard let image = UIImage(named: imageName)?.reSizeImage(reSize: size) else
         {
             let image = UIImage(named: imageName)!
             image.accessibilityIdentifier = imageName
 //            Profile.shared.nodeLocationsLatitude.append(latitude)
 //            Profile.shared.nodeLocationsLongitude.append(longitude)
+            
+            annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+            annotation.title = imageName
+            annotation.subtitle = "高さ"+altitude
+            mapView.addAnnotation(annotation)
             return LocationAnnotationNode(location: location, image: image)
             
         }
         image.accessibilityIdentifier = imageName
+        annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+        annotation.title = imageName
+        annotation.subtitle = "高さ"+altitude
+        mapView.addAnnotation(annotation)
         return LocationAnnotationNode(location: location, image: image)
     }
     
@@ -528,7 +538,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     @IBAction func pushProfileButton(_ sender: Any) {
         backTap()
-        Goto.ChatRoom(view: self)
     }
     
     @IBAction func pushCreateRoom(_ sender: Any) {
@@ -562,6 +571,7 @@ extension ARViewController: LNTouchDelegate {
             // Do stuffs with the nodeImage
             // ...
             print("[nodeImage: getName]", nodeImage.accessibilityIdentifier ?? "null")
+//            Goto.ChatRoom(view: self, image: node.image)
         }
         
     }
