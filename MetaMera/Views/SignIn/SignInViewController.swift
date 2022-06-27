@@ -12,6 +12,8 @@ import Firebase
 import PKHUD
 
 class SignInViewController: UIViewController {
+    @IBOutlet weak var SignInButton: UIButton!
+    @IBOutlet weak var toSignUpButton: UIButton!
     
     
     @IBOutlet weak var textFieldView: UIView!
@@ -46,9 +48,9 @@ class SignInViewController: UIViewController {
         nextButtonImage.isUserInteractionEnabled = true
         nextButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backDoor(_:))))
         
-        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardDidShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardDidHideNotification, object: nil)
         
+//        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardDidShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardDidHideNotification, object: nil)
         
         // Do any additional setup after loading the view.
     }
@@ -58,14 +60,14 @@ class SignInViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardDidShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardDidHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardDidHideNotification, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
     }
     
     
@@ -74,11 +76,10 @@ class SignInViewController: UIViewController {
     }
     
     @objc func showKeyboard(notification: Notification){
-//        print("showKeyboard")
         let keyboardFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
 
         guard let keyboardMinY = keyboardFrame?.minY else { return }
-        let stackViewMaxY = self.textFieldView.frame.maxY + 40
+        let stackViewMaxY = textFieldView.frame.maxY + 40
 
         let distance = stackViewMaxY - keyboardMinY
 
@@ -158,9 +159,8 @@ class SignInViewController: UIViewController {
                 return
             }
             HUD.hide { (_) in
-                HUD.flash(.success, onView: self.view, delay: 1) { [weak self] (_) in
-                    Profile.shared.userId = Auth.auth().currentUser?.uid ?? ""
-                    self?.presentToARViewController()
+                HUD.flash(.success, onView: self.view, delay: 1) { (_) in
+                    self.presentToARViewController()
                 }
             }
         }

@@ -51,6 +51,8 @@ class ProfileViewController: UIViewController {
         ProfileImage.layer.cornerRadius = 25
         changeProfileImageButton.layer.cornerRadius = 13
         
+        imagePicker.allowsEditing = true
+        
         MapView.translatesAutoresizingMaskIntoConstraints = false
         // Do any additional setup after loading the view.
         
@@ -227,6 +229,14 @@ class ProfileViewController: UIViewController {
         print("change image")
     }
     
+    private func changeProfileImage(){
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
     // ローカルファイルのURL取得
     func getFileURL(fileName: String) -> URL {
         let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -379,8 +389,11 @@ extension ProfileViewController: CLLocationManagerDelegate {
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            self.saveFirebase(selectedImage: selectedImage)
+        if let editImage = info[.editedImage] as? UIImage {
+            self.saveFirebase(selectedImage: editImage)
+        }else if let originalImage = info[.originalImage] as? UIImage {
+            self.saveFirebase(selectedImage: originalImage)
         }
     }
+    
 }

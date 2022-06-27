@@ -54,6 +54,7 @@ class Goto : UIViewController{
         let vc = SignUpViewController()
         let navController = UINavigationController(rootViewController: vc)
         navController.modalPresentationStyle = .fullScreen
+        //navController.modalTransitionStyle = .partialCurl
         view.present(navController, animated: true)
     }
     

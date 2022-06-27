@@ -11,6 +11,7 @@ import UIKit
 class ChatRoomController: UIViewController, UITextFieldDelegate{
     
     private let cellId = "ChatRoomTableViewCell"
+    private var messages = [String]()
     
     @IBOutlet weak var chatRoomTableView: UITableView!
     @IBOutlet weak var backImageView: UIImageView!
@@ -24,6 +25,8 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         
         backImageView.isUserInteractionEnabled = true
         backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backView(_:))))
+        
+        chatRoomTableView.backgroundColor = .rgb(red: 118, green: 140, blue: 180)
     }
     
     
@@ -51,6 +54,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("etst")
         self.view.endEditing(true)
     }
     
@@ -58,9 +62,11 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
 
 
 
-extension ChatRoomController: ChatViewControllerDelegate{
+extension ChatRoomController: ChatViewControllerDelegate {
     func tappedSendButton(text: String) {
-        print(text)
+        messages.append(text)
+        chatView.removeText()
+        chatRoomTableView.reloadData()
     }
 }
 
@@ -72,12 +78,13 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatRoomTableViewCell
-        cell.backgroundColor = .lightGray
+//        cell.messageTextView.text = messages[indexPath.row]
+        cell.messageText = messages[indexPath.row]
         return cell
         
     }
