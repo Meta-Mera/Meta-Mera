@@ -401,7 +401,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             
             annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
             annotation.title = imageName
-            annotation.subtitle = "高さ"+altitude
+            annotation.subtitle = "高さ"+String(altitude)
             mapView.addAnnotation(annotation)
             return LocationAnnotationNode(location: location, image: image)
             
@@ -409,7 +409,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         image.accessibilityIdentifier = imageName
         annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
         annotation.title = imageName
-        annotation.subtitle = "高さ"+altitude
+        annotation.subtitle = "高さ"+String(altitude)
         mapView.addAnnotation(annotation)
         return LocationAnnotationNode(location: location, image: image)
     }
