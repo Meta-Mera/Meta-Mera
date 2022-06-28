@@ -156,7 +156,7 @@ class SignInViewController: UIViewController {
             return 50
         case 844:
             print("iPhone 12, 13, 12 Pro, 13 Pro")
-            return 50
+            return 40
         case 812:
             print("iPhone X, XS, 11 Pro, 12 mini, 13 mini")
             return 40
@@ -166,14 +166,8 @@ class SignInViewController: UIViewController {
         case 667:
             print("iPhone 6, 6s, 7, 8, SE2")
             return 20
-        case 568:
-            print("iPhone 5, 5s, 5c, SE")
-            return 10
-        case 480:
-            print("iPhone 1, 3G, 3GS, 4, 4G")
-            return 10
         default:
-            return 50
+            return 5
         }
     }
 
