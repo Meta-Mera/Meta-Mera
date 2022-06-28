@@ -11,12 +11,19 @@ import Firebase
 import AVFAudio
 import CoreLocation
 
+struct ProfileDocument {
+    var userId: String
+    var userName: String
+//    var hobbys: [Hobby]
+}
+
 class Profile {
     
     static let shared = Profile()
     
     //シングルトン
     var userId: String = ""
+    var userName: String = ""
     let userRef = Firestore.firestore().collection("users")
     var nodeLocationsLatitude = [CLLocationDegrees]()
     var nodeLocationsLongitude  = [CLLocationDegrees]()
@@ -59,6 +66,11 @@ class Profile {
             }
             
         }
+        
+    }
+    
+    func test(){
+        
         
     }
     

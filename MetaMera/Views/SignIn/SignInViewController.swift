@@ -52,6 +52,9 @@ class SignInViewController: UIViewController {
         
         //MARK: - stackViewのやつ
         signInStackView.spacing = CGFloat(sizeCheck())
+        
+//        Profile.shared.test()
+        
         //MARK: stackViewのやつ -
         
         

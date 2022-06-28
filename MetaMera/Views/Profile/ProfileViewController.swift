@@ -51,6 +51,7 @@ class ProfileViewController: UIViewController {
         ProfileImage.layer.cornerRadius = 50
         changeProfileImageButton.layer.cornerRadius = 13
         
+        
         imagePicker.allowsEditing = true
         
         MapView.translatesAutoresizingMaskIntoConstraints = false
@@ -69,6 +70,33 @@ class ProfileViewController: UIViewController {
         case .failure(_):
             break
         }
+        
+        let db = Firestore.firestore()
+
+        db.collection("users").getDocuments() { collection, err in
+            // エラー発生時
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                // コレクション内のドキュメントを取得
+                for document in collection!.documents {
+                    // hobbiesフィールドを取得
+                    guard let hobbyDicList: [[String : Any]] = document.get(uid) as? [[String : Any]] else {
+                        continue
+                    }
+                    
+                    // uid内のフィールドを取得
+                    for hobbyDic in hobbyDicList {
+                        guard let hobbyName = hobbyDic["userId"] as? String ,
+                              let hobbyYear = hobbyDic["email"] as? Int else {
+                            continue
+                        }
+                        print(hobbyName,hobbyYear)
+                    }
+                }
+            }
+        }
+        
     }
     
     //User Location
