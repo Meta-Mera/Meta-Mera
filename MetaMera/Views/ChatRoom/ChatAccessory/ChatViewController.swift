@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ChatViewControllerDelegate: AnyObject{
+protocol ChatViewControllerDelegate: class{
     func tappedSendButton(text: String)
 }
 
@@ -41,6 +41,13 @@ class ChatViewController: UIView{
         ChatSendButton.contentHorizontalAlignment = .fill
         ChatSendButton.contentVerticalAlignment = .fill
         ChatSendButton.isEnabled = false
+        
+        inputChatText.text = ""
+    }
+    
+    func removeText(){
+        inputChatText.text = ""
+        ChatSendButton.isEnabled = false
     }
     
     override var intrinsicContentSize: CGSize {
@@ -62,7 +69,8 @@ class ChatViewController: UIView{
     
     
     @IBAction func tappedSendButton(_ sender: Any) {
-        guard inputChatText.text != nil else { return }
+        guard let text = inputChatText.text else { return }
+        delegate?.tappedSendButton(text: text)
     }
     
 }

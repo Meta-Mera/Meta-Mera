@@ -11,9 +11,15 @@ import UIKit
 class ChatRoomController: UIViewController, UITextFieldDelegate{
     
     private let cellId = "ChatRoomTableViewCell"
+    private var messages = [String]()
     
     @IBOutlet weak var chatRoomTableView: UITableView!
     @IBOutlet weak var backImageView: UIImageView!
+    @IBOutlet weak var postImageView: UIImageView!
+    
+//    static let shared = Profile()
+    
+    var image: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +34,10 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         chatRoomTableView.backgroundColor = .rgb(red: 118, green: 140, blue: 180)
     }
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        postImageView.image = image
+    }
     
     //MARK: 前の画面に戻る
     @objc func backView(_ sender: Any){
@@ -61,9 +71,15 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
 
 
 
-extension ChatRoomController: ChatViewControllerDelegate{
+//MARK: sendボタンを押した時
+extension ChatRoomController: ChatViewControllerDelegate {
     func tappedSendButton(text: String) {
-        print(text)
+        messages.append(text)
+        
+        
+        
+        chatView.removeText()
+        chatRoomTableView.reloadData()
     }
 }
 
@@ -75,12 +91,13 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatRoomTableViewCell
-//        cell.backgroundColor = .lightGray
+//        cell.messageTextView.text = messages[indexPath.row]
+        cell.messageText = messages[indexPath.row]
         return cell
         
     }

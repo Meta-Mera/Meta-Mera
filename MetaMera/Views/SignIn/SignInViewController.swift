@@ -29,6 +29,7 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var nextButtonImage: UIImageView!
     @IBOutlet weak var backButtonImage: UIImageView!
     
+    @IBOutlet weak var signInStackView: UIStackView!
     
     
     override func viewDidLoad() {
@@ -49,10 +50,11 @@ class SignInViewController: UIViewController {
         nextButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backDoor(_:))))
         
         
-//        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardDidShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardDidHideNotification, object: nil)
+        //MARK: - stackViewのやつ
+        signInStackView.spacing = CGFloat(sizeCheck())
+        //MARK: stackViewのやつ -
         
-        // Do any additional setup after loading the view.
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -132,6 +134,43 @@ class SignInViewController: UIViewController {
         }
         
     }
+    
+    func sizeCheck() -> Int{
+        //画面のサイズを取得
+        let rect1 = UIScreen.main.bounds
+        var size = CGFloat()
+        
+        //画面の縦横でサイズが変わるため大きい方のサイズを取得
+        if rect1.size.height > rect1.size.width {
+            size = rect1.size.height
+        }else{
+            size = rect1.size.width
+        }
+        
+        switch size {
+        case 926:
+            print("iPhone 12 Pro Max, 13 Pro Max")
+            return 50
+        case 896:
+            print("iPhone XS, 11 Pro Max, XR, 11")
+            return 50
+        case 844:
+            print("iPhone 12, 13, 12 Pro, 13 Pro")
+            return 40
+        case 812:
+            print("iPhone X, XS, 11 Pro, 12 mini, 13 mini")
+            return 40
+        case 736:
+            print("iPhone 6, 6s, 7, 8 plus")
+            return 30
+        case 667:
+            print("iPhone 6, 6s, 7, 8, SE2")
+            return 20
+        default:
+            return 5
+        }
+    }
+
 
     private func presentToARViewController(){
         Goto.ARView(view: self)
@@ -160,6 +199,7 @@ class SignInViewController: UIViewController {
             }
             HUD.hide { (_) in
                 HUD.flash(.success, onView: self.view, delay: 1) { (_) in
+                    Profile.shared.userId = Auth.auth().currentUser?.uid ?? "null"
                     self.presentToARViewController()
                 }
             }
