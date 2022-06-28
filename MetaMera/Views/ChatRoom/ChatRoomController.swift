@@ -17,7 +17,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var backImageView: UIImageView!
     @IBOutlet weak var postImageView: UIImageView!
     
-    static let shared = Profile()
+//    static let shared = Profile()
     
     var image: UIImage!
     
@@ -71,9 +71,13 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
 
 
 
+//MARK: sendボタンを押した時
 extension ChatRoomController: ChatViewControllerDelegate {
     func tappedSendButton(text: String) {
         messages.append(text)
+        
+        
+        
         chatView.removeText()
         chatRoomTableView.reloadData()
     }

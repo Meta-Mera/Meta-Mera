@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "登録画面(影無し)_ver1.pdf",
+      "filename" : "登録画面(影無し)_ver1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "登録画面(影無し)_ver1-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "登録画面(影無し)_ver1-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
