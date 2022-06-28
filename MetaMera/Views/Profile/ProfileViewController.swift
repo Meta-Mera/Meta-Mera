@@ -194,13 +194,12 @@ class ProfileViewController: UIViewController {
         // 権限
         let authPhotoLibraryStatus = PHPhotoLibrary.authorizationStatus()
         // 許可されてる場合のみ
-        if authPhotoLibraryStatus == .authorized || authPhotoLibraryStatus == .limited {
-            
-            
+//        if authPhotoLibraryStatus == .authorized || authPhotoLibraryStatus == .limited {
+        
+        // fix/update_prof_image_#33 >>>
+        if authPhotoLibraryStatus == .authorized {
+        // <<<
             present(imagePicker, animated: true)
-            
-            
-            
         }
         print("change image")
     }
