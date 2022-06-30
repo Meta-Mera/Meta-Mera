@@ -82,9 +82,12 @@ class ProfileViewController: UIViewController {
         
     }
     
-    private func getUser(){
-        Firestore.firestore().collection("")
+    override func viewDidAppear(_ animated: Bool) {
+        userNameLabel.text = Profile.shared.userName
+        userIdLabel.text = Profile.shared.userEmail
     }
+    
+    
     
     //User Location
     let locationManager:CLLocationManager = CLLocationManager()
