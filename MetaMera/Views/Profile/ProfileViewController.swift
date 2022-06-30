@@ -22,6 +22,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var ProfileImage: UIImageView!
     @IBOutlet weak var changeProfileImageButton: UIButton!
     @IBOutlet weak var backImageView: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var userIdLabel: UILabel!
     
     let displayDebugging = true
     private var isInitialMoveToMap: Bool = true
@@ -41,6 +43,12 @@ class ProfileViewController: UIViewController {
     
     let storage = FirebaseStorage.Storage.storage()
     
+    private var user:User?{
+        didSet{
+            userNameLabel.text = user?.userId
+        }
+    }
+    
     
     // image
     private var imagePicker = UIImagePickerController()
@@ -48,7 +56,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ProfileImage.layer.cornerRadius = 50
+        ProfileImage.layer.cornerRadius = 45
         changeProfileImageButton.layer.cornerRadius = 13
         
         
@@ -71,33 +79,13 @@ class ProfileViewController: UIViewController {
             break
         }
         
-        let db = Firestore.firestore()
-
-        db.collection("users").getDocuments() { collection, err in
-            // エラー発生時
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                // コレクション内のドキュメントを取得
-                for document in collection!.documents {
-                    // hobbiesフィールドを取得
-                    guard let hobbyDicList: [[String : Any]] = document.get(uid) as? [[String : Any]] else {
-                        continue
-                    }
-                    
-                    // uid内のフィールドを取得
-                    for hobbyDic in hobbyDicList {
-                        guard let hobbyName = hobbyDic["userId"] as? String ,
-                              let hobbyYear = hobbyDic["email"] as? Int else {
-                            continue
-                        }
-                        print(hobbyName,hobbyYear)
-                    }
-                }
-            }
-        }
+//        userNameLabel.text = Profile.shared.userName
+//        userIdLabel.text = Profile.shared.userEmail
+        
         
     }
+    
+    
     
     //User Location
     let locationManager:CLLocationManager = CLLocationManager()
@@ -116,6 +104,9 @@ class ProfileViewController: UIViewController {
         MapView.showsUserLocation = true
         
         updateUserLocation()
+        
+        userNameLabel.text = Profile.shared.userName
+        userIdLabel.text = Profile.shared.userEmail
         
         
 //        var test = Profile.shared.getUser(userId: "")

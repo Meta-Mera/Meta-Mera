@@ -9,6 +9,7 @@ import UIKit
 import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestore
+import IQKeyboardManagerSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -32,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        window = UIWindow()
 //        window?.rootViewController = UIStoryboard.instantiateInitialViewController(.init(name: "StartUpStoryboard", bundle: .main))()
 //        window?.makeKeyAndVisible()
+        IQKeyboardManager.shared.enable = true
         
         return true
     }

@@ -15,6 +15,7 @@ import PKHUD
 class SignUpViewController: UIViewController {
 
 //    @IBOutlet weak var signUp: UILabel!
+    @IBOutlet weak var backgroundImage: UIImageView!
     
     @IBOutlet weak var eMailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -38,13 +39,14 @@ class SignUpViewController: UIViewController {
         userIdTextField.delegate = self
 
         
-        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardDidShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardDidHideNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardDidShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardDidHideNotification, object: nil)
         
         backButtonImage.isUserInteractionEnabled = true
         backButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gotoTopView(_:))))
     }
     
+    //テキストフィールド外を触った時の処理
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -53,29 +55,28 @@ class SignUpViewController: UIViewController {
         
     }
 
-    @objc func showKeyboard(notification: Notification){
-        
-        
-        
-        let keyboardFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
-        
-        guard let keyboardMinY = keyboardFrame?.minY else { return }
-        let stackViewMaxY = nextButtonImage.frame.maxY
-        
-        let distance = stackViewMaxY - keyboardMinY
-        
-        let transform = CGAffineTransform(translationX: 0, y: -distance)
-        
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: { [weak self] in
-            self?.stackView.transform = transform
-        })
-    }
-    
-    @objc func hideKeyboard(){
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: { [weak self] in
-            self?.stackView.transform = .identity
-        })
-    }
+  
+//    //キーボードを起動した時の処理
+//    @objc func showKeyboard(notification: Notification){
+//
+//        let keyboardFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
+//
+//        guard let keyboardMinY = keyboardFrame?.minY else { return }
+//        let stackViewMaxY = backgroundImage.frame.maxY
+//        let distance = stackViewMaxY - keyboardMinY
+//        let transform = CGAffineTransform(translationX: 0, y: -distance)
+//
+//        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: { [weak self] in
+//            self?.backgroundImage.transform = transform
+//        })
+//    }
+//
+//  //キーボードが隠れた時の処理
+//    @objc func hideKeyboard(){
+//        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: { [weak self] in
+//            self?.backgroundImage.transform = .identity
+//        })
+//    }
     
     
     

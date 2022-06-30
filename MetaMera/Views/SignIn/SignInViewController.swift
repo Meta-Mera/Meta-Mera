@@ -203,7 +203,18 @@ class SignInViewController: UIViewController {
             HUD.hide { (_) in
                 HUD.flash(.success, onView: self.view, delay: 1) { (_) in
                     Profile.shared.userId = Auth.auth().currentUser?.uid ?? "null"
-                    self.presentToARViewController()
+                    Firestore.firestore().collection("users").document(Profile.shared.userId).getDocument { (userSnapshot, err) in
+                        if let err = err {
+                            print("ユーザー情報の取得に失敗しました。\(err)")
+                            return
+                        }
+                        
+                        guard let dic = userSnapshot?.data() else { return }
+                        let user = User(dic: dic)
+                        Profile.shared.userName = user.userId
+                        Profile.shared.userEmail = user.email
+                        self.presentToARViewController()
+                    }
                 }
             }
         }
