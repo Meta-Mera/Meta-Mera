@@ -191,14 +191,24 @@ class ProfileViewController: UIViewController {
         if #available(iOS 14.0, *) {
             PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
                 switch status {
-                case .limited:
-                    print("制限あり")
-                    break
                 case .authorized:
                     print("許可ずみ")
                     break
+                case .limited:
+                    print("制限あり")
+                    // 設定アプリへ遷移
+                    if let settingURL = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.canOpenURL(settingURL)
+                        UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
+                    }
+                    break
                 case .denied:
                     print("拒否ずみ")
+                    // 設定アプリへ遷移
+                    if let settingURL = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.canOpenURL(settingURL)
+                        UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
+                    }
                     break
                 default:
                     break
@@ -218,16 +228,16 @@ class ProfileViewController: UIViewController {
             }
         }
         
-        
         // 権限
         let authPhotoLibraryStatus = PHPhotoLibrary.authorizationStatus()
-        // 許可されてる場合のみ
-//        if authPhotoLibraryStatus == .authorized || authPhotoLibraryStatus == .limited {
+        // authPhotoLibraryStatus = .authorized : 許可
+        //                        = .limited    : 選択した画像のみ
+        //                        = .denied     : 拒否
         
         // fix/update_prof_image_#33 >>>
         if authPhotoLibraryStatus == .authorized {
         // <<<
-            present(imagePicker, animated: true)
+            present(imagePicker, animated: true)    // カメラロール起動
         }
         print("change image")
     }
