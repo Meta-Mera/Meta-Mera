@@ -33,7 +33,7 @@ struct User {
 
 class SignUpViewController: UIViewController {
 
-    @IBOutlet weak var signUp: UILabel!
+//    @IBOutlet weak var signUp: UILabel!
     
     @IBOutlet weak var eMailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -42,8 +42,11 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var stackView: UIStackView!
     
-    @IBOutlet weak var createAccountButton: UIButton!
-    @IBOutlet weak var toSignInButton: UIButton!
+  
+    @IBOutlet weak var nextButtonImage: UIImageView!
+    @IBOutlet weak var backButtonImage: UIImageView!
+  
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,11 +56,12 @@ class SignUpViewController: UIViewController {
         confirmPasswordTextField.delegate = self
         userIdTextField.delegate = self
 
-        //createAccountButton.layer.cornerRadius = 20
-        // Do any additional setup after loading the view.
         
         NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardDidHideNotification, object: nil)
+        
+        backButtonImage.isUserInteractionEnabled = true
+        backButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gotoTopView(_:))))
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -65,39 +69,31 @@ class SignUpViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        createAccountButton.layer.cornerRadius = 20
-        createAccountButton.isEnabled = false
-        createAccountButton.backgroundColor = UIColor.rgb(red: 184, green: 186, blue: 185)
         
     }
 
     @objc func showKeyboard(notification: Notification){
         
-        signUp.isHidden = true
         
         
         let keyboardFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
         
         guard let keyboardMinY = keyboardFrame?.minY else { return }
-        let stackViewMaxY = createAccountButton.frame.maxY
-        //let stackViewMaxY = userIdTextField.frame.maxY - 20
+        let stackViewMaxY = nextButtonImage.frame.maxY
         
         let distance = stackViewMaxY - keyboardMinY
         
         let transform = CGAffineTransform(translationX: 0, y: -distance)
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: { [weak self] in
-            //self.view.transform = transform
             self?.stackView.transform = transform
         })
     }
     
     @objc func hideKeyboard(){
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: { [weak self] in
-            //self.view.transform = .identity
             self?.stackView.transform = .identity
         })
-        signUp.isHidden = false
     }
     
     
@@ -188,6 +184,7 @@ class SignUpViewController: UIViewController {
             }
         }
     }
+  
     
     private func presentToARViewController(){
         let storyBoard = UIStoryboard(name: "ARViewController", bundle: nil)
@@ -202,6 +199,15 @@ class SignUpViewController: UIViewController {
         navController.modalPresentationStyle = .fullScreen
         self.present(navController, animated: true)
     }
+  
+  
+    
+
+    
+    //BackBotton処理
+    @objc func gotoTopView(_ sender: Any){
+        Goto.Top(view: self, completion: nil)
+    }
     
     
     
@@ -215,12 +221,15 @@ extension SignUpViewController: UITextFieldDelegate {
         let passwordIsEmpty = passwordTextField.text?.isEmpty ?? true
         let confirmPasswordIsEmpty = confirmPasswordTextField.text?.isEmpty ?? true
         
+      
+      //TryCatchに後で変更
+      //nextBottonを押した後の処理
         if emailIsEmpty || passwordIsEmpty || confirmPasswordIsEmpty {
-            createAccountButton.isEnabled = false
-            createAccountButton.backgroundColor = UIColor.rgb(red: 184, green: 186, blue: 185)
+              //イレギュラー発生処理
+          
         }else{
-            createAccountButton.isEnabled = true
-            createAccountButton.backgroundColor = UIColor.rgb(red: 104, green: 164, blue: 140)
+              //正常処理
+              
         }
     }
     
