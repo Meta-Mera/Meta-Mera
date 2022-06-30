@@ -29,7 +29,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ロゴ" translatesAutoresizingMaskIntoConstraints="NO" id="C14-IF-Xmx">
                                 <rect key="frame" x="40" y="114" width="90" height="90"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="90" id="WtW-QW-fhV"/>
+                                    <constraint firstAttribute="width" constant="90" id="WtW-QW-fhV"/>
                                     <constraint firstAttribute="width" secondItem="C14-IF-Xmx" secondAttribute="height" multiplier="1:1" id="uWn-3l-nbe"/>
                                 </constraints>
                             </imageView>

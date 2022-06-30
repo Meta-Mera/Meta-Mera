@@ -56,7 +56,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ProfileImage.layer.cornerRadius = 50
+        ProfileImage.layer.cornerRadius = 45
         changeProfileImageButton.layer.cornerRadius = 13
         
         
@@ -79,12 +79,10 @@ class ProfileViewController: UIViewController {
             break
         }
         
+//        userNameLabel.text = Profile.shared.userName
+//        userIdLabel.text = Profile.shared.userEmail
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        userNameLabel.text = Profile.shared.userName
-        userIdLabel.text = Profile.shared.userEmail
+        
     }
     
     
@@ -106,6 +104,9 @@ class ProfileViewController: UIViewController {
         MapView.showsUserLocation = true
         
         updateUserLocation()
+        
+        userNameLabel.text = Profile.shared.userName
+        userIdLabel.text = Profile.shared.userEmail
         
         
 //        var test = Profile.shared.getUser(userId: "")
