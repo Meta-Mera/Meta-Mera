@@ -10,18 +10,19 @@ import Firebase
 
 class User {
     
+    let userId: String
+    let createAt: Timestamp
     let email: String
-    let username: String
-    let createdAt: Timestamp
-    let profileImageUrl: String
-    
-    var uid: String?
+    let Recommended: [String]
+    let Log: [String]
     
     init(dic: [String: Any]) {
-        self.email = dic["email"] as? String ?? ""
-        self.username = dic["username"] as? String ?? ""
-        self.createdAt = dic["createdAt"] as? Timestamp ?? Timestamp()
-        self.profileImageUrl = dic["profileImageUrl"] as? String ?? ""
+        self.userId = dic["userId"] as! String
+        self.createAt = dic["createAt"] as! Timestamp
+        self.email = dic["email"] as! String
+        self.Recommended = dic["Recommended"] as! [String]
+        self.Log = dic["Log"] as! [String]
     }
+    
     
 }
