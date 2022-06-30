@@ -86,6 +86,8 @@
                         <outlet property="ProfileImage" destination="C14-IF-Xmx" id="Liu-j3-rOX"/>
                         <outlet property="backImageView" destination="6Dk-lh-rns" id="OLn-l0-uB8"/>
                         <outlet property="changeProfileImageButton" destination="1jf-cV-IEI" id="TYn-fv-RSh"/>
+                        <outlet property="userIdLabel" destination="KjA-LA-qIX" id="EOU-Ru-L5k"/>
+                        <outlet property="userNameLabel" destination="Yma-hK-cHB" id="L4I-Rc-U3G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
