@@ -11,7 +11,8 @@ target 'MetaMera' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
   pod 'PKHUD', '~> 5.0' 
-  pod 'ARCL' 
+  pod 'ARCL'
+  pod 'IQKeyboardManagerSwift' 
 
   target 'MetaMeraTests' do
     inherit! :search_paths
