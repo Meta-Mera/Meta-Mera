@@ -39,6 +39,18 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         postImageView.image = image
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        //MARK: キーボードを表示させちゃうと戻るボタンが押せなくなるからその動作をここに書く
+        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardDidHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
+    }
+    
     //MARK: 前の画面に戻る
     @objc func backView(_ sender: Any){
         print("push back image")
@@ -66,6 +78,31 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         print("etst")
         self.view.endEditing(true)
     }
+    
+    @objc func showKeyboard(notification: Notification){
+        let keyboardFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
+
+        guard let keyboardMinY = keyboardFrame?.minY else { return }
+        let stackViewMaxY = backImageView.frame.maxY + 40
+
+        let distance = stackViewMaxY - keyboardMinY
+
+        
+        let transform = CGAffineTransform(translationX: 0, y: 30)
+
+        UIView.animate(withDuration: 0, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: { [weak self] in
+            //self.view.transform = transform
+            self?.backImageView.transform = transform
+        })
+    }
+    
+    @objc func hideKeyboard(){
+        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: { [weak self] in
+//            self.view.transform = .identity
+            self?.backImageView.transform = .identity
+        })
+    }
+    
     
 }
 
