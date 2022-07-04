@@ -107,6 +107,9 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         
         //MARK: 位置情報のやつっぽい
+        
+        locationManager.requestWhenInUseAuthorization()
+        
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.headingFilter = kCLHeadingFilterNone
@@ -115,7 +118,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
 //        locationManager.startUpdatingHeading()
         locationManager.startUpdatingLocation()
         
-        locationManager.requestWhenInUseAuthorization()
+//        locationManager.requestTemporaryFullAccuracyAuthorization(withPurposeKey: "オブジェクトを表示するためには正確な位置情報が必要だお")
     
         mapView.showsUserLocation = true
         
@@ -321,7 +324,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         let spaceNeedle = buildNode(latitude: 35.624929, longitude: 139.341696, altitude: 175, imageName: "drink",size: CGSize(width: 400, height: 300))
 //        spaceNeedle.scaleRelativeToDistance = true
         spaceNeedle.tag = "drink"
-        nodes.append(spaceNeedle)
+//        nodes.append(spaceNeedle)
         
         let nike = buildNode(latitude: 35.70561533774642, longitude: 139.57692592332617, altitude: 175, imageName: "shoes",size: CGSize(width: 400, height: 300))
         nike.scaleRelativeToDistance = true
@@ -338,6 +341,13 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         let takaosan = buildNode(latitude: 35.62510858464141, longitude: 139.24366875641377, altitude: 610, imageName: "road",size: CGSize(width: 200, height: 300))
         takaosan.scaleRelativeToDistance = true
         nodes.append(takaosan)
+        
+//        35.62477445850865, 139.3414411733747
+        
+        
+        let arufoto = buildNode(latitude: 35.62477445850865, longitude: 139.3414411733747, altitude: 200, imageName: "arufoto",size: CGSize(width: 278, height: 122))
+//        arufoto.scaleRelativeToDistance = true
+        nodes.append(arufoto)
         
         
         let spaceNeedle4 = buildNode(latitude: 35.625050, longitude: 139.3418137, altitude: 180, imageName: "train",size: CGSize(width: 200, height: 300))

@@ -17,6 +17,10 @@
 		38271474283472C0004BEB01 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38271472283472C0004BEB01 /* ChatViewController.swift */; };
 		38271475283472C0004BEB01 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38271473283472C0004BEB01 /* ChatViewController.xib */; };
 		382F6AB2286D44730056BFA2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382F6AB1286D44730056BFA2 /* User.swift */; };
+		382F6AB6287295210056BFA2 /* ChatRoomCreateController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 382F6AB5287295210056BFA2 /* ChatRoomCreateController.storyboard */; };
+		382F6AB82872952B0056BFA2 /* ChatRoomCreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382F6AB72872952B0056BFA2 /* ChatRoomCreateController.swift */; };
+		382F6ABA287295390056BFA2 /* ChatRoomJoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382F6AB9287295390056BFA2 /* ChatRoomJoinController.swift */; };
+		382F6ABC287295410056BFA2 /* ChatRoomJoinController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 382F6ABB287295410056BFA2 /* ChatRoomJoinController.storyboard */; };
 		389024C62835DAD4004DC3F3 /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389024C52835DAD4004DC3F3 /* UIColor-Extension.swift */; };
 		38968054283F03B1008E1302 /* StartUpStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38968053283F03B1008E1302 /* StartUpStoryboard.storyboard */; };
 		38968057283F04CE008E1302 /* StartUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38968055283F04CE008E1302 /* StartUpViewController.swift */; };
@@ -84,6 +88,10 @@
 		38271472283472C0004BEB01 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		38271473283472C0004BEB01 /* ChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
 		382F6AB1286D44730056BFA2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		382F6AB5287295210056BFA2 /* ChatRoomCreateController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatRoomCreateController.storyboard; sourceTree = "<group>"; };
+		382F6AB72872952B0056BFA2 /* ChatRoomCreateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomCreateController.swift; sourceTree = "<group>"; };
+		382F6AB9287295390056BFA2 /* ChatRoomJoinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomJoinController.swift; sourceTree = "<group>"; };
+		382F6ABB287295410056BFA2 /* ChatRoomJoinController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatRoomJoinController.storyboard; sourceTree = "<group>"; };
 		389024C52835DAD4004DC3F3 /* UIColor-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Extension.swift"; sourceTree = "<group>"; };
 		38968053283F03B1008E1302 /* StartUpStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StartUpStoryboard.storyboard; sourceTree = "<group>"; };
 		38968055283F04CE008E1302 /* StartUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartUpViewController.swift; sourceTree = "<group>"; };
@@ -188,6 +196,24 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		382F6AB3287294E50056BFA2 /* ChatRoomCreate */ = {
+			isa = PBXGroup;
+			children = (
+				382F6AB72872952B0056BFA2 /* ChatRoomCreateController.swift */,
+				382F6AB5287295210056BFA2 /* ChatRoomCreateController.storyboard */,
+			);
+			path = ChatRoomCreate;
+			sourceTree = "<group>";
+		};
+		382F6AB4287294F30056BFA2 /* ChatRoomJoin */ = {
+			isa = PBXGroup;
+			children = (
+				382F6AB9287295390056BFA2 /* ChatRoomJoinController.swift */,
+				382F6ABB287295410056BFA2 /* ChatRoomJoinController.storyboard */,
+			);
+			path = ChatRoomJoin;
+			sourceTree = "<group>";
+		};
 		38968052283F0398008E1302 /* StartUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,6 +310,8 @@
 		38A2125A282A066000B56E03 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				382F6AB4287294F30056BFA2 /* ChatRoomJoin */,
+				382F6AB3287294E50056BFA2 /* ChatRoomCreate */,
 				38AB5089285ACEF400AF4F80 /* ChatRoom */,
 				38968063284C7519008E1302 /* Profile */,
 				38968052283F0398008E1302 /* StartUp */,
@@ -503,6 +531,8 @@
 				382713892831F95F004BEB01 /* SignInViewController.xib in Resources */,
 				382713F22833423A004BEB01 /* ARViewController.storyboard in Resources */,
 				38271475283472C0004BEB01 /* ChatViewController.xib in Resources */,
+				382F6ABC287295410056BFA2 /* ChatRoomJoinController.storyboard in Resources */,
+				382F6AB6287295210056BFA2 /* ChatRoomCreateController.storyboard in Resources */,
 				38A21269282A104200B56E03 /* Main.storyboard in Resources */,
 				38A21282282CE15800B56E03 /* utakata-Regular.otf in Resources */,
 				3896806B284C7755008E1302 /* ProfileViewController.storyboard in Resources */,
@@ -644,6 +674,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				382F6AB82872952B0056BFA2 /* ChatRoomCreateController.swift in Sources */,
 				38E9AE2A2865641300EB71D6 /* Profile.swift in Sources */,
 				38968057283F04CE008E1302 /* StartUpViewController.swift in Sources */,
 				382713F028332648004BEB01 /* AppDelegate.swift in Sources */,
@@ -651,6 +682,7 @@
 				382713882831F95F004BEB01 /* SignInViewController.swift in Sources */,
 				38271474283472C0004BEB01 /* ChatViewController.swift in Sources */,
 				38A2122E282A064300B56E03 /* ViewController.swift in Sources */,
+				382F6ABA287295390056BFA2 /* ChatRoomJoinController.swift in Sources */,
 				06B1CC142861664900116CF0 /* ChatRoomTableViewCell.swift in Sources */,
 				389024C62835DAD4004DC3F3 /* UIColor-Extension.swift in Sources */,
 				38A2122C282A064300B56E03 /* TopViewController.swift in Sources */,
