@@ -49,6 +49,10 @@ class SignUpViewController: UIViewController {
       
         backButtonImage.isUserInteractionEnabled = true
         backButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gotoTopView(_:))))
+        nextButtonImage.isUserInteractionEnabled = true
+        nextButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pushCreateAccountButton(_:))))
+
+        
     }
     
     //テキストフィールド外を触った時の処理
@@ -91,8 +95,9 @@ class SignUpViewController: UIViewController {
     }
     
     
-    @IBAction func pushCreateAccountButton(_ sender: Any) {
+  @objc func pushCreateAccountButton(_ sender: Any) {
         self.view.endEditing(true)
+        
         handleAuthToFirebase()
     }
     
@@ -180,12 +185,12 @@ class SignUpViewController: UIViewController {
         self.present(homeViewController, animated: true, completion: nil)
     }
     
-    @IBAction func gotoSignIn(_ sender: Any) {
-        let vc = SignInViewController()
-        let navController = UINavigationController(rootViewController: vc)
-        navController.modalPresentationStyle = .fullScreen
-        self.present(navController, animated: true)
-    }
+//    @IBAction func gotoSignIn(_ sender: Any) {
+//        let vc = SignInViewController()
+//        let navController = UINavigationController(rootViewController: vc)
+//        navController.modalPresentationStyle = .fullScreen
+//        self.present(navController, animated: true)
+//    }
   
   
     
@@ -198,27 +203,27 @@ class SignUpViewController: UIViewController {
     
     
     
-
 }
+
     
 extension SignUpViewController: UITextFieldDelegate {
-    
-    func textFieldDidChangeSelection(_ textField: UITextField) {
-        let emailIsEmpty = eMailTextField.text?.isEmpty ?? true
-        let passwordIsEmpty = passwordTextField.text?.isEmpty ?? true
-        let confirmPasswordIsEmpty = confirmPasswordTextField.text?.isEmpty ?? true
-        
-      
-      //TryCatchに後で変更
-      //nextBottonを押した後の処理
-        if emailIsEmpty || passwordIsEmpty || confirmPasswordIsEmpty {
-              //イレギュラー発生処理
-          
-        }else{
-              //正常処理
-              
-        }
-    }
+//
+//    func textFieldDidChangeSelection(_ textField: UITextField) {
+//        let emailIsEmpty = eMailTextField.text?.isEmpty ?? true
+//        let passwordIsEmpty = passwordTextField.text?.isEmpty ?? true
+//        let confirmPasswordIsEmpty = confirmPasswordTextField.text?.isEmpty ?? true
+//
+//
+//      //TryCatchに後で変更
+//      //nextBottonを押した後の処理
+//        if emailIsEmpty || passwordIsEmpty || confirmPasswordIsEmpty {
+//              //イレギュラー発生処理
+//
+//        }else{
+//              //正常処理
+//
+//        }
+//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //今フォーカスが当たっているテキストボックスからフォーカスを外す
@@ -230,6 +235,9 @@ extension SignUpViewController: UITextFieldDelegate {
         }
         return true
     }
+  
 }
+
+
 
 
