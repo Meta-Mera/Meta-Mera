@@ -50,8 +50,6 @@
 		38AB508B285AD3A700AF4F80 /* ChatRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB508A285AD3A700AF4F80 /* ChatRoomController.swift */; };
 		38AB508E285AD3B800AF4F80 /* ChatRoomController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */; };
 		38E9AE2A2865641300EB71D6 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E9AE292865641300EB71D6 /* Profile.swift */; };
-		38F4F14528517D8400C3119D /* SetProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F4F14428517D8400C3119D /* SetProfileImage.swift */; };
-		38F4F14728517D9100C3119D /* SetProfileImage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38F4F14628517D9100C3119D /* SetProfileImage.storyboard */; };
 		4855586E8B131614D9B1EC7D /* Pods_MetaMeraTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DB4C5FB7A8F89B54ABB658 /* Pods_MetaMeraTests.framework */; };
 		4B1461BD03EEF63DAF098061 /* Pods_MetaMera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A907794C66F3A3F859250E /* Pods_MetaMera.framework */; };
 		4C1AE4781286396440668182 /* Pods_MetaMera_MetaMeraUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054A1F7793BB79FF5158A8D7 /* Pods_MetaMera_MetaMeraUITests.framework */; };
@@ -116,8 +114,6 @@
 		38AB508A285AD3A700AF4F80 /* ChatRoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomController.swift; sourceTree = "<group>"; };
 		38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatRoomController.storyboard; sourceTree = "<group>"; };
 		38E9AE292865641300EB71D6 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
-		38F4F14428517D8400C3119D /* SetProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetProfileImage.swift; sourceTree = "<group>"; };
-		38F4F14628517D9100C3119D /* SetProfileImage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetProfileImage.storyboard; sourceTree = "<group>"; };
 		44A6594E1AD10EE93D7CD030 /* Pods-MetaMera-MetaMeraUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaMera-MetaMeraUITests.debug.xcconfig"; path = "Target Support Files/Pods-MetaMera-MetaMeraUITests/Pods-MetaMera-MetaMeraUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		63A907794C66F3A3F859250E /* Pods_MetaMera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaMera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7556378416DB6697151D6632 /* Pods-MetaMeraTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaMeraTests.debug.xcconfig"; path = "Target Support Files/Pods-MetaMeraTests/Pods-MetaMeraTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -289,7 +285,6 @@
 			isa = PBXGroup;
 			children = (
 				38AB5089285ACEF400AF4F80 /* ChatRoom */,
-				38F4F14328517D6700C3119D /* ProfileImage */,
 				38968063284C7519008E1302 /* Profile */,
 				38968052283F0398008E1302 /* StartUp */,
 				382713852831F93D004BEB01 /* SignIn */,
@@ -373,15 +368,6 @@
 				382F6AB1286D44730056BFA2 /* User.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		38F4F14328517D6700C3119D /* ProfileImage */ = {
-			isa = PBXGroup;
-			children = (
-				38F4F14428517D8400C3119D /* SetProfileImage.swift */,
-				38F4F14628517D9100C3119D /* SetProfileImage.storyboard */,
-			);
-			path = ProfileImage;
 			sourceTree = "<group>";
 		};
 		A269E6B3EC31B8B88C1E6C44 /* Pods */ = {
@@ -519,7 +505,6 @@
 				38271475283472C0004BEB01 /* ChatViewController.xib in Resources */,
 				38A21269282A104200B56E03 /* Main.storyboard in Resources */,
 				38A21282282CE15800B56E03 /* utakata-Regular.otf in Resources */,
-				38F4F14728517D9100C3119D /* SetProfileImage.storyboard in Resources */,
 				3896806B284C7755008E1302 /* ProfileViewController.storyboard in Resources */,
 				38A21238282A064400B56E03 /* LaunchScreen.storyboard in Resources */,
 				38A2128A282CEB8200B56E03 /* GoogleService-Info.plist in Resources */,
@@ -667,7 +652,6 @@
 				38271474283472C0004BEB01 /* ChatViewController.swift in Sources */,
 				38A2122E282A064300B56E03 /* ViewController.swift in Sources */,
 				06B1CC142861664900116CF0 /* ChatRoomTableViewCell.swift in Sources */,
-				38F4F14528517D8400C3119D /* SetProfileImage.swift in Sources */,
 				389024C62835DAD4004DC3F3 /* UIColor-Extension.swift in Sources */,
 				38A2122C282A064300B56E03 /* TopViewController.swift in Sources */,
 				38A2127B282CE0DB00B56E03 /* ARViewController.swift in Sources */,

@@ -42,6 +42,11 @@ class SignUpViewController: UIViewController {
 //        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardDidShowNotification, object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardDidHideNotification, object: nil)
         
+        eMailTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
+        passwordTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
+        confirmPasswordTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
+        userIdTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
+      
         backButtonImage.isUserInteractionEnabled = true
         backButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gotoTopView(_:))))
     }

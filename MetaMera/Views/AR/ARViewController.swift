@@ -538,6 +538,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     @IBAction func pushProfileButton(_ sender: Any) {
         backTap()
+        Goto.ChatRoom(view: self, image: UIImage(named: "drink")!)
     }
     
     @IBAction func pushCreateRoom(_ sender: Any) {
