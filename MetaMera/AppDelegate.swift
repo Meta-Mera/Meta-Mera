@@ -34,6 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        window?.rootViewController = UIStoryboard.instantiateInitialViewController(.init(name: "StartUpStoryboard", bundle: .main))()
 //        window?.makeKeyAndVisible()
         IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = false
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         
         return true
     }
