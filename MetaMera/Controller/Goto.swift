@@ -54,8 +54,14 @@ class Goto : UIViewController{
         let vc = SignUpViewController()
         let navController = UINavigationController(rootViewController: vc)
         navController.modalPresentationStyle = .fullScreen
-        //navController.modalTransitionStyle = .partialCurl
-        view.present(navController, animated: true)
+        
+        let transition = CATransition()
+        transition.duration = 0.25
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromRight
+        view.view.window?.layer.add(transition, forKey: kCATransition)
+        
+        view.present(navController, animated: false,completion: nil)
     }
     
     class func ARView(view: UIViewController){

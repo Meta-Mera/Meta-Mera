@@ -39,8 +39,6 @@ class SignUpViewController: UIViewController {
         userIdTextField.delegate = self
 
         
-//        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardDidShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardDidHideNotification, object: nil)
         
         eMailTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
         passwordTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
@@ -64,43 +62,22 @@ class SignUpViewController: UIViewController {
         
     }
 
-  
-//    //キーボードを起動した時の処理
-//    @objc func showKeyboard(notification: Notification){
-//
-//        let keyboardFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
-//
-//        guard let keyboardMinY = keyboardFrame?.minY else { return }
-//        let stackViewMaxY = backgroundImage.frame.maxY
-//        let distance = stackViewMaxY - keyboardMinY
-//        let transform = CGAffineTransform(translationX: 0, y: -distance)
-//
-//        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: { [weak self] in
-//            self?.backgroundImage.transform = transform
-//        })
-//    }
-//
-//  //キーボードが隠れた時の処理
-//    @objc func hideKeyboard(){
-//        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: { [weak self] in
-//            self?.backgroundImage.transform = .identity
-//        })
-//    }
     
     
-    
-    
+
 
     @IBAction func Exit(_ sender: Any) {
     }
     
     
+  //NextButton押した時の処理
   @objc func pushCreateAccountButton(_ sender: Any) {
         self.view.endEditing(true)
         
         handleAuthToFirebase()
     }
     
+  //Firebase登録処理
     private func handleAuthToFirebase(){
         HUD.show(.progress, onView: view)
         guard let email = eMailTextField.text else { return }
@@ -131,6 +108,7 @@ class SignUpViewController: UIViewController {
         }
     }
     
+  //Firebase新規登録のテンプレート作成
     private func addUserInfoToFirestore(email: String, profileImageName: String){
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -178,20 +156,13 @@ class SignUpViewController: UIViewController {
     }
   
     
+  //問題なく登録できた際、 Main画面に遷移
     private func presentToARViewController(){
         let storyBoard = UIStoryboard(name: "ARViewController", bundle: nil)
         let homeViewController = storyBoard.instantiateViewController(identifier: "ARViewController") as! ARViewController
         homeViewController.modalPresentationStyle = .fullScreen
         self.present(homeViewController, animated: true, completion: nil)
     }
-    
-//    @IBAction func gotoSignIn(_ sender: Any) {
-//        let vc = SignInViewController()
-//        let navController = UINavigationController(rootViewController: vc)
-//        navController.modalPresentationStyle = .fullScreen
-//        self.present(navController, animated: true)
-//    }
-  
   
     
 
@@ -207,23 +178,6 @@ class SignUpViewController: UIViewController {
 
     
 extension SignUpViewController: UITextFieldDelegate {
-//
-//    func textFieldDidChangeSelection(_ textField: UITextField) {
-//        let emailIsEmpty = eMailTextField.text?.isEmpty ?? true
-//        let passwordIsEmpty = passwordTextField.text?.isEmpty ?? true
-//        let confirmPasswordIsEmpty = confirmPasswordTextField.text?.isEmpty ?? true
-//
-//
-//      //TryCatchに後で変更
-//      //nextBottonを押した後の処理
-//        if emailIsEmpty || passwordIsEmpty || confirmPasswordIsEmpty {
-//              //イレギュラー発生処理
-//
-//        }else{
-//              //正常処理
-//
-//        }
-//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //今フォーカスが当たっているテキストボックスからフォーカスを外す
