@@ -29,9 +29,9 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         chatRoomTableView.dataSource = self
         chatRoomTableView.register(UINib(nibName: "ChatRoomTableViewCell", bundle: nil) , forCellReuseIdentifier: cellId)
         
-        chatRoomTableView.contentInset = .init(top: 60, left: 0, bottom: 0, right: 0)
-        chatRoomTableView.keyboardDismissMode = .interactive
-        chatRoomTableView.transform = CGAffineTransform(a: 0, b: 0, c: 0, d: -1, tx: 0, ty: 0)
+//        chatRoomTableView.contentInset = .init(top: 60, left: 0, bottom: 0, right: 0)
+//        chatRoomTableView.keyboardDismissMode = .interactive
+//        chatRoomTableView.transform = CGAffineTransform(a: 0, b: 0, c: 0, d: -1, tx: 0, ty: 0)
         
         backImageView.isUserInteractionEnabled = true
         backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backView(_:))))
@@ -39,10 +39,6 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         chatRoomTableView.backgroundColor = .rgb(red: 118, green: 140, blue: 180)
     }
     
-    
-    override func viewDidAppear(_ animated: Bool) {
-        postImageView.image = image
-    }
     
     private func setUpNotification() {
         IQKeyboardManager.shared.enable = false
@@ -58,6 +54,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        postImageView.image = image
         setUpNotification()
     }
     
@@ -94,13 +91,13 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     }
     
     @objc func showKeyboard(notification: Notification){
-        guard let userInfo = notification.userInfo else { return }
-        
-        if let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue {
-            
-            let top = keyboardFrame.height
-            let contentInset = UIEdgeInsets(top: top, left: 0, bottom: 0, right: 0)
-        }
+//        guard let userInfo = notification.userInfo else { return }
+//
+//        if let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue {
+//
+//            let top = keyboardFrame.height
+//            let contentInset = UIEdgeInsets(top: top, left: 0, bottom: 0, right: 0)
+//        }
     }
     
     @objc func hideKeyboard(){

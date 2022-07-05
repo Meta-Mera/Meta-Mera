@@ -19,6 +19,7 @@ import FirebaseStorage
 class ProfileViewController: UIViewController {
     
     @IBOutlet weak var MapView: MKMapView!
+    
     @IBOutlet weak var ProfileImage: UIImageView!
     @IBOutlet weak var changeProfileImageButton: UIButton!
     @IBOutlet weak var backImageView: UIImageView!
