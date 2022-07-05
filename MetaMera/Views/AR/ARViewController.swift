@@ -321,36 +321,36 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
 //        let applePark17 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 100, text: "100", color: UIColor.green)
 //        nodes.append(applePark17)
         
-        let spaceNeedle = buildNode(latitude: 35.624929, longitude: 139.341696, altitude: 175, imageName: "drink",size: CGSize(width: 400, height: 300))
+        let spaceNeedle = buildNode(latitude: 35.624929, longitude: 139.341696, altitude: 175, imageName: "drink",size: CGSize(width: 400, height: 300), pinName: "drink")
 //        spaceNeedle.scaleRelativeToDistance = true
         spaceNeedle.tag = "drink"
 //        nodes.append(spaceNeedle)
         
-        let nike = buildNode(latitude: 35.70561533774642, longitude: 139.57692592332617, altitude: 175, imageName: "shoes",size: CGSize(width: 400, height: 300))
+        let nike = buildNode(latitude: 35.70561533774642, longitude: 139.57692592332617, altitude: 175, imageName: "shoes",size: CGSize(width: 400, height: 300), pinName: "shoes")
         nike.scaleRelativeToDistance = true
         nodes.append(nike)
         
 //        36.35801663766492, 138.63498898207519
         
-        let karuizawa = buildNode(latitude: 36.35801663766492, longitude: 138.63498898207519, altitude: 1000, imageName: "snow",size: CGSize(width: 200, height: 300))
+        let karuizawa = buildNode(latitude: 36.35801663766492, longitude: 138.63498898207519, altitude: 1000, imageName: "snow",size: CGSize(width: 200, height: 300), pinName: "snow")
 //        karuizawa.scaleRelativeToDistance = true
         nodes.append(karuizawa)
         
 //        35.62510858464141, 139.24366875641377
         
-        let takaosan = buildNode(latitude: 35.62510858464141, longitude: 139.24366875641377, altitude: 610, imageName: "road",size: CGSize(width: 200, height: 300))
+        let takaosan = buildNode(latitude: 35.62510858464141, longitude: 139.24366875641377, altitude: 610, imageName: "road",size: CGSize(width: 200, height: 300), pinName: "road")
         takaosan.scaleRelativeToDistance = true
         nodes.append(takaosan)
         
 //        35.62477445850865, 139.3414411733747
         
         
-        let arufoto = buildNode(latitude: 35.62477445850865, longitude: 139.3414411733747, altitude: 200, imageName: "arufoto",size: CGSize(width: 278, height: 122))
+        let arufoto = buildNode(latitude: 35.62477445850865, longitude: 139.3414411733747, altitude: 200, imageName: "arufoto",size: CGSize(width: 278, height: 122), pinName: "アルフォート")
 //        arufoto.scaleRelativeToDistance = true
         nodes.append(arufoto)
         
         
-        let spaceNeedle4 = buildNode(latitude: 35.625050, longitude: 139.3418137, altitude: 180, imageName: "train",size: CGSize(width: 200, height: 300))
+        let spaceNeedle4 = buildNode(latitude: 35.625050, longitude: 139.3418137, altitude: 180, imageName: "train",size: CGSize(width: 200, height: 300), pinName: "train")
         spaceNeedle4.scaleRelativeToDistance = true
         nodes.append(spaceNeedle4)
         
@@ -393,11 +393,12 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
 
     func buildNode(latitude: CLLocationDegrees, longitude: CLLocationDegrees,
                    altitude: CLLocationDistance,
-                   imageName: String, size: CGSize) -> LocationAnnotationNode {
+                   imageName: String, size: CGSize,
+                   pinName: String) -> LocationAnnotationNode {
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let location = CLLocation(coordinate: coordinate, altitude: altitude)
         let pin = MKPointAnnotation()
-        pin.title = imageName
+        pin.title = pinName
         pin.subtitle = "高さ:"+String(altitude)
         pin.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
         mapView.addAnnotation(pin)
