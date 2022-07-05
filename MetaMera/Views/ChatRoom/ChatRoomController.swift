@@ -29,6 +29,10 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         chatRoomTableView.dataSource = self
         chatRoomTableView.register(UINib(nibName: "ChatRoomTableViewCell", bundle: nil) , forCellReuseIdentifier: cellId)
         
+        chatRoomTableView.contentInset = .init(top: 60, left: 0, bottom: 0, right: 0)
+        chatRoomTableView.keyboardDismissMode = .interactive
+        chatRoomTableView.transform = CGAffineTransform(a: 0, b: 0, c: 0, d: -1, tx: 0, ty: 0)
+        
         backImageView.isUserInteractionEnabled = true
         backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backView(_:))))
         
@@ -40,19 +44,26 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         postImageView.image = image
     }
     
+    private func setUpNotification() {
+        IQKeyboardManager.shared.enable = false
+        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardDidHideNotification, object: nil)
+    }
+    
+    private func tearDownNotification() {
+        IQKeyboardManager.shared.enable = true
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        IQKeyboardManager.shared.enable = false
-        //MARK: キーボードを表示させちゃうと戻るボタンが押せなくなるからその動作をここに書く
-//        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardDidShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardDidHideNotification, object: nil)
+        setUpNotification()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        IQKeyboardManager.shared.enable = true
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
+        tearDownNotification()
     }
     
     //MARK: 前の画面に戻る
@@ -79,32 +90,21 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("etst")
         self.view.endEditing(true)
     }
     
     @objc func showKeyboard(notification: Notification){
-        let keyboardFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
-
-        guard let keyboardMinY = keyboardFrame?.minY else { return }
-        let stackViewMaxY = backImageView.frame.maxY + 40
-
-        let distance = stackViewMaxY - keyboardMinY
-
+        guard let userInfo = notification.userInfo else { return }
         
-        let transform = CGAffineTransform(translationX: 0, y: 30)
-
-        UIView.animate(withDuration: 0, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: { [weak self] in
-            //self.view.transform = transform
-            self?.backImageView.transform = transform
-        })
+        if let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue {
+            
+            let top = keyboardFrame.height
+            let contentInset = UIEdgeInsets(top: top, left: 0, bottom: 0, right: 0)
+        }
     }
     
     @objc func hideKeyboard(){
-        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: { [weak self] in
-//            self.view.transform = .identity
-            self?.backImageView.transform = .identity
-        })
+
     }
     
     
