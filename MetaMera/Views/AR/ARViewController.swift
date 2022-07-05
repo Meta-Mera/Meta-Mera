@@ -261,12 +261,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     func buildDemoData() -> [LocationAnnotationNode] {
         var nodes: [LocationAnnotationNode] = []
         
-        //        let canaryWharf = buildNode(latitude: 35.625318, longitude: 139.341903, altitude: 100, imageName: "pin")
-        //        nodes.append(canaryWharf)
-        
-        //        let applePark = buildViewNode(latitude: 35.625835, longitude: 139.341659, altitude: 200, text: "広場", color: UIColor.red)
-        //        nodes.append(applePark)
-        
         let pikesPeakLayer = CATextLayer()
         pikesPeakLayer.frame = CGRect(x: 0, y: 0, width: 200, height: 40)
         pikesPeakLayer.cornerRadius = 4
@@ -274,52 +268,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         pikesPeakLayer.alignmentMode = .center
         pikesPeakLayer.foregroundColor = UIColor.black.cgColor
         pikesPeakLayer.backgroundColor = UIColor.white.cgColor
-        
-        // This demo uses a simple periodic timer to showcase dynamic text in a node.  In your implementation,
-        // the view's content will probably be changed as the result of a network fetch or some other asynchronous event.
-        
-        //        _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-        //            pikesPeakLayer.string = "Pike's Peak\n" + Date().description
-        //        }
-        //
-        //        let pikesPeak = buildLayerNode(latitude: 38.8405322, longitude: -105.0442048, altitude: 4705, layer: pikesPeakLayer)
-        //        nodes.append(pikesPeak)
-        
-//        let applePark1 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 200, text: "200", color: UIColor.green)
-//        nodes.append(applePark1)
-//        let applePark2 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 210, text: "210", color: UIColor.green)
-//        nodes.append(applePark2)
-//        let applePark3 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 230, text: "230", color: UIColor.green)
-//        nodes.append(applePark3)
-//        let applePark4 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 280, text: "280", color: UIColor.green)
-//        nodes.append(applePark4)
-//        let applePark5 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 290, text: "290", color: UIColor.green)
-//        nodes.append(applePark5)
-//        let applePark6 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 310, text: "310", color: UIColor.green)
-//        nodes.append(applePark6)
-//        let applePark7 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 320, text: "320", color: UIColor.green)
-//        nodes.append(applePark7)
-//
-//        let applePark8 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 190, text: "190", color: UIColor.green)
-//        nodes.append(applePark8)
-//        let applePark9 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 180, text: "180", color: UIColor.green)
-//        nodes.append(applePark9)
-//        let applePark10 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 170, text: "170", color: UIColor.green)
-//        nodes.append(applePark10)
-//        let applePark11 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 160, text: "160", color: UIColor.green)
-//        nodes.append(applePark11)
-//        let applePark12 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 150, text: "150", color: UIColor.green)
-//        nodes.append(applePark12)
-//        let applePark13 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 140, text: "140", color: UIColor.green)
-//        nodes.append(applePark13)
-//        let applePark14 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 130, text: "130", color: UIColor.green)
-//        nodes.append(applePark14)
-//        let applePark15 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 120, text: "120", color: UIColor.green)
-//        nodes.append(applePark15)
-//        let applePark16 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 110, text: "110", color: UIColor.green)
-//        nodes.append(applePark16)
-//        let applePark17 = buildViewNode(latitude: 35.624929, longitude: 139.341696, altitude: 100, text: "100", color: UIColor.green)
-//        nodes.append(applePark17)
         
         let spaceNeedle = buildNode(latitude: 35.624929, longitude: 139.341696, altitude: 175, imageName: "drink",size: CGSize(width: 400, height: 300), pinUse: false)
 //        spaceNeedle.scaleRelativeToDistance = true
