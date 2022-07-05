@@ -6,3 +6,12 @@
 //
 
 import Foundation
+import UIKit
+
+class ChatRoomCreateController : UIViewController {
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+}
