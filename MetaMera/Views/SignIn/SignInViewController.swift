@@ -47,7 +47,7 @@ class SignInViewController: UIViewController {
         backButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gotoTopView(_:))))
 
         nextButtonImage.isUserInteractionEnabled = true
-        nextButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backDoor(_:))))
+        nextButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(PushSignIn(_:))))
         
         
         //MARK: - stackViewのやつ
@@ -121,6 +121,14 @@ class SignInViewController: UIViewController {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         
+        print("email:",email)
+        print("password:",password)
+        
+        if email == "" && password == "" {
+            backDoor(self)
+            return
+        }
+        
         Auth.auth().signIn(withEmail: email, password: password) { res, err in
             if let err = err {
                 print("ログイン情報の取得に失敗",err)
@@ -176,6 +184,7 @@ class SignInViewController: UIViewController {
 
 
     private func presentToARViewController(){
+        HUD.show(.progress, onView: view)
         Goto.ARView(view: self)
     }
 

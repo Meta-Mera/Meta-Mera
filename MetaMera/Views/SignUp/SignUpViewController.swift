@@ -97,14 +97,15 @@ class SignUpViewController: UIViewController {
                     self?.addUserInfoToFirestore(email: email, profileImageName: "")
                 }
             }else{
-                HUD.hide { (_) in
-                    HUD.flash(.labeledImage(image: PKHUDAssets.crossImage, title: "パスワードが弱いです。", subtitle: "6文字以上にして下さい。"), delay: 1)
-                }
+                HUD.hide()
+                HUD.show(.labeledError(title: "パスワードが弱いです。", subtitle: "6文字以上にして下さい。"))
+                HUD.hide(afterDelay: 1.0)
             }
         }else {
-            HUD.hide { (_) in
-                HUD.flash(.labeledImage(image: PKHUDAssets.crossImage, title: "パスワードの不一致", subtitle: ""), delay: 1)
-            }
+            HUD.hide()
+            HUD.show(.labeledError(title: "パスワードの不一致", subtitle: ""))
+            HUD.hide(afterDelay: 1.0)
+            
         }
     }
     
