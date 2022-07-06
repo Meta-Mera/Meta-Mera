@@ -116,7 +116,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         selectCategoryButton.imageView?.layer.cornerRadius = selectCategoryButton.bounds.width / 2
         
         let borderWidthInt : CGFloat = 3
-        let borderColor : CGColor = UIColor.rgb(red: 0, green: 200, blue: 255).cgColor
+        let borderColor : CGColor = UIColor.rgb(red: 120, green: 200, blue: 255).cgColor
         
         plusButton.imageView?.layer.borderWidth = borderWidthInt
         profileButton.imageView?.layer.borderWidth = borderWidthInt
@@ -552,10 +552,14 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     }
     
     @IBAction func pushCreateRoom(_ sender: Any) {
+        backTap()
+        Goto.ChatRoomCreate(view: self)
         
     }
     
     @IBAction func pushSelectCategory(_ sender: Any) {
+        backTap()
+        Goto.ChatRoomJoin(view: self)
         
     }
     
