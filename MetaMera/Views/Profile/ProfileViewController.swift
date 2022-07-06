@@ -20,7 +20,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var MapView: MKMapView!
     
-    @IBOutlet weak var ProfileImage: UIImageView!
+    @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var changeProfileImageButton: UIButton!
     @IBOutlet weak var backImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -57,7 +57,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ProfileImage.layer.cornerRadius = 45
+        profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
         changeProfileImageButton.layer.cornerRadius = 13
         
         
@@ -75,7 +75,7 @@ class ProfileViewController: UIViewController {
         let uid = Profile.shared.userId
         switch Profile.shared.updateProfileImage() {
         case .success(let image):
-            ProfileImage.image = image
+            profileImageView.image = image
         case .failure(_):
             break
         }
@@ -254,7 +254,7 @@ class ProfileViewController: UIViewController {
         
         if FileManager.default.fileExists(atPath: path) {
             if let imageData = UIImage(contentsOfFile: path) {
-                ProfileImage.image = imageData
+                profileImageView.image = imageData
             }else {
                 print("Failed to load the image.")
             }
@@ -321,7 +321,7 @@ class ProfileViewController: UIViewController {
     
     func saveFirebase(selectedImage: UIImage){
         // 画像表示
-        ProfileImage.image = selectedImage
+        profileImageView.image = selectedImage
         // 格納先 reference
         let path = FirebaseStorage.Storage.storage().reference(forURL: "gs://metamera-e2b4b.appspot.com")
         let localImageRef = path.child("profile").child(Profile.shared.userId+".jpeg")

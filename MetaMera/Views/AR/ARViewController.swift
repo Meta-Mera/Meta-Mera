@@ -31,10 +31,22 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     //プラスボタン系
     @IBOutlet weak var backView: UIView!
+    
     @IBOutlet weak var plusButton: UIButton!
+    @IBOutlet weak var plusLeftConstraint: NSLayoutConstraint!
+    @IBOutlet weak var plusBottomConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var profileButton: UIButton!
+    @IBOutlet weak var profileLeftConstraint: NSLayoutConstraint!
+    @IBOutlet weak var profileBottomConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var createRoomButton: UIButton!
+    @IBOutlet weak var createRoomLeftConstraint: NSLayoutConstraint!
+    @IBOutlet weak var createRoomBottomConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var selectCategoryButton: UIButton!
+    @IBOutlet weak var selectCategoryLeftConstraint: NSLayoutConstraint!
+    @IBOutlet weak var selectCategoryBottomConstraint: NSLayoutConstraint!
     
     
     //プラスボタンを長押しした時用のやつ
@@ -98,12 +110,23 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         plusButton.contentHorizontalAlignment = .center
         
-        plusButton.layer.cornerRadius = 50
-        profileButton.layer.cornerRadius = 30
-        createRoomButton.layer.cornerRadius = 30
-        selectCategoryButton.layer.cornerRadius = 30
+        plusButton.imageView?.layer.cornerRadius = plusButton.bounds.width / 2
+        profileButton.imageView?.layer.cornerRadius = profileButton.bounds.width / 2
+        createRoomButton.imageView?.layer.cornerRadius = createRoomButton.bounds.width / 2
+        selectCategoryButton.imageView?.layer.cornerRadius = selectCategoryButton.bounds.width / 2
         
+        let borderWidthInt : CGFloat = 3
+        let borderColor : CGColor = UIColor.rgb(red: 0, green: 200, blue: 255).cgColor
         
+        plusButton.imageView?.layer.borderWidth = borderWidthInt
+        profileButton.imageView?.layer.borderWidth = borderWidthInt
+        createRoomButton.imageView?.layer.borderWidth = borderWidthInt
+        selectCategoryButton.imageView?.layer.borderWidth = borderWidthInt
+        
+        plusButton.imageView?.layer.borderColor = borderColor
+        profileButton.imageView?.layer.borderColor = borderColor
+        createRoomButton.imageView?.layer.borderColor = borderColor
+        selectCategoryButton.imageView?.layer.borderColor = borderColor
         
         
         //MARK: 位置情報のやつっぽい
@@ -431,6 +454,12 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         }
     }
     //MARK: ここまでオブジェクトを生成するためのやつだよ -
+    
+    
+    
+    
+    
+    
     //MARK: - プラスボタンのやつ
     
     /// プラスボタン選択時
@@ -448,16 +477,14 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             backView.isHidden = false
             // プラスボタン非表示
             plusButton.isHidden = true
-            // 選択ボタン表示
-            profileButton.isHidden = false
-            selectCategoryButton.isHidden = false
-            createRoomButton.isHidden = false
+
             // 表示切り替えアニメーション
             UIView.animate(
-                withDuration: 0.1,
-                delay: 0.2,
+                withDuration: 0.2,
+                delay: 0.4,
                 options: .curveEaseOut,
                 animations: { [weak self] () in
+                    
                     // プロフィールボタン
                     self?.profileButton.center.y -= 100.0
                     self?.profileButton.center.x -= 10.0
@@ -471,6 +498,11 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                     self?.backView.alpha += 0.5
                     
                     self?.isSettingShowing = true
+                    
+                    // 選択ボタン表示
+                    self?.profileButton.isHidden = false
+                    self?.selectCategoryButton.isHidden = false
+                    self?.createRoomButton.isHidden = false
                 }
             )
         }
@@ -492,15 +524,15 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             
             self?.profileButton.layer.position = self!.plusButton.layer.position
             
-            // プロフィールボタン
-            self?.profileButton.center.y += 100.0
-            self?.profileButton.center.x += 10.0
-            // カテゴリ選択ボタン
-            self?.selectCategoryButton.center.x -= 80.0
-            self?.selectCategoryButton.center.y -= 20.0
-            // ルーム作成ボタン
-            self?.createRoomButton.center.x -= 60.0
-            self?.createRoomButton.center.y += 60.0
+//            // プロフィールボタン
+//            self?.profileButton.center.y += 100.0
+//            self?.profileButton.center.x += 10.0
+//            // カテゴリ選択ボタン
+//            self?.selectCategoryButton.center.x -= 80.0
+//            self?.selectCategoryButton.center.y -= 20.0
+//            // ルーム作成ボタン
+//            self?.createRoomButton.center.x -= 60.0
+//            self?.createRoomButton.center.y += 60.0
         }, completion: { [weak self] (Bool) in
             // 背景設定
             self?.backView.isHidden = true

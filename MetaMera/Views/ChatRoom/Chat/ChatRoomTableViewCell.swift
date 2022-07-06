@@ -39,7 +39,7 @@ class ChatRoomTableViewCell: UITableViewCell {
     }
     
     private func configView() {
-        userIconImageView.layer.cornerRadius = 25.0
+        userIconImageView.layer.cornerRadius = userIconImageView.bounds.width / 2
         messageTextView.layer.cornerRadius = 10.0
         
         backgroundColor = .clear
