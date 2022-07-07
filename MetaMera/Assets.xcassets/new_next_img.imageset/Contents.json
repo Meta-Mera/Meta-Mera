@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "背景_ver2.png",
+      "filename" : "新規登録画面_入力欄拡大版_Next.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "背景_ver2-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "背景_ver2-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
