@@ -319,6 +319,70 @@ class ProfileViewController: UIViewController {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
     
+    func saveToFireStorege(selectedImage: UIImage){
+        guard let uploadImage = selectedImage.jpegData(compressionQuality: 0.5) else { return }
+        
+        let fileName = Profile.shared.userId+".jpeg"
+        let storageRef = Storage.storage().reference().child("profile").child(fileName)
+        
+        let metaData = FirebaseStorage.StorageMetadata()
+        metaData.contentType = "image/jpeg"
+        
+        storageRef.putData(uploadImage, metadata: metaData) { (metadata, err) in
+            if let err = err{
+                print("firestorageへの情報の保存に失敗\(err)")
+                return
+            }
+            
+            print("保存に成功")
+            
+            storageRef.downloadURL { [weak self] (url, err) in
+                if let err = err {
+                    print("error\(err)")
+                    return
+                }
+                guard let urlString = url?.absoluteString else { return }
+                self?.updateProfileImageToFirestore(profileImageUrl: urlString, image: selectedImage)
+            }
+        }
+    }
+    
+    func updateProfileImageToFirestore(profileImageUrl: String, image: UIImage){
+//        Firestore.firestore().document("users").collection(Profile.shared.userId).value(forKey: "")
+        let doc = Firestore.firestore().collection("users").document(Profile.shared.userId)
+        doc.updateData([
+            "profileImage" : profileImageUrl]
+        ) { [weak self] err in
+            if let err = err {
+                print("firestoreの更新に失敗\(err)")
+                return
+            }
+            print("更新成功")
+            self?.saveImageToDevice(image: image, fileName: Profile.shared.userId+".jpeg")
+            
+        }
+        
+    }
+    
+    func saveImageToDevice(image: UIImage, fileName: String) {
+        print("Download Started")
+        DispatchQueue.main.async() { [weak self] in
+            //データをUIImage(jpg)に変換
+            if let jpegImageData = image.jpegData(compressionQuality: 1.0),
+               let saveDocumentPath = self?.getFileURL(fileName: fileName) {
+                do {
+                    //端末に保存
+                    try jpegImageData.write(to: saveDocumentPath)
+                    self?.dismiss(animated: true)
+                    self?.profileImageView.image = image
+                    print("Image saved.")
+                } catch {
+                    print("Failed to save the image:", error)
+                }
+            }
+        }
+    }
+    
     func saveFirebase(selectedImage: UIImage){
         // 画像表示
         profileImageView.image = selectedImage
@@ -353,6 +417,7 @@ class ProfileViewController: UIViewController {
                     }
                     // 画像ファイルを保存する
                     self?.saveImageFile(url: downloadURL, fileName: Profile.shared.userId+".jpeg")
+                    self?.updateProfileImageToFirestore(profileImageUrl: downloadURL.absoluteString, image: selectedImage)
                     
                 }
             }
@@ -392,9 +457,11 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let editImage = info[.editedImage] as? UIImage {
-            self.saveFirebase(selectedImage: editImage)
+//            self.saveFirebase(selectedImage: editImage)
+            self.saveToFireStorege(selectedImage: editImage)
         }else if let originalImage = info[.originalImage] as? UIImage {
-            self.saveFirebase(selectedImage: originalImage)
+//            self.saveFirebase(selectedImage: originalImage)
+            self.saveToFireStorege(selectedImage: originalImage)
         }
     }
     

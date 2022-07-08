@@ -16,6 +16,8 @@ class User {
     let Recommended: [String]
     let Log: [String]
     
+    var uid: String?
+    
     init(dic: [String: Any]) {
         self.userId = dic["userId"] as! String
         self.createAt = dic["createAt"] as! Timestamp
