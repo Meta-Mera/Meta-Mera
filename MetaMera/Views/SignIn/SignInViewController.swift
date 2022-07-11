@@ -45,7 +45,7 @@ class SignInViewController: UIViewController {
     
   override func viewWillLayoutSubviews() {
       super.viewWillLayoutSubviews()
-      let rgba = UIColor(red: 93/255, green: 69/255, blue:65/255, alpha: 1.0)
+      let rgba = UIColor.signInBorderColor()
       emailTextField.addBorderBottom(height: 2.5, color: rgba)
       passwordTextField.addBorderBottom(height: 2.5, color: rgba)
     

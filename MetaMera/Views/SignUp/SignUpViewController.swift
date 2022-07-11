@@ -51,7 +51,7 @@ class SignUpViewController: UIViewController {
   
   override func viewWillLayoutSubviews() {
     super.viewWillLayoutSubviews()
-    let rgba = UIColor(red: 65/255, green: 93/255, blue:90/255, alpha: 1.0)
+      let rgba = UIColor.signUpBorderColor()
     eMailTextField.addBorderBottom(height: 2.5, color: rgba)
     passwordTextField.addBorderBottom(height: 2.5, color: rgba)
     confirmPasswordTextField.addBorderBottom(height: 2.5, color: rgba)
