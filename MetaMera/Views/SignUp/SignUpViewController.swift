@@ -15,14 +15,15 @@ import PKHUD
 class SignUpViewController: UIViewController {
 
 //    @IBOutlet weak var signUp: UILabel!
-    @IBOutlet weak var backgroundImage: UIImageView!
+//    @IBOutlet weak var backgroundImage: UIImageView!
     
-    @IBOutlet weak var eMailTextField: UITextField!
+  
+  @IBOutlet weak var eMailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var userIdTextField: UITextField!
     
-    @IBOutlet weak var stackView: UIStackView!
+//    @IBOutlet weak var stackView: UIStackView!
     
   
     @IBOutlet weak var nextButtonImage: UIImageView!
@@ -32,18 +33,13 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         eMailTextField.delegate = self
         passwordTextField.delegate = self
         confirmPasswordTextField.delegate = self
         userIdTextField.delegate = self
 
+
         
-        
-        eMailTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
-        passwordTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
-        confirmPasswordTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
-        userIdTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
       
         backButtonImage.isUserInteractionEnabled = true
         backButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gotoTopView(_:))))
@@ -52,7 +48,17 @@ class SignUpViewController: UIViewController {
 
         
     }
-    
+  
+  override func viewWillLayoutSubviews() {
+    super.viewWillLayoutSubviews()
+    let rgba = UIColor(red: 65/255, green: 93/255, blue:90/255, alpha: 1.0)
+    eMailTextField.addBorderBottom(height: 2.5, color: rgba)
+    passwordTextField.addBorderBottom(height: 2.5, color: rgba)
+    confirmPasswordTextField.addBorderBottom(height: 2.5, color: rgba)
+    userIdTextField.addBorderBottom(height: 2.5, color: rgba)
+  }
+  
+  
     //テキストフィールド外を触った時の処理
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -97,14 +103,15 @@ class SignUpViewController: UIViewController {
                     self?.addUserInfoToFirestore(email: email, profileImageName: "")
                 }
             }else{
-                HUD.hide { (_) in
-                    HUD.flash(.labeledImage(image: PKHUDAssets.crossImage, title: "パスワードが弱いです。", subtitle: "6文字以上にして下さい。"), delay: 1)
-                }
+                HUD.hide()
+                HUD.show(.labeledError(title: "パスワードが弱いです。", subtitle: "6文字以上にして下さい。"))
+                HUD.hide(afterDelay: 1.0)
             }
         }else {
-            HUD.hide { (_) in
-                HUD.flash(.labeledImage(image: PKHUDAssets.crossImage, title: "パスワードの不一致", subtitle: ""), delay: 1)
-            }
+            HUD.hide()
+            HUD.show(.labeledError(title: "パスワードの不一致", subtitle: ""))
+            HUD.hide(afterDelay: 1.0)
+            
         }
     }
     

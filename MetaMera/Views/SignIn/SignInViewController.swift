@@ -12,12 +12,7 @@ import Firebase
 import PKHUD
 
 class SignInViewController: UIViewController {
-    @IBOutlet weak var SignInButton: UIButton!
-    @IBOutlet weak var toSignUpButton: UIButton!
     
-    
-    @IBOutlet weak var textFieldView: UIView!
-    @IBOutlet weak var backImageView: UIImageView!
     @IBOutlet weak var haikeiImageView: UIImageView!
     
     @IBOutlet weak var emailLabelView: UILabel!
@@ -29,7 +24,6 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var nextButtonImage: UIImageView!
     @IBOutlet weak var backButtonImage: UIImageView!
     
-    @IBOutlet weak var signInStackView: UIStackView!
     
     
     override func viewDidLoad() {
@@ -40,39 +34,34 @@ class SignInViewController: UIViewController {
         emailTextField.delegate = self
         passwordTextField.delegate = self
 
-        emailLabelView.addBorderBottom(height: 1.0, color: UIColor.lightGray)
-        passwordLabelView.addBorderBottom(height: 1.0, color: UIColor.lightGray)
-
         backButtonImage.isUserInteractionEnabled = true
         backButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gotoTopView(_:))))
 
         nextButtonImage.isUserInteractionEnabled = true
-        nextButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backDoor(_:))))
-        
-        
-        //MARK: - stackViewのやつ
-        signInStackView.spacing = CGFloat(sizeCheck())
-        
-//        Profile.shared.test()
-        
-        //MARK: stackViewのやつ -
+        nextButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(PushSignIn(_:))))
         
         
     }
+    
+  override func viewWillLayoutSubviews() {
+      super.viewWillLayoutSubviews()
+      let rgba = UIColor(red: 93/255, green: 69/255, blue:65/255, alpha: 1.0)
+      emailTextField.addBorderBottom(height: 2.5, color: rgba)
+      passwordTextField.addBorderBottom(height: 2.5, color: rgba)
+    
+  }
     
     override func viewWillAppear(_ animated: Bool) {
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardDidShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardDidHideNotification, object: nil)
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
+
     }
     
     
@@ -80,36 +69,6 @@ class SignInViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    @objc func showKeyboard(notification: Notification){
-        let keyboardFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
-
-        guard let keyboardMinY = keyboardFrame?.minY else { return }
-        let stackViewMaxY = textFieldView.frame.maxY + 40
-
-        let distance = stackViewMaxY - keyboardMinY
-
-        let transform = CGAffineTransform(translationX: 0, y: -distance)
-
-        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: { [weak self] in
-            //self.view.transform = transform
-            self?.textFieldView.transform = transform
-            self?.backImageView.transform = transform
-            self?.haikeiImageView.transform = transform
-            self?.backButtonImage.isHidden = true
-            self?.nextButtonImage.isHidden = true
-        })
-    }
-    
-    @objc func hideKeyboard(){
-        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: { [weak self] in
-//            self.view.transform = .identity
-            self?.textFieldView.transform = .identity
-            self?.backImageView.transform = .identity
-            self?.haikeiImageView.transform = .identity
-            self?.backButtonImage.isHidden = false
-            self?.nextButtonImage.isHidden = false
-        })
-    }
     
     
 
@@ -120,6 +79,14 @@ class SignInViewController: UIViewController {
         
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
+        
+        print("email:",email)
+        print("password:",password)
+        
+        if email == "" && password == "" {
+            backDoor(self)
+            return
+        }
         
         Auth.auth().signIn(withEmail: email, password: password) { res, err in
             if let err = err {
@@ -176,6 +143,7 @@ class SignInViewController: UIViewController {
 
 
     private func presentToARViewController(){
+        HUD.show(.progress, onView: view)
         Goto.ARView(view: self)
     }
 
@@ -240,18 +208,7 @@ extension UILabel {
 }
 
 extension SignInViewController: UITextFieldDelegate {
-//    func textFieldDidChangeSelection(_ textField: UITextField) {
-//        let emailIsEmpty = emailTextField.text?.isEmpty ?? true
-//        let passwordIsEmpty = passwordTextField.text?.isEmpty ?? true
-//
-//        if emailIsEmpty || passwordIsEmpty {
-//            SignInButton.isEnabled = false
-//            SignInButton.backgroundColor = UIColor.rgb(red: 184, green: 186, blue: 185)
-//        }else{
-//            SignInButton.isEnabled = true
-//            SignInButton.backgroundColor = UIColor.rgb(red: 104, green: 164, blue: 140)
-//        }
-//    }
+
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //今フォーカスが当たっているテキストボックスからフォーカスを外す

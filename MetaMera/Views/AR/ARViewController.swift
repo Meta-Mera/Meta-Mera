@@ -14,6 +14,7 @@ import SceneKit
 import CoreLocation
 import FirebaseCore
 import FirebaseStorage
+import Firebase
 import AudioToolbox
 
 
@@ -586,6 +587,26 @@ extension ARViewController: LNTouchDelegate {
             // Do stuffs with the nodeImage
             // ...
             print("[nodeImage: getName]", nodeImage.accessibilityIdentifier ?? "null")
+            
+            guard let uid = Auth.auth().currentUser?.uid else { return }
+            guard let selectImage = nodeImage.accessibilityIdentifier else { return }
+            let members = [uid]
+            
+            let docData = [
+                "members" : members,
+                "image": selectImage,
+                "createdAt": Timestamp()
+            ] as [String : Any]
+            
+//            Firestore.firestore().collection("chatRooms").addDocument(data: docData) { (err) in
+//                if let err = err {
+//                    print("失敗\(err)")
+//                }
+//
+//                print("成功")
+//            }
+            
+            
             Goto.ChatRoom(view: self, image: node.image!)
         }
         
@@ -600,12 +621,6 @@ extension ARViewController: LNTouchDelegate {
     }
     
     
-}
-
-extension UIImageView {
-    func getFileName() -> String? {
-        return self.image?.accessibilityIdentifier
-    }
 }
 
 //MARK: Imageのサイズを変更する

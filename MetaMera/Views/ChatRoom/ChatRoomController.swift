@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import IQKeyboardManagerSwift
+import Firebase
 
 class ChatRoomController: UIViewController, UITextFieldDelegate{
     
@@ -56,11 +57,25 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         super.viewWillAppear(animated)
         postImageView.image = image
         setUpNotification()
+        fetchChatRoomInFromFirestore()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tearDownNotification()
+    }
+    
+    private func fetchChatRoomInFromFirestore(){
+        
+        Firestore.firestore().collection("chatRooms").document(postImageView.getName() ?? "").getDocument { snapshots, err in
+            if let err = err{
+                print("チャットルームの取得に失敗\(err)")
+                return
+            }
+            
+            let dic = snapshots?.data()
+            print("dic:",dic)
+        }
     }
     
     //MARK: 前の画面に戻る

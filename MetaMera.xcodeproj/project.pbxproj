@@ -54,6 +54,7 @@
 		38AB508B285AD3A700AF4F80 /* ChatRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB508A285AD3A700AF4F80 /* ChatRoomController.swift */; };
 		38AB508E285AD3B800AF4F80 /* ChatRoomController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */; };
 		38E9AE2A2865641300EB71D6 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E9AE292865641300EB71D6 /* Profile.swift */; };
+		38FAA642287860BD000521DD /* UIImageView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FAA641287860BD000521DD /* UIImageView-Extension.swift */; };
 		4855586E8B131614D9B1EC7D /* Pods_MetaMeraTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DB4C5FB7A8F89B54ABB658 /* Pods_MetaMeraTests.framework */; };
 		4B1461BD03EEF63DAF098061 /* Pods_MetaMera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A907794C66F3A3F859250E /* Pods_MetaMera.framework */; };
 		4C1AE4781286396440668182 /* Pods_MetaMera_MetaMeraUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054A1F7793BB79FF5158A8D7 /* Pods_MetaMera_MetaMeraUITests.framework */; };
@@ -122,6 +123,7 @@
 		38AB508A285AD3A700AF4F80 /* ChatRoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomController.swift; sourceTree = "<group>"; };
 		38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatRoomController.storyboard; sourceTree = "<group>"; };
 		38E9AE292865641300EB71D6 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		38FAA641287860BD000521DD /* UIImageView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView-Extension.swift"; sourceTree = "<group>"; };
 		44A6594E1AD10EE93D7CD030 /* Pods-MetaMera-MetaMeraUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaMera-MetaMeraUITests.debug.xcconfig"; path = "Target Support Files/Pods-MetaMera-MetaMeraUITests/Pods-MetaMera-MetaMeraUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		63A907794C66F3A3F859250E /* Pods_MetaMera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaMera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7556378416DB6697151D6632 /* Pods-MetaMeraTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaMeraTests.debug.xcconfig"; path = "Target Support Files/Pods-MetaMeraTests/Pods-MetaMeraTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				389024C52835DAD4004DC3F3 /* UIColor-Extension.swift */,
+				38FAA641287860BD000521DD /* UIImageView-Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -217,8 +220,8 @@
 		38968052283F0398008E1302 /* StartUp */ = {
 			isa = PBXGroup;
 			children = (
-				38968053283F03B1008E1302 /* StartUpStoryboard.storyboard */,
 				38968055283F04CE008E1302 /* StartUpViewController.swift */,
+				38968053283F03B1008E1302 /* StartUpStoryboard.storyboard */,
 			);
 			path = StartUp;
 			sourceTree = "<group>";
@@ -683,6 +686,7 @@
 				38271474283472C0004BEB01 /* ChatViewController.swift in Sources */,
 				38A2122E282A064300B56E03 /* ViewController.swift in Sources */,
 				382F6ABA287295390056BFA2 /* ChatRoomJoinController.swift in Sources */,
+				38FAA642287860BD000521DD /* UIImageView-Extension.swift in Sources */,
 				06B1CC142861664900116CF0 /* ChatRoomTableViewCell.swift in Sources */,
 				389024C62835DAD4004DC3F3 /* UIColor-Extension.swift in Sources */,
 				38A2122C282A064300B56E03 /* TopViewController.swift in Sources */,
