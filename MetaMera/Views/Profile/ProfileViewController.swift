@@ -188,19 +188,9 @@ class ProfileViewController: UIViewController {
                     break
                 case .limited:
                     print("制限あり")
-                    // 設定アプリへ遷移
-                    if let settingURL = URL(string: UIApplication.openSettingsURLString) {
-                        UIApplication.shared.canOpenURL(settingURL)
-                        UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
-                    }
                     break
                 case .denied:
                     print("拒否ずみ")
-                    // 設定アプリへ遷移
-                    if let settingURL = URL(string: UIApplication.openSettingsURLString) {
-                        UIApplication.shared.canOpenURL(settingURL)
-                        UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
-                    }
                     break
                 default:
                     break
@@ -226,6 +216,37 @@ class ProfileViewController: UIViewController {
         //                        = .limited    : 選択した画像のみ
         //                        = .denied     : 拒否
         
+        if authPhotoLibraryStatus == .limited {
+            // アラート表示
+            let title: String = "Failed to save image"
+            let message: String = "Allow this app to access Photos."
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true, completion: nil)
+            
+            // 設定アプリへ遷移
+            if let settingURL = URL(string: UIApplication.openSettingsURLString) {
+//                    self.dismiss(animated: true)
+                UIApplication.shared.canOpenURL(settingURL)
+                UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
+            }
+            
+            
+        }
+        if authPhotoLibraryStatus == .denied {
+            // アラート表示
+            let title: String = "Failed to save image"
+            let message: String = "Allow this app to access Photos."
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true, completion: nil)
+            
+            // 設定アプリへ遷移
+            if let settingURL = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.canOpenURL(settingURL)
+                UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
+            }
+        }
         // fix/update_prof_image_#33 >>>
         if authPhotoLibraryStatus == .authorized {
         // <<<
