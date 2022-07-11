@@ -41,18 +41,21 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     }
     
     
+    //キーボードが表示されたときの動作を追加
     private func setUpNotification() {
         IQKeyboardManager.shared.enable = false
         NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardDidHideNotification, object: nil)
     }
     
+    //キーボードが表示されたときの動作を削除
     private func tearDownNotification() {
         IQKeyboardManager.shared.enable = true
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
     }
     
+    //画面遷移しようとしたとき
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         postImageView.image = image
@@ -60,11 +63,13 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         fetchChatRoomInFromFirestore()
     }
     
+    //画面から離れたとき
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tearDownNotification()
     }
     
+    //TODO: チャットルームに入ったときにFirestoreから最新の情報を取得したい
     private func fetchChatRoomInFromFirestore(){
         
         Firestore.firestore().collection("chatRooms").document(postImageView.getName() ?? "").getDocument { snapshots, err in
@@ -83,6 +88,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         print("push back image")
         self.dismiss(animated: true, completion: nil)
     }
+    
     
     private lazy var chatView: ChatViewController = {
         let view = ChatViewController()
