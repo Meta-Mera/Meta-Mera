@@ -13,6 +13,7 @@ target 'MetaMera' do
   pod 'PKHUD', '~> 5.0' 
   pod 'ARCL'
   pod 'IQKeyboardManagerSwift' 
+  pod 'Nuke'
 
   target 'MetaMeraTests' do
     inherit! :search_paths
