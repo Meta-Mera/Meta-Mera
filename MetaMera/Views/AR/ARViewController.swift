@@ -244,6 +244,28 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         navigationController?.setNavigationBarHidden(true, animated: false)
         
         restartAnimation()
+        
+        
+        if let lastLocation = self.locationManager.location {
+            let geocoder = CLGeocoder()
+            
+            // Look up the location and pass it to the completion handler
+            geocoder.reverseGeocodeLocation(lastLocation,
+                                            completionHandler: { (placemarks, error) in
+                guard let placemark = placemarks?.first, error == nil else { return }
+                
+                if let locality = placemark.locality {
+                    print("locality: ",locality as Any)
+                }
+                
+                if let postalCode = placemark.postalCode {
+                    print("postalCode: ",postalCode as Any)
+                }
+                if let areasOfInterest = placemark.areasOfInterest {
+                    print("areasOfInterest: ",areasOfInterest)
+                }
+            })
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
