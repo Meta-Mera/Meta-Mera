@@ -62,6 +62,7 @@ class ProfileViewController: UIViewController {
         
         
         imagePicker.allowsEditing = true
+        imagePicker.modalPresentationStyle = .fullScreen
         
         MapView.translatesAutoresizingMaskIntoConstraints = false
         // Do any additional setup after loading the view.
@@ -217,35 +218,48 @@ class ProfileViewController: UIViewController {
         //                        = .denied     : 拒否
         
         if authPhotoLibraryStatus == .limited {
-            // アラート表示
-            let title: String = "Failed to save image"
-            let message: String = "Allow this app to access Photos."
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            self.present(alert, animated: true, completion: nil)
             
-            // 設定アプリへ遷移
-            if let settingURL = URL(string: UIApplication.openSettingsURLString) {
-//                    self.dismiss(animated: true)
-                UIApplication.shared.canOpenURL(settingURL)
-                UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
+            //アラートの設定
+            let alert = UIAlertController(title: "Failed to save image", message: "Allow this app to access Photos.", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "Enable photos access", style: .default) { (action) in
+                //設定を開く
+                if let settingURL = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.canOpenURL(settingURL)
+                    UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
+                }
             }
+            let cancel = UIAlertAction(title: "cancel", style: .cancel) { (acrion) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            
+            //アラートの下にあるボタンを追加
+            alert.addAction(cancel)
+            alert.addAction(ok)
+            //アラートの表示
+            present(alert, animated: true, completion: nil)
             
             
         }
         if authPhotoLibraryStatus == .denied {
-            // アラート表示
-            let title: String = "Failed to save image"
-            let message: String = "Allow this app to access Photos."
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            self.present(alert, animated: true, completion: nil)
             
-            // 設定アプリへ遷移
-            if let settingURL = URL(string: UIApplication.openSettingsURLString) {
-                UIApplication.shared.canOpenURL(settingURL)
-                UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
+            //アラートの設定
+            let alert = UIAlertController(title: "Failed to save image", message: "Allow this app to access Photos.", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "Enable photos access", style: .default) { (action) in
+                //設定を開く
+                if let settingURL = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.canOpenURL(settingURL)
+                    UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
+                }
             }
+            let cancel = UIAlertAction(title: "cancel", style: .cancel) { (acrion) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            
+            //アラートの下にあるボタンを追加
+            alert.addAction(cancel)
+            alert.addAction(ok)
+            //アラートの表示
+            present(alert, animated: true, completion: nil)
         }
         // fix/update_prof_image_#33 >>>
         if authPhotoLibraryStatus == .authorized {
