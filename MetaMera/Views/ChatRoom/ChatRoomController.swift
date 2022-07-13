@@ -37,7 +37,11 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         backImageView.isUserInteractionEnabled = true
         backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backView(_:))))
         
-        chatRoomTableView.backgroundColor = .rgb(red: 118, green: 140, blue: 180)
+//        chatRoomTableView.backgroundColor = .rgb(red: 240, green: 240, blue: 240)
+//        chatRoomTableView.backgroundColor = UIColor.dynamicColor(light: .rgb(red: 240, green: 240, blue: 240), dark: .rgb(red: 0, green: 0, blue: 0))
+        chatRoomTableView.backgroundColor = UIColor.chatRoomBackground
+        ChatViewController().inputChatText.layer.backgroundColor = UIColor.inputChatTextBackground.cgColor
+        
     }
     
     
@@ -151,6 +155,8 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
         let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatRoomTableViewCell
 //        cell.messageTextView.text = messages[indexPath.row]
         cell.messageText = messages[indexPath.row]
+        cell.messageTextView.backgroundColor = UIColor.chatTextBackground
+        cell.messageTextView.textColor = UIColor.chatText
         return cell
         
     }
