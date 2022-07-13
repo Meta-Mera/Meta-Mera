@@ -30,7 +30,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         chatRoomTableView.dataSource = self
         chatRoomTableView.register(UINib(nibName: "ChatRoomTableViewCell", bundle: nil) , forCellReuseIdentifier: cellId)
         
-//        chatRoomTableView.contentInset = .init(top: 60, left: 0, bottom: 0, right: 0)
+        chatRoomTableView.contentInset = .init(top: 0, left: 0, bottom: 60, right: 0)
 //        chatRoomTableView.keyboardDismissMode = .interactive
 //        chatRoomTableView.transform = CGAffineTransform(a: 0, b: 0, c: 0, d: -1, tx: 0, ty: 0)
         
@@ -59,7 +59,8 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        postImageView.image = image
+//        postImageView.image = image
+        postImageView.setImage(image: image, name: Profile.shared.userId)
         setUpNotification()
         fetchChatRoomInFromFirestore()
     }
