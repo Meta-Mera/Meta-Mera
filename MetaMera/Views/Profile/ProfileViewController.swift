@@ -15,6 +15,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import FirebaseCore
 import FirebaseStorage
+import Nuke
 
 class ProfileViewController: UIViewController {
     
@@ -75,7 +76,7 @@ class ProfileViewController: UIViewController {
         let uid = Profile.shared.userId
         switch Profile.shared.updateProfileImage() {
         case .success(let image):
-            profileImageView.image = image
+            profileImageView.setImage(image: image, name: uid)
         case .failure(_):
             break
         }

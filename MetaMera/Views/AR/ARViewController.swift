@@ -16,6 +16,7 @@ import FirebaseCore
 import FirebaseStorage
 import Firebase
 import AudioToolbox
+import Nuke
 
 
 class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate {
@@ -235,7 +236,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         switch Profile.shared.updateProfileImage() {
         case .success(let image):
-            ProfileImage.image = image
+            ProfileImage.setImage(image: image, name: Profile.shared.userId)
+//            ProfileImage.setImage(url: Profile.shared.userIconImageUrl, name: Profile.shared.userId)
         case .failure(let error):
             break
         }
@@ -277,6 +279,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     //MARK: プロフィール画面に遷移するよ！
     @objc func pushProfileImage(_ sender: Any){
+        print("getName: ",ProfileImage.getName() as Any)
         print("Push profile image")
         Goto.Profile(view: self)
     }

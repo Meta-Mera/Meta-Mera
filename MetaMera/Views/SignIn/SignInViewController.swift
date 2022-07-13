@@ -181,6 +181,7 @@ class SignInViewController: UIViewController {
                         let user = User(dic: dic)
                         Profile.shared.userName = user.userId
                         Profile.shared.userEmail = user.email
+                        Profile.shared.userIconImageUrl = user.profileImage
                         self.presentToARViewController()
                     }
                 }
