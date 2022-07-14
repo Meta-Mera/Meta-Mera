@@ -47,7 +47,7 @@ class ProfileViewController: UIViewController {
     
     private var user:User?{
         didSet{
-            userNameLabel.text = user?.userId
+            userNameLabel.text = user?.userName
         }
     }
     

@@ -14,7 +14,7 @@ class Message {
     let message: String
     let createdAt: Timestamp
     
-    var partnerUser: User?
+    var sendUser: User?
     
     init(dic: [String: Any]) {
         self.message = dic["message"] as? String ?? ""

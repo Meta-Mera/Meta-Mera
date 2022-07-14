@@ -179,7 +179,7 @@ class SignInViewController: UIViewController {
                         
                         guard let dic = userSnapshot?.data() else { return }
                         let user = User(dic: dic)
-                        Profile.shared.userName = user.userId
+                        Profile.shared.userName = user.userName
                         Profile.shared.userEmail = user.email
                         Profile.shared.userIconImageUrl = user.profileImage
                         self.presentToARViewController()
