@@ -574,7 +574,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     @IBAction func pushProfileButton(_ sender: Any) {
         backTap()
-        Goto.ChatRoom(view: self, image: UIImage(named: "drink")!)
+//        Goto.ChatRoom(view: self, image: UIImage(named: "drink")!)
+        Goto.Profile(view: self)
     }
     
     @IBAction func pushCreateRoom(_ sender: Any) {
@@ -618,6 +619,7 @@ extension ARViewController: LNTouchDelegate {
             let members = [uid]
             
             let docData = [
+                "latestMessageId" : "",
                 "members" : members,
                 "image": selectImage,
                 "createdAt": Timestamp()
@@ -631,8 +633,10 @@ extension ARViewController: LNTouchDelegate {
 //                print("成功")
 //            }
             
-            
-            Goto.ChatRoom(view: self, image: node.image!)
+            //TODO: チャットルームを渡す方法を考える
+            var chatroom: ChatRoom
+            Goto.ChatRoomView(view: self, image: node.image!, chatroomId: chatroom)
+            Goto.ChatRoomView(view: self, image: node.image!, chatroom: <#T##ChatRoom#>)
         }
         
     }

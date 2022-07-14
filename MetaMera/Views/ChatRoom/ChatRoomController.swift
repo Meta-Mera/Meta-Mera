@@ -12,6 +12,8 @@ import Firebase
 
 class ChatRoomController: UIViewController, UITextFieldDelegate{
     
+    var chatroomId: String
+    
     private let cellId = "ChatRoomTableViewCell"
     private var messages = [String]()
     
@@ -131,13 +133,56 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
 
 //MARK: sendボタンを押した時
 extension ChatRoomController: ChatViewControllerDelegate {
+    
+    
     func tappedSendButton(text: String) {
-        messages.append(text)
         
         
         
+//        messages.append(text)
+//        chatView.removeText()
+//        chatRoomTableView.reloadData()
+        
+//        Firestore.firestore().collection("chatRooms").document("")
+        addMessageToFirestore(text: text)
+    }
+    
+    private func addMessageToFirestore(text: String) {
+//        guard let chatroomDocId = chatroom?.documentId else { return }
+        guard let name = user?.username else { return }
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         chatView.removeText()
-        chatRoomTableView.reloadData()
+//        let messageId = randomString(length: 20)
+        
+        let docData = [
+            "name": name,
+            "createdAt": Timestamp(),
+            "uid": uid,
+            "message": text
+            ] as [String : Any]
+        Firestore.firestore().collection("chatRooms").document(chatroomDocId).collection("messages").document(messageId).setData(docData) { (err) in
+            if let err = err {
+                print("メッセージ情報の保存に失敗しました。\(err)")
+                return
+            }
+            
+            
+            
+            let latestMessageData = [
+                "latestMessageId": messageId
+            ]
+            
+            Firestore.firestore().collection("chatRooms").document(chatroomDocId).updateData(latestMessageData) { (err) in
+                if let err = err {
+                    print("最新メッセージの保存に失敗しました。\(err)")
+                    return
+                }
+                
+                print("メッセージの保存に成功しました。")
+                
+            }
+        }
+        
     }
 }
 

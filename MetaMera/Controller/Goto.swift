@@ -83,10 +83,11 @@ class Goto : UIViewController{
         view.present(vc, animated: true, completion: nil)
     }
     
-    class func ChatRoom(view: UIViewController, image: UIImage){
+    class func ChatRoomView(view: UIViewController, image: UIImage, chatroomId: String){
         print("Goto-ChatRoom was called.")
         let vc = UIStoryboard(name: "ChatRoomController", bundle: nil).instantiateViewController(withIdentifier: "ChatRoomController") as! ChatRoomController
         vc.image = image
+        vc.chatroomId = chatroomId
         vc.modalPresentationStyle = .fullScreen
         view.present(vc, animated: true, completion: nil)
     }
