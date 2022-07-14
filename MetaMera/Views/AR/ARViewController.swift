@@ -247,7 +247,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         restartAnimation()
         
-        
+        //MARK: 位置情報から[市区町村名、郵便番号、関心のあるエリア名]のうち取得できたものを表示します。
         if let lastLocation = self.locationManager.location {
             let geocoder = CLGeocoder()
             
