@@ -63,6 +63,7 @@ class ProfileViewController: UIViewController {
         
         
         imagePicker.allowsEditing = true
+        imagePicker.modalPresentationStyle = .fullScreen
         
         MapView.translatesAutoresizingMaskIntoConstraints = false
         // Do any additional setup after loading the view.
@@ -189,19 +190,9 @@ class ProfileViewController: UIViewController {
                     break
                 case .limited:
                     print("制限あり")
-                    // 設定アプリへ遷移
-                    if let settingURL = URL(string: UIApplication.openSettingsURLString) {
-                        UIApplication.shared.canOpenURL(settingURL)
-                        UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
-                    }
                     break
                 case .denied:
                     print("拒否ずみ")
-                    // 設定アプリへ遷移
-                    if let settingURL = URL(string: UIApplication.openSettingsURLString) {
-                        UIApplication.shared.canOpenURL(settingURL)
-                        UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
-                    }
                     break
                 default:
                     break
@@ -227,6 +218,50 @@ class ProfileViewController: UIViewController {
         //                        = .limited    : 選択した画像のみ
         //                        = .denied     : 拒否
         
+        if authPhotoLibraryStatus == .limited {
+            
+            //アラートの設定
+            let alert = UIAlertController(title: "Failed to save image", message: "Allow this app to access Photos.", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "Enable photos access", style: .default) { (action) in
+                //設定を開く
+                if let settingURL = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.canOpenURL(settingURL)
+                    UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
+                }
+            }
+            let cancel = UIAlertAction(title: "cancel", style: .cancel) { (acrion) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            
+            //アラートの下にあるボタンを追加
+            alert.addAction(cancel)
+            alert.addAction(ok)
+            //アラートの表示
+            present(alert, animated: true, completion: nil)
+            
+            
+        }
+        if authPhotoLibraryStatus == .denied {
+            
+            //アラートの設定
+            let alert = UIAlertController(title: "Failed to save image", message: "Allow this app to access Photos.", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "Enable photos access", style: .default) { (action) in
+                //設定を開く
+                if let settingURL = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.canOpenURL(settingURL)
+                    UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
+                }
+            }
+            let cancel = UIAlertAction(title: "cancel", style: .cancel) { (acrion) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            
+            //アラートの下にあるボタンを追加
+            alert.addAction(cancel)
+            alert.addAction(ok)
+            //アラートの表示
+            present(alert, animated: true, completion: nil)
+        }
         // fix/update_prof_image_#33 >>>
         if authPhotoLibraryStatus == .authorized {
         // <<<
