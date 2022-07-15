@@ -105,4 +105,11 @@ class Goto : UIViewController{
         vc.modalPresentationStyle = .fullScreen
         view.present(vc, animated: true, completion: nil)
     }
+    
+    class func CreateNewPost(view: UIViewController){
+        print("Goto-ChatRoomCreate was called.")
+        let vc = UIStoryboard(name: "CreateNewPostViewController", bundle: nil).instantiateViewController(withIdentifier: "CreateNewPostViewController") as! CreateNewPostViewController
+        vc.modalPresentationStyle = .fullScreen
+        view.present(vc, animated: true, completion: nil)
+    }
 }

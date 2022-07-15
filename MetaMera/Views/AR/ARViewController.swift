@@ -537,6 +537,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     @IBAction func pushPlusButton(_ sender: Any) {
         print("plus 普通のタップ")
+        Goto.CreateNewPost(view: self)
     }
     
     @objc func backTap(){
