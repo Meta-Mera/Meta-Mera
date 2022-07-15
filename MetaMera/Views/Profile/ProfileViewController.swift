@@ -74,17 +74,13 @@ class ProfileViewController: UIViewController {
         backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backView(_:))))
         
         //MARK: - FireStorage
-        let uid = Profile.shared.userId
+        let uid = Profile.shared.loginUser.uid
         switch Profile.shared.updateProfileImage() {
         case .success(let image):
             profileImageView.setImage(image: image, name: uid)
         case .failure(_):
             break
         }
-        
-//        userNameLabel.text = Profile.shared.userName
-//        userIdLabel.text = Profile.shared.userEmail
-        
         
     }
     
@@ -108,8 +104,9 @@ class ProfileViewController: UIViewController {
         
         updateUserLocation()
         
-        userNameLabel.text = Profile.shared.userName
-        userIdLabel.text = Profile.shared.userEmail
+        userNameLabel.text = Profile.shared.loginUser.userName
+        userIdLabel.text = Profile.shared.loginUser.email
+        
         
         
 //        var test = Profile.shared.getUser(userId: "")
@@ -286,7 +283,7 @@ class ProfileViewController: UIViewController {
     
     // ローカルファイルから画像取得して表示する
     func downloadProfileImage(){
-        let path = getFileURL(fileName: Profile.shared.userId+".jpeg").path
+        let path = getFileURL(fileName: Profile.shared.loginUser.uid+".jpeg").path
         
         if FileManager.default.fileExists(atPath: path) {
             if let imageData = UIImage(contentsOfFile: path) {
@@ -299,7 +296,7 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    func saveImageFile(url: URL, fileName: String) {
+    public func saveImageFile(url: URL, fileName: String) {
         print("Download Started")
         getData(from: url) { data, response, error in
             if let error = error {
@@ -358,7 +355,7 @@ class ProfileViewController: UIViewController {
     func saveToFireStorege(selectedImage: UIImage){
         guard let uploadImage = selectedImage.jpegData(compressionQuality: 0.5) else { return }
         
-        let fileName = Profile.shared.userId+".jpeg"
+        let fileName = Profile.shared.loginUser.uid+".jpeg"
         let storageRef = Storage.storage().reference().child("profile").child(fileName)
         
         let metaData = FirebaseStorage.StorageMetadata()
@@ -385,7 +382,7 @@ class ProfileViewController: UIViewController {
     
     func updateProfileImageToFirestore(profileImageUrl: String, image: UIImage){
 //        Firestore.firestore().document("users").collection(Profile.shared.userId).value(forKey: "")
-        let doc = Firestore.firestore().collection("Users").document(Profile.shared.userId)
+        let doc = Firestore.firestore().collection("Users").document(Profile.shared.loginUser.uid)
         doc.updateData([
             "profileImage" : profileImageUrl]
         ) { [weak self] err in
@@ -394,7 +391,7 @@ class ProfileViewController: UIViewController {
                 return
             }
             print("更新成功")
-            self?.saveImageToDevice(image: image, fileName: Profile.shared.userId+".jpeg")
+            self?.saveImageToDevice(image: image, fileName: Profile.shared.loginUser.uid+".jpeg")
             
         }
         
@@ -424,7 +421,7 @@ class ProfileViewController: UIViewController {
         profileImageView.image = selectedImage
         // 格納先 reference
         let path = FirebaseStorage.Storage.storage().reference(forURL: "gs://metamera-e2b4b.appspot.com")
-        let localImageRef = path.child("profile").child(Profile.shared.userId+".jpeg")
+        let localImageRef = path.child("profile").child(Profile.shared.loginUser.uid+".jpeg")
         
         // メタデータ
         let metaData = FirebaseStorage.StorageMetadata()
@@ -452,7 +449,7 @@ class ProfileViewController: UIViewController {
                         return
                     }
                     // 画像ファイルを保存する
-                    self?.saveImageFile(url: downloadURL, fileName: Profile.shared.userId+".jpeg")
+                    self?.saveImageFile(url: downloadURL, fileName: Profile.shared.loginUser.uid+".jpeg")
                     self?.updateProfileImageToFirestore(profileImageUrl: downloadURL.absoluteString, image: selectedImage)
                     
                 }

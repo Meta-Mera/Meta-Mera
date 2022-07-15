@@ -152,12 +152,8 @@ class SignUpViewController: UIViewController {
                 HUD.hide { (_) in
                     HUD.flash(.success, onView: self.view, delay: 1) { [weak self] (_) in
                         guard let dic = snapshot?.data() else { return }
-                        let user = User(dic: dic)
-                        user.uid = uid
+                        let user = User(dic: dic, uid: uid)
                         Profile.shared.loginUser = user
-//                        Profile.shared.userId = uid
-                        let loginUser = Profile.shared.loginUser
-                        print("Login User uid: ",loginUser?.uid)
                         self?.presentToARViewController()
                     }
                 }

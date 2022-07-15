@@ -20,13 +20,14 @@ class User {
 //    let userId: String
     
     
-    var uid: String?
+    let uid: String
     
-    init(dic: [String: Any]) {
+    init(dic: [String: Any], uid: String) {
         self.userName = dic["userName"]  as? String ?? ""
         self.createAt = dic["createAt"] as? Timestamp ?? Timestamp()
         self.email = dic["email"] as? String ?? ""
         self.profileImage = dic["profileImage"] as? String ?? ""
+        self.uid = uid
     }
     
     

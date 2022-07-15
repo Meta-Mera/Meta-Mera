@@ -98,19 +98,25 @@ class SignInViewController: UIViewController {
             }
             HUD.hide { (_) in
                 HUD.flash(.success, onView: self.view, delay: 1) { [weak self] (_) in
-                    Profile.shared.userId = Auth.auth().currentUser?.uid ?? "null"
-                    Firestore.firestore().collection("Users").document(Profile.shared.userId).getDocument { (userSnapshot, err) in
+                    guard let uid = Auth.auth().currentUser?.uid else { return }
+                    Firestore.firestore().collection("Users").document(uid).getDocument { (userSnapshot, err) in
                         if let err = err {
                             print("ユーザー情報の取得に失敗しました。\(err)")
                             return
                         }
                         
                         guard let dic = userSnapshot?.data() else { return }
-                        let user = User(dic: dic)
-                        Profile.shared.userName = user.userName
-                        Profile.shared.userEmail = user.email
-                        Profile.shared.userIconImageUrl = user.profileImage
+                        let user = User(dic: dic,uid: uid)
                         Profile.shared.loginUser = user
+                        switch Profile.shared.updateProfileImage() {
+                        case .success(_):
+                            print("画像あるらしいよ: ",user.profileImage,"+",uid)
+                            break
+                        case .failure(_):
+                            print("画像保存されてないよ〜: ",user.profileImage,"+",uid)
+                            Profile.shared.saveImageToDevice(image: user.profileImage, fileName: uid)
+                            break
+                        }
                         self?.presentToARViewController()
                     }
                 }
@@ -184,18 +190,25 @@ class SignInViewController: UIViewController {
             }
             HUD.hide { (_) in
                 HUD.flash(.success, onView: self.view, delay: 1) { (_) in
-                    Profile.shared.userId = Auth.auth().currentUser?.uid ?? "null"
-                    Firestore.firestore().collection("Users").document(Profile.shared.userId).getDocument { (userSnapshot, err) in
+                    guard let uid = Auth.auth().currentUser?.uid else { return }
+                    Firestore.firestore().collection("Users").document(uid).getDocument { (userSnapshot, err) in
                         if let err = err {
                             print("ユーザー情報の取得に失敗しました。\(err)")
                             return
                         }
                         
                         guard let dic = userSnapshot?.data() else { return }
-                        let user = User(dic: dic)
-                        Profile.shared.userName = user.userName
-                        Profile.shared.userEmail = user.email
-                        Profile.shared.userIconImageUrl = user.profileImage
+                        let user = User(dic: dic,uid: uid)
+                        Profile.shared.loginUser = user
+                        switch Profile.shared.updateProfileImage() {
+                        case .success(_):
+                            print("画像あるらしいよ: ",user.profileImage,"+",uid)
+                            break
+                        case .failure(_):
+                            print("画像保存されてないよ〜: ",user.profileImage,"+",uid)
+                            Profile.shared.saveImageToDevice(image: user.profileImage, fileName: uid)
+                            break
+                        }
                         self.presentToARViewController()
                     }
                 }

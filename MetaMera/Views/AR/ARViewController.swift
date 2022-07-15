@@ -236,7 +236,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         switch Profile.shared.updateProfileImage() {
         case .success(let image):
-            ProfileImage.setImage(image: image, name: Profile.shared.userId)
+            ProfileImage.setImage(image: image, name: Profile.shared.loginUser.uid)
 //            ProfileImage.setImage(url: Profile.shared.userIconImageUrl, name: Profile.shared.userId)
         case .failure(let error):
             break
