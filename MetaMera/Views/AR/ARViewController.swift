@@ -355,6 +355,18 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         return nodes
     }
     
+    func buildNodeData() -> [LocationAnnotationNode] {
+        var nodes: [LocationAnnotationNode] = []
+        
+        //35.75444876559928, 139.4811042224357
+        
+        let takaosan = buildNode(latitude: 35.75444876559928, longitude: 139.4811042224357, altitude: 100, imageName: "road",size: CGSize(width: 200, height: 300), pinUse: true, pinName: "road")
+//        takaosan.scaleRelativeToDistance = true
+        nodes.append(takaosan)
+
+        return nodes
+    }
+    
     //MARK: まだ勉強してるよ！
     func addSceneModels() {
         // 1. Don't try to add the models to the scene until we have a current location
@@ -384,6 +396,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
     }
     
+    var annotationArray: [MKAnnotation] = []
+    
     
     
     //MARK: - ここからオブジェクトを生成するためのやつだよ
@@ -405,6 +419,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                 annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
                 annotation.title = pinName
                 annotation.subtitle = "高さ"+String(altitude)
+                annotationArray.append(annotation)
                 mapView.addAnnotation(annotation)
             }
             return LocationAnnotationNode(location: location, image: image)
@@ -415,6 +430,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
             annotation.title = pinName
             annotation.subtitle = "高さ"+String(altitude)
+            annotationArray.append(annotation)
             mapView.addAnnotation(annotation)
         }
         return LocationAnnotationNode(location: location, image: image)
@@ -576,7 +592,14 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     @IBAction func pushProfileButton(_ sender: Any) {
         backTap()
 //        Goto.ChatRoom(view: self, image: UIImage(named: "drink")!)
-        Goto.Profile(view: self)
+//        Goto.Profile(view: self)
+        sceneLocationView.removeAllNodes()
+        mapView.removeAnnotations(annotationArray)
+        buildNodeData().forEach {
+            sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0)
+            sceneLocationView.moveSceneHeadingAntiClockwise()
+//            sceneLocationView.moveSceneHeadingClockwise()
+        }
     }
     
     @IBAction func pushCreateRoom(_ sender: Any) {
