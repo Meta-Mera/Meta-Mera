@@ -98,7 +98,21 @@ class SignInViewController: UIViewController {
             }
             HUD.hide { (_) in
                 HUD.flash(.success, onView: self.view, delay: 1) { [weak self] (_) in
-                    self?.presentToARViewController()
+                    Profile.shared.userId = Auth.auth().currentUser?.uid ?? "null"
+                    Firestore.firestore().collection("Users").document(Profile.shared.userId).getDocument { (userSnapshot, err) in
+                        if let err = err {
+                            print("ユーザー情報の取得に失敗しました。\(err)")
+                            return
+                        }
+                        
+                        guard let dic = userSnapshot?.data() else { return }
+                        let user = User(dic: dic)
+                        Profile.shared.userName = user.userName
+                        Profile.shared.userEmail = user.email
+                        Profile.shared.userIconImageUrl = user.profileImage
+                        Profile.shared.loginUser = user
+                        self?.presentToARViewController()
+                    }
                 }
             }
         }
@@ -171,7 +185,7 @@ class SignInViewController: UIViewController {
             HUD.hide { (_) in
                 HUD.flash(.success, onView: self.view, delay: 1) { (_) in
                     Profile.shared.userId = Auth.auth().currentUser?.uid ?? "null"
-                    Firestore.firestore().collection("users").document(Profile.shared.userId).getDocument { (userSnapshot, err) in
+                    Firestore.firestore().collection("Users").document(Profile.shared.userId).getDocument { (userSnapshot, err) in
                         if let err = err {
                             print("ユーザー情報の取得に失敗しました。\(err)")
                             return

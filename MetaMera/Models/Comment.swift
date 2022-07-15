@@ -8,7 +8,7 @@
 import Foundation
 import Firebase
 
-class Message {
+class Comment {
     
     let uid: String
     let message: String

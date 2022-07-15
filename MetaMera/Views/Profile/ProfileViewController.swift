@@ -385,7 +385,7 @@ class ProfileViewController: UIViewController {
     
     func updateProfileImageToFirestore(profileImageUrl: String, image: UIImage){
 //        Firestore.firestore().document("users").collection(Profile.shared.userId).value(forKey: "")
-        let doc = Firestore.firestore().collection("users").document(Profile.shared.userId)
+        let doc = Firestore.firestore().collection("Users").document(Profile.shared.userId)
         doc.updateData([
             "profileImage" : profileImageUrl]
         ) { [weak self] err in

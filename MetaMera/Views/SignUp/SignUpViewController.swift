@@ -119,15 +119,13 @@ class SignUpViewController: UIViewController {
     private func addUserInfoToFirestore(email: String, profileImageName: String){
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        guard let userId = self.userIdTextField.text  else { return }
+        guard let userName = self.userIdTextField.text  else { return }
         
         let docData = ["email": email,
-                       "userId": userId,
+                       "userName": userName,
                        "profileImage": profileImageName, //TODO: プロフィール画像を保存できるようにする
-                       "Log": [String]().self,
-                       "Recommended": [String]().self,
                        "createAt": Timestamp()] as [String : Any]
-        let userRef = Firestore.firestore().collection("users").document(uid)
+        let userRef = Firestore.firestore().collection("Users").document(uid)
         
         
         userRef.setData(docData) { (err) in
@@ -153,6 +151,13 @@ class SignUpViewController: UIViewController {
                 
                 HUD.hide { (_) in
                     HUD.flash(.success, onView: self.view, delay: 1) { [weak self] (_) in
+                        guard let dic = snapshot?.data() else { return }
+                        let user = User(dic: dic)
+                        user.uid = uid
+                        Profile.shared.loginUser = user
+//                        Profile.shared.userId = uid
+                        let loginUser = Profile.shared.loginUser
+                        print("Login User uid: ",loginUser?.uid)
                         self?.presentToARViewController()
                     }
                 }

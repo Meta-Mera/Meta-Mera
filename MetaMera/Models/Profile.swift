@@ -27,6 +27,8 @@ class Profile {
     var userEmail: String = ""
     var userIconImageUrl: String = ""
     let userRef = Firestore.firestore().collection("users")
+    
+    var loginUser: User?
 
     var nodeLocationsLatitude = [CLLocationDegrees]()
     var nodeLocationsLongitude  = [CLLocationDegrees]()

@@ -16,7 +16,7 @@ class ChatRoom {
     
     let image: String
     
-    var latestMessage: Message?
+    var latestMessage: Comment?
     var documentId: String?
     var partnerUser: User?
     
