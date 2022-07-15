@@ -495,6 +495,14 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             textLabel.isHidden = true
         }
     }
+    
+    @objc func addNode(latitude: CLLocationDegrees, longitude: CLLocationDegrees,
+                       altitude: CLLocationDistance,
+                       imageName: String, size: CGSize,
+                       pinUse: Bool, pinName: String){
+        let node = buildNode(latitude: latitude, longitude: longitude, altitude: altitude, imageName: imageName, size: size, pinUse: pinUse, pinName: pinName)
+        sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: node)
+    }
     //MARK: ここまでオブジェクトを生成するためのやつだよ -
     
     
@@ -595,11 +603,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
 //        Goto.Profile(view: self)
         sceneLocationView.removeAllNodes()
         mapView.removeAnnotations(annotationArray)
-        buildNodeData().forEach {
-            sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0)
-            sceneLocationView.moveSceneHeadingAntiClockwise()
-//            sceneLocationView.moveSceneHeadingClockwise()
-        }
+        addNode(latitude: 35.75444876559928, longitude: 139.4811042224357, altitude: 100, imageName: "road",size: CGSize(width: 200, height: 300), pinUse: true, pinName: "road")
     }
     
     @IBAction func pushCreateRoom(_ sender: Any) {
