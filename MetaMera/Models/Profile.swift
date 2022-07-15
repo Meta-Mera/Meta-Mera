@@ -22,18 +22,9 @@ class Profile {
     static let shared = Profile()
     
     //シングルトン
-    var userId: String = ""
-    var userName: String = ""
-    var userEmail: String = ""
-    var userIconImageUrl: String = ""
     let userRef = Firestore.firestore().collection("users")
     
     var loginUser: User!
-
-    var nodeLocationsLatitude = [CLLocationDegrees]()
-    var nodeLocationsLongitude  = [CLLocationDegrees]()
-    
-//    let profileViewController = ProfileViewController()
     
     func getFileURL(fileName: String) -> URL {
         let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
