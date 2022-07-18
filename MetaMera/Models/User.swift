@@ -14,6 +14,8 @@ class User {
     let createAt: Timestamp
     let profileImage: String
     let email: String
+    let log: [String]
+    let reCommend:  [String]
     //ここにお気に入りのリストを書く
     //ここにアクション[“コメントした”、”いいねをした”など]を書く
     
@@ -27,6 +29,8 @@ class User {
         self.createAt = dic["createAt"] as? Timestamp ?? Timestamp()
         self.email = dic["email"] as? String ?? ""
         self.profileImage = dic["profileImage"] as? String ?? ""
+        self.log = dic["Log"] as? [String]  ?? []
+        self.reCommend = dic["Recommend"] as? [String] ?? []
         self.uid = uid
     }
     

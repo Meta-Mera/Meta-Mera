@@ -68,6 +68,12 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.bringSubviewToFront(mapView)
+//        self.view.bringSubviewToFront(selectCategoryButton)
+//        self.view.bringSubviewToFront(createRoomButton)
+//        self.view.bringSubviewToFront(plusButton)
+//        self.view.bringSubviewToFront(profileButton)
+        
         //画面遷移した時だけ現在位置を表示するためにTrueにするよ
         flag = true
         
@@ -323,26 +329,26 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         spaceNeedle.tag = "drink"
 //        nodes.append(spaceNeedle)
         
-        let nike = buildNode(latitude: 35.70561533774642, longitude: 139.57692592332617, altitude: 175, imageName: "shoes",size: CGSize(width: 400, height: 300), pinUse: true, pinName: "shoes")
+        let nike = buildNode(latitude: 35.70561533774642, longitude: 139.57692592332617, altitude: 175, imageName: "shoes",size: CGSize(width: 400, height: 300), pinUse: true, pinName: "shoes", postId: "test")
         nike.scaleRelativeToDistance = true
         nodes.append(nike)
         
 //        36.35801663766492, 138.63498898207519
         
-        let karuizawa = buildNode(latitude: 36.35801663766492, longitude: 138.63498898207519, altitude: 1000, imageName: "snow",size: CGSize(width: 200, height: 300), pinUse: true, pinName: "snow")
+        let karuizawa = buildNode(latitude: 36.35801663766492, longitude: 138.63498898207519, altitude: 1000, imageName: "snow",size: CGSize(width: 200, height: 300), pinUse: true, pinName: "snow", postId: "test")
         karuizawa.scaleRelativeToDistance = true
         nodes.append(karuizawa)
         
 //        35.62510858464141, 139.24366875641377
         
-        let takaosan = buildNode(latitude: 35.62510858464141, longitude: 139.24366875641377, altitude: 610, imageName: "road",size: CGSize(width: 200, height: 300), pinUse: true, pinName: "road")
+        let takaosan = buildNode(latitude: 35.62510858464141, longitude: 139.24366875641377, altitude: 610, imageName: "road",size: CGSize(width: 200, height: 300), pinUse: true, pinName: "road", postId: "test")
         takaosan.scaleRelativeToDistance = true
         nodes.append(takaosan)
         
 //        35.62477445850865, 139.3414411733747
         
         
-        let arufoto = buildNode(latitude: 35.62477445850865, longitude: 139.3414411733747, altitude: 190, imageName: "arufoto",size: CGSize(width: 278, height: 122), pinUse: true, pinName: "アルフォート")
+        let arufoto = buildNode(latitude: 35.62477445850865, longitude: 139.3414411733747, altitude: 190, imageName: "arufoto",size: CGSize(width: 278, height: 122), pinUse: true, pinName: "アルフォート",postId: "Uz93q4hTLBHvLUFglhxp")
 //        arufoto.scaleRelativeToDistance = true
         nodes.append(arufoto)
         
@@ -360,7 +366,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         //35.75444876559928, 139.4811042224357
         
-        let takaosan = buildNode(latitude: 35.75444876559928, longitude: 139.4811042224357, altitude: 100, imageName: "road",size: CGSize(width: 200, height: 300), pinUse: true, pinName: "road")
+        let takaosan = buildNode(latitude: 35.75444876559928, longitude: 139.4811042224357, altitude: 100, imageName: "road",size: CGSize(width: 200, height: 300), pinUse: true, pinName: "road",postId: "test")
 //        takaosan.scaleRelativeToDistance = true
         nodes.append(takaosan)
 
@@ -405,14 +411,15 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     func buildNode(latitude: CLLocationDegrees, longitude: CLLocationDegrees,
                    altitude: CLLocationDistance,
                    imageName: String, size: CGSize,
-                   pinUse: Bool, pinName: String) -> LocationAnnotationNode {
+                   pinUse: Bool, pinName: String,
+                   postId: String) -> LocationAnnotationNode {
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let location = CLLocation(coordinate: coordinate, altitude: altitude)
         let annotation = MKPointAnnotation()
         guard let image = UIImage(named: imageName)?.reSizeImage(reSize: size) else
         {
             let image = UIImage(named: imageName)!
-            image.accessibilityIdentifier = imageName
+            image.accessibilityIdentifier = postId
 //            Profile.shared.nodeLocationsLatitude.append(latitude)
 //            Profile.shared.nodeLocationsLongitude.append(longitude)
             if pinUse {
@@ -425,7 +432,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             return LocationAnnotationNode(location: location, image: image)
             
         }
-        image.accessibilityIdentifier = imageName
+        image.accessibilityIdentifier = postId
         if pinUse {
             annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
             annotation.title = pinName
@@ -499,8 +506,9 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     @objc func addNode(latitude: CLLocationDegrees, longitude: CLLocationDegrees,
                        altitude: CLLocationDistance,
                        imageName: String, size: CGSize,
-                       pinUse: Bool, pinName: String){
-        let node = buildNode(latitude: latitude, longitude: longitude, altitude: altitude, imageName: imageName, size: size, pinUse: pinUse, pinName: pinName)
+                       pinUse: Bool, pinName: String,
+                       postId: String){
+        let node = buildNode(latitude: latitude, longitude: longitude, altitude: altitude, imageName: imageName, size: size, pinUse: pinUse, pinName: pinName, postId: postId)
         sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: node)
     }
     //MARK: ここまでオブジェクトを生成するためのやつだよ -
@@ -603,7 +611,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
 //        Goto.Profile(view: self)
         sceneLocationView.removeAllNodes()
         mapView.removeAnnotations(annotationArray)
-        addNode(latitude: 35.75444876559928, longitude: 139.4811042224357, altitude: 100, imageName: "road",size: CGSize(width: 200, height: 300), pinUse: true, pinName: "road")
+        addNode(latitude: 35.75444876559928, longitude: 139.4811042224357, altitude: 100, imageName: "road",size: CGSize(width: 200, height: 300), pinUse: true, pinName: "road", postId: "test")
     }
     
     @IBAction func pushCreateRoom(_ sender: Any) {
@@ -664,7 +672,7 @@ extension ARViewController: LNTouchDelegate {
             //TODO: チャットルームを渡す方法を考える
             var chatroom: ChatRoom
 //            Goto.ChatRoomView(view: self, image: node.image!, chatroomId: chatroom)
-            Goto.ChatRoomView(view: self, image: node.image!, chatroomId: "")
+            Goto.ChatRoomView(view: self, image: node.image!, chatroomId: selectImage)
         }
         
     }

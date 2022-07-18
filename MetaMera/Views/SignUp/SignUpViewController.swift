@@ -124,6 +124,8 @@ class SignUpViewController: UIViewController {
         let docData = ["email": email,
                        "userName": userName,
                        "profileImage": profileImageName, //TODO: プロフィール画像を保存できるようにする
+                       "Log": [String]().self,
+                        "Recommended": [String]().self,
                        "createAt": Timestamp()] as [String : Any]
         let userRef = Firestore.firestore().collection("Users").document(uid)
         
