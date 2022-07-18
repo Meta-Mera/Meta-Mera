@@ -46,7 +46,7 @@ class ChatRoomTableViewCell: UITableViewCell {
         
         switch Profile.shared.updateProfileImage() {
         case .success(let image):
-            userIconImageView.image = image
+            userIconImageView.setImage(image: image, name: Profile.shared.loginUser.uid)
         case .failure(_):
             break
         }

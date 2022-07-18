@@ -10,20 +10,24 @@ import Firebase
 
 class User {
     
-    let userId: String
+    let userName: String
     let createAt: Timestamp
+    let profileImage: String
     let email: String
-    let Recommended: [String]
-    let Log: [String]
+    //ここにお気に入りのリストを書く
+    //ここにアクション[“コメントした”、”いいねをした”など]を書く
     
-    var uid: String?
+//    let userId: String
     
-    init(dic: [String: Any]) {
-        self.userId = dic["userId"] as! String
-        self.createAt = dic["createAt"] as! Timestamp
-        self.email = dic["email"] as! String
-        self.Recommended = dic["Recommended"] as! [String]
-        self.Log = dic["Log"] as! [String]
+    
+    let uid: String
+    
+    init(dic: [String: Any], uid: String) {
+        self.userName = dic["userName"]  as? String ?? ""
+        self.createAt = dic["createAt"] as? Timestamp ?? Timestamp()
+        self.email = dic["email"] as? String ?? ""
+        self.profileImage = dic["profileImage"] as? String ?? ""
+        self.uid = uid
     }
     
     

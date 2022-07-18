@@ -59,7 +59,7 @@
                                     <color key="tintColor" name="AccentColor"/>
                                     <color key="textColor" red="0.25490196078431371" green="0.36470588235294116" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -90,7 +90,7 @@
                                     <color key="tintColor" name="AccentColor"/>
                                     <color key="textColor" red="0.25490196078431371" green="0.36470588235294116" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="new-password"/>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -121,7 +121,7 @@
                                     <color key="tintColor" name="AccentColor"/>
                                     <color key="textColor" red="0.25490196078431371" green="0.36470588235294116" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="password"/>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -172,7 +172,7 @@
                                     <color key="tintColor" name="AccentColor"/>
                                     <color key="textColor" red="0.25490196078431371" green="0.36470588235294116" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="username"/>
                                 </textField>
                             </subviews>
                         </stackView>

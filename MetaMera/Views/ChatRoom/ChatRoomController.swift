@@ -12,6 +12,8 @@ import Firebase
 
 class ChatRoomController: UIViewController, UITextFieldDelegate{
     
+    var chatroomId: String = ""
+    
     private let cellId = "ChatRoomTableViewCell"
     private var messages = [String]()
     
@@ -30,14 +32,18 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         chatRoomTableView.dataSource = self
         chatRoomTableView.register(UINib(nibName: "ChatRoomTableViewCell", bundle: nil) , forCellReuseIdentifier: cellId)
         
-//        chatRoomTableView.contentInset = .init(top: 60, left: 0, bottom: 0, right: 0)
+        chatRoomTableView.contentInset = .init(top: 0, left: 0, bottom: 60, right: 0)
 //        chatRoomTableView.keyboardDismissMode = .interactive
 //        chatRoomTableView.transform = CGAffineTransform(a: 0, b: 0, c: 0, d: -1, tx: 0, ty: 0)
         
         backImageView.isUserInteractionEnabled = true
         backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backView(_:))))
         
-        chatRoomTableView.backgroundColor = .rgb(red: 118, green: 140, blue: 180)
+//        chatRoomTableView.backgroundColor = .rgb(red: 240, green: 240, blue: 240)
+//        chatRoomTableView.backgroundColor = UIColor.dynamicColor(light: .rgb(red: 240, green: 240, blue: 240), dark: .rgb(red: 0, green: 0, blue: 0))
+        chatRoomTableView.backgroundColor = UIColor.chatRoomBackground
+        ChatViewController().inputChatText.layer.backgroundColor = UIColor.inputChatTextBackground.cgColor
+        
     }
     
     
@@ -58,7 +64,8 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     //画面遷移しようとしたとき
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        postImageView.image = image
+//        postImageView.image = image
+        postImageView.setImage(image: image, name: Profile.shared.loginUser.uid)
         setUpNotification()
         fetchChatRoomInFromFirestore()
     }
@@ -132,14 +139,57 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
 
 //MARK: sendボタンを押した時
 extension ChatRoomController: ChatViewControllerDelegate {
+    
+    
     func tappedSendButton(text: String) {
-        messages.append(text)
         
         
         
-        chatView.removeText()
-        chatRoomTableView.reloadData()
+//        messages.append(text)
+//        chatView.removeText()
+//        chatRoomTableView.reloadData()
+        
+//        Firestore.firestore().collection("chatRooms").document("")
+//        addMessageToFirestore(text: text)
     }
+    
+//    private func addMessageToFirestore(text: String) {
+////        guard let chatroomDocId = chatroom?.documentId else { return }
+//        guard let name = user?.username else { return }
+//        guard let uid = Auth.auth().currentUser?.uid else { return }
+//        chatView.removeText()
+////        let messageId = randomString(length: 20)
+//
+//        let docData = [
+//            "name": name,
+//            "createdAt": Timestamp(),
+//            "uid": uid,
+//            "message": text
+//            ] as [String : Any]
+//        Firestore.firestore().collection("chatRooms").document(chatroomDocId).collection("messages").document(messageId).setData(docData) { (err) in
+//            if let err = err {
+//                print("メッセージ情報の保存に失敗しました。\(err)")
+//                return
+//            }
+//
+//
+//
+//            let latestMessageData = [
+//                "latestMessageId": messageId
+//            ]
+//
+//            Firestore.firestore().collection("chatRooms").document(chatroomDocId).updateData(latestMessageData) { (err) in
+//                if let err = err {
+//                    print("最新メッセージの保存に失敗しました。\(err)")
+//                    return
+//                }
+//
+//                print("メッセージの保存に成功しました。")
+//
+//            }
+//        }
+//
+//    }
 }
 
 extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
@@ -157,6 +207,8 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
         let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatRoomTableViewCell
 //        cell.messageTextView.text = messages[indexPath.row]
         cell.messageText = messages[indexPath.row]
+        cell.messageTextView.backgroundColor = UIColor.chatTextBackground
+        cell.messageTextView.textColor = UIColor.chatText
         return cell
         
     }

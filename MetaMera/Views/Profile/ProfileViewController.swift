@@ -15,6 +15,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import FirebaseCore
 import FirebaseStorage
+import Nuke
 
 class ProfileViewController: UIViewController {
     
@@ -44,9 +45,11 @@ class ProfileViewController: UIViewController {
     
     let storage = FirebaseStorage.Storage.storage()
     
+    var loginUser: User!
+    
     private var user:User?{
         didSet{
-            userNameLabel.text = user?.userId
+            userNameLabel.text = user?.userName
         }
     }
     
@@ -59,6 +62,8 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
         changeProfileImageButton.layer.cornerRadius = 13
+        
+        loginUser = Profile.shared.loginUser
         
         
         imagePicker.allowsEditing = true
@@ -73,17 +78,13 @@ class ProfileViewController: UIViewController {
         backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backView(_:))))
         
         //MARK: - FireStorage
-        let uid = Profile.shared.userId
+        let uid = loginUser.uid
         switch Profile.shared.updateProfileImage() {
         case .success(let image):
-            profileImageView.image = image
+            profileImageView.setImage(image: image, name: uid)
         case .failure(_):
             break
         }
-        
-//        userNameLabel.text = Profile.shared.userName
-//        userIdLabel.text = Profile.shared.userEmail
-        
         
     }
     
@@ -103,12 +104,15 @@ class ProfileViewController: UIViewController {
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
         
+        loginUser = Profile.shared.loginUser
+        
         MapView.showsUserLocation = true
         
         updateUserLocation()
         
-        userNameLabel.text = Profile.shared.userName
-        userIdLabel.text = Profile.shared.userEmail
+        userNameLabel.text = loginUser.userName
+        userIdLabel.text = loginUser.email
+        
         
         
 //        var test = Profile.shared.getUser(userId: "")
@@ -285,7 +289,7 @@ class ProfileViewController: UIViewController {
     
     // ローカルファイルから画像取得して表示する
     func downloadProfileImage(){
-        let path = getFileURL(fileName: Profile.shared.userId+".jpeg").path
+        let path = getFileURL(fileName: loginUser.uid+".jpeg").path
         
         if FileManager.default.fileExists(atPath: path) {
             if let imageData = UIImage(contentsOfFile: path) {
@@ -298,7 +302,7 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    func saveImageFile(url: URL, fileName: String) {
+    public func saveImageFile(url: URL, fileName: String) {
         print("Download Started")
         getData(from: url) { data, response, error in
             if let error = error {
@@ -357,7 +361,7 @@ class ProfileViewController: UIViewController {
     func saveToFireStorege(selectedImage: UIImage){
         guard let uploadImage = selectedImage.jpegData(compressionQuality: 0.5) else { return }
         
-        let fileName = Profile.shared.userId+".jpeg"
+        let fileName = loginUser.uid+".jpeg"
         let storageRef = Storage.storage().reference().child("profile").child(fileName)
         
         let metaData = FirebaseStorage.StorageMetadata()
@@ -384,7 +388,7 @@ class ProfileViewController: UIViewController {
     
     func updateProfileImageToFirestore(profileImageUrl: String, image: UIImage){
 //        Firestore.firestore().document("users").collection(Profile.shared.userId).value(forKey: "")
-        let doc = Firestore.firestore().collection("users").document(Profile.shared.userId)
+        let doc = Firestore.firestore().collection("Users").document(loginUser.uid)
         doc.updateData([
             "profileImage" : profileImageUrl]
         ) { [weak self] err in
@@ -393,7 +397,7 @@ class ProfileViewController: UIViewController {
                 return
             }
             print("更新成功")
-            self?.saveImageToDevice(image: image, fileName: Profile.shared.userId+".jpeg")
+            self?.saveImageToDevice(image: image, fileName: Profile.shared.loginUser.uid+".jpeg")
             
         }
         
@@ -423,7 +427,7 @@ class ProfileViewController: UIViewController {
         profileImageView.image = selectedImage
         // 格納先 reference
         let path = FirebaseStorage.Storage.storage().reference(forURL: "gs://metamera-e2b4b.appspot.com")
-        let localImageRef = path.child("profile").child(Profile.shared.userId+".jpeg")
+        let localImageRef = path.child("profile").child(loginUser.uid+".jpeg")
         
         // メタデータ
         let metaData = FirebaseStorage.StorageMetadata()
@@ -451,7 +455,7 @@ class ProfileViewController: UIViewController {
                         return
                     }
                     // 画像ファイルを保存する
-                    self?.saveImageFile(url: downloadURL, fileName: Profile.shared.userId+".jpeg")
+                    self?.saveImageFile(url: downloadURL, fileName: Profile.shared.loginUser.uid+".jpeg")
                     self?.updateProfileImageToFirestore(profileImageUrl: downloadURL.absoluteString, image: selectedImage)
                     
                 }

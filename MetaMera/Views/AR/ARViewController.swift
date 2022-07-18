@@ -16,6 +16,7 @@ import FirebaseCore
 import FirebaseStorage
 import Firebase
 import AudioToolbox
+import Nuke
 
 
 class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate {
@@ -235,7 +236,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         switch Profile.shared.updateProfileImage() {
         case .success(let image):
-            ProfileImage.image = image
+            ProfileImage.setImage(image: image, name: Profile.shared.loginUser.uid)
+//            ProfileImage.setImage(url: Profile.shared.userIconImageUrl, name: Profile.shared.userId)
         case .failure(let error):
             break
         }
@@ -244,6 +246,28 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         navigationController?.setNavigationBarHidden(true, animated: false)
         
         restartAnimation()
+        
+        //MARK: 位置情報から[市区町村名、郵便番号、関心のあるエリア名]のうち取得できたものを表示します。
+        if let lastLocation = self.locationManager.location {
+            let geocoder = CLGeocoder()
+            
+            // Look up the location and pass it to the completion handler
+            geocoder.reverseGeocodeLocation(lastLocation,
+                                            completionHandler: { (placemarks, error) in
+                guard let placemark = placemarks?.first, error == nil else { return }
+                
+                if let locality = placemark.locality {
+                    print("locality: ",locality as Any)
+                }
+                
+                if let postalCode = placemark.postalCode {
+                    print("postalCode: ",postalCode as Any)
+                }
+                if let areasOfInterest = placemark.areasOfInterest {
+                    print("areasOfInterest: ",areasOfInterest)
+                }
+            })
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -255,6 +279,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     //MARK: プロフィール画面に遷移するよ！
     @objc func pushProfileImage(_ sender: Any){
+        print("getName: ",ProfileImage.getName() as Any)
         print("Push profile image")
         Goto.Profile(view: self)
     }
@@ -330,6 +355,18 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         return nodes
     }
     
+    func buildNodeData() -> [LocationAnnotationNode] {
+        var nodes: [LocationAnnotationNode] = []
+        
+        //35.75444876559928, 139.4811042224357
+        
+        let takaosan = buildNode(latitude: 35.75444876559928, longitude: 139.4811042224357, altitude: 100, imageName: "road",size: CGSize(width: 200, height: 300), pinUse: true, pinName: "road")
+//        takaosan.scaleRelativeToDistance = true
+        nodes.append(takaosan)
+
+        return nodes
+    }
+    
     //MARK: まだ勉強してるよ！
     func addSceneModels() {
         // 1. Don't try to add the models to the scene until we have a current location
@@ -359,6 +396,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
     }
     
+    var annotationArray: [MKAnnotation] = []
+    
     
     
     //MARK: - ここからオブジェクトを生成するためのやつだよ
@@ -380,6 +419,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                 annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
                 annotation.title = pinName
                 annotation.subtitle = "高さ"+String(altitude)
+                annotationArray.append(annotation)
                 mapView.addAnnotation(annotation)
             }
             return LocationAnnotationNode(location: location, image: image)
@@ -390,6 +430,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
             annotation.title = pinName
             annotation.subtitle = "高さ"+String(altitude)
+            annotationArray.append(annotation)
             mapView.addAnnotation(annotation)
         }
         return LocationAnnotationNode(location: location, image: image)
@@ -454,6 +495,14 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             textLabel.isHidden = true
         }
     }
+    
+    @objc func addNode(latitude: CLLocationDegrees, longitude: CLLocationDegrees,
+                       altitude: CLLocationDistance,
+                       imageName: String, size: CGSize,
+                       pinUse: Bool, pinName: String){
+        let node = buildNode(latitude: latitude, longitude: longitude, altitude: altitude, imageName: imageName, size: size, pinUse: pinUse, pinName: pinName)
+        sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: node)
+    }
     //MARK: ここまでオブジェクトを生成するためのやつだよ -
     
     
@@ -512,6 +561,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     @IBAction func pushPlusButton(_ sender: Any) {
         print("plus 普通のタップ")
+        Goto.CreateNewPost(view: self)
     }
     
     @objc func backTap(){
@@ -549,7 +599,11 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     @IBAction func pushProfileButton(_ sender: Any) {
         backTap()
-        Goto.ChatRoom(view: self, image: UIImage(named: "drink")!)
+//        Goto.ChatRoom(view: self, image: UIImage(named: "drink")!)
+//        Goto.Profile(view: self)
+        sceneLocationView.removeAllNodes()
+        mapView.removeAnnotations(annotationArray)
+        addNode(latitude: 35.75444876559928, longitude: 139.4811042224357, altitude: 100, imageName: "road",size: CGSize(width: 200, height: 300), pinUse: true, pinName: "road")
     }
     
     @IBAction func pushCreateRoom(_ sender: Any) {
@@ -593,6 +647,7 @@ extension ARViewController: LNTouchDelegate {
             let members = [uid]
             
             let docData = [
+                "latestMessageId" : "",
                 "members" : members,
                 "image": selectImage,
                 "createdAt": Timestamp()
@@ -606,8 +661,10 @@ extension ARViewController: LNTouchDelegate {
 //                print("成功")
 //            }
             
-            
-            Goto.ChatRoom(view: self, image: node.image!)
+            //TODO: チャットルームを渡す方法を考える
+            var chatroom: ChatRoom
+//            Goto.ChatRoomView(view: self, image: node.image!, chatroomId: chatroom)
+            Goto.ChatRoomView(view: self, image: node.image!, chatroomId: "")
         }
         
     }
