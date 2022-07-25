@@ -30,7 +30,7 @@ class Post {
         self.createdAt = dic["createdAt"] as? Timestamp ?? Timestamp()
         self.rawImageUrl = dic["rawImageUrl"] as? String ?? ""
         self.editedImageUrl = dic["editedImageUrl"] as? String ?? ""
-        self.good = dic["good"] as? Int ?? 1
+        self.good = dic["good"] as? Int ?? 0
         self.latitude = dic["latitude"] as? Double ?? 1.0
         self.longitude = dic["longitude"] as? Double ?? 1.0
         self.altitude = dic["altitude"] as? Double ?? 1.0

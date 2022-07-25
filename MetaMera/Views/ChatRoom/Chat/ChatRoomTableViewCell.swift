@@ -23,9 +23,13 @@ class ChatRoomTableViewCell: UITableViewCell {
     }
     
     @IBOutlet weak var userIconImageView: UIImageView!
+    @IBOutlet weak var responseUserIconImageView: UIImageView!
     @IBOutlet weak var messageTextView: UITextView!
+    @IBOutlet weak var responseTextView: UITextView!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var responseDateLabel: UILabel!
     @IBOutlet weak var sendUser: UILabel!
+    @IBOutlet weak var responseUser: UILabel!
     
     @IBOutlet weak var messageTextViewWidthConstraint: NSLayoutConstraint!
     
@@ -44,7 +48,8 @@ class ChatRoomTableViewCell: UITableViewCell {
     
     private func configView() {
         userIconImageView.layer.cornerRadius = userIconImageView.bounds.width / 2
-        messageTextView.layer.cornerRadius = 10.0
+//        responseUserIconImageView.layer.cornerRadius = responseUserIconImageView.bounds.width / 2
+//        messageTextView.layer.cornerRadius = 10.0
         
         backgroundColor = .clear
         
@@ -75,20 +80,10 @@ class ChatRoomTableViewCell: UITableViewCell {
         }
         
         
-//        userIconImageView.setImage(url: sendUserProfileImageUrl, name: message.uid)
-//        switch convertUrlToImage(imageUrl: sendUserProfileImageUrl){
-//
-//        case .success(let image):
-//            userIconImageView.setImage(image: image, name: message.uid)
-//
-//        case .failure(_):
-//            return
-//        }
-        
     }
     
     private func estimateFrameForTextView(text: String) -> CGRect{
-        let size = CGSize(width: 200, height: 1000)
+        let size = CGSize(width: 500, height: 5000)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
         
         return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)], context: nil)

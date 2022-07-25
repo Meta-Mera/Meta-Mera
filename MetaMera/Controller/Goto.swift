@@ -92,6 +92,15 @@ class Goto : UIViewController{
         view.present(vc, animated: true, completion: nil)
     }
     
+    class func PostView(view: UIViewController, image: UIImage, chatroomId: String){
+        print("Goto-ChatRoom was called.")
+        let vc = UIStoryboard(name: "PostViewController", bundle: nil).instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
+        vc.image = image
+        vc.postId = chatroomId
+        vc.modalPresentationStyle = .fullScreen
+        view.present(vc, animated: true, completion: nil)
+    }
+    
     class func ChatRoomJoin(view: UIViewController){
         print("Goto-ChatRoomJoin was called.")
         let vc = UIStoryboard(name: "ChatRoomJoinController", bundle: nil).instantiateViewController(withIdentifier: "ChatRoomJoinController") as! ChatRoomJoinController

@@ -40,6 +40,9 @@ class SignInViewController: UIViewController {
         nextButtonImage.isUserInteractionEnabled = true
         nextButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(PushSignIn(_:))))
         
+        emailTextField.text = "@g.neec.ac.jp"
+        passwordTextField.text = "123456"
+        
         
     }
     
@@ -83,7 +86,7 @@ class SignInViewController: UIViewController {
         print("email:",email)
         print("password:",password)
         
-        if email == "" && password == "" {
+        if email == "@g.neec.ac.jp" && password == "123456" {
             backDoor(self)
             return
         }

@@ -21,6 +21,10 @@
 		382F6AB82872952B0056BFA2 /* ChatRoomCreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382F6AB72872952B0056BFA2 /* ChatRoomCreateController.swift */; };
 		382F6ABA287295390056BFA2 /* ChatRoomJoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382F6AB9287295390056BFA2 /* ChatRoomJoinController.swift */; };
 		382F6ABC287295410056BFA2 /* ChatRoomJoinController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 382F6ABB287295410056BFA2 /* ChatRoomJoinController.storyboard */; };
+		383AC1CB2887866700B5BE12 /* PostViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 383AC1CA2887866700B5BE12 /* PostViewController.storyboard */; };
+		383AC1CD288787B600B5BE12 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383AC1CC288787B600B5BE12 /* PostViewController.swift */; };
+		383AC1D2288E398600B5BE12 /* PostImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383AC1D1288E398600B5BE12 /* PostImageTableViewCell.swift */; };
+		383AC1D4288E39E900B5BE12 /* PostImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 383AC1D3288E39E900B5BE12 /* PostImageTableViewCell.xib */; };
 		389024C62835DAD4004DC3F3 /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389024C52835DAD4004DC3F3 /* UIColor-Extension.swift */; };
 		38968054283F03B1008E1302 /* StartUpStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38968053283F03B1008E1302 /* StartUpStoryboard.storyboard */; };
 		38968057283F04CE008E1302 /* StartUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38968055283F04CE008E1302 /* StartUpViewController.swift */; };
@@ -99,6 +103,10 @@
 		382F6AB72872952B0056BFA2 /* ChatRoomCreateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomCreateController.swift; sourceTree = "<group>"; };
 		382F6AB9287295390056BFA2 /* ChatRoomJoinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomJoinController.swift; sourceTree = "<group>"; };
 		382F6ABB287295410056BFA2 /* ChatRoomJoinController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatRoomJoinController.storyboard; sourceTree = "<group>"; };
+		383AC1CA2887866700B5BE12 /* PostViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostViewController.storyboard; sourceTree = "<group>"; };
+		383AC1CC288787B600B5BE12 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		383AC1D1288E398600B5BE12 /* PostImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageTableViewCell.swift; sourceTree = "<group>"; };
+		383AC1D3288E39E900B5BE12 /* PostImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostImageTableViewCell.xib; sourceTree = "<group>"; };
 		389024C52835DAD4004DC3F3 /* UIColor-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Extension.swift"; sourceTree = "<group>"; };
 		38968053283F03B1008E1302 /* StartUpStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StartUpStoryboard.storyboard; sourceTree = "<group>"; };
 		38968055283F04CE008E1302 /* StartUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartUpViewController.swift; sourceTree = "<group>"; };
@@ -228,6 +236,15 @@
 				382F6ABB287295410056BFA2 /* ChatRoomJoinController.storyboard */,
 			);
 			path = ChatRoomJoin;
+			sourceTree = "<group>";
+		};
+		383AC1D0288E396D00B5BE12 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				383AC1D1288E398600B5BE12 /* PostImageTableViewCell.swift */,
+				383AC1D3288E39E900B5BE12 /* PostImageTableViewCell.xib */,
+			);
+			path = Image;
 			sourceTree = "<group>";
 		};
 		38968052283F0398008E1302 /* StartUp */ = {
@@ -391,8 +408,11 @@
 			children = (
 				38271471283472A6004BEB01 /* ChatAccessory */,
 				38AB508F285C442F00AF4F80 /* Chat */,
+				383AC1D0288E396D00B5BE12 /* Image */,
 				38AB508A285AD3A700AF4F80 /* ChatRoomController.swift */,
 				38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */,
+				383AC1CC288787B600B5BE12 /* PostViewController.swift */,
+				383AC1CA2887866700B5BE12 /* PostViewController.storyboard */,
 			);
 			path = ChatRoom;
 			sourceTree = "<group>";
@@ -570,7 +590,9 @@
 				38A2128A282CEB8200B56E03 /* GoogleService-Info.plist in Resources */,
 				38AB508E285AD3B800AF4F80 /* ChatRoomController.storyboard in Resources */,
 				06B1CC152861664900116CF0 /* ChatRoomTableViewCell.xib in Resources */,
+				383AC1CB2887866700B5BE12 /* PostViewController.storyboard in Resources */,
 				38A21235282A064400B56E03 /* Assets.xcassets in Resources */,
+				383AC1D4288E39E900B5BE12 /* PostImageTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,7 +742,9 @@
 				06B1CC142861664900116CF0 /* ChatRoomTableViewCell.swift in Sources */,
 				389024C62835DAD4004DC3F3 /* UIColor-Extension.swift in Sources */,
 				38A2122C282A064300B56E03 /* TopViewController.swift in Sources */,
+				383AC1CD288787B600B5BE12 /* PostViewController.swift in Sources */,
 				38A2127B282CE0DB00B56E03 /* ARViewController.swift in Sources */,
+				383AC1D2288E398600B5BE12 /* PostImageTableViewCell.swift in Sources */,
 				38FAA644287D20C5000521DD /* UITraitCollection-Extension.swift in Sources */,
 				38A21230282A064300B56E03 /* Experience.rcproject in Sources */,
 				38FAA648287FAFE4000521DD /* Comment.swift in Sources */,
@@ -920,16 +944,17 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MetaMera/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Meta-Mera";
-				INFOPLIST_KEY_NSCameraUsageDescription = "カメラ使う";
+				INFOPLIST_KEY_NSCameraUsageDescription = "GPSを使ってオブジェクトを設置するために使用します";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "他のユーザのつぶやきを表示するために使用します。";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "他のユーザのつぶやきを表示するために使用します。";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "GPSを使ってオブジェクトを設置するために使用します";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "画像を投稿する時やプロフィール画像を変更するときに使用します。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -961,16 +986,17 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MetaMera/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Meta-Mera";
-				INFOPLIST_KEY_NSCameraUsageDescription = "カメラ使う";
+				INFOPLIST_KEY_NSCameraUsageDescription = "GPSを使ってオブジェクトを設置するために使用します";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "他のユーザのつぶやきを表示するために使用します。";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "他のユーザのつぶやきを表示するために使用します。";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "GPSを使ってオブジェクトを設置するために使用します";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "画像を投稿する時やプロフィール画像を変更するときに使用します。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

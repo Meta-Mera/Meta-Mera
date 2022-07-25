@@ -69,7 +69,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 //        postImageView.image = image
-        postImageView.setImage(image: image, name: Profile.shared.loginUser.uid)
+        postImageView.setImage(image: image, name: "Uz93q4hTLBHvLUFglhxp")
         setUpNotification()
         fetchMessages()
     }

@@ -16,27 +16,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VQ1-bw-yCB">
-                                <rect key="frame" x="67" y="342" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYJ-Ku-gip">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <subviews>
-                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.69999998807907104" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UNc-Jd-p1P">
-                                        <rect key="frame" x="0.0" y="556" width="375" height="250"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="250" id="RjN-gs-uci"/>
-                                        </constraints>
-                                    </mapView>
-                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="UNc-Jd-p1P" firstAttribute="leading" secondItem="CYJ-Ku-gip" secondAttribute="leading" id="57i-Td-z6K"/>
-                                    <constraint firstAttribute="trailing" secondItem="UNc-Jd-p1P" secondAttribute="trailing" id="9YD-wh-A9w"/>
-                                    <constraint firstItem="UNc-Jd-p1P" firstAttribute="centerY" secondItem="CYJ-Ku-gip" secondAttribute="centerY" constant="275" id="krx-HS-cK8"/>
-                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0g4-UK-JMB">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
@@ -57,6 +39,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.69999998807907104" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UNc-Jd-p1P">
+                                <rect key="frame" x="0.0" y="528" width="375" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="RjN-gs-uci"/>
+                                </constraints>
+                            </mapView>
                             <view alpha="0.0" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="5xn-ya-I9u">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -127,9 +115,12 @@
                         <constraints>
                             <constraint firstItem="CYJ-Ku-gip" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="1UC-ht-zxS"/>
                             <constraint firstItem="6FL-tj-Fkr" firstAttribute="leading" secondItem="czh-4h-UIa" secondAttribute="trailing" constant="20" id="1wz-uN-CDn"/>
+                            <constraint firstItem="UNc-Jd-p1P" firstAttribute="leading" secondItem="5xn-ya-I9u" secondAttribute="leading" id="55d-Lw-nW6"/>
                             <constraint firstItem="CYJ-Ku-gip" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="8v6-Lf-OZJ"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="UNc-Jd-p1P" secondAttribute="bottom" id="9PF-Wv-gd6"/>
                             <constraint firstItem="0g4-UK-JMB" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="AKa-hc-EY4"/>
                             <constraint firstItem="0g4-UK-JMB" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="D6g-GO-x6z"/>
+                            <constraint firstItem="UNc-Jd-p1P" firstAttribute="trailing" secondItem="CYJ-Ku-gip" secondAttribute="trailing" id="E9R-xS-L8k"/>
                             <constraint firstItem="czh-4h-UIa" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="Fjj-OZ-u4D"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ApQ-CF-4sq" secondAttribute="trailing" constant="24" id="H1I-Uc-TY2"/>
                             <constraint firstItem="0g4-UK-JMB" firstAttribute="trailing" secondItem="5EZ-qb-Rvc" secondAttribute="trailing" id="HZK-Ny-kpi"/>

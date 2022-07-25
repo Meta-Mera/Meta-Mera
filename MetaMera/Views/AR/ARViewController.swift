@@ -68,11 +68,11 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.bringSubviewToFront(mapView)
-//        self.view.bringSubviewToFront(selectCategoryButton)
-//        self.view.bringSubviewToFront(createRoomButton)
-//        self.view.bringSubviewToFront(plusButton)
-//        self.view.bringSubviewToFront(profileButton)
+//        self.view.bringSubviewToFront(mapView)
+        self.view.bringSubviewToFront(selectCategoryButton)
+        self.view.bringSubviewToFront(createRoomButton)
+        self.view.bringSubviewToFront(plusButton)
+        self.view.bringSubviewToFront(profileButton)
         
         //画面遷移した時だけ現在位置を表示するためにTrueにするよ
         flag = true
@@ -243,6 +243,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         switch Profile.shared.updateProfileImage() {
         case .success(let image):
             ProfileImage.setImage(image: image, name: Profile.shared.loginUser.uid)
+//            ProfileImage.image = image
 //            ProfileImage.setImage(url: Profile.shared.userIconImageUrl, name: Profile.shared.userId)
         case .failure(let error):
             break
@@ -273,6 +274,16 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                     print("areasOfInterest: ",areasOfInterest)
                 }
             })
+        }
+        
+        //MARK: 端末に保存してあるデータを表示するためのやつ
+        let documentDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        do {
+            let contentUrls = try FileManager.default.contentsOfDirectory(at: documentDirectoryURL, includingPropertiesForKeys: nil)
+            let files = contentUrls.map{$0.lastPathComponent}
+            print("files:   ",files) //-> ["test1.txt", "test2.txt"]
+        } catch {
+            print(error)
         }
     }
     
@@ -309,7 +320,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             print("run")
             self?.sceneLocationView.run()
         }
-        
     }
     
     //MARK: ここで座標に基づいたオブジェクトを設置してるよ
@@ -343,12 +353,14 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         let takaosan = buildNode(latitude: 35.62510858464141, longitude: 139.24366875641377, altitude: 610, imageName: "road",size: CGSize(width: 200, height: 300), pinUse: true, pinName: "road", postId: "test")
         takaosan.scaleRelativeToDistance = true
+//        takaosan.tag = "test"
         nodes.append(takaosan)
         
 //        35.62477445850865, 139.3414411733747
         
         
-        let arufoto = buildNode(latitude: 35.62477445850865, longitude: 139.3414411733747, altitude: 190, imageName: "arufoto",size: CGSize(width: 278, height: 122), pinUse: true, pinName: "アルフォート",postId: "Uz93q4hTLBHvLUFglhxp")
+        let arufoto = buildNode(latitude: 35.62477445850865, longitude: 139.3414411733747, altitude: 190, imageName: "ソルトアルフォート",size: CGSize(width: 278, height: 122), pinUse: true, pinName: "アルフォート",postId: "Uz93q4hTLBHvLUFglhxp")
+        arufoto.tag = "test"
 //        arufoto.scaleRelativeToDistance = true
         nodes.append(arufoto)
         
@@ -385,7 +397,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         buildDemoData().forEach {
             sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0)
-            sceneLocationView.moveSceneHeadingAntiClockwise()
+//            sceneLocationView.moveSceneHeadingAntiClockwise()
 //            sceneLocationView.moveSceneHeadingClockwise()
         }
         
@@ -420,6 +432,9 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         {
             let image = UIImage(named: imageName)!
             image.accessibilityIdentifier = postId
+            print("---------------------------------------")
+            print("accessibilityIdentifier: ",image.accessibilityIdentifier)
+            print("---------------------------------------")
 //            Profile.shared.nodeLocationsLatitude.append(latitude)
 //            Profile.shared.nodeLocationsLongitude.append(longitude)
             if pinUse {
@@ -433,6 +448,9 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             
         }
         image.accessibilityIdentifier = postId
+        print("---------------------------------------")
+        print("accessibilityIdentifier: ",image.accessibilityIdentifier)
+        print("---------------------------------------")
         if pinUse {
             annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
             annotation.title = pinName
@@ -454,12 +472,18 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         {
             let image = UIImage(named: imageName)!
             image.accessibilityIdentifier = imageName
+            print("---------------------------------------")
+            print("accessibilityIdentifier: ",image.accessibilityIdentifier)
+            print("---------------------------------------")
 //            Profile.shared.nodeLocationsLatitude.append(latitude)
 //            Profile.shared.nodeLocationsLongitude.append(longitude)
             return LocationAnnotationNode(location: location, image: image)
             
         }
         image.accessibilityIdentifier = imageName
+        print("---------------------------------------")
+        print("accessibilityIdentifier: ",image.accessibilityIdentifier)
+        print("---------------------------------------")
         return LocationAnnotationNode(location: location, image: image)
     }
     
@@ -509,6 +533,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                        pinUse: Bool, pinName: String,
                        postId: String){
         let node = buildNode(latitude: latitude, longitude: longitude, altitude: altitude, imageName: imageName, size: size, pinUse: pinUse, pinName: pinName, postId: postId)
+        node.scaleRelativeToDistance = true
         sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: node)
     }
     //MARK: ここまでオブジェクトを生成するためのやつだよ -
@@ -611,7 +636,23 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
 //        Goto.Profile(view: self)
         sceneLocationView.removeAllNodes()
         mapView.removeAnnotations(annotationArray)
-        addNode(latitude: 35.75444876559928, longitude: 139.4811042224357, altitude: 100, imageName: "road",size: CGSize(width: 200, height: 300), pinUse: true, pinName: "road", postId: "test")
+//        addNode(latitude: 35.75444876559928, longitude: 139.4811042224357, altitude: 170, imageName: "road",size: CGSize(width: 200, height: 300), pinUse: true, pinName: "road", postId: "test")
+        
+        //35.62473923766413, 139.34178926227506
+        
+        addNode(latitude: 35.62473923766413, longitude: 139.34178926227506, altitude: 180, imageName: "ソルトアルフォート",size: CGSize(width: 278, height: 122), pinUse: true, pinName: "ソルトアルフォート", postId: "Uz93q4hTLBHvLUFglhxp")
+        
+        //35.62469213276725, 139.34172279611786
+        
+        addNode(latitude: 35.62469213276725, longitude: 139.34172279611786, altitude: 180, imageName: "ブラックアルフォート",size: CGSize(width: 278, height: 122), pinUse: true, pinName: "ブラックアルフォート", postId: "Uz93q4hTLBHvLUFglhxp")
+        
+        //35.62466634430945, 139.3416535268315
+        
+        addNode(latitude: 35.62466634430945, longitude: 139.3416535268315, altitude: 180, imageName: "ホワイトアルフォート",size: CGSize(width: 278, height: 122), pinUse: true, pinName: "ホワイトアルフォート", postId: "Uz93q4hTLBHvLUFglhxp")
+        
+        //35.624671229322196, 139.34164661220515
+        
+        addNode(latitude: 35.624671229322196, longitude: 139.34164661220515, altitude: 180, imageName: "ブルーアルフォート",size: CGSize(width: 400, height: 600), pinUse: true, pinName: "ブルーアルフォート", postId: "Uz93q4hTLBHvLUFglhxp")
     }
     
     @IBAction func pushCreateRoom(_ sender: Any) {
@@ -650,13 +691,13 @@ extension ARViewController: LNTouchDelegate {
             // ...
             print("[nodeImage: getName]", nodeImage.accessibilityIdentifier ?? "null")
             
-            guard let uid = Auth.auth().currentUser?.uid else { return }
+//            guard let uid = Auth.auth().currentUser?.uid else { return }
             guard let selectImage = nodeImage.accessibilityIdentifier else { return }
-            let members = [uid]
+//            let members = [uid]
             
             let docData = [
                 "latestMessageId" : "",
-                "members" : members,
+//                "members" : members,
                 "image": selectImage,
                 "createdAt": Timestamp()
             ] as [String : Any]
@@ -672,7 +713,7 @@ extension ARViewController: LNTouchDelegate {
             //TODO: チャットルームを渡す方法を考える
             var chatroom: ChatRoom
 //            Goto.ChatRoomView(view: self, image: node.image!, chatroomId: chatroom)
-            Goto.ChatRoomView(view: self, image: node.image!, chatroomId: selectImage)
+            Goto.PostView(view: self, image: node.image!, chatroomId: selectImage)
         }
         
     }
@@ -718,10 +759,11 @@ extension ARViewController: CLLocationManagerDelegate {
         if let location = manager.location?.coordinate {
             let center: CLLocationCoordinate2D = .init(latitude: location.latitude, longitude: location.longitude)
 //            mapView.userTrackingMode = .follow
-            mapView.userTrackingMode = .followWithHeading
+            mapView.setUserTrackingMode(MKUserTrackingMode.followWithHeading, animated: true)
             if flag {
                 mapView.region = .init(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
                 mapView.centerCoordinate = center
+                mapView.userTrackingMode = .followWithHeading
                 flag.toggle()
             }
         }

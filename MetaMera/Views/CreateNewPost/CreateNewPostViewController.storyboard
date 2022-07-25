@@ -23,25 +23,26 @@
                                     <constraint firstAttribute="width" secondItem="S3a-hs-jYC" secondAttribute="height" multiplier="1:1" id="Jy4-ib-Qe2"/>
                                 </constraints>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4oC-Pf-i7F">
-                                <rect key="frame" x="0.0" y="462" width="414" height="400"/>
-                                <viewLayoutGuide key="contentLayoutGuide" id="GbX-LI-dXN"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="w2v-Ey-xhS"/>
-                            </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fdr-ON-B3u">
+                                <rect key="frame" x="0.0" y="427" width="414" height="469"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="4oC-Pf-i7F" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="9Pt-SP-1MR"/>
+                            <constraint firstItem="fdr-ON-B3u" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="01t-iK-4VC"/>
+                            <constraint firstAttribute="bottom" secondItem="fdr-ON-B3u" secondAttribute="bottom" id="5Ad-tZ-GGS"/>
+                            <constraint firstItem="fdr-ON-B3u" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="427" id="FEy-LC-IO2"/>
+                            <constraint firstItem="fdr-ON-B3u" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="MDp-ta-FNl"/>
+                            <constraint firstItem="fdr-ON-B3u" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="NZR-w8-iK5"/>
                             <constraint firstItem="S3a-hs-jYC" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="NfV-G1-IRK"/>
                             <constraint firstItem="S3a-hs-jYC" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="VOX-Cs-d0y"/>
-                            <constraint firstItem="4oC-Pf-i7F" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="462" id="bhc-NA-HNi"/>
-                            <constraint firstItem="4oC-Pf-i7F" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="fbK-fp-zb6"/>
-                            <constraint firstItem="4oC-Pf-i7F" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="vO1-4u-uRt"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backImageView" destination="S3a-hs-jYC" id="25q-I7-r4h"/>
+                        <outlet property="imagePickerView" destination="fdr-ON-B3u" id="uHY-dA-WY8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

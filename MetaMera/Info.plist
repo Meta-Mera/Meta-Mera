@@ -2,18 +2,33 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>画像を投稿する時やプロフィール画像を変更するときに使用します。</string>
-	<key>NSCameraUsageDescription</key>
-	<string>GPSを使ってオブジェクトを設置するために使用します</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>GPSを使ってオブジェクトを設置するために使用します</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>bokutachi</string>
 		<string>07YsashisaGothicTegaki</string>
 		<string>utakata-Regular</string>
 		<string>07やさしさゴシック手書き</string>
+	</array>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemSubtitle</key>
+			<string></string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string></string>
+			<key>UIApplicationShortcutItemType</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeCompose</string>
+			<key>UIApplicationShortcutItemSubtitle</key>
+			<string>Jimのアカウントでログインします。</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>バックドア</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>SearchAction</string>
+		</dict>
 	</array>
 </dict>
 </plist>

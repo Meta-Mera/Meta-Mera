@@ -11,6 +11,7 @@ import UIKit
 class CreateNewPostViewController: UIViewController {
     
     @IBOutlet weak var backImageView: UIImageView!
+    @IBOutlet weak var imagePickerView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
