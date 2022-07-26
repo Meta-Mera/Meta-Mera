@@ -60,9 +60,8 @@
                             <imageReference key="image" image="Icon" symbolScale="large"/>
                         </state>
                     </button>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hBh-eZ-ZMA">
-                        <rect key="frame" x="40" y="505" width="604" height="128"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hBh-eZ-ZMA">
+                        <rect key="frame" x="40" y="506" width="604" height="129"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <string key="text">いいでしょ〜〜〜〜〜〜
 #アルフォート
@@ -82,15 +81,19 @@
                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                 <constraints>
                     <constraint firstItem="36L-jy-pEx" firstAttribute="centerX" secondItem="YyA-eJ-GtJ" secondAttribute="centerX" id="0B6-Y6-dvc"/>
+                    <constraint firstItem="hBh-eZ-ZMA" firstAttribute="top" secondItem="GUw-EG-5PL" secondAttribute="bottom" constant="10" id="4XU-3Y-cUQ"/>
                     <constraint firstItem="GUw-EG-5PL" firstAttribute="leading" secondItem="YyA-eJ-GtJ" secondAttribute="leadingMargin" constant="20" id="5bK-iN-VmS"/>
                     <constraint firstItem="GUw-EG-5PL" firstAttribute="top" secondItem="36L-jy-pEx" secondAttribute="bottom" constant="30" id="6oX-54-sBJ"/>
                     <constraint firstItem="GKQ-a3-L5D" firstAttribute="leading" secondItem="GUw-EG-5PL" secondAttribute="trailing" constant="25" id="CVC-Y9-DsV"/>
+                    <constraint firstItem="hBh-eZ-ZMA" firstAttribute="leading" secondItem="YyA-eJ-GtJ" secondAttribute="leading" constant="40" id="QtC-dv-94v"/>
                     <constraint firstItem="36L-jy-pEx" firstAttribute="top" secondItem="AMr-9P-xk1" secondAttribute="bottom" constant="20" id="Rry-Di-z0J"/>
                     <constraint firstAttribute="trailingMargin" secondItem="36L-jy-pEx" secondAttribute="trailing" constant="20" id="TgE-fp-05z"/>
                     <constraint firstItem="glS-3r-jjD" firstAttribute="leading" secondItem="GKQ-a3-L5D" secondAttribute="trailing" constant="15" id="ZCV-YJ-Sfq"/>
                     <constraint firstItem="glS-3r-jjD" firstAttribute="centerY" secondItem="GUw-EG-5PL" secondAttribute="centerY" id="cMM-gR-BhM"/>
                     <constraint firstItem="GKQ-a3-L5D" firstAttribute="centerY" secondItem="GUw-EG-5PL" secondAttribute="centerY" id="fx6-oy-9G6"/>
+                    <constraint firstAttribute="trailing" secondItem="hBh-eZ-ZMA" secondAttribute="trailing" constant="40" id="hMG-wp-3vo"/>
                     <constraint firstAttribute="trailingMargin" secondItem="HAR-1a-5In" secondAttribute="trailing" constant="20" id="hid-YS-fDj"/>
+                    <constraint firstAttribute="bottom" secondItem="hBh-eZ-ZMA" secondAttribute="bottom" constant="35" id="jTt-Nf-kU1"/>
                     <constraint firstItem="AMr-9P-xk1" firstAttribute="leading" secondItem="YyA-eJ-GtJ" secondAttribute="leadingMargin" constant="15" id="mWd-EW-9By"/>
                     <constraint firstItem="AMr-9P-xk1" firstAttribute="top" secondItem="YyA-eJ-GtJ" secondAttribute="top" constant="16" id="oKL-0n-w6s"/>
                     <constraint firstItem="36L-jy-pEx" firstAttribute="leading" secondItem="YyA-eJ-GtJ" secondAttribute="leadingMargin" constant="20" id="pMB-AE-J6f"/>

@@ -65,17 +65,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var launchedShortcutItem: UIApplicationShortcutItem?
     func applications(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        print("呼ばれた1")
         // If the app is launched by Quick Action, then take the relevant action
         if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
             
             launchedShortcutItem = shortcutItem
-            print("呼ばれた2")
             
             // Since, the app launch is triggered by QuicAction, block "performActionForShortcutItem:completionHandler" method from being called.
             return false
         }
-        print("呼ばれた3")
         return true
     }
     

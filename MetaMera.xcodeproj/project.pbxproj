@@ -17,10 +17,6 @@
 		38271474283472C0004BEB01 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38271472283472C0004BEB01 /* ChatViewController.swift */; };
 		38271475283472C0004BEB01 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38271473283472C0004BEB01 /* ChatViewController.xib */; };
 		382F6AB2286D44730056BFA2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382F6AB1286D44730056BFA2 /* User.swift */; };
-		382F6AB6287295210056BFA2 /* ChatRoomCreateController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 382F6AB5287295210056BFA2 /* ChatRoomCreateController.storyboard */; };
-		382F6AB82872952B0056BFA2 /* ChatRoomCreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382F6AB72872952B0056BFA2 /* ChatRoomCreateController.swift */; };
-		382F6ABA287295390056BFA2 /* ChatRoomJoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382F6AB9287295390056BFA2 /* ChatRoomJoinController.swift */; };
-		382F6ABC287295410056BFA2 /* ChatRoomJoinController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 382F6ABB287295410056BFA2 /* ChatRoomJoinController.storyboard */; };
 		383AC1CB2887866700B5BE12 /* PostViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 383AC1CA2887866700B5BE12 /* PostViewController.storyboard */; };
 		383AC1CD288787B600B5BE12 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383AC1CC288787B600B5BE12 /* PostViewController.swift */; };
 		383AC1D2288E398600B5BE12 /* PostImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383AC1D1288E398600B5BE12 /* PostImageTableViewCell.swift */; };
@@ -99,10 +95,6 @@
 		38271472283472C0004BEB01 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		38271473283472C0004BEB01 /* ChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
 		382F6AB1286D44730056BFA2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		382F6AB5287295210056BFA2 /* ChatRoomCreateController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatRoomCreateController.storyboard; sourceTree = "<group>"; };
-		382F6AB72872952B0056BFA2 /* ChatRoomCreateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomCreateController.swift; sourceTree = "<group>"; };
-		382F6AB9287295390056BFA2 /* ChatRoomJoinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomJoinController.swift; sourceTree = "<group>"; };
-		382F6ABB287295410056BFA2 /* ChatRoomJoinController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatRoomJoinController.storyboard; sourceTree = "<group>"; };
 		383AC1CA2887866700B5BE12 /* PostViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostViewController.storyboard; sourceTree = "<group>"; };
 		383AC1CC288787B600B5BE12 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		383AC1D1288E398600B5BE12 /* PostImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageTableViewCell.swift; sourceTree = "<group>"; };
@@ -220,24 +212,6 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		382F6AB3287294E50056BFA2 /* ChatRoomCreate */ = {
-			isa = PBXGroup;
-			children = (
-				382F6AB72872952B0056BFA2 /* ChatRoomCreateController.swift */,
-				382F6AB5287295210056BFA2 /* ChatRoomCreateController.storyboard */,
-			);
-			path = ChatRoomCreate;
-			sourceTree = "<group>";
-		};
-		382F6AB4287294F30056BFA2 /* ChatRoomJoin */ = {
-			isa = PBXGroup;
-			children = (
-				382F6AB9287295390056BFA2 /* ChatRoomJoinController.swift */,
-				382F6ABB287295410056BFA2 /* ChatRoomJoinController.storyboard */,
-			);
-			path = ChatRoomJoin;
-			sourceTree = "<group>";
-		};
 		383AC1D0288E396D00B5BE12 /* Image */ = {
 			isa = PBXGroup;
 			children = (
@@ -344,8 +318,6 @@
 			isa = PBXGroup;
 			children = (
 				38FAA64B2881571E000521DD /* CreateNewPost */,
-				382F6AB4287294F30056BFA2 /* ChatRoomJoin */,
-				382F6AB3287294E50056BFA2 /* ChatRoomCreate */,
 				38AB5089285ACEF400AF4F80 /* ChatRoom */,
 				38968063284C7519008E1302 /* Profile */,
 				38968052283F0398008E1302 /* StartUp */,
@@ -581,8 +553,6 @@
 				382713892831F95F004BEB01 /* SignInViewController.xib in Resources */,
 				382713F22833423A004BEB01 /* ARViewController.storyboard in Resources */,
 				38271475283472C0004BEB01 /* ChatViewController.xib in Resources */,
-				382F6ABC287295410056BFA2 /* ChatRoomJoinController.storyboard in Resources */,
-				382F6AB6287295210056BFA2 /* ChatRoomCreateController.storyboard in Resources */,
 				38A21269282A104200B56E03 /* Main.storyboard in Resources */,
 				38A21282282CE15800B56E03 /* utakata-Regular.otf in Resources */,
 				3896806B284C7755008E1302 /* ProfileViewController.storyboard in Resources */,
@@ -726,7 +696,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				382F6AB82872952B0056BFA2 /* ChatRoomCreateController.swift in Sources */,
 				38E9AE2A2865641300EB71D6 /* Profile.swift in Sources */,
 				38968057283F04CE008E1302 /* StartUpViewController.swift in Sources */,
 				38FAA64A28801229000521DD /* Post.swift in Sources */,
@@ -736,7 +705,6 @@
 				382713882831F95F004BEB01 /* SignInViewController.swift in Sources */,
 				38271474283472C0004BEB01 /* ChatViewController.swift in Sources */,
 				38A2122E282A064300B56E03 /* ViewController.swift in Sources */,
-				382F6ABA287295390056BFA2 /* ChatRoomJoinController.swift in Sources */,
 				38FAA642287860BD000521DD /* UIImageView-Extension.swift in Sources */,
 				38FAA646287FAFA6000521DD /* ChatRoom.swift in Sources */,
 				06B1CC142861664900116CF0 /* ChatRoomTableViewCell.swift in Sources */,

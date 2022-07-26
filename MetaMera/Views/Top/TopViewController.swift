@@ -62,7 +62,9 @@ class TopViewController: UIViewController {
 
     
     @objc func PushSignUp(_ sender: Any) {
-        Goto.SignUp(view: self)
+//        Goto.SignUp(view: self)
+        
+        Goto.ChatRoomView(view: self, image: UIImage(named: "ブラックアルフォート")!, chatroomId: "Uz93q4hTLBHvLUFglhxp")
         
     }
     @objc func PushSignIn(_ sender: Any) {

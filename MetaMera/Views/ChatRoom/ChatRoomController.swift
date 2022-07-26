@@ -34,9 +34,8 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         
         chatRoomTableView.delegate = self
         chatRoomTableView.dataSource = self
-        chatRoomTableView.register(UINib(nibName: "ChatRoomTableViewCell", bundle: nil) , forCellReuseIdentifier: cellId)
-        
         chatRoomTableView.register(UINib(nibName: "PostImageTableViewCell", bundle: nil) , forCellReuseIdentifier: tableUpCellId)
+        chatRoomTableView.register(UINib(nibName: "ChatRoomTableViewCell", bundle: nil) , forCellReuseIdentifier: cellId)
         
 //        chatRoomTableView.contentInset = .init(top: 0, left: 0, bottom: 60, right: 0)
 //        chatRoomTableView.keyboardDismissMode = .interactive
@@ -168,6 +167,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
                             let m2Date = m2.createdAt.dateValue()
                             return m1Date < m2Date
                         }
+                        print("ユーザー情報の取得に成功しました。")
                         
                         self.chatRoomTableView.reloadData()
                         //                self.chatRoomTableView.scrollToRow(at: IndexPath(row: self.messages.count - 1, section: 0), at: .bottom, animated: true)
@@ -221,22 +221,34 @@ extension ChatRoomController: ChatViewControllerDelegate {
         }
 
     }
+    
+    
 }
 
 extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        chatRoomTableView.estimatedRowHeight = 20
-        return UITableView.automaticDimension
-    }
+    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        if indexPath.section == 0 {
+//            chatRoomTableView.estimatedRowHeight = 500
+//            return UITableView.automaticDimension
+//        }else{
+//            chatRoomTableView.estimatedRowHeight = 20
+//            return UITableView.automaticDimension
+//        }
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(section)
         if section == 0 {
             return 1
         }else {
             return messages.count
         }
     }
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+            return 2
+        }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
@@ -247,9 +259,7 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
             cell.postDateLabel.text = post?.createdAt.seconds.formatted()
             cell.postUserNameLabel.text = post?.postUserUid
             cell.postTextView.text = post?.areaId
-            
-            
-            
+
             return cell
         }else {
             let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatRoomTableViewCell
@@ -270,6 +280,11 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
 //        return cell
 //
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "test1"
+    }
+
     
     
 }
