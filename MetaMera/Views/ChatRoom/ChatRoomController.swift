@@ -18,12 +18,12 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     
     
     private let cellId = "ChatRoomTableViewCell"
+    private let tableUpCellId = "PostImageTableViewCell"
     private var messages = [Comment]()
     
     
     @IBOutlet weak var chatRoomTableView: UITableView!
     @IBOutlet weak var backImageView: UIImageView!
-    @IBOutlet weak var postImageView: UIImageView!
     
 //    static let shared = Profile()
     
@@ -36,7 +36,9 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         chatRoomTableView.dataSource = self
         chatRoomTableView.register(UINib(nibName: "ChatRoomTableViewCell", bundle: nil) , forCellReuseIdentifier: cellId)
         
-        chatRoomTableView.contentInset = .init(top: 0, left: 0, bottom: 60, right: 0)
+        chatRoomTableView.register(UINib(nibName: "PostImageTableViewCell", bundle: nil) , forCellReuseIdentifier: tableUpCellId)
+        
+//        chatRoomTableView.contentInset = .init(top: 0, left: 0, bottom: 60, right: 0)
 //        chatRoomTableView.keyboardDismissMode = .interactive
 //        chatRoomTableView.transform = CGAffineTransform(a: 0, b: 0, c: 0, d: -1, tx: 0, ty: 0)
         
@@ -69,7 +71,6 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 //        postImageView.image = image
-        postImageView.setImage(image: image, name: "Uz93q4hTLBHvLUFglhxp")
         setUpNotification()
         fetchMessages()
     }
@@ -230,17 +231,44 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+        if section == 0 {
+            return 1
+        }else {
+            return messages.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatRoomTableViewCell
-//        cell.messageTextView.text = messages[indexPath.row]
-        cell.messageText = messages[indexPath.row]
-        cell.messageTextView.backgroundColor = UIColor.chatTextBackground
-        cell.messageTextView.textColor = UIColor.chatText
-        return cell
+
+        if indexPath.section == 0 {
+            let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: tableUpCellId, for: indexPath) as! PostImageTableViewCell
+            
+            cell.postImageView.image = image
+            cell.postDateLabel.text = post?.createdAt.seconds.formatted()
+            cell.postUserNameLabel.text = post?.postUserUid
+            cell.postTextView.text = post?.areaId
+            
+            
+            
+            return cell
+        }else {
+            let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatRoomTableViewCell
+    //        cell.messageTextView.text = messages[indexPath.row]
+            cell.messageText = messages[indexPath.row]
+            print(messages[indexPath.row])
+            cell.messageTextView.backgroundColor = UIColor.chatTextBackground
+            cell.messageTextView.textColor = UIColor.chatText
+            return cell
+        }
         
+        
+//        let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatRoomTableViewCell
+////        cell.messageTextView.text = messages[indexPath.row]
+//        cell.messageText = messages[indexPath.row]
+//        cell.messageTextView.backgroundColor = UIColor.chatTextBackground
+//        cell.messageTextView.textColor = UIColor.chatText
+//        return cell
+//
     }
     
     

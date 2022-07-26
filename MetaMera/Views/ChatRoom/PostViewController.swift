@@ -259,7 +259,7 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        
+//
 //        if indexPath.section == 0 {
 //            let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatRoomTableViewCell
 //    //        cell.messageTextView.text = messages[indexPath.row]

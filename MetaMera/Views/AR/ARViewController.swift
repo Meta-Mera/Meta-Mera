@@ -713,7 +713,8 @@ extension ARViewController: LNTouchDelegate {
             //TODO: チャットルームを渡す方法を考える
             var chatroom: ChatRoom
 //            Goto.ChatRoomView(view: self, image: node.image!, chatroomId: chatroom)
-            Goto.PostView(view: self, image: node.image!, chatroomId: selectImage)
+//            Goto.PostView(view: self, image: node.image!, chatroomId: selectImage)
+            Goto.ChatRoomView(view: self, image: node.image!, chatroomId: selectImage)
         }
         
     }
