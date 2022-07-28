@@ -86,11 +86,6 @@ class SignInViewController: UIViewController {
         print("email:",email)
         print("password:",password)
         
-        if email == "@g.neec.ac.jp" && password == "123456" {
-            backDoor(self)
-            return
-        }
-        
         Auth.auth().signIn(withEmail: email, password: password) { res, err in
             if let err = err {
                 print("ログイン情報の取得に失敗",err)
@@ -174,49 +169,6 @@ class SignInViewController: UIViewController {
         print("push back")
         //self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
         Goto.Top(view: self, completion: nil)
-    }
-    
-    @objc func backDoor(_ sender: Any){
-        print("push next")
-        HUD.show(.progress, onView: view)
-//        passwordTextField.text = "123456"
-//        emailTextField.text = "g019c1045@g.neec.ac.jp"
-//        SignInButton.isEnabled = true
-        
-        Auth.auth().signIn(withEmail: "g019c1045@g.neec.ac.jp", password: "123456") { res, err in
-            if let err = err {
-                print("ログイン情報の取得に失敗",err)
-                HUD.hide { (_) in
-                    HUD.flash(.error, delay: 1)
-                }
-                return
-            }
-            HUD.hide { (_) in
-                HUD.flash(.success, onView: self.view, delay: 1) { (_) in
-                    guard let uid = Auth.auth().currentUser?.uid else { return }
-                    Firestore.firestore().collection("Users").document(uid).getDocument { (userSnapshot, err) in
-                        if let err = err {
-                            print("ユーザー情報の取得に失敗しました。\(err)")
-                            return
-                        }
-                        
-                        guard let dic = userSnapshot?.data() else { return }
-                        let user = User(dic: dic,uid: uid)
-                        Profile.shared.loginUser = user
-                        switch Profile.shared.updateProfileImage() {
-                        case .success(_):
-                            print("画像あるらしいよ: ",user.profileImage,"+",uid)
-                            break
-                        case .failure(_):
-                            print("画像保存されてないよ〜: ",user.profileImage,"+",uid)
-                            Profile.shared.saveImageToDevice(image: user.profileImage, fileName: uid)
-                            break
-                        }
-                        self.presentToARViewController()
-                    }
-                }
-            }
-        }
     }
 }
 

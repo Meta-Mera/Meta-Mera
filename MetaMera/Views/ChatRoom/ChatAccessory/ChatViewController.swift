@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ChatViewControllerDelegate: class{
+protocol ChatViewControllerDelegate: AnyObject{
     func tappedSendButton(text: String)
 }
 

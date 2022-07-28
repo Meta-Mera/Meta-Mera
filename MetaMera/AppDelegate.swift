@@ -17,72 +17,96 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     //MARK: Quick Action
-//    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-//        /** Process the quick action if the user selected one to launch the app.
-//            Grab a reference to the shortcutItem to use in the scene.
-//        */
-//
-//        if let windowScene = scene as? UIWindowScene {
-//            let window = UIWindow(windowScene: windowScene)
-//            // connectionOptions.shortcutItem?.typeでQuick Actionから起動したか判別可能
-//            //遷移方法は適当です。typeを保存しておいて各画面側でmodal表示とかでもいいのかもしれないです。、
-//            if let shortcutItem = connectionOptions.shortcutItem {
-//                // Save it off for later when we become active.
-//                switch shortcutItem.type {
-//                case "backdoor":
-//                    print("これ！！！これ！！！これ！！！これ！！！これ！！！これ！！！これ！！！")
-//                    window.rootViewController = UIStoryboard.instantiateInitialViewController(.init(name: "SignInViewController", bundle: .main))()
-//                default:
-//                    print("これこれこれこれこれこれこれこれこれこれこれこれこれこれこれ!!!!!!!!!!!!!!!!!!!!!!!!")
-//                    window.rootViewController = UIStoryboard.instantiateInitialViewController(.init(name: "TopViewController", bundle: .main))()
-//                }
-//                self.window = window
-//                window.makeKeyAndVisible()
-//            }
-//        }
-//    }
-//
-//    func windowScene(_ windowScene: UIWindowScene,
-//                     performActionFor shortcutItem: UIApplicationShortcutItem,
-//                     completionHandler: @escaping (Bool) -> Void) {
-//
-//        let window = UIWindow(windowScene: windowScene)
-//        // connectionOptions.shortcutItem?.typeでQuick Actionから起動したか判別可能
-//        //遷移方法は適当です。typeを保存しておいて各画面側でmodal表示とかでもいいのかもしれないです。、
-//        switch shortcutItem.type{
-//        case "backdoor":
-//            print("これ！！！！！！！！！")
-//            window.rootViewController = UIStoryboard.instantiateInitialViewController(.init(name: "SignInViewController", bundle: .main))()
-//        default:
-//            print("!!!!!!!!!!!!!!!!!!!!!!!!これこれこれこれこれこれこれこれこれこれこれこれこれこれこれ")
-//            window.rootViewController = UIStoryboard.instantiateInitialViewController(.init(name: "TopViewController", bundle: .main))()
-//        }
-//        self.window = window
-//        window.makeKeyAndVisible()
-//    }
-    
-    
-    var launchedShortcutItem: UIApplicationShortcutItem?
-    func applications(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        // If the app is launched by Quick Action, then take the relevant action
-        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem) async -> Bool {
+        window = UIWindow(frame: UIScreen.main.bounds)
+        switch shortcutItem.type {
+        case "SearchAction":
             
-            launchedShortcutItem = shortcutItem
-            
-            // Since, the app launch is triggered by QuicAction, block "performActionForShortcutItem:completionHandler" method from being called.
-            return false
+            Auth.auth().signIn(withEmail: "g019c1045@g.neec.ac.jp", password: "123456") { res, err in
+                if let err = err {
+                    print("ログイン情報の取得に失敗",err)
+                    return
+                }
+                guard let uid = Auth.auth().currentUser?.uid else { return }
+                Firestore.firestore().collection("Users").document(uid).getDocument { (userSnapshot, err) in
+                    if let err = err {
+                        print("ユーザー情報の取得に失敗しました。\(err)")
+                        return
+                    }
+                    
+                    guard let dic = userSnapshot?.data() else { return }
+                    let user = User(dic: dic,uid: uid)
+                    Profile.shared.loginUser = user
+                    switch Profile.shared.updateProfileImage() {
+                    case .success(_):
+                        print("画像あるらしいよ: ",user.profileImage,"+",uid)
+                        break
+                    case .failure(_):
+                        print("画像保存されてないよ〜: ",user.profileImage,"+",uid)
+                        Profile.shared.saveImageToDevice(image: user.profileImage, fileName: uid)
+                        break
+                    }
+                    self.window = UIWindow()
+                    self.window?.rootViewController = UIStoryboard.instantiateInitialViewController(.init(name: "ARViewController", bundle: .main))()
+                    self.window?.makeKeyAndVisible()
+                }
+            }
+        case "debug":
+            Auth.auth().signIn(withEmail: "g019c1045@g.neec.ac.jp", password: "123456") { res, err in
+                if let err = err {
+                    print("ログイン情報の取得に失敗",err)
+                    return
+                }
+                guard let uid = Auth.auth().currentUser?.uid else { return }
+                Firestore.firestore().collection("Users").document(uid).getDocument { (userSnapshot, err) in
+                    if let err = err {
+                        print("ユーザー情報の取得に失敗しました。\(err)")
+                        return
+                    }
+                    
+                    guard let dic = userSnapshot?.data() else { return }
+                    let user = User(dic: dic,uid: uid)
+                    Profile.shared.loginUser = user
+                    switch Profile.shared.updateProfileImage() {
+                    case .success(_):
+                        print("画像あるらしいよ: ",user.profileImage,"+",uid)
+                        break
+                    case .failure(_):
+                        print("画像保存されてないよ〜: ",user.profileImage,"+",uid)
+                        Profile.shared.saveImageToDevice(image: user.profileImage, fileName: uid)
+                        break
+                    }
+                    Firestore.firestore().collection("Posts").document("Uz93q4hTLBHvLUFglhxp").getDocument { (snapshot, err) in
+                        if let err = err {
+                            print("投稿情報の取得に失敗しました。\(err)")
+                            return
+                        }
+                        
+                        guard let dic = snapshot?.data() else { return }
+                        print("投稿情報の取得に成功しました。")
+                        let post = Post(dic: dic,postId: "Uz93q4hTLBHvLUFglhxp")
+                        let viewController = ChatRoomController()
+                        viewController.post = post
+                        viewController.image = UIImage(named: "ブラックアルフォート")!
+                        viewController.postId = post.postId
+                        self.window?.rootViewController = UINavigationController(rootViewController: viewController)
+                    }
+                }
+            }
+        default:
+            let navigationController =  UINavigationController(rootViewController: SignUpViewController())
+            window?.rootViewController = navigationController
         }
+        window?.makeKeyAndVisible()
         return true
     }
     
-    
-
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        
         
         //sleep(1)
         window = UIWindow()

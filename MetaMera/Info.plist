@@ -12,16 +12,18 @@
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeMessage</string>
 			<key>UIApplicationShortcutItemSubtitle</key>
-			<string></string>
+			<string>ChatRoomController</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string></string>
+			<string>投稿デバッグ用</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string></string>
+			<string>debug</string>
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutIconTypeCompose</string>
+			<string>UIApplicationShortcutIconTypeProhibit</string>
 			<key>UIApplicationShortcutItemSubtitle</key>
 			<string>Jimのアカウントでログインします。</string>
 			<key>UIApplicationShortcutItemTitle</key>

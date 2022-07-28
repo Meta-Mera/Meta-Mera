@@ -69,9 +69,6 @@ class Goto : UIViewController{
         if let vc = UIStoryboard.instantiateInitialViewController(.init(name: "ARViewController", bundle: .main))() as? ARViewController {
             let navController = UINavigationController(rootViewController: vc)
             navController.modalPresentationStyle = .fullScreen
-            
-            
-            
             view.present(navController, animated: true)
         }
     }
@@ -83,11 +80,12 @@ class Goto : UIViewController{
         view.present(vc, animated: true, completion: nil)
     }
     
-    class func ChatRoomView(view: UIViewController, image: UIImage, chatroomId: String){
+    class func ChatRoomView(view: UIViewController, image: UIImage, post: Post!){
         print("Goto-ChatRoom was called.")
         let vc = UIStoryboard(name: "ChatRoomController", bundle: nil).instantiateViewController(withIdentifier: "ChatRoomController") as! ChatRoomController
         vc.image = image
-        vc.postId = chatroomId
+        vc.postId = post.postId!
+        vc.post = post
         vc.modalPresentationStyle = .fullScreen
         view.present(vc, animated: true, completion: nil)
     }
@@ -100,20 +98,7 @@ class Goto : UIViewController{
         vc.modalPresentationStyle = .fullScreen
         view.present(vc, animated: true, completion: nil)
     }
-    
-    class func ChatRoomJoin(view: UIViewController){
-        print("Goto-ChatRoomJoin was called.")
-        let vc = UIStoryboard(name: "ChatRoomJoinController", bundle: nil).instantiateViewController(withIdentifier: "ChatRoomJoinController") as! ChatRoomJoinController
-        vc.modalPresentationStyle = .fullScreen
-        view.present(vc, animated: true, completion: nil)
-    }
-    
-    class func ChatRoomCreate(view: UIViewController){
-        print("Goto-ChatRoomCreate was called.")
-        let vc = UIStoryboard(name: "ChatRoomCreateController", bundle: nil).instantiateViewController(withIdentifier: "ChatRoomCreateController") as! ChatRoomCreateController
-        vc.modalPresentationStyle = .fullScreen
-        view.present(vc, animated: true, completion: nil)
-    }
+
     
     class func CreateNewPost(view: UIViewController){
         print("Goto-ChatRoomCreate was called.")

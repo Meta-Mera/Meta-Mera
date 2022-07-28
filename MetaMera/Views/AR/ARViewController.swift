@@ -245,7 +245,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             ProfileImage.setImage(image: image, name: Profile.shared.loginUser.uid)
 //            ProfileImage.image = image
 //            ProfileImage.setImage(url: Profile.shared.userIconImageUrl, name: Profile.shared.userId)
-        case .failure(let error):
+        case .failure(_):
             break
         }
         
@@ -433,7 +433,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             let image = UIImage(named: imageName)!
             image.accessibilityIdentifier = postId
             print("---------------------------------------")
-            print("accessibilityIdentifier: ",image.accessibilityIdentifier)
+            print("accessibilityIdentifier: ",image.accessibilityIdentifier as Any)
             print("---------------------------------------")
 //            Profile.shared.nodeLocationsLatitude.append(latitude)
 //            Profile.shared.nodeLocationsLongitude.append(longitude)
@@ -449,7 +449,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         }
         image.accessibilityIdentifier = postId
         print("---------------------------------------")
-        print("accessibilityIdentifier: ",image.accessibilityIdentifier)
+        print("accessibilityIdentifier: ",image.accessibilityIdentifier as Any)
         print("---------------------------------------")
         if pinUse {
             annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
@@ -473,7 +473,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             let image = UIImage(named: imageName)!
             image.accessibilityIdentifier = imageName
             print("---------------------------------------")
-            print("accessibilityIdentifier: ",image.accessibilityIdentifier)
+            print("accessibilityIdentifier: ",image.accessibilityIdentifier as Any)
             print("---------------------------------------")
 //            Profile.shared.nodeLocationsLatitude.append(latitude)
 //            Profile.shared.nodeLocationsLongitude.append(longitude)
@@ -482,7 +482,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         }
         image.accessibilityIdentifier = imageName
         print("---------------------------------------")
-        print("accessibilityIdentifier: ",image.accessibilityIdentifier)
+        print("accessibilityIdentifier: ",image.accessibilityIdentifier as Any)
         print("---------------------------------------")
         return LocationAnnotationNode(location: location, image: image)
     }
@@ -657,13 +657,11 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     @IBAction func pushCreateRoom(_ sender: Any) {
         backTap()
-        Goto.ChatRoomCreate(view: self)
         
     }
     
     @IBAction func pushSelectCategory(_ sender: Any) {
         backTap()
-        Goto.ChatRoomJoin(view: self)
         
     }
     
@@ -693,28 +691,20 @@ extension ARViewController: LNTouchDelegate {
             
 //            guard let uid = Auth.auth().currentUser?.uid else { return }
             guard let selectImage = nodeImage.accessibilityIdentifier else { return }
-//            let members = [uid]
-            
-            let docData = [
-                "latestMessageId" : "",
-//                "members" : members,
-                "image": selectImage,
-                "createdAt": Timestamp()
-            ] as [String : Any]
-            
-//            Firestore.firestore().collection("chatRooms").addDocument(data: docData) { (err) in
-//                if let err = err {
-//                    print("失敗\(err)")
-//                }
-//
-//                print("成功")
-//            }
             
             //TODO: チャットルームを渡す方法を考える
-            var chatroom: ChatRoom
+            Firestore.firestore().collection("Posts").document(selectImage).getDocument { (snapshot, err) in
+                if let err = err {
+                    print("投稿情報の取得に失敗しました。\(err)")
+                    return
+                }
+                
+                guard let dic = snapshot?.data() else { return }
+                let post = Post(dic: dic, postId: selectImage)
+                Goto.ChatRoomView(view: self, image: node.image!, post: post)
+            }
 //            Goto.ChatRoomView(view: self, image: node.image!, chatroomId: chatroom)
 //            Goto.PostView(view: self, image: node.image!, chatroomId: selectImage)
-            Goto.ChatRoomView(view: self, image: node.image!, chatroomId: selectImage)
         }
         
     }

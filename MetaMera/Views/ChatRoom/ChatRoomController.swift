@@ -13,7 +13,7 @@ import Firebase
 class ChatRoomController: UIViewController, UITextFieldDelegate{
     
     var postId: String!
-    var post: Post?
+    var post: Post!
     var user: User?
     
     
@@ -228,6 +228,7 @@ extension ChatRoomController: ChatViewControllerDelegate {
 extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
     
     
+    
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        if indexPath.section == 0 {
 //            chatRoomTableView.estimatedRowHeight = 500
@@ -254,11 +255,10 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
 
         if indexPath.section == 0 {
             let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: tableUpCellId, for: indexPath) as! PostImageTableViewCell
-            
+
             cell.postImageView.image = image
-            cell.postDateLabel.text = post?.createdAt.seconds.formatted()
-            cell.postUserNameLabel.text = post?.postUserUid
-            cell.postTextView.text = post?.areaId
+            cell.post = post
+            
 
             return cell
         }else {
@@ -282,6 +282,10 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "test1"
+    }
+    
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return "test1"
     }
 

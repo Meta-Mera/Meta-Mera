@@ -20,10 +20,11 @@ class Post {
     let latitude: Double
     let longitude: Double
     let altitude: Double
+    let comment: String
     
     var postId: String?
     
-    init(dic: [String: Any]) {
+    init(dic: [String: Any], postId: String) {
         self.areaId = dic["areaId"] as? String ?? ""
         self.genreId = dic["genreId"] as? String ?? ""
         self.postUserUid = dic["postUserUid"] as? String ?? ""
@@ -34,5 +35,7 @@ class Post {
         self.latitude = dic["latitude"] as? Double ?? 1.0
         self.longitude = dic["longitude"] as? Double ?? 1.0
         self.altitude = dic["altitude"] as? Double ?? 1.0
+        self.comment = dic["comment"] as? String ?? ""
+        self.postId = postId
     }
 }
