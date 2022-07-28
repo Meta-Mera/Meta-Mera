@@ -19,63 +19,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK: Quick Action
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem) async -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
+        let signInModel = SignInModel()
         switch shortcutItem.type {
         case "SearchAction":
             
-            Auth.auth().signIn(withEmail: "g019c1045@g.neec.ac.jp", password: "123456") { res, err in
-                if let err = err {
-                    print("ログイン情報の取得に失敗",err)
-                    return
-                }
-                guard let uid = Auth.auth().currentUser?.uid else { return }
-                Firestore.firestore().collection("Users").document(uid).getDocument { (userSnapshot, err) in
-                    if let err = err {
-                        print("ユーザー情報の取得に失敗しました。\(err)")
-                        return
-                    }
-                    
-                    guard let dic = userSnapshot?.data() else { return }
-                    let user = User(dic: dic,uid: uid)
-                    Profile.shared.loginUser = user
-                    switch Profile.shared.updateProfileImage() {
-                    case .success(_):
-                        print("画像あるらしいよ: ",user.profileImage,"+",uid)
-                        break
-                    case .failure(_):
-                        print("画像保存されてないよ〜: ",user.profileImage,"+",uid)
-                        Profile.shared.saveImageToDevice(image: user.profileImage, fileName: uid)
-                        break
-                    }
-                    self.window = UIWindow()
-                    self.window?.rootViewController = UIStoryboard.instantiateInitialViewController(.init(name: "ARViewController", bundle: .main))()
-                    self.window?.makeKeyAndVisible()
+            signInModel.signIn(signItem: .init(email: "g019c1045@g.neec.ac.jp", password: "123456")) {[weak self] result in
+                switch result{
+                case .success(_):
+                    self?.window = UIWindow()
+                    self?.window?.rootViewController = UIStoryboard.instantiateInitialViewController(.init(name: "ARViewController", bundle: .main))()
+                    self?.window?.makeKeyAndVisible()
+                case .failure(_): break
                 }
             }
         case "debug":
-            Auth.auth().signIn(withEmail: "g019c1045@g.neec.ac.jp", password: "123456") { res, err in
-                if let err = err {
-                    print("ログイン情報の取得に失敗",err)
-                    return
-                }
-                guard let uid = Auth.auth().currentUser?.uid else { return }
-                Firestore.firestore().collection("Users").document(uid).getDocument { (userSnapshot, err) in
-                    if let err = err {
-                        print("ユーザー情報の取得に失敗しました。\(err)")
-                        return
-                    }
+            signInModel.signIn(signItem: .init(email: "g019c1045@g.neec.ac.jp", password: "123456")) {[weak self] result in
+                switch result{
                     
-                    guard let dic = userSnapshot?.data() else { return }
-                    let user = User(dic: dic,uid: uid)
-                    Profile.shared.loginUser = user
-                    switch Profile.shared.updateProfileImage() {
-                    case .success(_):
-                        print("画像あるらしいよ: ",user.profileImage,"+",uid)
-                        break
-                    case .failure(_):
-                        print("画像保存されてないよ〜: ",user.profileImage,"+",uid)
-                        Profile.shared.saveImageToDevice(image: user.profileImage, fileName: uid)
-                        break
-                    }
+                case .success(_):
                     Firestore.firestore().collection("Posts").document("Uz93q4hTLBHvLUFglhxp").getDocument { (snapshot, err) in
                         if let err = err {
                             print("投稿情報の取得に失敗しました。\(err)")
@@ -89,8 +50,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         viewController.post = post
                         viewController.image = UIImage(named: "ブラックアルフォート")!
                         viewController.postId = post.postId
-                        self.window?.rootViewController = UINavigationController(rootViewController: viewController)
+                        self?.window?.rootViewController = UINavigationController(rootViewController: viewController)
                     }
+                case .failure(_): break
                 }
             }
         default:

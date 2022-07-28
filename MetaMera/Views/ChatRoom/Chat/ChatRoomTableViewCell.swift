@@ -83,7 +83,7 @@ class ChatRoomTableViewCell: UITableViewCell {
     }
     
     private func estimateFrameForTextView(text: String) -> CGRect{
-        let size = CGSize(width: 500, height: 5000)
+        let size = CGSize(width: 280, height: 5000)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
         
         return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)], context: nil)

@@ -53,6 +53,8 @@
 		38A2128C282CEB8200B56E03 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38A21289282CEB8200B56E03 /* GoogleService-Info.plist */; };
 		38AB508B285AD3A700AF4F80 /* ChatRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB508A285AD3A700AF4F80 /* ChatRoomController.swift */; };
 		38AB508E285AD3B800AF4F80 /* ChatRoomController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */; };
+		38AD14C2289249EF001D1769 /* SignInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AD14C1289249EF001D1769 /* SignInModel.swift */; };
+		38AD14C5289266BE001D1769 /* SignItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AD14C4289266BE001D1769 /* SignItem.swift */; };
 		38E9AE2A2865641300EB71D6 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E9AE292865641300EB71D6 /* Profile.swift */; };
 		38FAA642287860BD000521DD /* UIImageView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FAA641287860BD000521DD /* UIImageView-Extension.swift */; };
 		38FAA644287D20C5000521DD /* UITraitCollection-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FAA643287D20C5000521DD /* UITraitCollection-Extension.swift */; };
@@ -128,6 +130,8 @@
 		38A212C42831DB1500B56E03 /* MetaMera.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MetaMera.entitlements; sourceTree = "<group>"; };
 		38AB508A285AD3A700AF4F80 /* ChatRoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomController.swift; sourceTree = "<group>"; };
 		38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatRoomController.storyboard; sourceTree = "<group>"; };
+		38AD14C1289249EF001D1769 /* SignInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInModel.swift; sourceTree = "<group>"; };
+		38AD14C4289266BE001D1769 /* SignItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignItem.swift; sourceTree = "<group>"; };
 		38E9AE292865641300EB71D6 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		38FAA641287860BD000521DD /* UIImageView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView-Extension.swift"; sourceTree = "<group>"; };
 		38FAA643287D20C5000521DD /* UITraitCollection-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITraitCollection-Extension.swift"; sourceTree = "<group>"; };
@@ -288,6 +292,7 @@
 				382F6AB0286582BE0056BFA2 /* Extension */,
 				3896805C284A4C90008E1302 /* Controller */,
 				389680592844585D008E1302 /* AR */,
+				38AD14C3289266A3001D1769 /* Entity */,
 				38E9AE282865641300EB71D6 /* Models */,
 				38A2125A282A066000B56E03 /* Views */,
 				38A2122F282A064300B56E03 /* Experience.rcproject */,
@@ -398,6 +403,14 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
+		38AD14C3289266A3001D1769 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				38AD14C4289266BE001D1769 /* SignItem.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
 		38E9AE282865641300EB71D6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -406,6 +419,7 @@
 				38FAA645287FAFA6000521DD /* ChatRoom.swift */,
 				38FAA647287FAFE4000521DD /* Comment.swift */,
 				38FAA64928801229000521DD /* Post.swift */,
+				38AD14C1289249EF001D1769 /* SignInModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -703,11 +717,13 @@
 				382713F028332648004BEB01 /* AppDelegate.swift in Sources */,
 				3896805E284A4CAE008E1302 /* Goto.swift in Sources */,
 				382713882831F95F004BEB01 /* SignInViewController.swift in Sources */,
+				38AD14C2289249EF001D1769 /* SignInModel.swift in Sources */,
 				38271474283472C0004BEB01 /* ChatViewController.swift in Sources */,
 				38A2122E282A064300B56E03 /* ViewController.swift in Sources */,
 				38FAA642287860BD000521DD /* UIImageView-Extension.swift in Sources */,
 				38FAA646287FAFA6000521DD /* ChatRoom.swift in Sources */,
 				06B1CC142861664900116CF0 /* ChatRoomTableViewCell.swift in Sources */,
+				38AD14C5289266BE001D1769 /* SignItem.swift in Sources */,
 				389024C62835DAD4004DC3F3 /* UIColor-Extension.swift in Sources */,
 				38A2122C282A064300B56E03 /* TopViewController.swift in Sources */,
 				383AC1CD288787B600B5BE12 /* PostViewController.swift in Sources */,

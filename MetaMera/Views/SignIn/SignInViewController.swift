@@ -13,21 +13,21 @@ import PKHUD
 
 class SignInViewController: UIViewController {
     
-    @IBOutlet weak var haikeiImageView: UIImageView!
-    
-    @IBOutlet weak var emailLabelView: UILabel!
-    @IBOutlet weak var passwordLabelView: UILabel!
-    
+    @IBOutlet weak var backGroundImageView: UIImageView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
     @IBOutlet weak var nextButtonImage: UIImageView!
     @IBOutlet weak var backButtonImage: UIImageView!
     
-    
+    let signInModel = SignInModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewConfig()
+    }
+    
+    func viewConfig(){
         emailTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
         passwordTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
 
@@ -39,11 +39,6 @@ class SignInViewController: UIViewController {
 
         nextButtonImage.isUserInteractionEnabled = true
         nextButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(PushSignIn(_:))))
-        
-        emailTextField.text = "@g.neec.ac.jp"
-        passwordTextField.text = "123456"
-        
-        
     }
     
   override func viewWillLayoutSubviews() {
@@ -53,19 +48,6 @@ class SignInViewController: UIViewController {
       passwordTextField.addBorderBottom(height: 2.5, color: rgba)
     
   }
-    
-    override func viewWillAppear(_ animated: Bool) {
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-    }
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -79,83 +61,21 @@ class SignInViewController: UIViewController {
     @objc func PushSignIn(_ sender: Any) {
         self.view.endEditing(true)
         HUD.show(.progress, onView: view)
-        
-        guard let email = emailTextField.text else { return }
-        guard let password = passwordTextField.text else { return }
-        
-        print("email:",email)
-        print("password:",password)
-        
-        Auth.auth().signIn(withEmail: email, password: password) { res, err in
-            if let err = err {
-                print("ログイン情報の取得に失敗",err)
+        signInModel.signIn(signItem: .init(email: emailTextField.text, password: passwordTextField.text)) { [weak self] result in
+            switch result{
+            case .success(_):
                 HUD.hide { (_) in
-                    HUD.flash(.error, delay: 1)
-                }
-                return
-            }
-            HUD.hide { (_) in
-                HUD.flash(.success, onView: self.view, delay: 1) { [weak self] (_) in
-                    guard let uid = Auth.auth().currentUser?.uid else { return }
-                    Firestore.firestore().collection("Users").document(uid).getDocument { (userSnapshot, err) in
-                        if let err = err {
-                            print("ユーザー情報の取得に失敗しました。\(err)")
-                            return
-                        }
-                        
-                        guard let dic = userSnapshot?.data() else { return }
-                        let user = User(dic: dic,uid: uid)
-                        Profile.shared.loginUser = user
-                        switch Profile.shared.updateProfileImage() {
-                        case .success(_):
-                            print("画像あるらしいよ: ",user.profileImage,"+",uid)
-                            break
-                        case .failure(_):
-                            print("画像保存されてないよ〜: ",user.profileImage,"+",uid)
-                            Profile.shared.saveImageToDevice(image: user.profileImage, fileName: uid)
-                            break
-                        }
+                    HUD.flash(.success, onView: self?.view, delay: 1) { (_) in
                         self?.presentToARViewController()
                     }
                 }
+                
+            case .failure(let error):
+                HUD.hide { (_) in
+                    HUD.flash(.error, delay: 1)
+                    print(error)
+                }
             }
-        }
-        
-    }
-    
-    func sizeCheck() -> Int{
-        //画面のサイズを取得
-        let rect1 = UIScreen.main.bounds
-        var size = CGFloat()
-        
-        //画面の縦横でサイズが変わるため大きい方のサイズを取得
-        if rect1.size.height > rect1.size.width {
-            size = rect1.size.height
-        }else{
-            size = rect1.size.width
-        }
-        
-        switch size {
-        case 926:
-            print("iPhone 12 Pro Max, 13 Pro Max")
-            return 50
-        case 896:
-            print("iPhone XS, 11 Pro Max, XR, 11")
-            return 50
-        case 844:
-            print("iPhone 12, 13, 12 Pro, 13 Pro")
-            return 40
-        case 812:
-            print("iPhone X, XS, 11 Pro, 12 mini, 13 mini")
-            return 40
-        case 736:
-            print("iPhone 6, 6s, 7, 8 plus")
-            return 30
-        case 667:
-            print("iPhone 6, 6s, 7, 8, SE2")
-            return 20
-        default:
-            return 5
         }
     }
 
@@ -167,7 +87,6 @@ class SignInViewController: UIViewController {
 
     @objc func gotoTopView(_ sender: Any) {
         print("push back")
-        //self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
         Goto.Top(view: self, completion: nil)
     }
 }

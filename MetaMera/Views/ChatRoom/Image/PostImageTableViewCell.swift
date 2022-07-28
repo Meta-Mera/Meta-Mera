@@ -72,7 +72,7 @@ class PostImageTableViewCell: UITableViewCell {
             self?.postUser = User(dic: dic,uid: postUserUid)
             
             self?.postUserNameLabel.text = self?.postUser?.userName
-            self?.postTextView.text = self?.post?.comment
+            self?.postTextView.text = self?.post?.comment.replacingOccurrences(of: "\\\\n", with: "\n").replacingOccurrences(of: "\\", with: "")
             if let url = URL(string: (self?.postUser?.profileImage)!){
                 Nuke.loadImage(with: url, into: (self?.profileImageView)!)
             }

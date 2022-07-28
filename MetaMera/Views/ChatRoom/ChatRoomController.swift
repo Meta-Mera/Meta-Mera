@@ -19,6 +19,12 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     
     private let cellId = "ChatRoomTableViewCell"
     private let tableUpCellId = "PostImageTableViewCell"
+    private let accessoryHeight: CGFloat = 150
+    private let tableViewContentInset : UIEdgeInsets = .init(top: 0, left: 0, bottom: 60, right: 0)
+    private let tableViewIndicatorInser : UIEdgeInsets = .init(top: 0, left: 0, bottom: 60, right: 0)
+    private var safaAreaBottom: CGFloat {
+        self.view.safeAreaInsets.bottom
+    }
     private var messages = [Comment]()
     
     
@@ -32,15 +38,24 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUpNotification()
+        tearDownNotification()
+        configView()
+        
+    }
+    
+    func configView(){
         chatRoomTableView.delegate = self
         chatRoomTableView.dataSource = self
         chatRoomTableView.register(UINib(nibName: "PostImageTableViewCell", bundle: nil) , forCellReuseIdentifier: tableUpCellId)
         chatRoomTableView.register(UINib(nibName: "ChatRoomTableViewCell", bundle: nil) , forCellReuseIdentifier: cellId)
+        chatRoomTableView.rowHeight = UITableView.automaticDimension
         
-//        chatRoomTableView.contentInset = .init(top: 0, left: 0, bottom: 60, right: 0)
-//        chatRoomTableView.keyboardDismissMode = .interactive
-//        chatRoomTableView.transform = CGAffineTransform(a: 0, b: 0, c: 0, d: -1, tx: 0, ty: 0)
+        chatRoomTableView.contentInset = tableViewContentInset
+        chatRoomTableView.scrollIndicatorInsets = tableViewIndicatorInser
+        chatRoomTableView.keyboardDismissMode = .interactive
         
+        //戻るボタン
         backImageView.isUserInteractionEnabled = true
         backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backView(_:))))
         
@@ -80,20 +95,6 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         tearDownNotification()
     }
     
-    //TODO: チャットルームに入ったときにFirestoreから最新の情報を取得したい
-//    private func fetchChatRoomInFromFirestore(){
-//
-//        Firestore.firestore().collection("Posts").document(postImageView.getName() ?? "").getDocument { snapshots, err in
-//            if let err = err{
-//                print("チャットルームの取得に失敗\(err)")
-//                return
-//            }
-//
-//            let dic = snapshots?.data()
-//            print("dic:",dic)
-//        }
-//    }
-    
     //MARK: 前の画面に戻る
     @objc func backView(_ sender: Any){
         print("push back image")
@@ -103,7 +104,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     
     private lazy var chatView: ChatViewController = {
         let view = ChatViewController()
-        view.frame = .init(x: 0, y: 0, width: view.frame.width, height: 150)
+        view.frame = .init(x: 0, y: 0, width: view.frame.width, height: accessoryHeight)
         view.delegate = self
         return view
     }()
@@ -123,17 +124,25 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     }
     
     @objc func showKeyboard(notification: Notification){
-//        guard let userInfo = notification.userInfo else { return }
-//
-//        if let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue {
-//
-//            let top = keyboardFrame.height
-//            let contentInset = UIEdgeInsets(top: top, left: 0, bottom: 0, right: 0)
-//        }
+        guard let userInfo = notification.userInfo else { return }
+
+        if let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue {
+
+            if keyboardFrame.height <= accessoryHeight { return }
+            let bottom = keyboardFrame.height - 40
+            let moveY = (bottom - safaAreaBottom)
+            let contentInset = UIEdgeInsets(top: 0, left: 0, bottom: bottom, right: 0)
+            
+            chatRoomTableView.contentInset = contentInset
+            chatRoomTableView.scrollIndicatorInsets = contentInset
+//            chatRoomTableView.contentOffset = CGPoint(x: 0,y: 0)
+            
+        }
     }
     
     @objc func hideKeyboard(){
-
+        chatRoomTableView.contentInset = tableViewContentInset
+        chatRoomTableView.scrollIndicatorInsets = tableViewIndicatorInser
     }
     
     
@@ -170,7 +179,6 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
                         print("ユーザー情報の取得に成功しました。")
                         
                         self.chatRoomTableView.reloadData()
-                        //                self.chatRoomTableView.scrollToRow(at: IndexPath(row: self.messages.count - 1, section: 0), at: .bottom, animated: true)
                     }
                     
                 case .modified, .removed:
@@ -229,35 +237,41 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
     
     
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if indexPath.section == 0 {
-//            chatRoomTableView.estimatedRowHeight = 500
-//            return UITableView.automaticDimension
-//        }else{
-//            chatRoomTableView.estimatedRowHeight = 20
-//            return UITableView.automaticDimension
-//        }
-//    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(section)
-        if section == 0 {
-            return 1
-        }else {
-            return messages.count
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            chatRoomTableView.estimatedRowHeight = 500
+            return UITableView.automaticDimension
+        }else{
+            chatRoomTableView.estimatedRowHeight = 20
+            return UITableView.automaticDimension
         }
     }
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-            return 2
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        }else if section == 1{
+            return messages.count
+        }else {
+            return 0
         }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        print("indexPath.section: ",indexPath.section)
         if indexPath.section == 0 {
             let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: tableUpCellId, for: indexPath) as! PostImageTableViewCell
 
             cell.postImageView.image = image
             cell.post = post
+//            let border = CALayer()
+//            border.frame = CGRect(x: 0, y: cell.frame.height - 20, width: cell.frame.width, height: 0.25)
+//            border.backgroundColor = UIColor.black.cgColor
+//            cell.layer.addSublayer(border)
             
 
             return cell
@@ -265,7 +279,6 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
             let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatRoomTableViewCell
     //        cell.messageTextView.text = messages[indexPath.row]
             cell.messageText = messages[indexPath.row]
-            print(messages[indexPath.row])
             cell.messageTextView.backgroundColor = UIColor.chatTextBackground
             cell.messageTextView.textColor = UIColor.chatText
             return cell
@@ -281,14 +294,25 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
 //
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "test1"
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
     }
     
-    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return "test1"
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 0 {
+            let headerView = UIView()
+            headerView.backgroundColor = .gray
+            
+//            let titleLabel = UILabel()
+//            titleLabel.text = "header"
+//            titleLabel.frame = headerView.frame
+//            titleLabel.textColor = .white
+//
+//            headerView.addSubview(titleLabel)
+            
+            return headerView
+        }else {
+            return nil
+        }
     }
-
-    
-    
 }
