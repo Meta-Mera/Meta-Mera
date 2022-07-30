@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         switch shortcutItem.type {
         case "SearchAction":
             
-            signInModel.signIn(signItem: .init(email: "g019c1045@g.neec.ac.jp", password: "123456")) {[weak self] result in
+            signInModel.signIn(signInItem: .init(email: "g019c1045@g.neec.ac.jp", password: "123456")) {[weak self] result in
                 switch result{
                 case .success(_):
                     self?.window = UIWindow()
@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         case "debug":
-            signInModel.signIn(signItem: .init(email: "g019c1045@g.neec.ac.jp", password: "123456")) {[weak self] result in
+            signInModel.signIn(signInItem: .init(email: "g019c1045@g.neec.ac.jp", password: "123456")) {[weak self] result in
                 switch result{
                     
                 case .success(_):
@@ -84,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        window?.makeKeyAndVisible()
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
-        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+//        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         
         return true
     }

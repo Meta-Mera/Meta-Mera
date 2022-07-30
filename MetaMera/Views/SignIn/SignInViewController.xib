@@ -55,7 +55,7 @@
                                     <rect key="frame" x="20" y="0.0" width="230" height="20"/>
                                     <color key="textColor" red="0.36470588235294116" green="0.27058823529411763" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -84,7 +84,7 @@
                                     <rect key="frame" x="20" y="0.0" width="230" height="20"/>
                                     <color key="textColor" red="0.36470588235294116" green="0.27058823529411763" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
                                 </textField>
                             </subviews>
                         </stackView>

@@ -61,7 +61,7 @@ class SignInViewController: UIViewController {
     @objc func PushSignIn(_ sender: Any) {
         self.view.endEditing(true)
         HUD.show(.progress, onView: view)
-        signInModel.signIn(signItem: .init(email: emailTextField.text, password: passwordTextField.text)) { [weak self] result in
+        signInModel.signIn(signInItem: .init(email: emailTextField.text, password: passwordTextField.text)) { [weak self] result in
             switch result{
             case .success(_):
                 HUD.hide { (_) in

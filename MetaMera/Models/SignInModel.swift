@@ -8,17 +8,17 @@
 import Foundation
 import Firebase
 
-class SignInModel{
+class SignInModel {
     
     
     /// サインイン処理
     /// - Parameters:
     ///   - signItem: メアド,パスワード
     ///   - completion: 結果
-    func signIn(signItem: SignItem, completion: @escaping(Result<Bool, Error>) -> Void){
+    func signIn(signInItem: SignInItem, completion: @escaping(Result<Bool, Error>) -> Void){
         
-        guard let email = signItem.email,
-              let password = signItem.password else {
+        guard let email = signInItem.email,
+              let password = signInItem.password else {
             completion(.failure(NSError(domain: "null error", code: 400)))
             return
         }
