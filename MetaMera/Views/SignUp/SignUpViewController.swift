@@ -28,6 +28,8 @@ class SignUpViewController: UIViewController {
   
     @IBOutlet weak var nextButtonImage: UIImageView!
     @IBOutlet weak var backButtonImage: UIImageView!
+    
+    let signUpModel = SignUpModel()
   
   
     
@@ -65,7 +67,8 @@ class SignUpViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        eMailTextField.text = ""
+        passwordTextField.text = ""
     }
 
     
@@ -86,83 +89,29 @@ class SignUpViewController: UIViewController {
   //Firebase登録処理
     private func handleAuthToFirebase(){
         HUD.show(.progress, onView: view)
-        guard let email = eMailTextField.text else { return }
-        guard let password = passwordTextField.text else { return }
-        guard let confirmPassword = confirmPasswordTextField.text else { return }
         
-        if password == confirmPassword {
-            if(passwordTextField.text!.count >= 6){
-                Auth.auth().createUser(withEmail: email, password: password) { [weak self] (res, err) in
-                    if let err = err{
-                        print("Firebaseの登録に失敗しました: \(err)" )
-                        HUD.hide { (_) in
-                            HUD.flash(.error, delay: 1)
-                        }
-                        return
-                    }
-                    self?.addUserInfoToFirestore(email: email, profileImageName: "")
-                }
-            }else{
-                HUD.hide()
-                HUD.show(.labeledError(title: "パスワードが弱いです。", subtitle: "6文字以上にして下さい。"))
-                HUD.hide(afterDelay: 1.0)
-            }
-        }else {
-            HUD.hide()
-            HUD.show(.labeledError(title: "パスワードの不一致", subtitle: ""))
-            HUD.hide(afterDelay: 1.0)
-            
-        }
-    }
-    
-  //Firebase新規登録のテンプレート作成
-    private func addUserInfoToFirestore(email: String, profileImageName: String){
-        
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        guard let userName = self.userIdTextField.text  else { return }
-        
-        let docData = ["email": email,
-                       "userName": userName,
-                       "profileImage": profileImageName, //TODO: プロフィール画像を保存できるようにする
-                       "createAt": Timestamp()] as [String : Any]
-        let userRef = Firestore.firestore().collection("Users").document(uid)
-        
-        
-        userRef.setData(docData) { (err) in
-            if let err = err {
-                print("Firestoreへの登録に失敗しました: \(err)" )
-                HUD.hide { (_) in
-                    HUD.flash(.error, delay: 1)
-                }
-                return
-            }
-            print("登録に成功しました")
-            
-            userRef.getDocument { (snapshot, err) in
-                if let err = err {
-                    print("ユーザ情報の取得に失敗しました。\(err)")
-                    HUD.hide { (_) in
-                        HUD.flash(.error, delay: 1)
-                    }
-                    return
-                }
+        signUpModel.signUp(signUpItem: .init(email: eMailTextField.text, password: passwordTextField.text, confirmPassword: confirmPasswordTextField.text, userName: userIdTextField.text)) { [weak self] result in
+            switch result {
                 
-//                let data = snapshot?.data()
+            case .success(let user):
                 
                 HUD.hide { (_) in
-                    HUD.flash(.success, onView: self.view, delay: 1) { [weak self] (_) in
-                        guard let dic = snapshot?.data() else { return }
-                        let user = User(dic: dic, uid: uid)
+                    HUD.flash(.success, onView: self?.view, delay: 1) { [weak self] (_) in
                         Profile.shared.loginUser = user
+                        Profile.shared.isLogin = true
                         self?.presentToARViewController()
                     }
                 }
+            case .failure(let error):
                 
-                
+                HUD.hide { (_) in
+                    HUD.flash(.label(error.domain), delay: 1.0) { _ in
+                        print(error)
+                    }
+                }
             }
         }
     }
-  
     
   //問題なく登録できた際、 Main画面に遷移
     private func presentToARViewController(){

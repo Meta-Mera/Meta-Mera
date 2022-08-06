@@ -36,11 +36,18 @@
                                     <constraint firstAttribute="height" constant="140" id="kYD-Ge-Vh3"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ver: 0.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5H8-jf-MZi">
+                                <rect key="frame" x="296" y="738" width="72" height="20.333333333333371"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.67058825489999996" green="0.39215683940000001" blue="0.23921570180000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" red="0.40784314269999999" green="0.64313727620000005" blue="0.54901963470000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="wRj-h7-hy7" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="1ZA-JR-1Nq"/>
+                            <constraint firstItem="5H8-jf-MZi" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" constant="285" id="7Oi-zi-BT3"/>
                             <constraint firstItem="ZZm-B4-XLM" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="En5-ss-H5P"/>
                             <constraint firstItem="wRj-h7-hy7" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="HUR-sM-sRZ"/>
                             <constraint firstItem="ZZm-B4-XLM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="80" id="MM6-Nv-Ziw"/>
@@ -49,6 +56,7 @@
                             <constraint firstItem="wRj-h7-hy7" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="dGJ-6T-Ksu"/>
                             <constraint firstItem="OoH-k2-pZQ" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" constant="-100" id="dWX-7W-MZc"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="wRj-h7-hy7" secondAttribute="trailing" id="h79-zR-uW8"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="5H8-jf-MZi" secondAttribute="trailing" constant="60" id="iJ4-8T-SkV"/>
                             <constraint firstItem="wRj-h7-hy7" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="vSE-ga-85B"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ZZm-B4-XLM" secondAttribute="trailing" constant="30" id="xTc-RU-Xvx"/>
                             <constraint firstItem="ZZm-B4-XLM" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" constant="110" id="xzp-oA-Bw4"/>
@@ -58,6 +66,7 @@
                         <outlet property="logoImageView" destination="OoH-k2-pZQ" id="sPc-f1-zk0"/>
                         <outlet property="signInImageView" destination="ihG-pB-ATF" id="unZ-A0-SaP"/>
                         <outlet property="signUpImageView" destination="36K-kK-ANE" id="Kli-gF-vTb"/>
+                        <outlet property="versionLabel" destination="5H8-jf-MZi" id="cxe-hK-6Gv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

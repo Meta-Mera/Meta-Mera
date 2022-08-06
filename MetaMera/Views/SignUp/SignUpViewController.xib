@@ -59,7 +59,7 @@
                                     <color key="tintColor" name="AccentColor"/>
                                     <color key="textColor" red="0.25490196078431371" green="0.36470588235294116" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="username"/>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -90,7 +90,9 @@
                                     <color key="tintColor" name="AccentColor"/>
                                     <color key="textColor" red="0.25490196078431371" green="0.36470588235294116" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="new-password"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="next" textContentType="new-password">
+                                        <passwordRules key="passwordRules" passwordRulesDescriptor="minlength: 6; maxlength: 30; required: lower; required: upper; required: digit; required: [-];"/>
+                                    </textInputTraits>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -121,7 +123,9 @@
                                     <color key="tintColor" name="AccentColor"/>
                                     <color key="textColor" red="0.25490196078431371" green="0.36470588235294116" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="password"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="next" textContentType="new-password">
+                                        <passwordRules key="passwordRules" passwordRulesDescriptor="minlength: 6; maxlength: 30; required: lower; required: upper; required: digit; required: [-];"/>
+                                    </textInputTraits>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -172,7 +176,7 @@
                                     <color key="tintColor" name="AccentColor"/>
                                     <color key="textColor" red="0.25490196078431371" green="0.36470588235294116" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="username"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="name"/>
                                 </textField>
                             </subviews>
                         </stackView>

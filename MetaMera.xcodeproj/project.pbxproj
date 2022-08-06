@@ -17,10 +17,10 @@
 		38271474283472C0004BEB01 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38271472283472C0004BEB01 /* ChatViewController.swift */; };
 		38271475283472C0004BEB01 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38271473283472C0004BEB01 /* ChatViewController.xib */; };
 		382F6AB2286D44730056BFA2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382F6AB1286D44730056BFA2 /* User.swift */; };
-		382F6AB6287295210056BFA2 /* ChatRoomCreateController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 382F6AB5287295210056BFA2 /* ChatRoomCreateController.storyboard */; };
-		382F6AB82872952B0056BFA2 /* ChatRoomCreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382F6AB72872952B0056BFA2 /* ChatRoomCreateController.swift */; };
-		382F6ABA287295390056BFA2 /* ChatRoomJoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382F6AB9287295390056BFA2 /* ChatRoomJoinController.swift */; };
-		382F6ABC287295410056BFA2 /* ChatRoomJoinController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 382F6ABB287295410056BFA2 /* ChatRoomJoinController.storyboard */; };
+		383AC1CB2887866700B5BE12 /* PostViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 383AC1CA2887866700B5BE12 /* PostViewController.storyboard */; };
+		383AC1CD288787B600B5BE12 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383AC1CC288787B600B5BE12 /* PostViewController.swift */; };
+		383AC1D2288E398600B5BE12 /* PostImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383AC1D1288E398600B5BE12 /* PostImageTableViewCell.swift */; };
+		383AC1D4288E39E900B5BE12 /* PostImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 383AC1D3288E39E900B5BE12 /* PostImageTableViewCell.xib */; };
 		389024C62835DAD4004DC3F3 /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389024C52835DAD4004DC3F3 /* UIColor-Extension.swift */; };
 		38968054283F03B1008E1302 /* StartUpStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38968053283F03B1008E1302 /* StartUpStoryboard.storyboard */; };
 		38968057283F04CE008E1302 /* StartUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38968055283F04CE008E1302 /* StartUpViewController.swift */; };
@@ -54,6 +54,8 @@
 		38A79D9C289270F200852421 /* Logget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A79D9B289270F200852421 /* Logget.swift */; };
 		38AB508B285AD3A700AF4F80 /* ChatRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB508A285AD3A700AF4F80 /* ChatRoomController.swift */; };
 		38AB508E285AD3B800AF4F80 /* ChatRoomController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */; };
+		38AD14C2289249EF001D1769 /* SignInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AD14C1289249EF001D1769 /* SignInModel.swift */; };
+		38AD14C5289266BE001D1769 /* SignItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AD14C4289266BE001D1769 /* SignItem.swift */; };
 		38E9AE2A2865641300EB71D6 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E9AE292865641300EB71D6 /* Profile.swift */; };
 		38FAA642287860BD000521DD /* UIImageView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FAA641287860BD000521DD /* UIImageView-Extension.swift */; };
 		38FAA644287D20C5000521DD /* UITraitCollection-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FAA643287D20C5000521DD /* UITraitCollection-Extension.swift */; };
@@ -96,10 +98,10 @@
 		38271472283472C0004BEB01 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		38271473283472C0004BEB01 /* ChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
 		382F6AB1286D44730056BFA2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		382F6AB5287295210056BFA2 /* ChatRoomCreateController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatRoomCreateController.storyboard; sourceTree = "<group>"; };
-		382F6AB72872952B0056BFA2 /* ChatRoomCreateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomCreateController.swift; sourceTree = "<group>"; };
-		382F6AB9287295390056BFA2 /* ChatRoomJoinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomJoinController.swift; sourceTree = "<group>"; };
-		382F6ABB287295410056BFA2 /* ChatRoomJoinController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatRoomJoinController.storyboard; sourceTree = "<group>"; };
+		383AC1CA2887866700B5BE12 /* PostViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostViewController.storyboard; sourceTree = "<group>"; };
+		383AC1CC288787B600B5BE12 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		383AC1D1288E398600B5BE12 /* PostImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageTableViewCell.swift; sourceTree = "<group>"; };
+		383AC1D3288E39E900B5BE12 /* PostImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostImageTableViewCell.xib; sourceTree = "<group>"; };
 		389024C52835DAD4004DC3F3 /* UIColor-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Extension.swift"; sourceTree = "<group>"; };
 		38968053283F03B1008E1302 /* StartUpStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StartUpStoryboard.storyboard; sourceTree = "<group>"; };
 		38968055283F04CE008E1302 /* StartUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartUpViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +132,8 @@
 		38A79D9B289270F200852421 /* Logget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logget.swift; sourceTree = "<group>"; };
 		38AB508A285AD3A700AF4F80 /* ChatRoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomController.swift; sourceTree = "<group>"; };
 		38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatRoomController.storyboard; sourceTree = "<group>"; };
+		38AD14C1289249EF001D1769 /* SignInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInModel.swift; sourceTree = "<group>"; };
+		38AD14C4289266BE001D1769 /* SignItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignItem.swift; sourceTree = "<group>"; };
 		38E9AE292865641300EB71D6 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		38FAA641287860BD000521DD /* UIImageView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView-Extension.swift"; sourceTree = "<group>"; };
 		38FAA643287D20C5000521DD /* UITraitCollection-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITraitCollection-Extension.swift"; sourceTree = "<group>"; };
@@ -215,22 +219,13 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		382F6AB3287294E50056BFA2 /* ChatRoomCreate */ = {
+		383AC1D0288E396D00B5BE12 /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				382F6AB72872952B0056BFA2 /* ChatRoomCreateController.swift */,
-				382F6AB5287295210056BFA2 /* ChatRoomCreateController.storyboard */,
+				383AC1D1288E398600B5BE12 /* PostImageTableViewCell.swift */,
+				383AC1D3288E39E900B5BE12 /* PostImageTableViewCell.xib */,
 			);
-			path = ChatRoomCreate;
-			sourceTree = "<group>";
-		};
-		382F6AB4287294F30056BFA2 /* ChatRoomJoin */ = {
-			isa = PBXGroup;
-			children = (
-				382F6AB9287295390056BFA2 /* ChatRoomJoinController.swift */,
-				382F6ABB287295410056BFA2 /* ChatRoomJoinController.storyboard */,
-			);
-			path = ChatRoomJoin;
+			path = Image;
 			sourceTree = "<group>";
 		};
 		38968052283F0398008E1302 /* StartUp */ = {
@@ -300,6 +295,7 @@
 				382F6AB0286582BE0056BFA2 /* Extension */,
 				3896805C284A4C90008E1302 /* Controller */,
 				389680592844585D008E1302 /* AR */,
+				38AD14C3289266A3001D1769 /* Entity */,
 				38E9AE282865641300EB71D6 /* Models */,
 				38A2125A282A066000B56E03 /* Views */,
 				38A2122F282A064300B56E03 /* Experience.rcproject */,
@@ -330,8 +326,6 @@
 			isa = PBXGroup;
 			children = (
 				38FAA64B2881571E000521DD /* CreateNewPost */,
-				382F6AB4287294F30056BFA2 /* ChatRoomJoin */,
-				382F6AB3287294E50056BFA2 /* ChatRoomCreate */,
 				38AB5089285ACEF400AF4F80 /* ChatRoom */,
 				38968063284C7519008E1302 /* Profile */,
 				38968052283F0398008E1302 /* StartUp */,
@@ -394,8 +388,11 @@
 			children = (
 				38271471283472A6004BEB01 /* ChatAccessory */,
 				38AB508F285C442F00AF4F80 /* Chat */,
+				383AC1D0288E396D00B5BE12 /* Image */,
 				38AB508A285AD3A700AF4F80 /* ChatRoomController.swift */,
 				38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */,
+				383AC1CC288787B600B5BE12 /* PostViewController.swift */,
+				383AC1CA2887866700B5BE12 /* PostViewController.storyboard */,
 			);
 			path = ChatRoom;
 			sourceTree = "<group>";
@@ -409,6 +406,14 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
+		38AD14C3289266A3001D1769 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				38AD14C4289266BE001D1769 /* SignItem.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
 		38E9AE282865641300EB71D6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -417,6 +422,7 @@
 				38FAA645287FAFA6000521DD /* ChatRoom.swift */,
 				38FAA647287FAFE4000521DD /* Comment.swift */,
 				38FAA64928801229000521DD /* Post.swift */,
+				38AD14C1289249EF001D1769 /* SignInModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -564,8 +570,6 @@
 				382713892831F95F004BEB01 /* SignInViewController.xib in Resources */,
 				382713F22833423A004BEB01 /* ARViewController.storyboard in Resources */,
 				38271475283472C0004BEB01 /* ChatViewController.xib in Resources */,
-				382F6ABC287295410056BFA2 /* ChatRoomJoinController.storyboard in Resources */,
-				382F6AB6287295210056BFA2 /* ChatRoomCreateController.storyboard in Resources */,
 				38A21269282A104200B56E03 /* Main.storyboard in Resources */,
 				38A21282282CE15800B56E03 /* utakata-Regular.otf in Resources */,
 				3896806B284C7755008E1302 /* ProfileViewController.storyboard in Resources */,
@@ -573,7 +577,9 @@
 				38A2128A282CEB8200B56E03 /* GoogleService-Info.plist in Resources */,
 				38AB508E285AD3B800AF4F80 /* ChatRoomController.storyboard in Resources */,
 				06B1CC152861664900116CF0 /* ChatRoomTableViewCell.xib in Resources */,
+				383AC1CB2887866700B5BE12 /* PostViewController.storyboard in Resources */,
 				38A21235282A064400B56E03 /* Assets.xcassets in Resources */,
+				383AC1D4288E39E900B5BE12 /* PostImageTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,15 +722,18 @@
 				382713F028332648004BEB01 /* AppDelegate.swift in Sources */,
 				3896805E284A4CAE008E1302 /* Goto.swift in Sources */,
 				382713882831F95F004BEB01 /* SignInViewController.swift in Sources */,
+				38AD14C2289249EF001D1769 /* SignInModel.swift in Sources */,
 				38271474283472C0004BEB01 /* ChatViewController.swift in Sources */,
 				38A2122E282A064300B56E03 /* ViewController.swift in Sources */,
-				382F6ABA287295390056BFA2 /* ChatRoomJoinController.swift in Sources */,
 				38FAA642287860BD000521DD /* UIImageView-Extension.swift in Sources */,
 				38FAA646287FAFA6000521DD /* ChatRoom.swift in Sources */,
 				06B1CC142861664900116CF0 /* ChatRoomTableViewCell.swift in Sources */,
+				38AD14C5289266BE001D1769 /* SignItem.swift in Sources */,
 				389024C62835DAD4004DC3F3 /* UIColor-Extension.swift in Sources */,
 				38A2122C282A064300B56E03 /* TopViewController.swift in Sources */,
+				383AC1CD288787B600B5BE12 /* PostViewController.swift in Sources */,
 				38A2127B282CE0DB00B56E03 /* ARViewController.swift in Sources */,
+				383AC1D2288E398600B5BE12 /* PostImageTableViewCell.swift in Sources */,
 				38FAA644287D20C5000521DD /* UITraitCollection-Extension.swift in Sources */,
 				38A21230282A064300B56E03 /* Experience.rcproject in Sources */,
 				38FAA648287FAFE4000521DD /* Comment.swift in Sources */,
@@ -924,16 +933,17 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MetaMera/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Meta-Mera";
-				INFOPLIST_KEY_NSCameraUsageDescription = "カメラ使う";
+				INFOPLIST_KEY_NSCameraUsageDescription = "GPSを使ってオブジェクトを設置するために使用します";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "他のユーザのつぶやきを表示するために使用します。";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "他のユーザのつぶやきを表示するために使用します。";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "GPSを使ってオブジェクトを設置するために使用します";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "画像を投稿する時やプロフィール画像を変更するときに使用します。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -965,16 +975,17 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MetaMera/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Meta-Mera";
-				INFOPLIST_KEY_NSCameraUsageDescription = "カメラ使う";
+				INFOPLIST_KEY_NSCameraUsageDescription = "GPSを使ってオブジェクトを設置するために使用します";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "他のユーザのつぶやきを表示するために使用します。";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "他のユーザのつぶやきを表示するために使用します。";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "GPSを使ってオブジェクトを設置するために使用します";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "画像を投稿する時やプロフィール画像を変更するときに使用します。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -11,8 +11,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignInViewController" customModule="MetaMera" customModuleProvider="target">
             <connections>
                 <outlet property="backButtonImage" destination="Bmo-L1-Q9P" id="s4h-Ci-jil"/>
+                <outlet property="backGroundImageView" destination="Vms-vG-qL1" id="xLX-JS-xBJ"/>
                 <outlet property="emailTextField" destination="Zjq-8M-Jbt" id="S4i-ZY-7ur"/>
-                <outlet property="haikeiImageView" destination="Vms-vG-qL1" id="xLX-JS-xBJ"/>
                 <outlet property="nextButtonImage" destination="PEJ-QL-CxI" id="HBi-RW-2dw"/>
                 <outlet property="passwordTextField" destination="Ept-yV-k7J" id="HrA-pt-EQM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -55,7 +55,7 @@
                                     <rect key="frame" x="20" y="0.0" width="230" height="20"/>
                                     <color key="textColor" red="0.36470588235294116" green="0.27058823529411763" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES" smartQuotesType="no" textContentType="email"/>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -84,7 +84,7 @@
                                     <rect key="frame" x="20" y="0.0" width="230" height="20"/>
                                     <color key="textColor" red="0.36470588235294116" green="0.27058823529411763" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
                                 </textField>
                             </subviews>
                         </stackView>

@@ -12,14 +12,24 @@ import Firebase
 
 class ChatRoomController: UIViewController, UITextFieldDelegate{
     
-    var chatroomId: String = ""
+    var postId: String!
+    var post: Post!
+    var user: User?
+    
     
     private let cellId = "ChatRoomTableViewCell"
-    private var messages = [String]()
+    private let tableUpCellId = "PostImageTableViewCell"
+    private let accessoryHeight: CGFloat = 150
+    private let tableViewContentInset : UIEdgeInsets = .init(top: 0, left: 0, bottom: 60, right: 0)
+    private let tableViewIndicatorInser : UIEdgeInsets = .init(top: 0, left: 0, bottom: 60, right: 0)
+    private var safaAreaBottom: CGFloat {
+        self.view.safeAreaInsets.bottom
+    }
+    private var messages = [Comment]()
+    
     
     @IBOutlet weak var chatRoomTableView: UITableView!
     @IBOutlet weak var backImageView: UIImageView!
-    @IBOutlet weak var postImageView: UIImageView!
     
 //    static let shared = Profile()
     
@@ -28,14 +38,24 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUpNotification()
+        tearDownNotification()
+        configView()
+        
+    }
+    
+    func configView(){
         chatRoomTableView.delegate = self
         chatRoomTableView.dataSource = self
+        chatRoomTableView.register(UINib(nibName: "PostImageTableViewCell", bundle: nil) , forCellReuseIdentifier: tableUpCellId)
         chatRoomTableView.register(UINib(nibName: "ChatRoomTableViewCell", bundle: nil) , forCellReuseIdentifier: cellId)
+        chatRoomTableView.rowHeight = UITableView.automaticDimension
         
-        chatRoomTableView.contentInset = .init(top: 0, left: 0, bottom: 60, right: 0)
-//        chatRoomTableView.keyboardDismissMode = .interactive
-//        chatRoomTableView.transform = CGAffineTransform(a: 0, b: 0, c: 0, d: -1, tx: 0, ty: 0)
+        chatRoomTableView.contentInset = tableViewContentInset
+        chatRoomTableView.scrollIndicatorInsets = tableViewIndicatorInser
+        chatRoomTableView.keyboardDismissMode = .interactive
         
+        //戻るボタン
         backImageView.isUserInteractionEnabled = true
         backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backView(_:))))
         
@@ -65,29 +85,14 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 //        postImageView.image = image
-        postImageView.setImage(image: image, name: Profile.shared.loginUser.uid)
         setUpNotification()
-        fetchChatRoomInFromFirestore()
+        fetchMessages()
     }
     
     //画面から離れたとき
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tearDownNotification()
-    }
-    
-    //TODO: チャットルームに入ったときにFirestoreから最新の情報を取得したい
-    private func fetchChatRoomInFromFirestore(){
-        
-        Firestore.firestore().collection("chatRooms").document(postImageView.getName() ?? "").getDocument { snapshots, err in
-            if let err = err{
-                print("チャットルームの取得に失敗\(err)")
-                return
-            }
-            
-            let dic = snapshots?.data()
-            print("dic:",dic)
-        }
     }
     
     //MARK: 前の画面に戻る
@@ -99,7 +104,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     
     private lazy var chatView: ChatViewController = {
         let view = ChatViewController()
-        view.frame = .init(x: 0, y: 0, width: view.frame.width, height: 150)
+        view.frame = .init(x: 0, y: 0, width: view.frame.width, height: accessoryHeight)
         view.delegate = self
         return view
     }()
@@ -119,17 +124,68 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     }
     
     @objc func showKeyboard(notification: Notification){
-//        guard let userInfo = notification.userInfo else { return }
-//
-//        if let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue {
-//
-//            let top = keyboardFrame.height
-//            let contentInset = UIEdgeInsets(top: top, left: 0, bottom: 0, right: 0)
-//        }
+        guard let userInfo = notification.userInfo else { return }
+
+        if let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue {
+
+            if keyboardFrame.height <= accessoryHeight { return }
+            let bottom = keyboardFrame.height - 40
+            let moveY = (bottom - safaAreaBottom)
+            let contentInset = UIEdgeInsets(top: 0, left: 0, bottom: bottom, right: 0)
+            
+            chatRoomTableView.contentInset = contentInset
+            chatRoomTableView.scrollIndicatorInsets = contentInset
+//            chatRoomTableView.contentOffset = CGPoint(x: 0,y: 0)
+            
+        }
     }
     
     @objc func hideKeyboard(){
-
+        chatRoomTableView.contentInset = tableViewContentInset
+        chatRoomTableView.scrollIndicatorInsets = tableViewIndicatorInser
+    }
+    
+    
+    
+    private func fetchMessages() {
+        
+        Firestore.firestore().collection("Posts").document(postId).collection("comments").addSnapshotListener { (snapshots, err) in
+            
+            if let err = err {
+                print("メッセージ情報の取得に失敗しました。\(err)")
+                return
+            }
+            
+            snapshots?.documentChanges.forEach({ (documentChange) in
+                switch documentChange.type {
+                case .added:
+                    let dic = documentChange.document.data()
+                    let comment = Comment(dic: dic)
+                    Firestore.firestore().collection("Users").document(comment.uid).getDocument { (user, err) in
+                        if let err = err {
+                            print("ユーザー情報の取得に失敗しました。\(err)")
+                            return
+                        }
+                        
+                        guard let dic = user?.data() else { return }
+                        let user = User(dic: dic, uid: comment.uid)
+                        comment.sendUser = user
+                        self.messages.append(comment)
+                        self.messages.sort { (m1, m2) -> Bool in
+                            let m1Date = m1.createdAt.dateValue()
+                            let m2Date = m2.createdAt.dateValue()
+                            return m1Date < m2Date
+                        }
+                        print("ユーザー情報の取得に成功しました。")
+                        
+                        self.chatRoomTableView.reloadData()
+                    }
+                    
+                case .modified, .removed:
+                    print("nothing to do")
+                }
+            })
+        }
     }
     
     
@@ -143,75 +199,126 @@ extension ChatRoomController: ChatViewControllerDelegate {
     
     func tappedSendButton(text: String) {
         
-        
-        
 //        messages.append(text)
 //        chatView.removeText()
 //        chatRoomTableView.reloadData()
         
-//        Firestore.firestore().collection("chatRooms").document("")
-//        addMessageToFirestore(text: text)
+        addMessageToFirestore(text: text)
     }
     
-//    private func addMessageToFirestore(text: String) {
-////        guard let chatroomDocId = chatroom?.documentId else { return }
+    private func addMessageToFirestore(text: String) {
+//        guard let chatroomDocId = chatroom?.documentId else { return }
 //        guard let name = user?.username else { return }
-//        guard let uid = Auth.auth().currentUser?.uid else { return }
-//        chatView.removeText()
-////        let messageId = randomString(length: 20)
-//
-//        let docData = [
-//            "name": name,
-//            "createdAt": Timestamp(),
-//            "uid": uid,
-//            "message": text
-//            ] as [String : Any]
-//        Firestore.firestore().collection("chatRooms").document(chatroomDocId).collection("messages").document(messageId).setData(docData) { (err) in
-//            if let err = err {
-//                print("メッセージ情報の保存に失敗しました。\(err)")
-//                return
-//            }
-//
-//
-//
-//            let latestMessageData = [
-//                "latestMessageId": messageId
-//            ]
-//
-//            Firestore.firestore().collection("chatRooms").document(chatroomDocId).updateData(latestMessageData) { (err) in
-//                if let err = err {
-//                    print("最新メッセージの保存に失敗しました。\(err)")
-//                    return
-//                }
-//
-//                print("メッセージの保存に成功しました。")
-//
-//            }
-//        }
-//
-//    }
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+//        let messageId = randomString(length: 20)
+
+        let docData = [
+            "createdAt": Timestamp(),
+            "uid": uid,
+            "message": text
+            ] as [String : Any]
+        Firestore.firestore().collection("Posts").document(postId).collection("comments").addDocument(data: docData){ [weak self] (err) in
+            if let err = err{
+                print("メッセージ情報の保存に失敗しました。\(err)")
+                return
+            }
+            print("メッセージの保存に成功しました。")
+            self?.chatView.removeText()
+            
+            
+        }
+
+    }
+    
+    
 }
 
 extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
     
+    
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        chatRoomTableView.estimatedRowHeight = 20
-        return UITableView.automaticDimension
+        if indexPath.section == 0 {
+            chatRoomTableView.estimatedRowHeight = 500
+            return UITableView.automaticDimension
+        }else{
+            chatRoomTableView.estimatedRowHeight = 20
+            return UITableView.automaticDimension
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+        if section == 0 {
+            return 1
+        }else if section == 1{
+            return messages.count
+        }else {
+            return 0
+        }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatRoomTableViewCell
-//        cell.messageTextView.text = messages[indexPath.row]
-        cell.messageText = messages[indexPath.row]
-        cell.messageTextView.backgroundColor = UIColor.chatTextBackground
-        cell.messageTextView.textColor = UIColor.chatText
-        return cell
+        print("indexPath.section: ",indexPath.section)
+        if indexPath.section == 0 {
+            let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: tableUpCellId, for: indexPath) as! PostImageTableViewCell
+
+            cell.postImageView.image = image
+            cell.post = post
+//            let border = CALayer()
+//            border.frame = CGRect(x: 0, y: cell.frame.height - 20, width: cell.frame.width, height: 0.25)
+//            border.backgroundColor = UIColor.black.cgColor
+//            cell.layer.addSublayer(border)
+            
+
+            return cell
+        }else {
+            let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatRoomTableViewCell
+    //        cell.messageTextView.text = messages[indexPath.row]
+            cell.messageText = messages[indexPath.row]
+            cell.messageTextView.backgroundColor = UIColor.chatTextBackground
+            cell.messageTextView.textColor = UIColor.chatText
+            return cell
+        }
         
+        
+//        let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatRoomTableViewCell
+////        cell.messageTextView.text = messages[indexPath.row]
+//        cell.messageText = messages[indexPath.row]
+//        cell.messageTextView.backgroundColor = UIColor.chatTextBackground
+//        cell.messageTextView.textColor = UIColor.chatText
+//        return cell
+//
     }
     
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 0 {
+            let headerView = UIView()
+            headerView.backgroundColor = .gray
+            
+//            let titleLabel = UILabel()
+//            titleLabel.text = "header"
+//            titleLabel.frame = headerView.frame
+//            titleLabel.textColor = .white
+//
+//            headerView.addSubview(titleLabel)
+            
+            return headerView
+        }else {
+            return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            print("tapped table view")
+            print("message:",messages[indexPath.row].message)
+        }
     
 }

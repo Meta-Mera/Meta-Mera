@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="PostImageTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostImageTableViewCell" rowHeight="632" id="HW8-Ss-lRu" customClass="PostImageTableViewCell" customModule="MetaMera" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="441" height="632"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HW8-Ss-lRu" id="YyA-eJ-GtJ">
+                <rect key="frame" x="0.0" y="0.0" width="441" height="632"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="36L-jy-pEx">
+                        <rect key="frame" x="30" y="50" width="381" height="250"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="250" id="C0F-bn-75F"/>
+                        </constraints>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GUw-EG-5PL">
+                        <rect key="frame" x="30" y="428.5" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="4BO-xb-du5"/>
+                            <constraint firstAttribute="width" secondItem="GUw-EG-5PL" secondAttribute="height" multiplier="1:1" id="IAl-Ty-P4e"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User-Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GKQ-a3-L5D">
+                        <rect key="frame" x="90" y="439" width="120.5" height="29"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBh-eZ-ZMA">
+                        <rect key="frame" x="20" y="310" width="401" height="116.5"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <string key="text">こんな隠れた場所においしいカツ丼屋さんがあった。
+隠れ家みたいでウケるしめちゃ美味かった
+#カツ丼屋_瑞兆
+#渋谷
+#スクスク
+#渋谷グルメ</string>
+                        <color key="textColor" systemColor="labelColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2022/07/26" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="glS-3r-jjD">
+                        <rect key="frame" x="220.5" y="448" width="89" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="36L-jy-pEx" firstAttribute="centerX" secondItem="YyA-eJ-GtJ" secondAttribute="centerX" id="0B6-Y6-dvc"/>
+                    <constraint firstItem="GUw-EG-5PL" firstAttribute="leading" secondItem="YyA-eJ-GtJ" secondAttribute="leadingMargin" constant="10" id="5bK-iN-VmS"/>
+                    <constraint firstItem="GKQ-a3-L5D" firstAttribute="leading" secondItem="GUw-EG-5PL" secondAttribute="trailing" constant="10" id="CVC-Y9-DsV"/>
+                    <constraint firstItem="hBh-eZ-ZMA" firstAttribute="leading" secondItem="YyA-eJ-GtJ" secondAttribute="leading" constant="20" id="QtC-dv-94v"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="36L-jy-pEx" secondAttribute="trailing" constant="10" id="TgE-fp-05z"/>
+                    <constraint firstItem="GUw-EG-5PL" firstAttribute="top" secondItem="hBh-eZ-ZMA" secondAttribute="bottom" constant="2" id="UUY-j7-CWx"/>
+                    <constraint firstItem="glS-3r-jjD" firstAttribute="leading" secondItem="GKQ-a3-L5D" secondAttribute="trailing" constant="10" id="ZCV-YJ-Sfq"/>
+                    <constraint firstItem="glS-3r-jjD" firstAttribute="centerY" secondItem="GUw-EG-5PL" secondAttribute="centerY" constant="5" id="cMM-gR-BhM"/>
+                    <constraint firstItem="36L-jy-pEx" firstAttribute="top" secondItem="YyA-eJ-GtJ" secondAttribute="top" constant="50" id="dXr-h5-Ia0"/>
+                    <constraint firstItem="GKQ-a3-L5D" firstAttribute="centerY" secondItem="GUw-EG-5PL" secondAttribute="centerY" id="fx6-oy-9G6"/>
+                    <constraint firstAttribute="trailing" secondItem="hBh-eZ-ZMA" secondAttribute="trailing" constant="20" id="hMG-wp-3vo"/>
+                    <constraint firstItem="36L-jy-pEx" firstAttribute="leading" secondItem="YyA-eJ-GtJ" secondAttribute="leadingMargin" constant="10" id="pMB-AE-J6f"/>
+                    <constraint firstItem="hBh-eZ-ZMA" firstAttribute="top" secondItem="36L-jy-pEx" secondAttribute="bottom" constant="10" id="qXn-aw-Dak"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="GUw-EG-5PL" secondAttribute="bottom" constant="10" id="vSR-42-xh8"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="postDateLabel" destination="glS-3r-jjD" id="OAU-F0-sEW"/>
+                <outlet property="postImageView" destination="36L-jy-pEx" id="Xlf-L3-Eui"/>
+                <outlet property="postTextView" destination="hBh-eZ-ZMA" id="94V-kx-vHa"/>
+                <outlet property="postUserNameLabel" destination="GKQ-a3-L5D" id="BGc-Fb-tza"/>
+                <outlet property="profileImageView" destination="GUw-EG-5PL" id="p2j-Qc-Mbd"/>
+            </connections>
+            <point key="canvasLocation" x="326.81159420289856" y="658.25892857142856"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

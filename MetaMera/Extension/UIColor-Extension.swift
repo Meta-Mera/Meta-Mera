@@ -45,29 +45,29 @@ extension UIColor {
     
     public static var chatRoomBackground: UIColor {
         return dynamicColor(
-            light: .rgb(red: 240, green: 240, blue: 240),
+            light: .rgb(red: 255, green: 255, blue: 255),
             dark: .rgb(red: 0, green: 0, blue: 0)
         )
     }
     
     public static var inputChatTextBackground: UIColor {
         return dynamicColor(
-            light: .rgb(red: 240, green: 240, blue: 240),
+            light: .rgb(red: 255, green: 255, blue: 255),
             dark: .rgb(red: 230, green: 230, blue: 230)
         )
     }
     
     public static var chatTextBackground: UIColor {
         return dynamicColor(
-            light: .rgb(red: 220, green: 220, blue: 220),
-            dark: .rgb(red: 230, green: 230, blue: 230)
+            light: .rgb(red: 255, green: 255, blue: 255),
+            dark: .rgb(red: 0, green: 0, blue: 0)
         )
     }
     
     public static var chatText: UIColor {
         return dynamicColor(
             light: .rgb(red: 0, green: 0, blue: 0),
-            dark: .rgb(red: 0, green: 0, blue: 0)
+            dark: .rgb(red: 255, green: 255, blue: 255)
         )
     }
     

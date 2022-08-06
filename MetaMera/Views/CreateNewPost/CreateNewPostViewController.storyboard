@@ -23,21 +23,30 @@
                                     <constraint firstAttribute="width" secondItem="S3a-hs-jYC" secondAttribute="height" multiplier="1:1" id="Jy4-ib-Qe2"/>
                                 </constraints>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="96y-Q4-Kad">
+                                <rect key="frame" x="0.0" y="110" width="414" height="786"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="96y-Q4-Kad" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="B8u-va-Hsg"/>
                             <constraint firstItem="S3a-hs-jYC" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="NfV-G1-IRK"/>
+                            <constraint firstAttribute="bottom" secondItem="96y-Q4-Kad" secondAttribute="bottom" id="UKe-Dq-Qth"/>
                             <constraint firstItem="S3a-hs-jYC" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="VOX-Cs-d0y"/>
+                            <constraint firstItem="96y-Q4-Kad" firstAttribute="top" secondItem="S3a-hs-jYC" secondAttribute="bottom" constant="20" id="Vnk-Vf-B5J"/>
+                            <constraint firstItem="96y-Q4-Kad" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="tH4-L5-SNA"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backImageView" destination="S3a-hs-jYC" id="25q-I7-r4h"/>
+                        <outlet property="galleryView" destination="96y-Q4-Kad" id="ZTL-pm-fkf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="59"/>
+            <point key="canvasLocation" x="137.68115942028987" y="58.928571428571423"/>
         </scene>
     </scenes>
     <resources>
