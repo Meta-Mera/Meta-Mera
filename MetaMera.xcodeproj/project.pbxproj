@@ -28,6 +28,7 @@
 		3896805E284A4CAE008E1302 /* Goto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3896805D284A4CAE008E1302 /* Goto.swift */; };
 		38968068284C76C8008E1302 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38968066284C76C8008E1302 /* ProfileViewController.swift */; };
 		3896806B284C7755008E1302 /* ProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3896806A284C7755008E1302 /* ProfileViewController.storyboard */; };
+		38A05CEB289547D000F0CC40 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A05CEA289547D000F0CC40 /* SignUpModel.swift */; };
 		38A2122C282A064300B56E03 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2122B282A064300B56E03 /* TopViewController.swift */; };
 		38A2122E282A064300B56E03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2122D282A064300B56E03 /* ViewController.swift */; };
 		38A21230282A064300B56E03 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 38A2122F282A064300B56E03 /* Experience.rcproject */; };
@@ -108,6 +109,7 @@
 		3896805D284A4CAE008E1302 /* Goto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goto.swift; sourceTree = "<group>"; };
 		38968066284C76C8008E1302 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3896806A284C7755008E1302 /* ProfileViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileViewController.storyboard; sourceTree = "<group>"; };
+		38A05CEA289547D000F0CC40 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		38A21228282A064300B56E03 /* MetaMera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetaMera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38A2122B282A064300B56E03 /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		38A2122D282A064300B56E03 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 				38FAA647287FAFE4000521DD /* Comment.swift */,
 				38FAA64928801229000521DD /* Post.swift */,
 				38AD14C1289249EF001D1769 /* SignInModel.swift */,
+				38A05CEA289547D000F0CC40 /* SignUpModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -725,6 +728,7 @@
 				06B1CC142861664900116CF0 /* ChatRoomTableViewCell.swift in Sources */,
 				38AD14C5289266BE001D1769 /* SignItem.swift in Sources */,
 				389024C62835DAD4004DC3F3 /* UIColor-Extension.swift in Sources */,
+				38A05CEB289547D000F0CC40 /* SignUpModel.swift in Sources */,
 				38A2122C282A064300B56E03 /* TopViewController.swift in Sources */,
 				383AC1CD288787B600B5BE12 /* PostViewController.swift in Sources */,
 				38A2127B282CE0DB00B56E03 /* ARViewController.swift in Sources */,
@@ -935,16 +939,16 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
-				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jim112o.MetaMera;
@@ -977,16 +981,16 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
-				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jim112o.MetaMera;
