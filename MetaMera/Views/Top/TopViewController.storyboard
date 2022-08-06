@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
-    <device id="retina6_7" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -47,7 +47,7 @@
                         <color key="backgroundColor" red="0.40784314269999999" green="0.64313727620000005" blue="0.54901963470000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="wRj-h7-hy7" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="1ZA-JR-1Nq"/>
-                            <constraint firstItem="5H8-jf-MZi" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" constant="285" id="7Oi-zi-BT3"/>
+                            <constraint firstItem="5H8-jf-MZi" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" constant="200" id="7Oi-zi-BT3"/>
                             <constraint firstItem="ZZm-B4-XLM" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="En5-ss-H5P"/>
                             <constraint firstItem="wRj-h7-hy7" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="HUR-sM-sRZ"/>
                             <constraint firstItem="ZZm-B4-XLM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="80" id="MM6-Nv-Ziw"/>
@@ -75,9 +75,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="sign_in (1)" width="222.66667175292969" height="81"/>
-        <image name="sign_up (1)" width="222.66667175292969" height="81"/>
-        <image name="ロゴ" width="181.66667175292969" height="139"/>
-        <image name="背景" width="428" height="926"/>
+        <image name="sign_in (1)" width="334" height="121.5"/>
+        <image name="sign_up (1)" width="334" height="121.5"/>
+        <image name="ロゴ" width="272.5" height="208.5"/>
+        <image name="背景" width="642" height="1389"/>
     </resources>
 </document>
