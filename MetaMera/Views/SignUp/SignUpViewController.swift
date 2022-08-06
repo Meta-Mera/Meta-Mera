@@ -67,7 +67,8 @@ class SignUpViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        eMailTextField.text = ""
+        passwordTextField.text = ""
     }
 
     
@@ -97,6 +98,7 @@ class SignUpViewController: UIViewController {
                 HUD.hide { (_) in
                     HUD.flash(.success, onView: self?.view, delay: 1) { [weak self] (_) in
                         Profile.shared.loginUser = user
+                        Profile.shared.isLogin = true
                         self?.presentToARViewController()
                     }
                 }

@@ -76,7 +76,7 @@ class SignUpModel {
                     
 //                    Profile.shared.loginUser = user
 //                    self?.presentToARViewController()
-                    
+                    Auth.auth().currentUser?.sendEmailVerification()
                     completion(.success(user))
                     
                     

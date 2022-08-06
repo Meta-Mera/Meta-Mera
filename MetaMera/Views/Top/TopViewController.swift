@@ -16,13 +16,13 @@ class TopViewController: UIViewController {
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var signInImageView: UIImageView!
     @IBOutlet weak var signUpImageView: UIImageView!
+    @IBOutlet weak var versionLabel: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         viewConfig()
-        
     }
     
     func viewConfig(){
@@ -62,6 +62,12 @@ class TopViewController: UIViewController {
                 
             })
         })
+        
+        if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
+            versionLabel.text = "Ver: \(version)"
+        } else {
+            versionLabel.text = "Ver: unknown"
+        }
 
     }
 

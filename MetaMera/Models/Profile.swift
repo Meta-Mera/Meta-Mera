@@ -19,6 +19,7 @@ class Profile {
     let userRef = Firestore.firestore().collection("users")
     
     var loginUser: User!
+    var isLogin: Bool!
     
     func getFileURL(fileName: String) -> URL {
         let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!

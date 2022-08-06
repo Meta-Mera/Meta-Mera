@@ -315,4 +315,10 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
             return nil
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            print("tapped table view")
+            print("message:",messages[indexPath.row].message)
+        }
+    
 }

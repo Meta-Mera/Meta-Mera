@@ -21,8 +21,10 @@ class Goto : UIViewController{
         view.view.window?.rootViewController?.dismiss(animated: false, completion: completion)
     }
     
-    class func Back(){
-        
+    class func TopView(view: UIViewController){
+        print("Goto-TopView was called.")
+        view.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        view.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     //TODO: SignInの画面に移行できるように戻すこと！！
@@ -73,10 +75,12 @@ class Goto : UIViewController{
         }
     }
     
-    class func Profile(view: UIViewController){
+    class func Profile(view: UIViewController, user: User){
         print("Goto-Profile was called.")
         let vc = UIStoryboard(name: "ProfileViewController", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
         vc.modalPresentationStyle = .fullScreen
+        vc.delegate = view as! SignOutProtocol
+        vc.loginUser = user
         view.present(vc, animated: true, completion: nil)
     }
     

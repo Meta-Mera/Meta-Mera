@@ -26,6 +26,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var backImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userIdLabel: UILabel!
+    @IBOutlet weak var optionButton: UIButton!
     
     let displayDebugging = true
     private var isInitialMoveToMap: Bool = true
@@ -53,6 +54,10 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
     
     // image
     private var imagePicker = UIImagePickerController()
@@ -60,6 +65,13 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configView()
+        
+    }
+    
+    func configView(){
+        
         profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
         changeProfileImageButton.layer.cornerRadius = 13
         
@@ -78,13 +90,22 @@ class ProfileViewController: UIViewController {
         backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backView(_:))))
         
         //MARK: - FireStorage
-        let uid = loginUser.uid
-        switch Profile.shared.updateProfileImage() {
-        case .success(let image):
-            profileImageView.setImage(image: image, name: uid)
-        case .failure(_):
-            break
+//        let uid = loginUser.uid
+//        switch Profile.shared.updateProfileImage() {
+//        case .success(let image):
+//            profileImageView.setImage(image: image, name: uid)
+//        case .failure(_):
+//            break
+//        }
+        
+        if let url = URL(string: loginUser.profileImage){
+            Nuke.loadImage(with: url, into: profileImageView)
         }
+        
+        optionButton.imageView?.contentMode = .scaleAspectFill
+        optionButton.contentHorizontalAlignment = .fill
+        optionButton.contentVerticalAlignment = .fill
+        
         
     }
     
@@ -104,7 +125,7 @@ class ProfileViewController: UIViewController {
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
         
-        loginUser = Profile.shared.loginUser
+//        loginUser = Profile.shared.loginUser
         
         MapView.showsUserLocation = true
         
@@ -112,12 +133,6 @@ class ProfileViewController: UIViewController {
         
         userNameLabel.text = loginUser.userName
         userIdLabel.text = loginUser.email
-        
-        
-        
-//        var test = Profile.shared.getUser(userId: "")
-    
-        
         
         moveTo(center: MapView.userLocation.coordinate, animated: true)
         // ローカルファイルからユーザーアイコンを取得・表示する
@@ -137,6 +152,48 @@ class ProfileViewController: UIViewController {
         print("push back image")
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func pushOptionButton(_ sender: Any) {
+        
+        // styleをActionSheetに設定
+        let alertSheet = UIAlertController(title: "account setting", message: "", preferredStyle: UIAlertController.Style.actionSheet)
+        
+        // 自分の選択肢を生成
+        let action1 = UIAlertAction(title: "Change your profile", style: UIAlertAction.Style.default, handler: {[weak self]
+            (action: UIAlertAction!) in
+            
+        })
+        
+        let action2 = UIAlertAction(title: "Sign out", style: UIAlertAction.Style.destructive, handler: {[weak self]
+            (action: UIAlertAction!) -> Void in
+            self?.pushSignOut()
+        })
+        let action3 = UIAlertAction(title: "cancel", style: UIAlertAction.Style.cancel, handler: {
+            (action: UIAlertAction!) in
+        })
+        
+        // アクションを追加.
+        alertSheet.addAction(action1)
+        alertSheet.addAction(action2)
+        alertSheet.addAction(action3)
+        
+        self.present(alertSheet, animated: true, completion: nil)
+        
+    }
+    
+    var delegate : SignOutProtocol?
+    
+    func pushSignOut(){
+        do {
+            try Auth.auth().signOut()
+            Profile.shared.isLogin = false
+            delegate?.signOut(check: true)
+            self.dismiss(animated: true, completion: nil)
+        } catch let signOutError as NSError {
+          print("Error signing out: %@", signOutError)
+        }
+    }
+    
     
     
     @objc func updateUserLocation() {
@@ -184,36 +241,6 @@ class ProfileViewController: UIViewController {
     
     
     @IBAction func pushChangeImage(_ sender: Any) {
-        //iOS14に対応
-        if #available(iOS 14.0, *) {
-            PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
-                switch status {
-                case .authorized:
-                    print("許可ずみ")
-                    break
-                case .limited:
-                    print("制限あり")
-                    break
-                case .denied:
-                    print("拒否ずみ")
-                    break
-                default:
-                    break
-                }
-            }
-        }else  {
-            if PHPhotoLibrary.authorizationStatus() != .authorized {
-                PHPhotoLibrary.requestAuthorization { status in
-                    if status == .authorized {
-                        print("許可ずみ")
-                    } else if status == .denied {
-                        print("拒否ずみ")
-                    }
-                }
-            } else {
-                
-            }
-        }
         
         // 権限
         let authPhotoLibraryStatus = PHPhotoLibrary.authorizationStatus()
@@ -504,4 +531,11 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         }
     }
     
+}
+
+protocol SignOutProtocol:class {
+
+//    func catchData(count: Int)
+    func signOut(check: Bool)
+
 }

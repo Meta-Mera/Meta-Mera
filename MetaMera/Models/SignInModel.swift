@@ -28,6 +28,11 @@ class SignInModel {
                 completion(.failure(NSError(domain: "ログイン情報の取得に失敗\(err)", code: 400)))
                 return
             }
+            
+            if !(Auth.auth().currentUser!.isEmailVerified){
+                Auth.auth().currentUser?.sendEmailVerification()
+            }
+            
             guard let uid = Auth.auth().currentUser?.uid else { return }
             Firestore.firestore().collection("Users").document(uid).getDocument { (userSnapshot, err) in
                 if let err = err {

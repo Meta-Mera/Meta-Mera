@@ -39,6 +39,21 @@ class SignInViewController: UIViewController {
 
         nextButtonImage.isUserInteractionEnabled = true
         nextButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(PushSignIn(_:))))
+        
+        emailTextField.text = "g019c1045@g.neec.ac.jp"
+        passwordTextField.text = "123456"
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
+        if Profile.shared.isLogin == false {
+            emailTextField.text = ""
+            passwordTextField.text = ""
+            Profile.shared.isLogin = nil
+        }
     }
     
   override func viewWillLayoutSubviews() {
@@ -66,6 +81,7 @@ class SignInViewController: UIViewController {
             case .success(_):
                 HUD.hide { (_) in
                     HUD.flash(.success, onView: self?.view, delay: 1) { (_) in
+                        Profile.shared.isLogin = true
                         self?.presentToARViewController()
                     }
                 }
@@ -83,6 +99,7 @@ class SignInViewController: UIViewController {
     private func presentToARViewController(){
         HUD.show(.progress, onView: view)
         Goto.ARView(view: self)
+        HUD.hide(afterDelay: 2.0)
     }
 
     @objc func gotoTopView(_ sender: Any) {

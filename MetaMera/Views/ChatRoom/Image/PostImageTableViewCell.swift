@@ -54,9 +54,17 @@ class PostImageTableViewCell: UITableViewCell {
         
         profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
         
+        postUserNameLabel.isUserInteractionEnabled = true
+        postUserNameLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pushUserLabel(_:))))
+        
         backgroundColor = .clear
         
         
+    }
+    
+    @objc func pushUserLabel(_ sender: Any){
+//        Goto.Profile(view: self, user: )
+
     }
     
     private func updateImageTableView(){
@@ -72,6 +80,7 @@ class PostImageTableViewCell: UITableViewCell {
             self?.postUser = User(dic: dic,uid: postUserUid)
             
             self?.postUserNameLabel.text = self?.postUser?.userName
+            self?.postUserNameLabel.accessibilityIdentifier = self?.postUser?.uid
             self?.postTextView.text = self?.post?.comment.replacingOccurrences(of: "\\\\n", with: "\n").replacingOccurrences(of: "\\", with: "")
             if let url = URL(string: (self?.postUser?.profileImage)!){
                 Nuke.loadImage(with: url, into: (self?.profileImageView)!)

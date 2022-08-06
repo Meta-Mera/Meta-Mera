@@ -64,21 +64,20 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     var sceneLocationView = SceneLocationView()
     var locationManager = CLLocationManager()
     
+    
+    
     //MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.view.bringSubviewToFront(mapView)
-        self.view.bringSubviewToFront(selectCategoryButton)
-        self.view.bringSubviewToFront(createRoomButton)
-        self.view.bringSubviewToFront(plusButton)
-        self.view.bringSubviewToFront(profileButton)
+
+        configView()
+        setUpPlusButtons()
+    }
+    
+    func configView(){
         
         //画面遷移した時だけ現在位置を表示するためにTrueにするよ
         flag = true
-        
-        // プラスボタンにタップジェスチャー追加
-        plusButton.addGestureRecognizer(plusButtonLongTapGuester)
         
         // Load the "Box" scene from the "Experience" Reality File
         
@@ -90,10 +89,85 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             print("error")
         }
         
+        
+        //MARK: 位置情報のやつっぽい
+        
+        locationManager.requestWhenInUseAuthorization()
+        
+        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.headingFilter = kCLHeadingFilterNone
+        locationManager.pausesLocationUpdatesAutomatically = false
+        locationManager.delegate = self
+//        locationManager.startUpdatingHeading()
+        locationManager.startUpdatingLocation()
+    
+        mapView.showsUserLocation = true
+        
+        // MARK: - ここからARのやつのやつ
+        
+        NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification,
+                                               object: nil,
+                                               queue: nil) { [weak self] _ in
+            self?.pauseAnimation()
+        }
+        // swiftlint:disable:next discarded_notification_center_observer
+        NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification,
+                                               object: nil,
+                                               queue: nil) { [weak self] _ in
+            self?.restartAnimation()
+        }
+        
+        
+        
+        sceneLocationView.showAxesNode = false
+        sceneLocationView.locationNodeTouchDelegate = self
+//        sceneLocationView.delegate = self // Causes an assertionFailure - use the `arViewDelegate` instead:
+        sceneLocationView.arViewDelegate = self
+        sceneLocationView.locationNodeTouchDelegate = self
+        sceneLocationView.orientToTrueNorth = false
+        
+        
+        
+        addSceneModels()
+        
+        //36.35801663766492, 138.63498898207519
+        let pin = MKPointAnnotation()
+        pin.title = "テストピン"
+        pin.subtitle = "サブタイトル"
+        pin.coordinate = CLLocationCoordinate2DMake(36.35801663766492, 138.63498898207519)
+        mapView.addAnnotation(pin)
+        
+        
+//        sceneLocationView.run()
+        contentView.addSubview(sceneLocationView)
+        
+        sceneLocationView.frame = .zero
+        
+//        sceneLocationView.run()
+        
+        // Do any additional setup after loading the view.
+        
+        updateInfoLabelTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
+            self?.updateInfoLabel()
+        }
+        
+    }
+    
+    func setUpPlusButtons(){
+        
+        // プラスボタンにタップジェスチャー追加
+        plusButton.addGestureRecognizer(plusButtonLongTapGuester)
+        
         //MARK: プロフィール画像
         ProfileImage.layer.cornerRadius = 25
         ProfileImage.isUserInteractionEnabled = true
         ProfileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pushProfileImage(_:))))
+        
+        self.view.bringSubviewToFront(selectCategoryButton)
+        self.view.bringSubviewToFront(createRoomButton)
+        self.view.bringSubviewToFront(plusButton)
+        self.view.bringSubviewToFront(profileButton)
         
         //MARK: プラスボタン系
         let tapGestureRecognizer = UITapGestureRecognizer(target: self,
@@ -136,82 +210,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         createRoomButton.imageView?.layer.borderColor = borderColor
         selectCategoryButton.imageView?.layer.borderColor = borderColor
         
-        
-        //MARK: 位置情報のやつっぽい
-        
-        locationManager.requestWhenInUseAuthorization()
-        
-        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-        locationManager.distanceFilter = kCLDistanceFilterNone
-        locationManager.headingFilter = kCLHeadingFilterNone
-        locationManager.pausesLocationUpdatesAutomatically = false
-        locationManager.delegate = self
-//        locationManager.startUpdatingHeading()
-        locationManager.startUpdatingLocation()
-        
-//        locationManager.requestTemporaryFullAccuracyAuthorization(withPurposeKey: "オブジェクトを表示するためには正確な位置情報が必要だお")
-    
-        mapView.showsUserLocation = true
-        
-        // MARK: - ここからARのやつのやつ
-        
-        NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification,
-                                               object: nil,
-                                               queue: nil) { [weak self] _ in
-            self?.pauseAnimation()
-        }
-        // swiftlint:disable:next discarded_notification_center_observer
-        NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification,
-                                               object: nil,
-                                               queue: nil) { [weak self] _ in
-            self?.restartAnimation()
-        }
-        
-        
-        
-        sceneLocationView.showAxesNode = false
-        sceneLocationView.locationNodeTouchDelegate = self
-//        sceneLocationView.delegate = self // Causes an assertionFailure - use the `arViewDelegate` instead:
-        sceneLocationView.arViewDelegate = self
-        sceneLocationView.locationNodeTouchDelegate = self
-        sceneLocationView.orientToTrueNorth = false
-        
-        
-        
-        addSceneModels()
-        
-//        var num = 0
-//        Profile.shared.nodeLocationsLatitude.forEach { latitude in
-////            let coordinate
-//            print("num:       ",num)
-//            let pin = MKPointAnnotation()
-//            pin.title = "テストピン"
-//            pin.subtitle = "サブタイトル"
-//            pin.coordinate = CLLocationCoordinate2DMake(latitude, Profile.shared.nodeLocationsLongitude[num])
-//            num+=1
-//            mapView.addAnnotation(pin)
-//        }
-        
-        //36.35801663766492, 138.63498898207519
-        let pin = MKPointAnnotation()
-        pin.title = "テストピン"
-        pin.subtitle = "サブタイトル"
-        pin.coordinate = CLLocationCoordinate2DMake(36.35801663766492, 138.63498898207519)
-        mapView.addAnnotation(pin)
-        
-        
-//        sceneLocationView.run()
-        contentView.addSubview(sceneLocationView)
-        
-        sceneLocationView.frame = .zero
-        
-//        sceneLocationView.run()
-        
-        // Do any additional setup after loading the view.
-        
-        updateInfoLabelTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
-            self?.updateInfoLabel()
-        }
     }
     
     
@@ -234,6 +232,16 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         super.viewDidLayoutSubviews()
         
         sceneLocationView.frame = view.bounds
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if Profile.shared.isLogin == false {
+            print("呼ばれた: ",Profile.shared.isLogin!)
+            sleep(1)
+            self.dismiss(animated: true)
+        }
     }
     
     
@@ -298,7 +306,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     @objc func pushProfileImage(_ sender: Any){
         print("getName: ",ProfileImage.getName() as Any)
         print("Push profile image")
-        Goto.Profile(view: self)
+        Goto.Profile(view: self, user: Profile.shared.loginUser)
     }
     
     //MARK: プロフィール画像関連 -
@@ -657,6 +665,18 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     @IBAction func pushCreateRoom(_ sender: Any) {
         backTap()
+        Firestore.firestore().collection("Posts").document("Uz93q4hTLBHvLUFglhxp").getDocument { (snapshot, err) in
+            if let err = err {
+                print("投稿情報の取得に失敗しました。\(err)")
+                return
+            }
+            
+            guard let dic = snapshot?.data() else { return }
+            print("投稿情報の取得に成功しました。")
+            let post = Post(dic: dic,postId: "Uz93q4hTLBHvLUFglhxp")
+            print(post.createdAt.dateValue())
+            Goto.ChatRoomView(view: self, image: UIImage(named: "katsu")!, post: post)
+        }
         
     }
     
@@ -664,6 +684,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         backTap()
         
     }
+    
+    
     
     
     
@@ -738,6 +760,17 @@ extension UIImage {
         let reSize = CGSize(width: self.size.width * scaleSize, height: self.size.height * scaleSize)
         return reSizeImage(reSize: reSize)
     }
+}
+
+extension ARViewController: SignOutProtocol {
+    
+    func signOut(check: Bool) {
+        let signOutcheck = check
+        if signOutcheck {
+            self.dismiss(animated: true)
+        }
+    }
+    
 }
 
 
