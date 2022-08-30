@@ -74,9 +74,36 @@ class SignUpModel {
                     guard let dic = snapshot?.data() else { return }
                     let user = User(dic: dic, uid: uid)
                     
-//                    Profile.shared.loginUser = user
-//                    self?.presentToARViewController()
                     Auth.auth().currentUser?.sendEmailVerification()
+                    
+                    
+                    Messaging.messaging().token { token, error in
+                        if let error = error {
+                            print("error\(error)")
+                        } else if let token = token {
+                            Profile.shared.loginUser = user
+//                            var firebaseTokens = user.tokens
+                            let doc = Firestore.firestore().collection("Users").document(Profile.shared.loginUser.uid)
+    //                        doc.collection("tokens").addDocument(data: [token ®: token])
+                            doc.collection("tokens").document(token).setData([token:token]) { err in
+                                if let err = err {
+                                    print("Error writing document: \(err)")
+                                } else {
+                                    print("Document successfully written!")
+                                }
+                            }
+                            Messaging.messaging().subscribe(toTopic: "debugUser") { error in
+                              print("Subscribed to debugUser topic")
+                            }
+                            Messaging.messaging().subscribe(toTopic: uid) { error in
+                                print("Subscribed to \(uid) topic")
+                            }
+                            
+                            
+                        }
+                    }
+                    
+                    
                     completion(.success(user))
                     
                     

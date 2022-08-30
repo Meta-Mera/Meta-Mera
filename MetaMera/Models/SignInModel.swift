@@ -48,7 +48,7 @@ class SignInModel {
                         guard let dic = userSnapshot?.data() else { return }
                         let user = User(dic: dic,uid: uid)
                         Profile.shared.loginUser = user
-                        var firebaseTokens = user.tokens
+//                        var firebaseTokens = user.tokens
                         let doc = Firestore.firestore().collection("Users").document(Profile.shared.loginUser.uid)
 //                        doc.collection("tokens").addDocument(data: [token ®: token])
                         doc.collection("tokens").document(token).setData([token:token]) { err in
@@ -61,6 +61,9 @@ class SignInModel {
                         Messaging.messaging().subscribe(toTopic: "debugUser") { error in
                           print("Subscribed to debugUser topic")
                         }
+                        Messaging.messaging().subscribe(toTopic: uid) { error in
+                            print("Subscribed to \(uid) topic")
+                        }
                         
                         
                         
@@ -71,22 +74,6 @@ class SignInModel {
 //                            ),
 //                            topic='debugUser',
 //                        )
-                        
-                        let topic = "highScores";
-
-                        const message = {
-                          topic: topic
-                        };
-
-                        // Send a message to devices subscribed to the provided topic.
-                        getMessaging().send(message)
-                          .then((response) => {
-                            // Response is a message ID string.
-                            console.log('Successfully sent message:', response);
-                          })
-                          .catch((error) => {
-                            console.log('Error sending message:', error);
-                          });
                         
                         switch Profile.shared.updateProfileImage() {
                         case .success(_):
