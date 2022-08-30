@@ -78,7 +78,7 @@ class SignInViewController: UIViewController {
         HUD.show(.progress, onView: view)
         signInModel.signIn(signInItem: .init(email: emailTextField.text, password: passwordTextField.text)) { [weak self] result in
             switch result{
-            case .success(_):
+            case .success(_): //Sign in 成功
                 HUD.hide { (_) in
                     HUD.flash(.success, onView: self?.view, delay: 1) { (_) in
                         Profile.shared.isLogin = true
@@ -86,10 +86,11 @@ class SignInViewController: UIViewController {
                     }
                 }
                 
-            case .failure(let error):
+            case .failure(let error): //Sign in 失敗
                 HUD.hide { (_) in
-                    HUD.flash(.error, delay: 1)
-                    print(error)
+                    HUD.flash(.label(error.domain), delay: 1.0) { _ in
+                        print(error)
+                    }
                 }
             }
         }

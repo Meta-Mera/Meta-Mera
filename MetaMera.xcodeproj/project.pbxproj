@@ -21,6 +21,9 @@
 		383AC1CD288787B600B5BE12 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383AC1CC288787B600B5BE12 /* PostViewController.swift */; };
 		383AC1D2288E398600B5BE12 /* PostImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383AC1D1288E398600B5BE12 /* PostImageTableViewCell.swift */; };
 		383AC1D4288E39E900B5BE12 /* PostImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 383AC1D3288E39E900B5BE12 /* PostImageTableViewCell.xib */; };
+		388EA9AB289E9AF800A79746 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388EA9A9289E9AF800A79746 /* ImageCollectionViewCell.swift */; };
+		388EA9AC289E9AF800A79746 /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 388EA9AA289E9AF800A79746 /* ImageCollectionViewCell.xib */; };
+		388EA9AE28A555E800A79746 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388EA9AD28A555E800A79746 /* Notifications.swift */; };
 		389024C62835DAD4004DC3F3 /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389024C52835DAD4004DC3F3 /* UIColor-Extension.swift */; };
 		38968054283F03B1008E1302 /* StartUpStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38968053283F03B1008E1302 /* StartUpStoryboard.storyboard */; };
 		38968057283F04CE008E1302 /* StartUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38968055283F04CE008E1302 /* StartUpViewController.swift */; };
@@ -102,6 +105,9 @@
 		383AC1CC288787B600B5BE12 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		383AC1D1288E398600B5BE12 /* PostImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageTableViewCell.swift; sourceTree = "<group>"; };
 		383AC1D3288E39E900B5BE12 /* PostImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostImageTableViewCell.xib; sourceTree = "<group>"; };
+		388EA9A9289E9AF800A79746 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		388EA9AA289E9AF800A79746 /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionViewCell.xib; sourceTree = "<group>"; };
+		388EA9AD28A555E800A79746 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		389024C52835DAD4004DC3F3 /* UIColor-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Extension.swift"; sourceTree = "<group>"; };
 		38968053283F03B1008E1302 /* StartUpStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StartUpStoryboard.storyboard; sourceTree = "<group>"; };
 		38968055283F04CE008E1302 /* StartUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartUpViewController.swift; sourceTree = "<group>"; };
@@ -223,6 +229,15 @@
 			children = (
 				383AC1D1288E398600B5BE12 /* PostImageTableViewCell.swift */,
 				383AC1D3288E39E900B5BE12 /* PostImageTableViewCell.xib */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		388EA9A6289E9AA400A79746 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				388EA9A9289E9AF800A79746 /* ImageCollectionViewCell.swift */,
+				388EA9AA289E9AF800A79746 /* ImageCollectionViewCell.xib */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -423,6 +438,7 @@
 				38FAA64928801229000521DD /* Post.swift */,
 				38AD14C1289249EF001D1769 /* SignInModel.swift */,
 				38A05CEA289547D000F0CC40 /* SignUpModel.swift */,
+				388EA9AD28A555E800A79746 /* Notifications.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -430,6 +446,7 @@
 		38FAA64B2881571E000521DD /* CreateNewPost */ = {
 			isa = PBXGroup;
 			children = (
+				388EA9A6289E9AA400A79746 /* Image */,
 				38FAA64C28815736000521DD /* CreateNewPostViewController.swift */,
 				38FAA64E28815740000521DD /* CreateNewPostViewController.storyboard */,
 			);
@@ -566,6 +583,7 @@
 				382713EE28328998004BEB01 /* TopViewController.storyboard in Resources */,
 				38968054283F03B1008E1302 /* StartUpStoryboard.storyboard in Resources */,
 				38A21267282A09C200B56E03 /* SignUpViewController.xib in Resources */,
+				388EA9AC289E9AF800A79746 /* ImageCollectionViewCell.xib in Resources */,
 				38FAA64F28815740000521DD /* CreateNewPostViewController.storyboard in Resources */,
 				382713892831F95F004BEB01 /* SignInViewController.xib in Resources */,
 				382713F22833423A004BEB01 /* ARViewController.storyboard in Resources */,
@@ -720,6 +738,7 @@
 				382713F028332648004BEB01 /* AppDelegate.swift in Sources */,
 				3896805E284A4CAE008E1302 /* Goto.swift in Sources */,
 				382713882831F95F004BEB01 /* SignInViewController.swift in Sources */,
+				388EA9AB289E9AF800A79746 /* ImageCollectionViewCell.swift in Sources */,
 				38AD14C2289249EF001D1769 /* SignInModel.swift in Sources */,
 				38271474283472C0004BEB01 /* ChatViewController.swift in Sources */,
 				38A2122E282A064300B56E03 /* ViewController.swift in Sources */,
@@ -738,6 +757,7 @@
 				38FAA648287FAFE4000521DD /* Comment.swift in Sources */,
 				38968068284C76C8008E1302 /* ProfileViewController.swift in Sources */,
 				382F6AB2286D44730056BFA2 /* User.swift in Sources */,
+				388EA9AE28A555E800A79746 /* Notifications.swift in Sources */,
 				38AB508B285AD3A700AF4F80 /* ChatRoomController.swift in Sources */,
 				3896805B28445926008E1302 /* ArObject.swift in Sources */,
 				38A21266282A09C200B56E03 /* SignUpViewController.swift in Sources */,
@@ -948,7 +968,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jim112o.MetaMera;
@@ -990,7 +1010,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jim112o.MetaMera;

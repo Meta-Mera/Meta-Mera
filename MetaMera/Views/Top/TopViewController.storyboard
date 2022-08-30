@@ -12,32 +12,32 @@
             <objects>
                 <viewController storyboardIdentifier="TopViewController" id="Y6W-OH-hqX" customClass="TopViewController" customModule="MetaMera" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="背景" translatesAutoresizingMaskIntoConstraints="NO" id="wRj-h7-hy7">
-                                <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="ZZm-B4-XLM">
-                                <rect key="frame" x="214" y="573" width="0.0" height="0.0"/>
+                                <rect key="frame" x="207" y="558" width="0.0" height="0.0"/>
                                 <subviews>
                                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sign_in (1)" translatesAutoresizingMaskIntoConstraints="NO" id="ihG-pB-ATF">
-                                        <rect key="frame" x="0.0" y="0.0" width="222.66666666666666" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="0.0"/>
                                     </imageView>
                                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sign_up (1)" translatesAutoresizingMaskIntoConstraints="NO" id="36K-kK-ANE">
-                                        <rect key="frame" x="0.0" y="0.0" width="222.66666666666666" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="0.0"/>
                                     </imageView>
                                 </subviews>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ロゴ" translatesAutoresizingMaskIntoConstraints="NO" id="OoH-k2-pZQ">
-                                <rect key="frame" x="154" y="293" width="120" height="140"/>
+                                <rect key="frame" x="147" y="278" width="120" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="i9F-bq-b3c"/>
                                     <constraint firstAttribute="height" constant="140" id="kYD-Ge-Vh3"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ver: 0.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5H8-jf-MZi">
-                                <rect key="frame" x="296" y="738" width="72" height="20.333333333333371"/>
+                                <rect key="frame" x="282" y="698" width="72" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.67058825489999996" green="0.39215683940000001" blue="0.23921570180000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -47,7 +47,7 @@
                         <color key="backgroundColor" red="0.40784314269999999" green="0.64313727620000005" blue="0.54901963470000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="wRj-h7-hy7" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="1ZA-JR-1Nq"/>
-                            <constraint firstItem="5H8-jf-MZi" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" constant="200" id="7Oi-zi-BT3"/>
+                            <constraint firstItem="5H8-jf-MZi" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" constant="260" id="7Oi-zi-BT3"/>
                             <constraint firstItem="ZZm-B4-XLM" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="En5-ss-H5P"/>
                             <constraint firstItem="wRj-h7-hy7" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="HUR-sM-sRZ"/>
                             <constraint firstItem="ZZm-B4-XLM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="80" id="MM6-Nv-Ziw"/>

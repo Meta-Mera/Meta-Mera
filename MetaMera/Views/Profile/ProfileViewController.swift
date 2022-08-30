@@ -90,13 +90,13 @@ class ProfileViewController: UIViewController {
         backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backView(_:))))
         
         //MARK: - FireStorage
-//        let uid = loginUser.uid
-//        switch Profile.shared.updateProfileImage() {
-//        case .success(let image):
-//            profileImageView.setImage(image: image, name: uid)
-//        case .failure(_):
-//            break
-//        }
+        //        let uid = loginUser.uid
+        //        switch Profile.shared.updateProfileImage() {
+        //        case .success(let image):
+        //            profileImageView.setImage(image: image, name: uid)
+        //        case .failure(_):
+        //            break
+        //        }
         
         if let url = URL(string: loginUser.profileImage){
             Nuke.loadImage(with: url, into: profileImageView)
@@ -118,14 +118,14 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         MapView.delegate = self
-
+        
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLHeadingFilterNone
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
         
-//        loginUser = Profile.shared.loginUser
+        //        loginUser = Profile.shared.loginUser
         
         MapView.showsUserLocation = true
         
@@ -145,7 +145,7 @@ class ProfileViewController: UIViewController {
         span: CLLocationDegrees = 0.01) {
             MapView.centerCoordinate = location
             MapView.region = .init(center: location, span: .init(latitudeDelta: span, longitudeDelta: span))
-    }
+        }
     
     //MARK: 前の画面に戻る
     @objc func backView(_ sender: Any){
@@ -190,7 +190,7 @@ class ProfileViewController: UIViewController {
             delegate?.signOut(check: true)
             self.dismiss(animated: true, completion: nil)
         } catch let signOutError as NSError {
-          print("Error signing out: %@", signOutError)
+            print("Error signing out: %@", signOutError)
         }
     }
     
@@ -241,6 +241,37 @@ class ProfileViewController: UIViewController {
     
     
     @IBAction func pushChangeImage(_ sender: Any) {
+        
+        if #available(iOS 14.0, *) {
+            PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
+                switch status {
+                case .authorized:
+                    print("許可ずみ")
+                    break
+                case .limited:
+                    print("制限あり")
+                    break
+                case .denied:
+                    print("拒否ずみ")
+                    break
+                default:
+                    break
+                }
+            }
+        }else  {
+            if PHPhotoLibrary.authorizationStatus() != .authorized {
+                PHPhotoLibrary.requestAuthorization { status in
+                    if status == .authorized {
+                        print("許可ずみ")
+                    } else if status == .denied {
+                        print("拒否ずみ")
+                    }
+                }
+            } else {
+                
+            }
+        }
+        
         
         // 権限
         let authPhotoLibraryStatus = PHPhotoLibrary.authorizationStatus()
@@ -294,7 +325,7 @@ class ProfileViewController: UIViewController {
         }
         // fix/update_prof_image_#33 >>>
         if authPhotoLibraryStatus == .authorized {
-        // <<<
+            // <<<
             present(imagePicker, animated: true)    // カメラロール起動
         }
         print("change image")
@@ -414,7 +445,7 @@ class ProfileViewController: UIViewController {
     }
     
     func updateProfileImageToFirestore(profileImageUrl: String, image: UIImage){
-//        Firestore.firestore().document("users").collection(Profile.shared.userId).value(forKey: "")
+        //        Firestore.firestore().document("users").collection(Profile.shared.userId).value(forKey: "")
         let doc = Firestore.firestore().collection("Users").document(loginUser.uid)
         doc.updateData([
             "profileImage" : profileImageUrl]
@@ -459,7 +490,7 @@ class ProfileViewController: UIViewController {
         // メタデータ
         let metaData = FirebaseStorage.StorageMetadata()
         metaData.contentType = "image/jpeg"
-                    
+        
         // UIImageをdata型に変換
         guard let imageData = selectedImage.jpegData(compressionQuality: 0.5) else {
             return
@@ -520,13 +551,13 @@ extension ProfileViewController: CLLocationManagerDelegate {
 }
 
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let editImage = info[.editedImage] as? UIImage {
-//            self.saveFirebase(selectedImage: editImage)
+            //            self.saveFirebase(selectedImage: editImage)
             self.saveToFireStorege(selectedImage: editImage)
         }else if let originalImage = info[.originalImage] as? UIImage {
-//            self.saveFirebase(selectedImage: originalImage)
+            //            self.saveFirebase(selectedImage: originalImage)
             self.saveToFireStorege(selectedImage: originalImage)
         }
     }
@@ -534,8 +565,8 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 }
 
 protocol SignOutProtocol:class {
-
-//    func catchData(count: Int)
+    
+    //    func catchData(count: Int)
     func signOut(check: Bool)
-
+    
 }

@@ -93,7 +93,7 @@ class SignUpViewController: UIViewController {
         signUpModel.signUp(signUpItem: .init(email: eMailTextField.text, password: passwordTextField.text, confirmPassword: confirmPasswordTextField.text, userName: userIdTextField.text)) { [weak self] result in
             switch result {
                 
-            case .success(let user):
+            case .success(let user): //Sign up 成功
                 
                 HUD.hide { (_) in
                     HUD.flash(.success, onView: self?.view, delay: 1) { [weak self] (_) in
@@ -102,7 +102,7 @@ class SignUpViewController: UIViewController {
                         self?.presentToARViewController()
                     }
                 }
-            case .failure(let error):
+            case .failure(let error): //Sign up 失敗
                 
                 HUD.hide { (_) in
                     HUD.flash(.label(error.domain), delay: 1.0) { _ in

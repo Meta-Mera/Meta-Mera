@@ -76,6 +76,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     func configView(){
         
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        
         //画面遷移した時だけ現在位置を表示するためにTrueにするよ
         flag = true
         
