@@ -84,6 +84,14 @@ class Goto : UIViewController{
         view.present(vc, animated: true, completion: nil)
     }
     
+    class func ChangeProfile(view: UIViewController, user: User){
+        print("Goto-ChangeProfile was called.")
+        let vc = UIStoryboard(name: "ChangeProfileViewController", bundle: nil).instantiateViewController(withIdentifier: "ChangeProfileViewController") as! ChangeProfileViewController
+        vc.modalPresentationStyle = .fullScreen
+        vc.loginUser = user
+        view.present(vc, animated: true, completion: nil)
+    }
+    
     class func ChatRoomView(view: UIViewController, image: UIImage, post: Post!){
         print("Goto-ChatRoom was called.")
         let vc = UIStoryboard(name: "ChatRoomController", bundle: nil).instantiateViewController(withIdentifier: "ChatRoomController") as! ChatRoomController

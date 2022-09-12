@@ -153,6 +153,9 @@ class ProfileViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    
+    //MARK: - ハンバーガーボタン
+    
     @IBAction func pushOptionButton(_ sender: Any) {
         
         // styleをActionSheetに設定
@@ -160,7 +163,8 @@ class ProfileViewController: UIViewController {
         
         // 自分の選択肢を生成
         let action1 = UIAlertAction(title: "Change your profile", style: UIAlertAction.Style.default, handler: {[weak self]
-            (action: UIAlertAction!) in
+            (action: UIAlertAction!) -> Void in
+            self?.pushChangeProfile()
             
         })
         
@@ -194,6 +198,11 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    func pushChangeProfile(){
+        Goto.ChangeProfile(view: self, user: loginUser)
+    }
+    
+    //MARK: ハンバーガーボタン -
     
     
     @objc func updateUserLocation() {
