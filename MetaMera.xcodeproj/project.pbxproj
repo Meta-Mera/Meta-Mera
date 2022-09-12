@@ -21,13 +21,16 @@
 		383AC1CD288787B600B5BE12 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383AC1CC288787B600B5BE12 /* PostViewController.swift */; };
 		383AC1D2288E398600B5BE12 /* PostImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383AC1D1288E398600B5BE12 /* PostImageTableViewCell.swift */; };
 		383AC1D4288E39E900B5BE12 /* PostImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 383AC1D3288E39E900B5BE12 /* PostImageTableViewCell.xib */; };
+		387EA2D328C76EBF00629B4B /* ArObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387EA2D228C76EBF00629B4B /* ArObject.swift */; };
+		387EA2D528C7723000629B4B /* LNTouchDelegate-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387EA2D428C7723000629B4B /* LNTouchDelegate-Extension.swift */; };
+		387EA2D728CF76F400629B4B /* UIImage-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387EA2D628CF76F400629B4B /* UIImage-Extension.swift */; };
 		388EA9AB289E9AF800A79746 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388EA9A9289E9AF800A79746 /* ImageCollectionViewCell.swift */; };
 		388EA9AC289E9AF800A79746 /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 388EA9AA289E9AF800A79746 /* ImageCollectionViewCell.xib */; };
 		388EA9AE28A555E800A79746 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388EA9AD28A555E800A79746 /* Notifications.swift */; };
 		389024C62835DAD4004DC3F3 /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389024C52835DAD4004DC3F3 /* UIColor-Extension.swift */; };
 		38968054283F03B1008E1302 /* StartUpStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38968053283F03B1008E1302 /* StartUpStoryboard.storyboard */; };
 		38968057283F04CE008E1302 /* StartUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38968055283F04CE008E1302 /* StartUpViewController.swift */; };
-		3896805B28445926008E1302 /* ArObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3896805A28445926008E1302 /* ArObject.swift */; };
+		3896805B28445926008E1302 /* ArObjectOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3896805A28445926008E1302 /* ArObjectOld.swift */; };
 		3896805E284A4CAE008E1302 /* Goto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3896805D284A4CAE008E1302 /* Goto.swift */; };
 		38968068284C76C8008E1302 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38968066284C76C8008E1302 /* ProfileViewController.swift */; };
 		3896806B284C7755008E1302 /* ProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3896806A284C7755008E1302 /* ProfileViewController.storyboard */; };
@@ -105,13 +108,16 @@
 		383AC1CC288787B600B5BE12 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		383AC1D1288E398600B5BE12 /* PostImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageTableViewCell.swift; sourceTree = "<group>"; };
 		383AC1D3288E39E900B5BE12 /* PostImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostImageTableViewCell.xib; sourceTree = "<group>"; };
+		387EA2D228C76EBF00629B4B /* ArObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArObject.swift; sourceTree = "<group>"; };
+		387EA2D428C7723000629B4B /* LNTouchDelegate-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LNTouchDelegate-Extension.swift"; sourceTree = "<group>"; };
+		387EA2D628CF76F400629B4B /* UIImage-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage-Extension.swift"; sourceTree = "<group>"; };
 		388EA9A9289E9AF800A79746 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		388EA9AA289E9AF800A79746 /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		388EA9AD28A555E800A79746 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		389024C52835DAD4004DC3F3 /* UIColor-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Extension.swift"; sourceTree = "<group>"; };
 		38968053283F03B1008E1302 /* StartUpStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StartUpStoryboard.storyboard; sourceTree = "<group>"; };
 		38968055283F04CE008E1302 /* StartUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartUpViewController.swift; sourceTree = "<group>"; };
-		3896805A28445926008E1302 /* ArObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArObject.swift; sourceTree = "<group>"; };
+		3896805A28445926008E1302 /* ArObjectOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArObjectOld.swift; sourceTree = "<group>"; };
 		3896805D284A4CAE008E1302 /* Goto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goto.swift; sourceTree = "<group>"; };
 		38968066284C76C8008E1302 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3896806A284C7755008E1302 /* ProfileViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileViewController.storyboard; sourceTree = "<group>"; };
@@ -220,6 +226,8 @@
 				389024C52835DAD4004DC3F3 /* UIColor-Extension.swift */,
 				38FAA641287860BD000521DD /* UIImageView-Extension.swift */,
 				38FAA643287D20C5000521DD /* UITraitCollection-Extension.swift */,
+				387EA2D428C7723000629B4B /* LNTouchDelegate-Extension.swift */,
+				387EA2D628CF76F400629B4B /* UIImage-Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -254,7 +262,7 @@
 		389680592844585D008E1302 /* AR */ = {
 			isa = PBXGroup;
 			children = (
-				3896805A28445926008E1302 /* ArObject.swift */,
+				3896805A28445926008E1302 /* ArObjectOld.swift */,
 			);
 			path = AR;
 			sourceTree = "<group>";
@@ -439,6 +447,7 @@
 				38AD14C1289249EF001D1769 /* SignInModel.swift */,
 				38A05CEA289547D000F0CC40 /* SignUpModel.swift */,
 				388EA9AD28A555E800A79746 /* Notifications.swift */,
+				387EA2D228C76EBF00629B4B /* ArObject.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -737,6 +746,7 @@
 				38FAA64D28815736000521DD /* CreateNewPostViewController.swift in Sources */,
 				382713F028332648004BEB01 /* AppDelegate.swift in Sources */,
 				3896805E284A4CAE008E1302 /* Goto.swift in Sources */,
+				387EA2D328C76EBF00629B4B /* ArObject.swift in Sources */,
 				382713882831F95F004BEB01 /* SignInViewController.swift in Sources */,
 				388EA9AB289E9AF800A79746 /* ImageCollectionViewCell.swift in Sources */,
 				38AD14C2289249EF001D1769 /* SignInModel.swift in Sources */,
@@ -746,6 +756,7 @@
 				38FAA646287FAFA6000521DD /* ChatRoom.swift in Sources */,
 				06B1CC142861664900116CF0 /* ChatRoomTableViewCell.swift in Sources */,
 				38AD14C5289266BE001D1769 /* SignItem.swift in Sources */,
+				387EA2D728CF76F400629B4B /* UIImage-Extension.swift in Sources */,
 				389024C62835DAD4004DC3F3 /* UIColor-Extension.swift in Sources */,
 				38A05CEB289547D000F0CC40 /* SignUpModel.swift in Sources */,
 				38A2122C282A064300B56E03 /* TopViewController.swift in Sources */,
@@ -758,8 +769,9 @@
 				38968068284C76C8008E1302 /* ProfileViewController.swift in Sources */,
 				382F6AB2286D44730056BFA2 /* User.swift in Sources */,
 				388EA9AE28A555E800A79746 /* Notifications.swift in Sources */,
+				387EA2D528C7723000629B4B /* LNTouchDelegate-Extension.swift in Sources */,
 				38AB508B285AD3A700AF4F80 /* ChatRoomController.swift in Sources */,
-				3896805B28445926008E1302 /* ArObject.swift in Sources */,
+				3896805B28445926008E1302 /* ArObjectOld.swift in Sources */,
 				38A21266282A09C200B56E03 /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -968,7 +980,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.2;
 				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jim112o.MetaMera;
@@ -1010,7 +1022,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.2;
 				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jim112o.MetaMera;

@@ -10,7 +10,7 @@ import ARKit
 import MapKit
 import SceneKit
 
-class ArObject {
+class ArObjectOld {
     
     var ar = ARViewController()
     

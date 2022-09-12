@@ -72,6 +72,10 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
 
         configView()
         setUpPlusButtons()
+        enableAutoLayout()
+        saveDefaultButtonPosision()
+        moveMenuButtonPosision()
+        hiddenButton()
     }
     
     func configView(){
@@ -395,6 +399,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         return nodes
     }
     
+    //MARK: - ここからわからん
+    
     //MARK: まだ勉強してるよ！
     func addSceneModels() {
         // 1. Don't try to add the models to the scene until we have a current location
@@ -549,11 +555,55 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     //MARK: ここまでオブジェクトを生成するためのやつだよ -
     
     
+    //MARK: ここまでわからん -
     
     
     
     
-    //MARK: - プラスボタンのやつ
+    //MARK: - プラスボタンのやつ(90%)
+    
+    var profileButtonCenter: CGPoint!
+    var selectCategoryButtonCenter: CGPoint!
+    var createRoomButtonCenter: CGPoint!
+    
+    private func enableAutoLayout(){
+        profileButton.translatesAutoresizingMaskIntoConstraints = true
+        selectCategoryButton.translatesAutoresizingMaskIntoConstraints = true
+        createRoomButton.translatesAutoresizingMaskIntoConstraints = true
+        plusButton.translatesAutoresizingMaskIntoConstraints = true
+    }
+    
+    private func showButton(){
+        self.profileButton.alpha = 1
+        self.selectCategoryButton.alpha = 1
+        self.createRoomButton.alpha = 1
+    }
+    
+    private func hiddenButton(){
+        self.profileButton.alpha = 0
+        self.selectCategoryButton.alpha = 0
+        self.createRoomButton.alpha = 0
+    }
+    
+    private func saveDefaultButtonPosision() {
+        profileButtonCenter = profileButton.center
+        selectCategoryButtonCenter = selectCategoryButton.center
+        createRoomButtonCenter = createRoomButton.center
+    }
+    
+    /// ボタンを元の場所に移動する
+    private func moveDefaultButtonPosision() {
+        profileButton.center = profileButtonCenter
+        selectCategoryButton.center = selectCategoryButtonCenter
+        createRoomButton.center = createRoomButtonCenter
+    }
+    
+    /// ボタンをメニューの場所へ移動する
+    private func moveMenuButtonPosision() {
+        profileButton.center = plusButton.center
+        selectCategoryButton.center = plusButton.center
+        createRoomButton.center = plusButton.center
+    }
     
     /// プラスボタン選択時
     private var isSettingShowing: Bool = false
@@ -570,34 +620,15 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             backView.isHidden = false
             // プラスボタン非表示
             plusButton.isHidden = true
-
-            // 表示切り替えアニメーション
+            
             UIView.animate(
-                withDuration: 0.2,
-                delay: 0.4,
-                options: .curveEaseOut,
+                withDuration: 0.3,
                 animations: { [weak self] () in
-                    
-                    // プロフィールボタン
-                    self?.profileButton.center.y -= 100.0
-                    self?.profileButton.center.x -= 10.0
-                    // カテゴリ選択ボタン
-                    self?.selectCategoryButton.center.x += 80.0
-                    self?.selectCategoryButton.center.y += 20.0
-                    // ルーム作成ボタン
-                    self?.createRoomButton.center.x += 60.0
-                    self?.createRoomButton.center.y -= 60.0
-                    // 背景
-                    self?.backView.alpha += 0.5
-                    
+                    self?.backView.alpha = 0.5
+                    self?.moveDefaultButtonPosision()
+                    self?.showButton()
                     self?.isSettingShowing = true
-                    
-                    // 選択ボタン表示
-                    self?.profileButton.isHidden = false
-                    self?.selectCategoryButton.isHidden = false
-                    self?.createRoomButton.isHidden = false
-                }
-            )
+            })
         }
         
     }
@@ -608,36 +639,17 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     }
     
     @objc func backTap(){
-        
-        profileButton.layer.position = plusButton.layer.position
-        
-        UIView.animate(withDuration: 0.2,
-                       delay: 0,
-                       options: [.curveEaseOut],
-                       animations: { [weak self] () in
-            
-            self?.profileButton.layer.position = self!.plusButton.layer.position
-            
-//            // プロフィールボタン
-//            self?.profileButton.center.y += 100.0
-//            self?.profileButton.center.x += 10.0
-//            // カテゴリ選択ボタン
-//            self?.selectCategoryButton.center.x -= 80.0
-//            self?.selectCategoryButton.center.y -= 20.0
-//            // ルーム作成ボタン
-//            self?.createRoomButton.center.x -= 60.0
-//            self?.createRoomButton.center.y += 60.0
-        }, completion: { [weak self] (Bool) in
-            // 背景設定
-            self?.backView.isHidden = true
-            // プラスボタン非表示
-            self?.plusButton.isHidden = false
-            // 選択ボタン表示
-            self?.profileButton.isHidden = true
-            self?.selectCategoryButton.isHidden = true
-            self?.createRoomButton.isHidden = true
-            self?.isSettingShowing = false
-        })
+        UIView.animate(
+            withDuration: 0.3,
+            animations: { [weak self] () in
+                
+                self?.moveMenuButtonPosision()
+                self?.hiddenButton()
+//                self?.backView.isHidden = true
+                self?.backView.alpha = 0
+                self?.isSettingShowing = false
+                self?.plusButton.isHidden = false
+            })
     }
     
     @IBAction func pushProfileButton(_ sender: Any) {
@@ -686,17 +698,10 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         backTap()
         
     }
-    
-    
-    
-    
-    
-    //MARK: プラスボタンのやつ -
+    //MARK: プラスボタンのやつ(90%) -
     
     
 }
-
-
 //MARK: ARのオブジェクトをタップしたときに呼び出される
 extension ARViewController: LNTouchDelegate {
     func annotationNodeTouched(node: AnnotationNode) {
@@ -742,26 +747,6 @@ extension ARViewController: LNTouchDelegate {
     }
     
     
-}
-
-//MARK: Imageのサイズを変更する
-extension UIImage {
-    
-    // resize image
-    func reSizeImage(reSize:CGSize)->UIImage {
-        //UIGraphicsBeginImageContext(reSize);
-        UIGraphicsBeginImageContextWithOptions(reSize,false,UIScreen.main.scale);
-        self.draw(in: CGRect(x: 0, y: 0, width: reSize.width, height: reSize.height));
-        let reSizeImage:UIImage! = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        return reSizeImage;
-    }
-    
-    // scale the image at rates
-    func scaleImage(scaleSize:CGFloat)->UIImage {
-        let reSize = CGSize(width: self.size.width * scaleSize, height: self.size.height * scaleSize)
-        return reSizeImage(reSize: reSize)
-    }
 }
 
 extension ARViewController: SignOutProtocol {
