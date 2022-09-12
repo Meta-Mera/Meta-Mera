@@ -55,15 +55,17 @@ class PostImageTableViewCell: UITableViewCell {
         profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
         
         postUserNameLabel.isUserInteractionEnabled = true
-        postUserNameLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pushUserLabel(_:))))
+        profileImageView.isUserInteractionEnabled = true
+        postUserNameLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pushPostUser(_:))))
+        profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pushPostUser(_:))))
         
         backgroundColor = .clear
         
         
     }
     
-    @objc func pushUserLabel(_ sender: Any){
-//        Goto.Profile(view: self, user: )
+    @objc func pushPostUser(_ sender: Any){
+        print("ユーサラベルがタップされました。")
 
     }
     
@@ -103,4 +105,5 @@ class PostImageTableViewCell: UITableViewCell {
         return formatter.string(from: date)
     }
     
+
 }
