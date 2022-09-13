@@ -236,8 +236,7 @@ extension ChatRoomController: ChatViewControllerDelegate {
 extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
     
     
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             chatRoomTableView.estimatedRowHeight = 500
             return UITableView.automaticDimension
