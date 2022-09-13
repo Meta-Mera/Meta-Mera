@@ -66,6 +66,7 @@
                                     <constraint firstAttribute="width" secondItem="gf6-Jg-wLE" secondAttribute="height" multiplier="1:1" id="wvB-ux-0NY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="tintColor" red="0.60000002379999995" green="0.54901963470000004" blue="0.4941176176" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal">
                                     <imageReference key="image" image="line.3.horizontal" catalog="system" symbolScale="default"/>
