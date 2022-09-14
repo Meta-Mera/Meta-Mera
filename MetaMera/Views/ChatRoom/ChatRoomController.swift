@@ -98,7 +98,9 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     //MARK: 前の画面に戻る
     @objc func backView(_ sender: Any){
         print("push back image")
-        self.dismiss(animated: true, completion: nil)
+//        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
+        
     }
     
     
@@ -267,6 +269,7 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
 
             cell.postImageView.image = image
             cell.post = post
+            cell.delegate = self
 //            let border = CALayer()
 //            border.frame = CGRect(x: 0, y: cell.frame.height - 20, width: cell.frame.width, height: 0.25)
 //            border.backgroundColor = UIColor.black.cgColor
@@ -280,17 +283,9 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
             cell.messageText = messages[indexPath.row]
             cell.messageTextView.backgroundColor = UIColor.chatTextBackground
             cell.messageTextView.textColor = UIColor.chatText
+            
             return cell
         }
-        
-        
-//        let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatRoomTableViewCell
-////        cell.messageTextView.text = messages[indexPath.row]
-//        cell.messageText = messages[indexPath.row]
-//        cell.messageTextView.backgroundColor = UIColor.chatTextBackground
-//        cell.messageTextView.textColor = UIColor.chatText
-//        return cell
-//
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -320,4 +315,10 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
             print("message:",messages[indexPath.row].message)
         }
     
+}
+
+extension ChatRoomController: UserProfileProtocol{
+    func tapUser(user: User) {
+        Goto.Profile(view: self, user: user)
+    }
 }

@@ -119,4 +119,18 @@ class TopViewController: UIViewController {
         Goto.SignIn(view: self)
     }
     
+//    var authListener
+    
+    func autoLogin(){
+        var authListener = Auth.auth().addStateDidChangeListener { auth, user in
+            Auth.auth().removeStateDidChangeListener(self)
+            if user != nil{
+                DispatchQueue.main.async {
+//                    Profile.shared.loginUser = user!
+                    Goto.ARView(view: self)
+                }
+            }
+        }
+    }
+    
 }

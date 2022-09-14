@@ -28,7 +28,8 @@ class CreateNewPostViewController: UIViewController {
     
    @objc func backView(_ sender: Any){
         print("push back image")
-        self.dismiss(animated: true, completion: nil)
+//        self.dismiss(animated: true, completion: nil)
+       self.navigationController?.popViewController(animated: true)
     }
     
 }

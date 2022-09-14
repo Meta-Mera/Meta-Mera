@@ -64,6 +64,7 @@
 		38AB508E285AD3B800AF4F80 /* ChatRoomController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */; };
 		38AD14C2289249EF001D1769 /* SignInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AD14C1289249EF001D1769 /* SignInModel.swift */; };
 		38AD14C5289266BE001D1769 /* SignItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AD14C4289266BE001D1769 /* SignItem.swift */; };
+		38DA36BB28D16228004006B6 /* UserProfileProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DA36BA28D16228004006B6 /* UserProfileProtocol.swift */; };
 		38E9AE2A2865641300EB71D6 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E9AE292865641300EB71D6 /* Profile.swift */; };
 		38FAA642287860BD000521DD /* UIImageView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FAA641287860BD000521DD /* UIImageView-Extension.swift */; };
 		38FAA644287D20C5000521DD /* UITraitCollection-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FAA643287D20C5000521DD /* UITraitCollection-Extension.swift */; };
@@ -150,6 +151,7 @@
 		38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatRoomController.storyboard; sourceTree = "<group>"; };
 		38AD14C1289249EF001D1769 /* SignInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInModel.swift; sourceTree = "<group>"; };
 		38AD14C4289266BE001D1769 /* SignItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignItem.swift; sourceTree = "<group>"; };
+		38DA36BA28D16228004006B6 /* UserProfileProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileProtocol.swift; sourceTree = "<group>"; };
 		38E9AE292865641300EB71D6 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		38FAA641287860BD000521DD /* UIImageView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView-Extension.swift"; sourceTree = "<group>"; };
 		38FAA643287D20C5000521DD /* UITraitCollection-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITraitCollection-Extension.swift"; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 				38A21274282CDFB900B56E03 /* Font */,
 				38A21268282A0E3E00B56E03 /* Info.plist */,
 				382713EF28332648004BEB01 /* AppDelegate.swift */,
+				38DA36B928D1618A004006B6 /* Protocol */,
 				382F6AB0286582BE0056BFA2 /* Extension */,
 				3896805C284A4C90008E1302 /* Controller */,
 				389680592844585D008E1302 /* AR */,
@@ -448,6 +451,14 @@
 				38AD14C4289266BE001D1769 /* SignItem.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		38DA36B928D1618A004006B6 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				38DA36BA28D16228004006B6 /* UserProfileProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		38E9AE282865641300EB71D6 /* Models */ = {
@@ -765,6 +776,7 @@
 				387EA2D328C76EBF00629B4B /* ArObject.swift in Sources */,
 				382713882831F95F004BEB01 /* SignInViewController.swift in Sources */,
 				388EA9AB289E9AF800A79746 /* ImageCollectionViewCell.swift in Sources */,
+				38DA36BB28D16228004006B6 /* UserProfileProtocol.swift in Sources */,
 				38AD14C2289249EF001D1769 /* SignInModel.swift in Sources */,
 				38271474283472C0004BEB01 /* ChatViewController.swift in Sources */,
 				38A2122E282A064300B56E03 /* ViewController.swift in Sources */,
@@ -996,7 +1008,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.5;
 				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jim112o.MetaMera;
@@ -1038,7 +1050,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.5;
 				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jim112o.MetaMera;

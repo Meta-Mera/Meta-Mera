@@ -21,6 +21,9 @@ class PostImageTableViewCell: UITableViewCell {
     @IBOutlet weak var postTextView: UITextView!
     @IBOutlet weak var commentTextViewWidthConstraint: NSLayoutConstraint!
     
+    var delegate: UserProfileProtocol?
+    
+    
     var post: Post?{
         didSet{
             
@@ -65,8 +68,8 @@ class PostImageTableViewCell: UITableViewCell {
     }
     
     @objc func pushPostUser(_ sender: Any){
-        print("ユーサラベルがタップされました。")
-
+        print("ユーサラベルがタップされました。\(postUser?.userName)")
+        delegate?.tapUser(user: postUser!)
     }
     
     private func updateImageTableView(){

@@ -47,12 +47,9 @@ class ProfileViewController: UIViewController {
     let storage = FirebaseStorage.Storage.storage()
     
     var loginUser: User!
+//    var user: User!
     
-    private var user:User?{
-        didSet{
-            userNameLabel.text = user?.userName
-        }
-    }
+    var user: User!
     
     override func viewDidDisappear(_ animated: Bool) {
         self.navigationController?.popToRootViewController(animated: true)
@@ -98,9 +95,15 @@ class ProfileViewController: UIViewController {
         //            break
         //        }
         
-        if let url = URL(string: loginUser.profileImage){
+        if let url = URL(string: user.profileImage){
             Nuke.loadImage(with: url, into: profileImageView)
         }
+        
+        if user.email != Profile.shared.loginUser.email{
+            changeProfileImageButton.isHidden = true
+        }
+        
+        userNameLabel.text = user.userName
         
         optionButton.imageView?.contentMode = .scaleAspectFill
         optionButton.contentHorizontalAlignment = .fill
@@ -131,12 +134,12 @@ class ProfileViewController: UIViewController {
         
         updateUserLocation()
         
-        userNameLabel.text = loginUser.userName
-        userIdLabel.text = loginUser.email
+        userNameLabel.text = user.userName
+        userIdLabel.text = user.email
         
         moveTo(center: MapView.userLocation.coordinate, animated: true)
         // ローカルファイルからユーザーアイコンを取得・表示する
-        downloadProfileImage()
+//        downloadProfileImage()
     }
     
     private func moveTo(
@@ -150,7 +153,9 @@ class ProfileViewController: UIViewController {
     //MARK: 前の画面に戻る
     @objc func backView(_ sender: Any){
         print("push back image")
-        self.dismiss(animated: true, completion: nil)
+//        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
+        
     }
     
     

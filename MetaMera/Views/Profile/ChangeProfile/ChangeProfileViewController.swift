@@ -47,7 +47,8 @@ class ChangeProfileViewController: UIViewController {
     
     @IBAction func pushBackButton(_ sender: Any) {
         print("push back button.")
-        self.dismiss(animated: true, completion: nil)
+//        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     @IBAction func pushUploadProfile(_ sender: Any) {
 //        backButton.isEnabled = false
