@@ -18,6 +18,8 @@ class TopViewController: UIViewController {
     @IBOutlet weak var signUpImageView: UIImageView!
     @IBOutlet weak var versionLabel: UILabel!
     
+    let signInModel = SignInModel()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,20 +118,41 @@ class TopViewController: UIViewController {
         
     }
     @objc func PushSignIn(_ sender: Any) {
-        Goto.SignIn(view: self)
+//        Goto.SignIn(view: self)
+        autoLogin()
     }
     
 //    var authListener
     
+    override func viewWillDisappear(_ animated: Bool) {
+        print("7")
+        Auth.auth().removeStateDidChangeListener(self)
+    }
+    
     func autoLogin(){
-        var authListener = Auth.auth().addStateDidChangeListener { auth, user in
-            Auth.auth().removeStateDidChangeListener(self)
+        Auth.auth().addStateDidChangeListener {[weak self] auth, user in
+//            Auth.auth().removeStateDidChangeListener(self!)
+            print("1\(user)")
             if user != nil{
+                print("--2")
                 DispatchQueue.main.async {
-//                    Profile.shared.loginUser = user!
-                    Goto.ARView(view: self)
+                    print("--3")
+                    self?.signInModel.signIn(user: user!) {result in
+                        switch result{
+                        case .success(_): //Sign in 成功
+                            print("--5")
+                            Goto.ARView(view: self!)
+                            break
+                        case .failure(_): //Sign in 失敗
+                            print("--6")
+                            Goto.SignIn(view: self!)
+                            break
+                        }
+                        
+                    }
                 }
             }
+            Goto.SignIn(view: self!)
         }
     }
     

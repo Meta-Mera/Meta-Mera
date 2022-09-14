@@ -104,5 +104,53 @@ class SignInModel {
         
     }
     
+    func signIn(user:Firebase.User, completion: @escaping(Result<Bool, NSError>) -> Void){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Firestore.firestore().collection("Users").document(uid).getDocument { (userSnapshot, err) in
+            if let err = err {
+                completion(.failure(NSError(domain: "ユーザー情報の取得に失敗しました。\(err)", code: 400)))
+                return
+            }
+            Messaging.messaging().token { token, error in
+                if let error = error {
+                    print("error\(error)")
+                } else if let token = token {
+                    guard let dic = userSnapshot?.data() else { return }
+                    let user = User(dic: dic,uid: uid)
+                    Profile.shared.loginUser = user
+//                        var firebaseTokens = user.tokens
+                    let doc = Firestore.firestore().collection("Users").document(Profile.shared.loginUser.uid)
+//                        doc.collection("tokens").addDocument(data: [token ®: token])
+                    doc.collection("tokens").document(token).setData([token:token]) { err in
+                        if let err = err {
+                            print("Error writing document: \(err)")
+                        } else {
+                            print("Document successfully written!")
+                        }
+                    }
+                    Messaging.messaging().subscribe(toTopic: "debugUser") { error in
+                      print("Subscribed to debugUser topic")
+                    }
+                    Messaging.messaging().subscribe(toTopic: uid) { error in
+                        print("Subscribed to \(uid) topic")
+                    }
+                    
+                    
+                    switch Profile.shared.updateProfileImage() {
+                    case .success(_):
+                        print("画像あるらしいよ: ",user.profileImage,"+",uid)
+                        break
+                    case .failure(_):
+                        print("画像保存されてないよ〜: ",user.profileImage,"+",uid)
+                        Profile.shared.saveImageToDevice(image: user.profileImage, fileName: uid)
+                        break
+                    }
+                    completion(.success(true))
+                    return
+                }
+            }
+        }
+    }
+    
     
 }

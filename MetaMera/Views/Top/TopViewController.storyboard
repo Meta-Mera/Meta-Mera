@@ -37,7 +37,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ver: 0.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5H8-jf-MZi">
-                                <rect key="frame" x="282" y="698" width="72" height="20.5"/>
+                                <rect key="frame" x="282" y="688" width="72" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.67058825489999996" green="0.39215683940000001" blue="0.23921570180000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -47,7 +47,7 @@
                         <color key="backgroundColor" red="0.40784314269999999" green="0.64313727620000005" blue="0.54901963470000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="wRj-h7-hy7" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="1ZA-JR-1Nq"/>
-                            <constraint firstItem="5H8-jf-MZi" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" constant="260" id="7Oi-zi-BT3"/>
+                            <constraint firstItem="5H8-jf-MZi" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" constant="250" id="7Oi-zi-BT3"/>
                             <constraint firstItem="ZZm-B4-XLM" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="En5-ss-H5P"/>
                             <constraint firstItem="wRj-h7-hy7" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="HUR-sM-sRZ"/>
                             <constraint firstItem="ZZm-B4-XLM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="80" id="MM6-Nv-Ziw"/>
