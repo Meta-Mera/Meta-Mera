@@ -75,12 +75,33 @@
                                     <action selector="pushOptionButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="l6a-Os-Ybh"/>
                                 </connections>
                             </button>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="kfD-iB-mCy">
+                                <rect key="frame" x="40" y="264" width="334" height="31"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VjY-Hz-yLw">
+                                        <rect key="frame" x="0.0" y="0.0" width="142" height="31"/>
+                                        <color key="backgroundColor" red="0.60000002379999995" green="0.54901963470000004" blue="0.4941176176" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="tintColor" red="0.88235294819999999" green="0.78823530669999997" blue="0.64705884459999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Follow"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zu-Iy-Zf8">
+                                        <rect key="frame" x="192" y="0.0" width="142" height="31"/>
+                                        <color key="backgroundColor" red="0.92156863209999995" green="0.91764706370000004" blue="0.92156863209999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="tintColor" red="0.60000002379999995" green="0.54901963470000004" blue="0.4941176176" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Message"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Yma-hK-cHB" firstAttribute="centerY" secondItem="C14-IF-Xmx" secondAttribute="centerY" id="6Qf-ga-Zow"/>
                             <constraint firstItem="1jf-cV-IEI" firstAttribute="leading" relation="lessThanOrEqual" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="40" id="7d6-cN-uyQ"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="kfD-iB-mCy" secondAttribute="trailing" constant="40" id="HDr-x6-mfN"/>
+                            <constraint firstItem="kfD-iB-mCy" firstAttribute="leading" relation="lessThanOrEqual" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="40" id="JqC-48-OOt"/>
                             <constraint firstItem="KjA-LA-qIX" firstAttribute="top" secondItem="Yma-hK-cHB" secondAttribute="bottom" constant="2" id="Kfa-Td-qo1"/>
                             <constraint firstAttribute="bottom" secondItem="dfz-Uh-5DQ" secondAttribute="bottom" constant="2" id="NzS-ve-h72"/>
                             <constraint firstItem="6Dk-lh-rns" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="P9F-vL-IXo"/>
@@ -88,9 +109,11 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="dfz-Uh-5DQ" secondAttribute="trailing" id="VFs-bj-Bng"/>
                             <constraint firstItem="1jf-cV-IEI" firstAttribute="top" secondItem="C14-IF-Xmx" secondAttribute="bottom" constant="60" id="X7f-hO-qsG"/>
                             <constraint firstItem="1jf-cV-IEI" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="Ypi-ty-DxA"/>
+                            <constraint firstItem="dfz-Uh-5DQ" firstAttribute="top" secondItem="kfD-iB-mCy" secondAttribute="bottom" constant="50" id="ZEt-vj-3h7"/>
                             <constraint firstItem="C14-IF-Xmx" firstAttribute="leading" relation="lessThanOrEqual" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="40" id="cRP-iE-GdZ"/>
                             <constraint firstItem="dfz-Uh-5DQ" firstAttribute="top" secondItem="1jf-cV-IEI" secondAttribute="bottom" constant="50" id="eaU-jF-7Wx"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Yma-hK-cHB" secondAttribute="trailing" constant="90" id="gXE-7D-p2k"/>
+                            <constraint firstItem="kfD-iB-mCy" firstAttribute="top" secondItem="C14-IF-Xmx" secondAttribute="bottom" constant="60" id="lZZ-VK-iqg"/>
                             <constraint firstItem="KjA-LA-qIX" firstAttribute="leading" secondItem="C14-IF-Xmx" secondAttribute="trailing" constant="30" id="mid-U9-sZM"/>
                             <constraint firstItem="6Dk-lh-rns" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="ndG-bK-a7Z"/>
                             <constraint firstItem="gf6-Jg-wLE" firstAttribute="trailing" secondItem="5EZ-qb-Rvc" secondAttribute="trailing" constant="-15" id="pDB-h0-xRy"/>
@@ -104,6 +127,9 @@
                         <outlet property="MapView" destination="dfz-Uh-5DQ" id="2dR-N1-Aez"/>
                         <outlet property="backImageView" destination="6Dk-lh-rns" id="OLn-l0-uB8"/>
                         <outlet property="changeProfileImageButton" destination="1jf-cV-IEI" id="TYn-fv-RSh"/>
+                        <outlet property="followAndMessageButtonStackView" destination="kfD-iB-mCy" id="SBa-rd-3ng"/>
+                        <outlet property="followButton" destination="VjY-Hz-yLw" id="YxH-br-ylp"/>
+                        <outlet property="messageButton" destination="7zu-Iy-Zf8" id="7sa-dz-zK5"/>
                         <outlet property="optionButton" destination="gf6-Jg-wLE" id="EGo-n6-MaC"/>
                         <outlet property="profileImageView" destination="C14-IF-Xmx" id="Liu-j3-rOX"/>
                         <outlet property="userIdLabel" destination="KjA-LA-qIX" id="EOU-Ru-L5k"/>
@@ -112,7 +138,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1428" y="188"/>
+            <point key="canvasLocation" x="-1428.985507246377" y="187.5"/>
         </scene>
     </scenes>
     <resources>

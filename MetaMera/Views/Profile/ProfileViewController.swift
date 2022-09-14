@@ -28,6 +28,11 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var userIdLabel: UILabel!
     @IBOutlet weak var optionButton: UIButton!
     
+    @IBOutlet weak var followAndMessageButtonStackView: UIStackView!
+    @IBOutlet weak var followButton: UIButton!
+    @IBOutlet weak var messageButton: UIButton!
+    
+    
     let displayDebugging = true
     private var isInitialMoveToMap: Bool = true
     
@@ -101,6 +106,10 @@ class ProfileViewController: UIViewController {
         
         if user.email != Profile.shared.loginUser.email{
             changeProfileImageButton.isHidden = true
+            followAndMessageButtonStackView.isHidden = false
+            followButton.layer.cornerRadius = 10
+            messageButton.layer.cornerRadius = 10
+            
         }
         
         userNameLabel.text = user.userName
@@ -163,30 +172,59 @@ class ProfileViewController: UIViewController {
     
     @IBAction func pushOptionButton(_ sender: Any) {
         
-        // styleをActionSheetに設定
-        let alertSheet = UIAlertController(title: "account setting", message: "", preferredStyle: UIAlertController.Style.actionSheet)
-        
-        // 自分の選択肢を生成
-        let action1 = UIAlertAction(title: "Change your profile", style: UIAlertAction.Style.default, handler: {[weak self]
-            (action: UIAlertAction!) -> Void in
-            self?.pushChangeProfile()
+        if user.email == Profile.shared.loginUser.email {
+            // styleをActionSheetに設定
+            let alertSheet = UIAlertController(title: "account setting", message: "", preferredStyle: UIAlertController.Style.actionSheet)
             
-        })
+            let action1 = UIAlertAction(title: "Change your profile", style: UIAlertAction.Style.default, handler: {[weak self]
+                (action: UIAlertAction!) -> Void in
+                self?.pushChangeProfile()
+                
+            })
+            
+            let action2 = UIAlertAction(title: "Sign out", style: UIAlertAction.Style.destructive, handler: {[weak self]
+                (action: UIAlertAction!) -> Void in
+                self?.pushSignOut()
+            })
+            let action3 = UIAlertAction(title: "cancel", style: UIAlertAction.Style.cancel, handler: {
+                (action: UIAlertAction!) in
+            })
+            
+            // アクションを追加.
+            alertSheet.addAction(action1)
+            alertSheet.addAction(action2)
+            alertSheet.addAction(action3)
+            
+            self.present(alertSheet, animated: true, completion: nil)
+        } else {
+            // styleをActionSheetに設定
+            let alertSheet = UIAlertController(title: "", message: "", preferredStyle: UIAlertController.Style.actionSheet)
+            
+            let userMute = UIAlertAction(title: "Mute", style: UIAlertAction.Style.destructive, handler: {[weak self]
+                (action: UIAlertAction!)  in
+            })
+            
+            let userBlock = UIAlertAction(title: "Block", style: UIAlertAction.Style.destructive, handler: {[weak self]
+                (action: UIAlertAction!)  in
+            })
+            
+            let userReport = UIAlertAction(title: "Report", style: UIAlertAction.Style.destructive, handler: {[weak self]
+                (action: UIAlertAction!)  in
+            })
+            
+            let cancel = UIAlertAction(title: "cancel", style: UIAlertAction.Style.cancel, handler: {
+                (action: UIAlertAction!) in
+            })
+            
+            // アクションを追加.
+            alertSheet.addAction(userMute)
+            alertSheet.addAction(userBlock)
+            alertSheet.addAction(userReport)
+            alertSheet.addAction(cancel)
+            
+            self.present(alertSheet, animated: true, completion: nil)
+        }
         
-        let action2 = UIAlertAction(title: "Sign out", style: UIAlertAction.Style.destructive, handler: {[weak self]
-            (action: UIAlertAction!) -> Void in
-            self?.pushSignOut()
-        })
-        let action3 = UIAlertAction(title: "cancel", style: UIAlertAction.Style.cancel, handler: {
-            (action: UIAlertAction!) in
-        })
-        
-        // アクションを追加.
-        alertSheet.addAction(action1)
-        alertSheet.addAction(action2)
-        alertSheet.addAction(action3)
-        
-        self.present(alertSheet, animated: true, completion: nil)
         
     }
     
