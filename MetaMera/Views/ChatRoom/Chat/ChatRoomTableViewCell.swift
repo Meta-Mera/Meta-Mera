@@ -33,6 +33,8 @@ class ChatRoomTableViewCell: UITableViewCell {
     
     @IBOutlet weak var messageTextViewWidthConstraint: NSLayoutConstraint!
     
+    var delegate: UserProfileProtocol?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -53,6 +55,12 @@ class ChatRoomTableViewCell: UITableViewCell {
         
         backgroundColor = .clear
         
+        userIconImageView.isUserInteractionEnabled = true
+        userIconImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pushUser(_:))))
+        sendUser.isUserInteractionEnabled = true
+        sendUser.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pushUser(_:))))
+        
+        
 
         
         switch Profile.shared.updateProfileImage() {
@@ -61,6 +69,11 @@ class ChatRoomTableViewCell: UITableViewCell {
         case .failure(_):
             break
         }
+    }
+    
+    @objc func pushUser(_ sender: Any){
+        print("ユーサラベルがタップされました")
+        delegate?.tapUser(user: messageText!.sendUser!)
     }
     
     private func checkWhichUserMessage() {

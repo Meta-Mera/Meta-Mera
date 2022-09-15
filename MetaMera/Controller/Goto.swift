@@ -86,6 +86,17 @@ class Goto : UIViewController{
         view.navigationController?.pushViewController(vc, animated: true)
     }
     
+    class func UserProfile(view: UIViewController, user: User){
+        print("Goto-Profile was called.")
+        let vc = UIStoryboard(name: "ProfileViewController", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        vc.modalPresentationStyle = .fullScreen
+//        vc.delegate = view as! SignOutProtocol
+        vc.loginUser = user
+        vc.user = user
+        view.present(vc, animated: true, completion: nil)
+//        view.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     class func ChangeProfile(view: UIViewController, user: User){
         print("Goto-ChangeProfile was called.")
         let vc = UIStoryboard(name: "ChangeProfileViewController", bundle: nil).instantiateViewController(withIdentifier: "ChangeProfileViewController") as! ChangeProfileViewController

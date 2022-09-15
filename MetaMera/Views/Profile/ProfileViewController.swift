@@ -163,7 +163,12 @@ class ProfileViewController: UIViewController {
     @objc func backView(_ sender: Any){
         print("push back image")
 //        self.dismiss(animated: true, completion: nil)
-        self.navigationController?.popViewController(animated: true)
+//        if user.email == Profile.shared.loginUser.email {
+            self.navigationController?.popViewController(animated: true)
+//        }else {
+//            self.dismiss(animated: true, completion: nil)
+//        }
+        
         
     }
     

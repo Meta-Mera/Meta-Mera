@@ -151,7 +151,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     
     private func fetchMessages() {
         
-        Firestore.firestore().collection("Posts").document(postId).collection("comments").addSnapshotListener { (snapshots, err) in
+        Firestore.firestore().collection("Posts").document(postId).collection("comments").addSnapshotListener {[weak self] (snapshots, err) in
             
             if let err = err {
                 print("メッセージ情報の取得に失敗しました。\(err)")
@@ -172,15 +172,15 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
                         guard let dic = user?.data() else { return }
                         let user = User(dic: dic, uid: comment.uid)
                         comment.sendUser = user
-                        self.messages.append(comment)
-                        self.messages.sort { (m1, m2) -> Bool in
+                        self?.messages.append(comment)
+                        self?.messages.sort { (m1, m2) -> Bool in
                             let m1Date = m1.createdAt.dateValue()
                             let m2Date = m2.createdAt.dateValue()
                             return m1Date < m2Date
                         }
                         print("ユーザー情報の取得に成功しました。")
                         
-                        self.chatRoomTableView.reloadData()
+                        self?.chatRoomTableView.reloadData()
                     }
                     
                 case .modified, .removed:
@@ -283,6 +283,7 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
             cell.messageText = messages[indexPath.row]
             cell.messageTextView.backgroundColor = UIColor.chatTextBackground
             cell.messageTextView.textColor = UIColor.chatText
+            cell.delegate = self
             
             return cell
         }
@@ -320,5 +321,6 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
 extension ChatRoomController: UserProfileProtocol{
     func tapUser(user: User) {
         Goto.Profile(view: self, user: user)
+//        Goto.UserProfile(view: self, user: user)
     }
 }
