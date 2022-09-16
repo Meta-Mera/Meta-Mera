@@ -27,9 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
             signInModel.signIn(signInItem: .init(email: "g019c1045@g.neec.ac.jp", password: "123456")) {[weak self] result in
                 switch result{
                 case .success(_):
-                    self?.window = UIWindow()
-                    self?.window?.rootViewController = UIStoryboard.instantiateInitialViewController(.init(name: "ARViewController", bundle: .main))()
+                    self?.window?.rootViewController = UIStoryboard.instantiateInitialViewController(.init(name: "TopViewController", bundle: .main))()
                     self?.window?.makeKeyAndVisible()
+                    IQKeyboardManager.shared.enable = true
+                    IQKeyboardManager.shared.enableAutoToolbar = false
                 case .failure(_): break
                 }
             }

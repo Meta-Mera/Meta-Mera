@@ -125,34 +125,29 @@ class TopViewController: UIViewController {
 //    var authListener
     
     override func viewWillDisappear(_ animated: Bool) {
-        print("7")
         Auth.auth().removeStateDidChangeListener(self)
     }
     
     func autoLogin(){
         Auth.auth().addStateDidChangeListener {[weak self] auth, user in
 //            Auth.auth().removeStateDidChangeListener(self!)
-            print("1\(user)")
             if user != nil{
-                print("--2")
                 DispatchQueue.main.async {
-                    print("--3")
                     self?.signInModel.signIn(user: user!) {result in
                         switch result{
                         case .success(_): //Sign in 成功
-                            print("--5")
                             Goto.ARView(view: self!)
                             break
                         case .failure(_): //Sign in 失敗
-                            print("--6")
                             Goto.SignIn(view: self!)
                             break
                         }
                         
                     }
                 }
+            }else{
+                Goto.SignIn(view: self!)
             }
-            Goto.SignIn(view: self!)
         }
     }
     
