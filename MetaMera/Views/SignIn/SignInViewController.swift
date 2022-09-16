@@ -40,9 +40,6 @@ class SignInViewController: UIViewController {
         nextButtonImage.isUserInteractionEnabled = true
         nextButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(PushSignIn(_:))))
         
-        emailTextField.text = "g019c1045@g.neec.ac.jp"
-        passwordTextField.text = "123456"
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
