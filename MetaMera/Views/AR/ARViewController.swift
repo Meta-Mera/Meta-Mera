@@ -279,6 +279,26 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                 
                 if let locality = placemark.locality {
                     print("locality: ",locality as Any)
+                    Firestore.firestore().collection("Areas").whereField("areaName", isEqualTo: locality).getDocuments(completion: {
+                        (snapshot, error) in
+                        if let error = error {
+                            print("Error getting documents: \(error)")
+                        }else {
+                            let areaId = snapshot?.documents.first?.documentID
+                            Firestore.firestore().collection("Posts").whereField("areaId", isEqualTo: areaId as Any).getDocuments(completion: {
+                                (postSnapshots, err) in
+                                if let err = err {
+                                    print("5-1")
+                                    print("Error getting documents: \(err)")
+                                }else {
+                                    for document in postSnapshots!.documents {
+                                        print("\(document.documentID) => \(document.data())")
+                                    }
+                                }
+                            })
+                        }
+                    })
+                    
                 }
                 
                 if let postalCode = placemark.postalCode {
@@ -622,7 +642,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             plusButton.isHidden = true
             
             UIView.animate(
-                withDuration: 0.3,
+                withDuration: 0.2,
                 animations: { [weak self] () in
                     self?.backView.alpha = 0.5
                     self?.moveDefaultButtonPosision()
@@ -640,7 +660,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     @objc func backTap(){
         UIView.animate(
-            withDuration: 0.3,
+            withDuration: 0.2,
             animations: { [weak self] () in
                 
                 self?.moveMenuButtonPosision()
