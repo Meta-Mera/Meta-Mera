@@ -64,11 +64,17 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     var sceneLocationView = SceneLocationView()
     var locationManager = CLLocationManager()
     
+    //投稿リスト
+    var posts : [Post]?
+    
+    
     
     
     //MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        posts = [Post]()
 
         configView()
         setUpPlusButtons()
@@ -279,7 +285,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                 
                 if let locality = placemark.locality {
                     print("locality: ",locality as Any)
-                    Firestore.firestore().collection("Areas").whereField("areaName", isEqualTo: locality).getDocuments(completion: {
+                    Firestore.firestore().collection("Areas").whereField("areaName", isEqualTo: locality).getDocuments(completion: { [weak self]
                         (snapshot, error) in
                         if let error = error {
                             print("Error getting documents: \(error)")
@@ -288,12 +294,17 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                             Firestore.firestore().collection("Posts").whereField("areaId", isEqualTo: areaId as Any).getDocuments(completion: {
                                 (postSnapshots, err) in
                                 if let err = err {
-                                    print("5-1")
                                     print("Error getting documents: \(err)")
                                 }else {
                                     for document in postSnapshots!.documents {
                                         print("\(document.documentID) => \(document.data())")
+                                        let post = Post(dic: document.data(), postId: document.documentID)
+                                        print("!!!!!!!!!!!!!!!!!!Post:",post.postId)
+                                        self?.posts?.append(post)
+                                        print("count;;;;;",self?.posts?.count)
+                                        
                                     }
+                                    self?.addSceneModels()
                                 }
                             })
                         }
@@ -354,6 +365,18 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             print("run")
             self?.sceneLocationView.run()
         }
+    }
+    
+    func buildPostData() -> [LocationAnnotationNode] {
+        var nodes: [LocationAnnotationNode] = []
+        print("!!!!!!!!!!!!!!!!!!!!!Node生成開始!!!!!!!!!!!!!!!!!!:",posts?.count)
+        posts?.forEach({ post in
+            print("!!!!!!!!!!!!!!!!!!!!!PostData:",post.postId)
+            let node = buildNode(latitude: post.latitude, longitude: post.longitude, altitude: post.altitude, imageName: "drink", size: CGSize(width: 400, height: 300), pinUse: true, pinName: post.postId!, postId: post.postId!)
+            nodes.append(node)
+        })
+        
+        return nodes
     }
     
     //MARK: ここで座標に基づいたオブジェクトを設置してるよ
@@ -431,10 +454,14 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             return
         }
         
-        buildDemoData().forEach {
+//        buildDemoData().forEach {
+//            sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0)
+////            sceneLocationView.moveSceneHeadingAntiClockwise()
+////            sceneLocationView.moveSceneHeadingClockwise()
+//        }
+        
+        buildPostData().forEach {
             sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0)
-//            sceneLocationView.moveSceneHeadingAntiClockwise()
-//            sceneLocationView.moveSceneHeadingClockwise()
         }
         
         //        let cubeNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
