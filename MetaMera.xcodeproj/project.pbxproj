@@ -21,6 +21,10 @@
 		383AC1CD288787B600B5BE12 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383AC1CC288787B600B5BE12 /* PostViewController.swift */; };
 		383AC1D2288E398600B5BE12 /* PostImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383AC1D1288E398600B5BE12 /* PostImageTableViewCell.swift */; };
 		383AC1D4288E39E900B5BE12 /* PostImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 383AC1D3288E39E900B5BE12 /* PostImageTableViewCell.xib */; };
+		385B6E1D28DCB28F007DEDF1 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385B6E1C28DCB28F007DEDF1 /* DebugViewController.swift */; };
+		385B6E1F28DCB2A0007DEDF1 /* DebugViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 385B6E1E28DCB2A0007DEDF1 /* DebugViewController.storyboard */; };
+		385B6E2528DCB480007DEDF1 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385B6E2328DCB480007DEDF1 /* PostTableViewCell.swift */; };
+		385B6E2628DCB480007DEDF1 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385B6E2428DCB480007DEDF1 /* PostTableViewCell.xib */; };
 		387EA2D328C76EBF00629B4B /* ArObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387EA2D228C76EBF00629B4B /* ArObject.swift */; };
 		387EA2D528C7723000629B4B /* LNTouchDelegate-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387EA2D428C7723000629B4B /* LNTouchDelegate-Extension.swift */; };
 		387EA2D728CF76F400629B4B /* UIImage-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387EA2D628CF76F400629B4B /* UIImage-Extension.swift */; };
@@ -111,6 +115,10 @@
 		383AC1CC288787B600B5BE12 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		383AC1D1288E398600B5BE12 /* PostImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageTableViewCell.swift; sourceTree = "<group>"; };
 		383AC1D3288E39E900B5BE12 /* PostImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostImageTableViewCell.xib; sourceTree = "<group>"; };
+		385B6E1C28DCB28F007DEDF1 /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
+		385B6E1E28DCB2A0007DEDF1 /* DebugViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DebugViewController.storyboard; sourceTree = "<group>"; };
+		385B6E2328DCB480007DEDF1 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		385B6E2428DCB480007DEDF1 /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 		387EA2D228C76EBF00629B4B /* ArObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArObject.swift; sourceTree = "<group>"; };
 		387EA2D428C7723000629B4B /* LNTouchDelegate-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LNTouchDelegate-Extension.swift"; sourceTree = "<group>"; };
 		387EA2D628CF76F400629B4B /* UIImage-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage-Extension.swift"; sourceTree = "<group>"; };
@@ -247,6 +255,25 @@
 			path = Image;
 			sourceTree = "<group>";
 		};
+		385B6E1B28DCB277007DEDF1 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				385B6E2028DCB42C007DEDF1 /* PostTableViewCell */,
+				385B6E1C28DCB28F007DEDF1 /* DebugViewController.swift */,
+				385B6E1E28DCB2A0007DEDF1 /* DebugViewController.storyboard */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		385B6E2028DCB42C007DEDF1 /* PostTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				385B6E2328DCB480007DEDF1 /* PostTableViewCell.swift */,
+				385B6E2428DCB480007DEDF1 /* PostTableViewCell.xib */,
+			);
+			path = PostTableViewCell;
+			sourceTree = "<group>";
+		};
 		387EA2D828CF786900629B4B /* ChangeProfile */ = {
 			isa = PBXGroup;
 			children = (
@@ -364,6 +391,7 @@
 		38A2125A282A066000B56E03 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				385B6E1B28DCB277007DEDF1 /* Debug */,
 				38FAA64B2881571E000521DD /* CreateNewPost */,
 				38AB5089285ACEF400AF4F80 /* ChatRoom */,
 				38968063284C7519008E1302 /* Profile */,
@@ -619,12 +647,14 @@
 				387EA2DE28CF78B400629B4B /* ChangeProfileViewController.storyboard in Resources */,
 				38A21267282A09C200B56E03 /* SignUpViewController.xib in Resources */,
 				388EA9AC289E9AF800A79746 /* ImageCollectionViewCell.xib in Resources */,
+				385B6E1F28DCB2A0007DEDF1 /* DebugViewController.storyboard in Resources */,
 				38FAA64F28815740000521DD /* CreateNewPostViewController.storyboard in Resources */,
 				382713892831F95F004BEB01 /* SignInViewController.xib in Resources */,
 				382713F22833423A004BEB01 /* ARViewController.storyboard in Resources */,
 				38271475283472C0004BEB01 /* ChatViewController.xib in Resources */,
 				38A21269282A104200B56E03 /* Main.storyboard in Resources */,
 				38A21282282CE15800B56E03 /* utakata-Regular.otf in Resources */,
+				385B6E2628DCB480007DEDF1 /* PostTableViewCell.xib in Resources */,
 				3896806B284C7755008E1302 /* ProfileViewController.storyboard in Resources */,
 				38A21238282A064400B56E03 /* LaunchScreen.storyboard in Resources */,
 				38A2128A282CEB8200B56E03 /* GoogleService-Info.plist in Resources */,
@@ -770,6 +800,7 @@
 				38968057283F04CE008E1302 /* StartUpViewController.swift in Sources */,
 				38FAA64A28801229000521DD /* Post.swift in Sources */,
 				38FAA64D28815736000521DD /* CreateNewPostViewController.swift in Sources */,
+				385B6E2528DCB480007DEDF1 /* PostTableViewCell.swift in Sources */,
 				382713F028332648004BEB01 /* AppDelegate.swift in Sources */,
 				3896805E284A4CAE008E1302 /* Goto.swift in Sources */,
 				387EA2DC28CF78A900629B4B /* ChangeProfileViewController.swift in Sources */,
@@ -784,6 +815,7 @@
 				38FAA646287FAFA6000521DD /* ChatRoom.swift in Sources */,
 				06B1CC142861664900116CF0 /* ChatRoomTableViewCell.swift in Sources */,
 				38AD14C5289266BE001D1769 /* SignItem.swift in Sources */,
+				385B6E1D28DCB28F007DEDF1 /* DebugViewController.swift in Sources */,
 				387EA2D728CF76F400629B4B /* UIImage-Extension.swift in Sources */,
 				389024C62835DAD4004DC3F3 /* UIColor-Extension.swift in Sources */,
 				38A05CEB289547D000F0CC40 /* SignUpModel.swift in Sources */,
