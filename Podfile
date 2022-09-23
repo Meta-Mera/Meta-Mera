@@ -11,6 +11,7 @@ target 'MetaMera' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
   pod 'Firebase/Messaging'
+  pod 'Firebase/RemoteConfig'
   pod 'PKHUD', '~> 5.0' 
   pod 'ARCL'
   pod 'IQKeyboardManagerSwift' 

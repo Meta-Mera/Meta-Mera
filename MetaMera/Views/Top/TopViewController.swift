@@ -20,6 +20,8 @@ class TopViewController: UIViewController {
     
     let signInModel = SignInModel()
     
+    var maintenance = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,12 +72,47 @@ class TopViewController: UIViewController {
         } else {
             versionLabel.text = "Ver: unknown"
         }
+        
+        
+        check()
 
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        check()
+    }
+    
+    func check(){
+        RemoteConfigClient.shared.fetchServerMaintenanceConfig(
+            succeeded: { [weak self] config in
+                if config.isUnderMaintenance {
+                    self?.maintenance = config.isUnderMaintenance
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+                        guard let `self` = self else { return }
+                        let alert: UIAlertController = UIAlertController(title: config.title, message: config.message, preferredStyle:  UIAlertController.Style.alert)
+                        let defaultAction: UIAlertAction = UIAlertAction(title: "再読み込み", style: UIAlertAction.Style.default, handler:{
+                            // ボタンが押された時の処理を書く（クロージャ実装）
+                            (action: UIAlertAction!) -> Void in
+                            self.check()
+                        })
+                        
+                        alert.addAction(defaultAction)
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                } else{
+                    self?.maintenance = config.isUnderMaintenance
+                }
+            }, failed: { [weak self] errorMessage in
+            }
+        )
     }
 
     
     @objc func PushSignUp(_ sender: Any) {
-        Goto.SignUp(view: self)
+        if(!maintenance){
+            Goto.SignUp(view: self)
+        }
         
 //        Auth.auth().signIn(withEmail: "g019c1045@g.neec.ac.jp", password: "123456") { res, err in
 //            if let err = err {
@@ -118,8 +155,9 @@ class TopViewController: UIViewController {
         
     }
     @objc func PushSignIn(_ sender: Any) {
-//        Goto.SignIn(view: self)
-        autoLogin()
+        if(!maintenance){
+            autoLogin()
+        }
     }
     
 //    var authListener

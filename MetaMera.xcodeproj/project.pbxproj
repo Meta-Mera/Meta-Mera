@@ -65,6 +65,9 @@
 		38A2128B282CEB8200B56E03 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38A21289282CEB8200B56E03 /* GoogleService-Info.plist */; };
 		38A2128C282CEB8200B56E03 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38A21289282CEB8200B56E03 /* GoogleService-Info.plist */; };
 		38A8B93128DDF30A000E86FD /* URL-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A8B93028DDF30A000E86FD /* URL-Extension.swift */; };
+		38A8B93328DDFB05000E86FD /* RemoteConfigClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A8B93228DDFB05000E86FD /* RemoteConfigClient.swift */; };
+		38A8B93528DDFB3E000E86FD /* RemoteConfigClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A8B93428DDFB3E000E86FD /* RemoteConfigClientProtocol.swift */; };
+		38A8B93828DDFDFB000E86FD /* ServerMaintenanceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A8B93728DDFDFB000E86FD /* ServerMaintenanceConfig.swift */; };
 		38AB508B285AD3A700AF4F80 /* ChatRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB508A285AD3A700AF4F80 /* ChatRoomController.swift */; };
 		38AB508E285AD3B800AF4F80 /* ChatRoomController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */; };
 		38AD14C2289249EF001D1769 /* SignInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AD14C1289249EF001D1769 /* SignInModel.swift */; };
@@ -157,6 +160,9 @@
 		38A21289282CEB8200B56E03 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		38A212C42831DB1500B56E03 /* MetaMera.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MetaMera.entitlements; sourceTree = "<group>"; };
 		38A8B93028DDF30A000E86FD /* URL-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL-Extension.swift"; sourceTree = "<group>"; };
+		38A8B93228DDFB05000E86FD /* RemoteConfigClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigClient.swift; sourceTree = "<group>"; };
+		38A8B93428DDFB3E000E86FD /* RemoteConfigClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigClientProtocol.swift; sourceTree = "<group>"; };
+		38A8B93728DDFDFB000E86FD /* ServerMaintenanceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerMaintenanceConfig.swift; sourceTree = "<group>"; };
 		38AB508A285AD3A700AF4F80 /* ChatRoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomController.swift; sourceTree = "<group>"; };
 		38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatRoomController.storyboard; sourceTree = "<group>"; };
 		38AD14C1289249EF001D1769 /* SignInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInModel.swift; sourceTree = "<group>"; };
@@ -360,6 +366,8 @@
 				38A21274282CDFB900B56E03 /* Font */,
 				38A21268282A0E3E00B56E03 /* Info.plist */,
 				382713EF28332648004BEB01 /* AppDelegate.swift */,
+				38A8B93228DDFB05000E86FD /* RemoteConfigClient.swift */,
+				38A8B93628DDFDEB000E86FD /* Struct */,
 				38DA36B928D1618A004006B6 /* Protocol */,
 				382F6AB0286582BE0056BFA2 /* Extension */,
 				3896805C284A4C90008E1302 /* Controller */,
@@ -453,6 +461,14 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		38A8B93628DDFDEB000E86FD /* Struct */ = {
+			isa = PBXGroup;
+			children = (
+				38A8B93728DDFDFB000E86FD /* ServerMaintenanceConfig.swift */,
+			);
+			path = Struct;
+			sourceTree = "<group>";
+		};
 		38AB5089285ACEF400AF4F80 /* ChatRoom */ = {
 			isa = PBXGroup;
 			children = (
@@ -488,6 +504,7 @@
 			isa = PBXGroup;
 			children = (
 				38DA36BA28D16228004006B6 /* UserProfileProtocol.swift */,
+				38A8B93428DDFB3E000E86FD /* RemoteConfigClientProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -800,8 +817,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				38E9AE2A2865641300EB71D6 /* Profile.swift in Sources */,
+				38A8B93328DDFB05000E86FD /* RemoteConfigClient.swift in Sources */,
 				38968057283F04CE008E1302 /* StartUpViewController.swift in Sources */,
 				38FAA64A28801229000521DD /* Post.swift in Sources */,
+				38A8B93528DDFB3E000E86FD /* RemoteConfigClientProtocol.swift in Sources */,
 				38FAA64D28815736000521DD /* CreateNewPostViewController.swift in Sources */,
 				385B6E2528DCB480007DEDF1 /* PostTableViewCell.swift in Sources */,
 				382713F028332648004BEB01 /* AppDelegate.swift in Sources */,
@@ -826,6 +845,7 @@
 				383AC1CD288787B600B5BE12 /* PostViewController.swift in Sources */,
 				38A2127B282CE0DB00B56E03 /* ARViewController.swift in Sources */,
 				383AC1D2288E398600B5BE12 /* PostImageTableViewCell.swift in Sources */,
+				38A8B93828DDFDFB000E86FD /* ServerMaintenanceConfig.swift in Sources */,
 				38FAA644287D20C5000521DD /* UITraitCollection-Extension.swift in Sources */,
 				38A21230282A064300B56E03 /* Experience.rcproject in Sources */,
 				38FAA648287FAFE4000521DD /* Comment.swift in Sources */,
@@ -1044,7 +1064,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.6;
+				MARKETING_VERSION = 1.1.7;
 				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jim112o.MetaMera;
@@ -1086,7 +1106,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.6;
+				MARKETING_VERSION = 1.1.7;
 				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jim112o.MetaMera;
