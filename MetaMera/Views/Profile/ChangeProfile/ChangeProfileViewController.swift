@@ -29,6 +29,7 @@ class ChangeProfileViewController: UIViewController {
         super.viewDidLoad()
         
         configView()
+        setSwipeBack()
 //        IQKeyboardManager.shared.enable = true
     }
     

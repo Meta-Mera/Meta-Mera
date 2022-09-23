@@ -41,7 +41,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         setUpNotification()
         tearDownNotification()
         configView()
-        
+        setSwipeBack()
     }
     
     func configView(){

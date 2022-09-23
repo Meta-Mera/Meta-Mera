@@ -73,14 +73,17 @@ class TopViewController: UIViewController {
             versionLabel.text = "Ver: unknown"
         }
         
-        
+        #if RELEASE
         check()
+        #endif
 
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+#if RELEASE
         check()
+#endif
     }
     
     func check(){

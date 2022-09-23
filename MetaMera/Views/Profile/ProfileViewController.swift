@@ -69,7 +69,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         configView()
-        
+        setSwipeBack()
     }
     
     func configView(){

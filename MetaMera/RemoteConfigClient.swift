@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import FirebaseRemoteConfig
 
 enum RemoteConfigParameterKey: String, CaseIterable {
     case serverMaintenance = "server_maintenance_config"

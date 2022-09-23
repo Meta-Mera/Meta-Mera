@@ -68,6 +68,7 @@
 		38A8B93328DDFB05000E86FD /* RemoteConfigClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A8B93228DDFB05000E86FD /* RemoteConfigClient.swift */; };
 		38A8B93528DDFB3E000E86FD /* RemoteConfigClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A8B93428DDFB3E000E86FD /* RemoteConfigClientProtocol.swift */; };
 		38A8B93828DDFDFB000E86FD /* ServerMaintenanceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A8B93728DDFDFB000E86FD /* ServerMaintenanceConfig.swift */; };
+		38A8B93A28DE11A9000E86FD /* UIViewController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A8B93928DE11A9000E86FD /* UIViewController-Extension.swift */; };
 		38AB508B285AD3A700AF4F80 /* ChatRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB508A285AD3A700AF4F80 /* ChatRoomController.swift */; };
 		38AB508E285AD3B800AF4F80 /* ChatRoomController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */; };
 		38AD14C2289249EF001D1769 /* SignInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AD14C1289249EF001D1769 /* SignInModel.swift */; };
@@ -163,6 +164,7 @@
 		38A8B93228DDFB05000E86FD /* RemoteConfigClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigClient.swift; sourceTree = "<group>"; };
 		38A8B93428DDFB3E000E86FD /* RemoteConfigClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigClientProtocol.swift; sourceTree = "<group>"; };
 		38A8B93728DDFDFB000E86FD /* ServerMaintenanceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerMaintenanceConfig.swift; sourceTree = "<group>"; };
+		38A8B93928DE11A9000E86FD /* UIViewController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController-Extension.swift"; sourceTree = "<group>"; };
 		38AB508A285AD3A700AF4F80 /* ChatRoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomController.swift; sourceTree = "<group>"; };
 		38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatRoomController.storyboard; sourceTree = "<group>"; };
 		38AD14C1289249EF001D1769 /* SignInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInModel.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				387EA2D428C7723000629B4B /* LNTouchDelegate-Extension.swift */,
 				387EA2D628CF76F400629B4B /* UIImage-Extension.swift */,
 				38A8B93028DDF30A000E86FD /* URL-Extension.swift */,
+				38A8B93928DE11A9000E86FD /* UIViewController-Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -838,6 +841,7 @@
 				06B1CC142861664900116CF0 /* ChatRoomTableViewCell.swift in Sources */,
 				38AD14C5289266BE001D1769 /* SignItem.swift in Sources */,
 				385B6E1D28DCB28F007DEDF1 /* DebugViewController.swift in Sources */,
+				38A8B93A28DE11A9000E86FD /* UIViewController-Extension.swift in Sources */,
 				387EA2D728CF76F400629B4B /* UIImage-Extension.swift in Sources */,
 				389024C62835DAD4004DC3F3 /* UIColor-Extension.swift in Sources */,
 				38A05CEB289547D000F0CC40 /* SignUpModel.swift in Sources */,
