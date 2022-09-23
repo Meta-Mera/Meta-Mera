@@ -100,9 +100,10 @@ class ProfileViewController: UIViewController {
         //            break
         //        }
         
-        if let url = URL(string: user.profileImage){
-            Nuke.loadImage(with: url, into: profileImageView)
-        }
+//        if let url = URL(string: user.profileImage){
+//            Nuke.loadImage(with: url, into: profileImageView)
+//        }
+        profileImageView.loadImageAsynchronously(url: URL(string: user.profileImage))
         
         if user.email != Profile.shared.loginUser.email{
             changeProfileImageButton.isHidden = true

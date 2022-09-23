@@ -88,9 +88,10 @@ class ChatRoomTableViewCell: UITableViewCell {
         let witdh = estimateFrameForTextView(text: message.message).width + 20
         messageTextViewWidthConstraint.constant = witdh
         dateLabel.text = dateFormatterForDateLabel(date: message.createdAt.dateValue())
-        if let url = URL(string: sendUserProfileImageUrl){
-            Nuke.loadImage(with: url, into: userIconImageView)
-        }
+//        if let url = URL(string: sendUserProfileImageUrl){
+//            Nuke.loadImage(with: url, into: userIconImageView)
+//        }
+        userIconImageView.loadImageAsynchronously(url: URL(string:sendUserProfileImageUrl))
         
         
     }

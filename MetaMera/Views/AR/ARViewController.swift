@@ -299,9 +299,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                                     for document in postSnapshots!.documents {
                                         print("\(document.documentID) => \(document.data())")
                                         let post = Post(dic: document.data(), postId: document.documentID)
-                                        print("!!!!!!!!!!!!!!!!!!Post:",post.postId)
                                         self?.posts?.append(post)
-                                        print("count;;;;;",self?.posts?.count)
                                         
                                     }
                                     self?.addSceneModels()
@@ -369,10 +367,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     func buildPostData() -> [LocationAnnotationNode] {
         var nodes: [LocationAnnotationNode] = []
-        print("!!!!!!!!!!!!!!!!!!!!!Node生成開始!!!!!!!!!!!!!!!!!!:",posts?.count)
         posts?.forEach({ post in
-            print("!!!!!!!!!!!!!!!!!!!!!PostData:",post.postId)
-            let node = buildNode(latitude: post.latitude, longitude: post.longitude, altitude: post.altitude, imageName: "drink", size: CGSize(width: 400, height: 300), pinUse: true, pinName: post.postId!, postId: post.postId!)
+            let node = buildNode(latitude: post.latitude, longitude: post.longitude, altitude: post.altitude, imageURL: URL(string: post.editedImageUrl)!, size: CGSize(width: 400, height: 300), pinUse: true, pinName: post.postId!, postId: post.postId!)
             nodes.append(node)
         })
         
@@ -510,6 +506,29 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             return LocationAnnotationNode(location: location, image: image)
             
         }
+        image.accessibilityIdentifier = postId
+        print("---------------------------------------")
+        print("accessibilityIdentifier: ",image.accessibilityIdentifier as Any)
+        print("---------------------------------------")
+        if pinUse {
+            annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+            annotation.title = pinName
+            annotation.subtitle = "高さ"+String(altitude)
+            annotationArray.append(annotation)
+            mapView.addAnnotation(annotation)
+        }
+        return LocationAnnotationNode(location: location, image: image)
+    }
+    
+    func buildNode(latitude: CLLocationDegrees, longitude: CLLocationDegrees,
+                   altitude: CLLocationDistance,
+                   imageURL: URL, size: CGSize,
+                   pinUse: Bool, pinName: String,
+                   postId: String) -> LocationAnnotationNode {
+        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let location = CLLocation(coordinate: coordinate, altitude: altitude)
+        let annotation = MKPointAnnotation()
+        let image:UIImage = UIImage(url: imageURL).reSizeImage(reSize: size)
         image.accessibilityIdentifier = postId
         print("---------------------------------------")
         print("accessibilityIdentifier: ",image.accessibilityIdentifier as Any)

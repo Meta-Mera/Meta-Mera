@@ -87,9 +87,7 @@ class PostImageTableViewCell: UITableViewCell {
             self?.postUserNameLabel.text = self?.postUser?.userName
             self?.postUserNameLabel.accessibilityIdentifier = self?.postUser?.uid
             self?.postTextView.text = self?.post?.comment.replacingOccurrences(of: "\\\\n", with: "\n").replacingOccurrences(of: "\\", with: "")
-            if let url = URL(string: (self?.postUser?.profileImage)!){
-                Nuke.loadImage(with: url, into: (self?.profileImageView)!)
-            }
+            self?.profileImageView.loadImageAsynchronously(url: URL(string:(self?.postUser!.profileImage)!))
         }
     }
     
