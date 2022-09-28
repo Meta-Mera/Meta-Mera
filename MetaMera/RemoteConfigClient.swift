@@ -23,6 +23,11 @@ class RemoteConfigClient: RemoteConfigClientProtocol {
     private init() {
         remoteConfig = RemoteConfig.remoteConfig()
         let settings = RemoteConfigSettings()
+        
+        #if RELEASE
+        remoteConfig.fetch(withExpirationDuration: 0)
+        #endif
+        
         settings.fetchTimeout = 30
         #if DEBUG
         settings.minimumFetchInterval = 0

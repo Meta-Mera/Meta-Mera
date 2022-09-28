@@ -69,6 +69,8 @@
 		38A8B93528DDFB3E000E86FD /* RemoteConfigClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A8B93428DDFB3E000E86FD /* RemoteConfigClientProtocol.swift */; };
 		38A8B93828DDFDFB000E86FD /* ServerMaintenanceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A8B93728DDFDFB000E86FD /* ServerMaintenanceConfig.swift */; };
 		38A8B93A28DE11A9000E86FD /* UIViewController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A8B93928DE11A9000E86FD /* UIViewController-Extension.swift */; };
+		38A8B93C28E49463000E86FD /* PostUploadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A8B93B28E49463000E86FD /* PostUploadModel.swift */; };
+		38A8B93E28E494CD000E86FD /* PostItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A8B93D28E494CD000E86FD /* PostItem.swift */; };
 		38AB508B285AD3A700AF4F80 /* ChatRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB508A285AD3A700AF4F80 /* ChatRoomController.swift */; };
 		38AB508E285AD3B800AF4F80 /* ChatRoomController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */; };
 		38AD14C2289249EF001D1769 /* SignInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AD14C1289249EF001D1769 /* SignInModel.swift */; };
@@ -165,6 +167,8 @@
 		38A8B93428DDFB3E000E86FD /* RemoteConfigClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigClientProtocol.swift; sourceTree = "<group>"; };
 		38A8B93728DDFDFB000E86FD /* ServerMaintenanceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerMaintenanceConfig.swift; sourceTree = "<group>"; };
 		38A8B93928DE11A9000E86FD /* UIViewController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController-Extension.swift"; sourceTree = "<group>"; };
+		38A8B93B28E49463000E86FD /* PostUploadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUploadModel.swift; sourceTree = "<group>"; };
+		38A8B93D28E494CD000E86FD /* PostItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostItem.swift; sourceTree = "<group>"; };
 		38AB508A285AD3A700AF4F80 /* ChatRoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomController.swift; sourceTree = "<group>"; };
 		38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatRoomController.storyboard; sourceTree = "<group>"; };
 		38AD14C1289249EF001D1769 /* SignInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInModel.swift; sourceTree = "<group>"; };
@@ -370,7 +374,6 @@
 				38A21268282A0E3E00B56E03 /* Info.plist */,
 				382713EF28332648004BEB01 /* AppDelegate.swift */,
 				38A8B93228DDFB05000E86FD /* RemoteConfigClient.swift */,
-				38A8B93628DDFDEB000E86FD /* Struct */,
 				38DA36B928D1618A004006B6 /* Protocol */,
 				382F6AB0286582BE0056BFA2 /* Extension */,
 				3896805C284A4C90008E1302 /* Controller */,
@@ -464,14 +467,6 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
-		38A8B93628DDFDEB000E86FD /* Struct */ = {
-			isa = PBXGroup;
-			children = (
-				38A8B93728DDFDFB000E86FD /* ServerMaintenanceConfig.swift */,
-			);
-			path = Struct;
-			sourceTree = "<group>";
-		};
 		38AB5089285ACEF400AF4F80 /* ChatRoom */ = {
 			isa = PBXGroup;
 			children = (
@@ -498,7 +493,9 @@
 		38AD14C3289266A3001D1769 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				38A8B93728DDFDFB000E86FD /* ServerMaintenanceConfig.swift */,
 				38AD14C4289266BE001D1769 /* SignItem.swift */,
+				38A8B93D28E494CD000E86FD /* PostItem.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -522,6 +519,7 @@
 				38FAA64928801229000521DD /* Post.swift */,
 				38AD14C1289249EF001D1769 /* SignInModel.swift */,
 				38A05CEA289547D000F0CC40 /* SignUpModel.swift */,
+				38A8B93B28E49463000E86FD /* PostUploadModel.swift */,
 				388EA9AD28A555E800A79746 /* Notifications.swift */,
 				387EA2D228C76EBF00629B4B /* ArObject.swift */,
 			);
@@ -841,6 +839,7 @@
 				06B1CC142861664900116CF0 /* ChatRoomTableViewCell.swift in Sources */,
 				38AD14C5289266BE001D1769 /* SignItem.swift in Sources */,
 				385B6E1D28DCB28F007DEDF1 /* DebugViewController.swift in Sources */,
+				38A8B93E28E494CD000E86FD /* PostItem.swift in Sources */,
 				38A8B93A28DE11A9000E86FD /* UIViewController-Extension.swift in Sources */,
 				387EA2D728CF76F400629B4B /* UIImage-Extension.swift in Sources */,
 				389024C62835DAD4004DC3F3 /* UIColor-Extension.swift in Sources */,
@@ -860,6 +859,7 @@
 				38AB508B285AD3A700AF4F80 /* ChatRoomController.swift in Sources */,
 				38A8B93128DDF30A000E86FD /* URL-Extension.swift in Sources */,
 				3896805B28445926008E1302 /* ArObjectOld.swift in Sources */,
+				38A8B93C28E49463000E86FD /* PostUploadModel.swift in Sources */,
 				38A21266282A09C200B56E03 /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1069,7 +1069,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.8;
+				MARKETING_VERSION = 1.1.9;
 				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jim112o.MetaMera;
@@ -1111,7 +1111,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.8;
+				MARKETING_VERSION = 1.1.9;
 				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jim112o.MetaMera;

@@ -17,12 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
     var window: UIWindow?
     
+    #if DEBUG
+    
     //MARK: Quick Action
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem) async -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         let signInModel = SignInModel()
         switch shortcutItem.type {
-        case "SearchAction":
+        case "jim":
             
             signInModel.signIn(signInItem: .init(email: "g019c1045@g.neec.ac.jp", password: "123456")) {[weak self] result in
                 switch result{
@@ -34,26 +36,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
                 case .failure(_): break
                 }
             }
-        case "debug":
-            signInModel.signIn(signInItem: .init(email: "g019c1045@g.neec.ac.jp", password: "123456")) {[weak self] result in
+        case "abe":
+            signInModel.signIn(signInItem: .init(email: "g019c1053@g.neec.ac.jp", password: "123456")) {[weak self] result in
                 switch result{
-                    
                 case .success(_):
-                    Firestore.firestore().collection("Posts").document("Uz93q4hTLBHvLUFglhxp").getDocument { (snapshot, err) in
-                        if let err = err {
-                            print("投稿情報の取得に失敗しました。\(err)")
-                            return
-                        }
-                        
-                        guard let dic = snapshot?.data() else { return }
-                        print("投稿情報の取得に成功しました。")
-                        let post = Post(dic: dic,postId: "Uz93q4hTLBHvLUFglhxp")
-                        let viewController = ChatRoomController()
-                        viewController.post = post
-                        viewController.image = UIImage(named: "ブラックアルフォート")!
-                        viewController.postId = post.postId
-                        self?.window?.rootViewController = UINavigationController(rootViewController: viewController)
-                    }
+                    self?.window?.rootViewController = UIStoryboard.instantiateInitialViewController(.init(name: "TopViewController", bundle: .main))()
+                    self?.window?.makeKeyAndVisible()
+                    IQKeyboardManager.shared.enable = true
+                    IQKeyboardManager.shared.enableAutoToolbar = false
                 case .failure(_): break
                 }
             }
@@ -64,6 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         window?.makeKeyAndVisible()
         return true
     }
+#endif
     
 
 

@@ -30,6 +30,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var chatRoomTableView: UITableView!
     @IBOutlet weak var backImageView: UIImageView!
+    @IBOutlet weak var optionButton: UIButton!
     
 //    static let shared = Profile()
     
@@ -64,6 +65,10 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         chatRoomTableView.backgroundColor = UIColor.chatRoomBackground
         ChatViewController().inputChatText.layer.backgroundColor = UIColor.inputChatTextBackground.cgColor
         
+        optionButton.imageView?.contentMode = .scaleAspectFill
+        optionButton.contentHorizontalAlignment = .fill
+        optionButton.contentVerticalAlignment = .fill
+        
     }
     
     
@@ -93,6 +98,54 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tearDownNotification()
+    }
+    
+    
+    @IBAction func pushOptionButton(_ sender: Any) {
+        
+        // styleをActionSheetに設定
+        let alertSheet = UIAlertController(title: "Option", message: "What happened?", preferredStyle: UIAlertController.Style.actionSheet)
+        
+        // アクションを追加.
+        
+        if post.postUserUid == Profile.shared.loginUser.uid {
+            
+            let edit = UIAlertAction(title: "Edit", style: UIAlertAction.Style.default, handler: {[weak self]
+                (action: UIAlertAction!) -> Void in
+                print("edit")
+            })
+            
+            let hide = UIAlertAction(title: "Hide", style: UIAlertAction.Style.default, handler: {[weak self]
+                (action: UIAlertAction!) -> Void in
+                print("hide")
+            })
+            
+            let delete = UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: {[weak self]
+                (action: UIAlertAction!) -> Void in
+                print("delete")
+            })
+            
+            alertSheet.addAction(edit)
+            alertSheet.addAction(hide)
+            alertSheet.addAction(delete)
+            
+        } else {
+            
+            let report = UIAlertAction(title: "Report", style: UIAlertAction.Style.destructive, handler: {[weak self]
+                (action: UIAlertAction!) -> Void in
+                print("Report")
+            })
+            
+            alertSheet.addAction(report)
+        }
+        
+        let cancel = UIAlertAction(title: "cancel", style: UIAlertAction.Style.cancel, handler: {
+            (action: UIAlertAction!) in
+        })
+        
+        alertSheet.addAction(cancel)
+        
+        self.present(alertSheet, animated: true, completion: nil)
     }
     
     //MARK: 前の画面に戻る

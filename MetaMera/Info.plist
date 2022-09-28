@@ -15,23 +15,23 @@
 	<array>
 		<dict>
 			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutIconTypeMessage</string>
+			<string>UIApplicationShortcutIconTypeProhibit</string>
 			<key>UIApplicationShortcutItemSubtitle</key>
-			<string>ChatRoomController</string>
+			<string>g019c1053</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>投稿デバッグ用</string>
+			<string>Abeのアカウントでログインします。</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>debug</string>
+			<string>abe</string>
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconType</key>
 			<string>UIApplicationShortcutIconTypeProhibit</string>
 			<key>UIApplicationShortcutItemSubtitle</key>
-			<string>Jimのアカウントでログインします。</string>
+			<string>g019c1045</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>バックドア</string>
+			<string>Jimのアカウントでログインします。</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>SearchAction</string>
+			<string>jim</string>
 		</dict>
 	</array>
 	<key>UIBackgroundModes</key>

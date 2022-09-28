@@ -86,15 +86,16 @@ class TopViewController: UIViewController {
 #endif
     }
     
+    
     func check(){
         RemoteConfigClient.shared.fetchServerMaintenanceConfig(
             succeeded: { [weak self] config in
+                self?.maintenance = config.isUnderMaintenance
                 if config.isUnderMaintenance {
-                    self?.maintenance = config.isUnderMaintenance
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
                         guard let `self` = self else { return }
                         let alert: UIAlertController = UIAlertController(title: config.title, message: config.message, preferredStyle:  UIAlertController.Style.alert)
-                        let defaultAction: UIAlertAction = UIAlertAction(title: "再読み込み", style: UIAlertAction.Style.default, handler:{
+                        let defaultAction: UIAlertAction = UIAlertAction(title: "Reload", style: UIAlertAction.Style.default, handler:{
                             // ボタンが押された時の処理を書く（クロージャ実装）
                             (action: UIAlertAction!) -> Void in
                             self.check()
@@ -103,8 +104,6 @@ class TopViewController: UIViewController {
                         alert.addAction(defaultAction)
                         self.present(alert, animated: true, completion: nil)
                     }
-                } else{
-                    self?.maintenance = config.isUnderMaintenance
                 }
             }, failed: { [weak self] errorMessage in
             }
@@ -188,7 +187,7 @@ class TopViewController: UIViewController {
                     }
                 }
             }else{
-                Goto.SignIn(view: self!)
+                Goto.SignIn(view: self ?? TopViewController())
             }
         }
     }
