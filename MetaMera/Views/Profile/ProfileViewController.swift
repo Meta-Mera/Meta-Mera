@@ -56,6 +56,8 @@ class ProfileViewController: UIViewController {
     
     var user: User!
     
+    let accessory = Accessory()
+    
     override func viewDidDisappear(_ animated: Bool) {
         self.navigationController?.popToRootViewController(animated: true)
     }
@@ -474,30 +476,41 @@ class ProfileViewController: UIViewController {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
     
-    func saveToFireStorege(selectedImage: UIImage){
-        guard let uploadImage = selectedImage.jpegData(compressionQuality: 0.5) else { return }
-        
-        let fileName = loginUser.uid+".jpeg"
-        let storageRef = Storage.storage().reference().child("profile").child(fileName)
-        
-        let metaData = FirebaseStorage.StorageMetadata()
-        metaData.contentType = "image/jpeg"
-        
-        storageRef.putData(uploadImage, metadata: metaData) { (metadata, err) in
-            if let err = err{
-                print("firestorageへの情報の保存に失敗\(err)")
-                return
-            }
-            
-            print("保存に成功")
-            
-            storageRef.downloadURL { [weak self] (url, err) in
-                if let err = err {
-                    print("error\(err)")
-                    return
-                }
-                guard let urlString = url?.absoluteString else { return }
-                self?.updateProfileImageToFirestore(profileImageUrl: urlString, image: selectedImage)
+//    func saveToFireStorege(selectedImage: UIImage){
+//        guard let uploadImage = selectedImage.jpegData(compressionQuality: 0.5) else { return }
+//
+//        let fileName = loginUser.uid+".jpeg"
+//        let storageRef = Storage.storage().reference().child("profile").child(fileName)
+//
+//        let metaData = FirebaseStorage.StorageMetadata()
+//        metaData.contentType = "image/jpeg"
+//
+//        storageRef.putData(uploadImage, metadata: metaData) { (metadata, err) in
+//            if let err = err{
+//                print("firestorageへの情報の保存に失敗\(err)")
+//                return
+//            }
+//
+//            print("保存に成功")
+//
+//            storageRef.downloadURL { [weak self] (url, err) in
+//                if let err = err {
+//                    print("error\(err)")
+//                    return
+//                }
+//                guard let urlString = url?.absoluteString else { return }
+//                self?.updateProfileImageToFirestore(profileImageUrl: urlString, image: selectedImage)
+//            }
+//        }
+//    }
+    
+    func saveFirebaseStorage(image: UIImage){
+        accessory.saveToFireStorege(selectedImage: image, fileName: loginUser.uid+".jpeg", folderName: "profile") { [weak self] result in
+            switch result {
+            case .success((let urlString, let returnImage)):
+                self?.updateProfileImageToFirestore(profileImageUrl: urlString, image: returnImage)
+            case .failure(let error):
+                print("\(error)")
             }
         }
     }
@@ -613,10 +626,11 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let editImage = info[.editedImage] as? UIImage {
             //            self.saveFirebase(selectedImage: editImage)
-            self.saveToFireStorege(selectedImage: editImage)
+//            self.saveToFireStorege(selectedImage: editImage)
+            self.saveFirebaseStorage(image: editImage)
         }else if let originalImage = info[.originalImage] as? UIImage {
             //            self.saveFirebase(selectedImage: originalImage)
-            self.saveToFireStorege(selectedImage: originalImage)
+            self.saveFirebaseStorage(image: originalImage)
         }
     }
     

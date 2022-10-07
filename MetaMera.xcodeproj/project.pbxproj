@@ -71,6 +71,15 @@
 		38A8B93A28DE11A9000E86FD /* UIViewController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A8B93928DE11A9000E86FD /* UIViewController-Extension.swift */; };
 		38A8B93C28E49463000E86FD /* PostUploadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A8B93B28E49463000E86FD /* PostUploadModel.swift */; };
 		38A8B93E28E494CD000E86FD /* PostItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A8B93D28E494CD000E86FD /* PostItem.swift */; };
+		38A8B94228E6D279000E86FD /* PlaceTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A8B94028E6D279000E86FD /* PlaceTextView.swift */; };
+		38A8B94328E6D279000E86FD /* PlaceTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A8B94028E6D279000E86FD /* PlaceTextView.swift */; };
+		38A8B94428E6D279000E86FD /* PlaceTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A8B94028E6D279000E86FD /* PlaceTextView.swift */; };
+		38A8B94528E6D279000E86FD /* PlaceTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38A8B94128E6D279000E86FD /* PlaceTextView.xib */; };
+		38A8B94628E6D279000E86FD /* PlaceTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38A8B94128E6D279000E86FD /* PlaceTextView.xib */; };
+		38A8B94728E6D279000E86FD /* PlaceTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38A8B94128E6D279000E86FD /* PlaceTextView.xib */; };
+		38A8B94A28E92CE4000E86FD /* Accessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A8B94928E92CE4000E86FD /* Accessory.swift */; };
+		38A8B94B28E92CE4000E86FD /* Accessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A8B94928E92CE4000E86FD /* Accessory.swift */; };
+		38A8B94C28E92CE4000E86FD /* Accessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A8B94928E92CE4000E86FD /* Accessory.swift */; };
 		38AB508B285AD3A700AF4F80 /* ChatRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB508A285AD3A700AF4F80 /* ChatRoomController.swift */; };
 		38AB508E285AD3B800AF4F80 /* ChatRoomController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */; };
 		38AD14C2289249EF001D1769 /* SignInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AD14C1289249EF001D1769 /* SignInModel.swift */; };
@@ -169,6 +178,9 @@
 		38A8B93928DE11A9000E86FD /* UIViewController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController-Extension.swift"; sourceTree = "<group>"; };
 		38A8B93B28E49463000E86FD /* PostUploadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUploadModel.swift; sourceTree = "<group>"; };
 		38A8B93D28E494CD000E86FD /* PostItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostItem.swift; sourceTree = "<group>"; };
+		38A8B94028E6D279000E86FD /* PlaceTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTextView.swift; sourceTree = "<group>"; };
+		38A8B94128E6D279000E86FD /* PlaceTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceTextView.xib; sourceTree = "<group>"; };
+		38A8B94928E92CE4000E86FD /* Accessory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accessory.swift; sourceTree = "<group>"; };
 		38AB508A285AD3A700AF4F80 /* ChatRoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomController.swift; sourceTree = "<group>"; };
 		38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatRoomController.storyboard; sourceTree = "<group>"; };
 		38AD14C1289249EF001D1769 /* SignInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInModel.swift; sourceTree = "<group>"; };
@@ -467,6 +479,23 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		38A8B93F28E6D243000E86FD /* PlaceTextView */ = {
+			isa = PBXGroup;
+			children = (
+				38A8B94028E6D279000E86FD /* PlaceTextView.swift */,
+				38A8B94128E6D279000E86FD /* PlaceTextView.xib */,
+			);
+			path = PlaceTextView;
+			sourceTree = "<group>";
+		};
+		38A8B94828E92CD8000E86FD /* Accessory */ = {
+			isa = PBXGroup;
+			children = (
+				38A8B94928E92CE4000E86FD /* Accessory.swift */,
+			);
+			path = Accessory;
+			sourceTree = "<group>";
+		};
 		38AB5089285ACEF400AF4F80 /* ChatRoom */ = {
 			isa = PBXGroup;
 			children = (
@@ -512,6 +541,8 @@
 		38E9AE282865641300EB71D6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				38A8B94828E92CD8000E86FD /* Accessory */,
+				38A8B93F28E6D243000E86FD /* PlaceTextView */,
 				38E9AE292865641300EB71D6 /* Profile.swift */,
 				382F6AB1286D44730056BFA2 /* User.swift */,
 				38FAA645287FAFA6000521DD /* ChatRoom.swift */,
@@ -676,6 +707,7 @@
 				38A21269282A104200B56E03 /* Main.storyboard in Resources */,
 				38A21282282CE15800B56E03 /* utakata-Regular.otf in Resources */,
 				385B6E2628DCB480007DEDF1 /* PostTableViewCell.xib in Resources */,
+				38A8B94528E6D279000E86FD /* PlaceTextView.xib in Resources */,
 				3896806B284C7755008E1302 /* ProfileViewController.storyboard in Resources */,
 				38A21238282A064400B56E03 /* LaunchScreen.storyboard in Resources */,
 				38A2128A282CEB8200B56E03 /* GoogleService-Info.plist in Resources */,
@@ -694,6 +726,7 @@
 				38A21283282CE15800B56E03 /* utakata-Regular.otf in Resources */,
 				38A21287282CE3AF00B56E03 /* bokutachi.otf in Resources */,
 				38A2128B282CEB8200B56E03 /* GoogleService-Info.plist in Resources */,
+				38A8B94628E6D279000E86FD /* PlaceTextView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -704,6 +737,7 @@
 				38A21284282CE15800B56E03 /* utakata-Regular.otf in Resources */,
 				38A21288282CE3AF00B56E03 /* bokutachi.otf in Resources */,
 				38A2128C282CEB8200B56E03 /* GoogleService-Info.plist in Resources */,
+				38A8B94728E6D279000E86FD /* PlaceTextView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -817,6 +851,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38A8B94A28E92CE4000E86FD /* Accessory.swift in Sources */,
 				38E9AE2A2865641300EB71D6 /* Profile.swift in Sources */,
 				38A8B93328DDFB05000E86FD /* RemoteConfigClient.swift in Sources */,
 				38968057283F04CE008E1302 /* StartUpViewController.swift in Sources */,
@@ -826,6 +861,7 @@
 				385B6E2528DCB480007DEDF1 /* PostTableViewCell.swift in Sources */,
 				382713F028332648004BEB01 /* AppDelegate.swift in Sources */,
 				3896805E284A4CAE008E1302 /* Goto.swift in Sources */,
+				38A8B94228E6D279000E86FD /* PlaceTextView.swift in Sources */,
 				387EA2DC28CF78A900629B4B /* ChangeProfileViewController.swift in Sources */,
 				387EA2D328C76EBF00629B4B /* ArObject.swift in Sources */,
 				382713882831F95F004BEB01 /* SignInViewController.swift in Sources */,
@@ -868,7 +904,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38A8B94328E6D279000E86FD /* PlaceTextView.swift in Sources */,
 				38A21242282A064400B56E03 /* MetaMeraTests.swift in Sources */,
+				38A8B94B28E92CE4000E86FD /* Accessory.swift in Sources */,
 				38A2127C282CE0DB00B56E03 /* ARViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -878,8 +916,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				38A2127D282CE0DB00B56E03 /* ARViewController.swift in Sources */,
+				38A8B94C28E92CE4000E86FD /* Accessory.swift in Sources */,
 				38A2124E282A064400B56E03 /* MetaMeraUITestsLaunchTests.swift in Sources */,
 				38A2124C282A064400B56E03 /* MetaMeraUITests.swift in Sources */,
+				38A8B94428E6D279000E86FD /* PlaceTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1069,7 +1109,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.9;
+				MARKETING_VERSION = 1.1.10;
 				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jim112o.MetaMera;
@@ -1111,7 +1151,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.9;
+				MARKETING_VERSION = 1.1.10;
 				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jim112o.MetaMera;

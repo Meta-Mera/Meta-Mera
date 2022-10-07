@@ -53,7 +53,7 @@ extension UIColor {
     public static var inputChatTextBackground: UIColor {
         return dynamicColor(
             light: .rgb(red: 255, green: 255, blue: 255),
-            dark: .rgb(red: 230, green: 230, blue: 230)
+            dark: .rgb(red: 40, green: 40, blue: 40)
         )
     }
     

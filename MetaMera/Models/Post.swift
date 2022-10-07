@@ -8,6 +8,34 @@
 import Foundation
 import Firebase
 
+/// 投稿画像の形
+///
+/// editedImageUrlの形と一致させてね
+///
+/// - 長方形
+/// rectangle = 0
+///
+/// - 正方形
+/// square = 1
+///
+/// - 円形
+/// circle = 2
+///
+/// - ToDo: APIが実装されたらやり直すこと
+/// - Author: Jim
+///
+enum imageStyle :Int , @unchecked Sendable{
+
+    ///長方形
+    case rectangle = 0
+    
+    ///正方形
+    case square = 1
+    
+    //円形
+    case circle = 2
+}
+
 class Post {
     
     let areaId: String
@@ -21,6 +49,7 @@ class Post {
     let longitude: Double
     let altitude: Double
     let comment: String
+    let imageStyle: Int
     
     var postId: String?
     
@@ -36,6 +65,7 @@ class Post {
         self.longitude = dic["longitude"] as? Double ?? 1.0
         self.altitude = dic["altitude"] as? Double ?? 1.0
         self.comment = dic["comment"] as? String ?? ""
+        self.imageStyle = dic["imageStyle"] as? Int ?? 0
         self.postId = postId
     }
 }

@@ -59,7 +59,7 @@ extension UIImage {
         } catch let err {
             print("Error : \(err.localizedDescription)")
         }
-        self.init()
+        self.init(data: (defaultUIImage?.pngData())!)!
 
     }
 }

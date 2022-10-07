@@ -160,6 +160,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     private lazy var chatView: ChatViewController = {
         let view = ChatViewController()
         view.frame = .init(x: 0, y: 0, width: view.frame.width, height: accessoryHeight)
+        view.inputChatText.layer.backgroundColor = UIColor.inputChatTextBackground.cgColor
         view.delegate = self
         return view
     }()

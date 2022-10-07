@@ -30,8 +30,13 @@ class ChatRoomTableViewCell: UITableViewCell {
     @IBOutlet weak var responseDateLabel: UILabel!
     @IBOutlet weak var sendUser: UILabel!
     @IBOutlet weak var responseUser: UILabel!
+    @IBOutlet weak var likeButton: UIButton!
     
     @IBOutlet weak var messageTextViewWidthConstraint: NSLayoutConstraint!
+    
+    var iLiked = false
+    
+    let generator = UINotificationFeedbackGenerator()
     
     var delegate: UserProfileProtocol?
     
@@ -76,6 +81,16 @@ class ChatRoomTableViewCell: UITableViewCell {
         delegate?.tapUser(user: messageText!.sendUser!)
     }
     
+    
+    @IBAction func pushLike(_ sender: Any) {
+        if(iLiked){
+            likeButton.setImage(UIImage(named: "ハート(押す前)"), for: .normal)
+        }else{
+            likeButton.setImage(UIImage(named: "ハート(押した後)"), for: .normal)
+        }
+        iLiked.toggle()
+    }
+    
     private func checkWhichUserMessage() {
 //        guard let uid = Auth.auth().currentUser?.uid else { return }
         
@@ -91,7 +106,7 @@ class ChatRoomTableViewCell: UITableViewCell {
 //        if let url = URL(string: sendUserProfileImageUrl){
 //            Nuke.loadImage(with: url, into: userIconImageView)
 //        }
-        userIconImageView.loadImageAsynchronously(url: URL(string:sendUserProfileImageUrl))
+        userIconImageView.loadImageAsynchronously(url: URL(string:sendUserProfileImageUrl), defaultUIImage: UIImage(named: "ロゴ")!)
         
         
     }

@@ -35,6 +35,7 @@ class ChatViewController: UIView{
         inputChatText.layer.borderColor = UIColor.rgb(red: 238, green: 238, blue: 238).cgColor
         inputChatText.layer.borderWidth = 1
         inputChatText.layer.backgroundColor = UIColor.inputChatTextBackground.cgColor
+//        inputChatText.layer.
         
         
 //        ChatSendButton.layer.cornerRadius = 10

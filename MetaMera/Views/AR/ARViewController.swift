@@ -67,6 +67,9 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     //投稿リスト
     var posts : [Post]?
     
+    //市区町村名？
+    var locality : String?
+    
     
     
     
@@ -280,10 +283,11 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             
             // Look up the location and pass it to the completion handler
             geocoder.reverseGeocodeLocation(lastLocation,
-                                            completionHandler: { (placemarks, error) in
+                                            completionHandler: { [weak self] (placemarks, error) in
                 guard let placemark = placemarks?.first, error == nil else { return }
                 
                 if let locality = placemark.locality {
+                    self?.locality = locality
                     print("locality: ",locality as Any)
                     Firestore.firestore().collection("Areas").whereField("areaName", isEqualTo: locality).getDocuments(completion: { [weak self]
                         (snapshot, error) in
@@ -368,7 +372,29 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     func buildPostData() -> [LocationAnnotationNode] {
         var nodes: [LocationAnnotationNode] = []
         posts?.forEach({ post in
-            let node = buildNode(latitude: post.latitude, longitude: post.longitude, altitude: post.altitude, imageURL: URL(string: post.editedImageUrl)!, size: CGSize(width: 400, height: 300), pinUse: true, pinName: post.postId!, postId: post.postId!)
+            
+            var imageStyle: CGSize
+            
+            switch post.imageStyle {
+                
+            case 0:
+                imageStyle = CGSize(width: 400, height: 300)
+                break
+            case 1:
+                imageStyle = CGSize(width: 300, height: 300)
+                break
+            case 2:
+                imageStyle = CGSize(width: 400, height: 300)
+                break
+            case 3:
+                imageStyle = CGSize(width: 300, height: 400)
+                break
+
+            default:
+                imageStyle = CGSize(width: 400, height: 300)
+            }
+            
+            let node = buildNode(latitude: post.latitude, longitude: post.longitude, altitude: post.altitude, imageURL: URL(string: post.editedImageUrl)!, size: imageStyle, pinUse: true, pinName: post.postId!, postId: post.postId!)
             nodes.append(node)
         })
         
@@ -528,7 +554,12 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let location = CLLocation(coordinate: coordinate, altitude: altitude)
         let annotation = MKPointAnnotation()
-        let image:UIImage = UIImage(url: imageURL).reSizeImage(reSize: size)
+        let image:UIImage = UIImage(url: imageURL, defaultUIImage: UIImage(named: "ロゴ")).reSizeImage(reSize: size)
+//        let image:UIImage = UIImage(named: "katsu")!.reSizeImage(reSize: size)
+//        let imageView: UIImageView
+//        imageView = UIImageView()
+//        Nuke.loadImage(with: imageURL, into: imageView)
+//        let image:UIImage = imageView.image
         image.accessibilityIdentifier = postId
         print("---------------------------------------")
         print("accessibilityIdentifier: ",image.accessibilityIdentifier as Any)
@@ -604,8 +635,9 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
            let heading = sceneLocationView.sceneLocationManager.locationManager.heading,
            let headingAccuracy = sceneLocationView.sceneLocationManager.locationManager.headingAccuracy {
             let yDegrees = (((0 - eulerAngles.y.radiansToDegrees) + 360).truncatingRemainder(dividingBy: 360) ).short
-            textLabel.text = " Heading: \(yDegrees)° • \(Float(heading).short)° • \(headingAccuracy)°"
-            textLabel.isHidden = true
+//            textLabel.text = "\(yDegrees)° • \(Float(heading).short)° • \(headingAccuracy)°\n \(locality ?? "")"
+            textLabel.text = "\(locality ?? "")"
+//            textLabel.isHidden = true
         }
     }
     

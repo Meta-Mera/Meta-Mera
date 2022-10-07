@@ -21,5 +21,7 @@ struct PostItem{
     var longitude : Double?
     var altitude : Double?
     var comment : String?
+    var imageStyle : Int?
+    var id: String?
     
 }

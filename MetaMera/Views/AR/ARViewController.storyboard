@@ -8,6 +8,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="bokutachi.otf">
+            <string>BokutachinoGothic</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="s0d-6b-0kx">
@@ -33,10 +38,10 @@
                                     <constraint firstAttribute="width" constant="50" id="Yl1-hI-Tca"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="aaaaaaaaaaaaaaa" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ApQ-CF-4sq">
-                                <rect key="frame" x="24" y="142" width="327" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="おはようございます。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ApQ-CF-4sq">
+                                <rect key="frame" x="24" y="158" width="327" height="20"/>
                                 <color key="backgroundColor" red="0.70552110180412364" green="0.70552110180412364" blue="0.70552110180412364" alpha="0.54346082182873134" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="BokutachinoGothic" family="BokutachinoGothic" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -46,7 +51,7 @@
                                     <constraint firstAttribute="height" constant="250" id="RjN-gs-uci"/>
                                 </constraints>
                             </mapView>
-                            <view alpha="0.0" contentMode="scaleAspectFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5xn-ya-I9u">
+                            <view alpha="0.0" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="5xn-ya-I9u">
                                 <rect key="frame" x="0.0" y="-1" width="375" height="812"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -115,26 +120,26 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="CYJ-Ku-gip" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="1UC-ht-zxS"/>
-                            <constraint firstItem="UNc-Jd-p1P" firstAttribute="leading" secondItem="5xn-ya-I9u" secondAttribute="leading" id="55d-Lw-nW6"/>
+                            <constraint firstItem="5xn-ya-I9u" firstAttribute="leading" secondItem="UNc-Jd-p1P" secondAttribute="leading" id="5RM-mC-P99"/>
                             <constraint firstItem="CYJ-Ku-gip" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="8v6-Lf-OZJ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="UNc-Jd-p1P" secondAttribute="bottom" id="9PF-Wv-gd6"/>
                             <constraint firstItem="0g4-UK-JMB" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="AKa-hc-EY4"/>
+                            <constraint firstItem="5xn-ya-I9u" firstAttribute="leading" secondItem="CYJ-Ku-gip" secondAttribute="leading" id="Cit-Hr-Y37"/>
                             <constraint firstItem="0g4-UK-JMB" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="D6g-GO-x6z"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="5xn-ya-I9u" secondAttribute="bottom" constant="-33" id="DyU-mk-Kqj"/>
                             <constraint firstItem="UNc-Jd-p1P" firstAttribute="trailing" secondItem="CYJ-Ku-gip" secondAttribute="trailing" id="E9R-xS-L8k"/>
+                            <constraint firstItem="5xn-ya-I9u" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="topMargin" constant="-48" id="ER8-NJ-KT0"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ApQ-CF-4sq" secondAttribute="trailing" constant="24" id="H1I-Uc-TY2"/>
                             <constraint firstItem="0g4-UK-JMB" firstAttribute="trailing" secondItem="5EZ-qb-Rvc" secondAttribute="trailing" id="HZK-Ny-kpi"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="ApQ-CF-4sq" secondAttribute="bottom" constant="600" id="K1t-Py-zl6"/>
                             <constraint firstItem="ApQ-CF-4sq" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="PcH-oI-zZB"/>
-                            <constraint firstItem="5xn-ya-I9u" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="RgD-EX-jS0"/>
                             <constraint firstAttribute="bottom" secondItem="0g4-UK-JMB" secondAttribute="bottom" id="fiY-bz-BOt"/>
+                            <constraint firstItem="5xn-ya-I9u" firstAttribute="trailing" secondItem="UNc-Jd-p1P" secondAttribute="trailing" id="jeg-XL-jI1"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="CYJ-Ku-gip" secondAttribute="trailing" id="lKu-H7-FxN"/>
                             <constraint firstItem="CYJ-Ku-gip" firstAttribute="top" secondItem="0g4-UK-JMB" secondAttribute="top" id="qmP-By-mfW"/>
                             <constraint firstItem="CYJ-Ku-gip" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="vOJ-PB-tEx"/>
                             <constraint firstItem="GNl-nI-ajh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="wHm-Iv-cef"/>
-                            <constraint firstItem="5xn-ya-I9u" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="xxf-XG-v1U"/>
                             <constraint firstItem="GNl-nI-ajh" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="60" id="yeO-Uv-1g2"/>
-                            <constraint firstItem="5xn-ya-I9u" firstAttribute="top" secondItem="0g4-UK-JMB" secondAttribute="top" id="yks-3W-EJ0"/>
-                            <constraint firstItem="5xn-ya-I9u" firstAttribute="leading" secondItem="0g4-UK-JMB" secondAttribute="leading" id="yx3-RL-SVR"/>
                         </constraints>
                     </view>
                     <connections>

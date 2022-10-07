@@ -20,8 +20,13 @@ class PostImageTableViewCell: UITableViewCell {
     @IBOutlet weak var reportButton: UIButton!
     @IBOutlet weak var postTextView: UITextView!
     @IBOutlet weak var commentTextViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var likeButton: UIButton!
+    
     
     var delegate: UserProfileProtocol?
+    var iLiked = false
+    
+    let generator = UINotificationFeedbackGenerator()
     
     
     var post: Post?{
@@ -46,6 +51,8 @@ class PostImageTableViewCell: UITableViewCell {
         
         configView()
     }
+    
+    
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -105,6 +112,16 @@ class PostImageTableViewCell: UITableViewCell {
         formatter.locale = Locale(identifier: "ja_JP")
         return formatter.string(from: date)
     }
+    
+    @IBAction func pushLike(_ sender: Any) {
+        if(iLiked){
+            likeButton.setImage(UIImage(named: "ハート(押す前)"), for: .normal)
+        }else{
+            likeButton.setImage(UIImage(named: "ハート(押した後)"), for: .normal)
+        }
+        iLiked.toggle()
+    }
+    
     
 
 }
