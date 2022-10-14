@@ -47,6 +47,7 @@
                     </view>
                     <connections>
                         <outlet property="backButton" destination="YBF-TF-kw8" id="5en-tD-CFd"/>
+                        <outlet property="debugTableView" destination="Ekk-nB-KK1" id="5O8-fb-oYP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

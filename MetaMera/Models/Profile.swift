@@ -20,6 +20,7 @@ class Profile {
     
     var loginUser: User!
     var isLogin: Bool!
+    var areaId: String!
     
     func getFileURL(fileName: String) -> URL {
         let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!

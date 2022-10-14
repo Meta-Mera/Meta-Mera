@@ -8,6 +8,8 @@
 import UIKit
 import Firebase
 import Nuke
+import Alamofire
+import AlamofireImage
 
 class PostTableViewCell: UITableViewCell {
 
@@ -48,9 +50,10 @@ class PostTableViewCell: UITableViewCell {
     }
     
     private func updateImageTableView(){
-        postDateLabel.text = dateFormatterForDateLabel(date: (post?.createdAt.dateValue())!)
         
-        Firestore.firestore().collection("Users").document(post!.postUserUid).getDocument {[weak self] (userSnapshot, err) in
+        guard let post = post else { return }
+        
+        Firestore.firestore().collection("Users").document(post.postUserUid).getDocument {[weak self] (userSnapshot, err) in
             if let err = err {
                 print("ユーザ情報の取得に失敗しました。\(err)")
                 return
@@ -63,12 +66,23 @@ class PostTableViewCell: UITableViewCell {
             self?.userNameLabel.text = self?.postUser?.userName
             self?.postTextView.text = self?.post?.comment.replacingOccurrences(of: "\\\\n", with: "\n").replacingOccurrences(of: "\\", with: "")
             if let url = URL(string:(self?.postUser?.profileImage)!){
-                Nuke.loadImage(with: url, into: (self?.postImageView)!)
+//                Nuke.loadImage(with: url, into: (self?.userIconImageView)!)
+                self?.userIconImageView.af.setImage(withURL: url, placeholderImage: UIImage(named: "ロゴ"))
             }
-            
+            if let url = URL(string:(self?.post?.rawImageUrl)!){
+//                Nuke.loadImage(with: url, into: (self?.postImageView)!)
+                self?.postImageView.af.setImage(withURL: url, placeholderImage: UIImage(named: "ロゴ"))
+            }
             
         }
             
+    }
+    
+    private func estimateFrameForTextView(text: String) -> CGRect{
+        let size = CGSize(width: 500, height: 5000)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        
+        return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)], context: nil)
     }
     
     

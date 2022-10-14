@@ -58,11 +58,6 @@ class ProfileViewController: UIViewController {
     
     let accessory = Accessory()
     
-    override func viewDidDisappear(_ animated: Bool) {
-        self.navigationController?.popToRootViewController(animated: true)
-    }
-    
-    
     // image
     private var imagePicker = UIImagePickerController()
     

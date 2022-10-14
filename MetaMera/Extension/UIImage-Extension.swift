@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
 
 extension UIImage {
     // resize image
@@ -49,10 +51,8 @@ extension UIImage {
 //    }
     
     public convenience init(url: URL, defaultUIImage: UIImage? = nil) {
-        DispatchQueue.main.async {
-
-        }
         do {
+            print("URL", url)
                 let data = try Data(contentsOf: url)
             self.init(data: data)!
             return
@@ -60,6 +60,17 @@ extension UIImage {
             print("Error : \(err.localizedDescription)")
         }
         self.init(data: (defaultUIImage?.pngData())!)!
+        
+        
+//        AF.request(url.absoluteString).responseImage { [weak self] res in
+//            switch res.result {
+//            case .success(let image):
+//                print("IMAGE", image)
+//                self?.imageView.image = image
+//            case .failure(let error):
+//                print("IMAGE", error)
+//            }
+//        }
 
     }
 }

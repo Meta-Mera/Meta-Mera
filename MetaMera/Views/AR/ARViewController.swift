@@ -17,6 +17,8 @@ import FirebaseStorage
 import Firebase
 import AudioToolbox
 import Nuke
+import Alamofire
+import AlamofireImage
 
 
 class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate {
@@ -295,6 +297,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                             print("Error getting documents: \(error)")
                         }else {
                             let areaId = snapshot?.documents.first?.documentID
+                            Profile.shared.areaId = areaId
                             Firestore.firestore().collection("Posts").whereField("areaId", isEqualTo: areaId as Any).getDocuments(completion: {
                                 (postSnapshots, err) in
                                 if let err = err {
@@ -303,6 +306,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                                     for document in postSnapshots!.documents {
                                         print("\(document.documentID) => \(document.data())")
                                         let post = Post(dic: document.data(), postId: document.documentID)
+                                        print("post.editedImageUrl:::::::::::::::::\(post.editedImageUrl)")
                                         self?.posts?.append(post)
                                         
                                     }
@@ -369,99 +373,48 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         }
     }
     
-    func buildPostData() -> [LocationAnnotationNode] {
+    func buildPostData(completion: @escaping([LocationAnnotationNode]) -> Void) {
         var nodes: [LocationAnnotationNode] = []
+        
+        let dispatchGroup = DispatchGroup()
+        let dispatchQueue = DispatchQueue(label: "appendNode")
+        
+        
         posts?.forEach({ post in
             
-            var imageStyle: CGSize
-            
-            switch post.imageStyle {
+            dispatchGroup.enter()
+            dispatchQueue.async {
+                var imageStyle: CGSize
                 
-            case 0:
-                imageStyle = CGSize(width: 400, height: 300)
-                break
-            case 1:
-                imageStyle = CGSize(width: 300, height: 300)
-                break
-            case 2:
-                imageStyle = CGSize(width: 400, height: 300)
-                break
-            case 3:
-                imageStyle = CGSize(width: 300, height: 400)
-                break
+                switch post.imageStyle {
+                    
+                case 0:
+                    imageStyle = CGSize(width: 400, height: 300)
+                    break
+                case 1:
+                    imageStyle = CGSize(width: 300, height: 300)
+                    break
+                case 2:
+                    imageStyle = CGSize(width: 400, height: 300)
+                    break
+                case 3:
+                    imageStyle = CGSize(width: 300, height: 400)
+                    break
 
-            default:
-                imageStyle = CGSize(width: 400, height: 300)
+                default:
+                    imageStyle = CGSize(width: 400, height: 300)
+                }
+                print("---------------\(post.editedImageUrl)")
+                self.buildNode(latitude: post.latitude, longitude: post.longitude, altitude: post.altitude, imageURL: URL(string: post.editedImageUrl)!, size: imageStyle, pinUse: true, pinName: post.postId!, postId: post.postId!) { node in
+                    nodes.append(node)
+                    dispatchGroup.leave()
+                }
             }
-            
-            let node = buildNode(latitude: post.latitude, longitude: post.longitude, altitude: post.altitude, imageURL: URL(string: post.editedImageUrl)!, size: imageStyle, pinUse: true, pinName: post.postId!, postId: post.postId!)
-            nodes.append(node)
         })
         
-        return nodes
-    }
-    
-    //MARK: ここで座標に基づいたオブジェクトを設置してるよ
-    func buildDemoData() -> [LocationAnnotationNode] {
-        var nodes: [LocationAnnotationNode] = []
-        
-        let pikesPeakLayer = CATextLayer()
-        pikesPeakLayer.frame = CGRect(x: 0, y: 0, width: 200, height: 40)
-        pikesPeakLayer.cornerRadius = 4
-        pikesPeakLayer.fontSize = 14
-        pikesPeakLayer.alignmentMode = .center
-        pikesPeakLayer.foregroundColor = UIColor.black.cgColor
-        pikesPeakLayer.backgroundColor = UIColor.white.cgColor
-        
-        let spaceNeedle = buildNode(latitude: 35.624929, longitude: 139.341696, altitude: 175, imageName: "drink",size: CGSize(width: 400, height: 300), pinUse: false)
-//        spaceNeedle.scaleRelativeToDistance = true
-        spaceNeedle.tag = "drink"
-//        nodes.append(spaceNeedle)
-        
-        let nike = buildNode(latitude: 35.70561533774642, longitude: 139.57692592332617, altitude: 175, imageName: "shoes",size: CGSize(width: 400, height: 300), pinUse: true, pinName: "shoes", postId: "test")
-        nike.scaleRelativeToDistance = true
-        nodes.append(nike)
-        
-//        36.35801663766492, 138.63498898207519
-        
-        let karuizawa = buildNode(latitude: 36.35801663766492, longitude: 138.63498898207519, altitude: 1000, imageName: "snow",size: CGSize(width: 200, height: 300), pinUse: true, pinName: "snow", postId: "test")
-        karuizawa.scaleRelativeToDistance = true
-        nodes.append(karuizawa)
-        
-//        35.62510858464141, 139.24366875641377
-        
-        let takaosan = buildNode(latitude: 35.62510858464141, longitude: 139.24366875641377, altitude: 610, imageName: "road",size: CGSize(width: 200, height: 300), pinUse: true, pinName: "road", postId: "test")
-        takaosan.scaleRelativeToDistance = true
-//        takaosan.tag = "test"
-        nodes.append(takaosan)
-        
-//        35.62477445850865, 139.3414411733747
-        
-        
-        let arufoto = buildNode(latitude: 35.62477445850865, longitude: 139.3414411733747, altitude: 190, imageName: "ソルトアルフォート",size: CGSize(width: 278, height: 122), pinUse: true, pinName: "アルフォート",postId: "Uz93q4hTLBHvLUFglhxp")
-        arufoto.tag = "test"
-//        arufoto.scaleRelativeToDistance = true
-        nodes.append(arufoto)
-        
-        
-        let spaceNeedle4 = buildNode(latitude: 35.625050, longitude: 139.3418137, altitude: 180, imageName: "train",size: CGSize(width: 200, height: 300), pinUse: false)
-        spaceNeedle4.scaleRelativeToDistance = true
-        nodes.append(spaceNeedle4)
-        
-        
-        return nodes
-    }
-    
-    func buildNodeData() -> [LocationAnnotationNode] {
-        var nodes: [LocationAnnotationNode] = []
-        
-        //35.75444876559928, 139.4811042224357
-        
-        let takaosan = buildNode(latitude: 35.75444876559928, longitude: 139.4811042224357, altitude: 100, imageName: "road",size: CGSize(width: 200, height: 300), pinUse: true, pinName: "road",postId: "test")
-//        takaosan.scaleRelativeToDistance = true
-        nodes.append(takaosan)
-
-        return nodes
+        dispatchGroup.notify(queue: dispatchQueue) {
+            completion(nodes)
+        }
     }
     
     //MARK: - ここからわからん
@@ -482,9 +435,13 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
 ////            sceneLocationView.moveSceneHeadingClockwise()
 //        }
         
-        buildPostData().forEach {
-            sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0)
+        buildPostData { [weak self] nodes in
+            nodes.forEach { self?.sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0) }
         }
+        
+//        buildPostData().forEach {
+//            sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0)
+//        }
         
         //        let cubeNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
         //        cubeNode.position = SCNVector3(0, 0, -0.2) // SceneKit/AR coordinates are in meters
@@ -505,101 +462,118 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     //MARK: - ここからオブジェクトを生成するためのやつだよ
 
-    func buildNode(latitude: CLLocationDegrees, longitude: CLLocationDegrees,
-                   altitude: CLLocationDistance,
-                   imageName: String, size: CGSize,
-                   pinUse: Bool, pinName: String,
-                   postId: String) -> LocationAnnotationNode {
-        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        let location = CLLocation(coordinate: coordinate, altitude: altitude)
-        let annotation = MKPointAnnotation()
-        guard let image = UIImage(named: imageName)?.reSizeImage(reSize: size) else
-        {
-            let image = UIImage(named: imageName)!
-            image.accessibilityIdentifier = postId
-            print("---------------------------------------")
-            print("accessibilityIdentifier: ",image.accessibilityIdentifier as Any)
-            print("---------------------------------------")
-//            Profile.shared.nodeLocationsLatitude.append(latitude)
-//            Profile.shared.nodeLocationsLongitude.append(longitude)
-            if pinUse {
-                annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
-                annotation.title = pinName
-                annotation.subtitle = "高さ"+String(altitude)
-                annotationArray.append(annotation)
-                mapView.addAnnotation(annotation)
-            }
-            return LocationAnnotationNode(location: location, image: image)
-            
-        }
-        image.accessibilityIdentifier = postId
-        print("---------------------------------------")
-        print("accessibilityIdentifier: ",image.accessibilityIdentifier as Any)
-        print("---------------------------------------")
-        if pinUse {
-            annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
-            annotation.title = pinName
-            annotation.subtitle = "高さ"+String(altitude)
-            annotationArray.append(annotation)
-            mapView.addAnnotation(annotation)
-        }
-        return LocationAnnotationNode(location: location, image: image)
-    }
+
     
+    /// AR生成するためのfunc
+    /// - Parameters:
+    ///   - latitude: 座標1
+    ///   - longitude: 座標2
+    ///   - altitude: 高さ
+    ///   - imageURL: ARに表示させる画像のURL
+    ///   - size: 画像サイズ
+    ///   - pinUse: ピン使いますか？
+    ///   - pinName: ピンの表示名
+    ///   - postId: 投稿ID
+    ///   - completion: completion description
     func buildNode(latitude: CLLocationDegrees, longitude: CLLocationDegrees,
                    altitude: CLLocationDistance,
                    imageURL: URL, size: CGSize,
                    pinUse: Bool, pinName: String,
-                   postId: String) -> LocationAnnotationNode {
+                   postId: String,
+                   completion: @escaping(LocationAnnotationNode) -> Void) {
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let location = CLLocation(coordinate: coordinate, altitude: altitude)
         let annotation = MKPointAnnotation()
-        let image:UIImage = UIImage(url: imageURL, defaultUIImage: UIImage(named: "ロゴ")).reSizeImage(reSize: size)
-//        let image:UIImage = UIImage(named: "katsu")!.reSizeImage(reSize: size)
+//        let image:UIImage = UIImage(url: imageURL, defaultUIImage: UIImage(named: "ロゴ")).reSizeImage(reSize: size)
+        var image:UIImage = UIImage(named: "ロゴ")!
+        AF.request(imageURL.absoluteString).responseImage { [weak self] res in
+            switch res.result {
+            case .success(let getImage):
+                print("IMAGE", getImage)
+                image = getImage.reSizeImage(reSize: size)
+                
+                
+                image.accessibilityIdentifier = postId
+                print("---------------------------------------")
+                print("accessibilityIdentifier: ",image.accessibilityIdentifier as Any)
+                print("---------------------------------------")
+                if pinUse {
+                    annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+                    annotation.title = pinName
+                    annotation.subtitle = "高さ"+String(altitude)
+                    self?.annotationArray.append(annotation)
+                    self?.mapView.addAnnotation(annotation)
+                }
+                
+                let annotationNode = LocationAnnotationNode(location: location, image: image)
+                completion(annotationNode)
+
+            case .failure(let error):
+                print("IMAGE", error)
+                fatalError()
+            }
+        }
+
+//        let image:UIImage = UIImage.af.setImage
+//        let downloader = ImageDownloader()
+//        let urlRequest = URLRequest(url: imageURL)
+//        var image:UIImage = UIImage(named: "ロゴ")!.reSizeImage(reSize: size)
+//        let sample = UIImage(named: "ロゴ")
+//        var test:UIImageView = UIImageView()
+//        test.af.setImage(withURL: imageURL, placeholderImage: sample)
+//        var image:UIImage = test.image
+//        downloader.download(urlRequest) {[weak self] response in
+//
+//            if case .success(let imageUrl) = response.result {
+//                image = imageUrl.reSizeImage(reSize: size)
+//
+//                image.accessibilityIdentifier = postId
+//                print("---------------------------------------")
+//                print("URL accessibilityIdentifier: ",image.accessibilityIdentifier as Any)
+//                print("---------------------------------------")
+//                if pinUse {
+//                    annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+//                    annotation.title = pinName
+//                    annotation.subtitle = "高さ"+String(altitude)
+//                    self?.annotationArray.append(annotation)
+//                    self?.mapView.addAnnotation(annotation)
+//                }
+//
+//            }else{
+//
+//            }
+//        }
+        
+        
+//        image.accessibilityIdentifier = postId
+//        print("---------------------------------------")
+//        print("accessibilityIdentifier: ",image.accessibilityIdentifier as Any)
+//        print("---------------------------------------")
+//        if pinUse {
+//            annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+//            annotation.title = pinName
+//            annotation.subtitle = "高さ"+String(altitude)
+//            annotationArray.append(annotation)
+//            mapView.addAnnotation(annotation)
+//        }
+//
+//        return LocationAnnotationNode(location: location, image: image)
+//        let image:UIImage = UIImage(named: "ロゴ")!.reSizeImage(reSize: size)
 //        let imageView: UIImageView
 //        imageView = UIImageView()
 //        Nuke.loadImage(with: imageURL, into: imageView)
 //        let image:UIImage = imageView.image
-        image.accessibilityIdentifier = postId
-        print("---------------------------------------")
-        print("accessibilityIdentifier: ",image.accessibilityIdentifier as Any)
-        print("---------------------------------------")
-        if pinUse {
-            annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
-            annotation.title = pinName
-            annotation.subtitle = "高さ"+String(altitude)
-            annotationArray.append(annotation)
-            mapView.addAnnotation(annotation)
-        }
-        return LocationAnnotationNode(location: location, image: image)
     }
     
-    func buildNode(latitude: CLLocationDegrees, longitude: CLLocationDegrees,
-                   altitude: CLLocationDistance,
-                   imageName: String, size: CGSize,
-                   pinUse: Bool = false) -> LocationAnnotationNode {
-        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        let location = CLLocation(coordinate: coordinate, altitude: altitude)
-        let annotation = MKPointAnnotation()
-        guard let image = UIImage(named: imageName)?.reSizeImage(reSize: size) else
-        {
-            let image = UIImage(named: imageName)!
-            image.accessibilityIdentifier = imageName
-            print("---------------------------------------")
-            print("accessibilityIdentifier: ",image.accessibilityIdentifier as Any)
-            print("---------------------------------------")
-//            Profile.shared.nodeLocationsLatitude.append(latitude)
-//            Profile.shared.nodeLocationsLongitude.append(longitude)
-            return LocationAnnotationNode(location: location, image: image)
-            
-        }
-        image.accessibilityIdentifier = imageName
-        print("---------------------------------------")
-        print("accessibilityIdentifier: ",image.accessibilityIdentifier as Any)
-        print("---------------------------------------")
-        return LocationAnnotationNode(location: location, image: image)
-    }
     
+    /// ARにテキストを表示せるよ
+    /// - Parameters:
+    ///   - latitude: 座標１
+    ///   - longitude: 座標２
+    ///   - altitude: 高さ
+    ///   - text: テキスト
+    ///   - color: 色
+    /// - Returns: Nodeが帰っていきます
     func buildViewNode(latitude: CLLocationDegrees, longitude: CLLocationDegrees,
                        altitude: CLLocationDistance, text: String, color: UIColor) -> LocationAnnotationNode {
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -611,6 +585,16 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         return LocationAnnotationNode(location: location, view: label)
     }
     
+    
+    /// ARにテキストを表示させるよ
+    /// - Parameters:
+    ///   - latitude: 座標１
+    ///   - longitude: 座標２
+    ///   - altitude: 高さ
+    ///   - text: テキスト
+    ///   - color: 色
+    ///   - d3Object: d3Object description
+    /// - Returns: description
     func buildViewNode(latitude: CLLocationDegrees, longitude: CLLocationDegrees,
                        altitude: CLLocationDistance, text: String, color: UIColor, d3Object: SCNNode) -> LocationAnnotationNode {
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -622,6 +606,13 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         return LocationAnnotationNode(location: location, view: label)
     }
     
+    /// ごめんなさい使ってないけど今後に期待で残してるわからないやつです
+    /// - Parameters:
+    ///   - latitude: 座標１
+    ///   - longitude: 座標２
+    ///   - altitude: 高さ
+    ///   - layer: layer description
+    /// - Returns: description
     func buildLayerNode(latitude: CLLocationDegrees, longitude: CLLocationDegrees,
                         altitude: CLLocationDistance, layer: CALayer) -> LocationAnnotationNode {
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -639,16 +630,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             textLabel.text = "\(locality ?? "")"
 //            textLabel.isHidden = true
         }
-    }
-    
-    @objc func addNode(latitude: CLLocationDegrees, longitude: CLLocationDegrees,
-                       altitude: CLLocationDistance,
-                       imageName: String, size: CGSize,
-                       pinUse: Bool, pinName: String,
-                       postId: String){
-        let node = buildNode(latitude: latitude, longitude: longitude, altitude: altitude, imageName: imageName, size: size, pinUse: pinUse, pinName: pinName, postId: postId)
-        node.scaleRelativeToDistance = true
-        sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: node)
     }
     //MARK: ここまでオブジェクトを生成するためのやつだよ -
     
@@ -760,19 +741,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         //35.62473923766413, 139.34178926227506
         
-        addNode(latitude: 35.62473923766413, longitude: 139.34178926227506, altitude: 180, imageName: "ソルトアルフォート",size: CGSize(width: 278, height: 122), pinUse: true, pinName: "ソルトアルフォート", postId: "Uz93q4hTLBHvLUFglhxp")
-        
-        //35.62469213276725, 139.34172279611786
-        
-        addNode(latitude: 35.62469213276725, longitude: 139.34172279611786, altitude: 180, imageName: "ブラックアルフォート",size: CGSize(width: 278, height: 122), pinUse: true, pinName: "ブラックアルフォート", postId: "Uz93q4hTLBHvLUFglhxp")
-        
-        //35.62466634430945, 139.3416535268315
-        
-        addNode(latitude: 35.62466634430945, longitude: 139.3416535268315, altitude: 180, imageName: "ホワイトアルフォート",size: CGSize(width: 278, height: 122), pinUse: true, pinName: "ホワイトアルフォート", postId: "Uz93q4hTLBHvLUFglhxp")
-        
-        //35.624671229322196, 139.34164661220515
-        
-        addNode(latitude: 35.624671229322196, longitude: 139.34164661220515, altitude: 180, imageName: "ブルーアルフォート",size: CGSize(width: 400, height: 600), pinUse: true, pinName: "ブルーアルフォート", postId: "Uz93q4hTLBHvLUFglhxp")
     }
     
     @IBAction func pushCreateRoom(_ sender: Any) {
@@ -794,7 +762,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     @IBAction func pushSelectCategory(_ sender: Any) {
         backTap()
-        
+        Goto.DebugView(view: self)
     }
     //MARK: プラスボタンのやつ(90%) -
     

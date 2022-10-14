@@ -100,7 +100,7 @@ class Goto : UIViewController{
     class func ChangeProfile(view: UIViewController, user: User){
         print("Goto-ChangeProfile was called.")
         let vc = UIStoryboard(name: "ChangeProfileViewController", bundle: nil).instantiateViewController(withIdentifier: "ChangeProfileViewController") as! ChangeProfileViewController
-        vc.modalPresentationStyle = .fullScreen
+//        vc.modalPresentationStyle = .fullScreen
         vc.loginUser = user
 //        view.present(vc, animated: true, completion: nil)
         view.navigationController?.pushViewController(vc, animated: true)
@@ -131,6 +131,14 @@ class Goto : UIViewController{
     class func CreateNewPost(view: UIViewController){
         print("Goto-ChatRoomCreate was called.")
         let vc = UIStoryboard(name: "CreateNewPostViewController", bundle: nil).instantiateViewController(withIdentifier: "CreateNewPostViewController") as! CreateNewPostViewController
+        vc.modalPresentationStyle = .fullScreen
+//        view.present(vc, animated: true, completion: nil)
+        view.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    class func DebugView(view: UIViewController){
+        print("Goto-DebugView was called.")
+        let vc = UIStoryboard(name: "DebugViewController", bundle: nil).instantiateViewController(withIdentifier: "DebugViewController") as! DebugViewController
         vc.modalPresentationStyle = .fullScreen
 //        view.present(vc, animated: true, completion: nil)
         view.navigationController?.pushViewController(vc, animated: true)

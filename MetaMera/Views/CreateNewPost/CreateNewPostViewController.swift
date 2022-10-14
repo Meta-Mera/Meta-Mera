@@ -57,6 +57,7 @@ class CreateNewPostViewController: UIViewController {
         super.viewDidLoad()
         
         configView()
+        changeProfileImage()
         isAnnotation = false
         debugButton.isEnabled = false
     }
@@ -144,7 +145,7 @@ class CreateNewPostViewController: UIViewController {
                     
                 case .success((let rawUrl, let editedUrl)):
                     self?.postUploadModel.upload(postItem: .init(
-                        areaId: "mydtfzFYDHjqNNSfYW55",
+                        areaId: Profile.shared.areaId,
                         genreId: "debug",
                         rawImageUrl: rawUrl,
                         editedImageUrl: editedUrl,
@@ -230,11 +231,10 @@ class CreateNewPostViewController: UIViewController {
         }
     
     private func changeProfileImage(){
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.allowsEditing = true
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
         
-        present(imagePickerController, animated: true, completion: nil)
+//        present(imagePickerController, animated: true, completion: nil)
     }
     
     
@@ -333,6 +333,8 @@ class CreateNewPostViewController: UIViewController {
 extension CreateNewPostViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        print("呼ばれた")
+        
         if let editImage = info[.editedImage] as? UIImage {
             selectedImage = editImage
         }else if let originalImage = info[.originalImage] as? UIImage {
@@ -340,6 +342,13 @@ extension CreateNewPostViewController: UIImagePickerControllerDelegate, UINaviga
         }
         imageIsSelected = true
         buttonCheck()
+        dismiss(animated: true)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("imagePicker closed")
+        dismiss(animated: true)
+        
     }
     
 }

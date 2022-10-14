@@ -16,6 +16,7 @@ target 'MetaMera' do
   pod 'ARCL'
   pod 'IQKeyboardManagerSwift' 
   pod 'Nuke'
+  pod 'AlamofireImage', '~> 4.1'
 
   target 'MetaMeraTests' do
     inherit! :search_paths

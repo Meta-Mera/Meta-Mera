@@ -42,7 +42,7 @@ class PostUploadModel {
                        "altitude": altitude,
                        "comment": comment,
                        "imageStyle": imageStyle,
-                       "createAt": Timestamp()] as [String : Any]
+                       "createdAt": Timestamp()] as [String : Any]
         
         Firestore.firestore().collection("Posts").document(id).setData(docData){ (err) in
             if let err = err {

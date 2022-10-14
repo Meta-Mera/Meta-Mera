@@ -84,6 +84,9 @@
 		38AB508E285AD3B800AF4F80 /* ChatRoomController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */; };
 		38AD14C2289249EF001D1769 /* SignInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AD14C1289249EF001D1769 /* SignInModel.swift */; };
 		38AD14C5289266BE001D1769 /* SignItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AD14C4289266BE001D1769 /* SignItem.swift */; };
+		38D2443728F903A80013D13C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2443628F903A80013D13C /* LocationManager.swift */; };
+		38D2443828F903A80013D13C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2443628F903A80013D13C /* LocationManager.swift */; };
+		38D2443928F903A80013D13C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2443628F903A80013D13C /* LocationManager.swift */; };
 		38DA36BB28D16228004006B6 /* UserProfileProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DA36BA28D16228004006B6 /* UserProfileProtocol.swift */; };
 		38E9AE2A2865641300EB71D6 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E9AE292865641300EB71D6 /* Profile.swift */; };
 		38FAA642287860BD000521DD /* UIImageView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FAA641287860BD000521DD /* UIImageView-Extension.swift */; };
@@ -185,6 +188,7 @@
 		38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatRoomController.storyboard; sourceTree = "<group>"; };
 		38AD14C1289249EF001D1769 /* SignInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInModel.swift; sourceTree = "<group>"; };
 		38AD14C4289266BE001D1769 /* SignItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignItem.swift; sourceTree = "<group>"; };
+		38D2443628F903A80013D13C /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		38DA36BA28D16228004006B6 /* UserProfileProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileProtocol.swift; sourceTree = "<group>"; };
 		38E9AE292865641300EB71D6 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		38FAA641287860BD000521DD /* UIImageView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView-Extension.swift"; sourceTree = "<group>"; };
@@ -534,6 +538,7 @@
 			children = (
 				38DA36BA28D16228004006B6 /* UserProfileProtocol.swift */,
 				38A8B93428DDFB3E000E86FD /* RemoteConfigClientProtocol.swift */,
+				38D2443628F903A80013D13C /* LocationManager.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -851,6 +856,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38D2443728F903A80013D13C /* LocationManager.swift in Sources */,
 				38A8B94A28E92CE4000E86FD /* Accessory.swift in Sources */,
 				38E9AE2A2865641300EB71D6 /* Profile.swift in Sources */,
 				38A8B93328DDFB05000E86FD /* RemoteConfigClient.swift in Sources */,
@@ -906,6 +912,7 @@
 			files = (
 				38A8B94328E6D279000E86FD /* PlaceTextView.swift in Sources */,
 				38A21242282A064400B56E03 /* MetaMeraTests.swift in Sources */,
+				38D2443828F903A80013D13C /* LocationManager.swift in Sources */,
 				38A8B94B28E92CE4000E86FD /* Accessory.swift in Sources */,
 				38A2127C282CE0DB00B56E03 /* ARViewController.swift in Sources */,
 			);
@@ -917,6 +924,7 @@
 			files = (
 				38A2127D282CE0DB00B56E03 /* ARViewController.swift in Sources */,
 				38A8B94C28E92CE4000E86FD /* Accessory.swift in Sources */,
+				38D2443928F903A80013D13C /* LocationManager.swift in Sources */,
 				38A2124E282A064400B56E03 /* MetaMeraUITestsLaunchTests.swift in Sources */,
 				38A2124C282A064400B56E03 /* MetaMeraUITests.swift in Sources */,
 				38A8B94428E6D279000E86FD /* PlaceTextView.swift in Sources */,
