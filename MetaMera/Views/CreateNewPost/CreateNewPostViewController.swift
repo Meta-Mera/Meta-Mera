@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Photos
 import MapKit
+import PKHUD
 import Firebase
 
 class CreateNewPostViewController: UIViewController {
@@ -132,7 +133,7 @@ class CreateNewPostViewController: UIViewController {
     
     @IBAction func pushButton(_ sender: Any) {
         if(isAnnotation && imageIsSelected){
-            
+            HUD.show(.progress, onView: view)
             let timestamp = Timestamp()
             let time = dateFormatterForDateLabel(date: timestamp.dateValue())
             
@@ -158,19 +159,31 @@ class CreateNewPostViewController: UIViewController {
                     )) {[weak self] result in
                         switch result {
                         case .success(_):
-                            print("投稿成功")
-                            self?.editAltitude = 0
-                            self?.altitudeTextField.text = "\(self?.altitude ?? 0)"
-                            self?.mapView.removeAnnotation((self?.pointAno)!)
-                            self?.isAnnotation = false
-                            self?.buttonCheck()
+                            HUD.hide { (_) in
+                                HUD.flash(.success, onView: self?.view, delay: 1) { (_) in
+                                    print("投稿成功")
+                                    self?.editAltitude = 0
+                                    self?.altitudeTextField.text = "\(self?.altitude ?? 0)"
+                                    self?.mapView.removeAnnotation((self?.pointAno)!)
+                                    self?.isAnnotation = false
+                                    self?.buttonCheck()
+                                }
+                            }
                             break
                         case .failure(let error):
-                            print("投稿失敗\(error)")
+                            HUD.hide { (_) in
+                                HUD.flash(.label(error.domain), delay: 1.0) { _ in
+                                    print("投稿失敗\(error)")
+                                }
+                            }
                         }
                     }
                 case .failure(let error):
-                    print("投稿失敗\(error)")
+                    HUD.hide { (_) in
+                        HUD.flash(.label(error.domain), delay: 1.0) { _ in
+                            print("投稿失敗\(error)")
+                        }
+                    }
                 }
             }
         }

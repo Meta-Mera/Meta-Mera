@@ -47,8 +47,17 @@ class SignUpViewController: UIViewController {
         backButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gotoTopView(_:))))
         nextButtonImage.isUserInteractionEnabled = true
         nextButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pushCreateAccountButton(_:))))
+        
+        configView()
 
         
+    }
+    
+    func configView(){
+        eMailTextField.attributedPlaceholder = NSAttributedString(string: "   example@exsample.com", attributes: [NSAttributedString.Key.foregroundColor: UIColor.textFieldPlaceholderColor])
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "   Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.textFieldPlaceholderColor])
+        confirmPasswordTextField.attributedPlaceholder = NSAttributedString(string: "   Comfirm Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.textFieldPlaceholderColor])
+        userIdTextField.attributedPlaceholder = NSAttributedString(string: "   User Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.textFieldPlaceholderColor])
     }
   
   override func viewWillLayoutSubviews() {

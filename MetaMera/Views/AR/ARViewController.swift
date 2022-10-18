@@ -21,7 +21,7 @@ import Alamofire
 import AlamofireImage
 
 
-class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate {
+class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate, MKMapViewDelegate {
     
     //AR系
     @IBOutlet weak var mapView: MKMapView!
@@ -120,6 +120,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         locationManager.startUpdatingLocation()
     
         mapView.showsUserLocation = true
+        mapView.delegate = self
         
         // MARK: - ここからARのやつのやつ
         
@@ -152,6 +153,10 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         let pin = MKPointAnnotation()
         pin.title = "テストピン"
         pin.subtitle = "サブタイトル"
+//        pin.setValue(Any?, forKey: "ddd")
+        pin.accessibilityValue = "tesofihasdfoihasdofhasdoift"
+//        pin.description() = desc
+        MKPointAnnotation.description()
         pin.coordinate = CLLocationCoordinate2DMake(36.35801663766492, 138.63498898207519)
         mapView.addAnnotation(pin)
         
@@ -293,10 +298,49 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                     print("locality: ",locality as Any)
                     Firestore.firestore().collection("Areas").whereField("areaName", isEqualTo: locality).getDocuments(completion: { [weak self]
                         (snapshot, error) in
+                        let language = NSLocale.preferredLanguages.first?.components(separatedBy: "-").first
+
+                        print("🐱: \(String(describing: language))") // 🐱: Optional("ja")
                         if let error = error {
                             print("Error getting documents: \(error)")
                         }else {
-                            let areaId = snapshot?.documents.first?.documentID
+                            
+                            print("data count:\(snapshot!.count)")
+                            guard snapshot!.documents.first?.data().first?.value != nil else {
+                                print("データなし")
+                                let docData = ["areaName": locality,
+                                               "areaId" : "null"] as [String : Any]
+                                var ref: DocumentReference? = nil
+                                let areaRef = Firestore.firestore().collection("Areas")
+                                
+                                ref = areaRef.addDocument(data: docData) { (err) in
+                                    if let err = err {
+                                        print("FirestoreにareaIdの登録ができませんでした。\(err)")
+                                        return
+                                    } else {
+                                        let docId = ref!.documentID
+                                        print("DocumentID:\(docId)")
+                                        
+                                        let updateRef = Firestore.firestore().collection("Areas").document(docId)
+
+                                        // Set the "capital" field of the city 'DC'
+                                        updateRef.updateData([
+                                            "areaId": docId
+                                        ]) { err in
+                                            if let err = err {
+                                                print("Error updating document: \(err)")
+                                            } else {
+                                                print("areaIdの保存に成功！！")
+                                                Profile.shared.areaId = docId
+                                            }
+                                        }
+                                    }
+                                }
+                                return
+                            }
+                            
+                            let areaIds = AreaId(dic: snapshot!.documents.first!.data())
+                            let areaId = areaIds.areaId
                             Profile.shared.areaId = areaId
                             Firestore.firestore().collection("Posts").whereField("areaId", isEqualTo: areaId as Any).getDocuments(completion: {
                                 (postSnapshots, err) in
@@ -306,7 +350,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                                     for document in postSnapshots!.documents {
                                         print("\(document.documentID) => \(document.data())")
                                         let post = Post(dic: document.data(), postId: document.documentID)
-                                        print("post.editedImageUrl:::::::::::::::::\(post.editedImageUrl)")
                                         self?.posts?.append(post)
                                         
                                     }
@@ -404,7 +447,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                 default:
                     imageStyle = CGSize(width: 400, height: 300)
                 }
-                print("---------------\(post.editedImageUrl)")
                 self.buildNode(latitude: post.latitude, longitude: post.longitude, altitude: post.altitude, imageURL: URL(string: post.editedImageUrl)!, size: imageStyle, pinUse: true, pinName: post.postId!, postId: post.postId!) { node in
                     nodes.append(node)
                     dispatchGroup.leave()
@@ -436,7 +478,10 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
 //        }
         
         buildPostData { [weak self] nodes in
-            nodes.forEach { self?.sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0) }
+            nodes.forEach {
+                self?.sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0)
+                
+            }
         }
         
 //        buildPostData().forEach {
@@ -506,6 +551,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                 }
                 
                 let annotationNode = LocationAnnotationNode(location: location, image: image)
+//                annotationNode
                 completion(annotationNode)
 
             case .failure(let error):
@@ -765,6 +811,18 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         Goto.DebugView(view: self)
     }
     //MARK: プラスボタンのやつ(90%) -
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let annotations = view.annotation{
+//            print(annotation.accessibilityValue)
+            print(annotations.title!!)
+//            print(view.accessibilityValue)
+//            view.annotation?.description
+            
+            
+        }
+    }
+
     
     
 }

@@ -71,6 +71,12 @@ extension UIColor {
         )
     }
     
+    public static var textFieldPlaceholderColor: UIColor {
+        return dynamicColor(
+            light: .rgb(red: 190, green: 190, blue: 190),
+            dark: rgb(red: 200, green: 200, blue: 200))
+    }
+    
     class func signInBorderColor() -> UIColor {
         return UIColor.rgb(red: 93, green: 69, blue: 65)
     }
@@ -78,4 +84,6 @@ extension UIColor {
     class func signUpBorderColor() -> UIColor {
         return UIColor.rgb(red: 65, green: 93, blue: 90)
     }
+    
+    
 }

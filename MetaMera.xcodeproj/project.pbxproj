@@ -87,6 +87,9 @@
 		38D2443728F903A80013D13C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2443628F903A80013D13C /* LocationManager.swift */; };
 		38D2443828F903A80013D13C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2443628F903A80013D13C /* LocationManager.swift */; };
 		38D2443928F903A80013D13C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2443628F903A80013D13C /* LocationManager.swift */; };
+		38D2443F28F924C60013D13C /* AreaId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2443E28F924C60013D13C /* AreaId.swift */; };
+		38D2444028F924C60013D13C /* AreaId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2443E28F924C60013D13C /* AreaId.swift */; };
+		38D2444128F924C60013D13C /* AreaId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2443E28F924C60013D13C /* AreaId.swift */; };
 		38DA36BB28D16228004006B6 /* UserProfileProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DA36BA28D16228004006B6 /* UserProfileProtocol.swift */; };
 		38E9AE2A2865641300EB71D6 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E9AE292865641300EB71D6 /* Profile.swift */; };
 		38FAA642287860BD000521DD /* UIImageView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FAA641287860BD000521DD /* UIImageView-Extension.swift */; };
@@ -189,6 +192,7 @@
 		38AD14C1289249EF001D1769 /* SignInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInModel.swift; sourceTree = "<group>"; };
 		38AD14C4289266BE001D1769 /* SignItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignItem.swift; sourceTree = "<group>"; };
 		38D2443628F903A80013D13C /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		38D2443E28F924C60013D13C /* AreaId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaId.swift; sourceTree = "<group>"; };
 		38DA36BA28D16228004006B6 /* UserProfileProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileProtocol.swift; sourceTree = "<group>"; };
 		38E9AE292865641300EB71D6 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		38FAA641287860BD000521DD /* UIImageView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView-Extension.swift"; sourceTree = "<group>"; };
@@ -552,6 +556,7 @@
 				382F6AB1286D44730056BFA2 /* User.swift */,
 				38FAA645287FAFA6000521DD /* ChatRoom.swift */,
 				38FAA647287FAFE4000521DD /* Comment.swift */,
+				38D2443E28F924C60013D13C /* AreaId.swift */,
 				38FAA64928801229000521DD /* Post.swift */,
 				38AD14C1289249EF001D1769 /* SignInModel.swift */,
 				38A05CEA289547D000F0CC40 /* SignUpModel.swift */,
@@ -875,6 +880,7 @@
 				38DA36BB28D16228004006B6 /* UserProfileProtocol.swift in Sources */,
 				38AD14C2289249EF001D1769 /* SignInModel.swift in Sources */,
 				38271474283472C0004BEB01 /* ChatViewController.swift in Sources */,
+				38D2443F28F924C60013D13C /* AreaId.swift in Sources */,
 				38A2122E282A064300B56E03 /* ViewController.swift in Sources */,
 				38FAA642287860BD000521DD /* UIImageView-Extension.swift in Sources */,
 				38FAA646287FAFA6000521DD /* ChatRoom.swift in Sources */,
@@ -911,6 +917,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38A8B94328E6D279000E86FD /* PlaceTextView.swift in Sources */,
+				38D2444028F924C60013D13C /* AreaId.swift in Sources */,
 				38A21242282A064400B56E03 /* MetaMeraTests.swift in Sources */,
 				38D2443828F903A80013D13C /* LocationManager.swift in Sources */,
 				38A8B94B28E92CE4000E86FD /* Accessory.swift in Sources */,
@@ -924,6 +931,7 @@
 			files = (
 				38A2127D282CE0DB00B56E03 /* ARViewController.swift in Sources */,
 				38A8B94C28E92CE4000E86FD /* Accessory.swift in Sources */,
+				38D2444128F924C60013D13C /* AreaId.swift in Sources */,
 				38D2443928F903A80013D13C /* LocationManager.swift in Sources */,
 				38A2124E282A064400B56E03 /* MetaMeraUITestsLaunchTests.swift in Sources */,
 				38A2124C282A064400B56E03 /* MetaMeraUITests.swift in Sources */,
@@ -1098,6 +1106,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JH5QRQ7596;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = JH5QRQ7596;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MetaMera/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Meta-Mera";
@@ -1123,6 +1132,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jim112o.MetaMera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = MetaMeraDev;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = MetaMeraDev;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1140,6 +1150,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JH5QRQ7596;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = JH5QRQ7596;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MetaMera/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Meta-Mera";
@@ -1165,6 +1176,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jim112o.MetaMera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = MetaMeraDev;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = MetaMeraDev;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

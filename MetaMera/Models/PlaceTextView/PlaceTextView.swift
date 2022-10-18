@@ -13,6 +13,7 @@ final class PlaceTextView: UITextView {
         willSet {
             self.placeHolderLabel.text = newValue
             self.placeHolderLabel.sizeToFit()
+            self.placeHolderLabel.textColor = UIColor.textFieldPlaceholderColor
         }
     }
 
