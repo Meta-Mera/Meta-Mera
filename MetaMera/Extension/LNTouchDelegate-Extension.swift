@@ -16,7 +16,6 @@ import FirebaseCore
 import FirebaseStorage
 import Firebase
 import AudioToolbox
-import Nuke
 
 extension LNTouchDelegate{
     func annotationNodeTouched(node: AnnotationNode) {

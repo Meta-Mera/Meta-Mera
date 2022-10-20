@@ -7,7 +7,8 @@
 
 import Foundation
 import UIKit
-import Nuke
+import AlamofireImage
+import Alamofire
 
 extension UIImageView {
 
@@ -27,7 +28,8 @@ extension UIImageView {
     
     func setImage(url: String, name: String){
         if let url = URL(string: url){
-            Nuke.loadImage(with: url, into: self)
+//            Nuke.loadImage(with: url, into: self)
+            self.af.setImage(withURL: url)
             self.image?.accessibilityIdentifier = name
         }
     }

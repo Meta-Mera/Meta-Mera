@@ -8,7 +8,8 @@
 import Foundation
 import UIKit
 import Firebase
-import Nuke
+import Alamofire
+import AlamofireImage
 import IQKeyboardManagerSwift
 
 class ChangeProfileViewController: UIViewController {
@@ -38,7 +39,7 @@ class ChangeProfileViewController: UIViewController {
         userNameTextField.text = loginUser.userName
         userProfileImageView.layer.cornerRadius = userProfileImageView.bounds.width / 2
         if let url = URL(string: loginUser.profileImage){
-            Nuke.loadImage(with: url, into: userProfileImageView)
+            userProfileImageView.af.setImage(withURL: url)
         }
     }
     

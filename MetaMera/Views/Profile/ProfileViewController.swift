@@ -15,7 +15,8 @@ import FirebaseFirestore
 import FirebaseAuth
 import FirebaseCore
 import FirebaseStorage
-import Nuke
+import Alamofire
+import AlamofireImage
 
 class ProfileViewController: UIViewController {
     
@@ -97,10 +98,10 @@ class ProfileViewController: UIViewController {
         //            break
         //        }
         
-//        if let url = URL(string: user.profileImage){
-//            Nuke.loadImage(with: url, into: profileImageView)
-//        }
-        profileImageView.loadImageAsynchronously(url: URL(string: user.profileImage))
+        if let url = URL(string: user.profileImage){
+            profileImageView.af.setImage(withURL: url)
+        }
+//        profileImageView.loadImageAsynchronously(url: URL(string: user.profileImage))
         
         if user.email != Profile.shared.loginUser.email{
             changeProfileImageButton.isHidden = true

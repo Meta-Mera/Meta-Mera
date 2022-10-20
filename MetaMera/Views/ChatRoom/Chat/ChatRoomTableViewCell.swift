@@ -7,7 +7,8 @@
 
 import UIKit
 import Firebase
-import Nuke
+import Alamofire
+import AlamofireImage
 
 class ChatRoomTableViewCell: UITableViewCell {
     
