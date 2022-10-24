@@ -43,13 +43,15 @@ class User {
         user?.reauthenticate(with: credential) { reslut,err  in
           if let err = err {
               completion(.failure(NSError(domain: "アカウントの再認証に失敗しました。\(err)", code: 400)))
-              
+              return
           } else {
             // User re-authenticated.
               completion(.success(true))
+              return
           }
         }
         completion(.success(false))
+        return
     }
     
     public func changeEmail(email: String, password: String){
