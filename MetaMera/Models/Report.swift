@@ -12,12 +12,10 @@ import UIKit
 class Report {
 
     let reportId: String
-    let reportCount: Int
     let createdAt: Timestamp
     
     init(dic: [String: Any], documentId: String) {
         self.reportId = documentId
-        self.reportCount = dic["reportCount"] as? Int ?? 1
         self.createdAt = dic["createdAt"] as? Timestamp ?? Timestamp()
     }
 }
@@ -25,13 +23,13 @@ class Report {
 class ReportUsers {
     
     let uid: String
-    let reportGenreId: Int
+    let reportGenreId: String
     let reportComment: String
     let createdAt: Timestamp
     
     init(dic: [String: Any], uid: String) {
         self.uid = uid
-        self.reportGenreId = dic["reportGenreId"] as? Int ?? 1
+        self.reportGenreId = dic["reportGenreId"] as? String ?? ""
         self.reportComment = dic["reportComment"] as? String ?? ""
         self.createdAt = dic["createdAt"] as? Timestamp ?? Timestamp()
     }

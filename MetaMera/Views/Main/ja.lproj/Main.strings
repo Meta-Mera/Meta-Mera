@@ -1,0 +1,18 @@
+
+/* Class = "UILabel"; text = "Event: Null"; ObjectID = "5L3-jk-sgy"; */
+"5L3-jk-sgy.text" = "Event: Null";
+
+/* Class = "UIButton"; configuration.title = "Hide"; ObjectID = "OPl-av-9HS"; */
+"OPl-av-9HS.configuration.title" = "Hide";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "OPl-av-9HS"; */
+"OPl-av-9HS.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Location: Null"; ObjectID = "aHG-ws-ZIq"; */
+"aHG-ws-ZIq.text" = "Location: Null";
+
+/* Class = "UIButton"; configuration.title = "Show"; ObjectID = "x4R-Nx-29I"; */
+"x4R-Nx-29I.configuration.title" = "Show";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "x4R-Nx-29I"; */
+"x4R-Nx-29I.normalTitle" = "Button";

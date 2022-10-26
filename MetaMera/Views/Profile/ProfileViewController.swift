@@ -161,14 +161,7 @@ class ProfileViewController: UIViewController {
     //MARK: 前の画面に戻る
     @objc func backView(_ sender: Any){
         print("push back image")
-//        self.dismiss(animated: true, completion: nil)
-//        if user.email == Profile.shared.loginUser.email {
-            self.navigationController?.popViewController(animated: true)
-//        }else {
-//            self.dismiss(animated: true, completion: nil)
-//        }
-        
-        
+        self.navigationController?.popViewController(animated: true)
     }
     
     
@@ -632,7 +625,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     
 }
 
-protocol SignOutProtocol:class {
+protocol SignOutProtocol:AnyObject {
     
     //    func catchData(count: Int)
     func signOut(check: Bool)

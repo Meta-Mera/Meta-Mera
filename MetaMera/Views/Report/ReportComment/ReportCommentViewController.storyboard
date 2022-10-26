@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Report Comment View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="ReportCommentViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="ReportCommentViewController" customModule="MetaMera" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M1f-U8-5fC">
+                                <rect key="frame" x="130" y="278" width="154" height="20"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sSR-v2-dDB">
+                                        <rect key="frame" x="50" y="-7" width="94" height="35"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="理由内容"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="理由:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sjk-kH-yyO">
+                                        <rect key="frame" x="0.0" y="0.0" width="40" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="sSR-v2-dDB" secondAttribute="trailing" constant="10" id="4tp-q2-6gw"/>
+                                    <constraint firstItem="sSR-v2-dDB" firstAttribute="leading" secondItem="Sjk-kH-yyO" secondAttribute="trailing" constant="10" id="KMU-GR-qsd"/>
+                                    <constraint firstItem="Sjk-kH-yyO" firstAttribute="top" secondItem="M1f-U8-5fC" secondAttribute="top" id="Xft-M0-UXe"/>
+                                    <constraint firstItem="sSR-v2-dDB" firstAttribute="centerY" secondItem="Sjk-kH-yyO" secondAttribute="centerY" id="aIP-hD-CKf"/>
+                                    <constraint firstAttribute="height" constant="20" id="ro9-7J-7f3"/>
+                                    <constraint firstItem="Sjk-kH-yyO" firstAttribute="leading" secondItem="M1f-U8-5fC" secondAttribute="leading" id="soR-58-5Ko"/>
+                                </constraints>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bHz-Cl-3ov" customClass="PlaceTextView" customModule="MetaMera" customModuleProvider="target">
+                                <rect key="frame" x="30" y="348" width="354" height="200"/>
+                                <color key="backgroundColor" white="0.97374890729999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="VlR-eA-Yl1"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFa-k3-wUl">
+                                <rect key="frame" x="107" y="638" width="200" height="35"/>
+                                <color key="backgroundColor" white="0.97374890729999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="iNw-dX-Dj0"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="報告する"/>
+                                <connections>
+                                    <action selector="pushReportButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="eSK-rN-xVZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDD-No-mEQ">
+                                <rect key="frame" x="15" y="60" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="1vR-Bf-hqO"/>
+                                    <constraint firstAttribute="width" constant="30" id="t8s-0h-kov"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button" image="矢印(5cm)"/>
+                                <connections>
+                                    <action selector="pushBackButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="XWe-aG-2ef"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="FFa-k3-wUl" firstAttribute="top" secondItem="bHz-Cl-3ov" secondAttribute="bottom" constant="90" id="2MS-qY-h2X"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="M1f-U8-5fC" secondAttribute="trailing" constant="20" id="6vm-8t-vsy"/>
+                            <constraint firstItem="bHz-Cl-3ov" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="7ng-WK-lpX"/>
+                            <constraint firstItem="M1f-U8-5fC" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="E6s-l7-zYt"/>
+                            <constraint firstItem="bHz-Cl-3ov" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="OSh-t5-XCq"/>
+                            <constraint firstItem="eDD-No-mEQ" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="Tcg-ws-dNy"/>
+                            <constraint firstItem="bHz-Cl-3ov" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="aai-ar-XkP"/>
+                            <constraint firstItem="FFa-k3-wUl" firstAttribute="centerX" secondItem="bHz-Cl-3ov" secondAttribute="centerX" id="nqp-xt-tnU"/>
+                            <constraint firstItem="eDD-No-mEQ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="q4B-BP-8hQ"/>
+                            <constraint firstItem="M1f-U8-5fC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="wLn-KT-b6Q"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="bHz-Cl-3ov" secondAttribute="trailing" constant="30" id="yoC-Wz-Eq4"/>
+                            <constraint firstItem="bHz-Cl-3ov" firstAttribute="top" secondItem="M1f-U8-5fC" secondAttribute="bottom" constant="50" id="z3d-Vu-4fL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backButton" destination="eDD-No-mEQ" id="lE8-nL-wYB"/>
+                        <outlet property="commentTextView" destination="bHz-Cl-3ov" id="8gw-yd-qRF"/>
+                        <outlet property="reasonButton" destination="sSR-v2-dDB" id="qaz-zJ-F6w"/>
+                        <outlet property="reportButton" destination="FFa-k3-wUl" id="9qn-aL-ivF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="17" y="4"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="矢印(5cm)" width="787.33331298828125" height="787.33331298828125"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

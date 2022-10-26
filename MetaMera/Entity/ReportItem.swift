@@ -11,7 +11,7 @@ import Firebase
 struct ReportItem{
     
     var postId: String?
-    var reportGenre: Int?
+    var reportGenre: String?
     var uid: String?
     var comment: String?
     

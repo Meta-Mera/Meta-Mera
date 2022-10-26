@@ -32,7 +32,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var backImageView: UIImageView!
     @IBOutlet weak var optionButton: UIButton!
     
-//    static let shared = Profile()
+    //    static let shared = Profile()
     
     var image: UIImage!
     
@@ -60,8 +60,8 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         backImageView.isUserInteractionEnabled = true
         backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backView(_:))))
         
-//        chatRoomTableView.backgroundColor = .rgb(red: 240, green: 240, blue: 240)
-//        chatRoomTableView.backgroundColor = UIColor.dynamicColor(light: .rgb(red: 240, green: 240, blue: 240), dark: .rgb(red: 0, green: 0, blue: 0))
+        //        chatRoomTableView.backgroundColor = .rgb(red: 240, green: 240, blue: 240)
+        //        chatRoomTableView.backgroundColor = UIColor.dynamicColor(light: .rgb(red: 240, green: 240, blue: 240), dark: .rgb(red: 0, green: 0, blue: 0))
         chatRoomTableView.backgroundColor = UIColor.chatRoomBackground
         ChatViewController().inputChatText.layer.backgroundColor = UIColor.inputChatTextBackground.cgColor
         
@@ -89,7 +89,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     //画面遷移しようとしたとき
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        postImageView.image = image
+        //        postImageView.image = image
         setUpNotification()
         fetchMessages()
     }
@@ -134,6 +134,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
             let report = UIAlertAction(title: "Report", style: UIAlertAction.Style.destructive, handler: {[weak self]
                 (action: UIAlertAction!) -> Void in
                 print("Report")
+                self!.gotoReport()
             })
             
             alertSheet.addAction(report)
@@ -151,9 +152,13 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     //MARK: 前の画面に戻る
     @objc func backView(_ sender: Any){
         print("push back image")
-//        self.dismiss(animated: true, completion: nil)
+        //        self.dismiss(animated: true, completion: nil)
         self.navigationController?.popViewController(animated: true)
         
+    }
+    
+    func gotoReport(){
+        Goto.ReportViewController(view: self,postId: postId)
     }
     
     
@@ -211,6 +216,8 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
                 print("メッセージ情報の取得に失敗しました。\(err)")
                 return
             }
+            
+            self?.messages.removeAll()
             
             snapshots?.documentChanges.forEach({ (documentChange) in
                 switch documentChange.type {

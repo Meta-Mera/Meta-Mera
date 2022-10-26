@@ -47,54 +47,28 @@ class ReportModel {
                         return
                     }
                     
-                    //MARK: - 通報回数をインクリメントしていきます。
-                    Firestore.firestore().collection("Reports").document(postId).updateData([
-                        "count": FieldValue.increment(Int64(1))
-                    ]){ error in
-                        if let error = error {
-                            print("更新に失敗しました。\(error)")
+                    //MARK: - 通報したユーザーのデータを保存します。
+                    Firestore.firestore().collection("Reports").document(postId).collection("Users").document(uid).setData(userDocData){ err in
+                        if let err = err {
+                            print("通報データの保存に失敗しました。\(err)")
                             return
                         }
-                        
-                        
-                        
-                        //MARK: - 通報したユーザーのデータを保存します。
-                        Firestore.firestore().collection("Reports").document(postId).collection("Users").document(uid).setData(userDocData){ err in
-                            if let err = err {
-                                print("通報データの保存に失敗しました。\(err)")
-                                return
-                            }
-                            completion(.success(true))
-                            return
-                            
-                        }
+                        completion(.success(true))
+                        return
                         
                     }
                     
                 }
                 return
             }
-            //MARK: - 通報回数をインクリメントしていきます。
-            Firestore.firestore().collection("Reports").document(postId).updateData([
-                "count": FieldValue.increment(Int64(1))
-            ]){ error in
-                if let error = error {
-                    print("更新に失敗しました。\(error)")
+            //MARK: - 通報したユーザーのデータを保存します。
+            Firestore.firestore().collection("Reports").document(postId).collection("Users").document(uid).setData(userDocData){ err in
+                if let err = err {
+                    print("通報データの保存に失敗しました。\(err)")
                     return
                 }
-                
-                
-                
-                //MARK: - 通報したユーザーのデータを保存します。
-                Firestore.firestore().collection("Reports").document(postId).collection("Users").document(uid).setData(userDocData){ err in
-                    if let err = err {
-                        print("通報データの保存に失敗しました。\(err)")
-                        return
-                    }
-                    completion(.success(true))
-                    return
-                    
-                }
+                completion(.success(true))
+                return
                 
             }
         }
