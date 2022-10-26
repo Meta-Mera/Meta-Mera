@@ -143,4 +143,12 @@ class Goto : UIViewController{
 //        view.present(vc, animated: true, completion: nil)
         view.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    class func ReportViewController(view: UIViewController, postId: String){
+        print("Goto-ReportView was called.")
+        let vc = UIStoryboard(name: "ReportViewController", bundle: nil).instantiateViewController(withIdentifier: "ReportViewController") as! ReportViewController
+        vc.modalPresentationStyle = .fullScreen
+        vc.postId = postId
+        view.navigationController?.pushViewController(vc, animated: true)
+    }
 }
