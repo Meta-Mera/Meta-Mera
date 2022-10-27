@@ -27,13 +27,7 @@ class Goto : UIViewController{
         view.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
-    //TODO: SignInの画面に移行できるように戻すこと！！
     class func SignIn(view: UIViewController){
-//        if let vc = UIStoryboard.instantiateInitialViewController(.init(name: "ARViewController", bundle: .main))() as? ARViewController {
-//            let navController = UINavigationController(rootViewController: vc)
-//            navController.modalPresentationStyle = .fullScreen
-//            view.present(navController, animated: true)
-//        }
         
         print("Goto-SignIn was called.")
         let vc = SignInViewController()
@@ -47,7 +41,6 @@ class Goto : UIViewController{
         view.view.window?.layer.add(transition, forKey: kCATransition)
         
         view.present(navController, animated: false,completion: nil)
-        
         
     }
     
@@ -94,7 +87,6 @@ class Goto : UIViewController{
         vc.loginUser = user
         vc.user = user
         view.present(vc, animated: true, completion: nil)
-//        view.navigationController?.pushViewController(vc, animated: true)
     }
     
     class func ChangeProfile(view: UIViewController, user: User){

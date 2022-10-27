@@ -10,6 +10,7 @@ import UIKit
 
 extension UIViewController {
     
+    /// スワイプしたら前の画面に戻るやつ
     func setSwipeBack() {
         let target = self.navigationController?.value(forKey: "_cachedInteractionController")
         let recognizer = UIPanGestureRecognizer(target: target, action: Selector(("handleNavigationTransition:")))

@@ -133,7 +133,6 @@ class TopViewController: UIViewController {
     func autoLogin(){
         //TODO: imageViewをbuttonに変更してtapしたら無効化させること
         Auth.auth().addStateDidChangeListener {[weak self] auth, user in
-//            Auth.auth().removeStateDidChangeListener(self!)
             if user != nil{
                 DispatchQueue.main.async {
                     self?.signInModel.signIn(user: user!) {result in

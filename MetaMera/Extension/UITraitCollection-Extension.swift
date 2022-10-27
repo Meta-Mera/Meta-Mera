@@ -10,6 +10,7 @@ import UIKit
 
 extension UITraitCollection {
     
+    //ダークモードなのか確認するやつ
     public static var isDarkMode: Bool {
         if #available(iOS 13, *), current.userInterfaceStyle == .dark {
             return true
