@@ -1,93 +1,45 @@
+# Meta-Mera
+![icon](./images/icon.png)
 
-<h1 align="center"> Meta-Mera </h1> <br>
-<p align="center">
-  <a href="">
-    <img alt="Meta-Mera" title="Meta-Mera" src="images/icon.png" width="450">
-  </a>
-</p>
-
-<!-- <p align="center">
-  GitHub in your pocket. Built with React Native.
-</p> -->
-
-<p align="center">
-
-  <!-- Not yet -->
-  <!-- <a href="https://itunes.apple.com/us/app/gitpoint/id1251245162?mt=8">
-    <img alt="Download on the App Store" title="App Store" src="http://i.imgur.com/0n2zqHD.png" width="140">
-  </a> -->
-
-
-</p>
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ## Table of Contents
 
 - [Introduction](#introduction)
 - [Features](#features)
-- [Feedback](#feedback)
-- [Contributors](#contributors)
-- [Build Process](#build-process)
-- [Backers](#backers-)
-- [Sponsors](#sponsors-)
-- [Acknowledgments](#acknowledgments)
+- [Setup](#set-up)
+- [Usage](#usage)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+# Introduction
+Meta-Meraは **場所** にフォーカスしたSNSです。
 
-## Introduction
-<!-- BADGES -->
-<!--
-[![Build Status](https://img.shields.io/travis/gitpoint/git-point.svg?style=flat-square)](https://travis-ci.org/gitpoint/git-point)
-[![Coveralls](https://img.shields.io/coveralls/github/gitpoint/git-point.svg?style=flat-square)](https://coveralls.io/github/gitpoint/git-point)
-[![All Contributors](https://img.shields.io/badge/all_contributors-73-orange.svg?style=flat-square)](./CONTRIBUTORS.md)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](http://commitizen.github.io/cz-cli/)
-[![Gitter chat](https://img.shields.io/badge/chat-on_gitter-008080.svg?style=flat-square)](https://gitter.im/git-point) -->
+Meta-Meraを通してみる世界には、さまざまな情報が表示されます。
 
-<!-- View repository and user information, control your notifications and even manage your issues and pull requests. Built with React Native, GitPoint is one of the most feature-rich unofficial GitHub clients that is 100% free. -->
+![PR](./images/PR.png)
 
-Meta-Mera focuses of 'Location'. This app filter and display information by location in a world of information overload.
 
-**Available for only iOS.**
+# Feature
+## 機能
 
-<p align="center">
-  <img src = "http://i.imgur.com/HowF6aM.png" width=350>
-</p>
+- チャットを投稿できます。
+- 他人の投稿に対してコメントできます。
+- その”場所”に関連した情報が表示されます。
 
-## Features
+## 期待される効果
 
-A few of the things you can do with Meta-Mera:
+- 脱検索
+- 新たなコミュニケーションの提供
+- 屋外広告の景観の悪化を抑制
 
-* Create new chatroom.
-* You can see the messages posted at the location.
-
-<!-- DEMO Images -->
-<!-- <p align="center">
-  <img src = "http://i.imgur.com/IkSnFRL.png" width=700>
-</p>
-
-<p align="center">
-  <img src = "http://i.imgur.com/0iorG20.png" width=700>
-</p> -->
-
-## Feedback
-
-- [new issues](https://github.com/Meta-Mera/Meta-Mera/issues/new)
-
-## Build Process
-
+# Set up
 - system requirements.
   - Xcode 13.4.1
   - CocoaPods 1.11.3
 - Clone of download the repositories.
 - `pod install` to install dependencies.
 
-<!-- - Follow the [React Native Guide](https://facebook.github.io/react-native/docs/getting-started.html) for getting started building a project with native code. **A Mac is required if you wish to develop for iOS.**
-- Clone or download the repo
-- `yarn` to install dependencies
-- `yarn run link` to link react-native dependencies
-- `yarn start:ios` to start the packager and run the app in the iOS simulator (`yarn start:ios:logger` will boot the application with [redux-logger](<https://github.com/evgenyrodionov/redux-logger>))
-- `yarn start:android` to start the packager and run the app in the the Android device/emulator (`yarn start:android:logger` will boot the application with [redux-logger](https://github.com/evgenyrodionov/redux-logger)) -->
+```
+git clone git@github.com:Meta-Mera/Meta-Mera.git
+cd Meta-Mera
+pod install
+```
 
-Please take a look at the [contributing guidelines](./CONTRIBUTING.md) for a detailed process on how to build your application as well as troubleshooting information.
+<!-- # Usage -->
