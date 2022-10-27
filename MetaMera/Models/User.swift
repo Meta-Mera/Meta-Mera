@@ -16,6 +16,11 @@ class User {
     let tokens: [String]
     let email: String
     let log: [String]
+    
+    let ban: Bool
+    let limted: Int
+    
+    
     let reCommend:  [String]
     //ここにお気に入りのリストを書く
     //ここにアクション[“コメントした”、”いいねをした”など]を書く
@@ -33,6 +38,8 @@ class User {
         self.profileImage = dic["profileImage"] as? String ?? ""
         self.log = dic["Log"] as? [String]  ?? []
         self.reCommend = dic["Recommend"] as? [String] ?? []
+        self.ban = dic["ban"] as? Bool ?? false
+        self.limted = dic["limted"] as? Int ?? 0
         self.uid = uid
     }
     
