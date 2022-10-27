@@ -18,8 +18,11 @@ class Profile {
     //シングルトン
     let userRef = Firestore.firestore().collection("users")
     
+    //ログインユーザー
     var loginUser: User!
+    //ログインしてますか？
     var isLogin: Bool!
+    //エリアID
     var areaId: String!
     
     func getFileURL(fileName: String) -> URL {
@@ -28,12 +31,10 @@ class Profile {
     }
     
     func updateProfileImage() -> Result<UIImage, Error> {
-//        let path = getFileURL(fileName: Profile.shared.userId+".jpeg").path
         let path = getFileURL(fileName: Profile.shared.loginUser.uid+".jpeg").path
 
         if FileManager.default.fileExists(atPath: path) {
             if let imageData = UIImage(contentsOfFile: path) {
-//                profileViewController.ProfileImage.image = imageData
                 return .success(imageData)
             } else {
                 print("Failed to load the image.")

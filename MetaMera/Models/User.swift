@@ -36,6 +36,11 @@ class User {
         self.uid = uid
     }
     
+    /// アカウントの再認証
+    /// - Parameters:
+    ///   - email: メールアドレス
+    ///   - password: パスワード
+    ///   - completion: 成功すれば.success(true)失敗すれば.failure()
     func reauthenticate(email: String, password: String, completion: @escaping(Result<Bool, NSError>) -> Void){
         let user = Auth.auth().currentUser
         let credential: AuthCredential = EmailAuthProvider.credential(withEmail: email, password: password)
@@ -50,16 +55,21 @@ class User {
               return
           }
         }
-        completion(.success(false))
+        completion(.failure(NSError(domain: "アカウントの再認証に失敗しました。", code: 400)))
         return
     }
     
-    public func changeEmail(email: String, password: String){
+    /// メールアドレス変更
+    /// - Parameters:
+    ///   - oldEmail: 古いメールアドレス
+    ///   - newEmail: 新しいメールアドレス
+    ///   - password: 現在使用しているメールアドレス(再認証に使用します。)
+    public func changeEmail(oldEmail: String, newEmail: String, password: String){
         
-        reauthenticate(email: email, password: password) { [weak self] result in
+        reauthenticate(email: oldEmail, password: password) {result in
             switch result {
             case .success(_):
-                Auth.auth().currentUser?.updateEmail(to: email) { error in
+                Auth.auth().currentUser?.updateEmail(to: newEmail) { error in
                     if let error = error {
                         print("メールアドレスの変更に失敗しました。\(error)")
                     }else {
@@ -81,11 +91,17 @@ class User {
 
     }
     
-    public func changePassword(email: String, password: String){
-        reauthenticate(email: email, password: password) { [weak self] result in
+    /// パスワード変更
+    /// - Parameters:
+    ///   - email: ログインしているメールアドレス
+    ///   - oldPassword: 古いメールアドレス
+    ///   - newPassword: 新しいメールアドレス
+    //TODO: Firestoreに新しいメールアドレスを保存するようにすること!!
+    public func changePassword(email: String, oldPassword: String, newPassword: String){
+        reauthenticate(email: email, password: oldPassword) { result in
             switch result {
             case .success(_):
-                Auth.auth().currentUser?.updatePassword(to: password) { error in
+                Auth.auth().currentUser?.updatePassword(to: newPassword) { error in
                     if let error = error {
                         print("パスワードの更新に失敗しました。\(error)")
                     }else {

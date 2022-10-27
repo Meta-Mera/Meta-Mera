@@ -18,19 +18,19 @@ import Firebase
 import AudioToolbox
 
 extension LNTouchDelegate{
+    
+    /// 画像をタップしたときに呼び出されます。
+    /// - Parameter node: タップしたNode
     func annotationNodeTouched(node: AnnotationNode) {
+        print("[tapEvent]: ", node.view?.tag as Any)
+//        print("[findNodes]: ", sceneLocationView.findNodes(tagged: "drink"))
         if let nodeView = node.view{
-            // Do stuffs with the nodeView
-            // ...
-            
             print("[nodeView]: ",nodeView)
         }
-        if let nodeImage = node.image{
-            // Do stuffs with the nodeImage
-            // ...
+        if let nodeImage = node.image{ //タップしたNodeが画像なら
+
             print("[nodeImage: getName]", nodeImage.accessibilityIdentifier ?? "null")
             
-//            guard let uid = Auth.auth().currentUser?.uid else { return }
             guard let selectImage = nodeImage.accessibilityIdentifier else { return }
             
             //TODO: チャットルームを渡す方法を考える
@@ -42,10 +42,8 @@ extension LNTouchDelegate{
                 
                 guard let dic = snapshot?.data() else { return }
                 let post = Post(dic: dic, postId: selectImage)
-                Goto.ChatRoomView(view: self as! UIViewController, image: node.image!, post: post)
+//                Goto.ChatRoomView(view: self, image: node.image!, post: post)
             }
-//            Goto.ChatRoomView(view: self, image: node.image!, chatroomId: chatroom)
-//            Goto.PostView(view: self, image: node.image!, chatroomId: selectImage)
         }
         
     }

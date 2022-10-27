@@ -32,24 +32,14 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     //プロフィール画面に移行する用だけど多分プラスボタン系に結合されると思う
     @IBOutlet weak var ProfileImage: UIImageView!
     
-    //プラスボタン系
+    //MARK: -プラスボタン系
     @IBOutlet weak var backView: UIView!
-    
     @IBOutlet weak var plusButton: UIButton!
-    @IBOutlet weak var plusLeftConstraint: NSLayoutConstraint!
-    @IBOutlet weak var plusBottomConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var profileButton: UIButton!
-    @IBOutlet weak var profileLeftConstraint: NSLayoutConstraint!
-    @IBOutlet weak var profileBottomConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var createRoomButton: UIButton!
-    @IBOutlet weak var createRoomLeftConstraint: NSLayoutConstraint!
-    @IBOutlet weak var createRoomBottomConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var selectCategoryButton: UIButton!
-    @IBOutlet weak var selectCategoryLeftConstraint: NSLayoutConstraint!
-    @IBOutlet weak var selectCategoryBottomConstraint: NSLayoutConstraint!
+    
+    //MARK: -プラスボタン系
     
     
     //プラスボタンを長押しした時用のやつ
@@ -68,7 +58,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     //投稿リスト
     var posts : [Post]?
     
-    //市区町村名？
+    //市区町村名とか
     var locality : String?
     
     
@@ -115,7 +105,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         locationManager.headingFilter = kCLHeadingFilterNone
         locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.delegate = self
-//        locationManager.startUpdatingHeading()
         locationManager.startUpdatingLocation()
     
         mapView.showsUserLocation = true
@@ -128,7 +117,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                                                queue: nil) { [weak self] _ in
             self?.pauseAnimation()
         }
-        // swiftlint:disable:next discarded_notification_center_observer
         NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification,
                                                object: nil,
                                                queue: nil) { [weak self] _ in
@@ -139,7 +127,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         sceneLocationView.showAxesNode = false
         sceneLocationView.locationNodeTouchDelegate = self
-//        sceneLocationView.delegate = self // Causes an assertionFailure - use the `arViewDelegate` instead:
         sceneLocationView.arViewDelegate = self
         sceneLocationView.locationNodeTouchDelegate = self
         sceneLocationView.orientToTrueNorth = false
@@ -147,27 +134,19 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         
         addSceneModels()
-        
-        //36.35801663766492, 138.63498898207519
+
         let pin = MKPointAnnotation()
         pin.title = "テストピン"
         pin.subtitle = "サブタイトル"
-//        pin.setValue(Any?, forKey: "ddd")
         pin.accessibilityValue = "tesofihasdfoihasdofhasdoift"
-//        pin.description() = desc
         MKPointAnnotation.description()
         pin.coordinate = CLLocationCoordinate2DMake(36.35801663766492, 138.63498898207519)
         mapView.addAnnotation(pin)
         
-        
-//        sceneLocationView.run()
+
         contentView.addSubview(sceneLocationView)
         
         sceneLocationView.frame = .zero
-        
-//        sceneLocationView.run()
-        
-        // Do any additional setup after loading the view.
         
         updateInfoLabelTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
             self?.updateInfoLabel()
@@ -177,24 +156,25 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     func setUpPlusButtons(){
         
-        // プラスボタンにタップジェスチャー追加
-        plusButton.addGestureRecognizer(plusButtonLongTapGuester)
         
         //MARK: プロフィール画像
-        ProfileImage.layer.cornerRadius = 25
+        ProfileImage.layer.cornerRadius = ProfileImage.bounds.width / 2
         ProfileImage.isUserInteractionEnabled = true
         ProfileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pushProfileImage(_:))))
+        
+        //MARK: - プラスボタン系
+        
+        // プラスボタンにタップジェスチャー追加
+        plusButton.addGestureRecognizer(plusButtonLongTapGuester)
         
         self.view.bringSubviewToFront(selectCategoryButton)
         self.view.bringSubviewToFront(createRoomButton)
         self.view.bringSubviewToFront(plusButton)
         self.view.bringSubviewToFront(profileButton)
         
-        //MARK: プラスボタン系
         let tapGestureRecognizer = UITapGestureRecognizer(target: self,
                                                                   action: #selector(backTap))
         self.backView.addGestureRecognizer(tapGestureRecognizer)
-        
         
         plusButton.imageView?.contentMode = .scaleAspectFill
         profileButton.imageView?.contentMode = .scaleAspectFill
@@ -231,22 +211,9 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         createRoomButton.imageView?.layer.borderColor = borderColor
         selectCategoryButton.imageView?.layer.borderColor = borderColor
         
+        //MARK: プラスボタン系 -
+        
     }
-    
-    
-    //    override var inputAccessoryView: UIView? {
-    //        get {
-    //            return chatView
-    //        }
-    //    }
-    //
-    //    override var canBecomeFirstResponder: Bool {
-    //        return true
-    //    }
-    //
-    //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    //        self.view.endEditing(true)
-    //    }
     
     //MARK: わかんない！
     override func viewDidLayoutSubviews() {
@@ -272,8 +239,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         switch Profile.shared.updateProfileImage() {
         case .success(let image):
             ProfileImage.setImage(image: image, name: Profile.shared.loginUser.uid)
-//            ProfileImage.image = image
-//            ProfileImage.setImage(url: Profile.shared.userIconImageUrl, name: Profile.shared.userId)
         case .failure(_):
             break
         }
@@ -470,11 +435,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             return
         }
         
-//        buildDemoData().forEach {
-//            sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0)
-////            sceneLocationView.moveSceneHeadingAntiClockwise()
-////            sceneLocationView.moveSceneHeadingClockwise()
-//        }
         
         buildPostData { [weak self] nodes in
             nodes.forEach {
@@ -482,20 +442,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                 
             }
         }
-        
-//        buildPostData().forEach {
-//            sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0)
-//        }
-        
-        //        let cubeNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
-        //        cubeNode.position = SCNVector3(0, 0, -0.2) // SceneKit/AR coordinates are in meters
-        
-        //        sceneLocationView.scene.rootNode.addChildNode(cubeNode)
-        
-        // There are many different ways to add lighting to a scene, but even this mechanism (the absolute simplest)
-        // keeps 3D objects fron looking flat
         sceneLocationView.autoenablesDefaultLighting = true
-        //sceneLocationView.useTrueNorth = false
         
         
     }
@@ -525,32 +472,45 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                    pinUse: Bool, pinName: String,
                    postId: String,
                    completion: @escaping(LocationAnnotationNode) -> Void) {
+        //座標
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        //高さ込みの設置する座標
         let location = CLLocation(coordinate: coordinate, altitude: altitude)
+        //地図に設置するピン
         let annotation = MKPointAnnotation()
-//        let image:UIImage = UIImage(url: imageURL, defaultUIImage: UIImage(named: "ロゴ")).reSizeImage(reSize: size)
+        
+        //初期画像
         var image:UIImage = UIImage(named: "ロゴ")!
+        //URLから画像を取得してannotationNodeに入れる(非同期)
         AF.request(imageURL.absoluteString).responseImage { [weak self] res in
             switch res.result {
+            //画像からURLが取得できた場合
             case .success(let getImage):
                 print("IMAGE", getImage)
+                //取得した画像をimageに入れる
                 image = getImage.reSizeImage(reSize: size)
                 
-                
+                //投稿IDを画像のタグに書き込む
                 image.accessibilityIdentifier = postId
                 print("---------------------------------------")
                 print("accessibilityIdentifier: ",image.accessibilityIdentifier as Any)
                 print("---------------------------------------")
-                if pinUse {
+                if pinUse {//地図にピンを表示する場合
+                    //ピンの座標
                     annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+                    //ピンのタイトル
                     annotation.title = pinName
+                    //ピンのサブタイトル
                     annotation.subtitle = "高さ"+String(altitude)
+                    
+                    //ピンをピンリストに追加
                     self?.annotationArray.append(annotation)
+                    //マップにピンを表示
                     self?.mapView.addAnnotation(annotation)
                 }
                 
+                //Nodeを生成
                 let annotationNode = LocationAnnotationNode(location: location, image: image)
-//                annotationNode
                 completion(annotationNode)
 
             case .failure(let error):
@@ -558,56 +518,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                 fatalError()
             }
         }
-
-//        let image:UIImage = UIImage.af.setImage
-//        let downloader = ImageDownloader()
-//        let urlRequest = URLRequest(url: imageURL)
-//        var image:UIImage = UIImage(named: "ロゴ")!.reSizeImage(reSize: size)
-//        let sample = UIImage(named: "ロゴ")
-//        var test:UIImageView = UIImageView()
-//        test.af.setImage(withURL: imageURL, placeholderImage: sample)
-//        var image:UIImage = test.image
-//        downloader.download(urlRequest) {[weak self] response in
-//
-//            if case .success(let imageUrl) = response.result {
-//                image = imageUrl.reSizeImage(reSize: size)
-//
-//                image.accessibilityIdentifier = postId
-//                print("---------------------------------------")
-//                print("URL accessibilityIdentifier: ",image.accessibilityIdentifier as Any)
-//                print("---------------------------------------")
-//                if pinUse {
-//                    annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
-//                    annotation.title = pinName
-//                    annotation.subtitle = "高さ"+String(altitude)
-//                    self?.annotationArray.append(annotation)
-//                    self?.mapView.addAnnotation(annotation)
-//                }
-//
-//            }else{
-//
-//            }
-//        }
-        
-        
-//        image.accessibilityIdentifier = postId
-//        print("---------------------------------------")
-//        print("accessibilityIdentifier: ",image.accessibilityIdentifier as Any)
-//        print("---------------------------------------")
-//        if pinUse {
-//            annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
-//            annotation.title = pinName
-//            annotation.subtitle = "高さ"+String(altitude)
-//            annotationArray.append(annotation)
-//            mapView.addAnnotation(annotation)
-//        }
-//
-//        return LocationAnnotationNode(location: location, image: image)
-//        let image:UIImage = UIImage(named: "ロゴ")!.reSizeImage(reSize: size)
-//        let imageView: UIImageView
-//        imageView = UIImageView()
-//        Nuke.loadImage(with: imageURL, into: imageView)
-//        let image:UIImage = imageView.image
     }
     
     
