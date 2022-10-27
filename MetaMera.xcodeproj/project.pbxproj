@@ -26,6 +26,21 @@
 		385B6E2528DCB480007DEDF1 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385B6E2328DCB480007DEDF1 /* PostTableViewCell.swift */; };
 		385B6E2628DCB480007DEDF1 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385B6E2428DCB480007DEDF1 /* PostTableViewCell.xib */; };
 		3875B8FA29078EBC0079304D /* MenuType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3875B8F929078EBC0079304D /* MenuType.swift */; };
+		3875B926290A1DC90079304D /* ReportCommentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3875B92A290A1DC90079304D /* ReportCommentViewController.storyboard */; };
+		3875B927290A1DC90079304D /* ReportCommentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3875B92A290A1DC90079304D /* ReportCommentViewController.storyboard */; };
+		3875B928290A1DC90079304D /* ReportCommentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3875B92A290A1DC90079304D /* ReportCommentViewController.storyboard */; };
+		3875B934290A1F310079304D /* ReportViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3875B938290A1F310079304D /* ReportViewController.storyboard */; };
+		3875B935290A1F310079304D /* ReportViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3875B938290A1F310079304D /* ReportViewController.storyboard */; };
+		3875B936290A1F310079304D /* ReportViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3875B938290A1F310079304D /* ReportViewController.storyboard */; };
+		3875B93E290A22480079304D /* LocalizeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3875B93D290A22480079304D /* LocalizeKey.swift */; };
+		3875B93F290A22480079304D /* LocalizeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3875B93D290A22480079304D /* LocalizeKey.swift */; };
+		3875B940290A22480079304D /* LocalizeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3875B93D290A22480079304D /* LocalizeKey.swift */; };
+		3875B941290A22B80079304D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3875B945290A22B80079304D /* Localizable.strings */; };
+		3875B942290A22B80079304D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3875B945290A22B80079304D /* Localizable.strings */; };
+		3875B943290A22B80079304D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3875B945290A22B80079304D /* Localizable.strings */; };
+		3875B94B290A232C0079304D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3875B94F290A232C0079304D /* Localizable.strings */; };
+		3875B94C290A232C0079304D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3875B94F290A232C0079304D /* Localizable.strings */; };
+		3875B94D290A232C0079304D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3875B94F290A232C0079304D /* Localizable.strings */; };
 		387EA2D328C76EBF00629B4B /* ArObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387EA2D228C76EBF00629B4B /* ArObject.swift */; };
 		387EA2D528C7723000629B4B /* LNTouchDelegate-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387EA2D428C7723000629B4B /* LNTouchDelegate-Extension.swift */; };
 		387EA2D728CF76F400629B4B /* UIImage-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387EA2D628CF76F400629B4B /* UIImage-Extension.swift */; };
@@ -46,15 +61,9 @@
 		388ECDCC29063709009C9DE1 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388ECDCB29063709009C9DE1 /* ReportViewController.swift */; };
 		388ECDCD29063709009C9DE1 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388ECDCB29063709009C9DE1 /* ReportViewController.swift */; };
 		388ECDCE29063709009C9DE1 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388ECDCB29063709009C9DE1 /* ReportViewController.swift */; };
-		388ECDD029063727009C9DE1 /* ReportViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388ECDCF29063727009C9DE1 /* ReportViewController.storyboard */; };
-		388ECDD129063727009C9DE1 /* ReportViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388ECDCF29063727009C9DE1 /* ReportViewController.storyboard */; };
-		388ECDD229063727009C9DE1 /* ReportViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388ECDCF29063727009C9DE1 /* ReportViewController.storyboard */; };
 		388ECDD52907705F009C9DE1 /* ReportCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388ECDD42907705F009C9DE1 /* ReportCommentViewController.swift */; };
 		388ECDD62907705F009C9DE1 /* ReportCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388ECDD42907705F009C9DE1 /* ReportCommentViewController.swift */; };
 		388ECDD72907705F009C9DE1 /* ReportCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388ECDD42907705F009C9DE1 /* ReportCommentViewController.swift */; };
-		388ECDD92907706A009C9DE1 /* ReportCommentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388ECDD82907706A009C9DE1 /* ReportCommentViewController.storyboard */; };
-		388ECDDA2907706A009C9DE1 /* ReportCommentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388ECDD82907706A009C9DE1 /* ReportCommentViewController.storyboard */; };
-		388ECDDB2907706A009C9DE1 /* ReportCommentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388ECDD82907706A009C9DE1 /* ReportCommentViewController.storyboard */; };
 		389024C62835DAD4004DC3F3 /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389024C52835DAD4004DC3F3 /* UIColor-Extension.swift */; };
 		38968054283F03B1008E1302 /* StartUpStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38968053283F03B1008E1302 /* StartUpStoryboard.storyboard */; };
 		38968057283F04CE008E1302 /* StartUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38968055283F04CE008E1302 /* StartUpViewController.swift */; };
@@ -166,6 +175,15 @@
 		3875B8F929078EBC0079304D /* MenuType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuType.swift; sourceTree = "<group>"; };
 		3875B8FB2907989E0079304D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		3875B8FC2907989E0079304D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		3875B929290A1DC90079304D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ReportCommentViewController.storyboard; sourceTree = "<group>"; };
+		3875B92C290A1DCD0079304D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ReportCommentViewController.strings; sourceTree = "<group>"; };
+		3875B92E290A1DCF0079304D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ReportCommentViewController.strings; sourceTree = "<group>"; };
+		3875B939290A1F360079304D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ReportViewController.storyboard; sourceTree = "<group>"; };
+		3875B93B290A1F400079304D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ReportViewController.strings; sourceTree = "<group>"; };
+		3875B93C290A1F4B0079304D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ReportViewController.strings; sourceTree = "<group>"; };
+		3875B93D290A22480079304D /* LocalizeKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizeKey.swift; sourceTree = "<group>"; };
+		3875B944290A22B80079304D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3875B94E290A232C0079304D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		387EA2D228C76EBF00629B4B /* ArObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArObject.swift; sourceTree = "<group>"; };
 		387EA2D428C7723000629B4B /* LNTouchDelegate-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LNTouchDelegate-Extension.swift"; sourceTree = "<group>"; };
 		387EA2D628CF76F400629B4B /* UIImage-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage-Extension.swift"; sourceTree = "<group>"; };
@@ -178,9 +196,7 @@
 		388ECDC129061A18009C9DE1 /* ReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportModel.swift; sourceTree = "<group>"; };
 		388ECDC529061D90009C9DE1 /* ReportItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportItem.swift; sourceTree = "<group>"; };
 		388ECDCB29063709009C9DE1 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
-		388ECDCF29063727009C9DE1 /* ReportViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReportViewController.storyboard; sourceTree = "<group>"; };
 		388ECDD42907705F009C9DE1 /* ReportCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCommentViewController.swift; sourceTree = "<group>"; };
-		388ECDD82907706A009C9DE1 /* ReportCommentViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReportCommentViewController.storyboard; sourceTree = "<group>"; };
 		389024C52835DAD4004DC3F3 /* UIColor-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Extension.swift"; sourceTree = "<group>"; };
 		38968053283F03B1008E1302 /* StartUpStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StartUpStoryboard.storyboard; sourceTree = "<group>"; };
 		38968055283F04CE008E1302 /* StartUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartUpViewController.swift; sourceTree = "<group>"; };
@@ -342,6 +358,15 @@
 			path = PostTableViewCell;
 			sourceTree = "<group>";
 		};
+		3875B92F290A1DF00079304D /* Localizable */ = {
+			isa = PBXGroup;
+			children = (
+				3875B945290A22B80079304D /* Localizable.strings */,
+				3875B94F290A232C0079304D /* Localizable.strings */,
+			);
+			path = Localizable;
+			sourceTree = "<group>";
+		};
 		387EA2D828CF786900629B4B /* ChangeProfile */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,7 +390,7 @@
 			children = (
 				388ECDD32907703C009C9DE1 /* ReportComment */,
 				388ECDCB29063709009C9DE1 /* ReportViewController.swift */,
-				388ECDCF29063727009C9DE1 /* ReportViewController.storyboard */,
+				3875B938290A1F310079304D /* ReportViewController.storyboard */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -374,7 +399,7 @@
 			isa = PBXGroup;
 			children = (
 				388ECDD42907705F009C9DE1 /* ReportCommentViewController.swift */,
-				388ECDD82907706A009C9DE1 /* ReportCommentViewController.storyboard */,
+				3875B92A290A1DC90079304D /* ReportCommentViewController.storyboard */,
 			);
 			path = ReportComment;
 			sourceTree = "<group>";
@@ -439,6 +464,7 @@
 		38A2122A282A064300B56E03 /* MetaMera */ = {
 			isa = PBXGroup;
 			children = (
+				3875B92F290A1DF00079304D /* Localizable */,
 				38A212C42831DB1500B56E03 /* MetaMera.entitlements */,
 				38A21289282CEB8200B56E03 /* GoogleService-Info.plist */,
 				38A21274282CDFB900B56E03 /* Font */,
@@ -586,6 +612,7 @@
 				38AD14C4289266BE001D1769 /* SignItem.swift */,
 				38A8B93D28E494CD000E86FD /* PostItem.swift */,
 				388ECDC529061D90009C9DE1 /* ReportItem.swift */,
+				3875B93D290A22480079304D /* LocalizeKey.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -763,12 +790,14 @@
 				38A21286282CE3AF00B56E03 /* bokutachi.otf in Resources */,
 				382713EE28328998004BEB01 /* TopViewController.storyboard in Resources */,
 				38968054283F03B1008E1302 /* StartUpStoryboard.storyboard in Resources */,
-				388ECDD92907706A009C9DE1 /* ReportCommentViewController.storyboard in Resources */,
+				3875B926290A1DC90079304D /* ReportCommentViewController.storyboard in Resources */,
+				3875B94B290A232C0079304D /* Localizable.strings in Resources */,
 				387EA2DE28CF78B400629B4B /* ChangeProfileViewController.storyboard in Resources */,
 				38A21267282A09C200B56E03 /* SignUpViewController.xib in Resources */,
 				388EA9AC289E9AF800A79746 /* ImageCollectionViewCell.xib in Resources */,
 				385B6E1F28DCB2A0007DEDF1 /* DebugViewController.storyboard in Resources */,
 				38FAA64F28815740000521DD /* CreateNewPostViewController.storyboard in Resources */,
+				3875B941290A22B80079304D /* Localizable.strings in Resources */,
 				382713892831F95F004BEB01 /* SignInViewController.xib in Resources */,
 				382713F22833423A004BEB01 /* ARViewController.storyboard in Resources */,
 				38271475283472C0004BEB01 /* ChatViewController.xib in Resources */,
@@ -778,7 +807,7 @@
 				38A8B94528E6D279000E86FD /* PlaceTextView.xib in Resources */,
 				3896806B284C7755008E1302 /* ProfileViewController.storyboard in Resources */,
 				38A21238282A064400B56E03 /* LaunchScreen.storyboard in Resources */,
-				388ECDD029063727009C9DE1 /* ReportViewController.storyboard in Resources */,
+				3875B934290A1F310079304D /* ReportViewController.storyboard in Resources */,
 				38A2128A282CEB8200B56E03 /* GoogleService-Info.plist in Resources */,
 				38AB508E285AD3B800AF4F80 /* ChatRoomController.storyboard in Resources */,
 				06B1CC152861664900116CF0 /* ChatRoomTableViewCell.xib in Resources */,
@@ -794,8 +823,10 @@
 			files = (
 				38A21283282CE15800B56E03 /* utakata-Regular.otf in Resources */,
 				38A21287282CE3AF00B56E03 /* bokutachi.otf in Resources */,
-				388ECDD129063727009C9DE1 /* ReportViewController.storyboard in Resources */,
-				388ECDDA2907706A009C9DE1 /* ReportCommentViewController.storyboard in Resources */,
+				3875B935290A1F310079304D /* ReportViewController.storyboard in Resources */,
+				3875B942290A22B80079304D /* Localizable.strings in Resources */,
+				3875B927290A1DC90079304D /* ReportCommentViewController.storyboard in Resources */,
+				3875B94C290A232C0079304D /* Localizable.strings in Resources */,
 				38A2128B282CEB8200B56E03 /* GoogleService-Info.plist in Resources */,
 				38A8B94628E6D279000E86FD /* PlaceTextView.xib in Resources */,
 			);
@@ -807,8 +838,10 @@
 			files = (
 				38A21284282CE15800B56E03 /* utakata-Regular.otf in Resources */,
 				38A21288282CE3AF00B56E03 /* bokutachi.otf in Resources */,
-				388ECDD229063727009C9DE1 /* ReportViewController.storyboard in Resources */,
-				388ECDDB2907706A009C9DE1 /* ReportCommentViewController.storyboard in Resources */,
+				3875B936290A1F310079304D /* ReportViewController.storyboard in Resources */,
+				3875B943290A22B80079304D /* Localizable.strings in Resources */,
+				3875B928290A1DC90079304D /* ReportCommentViewController.storyboard in Resources */,
+				3875B94D290A232C0079304D /* Localizable.strings in Resources */,
 				38A2128C282CEB8200B56E03 /* GoogleService-Info.plist in Resources */,
 				38A8B94728E6D279000E86FD /* PlaceTextView.xib in Resources */,
 			);
@@ -970,6 +1003,7 @@
 				38FAA648287FAFE4000521DD /* Comment.swift in Sources */,
 				38968068284C76C8008E1302 /* ProfileViewController.swift in Sources */,
 				382F6AB2286D44730056BFA2 /* User.swift in Sources */,
+				3875B93E290A22480079304D /* LocalizeKey.swift in Sources */,
 				388EA9AE28A555E800A79746 /* Notifications.swift in Sources */,
 				387EA2D528C7723000629B4B /* LNTouchDelegate-Extension.swift in Sources */,
 				38AB508B285AD3A700AF4F80 /* ChatRoomController.swift in Sources */,
@@ -993,6 +1027,7 @@
 				38A21242282A064400B56E03 /* MetaMeraTests.swift in Sources */,
 				38D2443828F903A80013D13C /* LocationManager.swift in Sources */,
 				38A8B94B28E92CE4000E86FD /* Accessory.swift in Sources */,
+				3875B93F290A22480079304D /* LocalizeKey.swift in Sources */,
 				388ECDC729061D90009C9DE1 /* ReportItem.swift in Sources */,
 				388ECDCD29063709009C9DE1 /* ReportViewController.swift in Sources */,
 				38A2127C282CE0DB00B56E03 /* ARViewController.swift in Sources */,
@@ -1006,6 +1041,7 @@
 				38A2127D282CE0DB00B56E03 /* ARViewController.swift in Sources */,
 				38A8B94C28E92CE4000E86FD /* Accessory.swift in Sources */,
 				388ECDC829061D90009C9DE1 /* ReportItem.swift in Sources */,
+				3875B940290A22480079304D /* LocalizeKey.swift in Sources */,
 				38D2444128F924C60013D13C /* AreaId.swift in Sources */,
 				388ECDCE29063709009C9DE1 /* ReportViewController.swift in Sources */,
 				388ECDC0290619EE009C9DE1 /* Report.swift in Sources */,
@@ -1034,6 +1070,42 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		3875B92A290A1DC90079304D /* ReportCommentViewController.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3875B929290A1DC90079304D /* Base */,
+				3875B92C290A1DCD0079304D /* en */,
+				3875B92E290A1DCF0079304D /* ja */,
+			);
+			name = ReportCommentViewController.storyboard;
+			sourceTree = "<group>";
+		};
+		3875B938290A1F310079304D /* ReportViewController.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3875B939290A1F360079304D /* Base */,
+				3875B93B290A1F400079304D /* ja */,
+				3875B93C290A1F4B0079304D /* en */,
+			);
+			name = ReportViewController.storyboard;
+			sourceTree = "<group>";
+		};
+		3875B945290A22B80079304D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3875B944290A22B80079304D /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		3875B94F290A232C0079304D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3875B94E290A232C0079304D /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		38A21231282A064300B56E03 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

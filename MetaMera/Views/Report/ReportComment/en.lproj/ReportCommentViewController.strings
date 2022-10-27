@@ -1,0 +1,18 @@
+
+/* Class = "UIButton"; configuration.title = "報告する"; ObjectID = "FFa-k3-wUl"; */
+"FFa-k3-wUl.configuration.title" = "Report";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "FFa-k3-wUl"; */
+"FFa-k3-wUl.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "理由:"; ObjectID = "Sjk-kH-yyO"; */
+"Sjk-kH-yyO.text" = "Reason:";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "eDD-No-mEQ"; */
+"eDD-No-mEQ.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "理由内容"; ObjectID = "sSR-v2-dDB"; */
+"sSR-v2-dDB.configuration.title" = "Report reason";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "sSR-v2-dDB"; */
+"sSR-v2-dDB.normalTitle" = "Button";

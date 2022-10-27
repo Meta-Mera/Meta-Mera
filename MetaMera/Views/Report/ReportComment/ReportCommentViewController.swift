@@ -40,9 +40,11 @@ class ReportCommentViewController: UIViewController {
     }
     
     func configView(){
-        reasonButton.setTitle(selectedMenuType.rawValue, for: .normal)
-        commentTextView.placeHolder = "報告する理由を詳しく書いてください。"
+        setSwipeBack()
+        reasonButton.setTitle(NSLocalizedString(selectedMenuType.rawValue, comment: ""), for: .normal)
+        commentTextView.placeHolder = LocalizeKey.reportReason.localizedString()
         commentTextView.backgroundColor = UIColor.inputChatTextBackground
+        reportButton.backgroundColor = UIColor.normalButtonBackground()
     }
     
     @IBAction func pushBackButton(_ sender: Any) {
@@ -52,44 +54,44 @@ class ReportCommentViewController: UIViewController {
     private func configureMenuButton(){
         var actions = [UIMenuElement]()
         //spam
-        actions.append(UIAction(title: MenuType.spam.rawValue, image: nil, state: self.selectedMenuType == MenuType.spam ? .on : .off,handler: {[weak self] (_) in
+        actions.append(UIAction(title: LocalizeKey.spam.localizedString(), image: nil, state: self.selectedMenuType == MenuType.spam ? .on : .off,handler: {[weak self] (_) in
             self?.selectedMenuType = .spam
-            self?.reasonButton.setTitle(MenuType.spam.rawValue, for: .normal)
+            self?.reasonButton.setTitle(LocalizeKey.spam.localizedString(), for: .normal)
             self?.configureMenuButton()
         }))
         //fraud
-        actions.append(UIAction(title: MenuType.fraud.rawValue, image: nil, state: self.selectedMenuType == MenuType.fraud ? .on : .off,handler: {[weak self] (_) in
+        actions.append(UIAction(title: LocalizeKey.fraud.localizedString(), image: nil, state: self.selectedMenuType == MenuType.fraud ? .on : .off,handler: {[weak self] (_) in
             self?.selectedMenuType = .fraud
-            self?.reasonButton.setTitle(MenuType.fraud.rawValue, for: .normal)
+            self?.reasonButton.setTitle(LocalizeKey.fraud.localizedString(), for: .normal)
             self?.configureMenuButton()
         }))
         //bullying
-        actions.append(UIAction(title: MenuType.bullying.rawValue, image: nil, state: self.selectedMenuType == MenuType.bullying ? .on : .off,handler: {[weak self] (_) in
+        actions.append(UIAction(title: LocalizeKey.bullying.localizedString(), image: nil, state: self.selectedMenuType == MenuType.bullying ? .on : .off,handler: {[weak self] (_) in
             self?.selectedMenuType = .bullying
-            self?.reasonButton.setTitle(MenuType.bullying.rawValue, for: .normal)
+            self?.reasonButton.setTitle(LocalizeKey.bullying.localizedString(), for: .normal)
             self?.configureMenuButton()
         }))
         //sexualHarassment
-        actions.append(UIAction(title: MenuType.sexualHarassment.rawValue, image: nil, state: self.selectedMenuType == MenuType.sexualHarassment ? .on : .off,handler: {[weak self] (_) in
+        actions.append(UIAction(title: LocalizeKey.sexualHarassment.localizedString(), image: nil, state: self.selectedMenuType == MenuType.sexualHarassment ? .on : .off,handler: {[weak self] (_) in
             self?.selectedMenuType = .sexualHarassment
-            self?.reasonButton.setTitle(MenuType.sexualHarassment.rawValue, for: .normal)
+            self?.reasonButton.setTitle(LocalizeKey.sexualHarassment.localizedString(), for: .normal)
             self?.configureMenuButton()
         }))
         //violence
-        actions.append(UIAction(title: MenuType.violence.rawValue, image: nil, state: self.selectedMenuType == MenuType.violence ? .on : .off,handler: {[weak self] (_) in
+        actions.append(UIAction(title: LocalizeKey.violence.localizedString(), image: nil, state: self.selectedMenuType == MenuType.violence ? .on : .off,handler: {[weak self] (_) in
             self?.selectedMenuType = .violence
-            self?.reasonButton.setTitle(MenuType.violence.rawValue, for: .normal)
+            self?.reasonButton.setTitle(LocalizeKey.violence.localizedString(), for: .normal)
             self?.configureMenuButton()
         }))
         //notLiking
-        actions.append(UIAction(title: MenuType.notLiking.rawValue, image: nil, state: self.selectedMenuType == MenuType.notLiking ? .on : .off,handler: {[weak self] (_) in
+        actions.append(UIAction(title: LocalizeKey.notLiking.localizedString(), image: nil, state: self.selectedMenuType == MenuType.notLiking ? .on : .off,handler: {[weak self] (_) in
             self?.selectedMenuType = .notLiking
-            self?.reasonButton.setTitle(MenuType.notLiking.rawValue, for: .normal)
+            self?.reasonButton.setTitle(LocalizeKey.notLiking.localizedString(), for: .normal)
             self?.configureMenuButton()
         }))
         
         // UIButtonにUIMenuを設定
-        reasonButton.menu = UIMenu(title: "通報理由を選択してください。", options: .displayInline, children: actions)
+        reasonButton.menu = UIMenu(title: LocalizeKey.selectReportReason.localizedString(), options: .displayInline, children: actions)
         // こちらを書かないと表示できない場合があるので注意
         reasonButton.showsMenuAsPrimaryAction = true
         // ボタンの表示を変更

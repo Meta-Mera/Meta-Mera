@@ -28,6 +28,7 @@ class ReportViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setSwipeBack()
     }
     
     //MARK: 前の画面に戻る

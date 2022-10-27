@@ -1,0 +1,43 @@
+/* 
+  Localizable.strings
+  MetaMera
+
+  Created by Jim on 2022/10/27.
+  
+*/
+
+"language" = "en";
+
+/*----------------------------------
+            共用
+ ----------------------------------*/
+"report" = "Report";
+"cancel" = "Cancel";
+
+/*----------------------------------
+            通報
+ ----------------------------------*/
+"spam" = "It's spam";
+"fraud" = "Scam or fraud";
+"bullying" = "Bullying or harassment";
+"sexualHarassment" = "Sexual harassment or secual activity";
+"violence" = "Violence or Dangerous organizations";
+"notLiking" = "I don't like it";
+"reportReason" = "Please elaborate on the reason for your report.";
+"selectReportReason" = "Please select the reason for the report.";
+
+/*----------------------------------
+            投稿画面
+ ----------------------------------*/
+"edit" = "Edit";
+"hide" = "Hide";
+"delete" = "Delete";
+
+/*----------------------------------
+            プロフィール画面
+ ----------------------------------*/
+"accountSetting" = "Account setting";
+"changeYourProfile" = "Change your profile";
+"signOut" = "Sign out";
+"mute" = "Mute";
+"block" = "Block";
