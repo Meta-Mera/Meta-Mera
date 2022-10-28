@@ -17,8 +17,6 @@
 		38271474283472C0004BEB01 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38271472283472C0004BEB01 /* ChatViewController.swift */; };
 		38271475283472C0004BEB01 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38271473283472C0004BEB01 /* ChatViewController.xib */; };
 		382F6AB2286D44730056BFA2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382F6AB1286D44730056BFA2 /* User.swift */; };
-		383AC1CB2887866700B5BE12 /* PostViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 383AC1CA2887866700B5BE12 /* PostViewController.storyboard */; };
-		383AC1CD288787B600B5BE12 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383AC1CC288787B600B5BE12 /* PostViewController.swift */; };
 		383AC1D2288E398600B5BE12 /* PostImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383AC1D1288E398600B5BE12 /* PostImageTableViewCell.swift */; };
 		383AC1D4288E39E900B5BE12 /* PostImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 383AC1D3288E39E900B5BE12 /* PostImageTableViewCell.xib */; };
 		385B6E1D28DCB28F007DEDF1 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385B6E1C28DCB28F007DEDF1 /* DebugViewController.swift */; };
@@ -164,8 +162,6 @@
 		38271472283472C0004BEB01 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		38271473283472C0004BEB01 /* ChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
 		382F6AB1286D44730056BFA2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		383AC1CA2887866700B5BE12 /* PostViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostViewController.storyboard; sourceTree = "<group>"; };
-		383AC1CC288787B600B5BE12 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		383AC1D1288E398600B5BE12 /* PostImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageTableViewCell.swift; sourceTree = "<group>"; };
 		383AC1D3288E39E900B5BE12 /* PostImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostImageTableViewCell.xib; sourceTree = "<group>"; };
 		385B6E1C28DCB28F007DEDF1 /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
@@ -590,8 +586,6 @@
 				383AC1D0288E396D00B5BE12 /* Image */,
 				38AB508A285AD3A700AF4F80 /* ChatRoomController.swift */,
 				38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */,
-				383AC1CC288787B600B5BE12 /* PostViewController.swift */,
-				383AC1CA2887866700B5BE12 /* PostViewController.storyboard */,
 			);
 			path = ChatRoom;
 			sourceTree = "<group>";
@@ -811,7 +805,6 @@
 				38A2128A282CEB8200B56E03 /* GoogleService-Info.plist in Resources */,
 				38AB508E285AD3B800AF4F80 /* ChatRoomController.storyboard in Resources */,
 				06B1CC152861664900116CF0 /* ChatRoomTableViewCell.xib in Resources */,
-				383AC1CB2887866700B5BE12 /* PostViewController.storyboard in Resources */,
 				38A21235282A064400B56E03 /* Assets.xcassets in Resources */,
 				383AC1D4288E39E900B5BE12 /* PostImageTableViewCell.xib in Resources */,
 			);
@@ -993,7 +986,6 @@
 				389024C62835DAD4004DC3F3 /* UIColor-Extension.swift in Sources */,
 				38A05CEB289547D000F0CC40 /* SignUpModel.swift in Sources */,
 				38A2122C282A064300B56E03 /* TopViewController.swift in Sources */,
-				383AC1CD288787B600B5BE12 /* PostViewController.swift in Sources */,
 				38A2127B282CE0DB00B56E03 /* ARViewController.swift in Sources */,
 				383AC1D2288E398600B5BE12 /* PostImageTableViewCell.swift in Sources */,
 				38A8B93828DDFDFB000E86FD /* ServerMaintenanceConfig.swift in Sources */,
@@ -1283,7 +1275,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3.1;
 				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jim112o.MetaMera;
@@ -1332,7 +1324,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3.1;
 				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jim112o.MetaMera;

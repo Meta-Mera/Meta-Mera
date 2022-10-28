@@ -85,7 +85,16 @@ class User {
                             if let error = error {
                                 print("確認メールの送信に失敗しました。\(error)")
                             }else {
-                                print("メールアドレスの変更に成功しました。")
+                                Firestore.firestore().collection("Users").document(Profile.shared.loginUser.uid).updateData([
+                                    "email": newEmail
+                                ]){ err in
+                                    if let err = err {
+                                        print("[change Email] Firestoreの更新に失敗しました。\(err)")
+                                    }else{
+                                        print("[change Email] メールアドレスの変更に成功しました。")
+                                    }
+                                    
+                                }
                             }
                         }
                     }
