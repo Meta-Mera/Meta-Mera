@@ -23,9 +23,7 @@ class ReportModel {
             return
         }
         
-        let docData = ["postId": postId,
-                       "count": 0,
-                       "createAt": Timestamp()] as [String : Any]
+        let docData = ["postId": postId, "count": 0] as [String : Any]
         
         let userDocData = [
             "comment": comment,

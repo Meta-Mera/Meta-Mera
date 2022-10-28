@@ -36,6 +36,8 @@ class PostUploadModel {
                        "postUserUid": Profile.shared.loginUser.uid,
                        "rawImageUrl": rawImageUrl,
                        "editedImageUrl": editedImageUrl,
+                       "deleted" : false,
+                       "hidden" : false,
                        "good": 0,
                        "latitude": latitude,
                        "longitude": longitude,

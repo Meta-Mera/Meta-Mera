@@ -12,11 +12,9 @@ import UIKit
 class Report {
 
     let reportId: String
-    let createdAt: Timestamp
     
     init(dic: [String: Any], documentId: String) {
         self.reportId = documentId
-        self.createdAt = dic["createdAt"] as? Timestamp ?? Timestamp()
     }
 }
 

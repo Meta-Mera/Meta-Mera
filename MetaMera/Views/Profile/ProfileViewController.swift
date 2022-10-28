@@ -18,7 +18,7 @@ import FirebaseStorage
 import Alamofire
 import AlamofireImage
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var MapView: MKMapView!
     
@@ -67,7 +67,10 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         configView()
-        setSwipeBack()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     
     func configView(){
@@ -148,6 +151,8 @@ class ProfileViewController: UIViewController {
         moveTo(center: MapView.userLocation.coordinate, animated: true)
         // ローカルファイルからユーザーアイコンを取得・表示する
 //        downloadProfileImage()
+        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     private func moveTo(
@@ -171,19 +176,19 @@ class ProfileViewController: UIViewController {
         
         if user.email == Profile.shared.loginUser.email {
             // styleをActionSheetに設定
-            let alertSheet = UIAlertController(title: "account setting", message: "", preferredStyle: UIAlertController.Style.actionSheet)
+            let alertSheet = UIAlertController(title: LocalizeKey.accountSetting.localizedString(), message: "", preferredStyle: UIAlertController.Style.actionSheet)
             
-            let action1 = UIAlertAction(title: "Change your profile", style: UIAlertAction.Style.default, handler: {[weak self]
+            let action1 = UIAlertAction(title: LocalizeKey.changeYourProfile.localizedString(), style: UIAlertAction.Style.default, handler: {[weak self]
                 (action: UIAlertAction!) -> Void in
                 self?.pushChangeProfile()
                 
             })
             
-            let action2 = UIAlertAction(title: "Sign out", style: UIAlertAction.Style.destructive, handler: {[weak self]
+            let action2 = UIAlertAction(title: LocalizeKey.signOut.localizedString(), style: UIAlertAction.Style.destructive, handler: {[weak self]
                 (action: UIAlertAction!) -> Void in
                 self?.pushSignOut()
             })
-            let action3 = UIAlertAction(title: "cancel", style: UIAlertAction.Style.cancel, handler: {
+            let action3 = UIAlertAction(title: LocalizeKey.cancel.localizedString(), style: UIAlertAction.Style.cancel, handler: {
                 (action: UIAlertAction!) in
             })
             
@@ -197,19 +202,19 @@ class ProfileViewController: UIViewController {
             // styleをActionSheetに設定
             let alertSheet = UIAlertController(title: "", message: "", preferredStyle: UIAlertController.Style.actionSheet)
             
-            let userMute = UIAlertAction(title: "Mute", style: UIAlertAction.Style.destructive, handler: {[weak self]
+            let userMute = UIAlertAction(title: LocalizeKey.mute.localizedString(), style: UIAlertAction.Style.destructive, handler: {
                 (action: UIAlertAction!)  in
             })
             
-            let userBlock = UIAlertAction(title: "Block", style: UIAlertAction.Style.destructive, handler: {[weak self]
+            let userBlock = UIAlertAction(title: LocalizeKey.block.localizedString(), style: UIAlertAction.Style.destructive, handler: {
                 (action: UIAlertAction!)  in
             })
             
-            let userReport = UIAlertAction(title: "Report", style: UIAlertAction.Style.destructive, handler: {[weak self]
+            let userReport = UIAlertAction(title: LocalizeKey.report.localizedString(), style: UIAlertAction.Style.destructive, handler: {
                 (action: UIAlertAction!)  in
             })
             
-            let cancel = UIAlertAction(title: "cancel", style: UIAlertAction.Style.cancel, handler: {
+            let cancel = UIAlertAction(title: LocalizeKey.cancel.localizedString(), style: UIAlertAction.Style.cancel, handler: {
                 (action: UIAlertAction!) in
             })
             

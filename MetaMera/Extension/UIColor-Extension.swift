@@ -47,8 +47,8 @@ extension UIColor {
     //TextFieldの背景色
     public static var inputChatTextBackground: UIColor {
         return dynamicColor(
-            light: .rgb(red: 255, green: 255, blue: 255),
-            dark: .rgb(red: 40, green: 40, blue: 40)
+            light: .rgb(red: 250, green: 250, blue: 250),
+            dark: .rgb(red: 60, green: 60, blue: 60)
         )
     }
     
@@ -83,6 +83,14 @@ extension UIColor {
     //Sign Upのボーダーカラー
     class func signUpBorderColor() -> UIColor {
         return UIColor.rgb(red: 65, green: 93, blue: 90)
+    }
+    
+    //ノーマルButtonカラー
+    class func normalButtonBackground() -> UIColor {
+        return dynamicColor(
+            light: .rgb(red: 250, green: 250, blue: 250),
+            dark: .rgb(red: 60, green: 60, blue: 60)
+        )
     }
     
     

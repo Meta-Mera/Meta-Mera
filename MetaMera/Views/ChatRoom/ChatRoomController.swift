@@ -10,7 +10,7 @@ import UIKit
 import IQKeyboardManagerSwift
 import Firebase
 
-class ChatRoomController: UIViewController, UITextFieldDelegate{
+class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate{
     
     var postId: String!
     var post: Post!
@@ -42,9 +42,9 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         setUpNotification()
         tearDownNotification()
         configView()
-        setSwipeBack()
     }
     
+        
     func configView(){
         chatRoomTableView.delegate = self
         chatRoomTableView.dataSource = self
@@ -92,15 +92,18 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         //        postImageView.image = image
         setUpNotification()
         fetchMessages()
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     //画面から離れたとき
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tearDownNotification()
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     
     
+    //MARK: - ハンバーガーボタン
     @IBAction func pushOptionButton(_ sender: Any) {
         
         // styleをActionSheetに設定
@@ -110,17 +113,17 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         
         if post.postUserUid == Profile.shared.loginUser.uid {
             
-            let edit = UIAlertAction(title: "Edit", style: UIAlertAction.Style.default, handler: {[weak self]
+            let edit = UIAlertAction(title: LocalizeKey.edit.localizedString(), style: UIAlertAction.Style.default, handler: {[weak self]
                 (action: UIAlertAction!) -> Void in
                 print("edit")
             })
             
-            let hide = UIAlertAction(title: "Hide", style: UIAlertAction.Style.default, handler: {[weak self]
+            let hide = UIAlertAction(title: LocalizeKey.hide.localizedString(), style: UIAlertAction.Style.default, handler: {[weak self]
                 (action: UIAlertAction!) -> Void in
                 print("hide")
             })
             
-            let delete = UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: {[weak self]
+            let delete = UIAlertAction(title: LocalizeKey.delete.localizedString(), style: UIAlertAction.Style.destructive, handler: {[weak self]
                 (action: UIAlertAction!) -> Void in
                 print("delete")
             })
@@ -131,7 +134,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
             
         } else {
             
-            let report = UIAlertAction(title: "Report", style: UIAlertAction.Style.destructive, handler: {[weak self]
+            let report = UIAlertAction(title: LocalizeKey.report.localizedString(), style: UIAlertAction.Style.destructive, handler: {[weak self]
                 (action: UIAlertAction!) -> Void in
                 print("Report")
                 self!.gotoReport()
@@ -140,7 +143,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
             alertSheet.addAction(report)
         }
         
-        let cancel = UIAlertAction(title: "cancel", style: UIAlertAction.Style.cancel, handler: {
+        let cancel = UIAlertAction(title: LocalizeKey.cancel.localizedString(), style: UIAlertAction.Style.cancel, handler: {
             (action: UIAlertAction!) in
         })
         
@@ -148,6 +151,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         
         self.present(alertSheet, animated: true, completion: nil)
     }
+    //MARK: - ハンバーガーボタン
     
     //MARK: 前の画面に戻る
     @objc func backView(_ sender: Any){
@@ -217,37 +221,48 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
                 return
             }
             
+            let dispatchGroup = DispatchGroup()
+            let dispatchQueue = DispatchQueue(label: "com.MetaMera")
             self?.messages.removeAll()
             
             snapshots?.documentChanges.forEach({ (documentChange) in
-                switch documentChange.type {
-                case .added:
-                    let dic = documentChange.document.data()
-                    let comment = Comment(dic: dic)
-                    Firestore.firestore().collection("Users").document(comment.uid).getDocument { (user, err) in
-                        if let err = err {
-                            print("ユーザー情報の取得に失敗しました。\(err)")
-                            return
+                
+                dispatchGroup.enter()
+                dispatchQueue.async {
+                    switch documentChange.type {
+                    case .added:
+                        let dic = documentChange.document.data()
+                        let comment = Comment(dic: dic)
+                        Firestore.firestore().collection("Users").document(comment.uid).getDocument { (user, err) in
+                            if let err = err {
+                                print("ユーザー情報の取得に失敗しました。\(err)")
+                                return
+                            }
+                            
+                            guard let dic = user?.data() else { return }
+                            let user = User(dic: dic, uid: comment.uid)
+                            comment.sendUser = user
+                            self?.messages.append(comment)
+                            self?.messages.sort { (m1, m2) -> Bool in
+                                let m1Date = m1.createdAt.dateValue()
+                                let m2Date = m2.createdAt.dateValue()
+                                return m1Date < m2Date
+                            }
+                            print("ユーザー情報の取得に成功しました。")
+                            dispatchGroup.leave()
+//                            self?.chatRoomTableView.reloadData()
                         }
                         
-                        guard let dic = user?.data() else { return }
-                        let user = User(dic: dic, uid: comment.uid)
-                        comment.sendUser = user
-                        self?.messages.append(comment)
-                        self?.messages.sort { (m1, m2) -> Bool in
-                            let m1Date = m1.createdAt.dateValue()
-                            let m2Date = m2.createdAt.dateValue()
-                            return m1Date < m2Date
-                        }
-                        print("ユーザー情報の取得に成功しました。")
-                        
-                        self?.chatRoomTableView.reloadData()
+                    case .modified, .removed:
+                        print("nothing to do")
                     }
-                    
-                case .modified, .removed:
-                    print("nothing to do")
                 }
+    
             })
+            
+            dispatchGroup.notify(queue: dispatchQueue) {
+                self?.chatRoomTableView.reloadData()
+            }
         }
     }
     
@@ -325,6 +340,7 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("indexPath.section: ",indexPath.section)
+        print("message", messages)
         if indexPath.section == 0 {
             let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: tableUpCellId, for: indexPath) as! PostImageTableViewCell
 

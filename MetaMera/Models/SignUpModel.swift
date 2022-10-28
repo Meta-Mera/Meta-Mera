@@ -51,6 +51,8 @@ class SignUpModel {
             
             let docData = ["email": email,
                            "userName": userName,
+                           "ban" : false,
+                           "limited" : 0,
                            "profileImage": "",
                            "Log": [String]().self,
                             "Recommended": [String]().self,

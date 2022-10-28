@@ -16,6 +16,11 @@ class User {
     let tokens: [String]
     let email: String
     let log: [String]
+    
+    let ban: Bool
+    let limted: Int
+    
+    
     let reCommend:  [String]
     //ここにお気に入りのリストを書く
     //ここにアクション[“コメントした”、”いいねをした”など]を書く
@@ -33,6 +38,8 @@ class User {
         self.profileImage = dic["profileImage"] as? String ?? ""
         self.log = dic["Log"] as? [String]  ?? []
         self.reCommend = dic["Recommend"] as? [String] ?? []
+        self.ban = dic["ban"] as? Bool ?? false
+        self.limted = dic["limted"] as? Int ?? 0
         self.uid = uid
     }
     
@@ -78,7 +85,16 @@ class User {
                             if let error = error {
                                 print("確認メールの送信に失敗しました。\(error)")
                             }else {
-                                print("メールアドレスの変更に成功しました。")
+                                Firestore.firestore().collection("Users").document(Profile.shared.loginUser.uid).updateData([
+                                    "email": newEmail
+                                ]){ err in
+                                    if let err = err {
+                                        print("[change Email] Firestoreの更新に失敗しました。\(err)")
+                                    }else{
+                                        print("[change Email] メールアドレスの変更に成功しました。")
+                                    }
+                                    
+                                }
                             }
                         }
                     }

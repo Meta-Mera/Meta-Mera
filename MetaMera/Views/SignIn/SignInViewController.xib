@@ -28,7 +28,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Signin_Top_img" translatesAutoresizingMaskIntoConstraints="NO" id="NwH-pO-rhy">
-                    <rect key="frame" x="50" y="204" width="290" height="40"/>
+                    <rect key="frame" x="50" y="208" width="290" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="P8Y-u3-Wek"/>
                     </constraints>
@@ -92,13 +92,13 @@
                     </subviews>
                 </stackView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Signin_Bottom_img" translatesAutoresizingMaskIntoConstraints="NO" id="PoI-vn-xcv">
-                    <rect key="frame" x="50" y="525" width="290" height="40"/>
+                    <rect key="frame" x="50" y="577" width="290" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Skk-cY-fAG"/>
                     </constraints>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="wNg-Qx-DEg">
-                    <rect key="frame" x="50" y="565" width="290" height="130"/>
+                    <rect key="frame" x="50" y="617" width="290" height="130"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Signin_back" translatesAutoresizingMaskIntoConstraints="NO" id="Bmo-L1-Q9P">
                             <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>

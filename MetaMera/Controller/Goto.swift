@@ -109,15 +109,15 @@ class Goto : UIViewController{
         view.navigationController?.pushViewController(vc, animated: true)
     }
     
-    class func PostView(view: UIViewController, image: UIImage, chatroomId: String){
-        print("Goto-ChatRoom was called.")
-        let vc = UIStoryboard(name: "PostViewController", bundle: nil).instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
-        vc.image = image
-        vc.postId = chatroomId
-        vc.modalPresentationStyle = .fullScreen
-//        view.present(vc, animated: true, completion: nil)
-        view.navigationController?.pushViewController(vc, animated: true)
-    }
+//    class func PostView(view: UIViewController, image: UIImage, chatroomId: String){
+//        print("Goto-ChatRoom was called.")
+//        let vc = UIStoryboard(name: "PostViewController", bundle: nil).instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
+//        vc.image = image
+//        vc.postId = chatroomId
+//        vc.modalPresentationStyle = .fullScreen
+////        view.present(vc, animated: true, completion: nil)
+//        view.navigationController?.pushViewController(vc, animated: true)
+//    }
 
     
     class func CreateNewPost(view: UIViewController){
