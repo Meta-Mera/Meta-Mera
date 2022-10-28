@@ -12,7 +12,7 @@ import Alamofire
 import AlamofireImage
 import IQKeyboardManagerSwift
 
-class ChangeProfileViewController: UIViewController {
+class ChangeProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     
     @IBOutlet weak var backButton: UIButton!
@@ -30,8 +30,15 @@ class ChangeProfileViewController: UIViewController {
         super.viewDidLoad()
         
         configView()
-        setSwipeBack()
 //        IQKeyboardManager.shared.enable = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     
     func configView(){

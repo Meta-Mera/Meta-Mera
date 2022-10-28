@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import PKHUD
 
-class ReportCommentViewController: UIViewController {
+class ReportCommentViewController: UIViewController, UIGestureRecognizerDelegate {
     
     
     @IBOutlet weak var reasonButton: UIButton!
@@ -40,11 +40,18 @@ class ReportCommentViewController: UIViewController {
     }
     
     func configView(){
-        setSwipeBack()
         reasonButton.setTitle(NSLocalizedString(selectedMenuType.rawValue, comment: ""), for: .normal)
         commentTextView.placeHolder = LocalizeKey.reportReason.localizedString()
         commentTextView.backgroundColor = UIColor.inputChatTextBackground
         reportButton.backgroundColor = UIColor.normalButtonBackground()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     
     @IBAction func pushBackButton(_ sender: Any) {

@@ -18,7 +18,7 @@ import FirebaseStorage
 import Alamofire
 import AlamofireImage
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var MapView: MKMapView!
     
@@ -67,7 +67,10 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         configView()
-        setSwipeBack()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     
     func configView(){
@@ -148,6 +151,8 @@ class ProfileViewController: UIViewController {
         moveTo(center: MapView.userLocation.coordinate, animated: true)
         // ローカルファイルからユーザーアイコンを取得・表示する
 //        downloadProfileImage()
+        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     private func moveTo(

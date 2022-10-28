@@ -10,7 +10,7 @@ import UIKit
 import IQKeyboardManagerSwift
 import Firebase
 
-class ChatRoomController: UIViewController, UITextFieldDelegate{
+class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate{
     
     var postId: String!
     var post: Post!
@@ -42,9 +42,9 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         setUpNotification()
         tearDownNotification()
         configView()
-        setSwipeBack()
     }
     
+        
     func configView(){
         chatRoomTableView.delegate = self
         chatRoomTableView.dataSource = self
@@ -92,12 +92,14 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         //        postImageView.image = image
         setUpNotification()
         fetchMessages()
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     //画面から離れたとき
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tearDownNotification()
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     
     

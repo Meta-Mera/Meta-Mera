@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ReportViewController: UIViewController {
+class ReportViewController: UIViewController, UIGestureRecognizerDelegate {
     
     //スパムボタン
     @IBOutlet weak var spamButton: UIButton!
@@ -28,7 +28,14 @@ class ReportViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setSwipeBack()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     
     //MARK: 前の画面に戻る
