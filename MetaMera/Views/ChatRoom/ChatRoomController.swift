@@ -222,7 +222,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
             }
             
             let dispatchGroup = DispatchGroup()
-            let dispatchQueue = DispatchQueue(label: "com.MetaMera")
+            let dispatchQueue = DispatchQueue(label: "com.MetaMera.comment")
             self?.messages.removeAll()
             
             snapshots?.documentChanges.forEach({ (documentChange) in
@@ -261,7 +261,9 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
             })
             
             dispatchGroup.notify(queue: dispatchQueue) {
-                self?.chatRoomTableView.reloadData()
+                DispatchQueue.main.async {
+                    self?.chatRoomTableView.reloadData()
+                }
             }
         }
     }
