@@ -209,3 +209,5 @@ crashlytics-build.properties
 Pods/
 
 # End of https://www.toptal.com/developers/gitignore/api/firebase,macos,swift,unity,CocoaPods
+
+MetaMera.xcodeproj/project.pbxproj
