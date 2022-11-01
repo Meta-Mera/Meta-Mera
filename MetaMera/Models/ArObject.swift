@@ -221,7 +221,7 @@ extension ArObject: LNTouchDelegate{
                 
                 guard let dic = snapshot?.data() else { return }
                 let post = Post(dic: dic, postId: selectImage)
-                Goto.ChatRoomView(view: self as! UIViewController, image: node.image!, post: post)
+                Goto.ChatRoomView(view: self as! UIViewController, image: URL(string: post.rawImageUrl)!, post: post)
             }
 //            Goto.ChatRoomView(view: self, image: node.image!, chatroomId: chatroom)
 //            Goto.PostView(view: self, image: node.image!, chatroomId: selectImage)

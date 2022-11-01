@@ -23,52 +23,21 @@ class ReportModel {
             return
         }
         
-        let docData = ["postId": postId, "count": 0] as [String : Any]
-        
         let userDocData = [
             "comment": comment,
             "reportGenre": reportGenre,
+            "uid": uid,
+            "postId": postId,
             "createdAt": Timestamp()] as [String: Any]
         
-        Firestore.firestore().collection("Reports").whereField("postId", isEqualTo: postId).getDocuments { snapshot, error in
-            if let error = error {
-                print("Error getting documents: \(error)")
+        Firestore.firestore().collection("Reports").addDocument(data:userDocData){ err in
+            if let err = err {
+                print("通報データの保存に失敗しました。\(err)")
                 return
             }
-            guard snapshot!.documents.first?.data().first?.value != nil else {
-                print("通報データなし")
-                
-                //MARK: -まず通報された投稿を通報テーブルに追加します。
-                Firestore.firestore().collection("Reports").document(postId).setData(docData){ error in
-                    if let error = error {
-                        completion(.failure(NSError(domain: "Firestoreへの登録に失敗しました: \(error)", code: 400)))
-                        return
-                    }
-                    
-                    //MARK: - 通報したユーザーのデータを保存します。
-                    Firestore.firestore().collection("Reports").document(postId).collection("Users").document(uid).setData(userDocData){ err in
-                        if let err = err {
-                            print("通報データの保存に失敗しました。\(err)")
-                            return
-                        }
-                        completion(.success(true))
-                        return
-                        
-                    }
-                    
-                }
-                return
-            }
-            //MARK: - 通報したユーザーのデータを保存します。
-            Firestore.firestore().collection("Reports").document(postId).collection("Users").document(uid).setData(userDocData){ err in
-                if let err = err {
-                    print("通報データの保存に失敗しました。\(err)")
-                    return
-                }
-                completion(.success(true))
-                return
-                
-            }
+            completion(.success(true))
+            return
+            
         }
         
         

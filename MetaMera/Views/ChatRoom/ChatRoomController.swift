@@ -9,12 +9,15 @@ import Foundation
 import UIKit
 import IQKeyboardManagerSwift
 import Firebase
+import Alamofire
+import AlamofireImage
 
 class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate{
     
     var postId: String!
     var post: Post!
     var user: User?
+    var imageUrl: URL!
     
     
     private let cellId = "ChatRoomTableViewCell"
@@ -34,7 +37,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
     
     //    static let shared = Profile()
     
-    var image: UIImage!
+//    var image: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +71,8 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
         optionButton.imageView?.contentMode = .scaleAspectFill
         optionButton.contentHorizontalAlignment = .fill
         optionButton.contentVerticalAlignment = .fill
+        
+//        image.af.setImage(withURL: imageUrl, placeholderImage: UIImage(named: "ロゴ"))
         
     }
     
@@ -346,13 +351,8 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
         if indexPath.section == 0 {
             let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: tableUpCellId, for: indexPath) as! PostImageTableViewCell
 
-            cell.postImageView.image = image
             cell.post = post
             cell.delegate = self
-//            let border = CALayer()
-//            border.frame = CGRect(x: 0, y: cell.frame.height - 20, width: cell.frame.width, height: 0.25)
-//            border.backgroundColor = UIColor.black.cgColor
-//            cell.layer.addSublayer(border)
             
 
             return cell

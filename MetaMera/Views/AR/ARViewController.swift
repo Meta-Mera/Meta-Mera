@@ -20,7 +20,7 @@ import Alamofire
 import AlamofireImage
 
 
-class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate, MKMapViewDelegate {
+class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate {
     
     //AR系
     @IBOutlet weak var mapView: MKMapView!
@@ -479,6 +479,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         //地図に設置するピン
         let annotation = MKPointAnnotation()
         
+        
         //初期画像
         var image:UIImage = UIImage(named: "ロゴ")!
         //URLから画像を取得してannotationNodeに入れる(非同期)
@@ -499,7 +500,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                     //ピンの座標
                     annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
                     //ピンのタイトル
-                    annotation.title = pinName
+//                    annotation.title = pinName
                     //ピンのサブタイトル
                     annotation.subtitle = pinName
                     
@@ -710,7 +711,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             print("投稿情報の取得に成功しました。")
             let post = Post(dic: dic,postId: "Uz93q4hTLBHvLUFglhxp")
             print(post.createdAt.dateValue())
-            Goto.ChatRoomView(view: self, image: UIImage(named: "katsu")!, post: post)
+            Goto.ChatRoomView(view: self, image: URL(string: post.rawImageUrl)!, post: post)
         }
         
     }
@@ -721,38 +722,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     }
     //MARK: プラスボタンのやつ(90%) -
     
-    //MARK: ピンをタップしたときのイベント
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if let annotations = view.annotation{
-            //            print(annotation.accessibilityValue)
-            print(annotations.title!!)
-            //            print(view.accessibilityValue)
-            //            view.annotation?.description
-            Firestore.firestore().collection("Posts").document(annotations.subtitle!!).getDocument {[weak self] (snapshot, err) in
-                if let err = err {
-                    print("投稿情報の取得に失敗しました。\(err)")
-                    return
-                }
-                guard let dic = snapshot?.data() else { return }
-                let post = Post(dic: dic, postId: annotations.subtitle!!)
-                
-                AF.request(post.rawImageUrl).responseImage { [weak self] res in
-                    switch res.result {
-                        //画像からURLが取得できた場合
-                    case .success(let downloadImage):
-                        Goto.ChatRoomView(view: self!, image: downloadImage, post: post)
-                        
-                    case .failure(let error):
-                        print("IMAGE", error)
-                        fatalError()
-                    }
-                }
-                
-            }
-            
-            
-        }
-    }
     
     
     
@@ -785,7 +754,7 @@ extension ARViewController: LNTouchDelegate {
                 
                 guard let dic = snapshot?.data() else { return }
                 let post = Post(dic: dic, postId: selectImage)
-                Goto.ChatRoomView(view: self, image: node.image!, post: post)
+                Goto.ChatRoomView(view: self, image: URL(string: post.rawImageUrl)!, post: post)
             }
             //            Goto.ChatRoomView(view: self, image: node.image!, chatroomId: chatroom)
             //            Goto.PostView(view: self, image: node.image!, chatroomId: selectImage)
@@ -813,6 +782,55 @@ extension ARViewController: SignOutProtocol {
         }
     }
     
+}
+
+extension ARViewController: MKMapViewDelegate {
+    
+    //MARK: ピンをタップしたときのイベント
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let annotations = view.annotation{
+            Firestore.firestore().collection("Posts").document(annotations.subtitle!!).getDocument {[weak self] (snapshot, err) in
+                if let err = err {
+                    print("投稿情報の取得に失敗しました。\(err)")
+                    return
+                }
+                guard let dic = snapshot?.data() else { return }
+                let post = Post(dic: dic, postId: annotations.subtitle!!)
+                
+                //TODO: 先に投稿画面に移行してその後非同期で画像を取得しよう
+//                AF.request(post.rawImageUrl).responseImage { [weak self] res in
+//                    switch res.result {
+//                        //画像からURLが取得できた場合
+//                    case .success(let downloadImage):
+//                        Goto.ChatRoomView(view: self!, image: URL(string: post.rawImageUrl)!, post: post)
+//
+//                    case .failure(let error):
+//                        print("IMAGE", error)
+//                        fatalError()
+//                    }
+//                }
+                Goto.ChatRoomView(view: self!, image: URL(string: post.rawImageUrl)!, post: post)
+                
+            }
+            
+            
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier, for: annotation) as! MKMarkerAnnotationView
+        
+        if annotation is MKUserLocation {
+            return nil
+        }
+        
+        annotationView.displayPriority = .required
+        //        annotationView.glyphImage = UIImage(named: "katsu")! // SF Symbols の画像を使用
+        annotationView.glyphImage = nil
+        annotationView.image = UIImage(named: "katsu")!.reSizeImage(reSize: CGSize(width: 40, height: 40))
+        return annotationView
+    }
 }
 
 

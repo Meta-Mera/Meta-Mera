@@ -24,9 +24,11 @@ class ReportUsers {
     let reportGenreId: String
     let reportComment: String
     let createdAt: Timestamp
+    let postId: String
     
     init(dic: [String: Any], uid: String) {
         self.uid = uid
+        self.postId = dic["postId"] as? String ?? ""
         self.reportGenreId = dic["reportGenreId"] as? String ?? ""
         self.reportComment = dic["reportComment"] as? String ?? ""
         self.createdAt = dic["createdAt"] as? Timestamp ?? Timestamp()

@@ -8,7 +8,8 @@
 import Foundation
 import UIKit
 import Firebase
-
+import Alamofire
+import AlamofireImage
 
 class PostImageTableViewCell: UITableViewCell {
     
@@ -28,11 +29,7 @@ class PostImageTableViewCell: UITableViewCell {
     let generator = UINotificationFeedbackGenerator()
     
     
-    var post: Post?{
-        didSet{
-            
-        }
-    }
+    var post: Post!
     var postUser: User?{
         didSet{
             
@@ -95,6 +92,7 @@ class PostImageTableViewCell: UITableViewCell {
             self?.postTextView.text = self?.post?.comment.replacingOccurrences(of: "\\\\n", with: "\n").replacingOccurrences(of: "\\", with: "")
             self?.profileImageView.loadImageAsynchronously(url: URL(string:(self?.postUser!.profileImage)!))
         }
+        postImageView.af.setImage(withURL: URL(string: post.rawImageUrl)!, placeholderImage: UIImage(named: "ロゴ"))
     }
     
     private func estimateFrameForTextView(text: String) -> CGRect{

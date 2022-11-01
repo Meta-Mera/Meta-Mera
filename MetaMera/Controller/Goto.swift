@@ -72,10 +72,8 @@ class Goto : UIViewController{
         print("Goto-Profile was called.")
         let vc = UIStoryboard(name: "ProfileViewController", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
         vc.modalPresentationStyle = .fullScreen
-//        vc.delegate = view as! SignOutProtocol
         vc.loginUser = user
         vc.user = user
-//        view.present(vc, animated: true, completion: nil)
         view.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -92,32 +90,19 @@ class Goto : UIViewController{
     class func ChangeProfile(view: UIViewController, user: User){
         print("Goto-ChangeProfile was called.")
         let vc = UIStoryboard(name: "ChangeProfileViewController", bundle: nil).instantiateViewController(withIdentifier: "ChangeProfileViewController") as! ChangeProfileViewController
-//        vc.modalPresentationStyle = .fullScreen
         vc.loginUser = user
-//        view.present(vc, animated: true, completion: nil)
         view.navigationController?.pushViewController(vc, animated: true)
     }
     
-    class func ChatRoomView(view: UIViewController, image: UIImage, post: Post!){
+    class func ChatRoomView(view: UIViewController, image: URL, post: Post!){
         print("Goto-ChatRoom was called.")
         let vc = UIStoryboard(name: "ChatRoomController", bundle: nil).instantiateViewController(withIdentifier: "ChatRoomController") as! ChatRoomController
-        vc.image = image
+        vc.imageUrl = image
         vc.postId = post.postId!
         vc.post = post
         vc.modalPresentationStyle = .fullScreen
-//        view.present(vc, animated: true, completion: nil)
         view.navigationController?.pushViewController(vc, animated: true)
     }
-    
-//    class func PostView(view: UIViewController, image: UIImage, chatroomId: String){
-//        print("Goto-ChatRoom was called.")
-//        let vc = UIStoryboard(name: "PostViewController", bundle: nil).instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
-//        vc.image = image
-//        vc.postId = chatroomId
-//        vc.modalPresentationStyle = .fullScreen
-////        view.present(vc, animated: true, completion: nil)
-//        view.navigationController?.pushViewController(vc, animated: true)
-//    }
 
     
     class func CreateNewPost(view: UIViewController){
