@@ -314,7 +314,10 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                                     for document in postSnapshots!.documents {
                                         print("\(document.documentID) => \(document.data())")
                                         let post = Post(dic: document.data(), postId: document.documentID)
-                                        self?.posts?.append(post)
+                                        if !post.deleted && !post.hidden {
+                                            self?.posts?.append(post)
+                                        }
+                                        
                                         
                                     }
                                     self?.addSceneModels()
@@ -789,7 +792,12 @@ extension ARViewController: MKMapViewDelegate {
     //MARK: ピンをタップしたときのイベント
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotations = view.annotation{
-            Firestore.firestore().collection("Posts").document(annotations.subtitle!!).getDocument {[weak self] (snapshot, err) in
+            
+            guard let subtitle = annotations.subtitle else {
+                return
+            }
+            
+            Firestore.firestore().collection("Posts").document(subtitle!).getDocument {[weak self] (snapshot, err) in
                 if let err = err {
                     print("投稿情報の取得に失敗しました。\(err)")
                     return
@@ -817,20 +825,20 @@ extension ARViewController: MKMapViewDelegate {
         }
     }
     
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier, for: annotation) as! MKMarkerAnnotationView
-        
-        if annotation is MKUserLocation {
-            return nil
-        }
-        
-        annotationView.displayPriority = .required
-        //        annotationView.glyphImage = UIImage(named: "katsu")! // SF Symbols の画像を使用
-        annotationView.glyphImage = nil
-        annotationView.image = UIImage(named: "katsu")!.reSizeImage(reSize: CGSize(width: 40, height: 40))
-        return annotationView
-    }
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//
+//        let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier, for: annotation) as! MKMarkerAnnotationView
+//
+//        if annotation is MKUserLocation {
+//            return nil
+//        }
+//
+//        annotationView.displayPriority = .required
+//        //        annotationView.glyphImage = UIImage(named: "katsu")! // SF Symbols の画像を使用
+//        annotationView.glyphImage = nil
+//        annotationView.image = UIImage(named: "katsu")!.reSizeImage(reSize: CGSize(width: 40, height: 40))
+//        return annotationView
+//    }
 }
 
 

@@ -12,6 +12,7 @@ import PKHUD
 import Photos
 import AVFoundation
 import FirebaseFirestore
+import Firebase
 import FirebaseAuth
 import FirebaseCore
 import FirebaseStorage
@@ -20,7 +21,7 @@ import AlamofireImage
 
 class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
-    @IBOutlet weak var MapView: MKMapView!
+    @IBOutlet weak var mapView: MKMapView!
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var changeProfileImageButton: UIButton!
@@ -75,6 +76,8 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func configView(){
         
+        getUserPostData()
+        
         profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
         changeProfileImageButton.layer.cornerRadius = 13
         
@@ -84,7 +87,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         imagePicker.allowsEditing = true
         imagePicker.modalPresentationStyle = .fullScreen
         
-        MapView.translatesAutoresizingMaskIntoConstraints = false
+        mapView.translatesAutoresizingMaskIntoConstraints = false
         // Do any additional setup after loading the view.
         
         imagePicker.delegate = self
@@ -123,6 +126,27 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
+    //MARK: ユーザーが投稿したのを全て取得
+    func getUserPostData(){
+        print("よばれた uid:\(user.uid)")
+        Firestore.firestore().collection("Posts").whereField("postUserUid", isEqualTo: user.uid).getDocuments(completion: {[weak self] (snapshot, error) in
+            if let error = error {
+                print("投稿データの取得に失敗しました。\(error)")
+                return
+            }
+            
+            for document in snapshot!.documents {
+                let post = Post(dic: document.data(), postId: document.documentID)
+                let pin = MKPointAnnotation()
+                pin.subtitle = post.postId
+                pin.accessibilityValue = post.postId
+                pin.coordinate = CLLocationCoordinate2DMake(post.latitude, post.longitude)
+                self?.mapView.addAnnotation(pin)
+                
+            }
+        })
+    }
+    
     
     
     //User Location
@@ -131,7 +155,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     var userLocation = MKUserLocation()
     
     override func viewWillAppear(_ animated: Bool) {
-        MapView.delegate = self
+        mapView.delegate = self
         
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -141,14 +165,14 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         
         //        loginUser = Profile.shared.loginUser
         
-        MapView.showsUserLocation = true
+        mapView.showsUserLocation = true
         
         updateUserLocation()
         
         userNameLabel.text = user.userName
         userIdLabel.text = user.email
         
-        moveTo(center: MapView.userLocation.coordinate, animated: true)
+        moveTo(center: mapView.userLocation.coordinate, animated: true)
         // ローカルファイルからユーザーアイコンを取得・表示する
 //        downloadProfileImage()
         
@@ -159,8 +183,8 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         center location: CLLocationCoordinate2D,
         animated: Bool,
         span: CLLocationDegrees = 0.01) {
-            MapView.centerCoordinate = location
-            MapView.region = .init(center: location, span: .init(latitudeDelta: span, longitudeDelta: span))
+            mapView.centerCoordinate = location
+            mapView.region = .init(center: location, span: .init(latitudeDelta: span, longitudeDelta: span))
         }
     
     //MARK: 前の画面に戻る
@@ -262,7 +286,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
             
             if self.userAnnotation == nil {
                 self.userAnnotation = MKPointAnnotation()
-                self.MapView.addAnnotation(self.userAnnotation!)
+                self.mapView.addAnnotation(self.userAnnotation!)
             }
             
             UIView.animate(withDuration: 0.5, delay: 0, options: .allowUserInteraction, animations: {
@@ -274,15 +298,15 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
                                delay: 0,
                                options: .allowUserInteraction,
                                animations: {
-                    self.MapView.setCenter(self.userAnnotation!.coordinate, animated: false)
+                    self.mapView.setCenter(self.userAnnotation!.coordinate, animated: false)
                 }, completion: { _ in
-                    self.MapView.region.span = MKCoordinateSpan(latitudeDelta: 0.0005, longitudeDelta: 0.0005)
+                    self.mapView.region.span = MKCoordinateSpan(latitudeDelta: 0.0005, longitudeDelta: 0.0005)
                 })
             }
             
             if self.displayDebugging {
                 if self.locationEstimateAnnotation != nil {
-                    self.MapView.removeAnnotation(self.locationEstimateAnnotation!)
+                    self.mapView.removeAnnotation(self.locationEstimateAnnotation!)
                     self.locationEstimateAnnotation = nil
                 }
             }
@@ -589,7 +613,40 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
 }
 
 extension ProfileViewController: MKMapViewDelegate{
+    //MARK: ピンをタップしたときのイベント
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let annotations = view.annotation{
+            
+            guard let subtitle = annotations.subtitle! else {
+                print("nil")
+                return
+            }
+            
+            Firestore.firestore().collection("Posts").document(subtitle).getDocument {[weak self] (snapshot, err) in
+                if let err = err {
+                    print("投稿情報の取得に失敗しました。\(err)")
+                    return
+                }
+                guard let dic = snapshot?.data() else { return }
+                let post = Post(dic: dic, postId: subtitle)
+                
+                Goto.ChatRoomView(view: self!, image: URL(string: post.rawImageUrl)!, post: post)
+                
+            }
+        }
+    }
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier, for: annotation) as! MKMarkerAnnotationView
+        
+        if annotation is MKUserLocation {
+            return nil
+        }
+        return annotationView
+    }
+            
+            
 }
 
 

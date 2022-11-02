@@ -125,11 +125,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="MapView" destination="dfz-Uh-5DQ" id="2dR-N1-Aez"/>
                         <outlet property="backImageView" destination="6Dk-lh-rns" id="OLn-l0-uB8"/>
                         <outlet property="changeProfileImageButton" destination="1jf-cV-IEI" id="TYn-fv-RSh"/>
                         <outlet property="followAndMessageButtonStackView" destination="kfD-iB-mCy" id="SBa-rd-3ng"/>
                         <outlet property="followButton" destination="VjY-Hz-yLw" id="YxH-br-ylp"/>
+                        <outlet property="mapView" destination="dfz-Uh-5DQ" id="2dR-N1-Aez"/>
                         <outlet property="messageButton" destination="7zu-Iy-Zf8" id="7sa-dz-zK5"/>
                         <outlet property="optionButton" destination="gf6-Jg-wLE" id="EGo-n6-MaC"/>
                         <outlet property="profileImageView" destination="C14-IF-Xmx" id="Liu-j3-rOX"/>

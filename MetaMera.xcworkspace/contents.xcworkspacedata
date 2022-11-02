@@ -2,6 +2,15 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:mapstogpx20221028_045808.gpx">
+   </FileRef>
+   <FileRef
+      location = "group:../../Downloads/mapstogpx20221028_045808.gpx">
+   </FileRef>
+   <FileRef
+      location = "group:../../Downloads/mapstogpx20221028_045808.gpx">
+   </FileRef>
+   <FileRef
       location = "group:MetaMera.xcodeproj">
    </FileRef>
    <FileRef
