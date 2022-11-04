@@ -227,7 +227,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         if Profile.shared.isLogin == false {
             print("呼ばれた: ",Profile.shared.isLogin!)
-            sleep(1)
             self.dismiss(animated: true)
         }
     }

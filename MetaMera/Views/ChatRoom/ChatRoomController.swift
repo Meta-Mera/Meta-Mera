@@ -47,6 +47,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
         configView()
     }
     
+    
         
     func configView(){
         chatRoomTableView.delegate = self
@@ -105,6 +106,34 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
         super.viewWillDisappear(animated)
         tearDownNotification()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        Firestore.firestore().collection("Posts").document(postId).collection("likeUsers").whereField("uid", isEqualTo: Profile.shared.loginUser.uid).getDocuments(completion: { [weak self] (snapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+                return
+            }else {
+                guard snapshot!.documents.first?.value != nil else {
+                    //いいねしてない
+                    let docData = ["uid" : Profile.shared.loginUser.uid,
+                                   "createAt": Timestamp()] as [String : Any]
+                    print("データなし")
+                    Firestore.firestore().collection("Posts").document((self?.postId)!).collection("likeUsers").document(Profile.shared.loginUser.uid).setData(docData) { error in
+                        if let error = error {
+                            print("いいねの登録に失敗しました。\(error)")
+                            return
+                        }
+                        print("いいねの登録に成功しました。")
+                    }
+                    return
+                }
+                //いいねしてる
+                Firestore.firestore().collection("Posts").document((self?.postId)!).collection("likeUsers").document(Profile.shared.loginUser.uid).delete(){ error in
+                    if let error = error {
+                        print("いいねの削除に失敗\(error)")
+                    }
+                }
+            }
+            
+        })
     }
     
     

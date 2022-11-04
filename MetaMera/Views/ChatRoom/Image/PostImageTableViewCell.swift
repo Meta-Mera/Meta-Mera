@@ -49,7 +49,6 @@ class PostImageTableViewCell: UITableViewCell {
     }
     
     
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
@@ -74,6 +73,7 @@ class PostImageTableViewCell: UITableViewCell {
         print("ユーサラベルがタップされました。\(postUser?.userName)")
         delegate?.tapUser(user: postUser!)
     }
+    
     
     private func updateImageTableView(){
         postDateLabel.text = dateFormatterForDateLabel(date: (post?.createdAt.dateValue())!)

@@ -112,6 +112,7 @@
 		38AB508E285AD3B800AF4F80 /* ChatRoomController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */; };
 		38AD14C2289249EF001D1769 /* SignInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AD14C1289249EF001D1769 /* SignInModel.swift */; };
 		38AD14C5289266BE001D1769 /* SignItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AD14C4289266BE001D1769 /* SignItem.swift */; };
+		38AD941929149D44004F0C9F /* LikeUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AD941829149D44004F0C9F /* LikeUsers.swift */; };
 		38D2443728F903A80013D13C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2443628F903A80013D13C /* LocationManager.swift */; };
 		38D2443828F903A80013D13C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2443628F903A80013D13C /* LocationManager.swift */; };
 		38D2443928F903A80013D13C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2443628F903A80013D13C /* LocationManager.swift */; };
@@ -233,6 +234,7 @@
 		38AB508D285AD3B800AF4F80 /* ChatRoomController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatRoomController.storyboard; sourceTree = "<group>"; };
 		38AD14C1289249EF001D1769 /* SignInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInModel.swift; sourceTree = "<group>"; };
 		38AD14C4289266BE001D1769 /* SignItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignItem.swift; sourceTree = "<group>"; };
+		38AD941829149D44004F0C9F /* LikeUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeUsers.swift; sourceTree = "<group>"; };
 		38D2443628F903A80013D13C /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		38D2443E28F924C60013D13C /* AreaId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaId.swift; sourceTree = "<group>"; };
 		38DA36BA28D16228004006B6 /* UserProfileProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileProtocol.swift; sourceTree = "<group>"; };
@@ -629,6 +631,7 @@
 				38A8B93F28E6D243000E86FD /* PlaceTextView */,
 				38E9AE292865641300EB71D6 /* Profile.swift */,
 				382F6AB1286D44730056BFA2 /* User.swift */,
+				38AD941829149D44004F0C9F /* LikeUsers.swift */,
 				38FAA645287FAFA6000521DD /* ChatRoom.swift */,
 				38FAA647287FAFE4000521DD /* Comment.swift */,
 				38D2443E28F924C60013D13C /* AreaId.swift */,
@@ -958,6 +961,7 @@
 				385B6E2528DCB480007DEDF1 /* PostTableViewCell.swift in Sources */,
 				382713F028332648004BEB01 /* AppDelegate.swift in Sources */,
 				3896805E284A4CAE008E1302 /* Goto.swift in Sources */,
+				38AD941929149D44004F0C9F /* LikeUsers.swift in Sources */,
 				38A8B94228E6D279000E86FD /* PlaceTextView.swift in Sources */,
 				387EA2DC28CF78A900629B4B /* ChangeProfileViewController.swift in Sources */,
 				387EA2D328C76EBF00629B4B /* ArObject.swift in Sources */,

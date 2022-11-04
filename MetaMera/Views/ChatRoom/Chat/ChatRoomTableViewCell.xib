@@ -51,7 +51,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4om-OE-0kG">
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4om-OE-0kG">
                         <rect key="frame" x="440" y="28" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="4om-OE-0kG" secondAttribute="height" multiplier="1:1" id="4dm-fb-GpY"/>
