@@ -113,6 +113,7 @@
 		38AD14C2289249EF001D1769 /* SignInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AD14C1289249EF001D1769 /* SignInModel.swift */; };
 		38AD14C5289266BE001D1769 /* SignItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AD14C4289266BE001D1769 /* SignItem.swift */; };
 		38AD941929149D44004F0C9F /* LikeUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AD941829149D44004F0C9F /* LikeUsers.swift */; };
+		38AD941D2914CBA8004F0C9F /* UsetPostGoodProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AD941C2914CBA8004F0C9F /* UsetPostGoodProtocol.swift */; };
 		38D2443728F903A80013D13C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2443628F903A80013D13C /* LocationManager.swift */; };
 		38D2443828F903A80013D13C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2443628F903A80013D13C /* LocationManager.swift */; };
 		38D2443928F903A80013D13C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2443628F903A80013D13C /* LocationManager.swift */; };
@@ -235,6 +236,7 @@
 		38AD14C1289249EF001D1769 /* SignInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInModel.swift; sourceTree = "<group>"; };
 		38AD14C4289266BE001D1769 /* SignItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignItem.swift; sourceTree = "<group>"; };
 		38AD941829149D44004F0C9F /* LikeUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeUsers.swift; sourceTree = "<group>"; };
+		38AD941C2914CBA8004F0C9F /* UsetPostGoodProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsetPostGoodProtocol.swift; sourceTree = "<group>"; };
 		38D2443628F903A80013D13C /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		38D2443E28F924C60013D13C /* AreaId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaId.swift; sourceTree = "<group>"; };
 		38DA36BA28D16228004006B6 /* UserProfileProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileProtocol.swift; sourceTree = "<group>"; };
@@ -616,6 +618,7 @@
 				38DA36BA28D16228004006B6 /* UserProfileProtocol.swift */,
 				38A8B93428DDFB3E000E86FD /* RemoteConfigClientProtocol.swift */,
 				38D2443628F903A80013D13C /* LocationManager.swift */,
+				38AD941C2914CBA8004F0C9F /* UsetPostGoodProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -990,6 +993,7 @@
 				383AC1D2288E398600B5BE12 /* PostImageTableViewCell.swift in Sources */,
 				38A8B93828DDFDFB000E86FD /* ServerMaintenanceConfig.swift in Sources */,
 				38FAA644287D20C5000521DD /* UITraitCollection-Extension.swift in Sources */,
+				38AD941D2914CBA8004F0C9F /* UsetPostGoodProtocol.swift in Sources */,
 				38A21230282A064300B56E03 /* Experience.rcproject in Sources */,
 				388ECDCC29063709009C9DE1 /* ReportViewController.swift in Sources */,
 				38FAA648287FAFE4000521DD /* Comment.swift in Sources */,
@@ -1275,7 +1279,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.2;
+				MARKETING_VERSION = 1.4.0;
 				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jim112o.MetaMera;
@@ -1324,7 +1328,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.2;
+				MARKETING_VERSION = 1.4.0;
 				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jim112o.MetaMera;
