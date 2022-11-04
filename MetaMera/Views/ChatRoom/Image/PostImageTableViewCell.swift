@@ -24,6 +24,7 @@ class PostImageTableViewCell: UITableViewCell {
     
     
     var delegate: UserProfileProtocol?
+    var goodDelegate: goodDelegate?
     var iLiked = false
     
     let generator = UINotificationFeedbackGenerator()
@@ -58,6 +59,12 @@ class PostImageTableViewCell: UITableViewCell {
     private func configView() {
         
         profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
+        
+        if(!iLiked){
+            likeButton.setImage(UIImage(named: "ハート(押す前)"), for: .normal)
+        }else{
+            likeButton.setImage(UIImage(named: "ハート(押した後)"), for: .normal)
+        }
         
         postUserNameLabel.isUserInteractionEnabled = true
         profileImageView.isUserInteractionEnabled = true
@@ -117,6 +124,7 @@ class PostImageTableViewCell: UITableViewCell {
             likeButton.setImage(UIImage(named: "ハート(押した後)"), for: .normal)
         }
         iLiked.toggle()
+        goodDelegate?.good()
     }
     
     

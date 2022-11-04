@@ -19,6 +19,8 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
     var user: User?
     var imageUrl: URL!
     
+    var iLiked = false
+    
     
     private let cellId = "ChatRoomTableViewCell"
     private let tableUpCellId = "PostImageTableViewCell"
@@ -99,6 +101,22 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
         setUpNotification()
         fetchMessages()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        Firestore.firestore().collection("Posts").document(postId).collection("likeUsers").whereField("uid", isEqualTo: Profile.shared.loginUser.uid).getDocuments(completion: { [weak self] (snapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+                return
+            }else {
+                guard snapshot!.documents.first?.value != nil else {
+                    //いいねしてない
+                    self?.iLiked = false
+                    return
+                }
+                //いいねしてる
+                self?.iLiked = true
+                
+            }
+            
+        })
     }
     
     //画面から離れたとき
@@ -113,22 +131,26 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
             }else {
                 guard snapshot!.documents.first?.value != nil else {
                     //いいねしてない
-                    let docData = ["uid" : Profile.shared.loginUser.uid,
-                                   "createAt": Timestamp()] as [String : Any]
-                    print("データなし")
-                    Firestore.firestore().collection("Posts").document((self?.postId)!).collection("likeUsers").document(Profile.shared.loginUser.uid).setData(docData) { error in
-                        if let error = error {
-                            print("いいねの登録に失敗しました。\(error)")
-                            return
+                    if((self?.iLiked)!){
+                        let docData = ["uid" : Profile.shared.loginUser.uid,
+                                       "createAt": Timestamp()] as [String : Any]
+                        print("データなし")
+                        Firestore.firestore().collection("Posts").document((self?.postId)!).collection("likeUsers").document(Profile.shared.loginUser.uid).setData(docData) { error in
+                            if let error = error {
+                                print("いいねの登録に失敗しました。\(error)")
+                                return
+                            }
+                            print("いいねの登録に成功しました。")
                         }
-                        print("いいねの登録に成功しました。")
                     }
                     return
                 }
                 //いいねしてる
-                Firestore.firestore().collection("Posts").document((self?.postId)!).collection("likeUsers").document(Profile.shared.loginUser.uid).delete(){ error in
-                    if let error = error {
-                        print("いいねの削除に失敗\(error)")
+                if(!(self?.iLiked)!){
+                    Firestore.firestore().collection("Posts").document((self?.postId)!).collection("likeUsers").document(Profile.shared.loginUser.uid).delete(){ error in
+                        if let error = error {
+                            print("いいねの削除に失敗\(error)")
+                        }
                     }
                 }
             }
@@ -382,6 +404,8 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
 
             cell.post = post
             cell.delegate = self
+            cell.goodDelegate = self
+            cell.iLiked = iLiked
             
 
             return cell
@@ -430,5 +454,13 @@ extension ChatRoomController: UserProfileProtocol{
     func tapUser(user: User) {
         Goto.Profile(view: self, user: user)
 //        Goto.UserProfile(view: self, user: user)
+    }
+}
+
+extension ChatRoomController: goodDelegate {
+    
+    func good() {
+        iLiked.toggle()
+        print("\(iLiked)")
     }
 }

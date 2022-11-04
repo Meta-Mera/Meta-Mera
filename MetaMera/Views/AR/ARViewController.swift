@@ -791,6 +791,7 @@ extension ARViewController: MKMapViewDelegate {
     //MARK: ピンをタップしたときのイベント
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotations = view.annotation{
+            print("\(annotations)")
             
             guard let subtitle = annotations.subtitle else {
                 return
