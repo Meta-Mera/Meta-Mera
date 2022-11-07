@@ -67,6 +67,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Zxy-Xy-r5C">
+                                <rect key="frame" x="0.0" y="299" width="375" height="368"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wGm-sP-NrV">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -76,20 +87,25 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Aca-wF-pWy" secondAttribute="trailing" constant="10" id="IUz-VQ-GzW"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="R6S-I9-zzX" secondAttribute="trailing" constant="15" id="JAm-r0-z9H"/>
                             <constraint firstItem="zx1-x3-sUx" firstAttribute="top" secondItem="Yma-hK-cHB" secondAttribute="bottom" constant="5" id="KO9-WP-WmU"/>
+                            <constraint firstItem="Zxy-Xy-r5C" firstAttribute="top" secondItem="Aca-wF-pWy" secondAttribute="bottom" constant="30" id="Pvz-yq-aeo"/>
                             <constraint firstItem="R6S-I9-zzX" firstAttribute="width" secondItem="R6S-I9-zzX" secondAttribute="height" multiplier="1:1" id="TcZ-AW-mxR"/>
                             <constraint firstItem="WyD-gj-07G" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="WLc-Jj-SpU"/>
                             <constraint firstItem="R6S-I9-zzX" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="15" id="Ym0-Pn-d3d"/>
                             <constraint firstItem="Aca-wF-pWy" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="csa-3h-Dms"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Zxy-Xy-r5C" secondAttribute="bottom" id="hqJ-pN-ysE"/>
                             <constraint firstItem="Yma-hK-cHB" firstAttribute="top" secondItem="C14-IF-Xmx" secondAttribute="bottom" constant="30" id="ieh-k1-DXU"/>
                             <constraint firstItem="C14-IF-Xmx" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="jH5-Rd-iLh"/>
+                            <constraint firstItem="Zxy-Xy-r5C" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="jh5-Un-2Y4"/>
                             <constraint firstItem="Aca-wF-pWy" firstAttribute="top" secondItem="zx1-x3-sUx" secondAttribute="bottom" constant="30" id="mie-ZY-6jE"/>
                             <constraint firstItem="Yma-hK-cHB" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="ouJ-h5-w6O"/>
                             <constraint firstAttribute="trailing" secondItem="zx1-x3-sUx" secondAttribute="trailing" constant="100" id="vgG-sa-4pu"/>
                             <constraint firstItem="zx1-x3-sUx" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="100" id="wAa-eS-JAN"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Zxy-Xy-r5C" secondAttribute="trailing" id="yKW-AY-hKw"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backButton" destination="WyD-gj-07G" id="uo6-JC-8AG"/>
+                        <outlet property="collectionView" destination="Zxy-Xy-r5C" id="ZAH-95-9BU"/>
                         <outlet property="discriptionLabel" destination="Aca-wF-pWy" id="ZC5-RI-1rI"/>
                         <outlet property="menuButton" destination="R6S-I9-zzX" id="e8v-QO-hrA"/>
                         <outlet property="userIconImageView" destination="C14-IF-Xmx" id="frC-8G-xXV"/>

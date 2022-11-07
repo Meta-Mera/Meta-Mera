@@ -30,6 +30,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var userIconImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var discriptionLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var loginUser: User!
     var user: User!
@@ -44,6 +45,16 @@ class ProfileViewController: UIViewController {
     /// 画面レイアウト
     private func configView() {
         userIconImageView.layer.cornerRadius = userIconImageView.bounds.width / 2
+        
+        // collectionView
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.isPagingEnabled = true
+        collectionView.register(UINib(nibName: "ProfileCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "ProfileCollectionViewCell")
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = .init(width: collectionView.bounds.width, height: collectionView.bounds.height)
+        collectionView.collectionViewLayout = layout
     }
     
     /// ユーザープロフィールデータを表示
@@ -68,8 +79,26 @@ class ProfileViewController: UIViewController {
     @IBAction func menuButtonAction(_ sender: Any) {
         
     }
+        
+}
+
+extension ProfileViewController: UICollectionViewDataSource {
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
     
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileCollectionViewCell", for: indexPath) as! ProfileCollectionViewCell
+        cell.bind(indexPath.row)
+        return cell
+    }
+}
+
+extension ProfileViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("item selected", indexPath.row)
+    }
 }
 
 

@@ -133,6 +133,8 @@
 		4C1AE4781286396440668182 /* Pods_MetaMera_MetaMeraUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054A1F7793BB79FF5158A8D7 /* Pods_MetaMera_MetaMeraUITests.framework */; };
 		E0D9248D2914DC5700FE8A8D /* MapviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D9248B2914DC5700FE8A8D /* MapviewCollectionViewCell.swift */; };
 		E0D9248E2914DC5700FE8A8D /* MapviewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0D9248C2914DC5700FE8A8D /* MapviewCollectionViewCell.xib */; };
+		E0D92491291899B800FE8A8D /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D9248F291899B800FE8A8D /* ProfileCollectionViewCell.swift */; };
+		E0D92492291899B800FE8A8D /* ProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0D92490291899B800FE8A8D /* ProfileCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -258,6 +260,8 @@
 		B611C4DB6464C6529796A224 /* Pods-MetaMera-MetaMeraUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaMera-MetaMeraUITests.release.xcconfig"; path = "Target Support Files/Pods-MetaMera-MetaMeraUITests/Pods-MetaMera-MetaMeraUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E0D9248B2914DC5700FE8A8D /* MapviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		E0D9248C2914DC5700FE8A8D /* MapviewCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapviewCollectionViewCell.xib; sourceTree = "<group>"; };
+		E0D9248F291899B800FE8A8D /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
+		E0D92490291899B800FE8A8D /* ProfileCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -435,6 +439,7 @@
 				387EA2D828CF786900629B4B /* ChangeProfile */,
 				38968066284C76C8008E1302 /* ProfileViewController.swift */,
 				3896806A284C7755008E1302 /* ProfileViewController.storyboard */,
+				E0D92493291899BB00FE8A8D /* Cells */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -681,6 +686,23 @@
 			path = Mapviewcell;
 			sourceTree = "<group>";
 		};
+		E0D92493291899BB00FE8A8D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E0D92494291899C200FE8A8D /* ProfileCell */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		E0D92494291899C200FE8A8D /* ProfileCell */ = {
+			isa = PBXGroup;
+			children = (
+				E0D9248F291899B800FE8A8D /* ProfileCollectionViewCell.swift */,
+				E0D92490291899B800FE8A8D /* ProfileCollectionViewCell.xib */,
+			);
+			path = ProfileCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -805,6 +827,7 @@
 				388EA9AC289E9AF800A79746 /* ImageCollectionViewCell.xib in Resources */,
 				385B6E1F28DCB2A0007DEDF1 /* DebugViewController.storyboard in Resources */,
 				38FAA64F28815740000521DD /* CreateNewPostViewController.storyboard in Resources */,
+				E0D92492291899B800FE8A8D /* ProfileCollectionViewCell.xib in Resources */,
 				3875B941290A22B80079304D /* Localizable.strings in Resources */,
 				382713892831F95F004BEB01 /* SignInViewController.xib in Resources */,
 				382713F22833423A004BEB01 /* ARViewController.storyboard in Resources */,
@@ -975,6 +998,7 @@
 				38A8B93528DDFB3E000E86FD /* RemoteConfigClientProtocol.swift in Sources */,
 				38FAA64D28815736000521DD /* CreateNewPostViewController.swift in Sources */,
 				385B6E2528DCB480007DEDF1 /* PostTableViewCell.swift in Sources */,
+				E0D92491291899B800FE8A8D /* ProfileCollectionViewCell.swift in Sources */,
 				382713F028332648004BEB01 /* AppDelegate.swift in Sources */,
 				3896805E284A4CAE008E1302 /* Goto.swift in Sources */,
 				38AD941929149D44004F0C9F /* LikeUsers.swift in Sources */,
