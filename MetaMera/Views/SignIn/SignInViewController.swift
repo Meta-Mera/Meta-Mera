@@ -33,6 +33,7 @@ class SignInViewController: UIViewController {
 
         emailTextField.delegate = self
         passwordTextField.delegate = self
+
         
         emailTextField.attributedPlaceholder = NSAttributedString(string: "　example@meta-mera.com", attributes: [NSAttributedString.Key.foregroundColor: UIColor.textFieldPlaceholderColor])
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "　Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.textFieldPlaceholderColor])

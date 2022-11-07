@@ -131,6 +131,8 @@
 		4855586E8B131614D9B1EC7D /* Pods_MetaMeraTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DB4C5FB7A8F89B54ABB658 /* Pods_MetaMeraTests.framework */; };
 		4B1461BD03EEF63DAF098061 /* Pods_MetaMera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A907794C66F3A3F859250E /* Pods_MetaMera.framework */; };
 		4C1AE4781286396440668182 /* Pods_MetaMera_MetaMeraUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054A1F7793BB79FF5158A8D7 /* Pods_MetaMera_MetaMeraUITests.framework */; };
+		E0D9248D2914DC5700FE8A8D /* MapviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D9248B2914DC5700FE8A8D /* MapviewCollectionViewCell.swift */; };
+		E0D9248E2914DC5700FE8A8D /* MapviewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0D9248C2914DC5700FE8A8D /* MapviewCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -254,6 +256,8 @@
 		93DB4C5FB7A8F89B54ABB658 /* Pods_MetaMeraTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaMeraTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94B239514413AEC60D790459 /* Pods-MetaMera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaMera.debug.xcconfig"; path = "Target Support Files/Pods-MetaMera/Pods-MetaMera.debug.xcconfig"; sourceTree = "<group>"; };
 		B611C4DB6464C6529796A224 /* Pods-MetaMera-MetaMeraUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaMera-MetaMeraUITests.release.xcconfig"; path = "Target Support Files/Pods-MetaMera-MetaMeraUITests/Pods-MetaMera-MetaMeraUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E0D9248B2914DC5700FE8A8D /* MapviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapviewCollectionViewCell.swift; sourceTree = "<group>"; };
+		E0D9248C2914DC5700FE8A8D /* MapviewCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapviewCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -427,6 +431,7 @@
 		38968063284C7519008E1302 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				E0D9248A2914DBF500FE8A8D /* Mapviewcell */,
 				387EA2D828CF786900629B4B /* ChangeProfile */,
 				38968066284C76C8008E1302 /* ProfileViewController.swift */,
 				3896806A284C7755008E1302 /* ProfileViewController.storyboard */,
@@ -667,6 +672,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E0D9248A2914DBF500FE8A8D /* Mapviewcell */ = {
+			isa = PBXGroup;
+			children = (
+				E0D9248B2914DC5700FE8A8D /* MapviewCollectionViewCell.swift */,
+				E0D9248C2914DC5700FE8A8D /* MapviewCollectionViewCell.xib */,
+			);
+			path = Mapviewcell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -800,6 +814,7 @@
 				385B6E2628DCB480007DEDF1 /* PostTableViewCell.xib in Resources */,
 				38A8B94528E6D279000E86FD /* PlaceTextView.xib in Resources */,
 				3896806B284C7755008E1302 /* ProfileViewController.storyboard in Resources */,
+				E0D9248E2914DC5700FE8A8D /* MapviewCollectionViewCell.xib in Resources */,
 				38A21238282A064400B56E03 /* LaunchScreen.storyboard in Resources */,
 				3875B934290A1F310079304D /* ReportViewController.storyboard in Resources */,
 				38A2128A282CEB8200B56E03 /* GoogleService-Info.plist in Resources */,
@@ -955,6 +970,7 @@
 				38E9AE2A2865641300EB71D6 /* Profile.swift in Sources */,
 				38A8B93328DDFB05000E86FD /* RemoteConfigClient.swift in Sources */,
 				38968057283F04CE008E1302 /* StartUpViewController.swift in Sources */,
+				E0D9248D2914DC5700FE8A8D /* MapviewCollectionViewCell.swift in Sources */,
 				38FAA64A28801229000521DD /* Post.swift in Sources */,
 				38A8B93528DDFB3E000E86FD /* RemoteConfigClientProtocol.swift in Sources */,
 				38FAA64D28815736000521DD /* CreateNewPostViewController.swift in Sources */,
