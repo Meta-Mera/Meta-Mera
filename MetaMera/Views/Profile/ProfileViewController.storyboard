@@ -61,19 +61,28 @@
                                     <action selector="menuButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Fvc-9V-hy7"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ここに自己紹介文を記入します" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aca-wF-pWy">
+                                <rect key="frame" x="10" y="248" width="355" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="WyD-gj-07G" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="15" id="Bpo-Cq-UzA"/>
                             <constraint firstItem="C14-IF-Xmx" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="50" id="HbR-fn-bs4"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Aca-wF-pWy" secondAttribute="trailing" constant="10" id="IUz-VQ-GzW"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="R6S-I9-zzX" secondAttribute="trailing" constant="15" id="JAm-r0-z9H"/>
                             <constraint firstItem="zx1-x3-sUx" firstAttribute="top" secondItem="Yma-hK-cHB" secondAttribute="bottom" constant="5" id="KO9-WP-WmU"/>
                             <constraint firstItem="R6S-I9-zzX" firstAttribute="width" secondItem="R6S-I9-zzX" secondAttribute="height" multiplier="1:1" id="TcZ-AW-mxR"/>
                             <constraint firstItem="WyD-gj-07G" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="WLc-Jj-SpU"/>
                             <constraint firstItem="R6S-I9-zzX" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="15" id="Ym0-Pn-d3d"/>
+                            <constraint firstItem="Aca-wF-pWy" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="csa-3h-Dms"/>
                             <constraint firstItem="Yma-hK-cHB" firstAttribute="top" secondItem="C14-IF-Xmx" secondAttribute="bottom" constant="30" id="ieh-k1-DXU"/>
                             <constraint firstItem="C14-IF-Xmx" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="jH5-Rd-iLh"/>
+                            <constraint firstItem="Aca-wF-pWy" firstAttribute="top" secondItem="zx1-x3-sUx" secondAttribute="bottom" constant="30" id="mie-ZY-6jE"/>
                             <constraint firstItem="Yma-hK-cHB" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="ouJ-h5-w6O"/>
                             <constraint firstAttribute="trailing" secondItem="zx1-x3-sUx" secondAttribute="trailing" constant="100" id="vgG-sa-4pu"/>
                             <constraint firstItem="zx1-x3-sUx" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="100" id="wAa-eS-JAN"/>
@@ -81,6 +90,7 @@
                     </view>
                     <connections>
                         <outlet property="backButton" destination="WyD-gj-07G" id="uo6-JC-8AG"/>
+                        <outlet property="discriptionLabel" destination="Aca-wF-pWy" id="ZC5-RI-1rI"/>
                         <outlet property="menuButton" destination="R6S-I9-zzX" id="e8v-QO-hrA"/>
                         <outlet property="userIconImageView" destination="C14-IF-Xmx" id="frC-8G-xXV"/>
                         <outlet property="userNameLabel" destination="Yma-hK-cHB" id="fV3-KD-NL2"/>

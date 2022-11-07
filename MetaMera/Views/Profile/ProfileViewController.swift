@@ -29,6 +29,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var userIconImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var discriptionLabel: UILabel!
     
     var loginUser: User!
     var user: User!
@@ -55,6 +56,8 @@ class ProfileViewController: UIViewController {
         if let userIconImageURL = URL(string: profileData.profileImage) {
             userIconImageView.af.setImage(withURL: userIconImageURL)
         }
+        // 自己紹介文 DB ないんだが... to ジム
+//        discriptionLabel.text = profileData.
     }
     
     // MARK: Action Buttons
