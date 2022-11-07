@@ -208,6 +208,7 @@ crashlytics-build.properties
 #           - AS PER https://guides.cocoapods.org/using/using-cocoapods.html NEVER IGNORE THE LOCK FILE
 Pods/
 MetaMera.xcodeproj/project.pbxproj
+Podfile.lock
 
 
 # End of https://www.toptal.com/developers/gitignore/api/firebase,macos,swift,unity,CocoaPods
