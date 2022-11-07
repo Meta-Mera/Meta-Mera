@@ -3,7 +3,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=firebase,macos,swift,unity
 
 MetaMera.xcodeproj/
-Podfile.lock
+Podfile.lock/
 
 ### Firebase ###
 .idea
