@@ -22,35 +22,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     //MARK: Quick Action
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem) async -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-        let signInModel = SignInModel()
-        switch shortcutItem.type {
-        case "jim":
-            
-            signInModel.signIn(signInItem: .init(email: "g019c1045@g.neec.ac.jp", password: "123456")) {[weak self] result in
-                switch result{
-                case .success(_):
-                    self?.window?.rootViewController = UIStoryboard.instantiateInitialViewController(.init(name: "TopViewController", bundle: .main))()
-                    self?.window?.makeKeyAndVisible()
-                    IQKeyboardManager.shared.enable = true
-                    IQKeyboardManager.shared.enableAutoToolbar = false
-                case .failure(_): break
-                }
-            }
-        case "abe":
-            signInModel.signIn(signInItem: .init(email: "g019c1053@g.neec.ac.jp", password: "123456")) {[weak self] result in
-                switch result{
-                case .success(_):
-                    self?.window?.rootViewController = UIStoryboard.instantiateInitialViewController(.init(name: "TopViewController", bundle: .main))()
-                    self?.window?.makeKeyAndVisible()
-                    IQKeyboardManager.shared.enable = true
-                    IQKeyboardManager.shared.enableAutoToolbar = false
-                case .failure(_): break
-                }
-            }
-        default:
-            let navigationController =  UINavigationController(rootViewController: SignUpViewController())
-            window?.rootViewController = navigationController
-        }
+//        let signInModel = SignInModel()
+//        switch shortcutItem.type {
+//        case "jim":
+//
+//            signInModel.signIn(signInItem: .init(email: "g019c1045@g.neec.ac.jp", password: "123456")) {[weak self] result in
+//                switch result{
+//                case .success(_):
+//                    self?.window?.rootViewController = UIStoryboard.instantiateInitialViewController(.init(name: "TopViewController", bundle: .main))()
+//                    self?.window?.makeKeyAndVisible()
+//                    IQKeyboardManager.shared.enable = true
+//                    IQKeyboardManager.shared.enableAutoToolbar = false
+//                case .failure(_): break
+//                }
+//            }
+//        case "abe":
+//            signInModel.signIn(signInItem: .init(email: "g019c1053@g.neec.ac.jp", password: "123456")) {[weak self] result in
+//                switch result{
+//                case .success(_):
+//                    self?.window?.rootViewController = UIStoryboard.instantiateInitialViewController(.init(name: "TopViewController", bundle: .main))()
+//                    self?.window?.makeKeyAndVisible()
+//                    IQKeyboardManager.shared.enable = true
+//                    IQKeyboardManager.shared.enableAutoToolbar = false
+//                case .failure(_): break
+//                }
+//            }
+//        default:
+//            let navigationController =  UINavigationController(rootViewController: SignUpViewController())
+//            window?.rootViewController = navigationController
+//        }
+        window?.rootViewController = UIStoryboard.instantiateInitialViewController(.init(name: "ProfileViewController", bundle: .main))()
         window?.makeKeyAndVisible()
         return true
     }
