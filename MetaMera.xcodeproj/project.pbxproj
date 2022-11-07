@@ -131,6 +131,8 @@
 		4855586E8B131614D9B1EC7D /* Pods_MetaMeraTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DB4C5FB7A8F89B54ABB658 /* Pods_MetaMeraTests.framework */; };
 		4B1461BD03EEF63DAF098061 /* Pods_MetaMera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A907794C66F3A3F859250E /* Pods_MetaMera.framework */; };
 		4C1AE4781286396440668182 /* Pods_MetaMera_MetaMeraUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054A1F7793BB79FF5158A8D7 /* Pods_MetaMera_MetaMeraUITests.framework */; };
+		841C2C572914B0DA00EBE354 /* SettingProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841C2C562914B0DA00EBE354 /* SettingProfileViewController.swift */; };
+		841C2C592914B0E800EBE354 /* SettingProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 841C2C582914B0E800EBE354 /* SettingProfileViewController.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -249,6 +251,8 @@
 		44A6594E1AD10EE93D7CD030 /* Pods-MetaMera-MetaMeraUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaMera-MetaMeraUITests.debug.xcconfig"; path = "Target Support Files/Pods-MetaMera-MetaMeraUITests/Pods-MetaMera-MetaMeraUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		63A907794C66F3A3F859250E /* Pods_MetaMera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaMera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7556378416DB6697151D6632 /* Pods-MetaMeraTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaMeraTests.debug.xcconfig"; path = "Target Support Files/Pods-MetaMeraTests/Pods-MetaMeraTests.debug.xcconfig"; sourceTree = "<group>"; };
+		841C2C562914B0DA00EBE354 /* SettingProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingProfileViewController.swift; sourceTree = "<group>"; };
+		841C2C582914B0E800EBE354 /* SettingProfileViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingProfileViewController.storyboard; sourceTree = "<group>"; };
 		8495CA02EFC8F265A2E408B7 /* Pods-MetaMeraTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaMeraTests.release.xcconfig"; path = "Target Support Files/Pods-MetaMeraTests/Pods-MetaMeraTests.release.xcconfig"; sourceTree = "<group>"; };
 		91F618A3C80A83AD1DBFA6B6 /* Pods-MetaMera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaMera.release.xcconfig"; path = "Target Support Files/Pods-MetaMera/Pods-MetaMera.release.xcconfig"; sourceTree = "<group>"; };
 		93DB4C5FB7A8F89B54ABB658 /* Pods_MetaMeraTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaMeraTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -545,6 +549,7 @@
 		38A2125E282A067C00B56E03 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				841C2C552914B06A00EBE354 /* SettingProfile */,
 				38A21264282A09C200B56E03 /* SignUpViewController.swift */,
 				38A21265282A09C200B56E03 /* SignUpViewController.xib */,
 			);
@@ -652,6 +657,15 @@
 				38FAA64E28815740000521DD /* CreateNewPostViewController.storyboard */,
 			);
 			path = CreateNewPost;
+			sourceTree = "<group>";
+		};
+		841C2C552914B06A00EBE354 /* SettingProfile */ = {
+			isa = PBXGroup;
+			children = (
+				841C2C562914B0DA00EBE354 /* SettingProfileViewController.swift */,
+				841C2C582914B0E800EBE354 /* SettingProfileViewController.storyboard */,
+			);
+			path = SettingProfile;
 			sourceTree = "<group>";
 		};
 		A269E6B3EC31B8B88C1E6C44 /* Pods */ = {
@@ -797,6 +811,7 @@
 				38271475283472C0004BEB01 /* ChatViewController.xib in Resources */,
 				38A21269282A104200B56E03 /* Main.storyboard in Resources */,
 				38A21282282CE15800B56E03 /* utakata-Regular.otf in Resources */,
+				841C2C592914B0E800EBE354 /* SettingProfileViewController.storyboard in Resources */,
 				385B6E2628DCB480007DEDF1 /* PostTableViewCell.xib in Resources */,
 				38A8B94528E6D279000E86FD /* PlaceTextView.xib in Resources */,
 				3896806B284C7755008E1302 /* ProfileViewController.storyboard in Resources */,
@@ -992,6 +1007,7 @@
 				38FAA644287D20C5000521DD /* UITraitCollection-Extension.swift in Sources */,
 				38A21230282A064300B56E03 /* Experience.rcproject in Sources */,
 				388ECDCC29063709009C9DE1 /* ReportViewController.swift in Sources */,
+				841C2C572914B0DA00EBE354 /* SettingProfileViewController.swift in Sources */,
 				38FAA648287FAFE4000521DD /* Comment.swift in Sources */,
 				38968068284C76C8008E1302 /* ProfileViewController.swift in Sources */,
 				382F6AB2286D44730056BFA2 /* User.swift in Sources */,
