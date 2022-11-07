@@ -211,4 +211,8 @@ crashlytics-build.properties
 #           - AS PER https://guides.cocoapods.org/using/using-cocoapods.html NEVER IGNORE THE LOCK FILE
 Pods/
 
+
+
 # End of https://www.toptal.com/developers/gitignore/api/firebase,macos,swift,unity,CocoaPods
+
+MetaMera.xcodeproj/

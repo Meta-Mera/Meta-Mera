@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Setting Profile View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="SettingProfileViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="SettingProfileViewController" customModule="MetaMera" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="アカウント作成画面_背景" translatesAutoresizingMaskIntoConstraints="NO" id="zfG-Pc-hLo">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ypA-Yx-qWn">
+                                <rect key="frame" x="145" y="372" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ypA-Yx-qWn" secondAttribute="height" multiplier="1:1" id="FGA-7Q-kNz"/>
+                                    <constraint firstAttribute="height" constant="100" id="nBX-NS-4Hi"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="アカウント作成画面_写真マーク"/>
+                                <connections>
+                                    <action selector="userIconButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="1MJ-md-YGD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9kR-Pl-ktl">
+                                <rect key="frame" x="100" y="600.66666666666663" width="190" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="ebb-iI-Wx9"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="アカウント作成画面_nextボタン"/>
+                                <connections>
+                                    <action selector="nextButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="wdS-iZ-R39"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3x2-Kp-HCt">
+                                <rect key="frame" x="163" y="482" width="64" height="18.666666666666686"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="9kR-Pl-ktl" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="100" id="6Td-iK-DiJ"/>
+                            <constraint firstItem="9kR-Pl-ktl" firstAttribute="top" secondItem="3x2-Kp-HCt" secondAttribute="bottom" constant="100" id="9v4-eX-ABq"/>
+                            <constraint firstItem="3x2-Kp-HCt" firstAttribute="top" secondItem="ypA-Yx-qWn" secondAttribute="bottom" constant="10" id="MLQ-dJ-Xjo"/>
+                            <constraint firstItem="zfG-Pc-hLo" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Woh-Ko-ERE"/>
+                            <constraint firstAttribute="bottom" secondItem="zfG-Pc-hLo" secondAttribute="bottom" id="cIG-bn-GE8"/>
+                            <constraint firstItem="3x2-Kp-HCt" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="cOJ-7O-IAz"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="zfG-Pc-hLo" secondAttribute="trailing" id="dNM-g7-sOG"/>
+                            <constraint firstItem="zfG-Pc-hLo" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="emh-fT-y61"/>
+                            <constraint firstItem="ypA-Yx-qWn" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="fF0-Ci-GU7"/>
+                            <constraint firstItem="ypA-Yx-qWn" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="ftd-yq-TnY"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="9kR-Pl-ktl" secondAttribute="trailing" constant="100" id="pmA-SA-cYm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="nextButton" destination="9kR-Pl-ktl" id="kuy-L3-wU1"/>
+                        <outlet property="userIconButton" destination="ypA-Yx-qWn" id="SJ4-hB-ref"/>
+                        <outlet property="userNameTextField" destination="3x2-Kp-HCt" id="jn0-z1-0AE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1528" y="-697"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="アカウント作成画面_nextボタン" width="560" height="173"/>
+        <image name="アカウント作成画面_写真マーク" width="190" height="192"/>
+        <image name="アカウント作成画面_背景" width="1284" height="2778"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
