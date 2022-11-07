@@ -31,10 +31,12 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var discriptionLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var photoImageButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var mapButton: UIButton!
     
     var loginUser: User!
     var user: User!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,11 +81,21 @@ class ProfileViewController: UIViewController {
     @IBAction func menuButtonAction(_ sender: Any) {
         
     }
+    
+    
+    private var isSelectedPhotoButton = true
+    @IBAction func photoButtonAction(_ sender: Any) {
+        let img: UIImage = isSelectedPhotoButton ? UIImage(named: "PhotoDark")! : UIImage(named: "PhotoThin")!
+        photoImageButton.setImage(img, for: .normal)
+        flag.toggle()
+        
+    }
+    
         
 }
 
 extension ProfileViewController: UICollectionViewDataSource {
-    
+    //この部分で３分割してる
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
