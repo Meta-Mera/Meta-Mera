@@ -32,11 +32,19 @@
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="initial_icon"/>
                 </button>
-                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u3K-sb-dG6">
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u3K-sb-dG6">
                     <rect key="frame" x="163" y="482" width="64" height="19"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qzQ-mg-8Sq">
+                    <rect key="frame" x="68" y="591" width="254" height="81"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="250" id="XoB-6r-KFC"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Button" image="next_button"/>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -45,9 +53,12 @@
                 <constraint firstItem="4QN-Qm-CmQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="5ef-dQ-m4V"/>
                 <constraint firstItem="4QN-Qm-CmQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Fid-0i-ixn"/>
                 <constraint firstAttribute="bottom" secondItem="4QN-Qm-CmQ" secondAttribute="bottom" id="Qyi-Vm-5bv"/>
+                <constraint firstItem="qzQ-mg-8Sq" firstAttribute="top" secondItem="u3K-sb-dG6" secondAttribute="bottom" constant="90" id="WKK-BN-jUr"/>
+                <constraint firstItem="qzQ-mg-8Sq" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="bb0-Xk-ZhA"/>
                 <constraint firstItem="Dp9-SL-0yl" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="h8a-dF-87n"/>
                 <constraint firstItem="u3K-sb-dG6" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="jVu-oW-kuu"/>
                 <constraint firstItem="u3K-sb-dG6" firstAttribute="top" secondItem="Dp9-SL-0yl" secondAttribute="bottom" constant="10" id="ocM-0a-EFW"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="qzQ-mg-8Sq" secondAttribute="bottom" constant="138" id="pGC-Y1-7Fa"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4QN-Qm-CmQ" secondAttribute="trailing" id="wuc-zT-PX3"/>
             </constraints>
             <point key="canvasLocation" x="138.46153846153845" y="20.616113744075829"/>
@@ -56,6 +67,7 @@
     <resources>
         <image name="create_account_background" width="1284" height="2778"/>
         <image name="initial_icon" width="288" height="288"/>
+        <image name="next_button" width="560" height="173"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
