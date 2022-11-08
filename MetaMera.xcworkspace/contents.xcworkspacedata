@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:MetaMera.xcodeproj">
+      location = "group:/Users/minfumi/Workspace/Meta-Mera/MetaMera.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

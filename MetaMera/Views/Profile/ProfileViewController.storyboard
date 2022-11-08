@@ -89,7 +89,7 @@
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="PhotoThin"/>
                                         <connections>
-                                            <action selector="photoButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="VVQ-Kb-t3F"/>
+                                            <action selector="photoButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="gBM-kv-U8s"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Hn-XO-IiA">
@@ -100,7 +100,7 @@
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="HeartThin"/>
                                         <connections>
-                                            <action selector="favoriteButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="AUf-m8-WL2"/>
+                                            <action selector="favoriteButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="RR3-E6-bMC"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAR-0U-mNn">
@@ -111,7 +111,7 @@
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="PositionThin"/>
                                         <connections>
-                                            <action selector="PositionButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="TEr-5P-s1J"/>
+                                            <action selector="MapButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="PHl-3A-NBe"/>
                                         </connections>
                                     </button>
                                 </subviews>

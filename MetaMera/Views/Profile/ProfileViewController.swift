@@ -86,7 +86,9 @@ class ProfileViewController: UIViewController {
     @IBAction func MapButtonAction(_ sender: Any) {
         let img: UIImage = isSelectedMapButton ? UIImage(named: "PositionDark")! : UIImage(named: "PositionThin")!
         mapButton.setImage(img, for: .normal)
-        flag.toggle()
+        isSelectedMapButton.toggle()
+        
+        moveScrollView(at: 2)
     }
     
     //ハート押したら濃くなる
@@ -94,7 +96,8 @@ class ProfileViewController: UIViewController {
     @IBAction func favoriteButtonAction(_ sender: Any) {
         let img: UIImage = isSelectedFavoriteButton ? UIImage(named: "HeartDark")! : UIImage(named: "HeartThin")!
         favoriteButton.setImage(img, for: .normal)
-        flag.toggle()
+        isSelectedFavoriteButton.toggle()
+        moveScrollView(at: 1)
         
     }
     //写真マーク押したら濃くなる
@@ -102,10 +105,15 @@ class ProfileViewController: UIViewController {
     @IBAction func photoButtonAction(_ sender: Any) {
         let img: UIImage = isSelectedPhotoButton ? UIImage(named: "PhotoDark")! : UIImage(named: "PhotoThin")!
         photoImageButton.setImage(img, for: .normal)
-        flag.toggle()
-        
+        isSelectedPhotoButton.toggle()
+        moveScrollView(at: 0)
     }
     
+    private func moveScrollView(at index: Int) {
+        collectionView.isPagingEnabled = false
+        collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .left, animated: true)
+        collectionView.isPagingEnabled = true
+    }
         
 }
 
