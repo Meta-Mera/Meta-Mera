@@ -81,8 +81,23 @@ class ProfileViewController: UIViewController {
     @IBAction func menuButtonAction(_ sender: Any) {
         
     }
+    //マップボタン押したら濃くなる
+    private var isSelectedMapButton = true
+    @IBAction func MapButtonAction(_ sender: Any) {
+        let img: UIImage = isSelectedMapButton ? UIImage(named: "PositionDark")! : UIImage(named: "PositionThin")!
+        mapButton.setImage(img, for: .normal)
+        flag.toggle()
+    }
     
-    
+    //ハート押したら濃くなる
+    private var isSelectedFavoriteButton = true
+    @IBAction func favoriteButtonAction(_ sender: Any) {
+        let img: UIImage = isSelectedFavoriteButton ? UIImage(named: "HeartDark")! : UIImage(named: "HeartThin")!
+        favoriteButton.setImage(img, for: .normal)
+        flag.toggle()
+        
+    }
+    //写真マーク押したら濃くなる
     private var isSelectedPhotoButton = true
     @IBAction func photoButtonAction(_ sender: Any) {
         let img: UIImage = isSelectedPhotoButton ? UIImage(named: "PhotoDark")! : UIImage(named: "PhotoThin")!

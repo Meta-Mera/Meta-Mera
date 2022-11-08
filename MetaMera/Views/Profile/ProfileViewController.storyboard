@@ -100,7 +100,7 @@
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="HeartThin"/>
                                         <connections>
-                                            <action selector="favoriteButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="mtO-ZM-S9S"/>
+                                            <action selector="favoriteButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="AUf-m8-WL2"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAR-0U-mNn">
@@ -110,6 +110,9 @@
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="PositionThin"/>
+                                        <connections>
+                                            <action selector="PositionButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="TEr-5P-s1J"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
