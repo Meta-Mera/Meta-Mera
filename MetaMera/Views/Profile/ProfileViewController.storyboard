@@ -62,13 +62,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ここに自己紹介文を記入します" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aca-wF-pWy">
-                                <rect key="frame" x="10" y="248" width="355" height="21"/>
+                                <rect key="frame" x="10" y="248" width="355" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Zxy-Xy-r5C">
-                                <rect key="frame" x="0.0" y="299" width="375" height="368"/>
+                                <rect key="frame" x="0.0" y="328.5" width="355" height="338.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wGm-sP-NrV">
                                     <size key="itemSize" width="128" height="128"/>
@@ -78,16 +78,60 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="PJc-ay-9Cy">
+                                <rect key="frame" x="40" y="298.5" width="295" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zzo-a4-NEF">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Zzo-a4-NEF" secondAttribute="height" multiplier="1:1" id="9dx-w9-Kwy"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="PhotoThin"/>
+                                        <connections>
+                                            <action selector="photoButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="gBM-kv-U8s"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Hn-XO-IiA">
+                                        <rect key="frame" x="132.5" y="0.0" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="5Hn-XO-IiA" secondAttribute="height" multiplier="1:1" id="XYg-WN-ujL"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="HeartThin"/>
+                                        <connections>
+                                            <action selector="favoriteButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="RR3-E6-bMC"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAR-0U-mNn">
+                                        <rect key="frame" x="265" y="0.0" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="JAR-0U-mNn" secondAttribute="height" multiplier="1:1" id="hcj-qS-gfz"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="PositionThin"/>
+                                        <connections>
+                                            <action selector="MapButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="PHl-3A-NBe"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="UcM-py-aOL"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Zxy-Xy-r5C" firstAttribute="top" secondItem="PJc-ay-9Cy" secondAttribute="bottom" id="5ag-jV-tNH"/>
                             <constraint firstItem="WyD-gj-07G" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="15" id="Bpo-Cq-UzA"/>
+                            <constraint firstItem="PJc-ay-9Cy" firstAttribute="top" secondItem="Aca-wF-pWy" secondAttribute="bottom" constant="30" id="DnH-Q5-Pkk"/>
+                            <constraint firstItem="PJc-ay-9Cy" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="40" id="FC2-U0-Ixa"/>
                             <constraint firstItem="C14-IF-Xmx" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="50" id="HbR-fn-bs4"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Aca-wF-pWy" secondAttribute="trailing" constant="10" id="IUz-VQ-GzW"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="R6S-I9-zzX" secondAttribute="trailing" constant="15" id="JAm-r0-z9H"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="PJc-ay-9Cy" secondAttribute="trailing" constant="40" id="Jvz-Nx-OsY"/>
                             <constraint firstItem="zx1-x3-sUx" firstAttribute="top" secondItem="Yma-hK-cHB" secondAttribute="bottom" constant="5" id="KO9-WP-WmU"/>
-                            <constraint firstItem="Zxy-Xy-r5C" firstAttribute="top" secondItem="Aca-wF-pWy" secondAttribute="bottom" constant="30" id="Pvz-yq-aeo"/>
                             <constraint firstItem="R6S-I9-zzX" firstAttribute="width" secondItem="R6S-I9-zzX" secondAttribute="height" multiplier="1:1" id="TcZ-AW-mxR"/>
                             <constraint firstItem="WyD-gj-07G" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="WLc-Jj-SpU"/>
                             <constraint firstItem="R6S-I9-zzX" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="15" id="Ym0-Pn-d3d"/>
@@ -100,26 +144,32 @@
                             <constraint firstItem="Yma-hK-cHB" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="ouJ-h5-w6O"/>
                             <constraint firstAttribute="trailing" secondItem="zx1-x3-sUx" secondAttribute="trailing" constant="100" id="vgG-sa-4pu"/>
                             <constraint firstItem="zx1-x3-sUx" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="100" id="wAa-eS-JAN"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Zxy-Xy-r5C" secondAttribute="trailing" id="yKW-AY-hKw"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Zxy-Xy-r5C" secondAttribute="trailing" constant="20" id="yKW-AY-hKw"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backButton" destination="WyD-gj-07G" id="uo6-JC-8AG"/>
                         <outlet property="collectionView" destination="Zxy-Xy-r5C" id="ZAH-95-9BU"/>
                         <outlet property="discriptionLabel" destination="Aca-wF-pWy" id="ZC5-RI-1rI"/>
+                        <outlet property="favoriteButton" destination="5Hn-XO-IiA" id="fi8-Re-Hdg"/>
+                        <outlet property="mapButton" destination="JAR-0U-mNn" id="lC5-yt-iRA"/>
                         <outlet property="menuButton" destination="R6S-I9-zzX" id="e8v-QO-hrA"/>
+                        <outlet property="photoImageButton" destination="Zzo-a4-NEF" id="oi5-xE-zvi"/>
                         <outlet property="userIconImageView" destination="C14-IF-Xmx" id="frC-8G-xXV"/>
                         <outlet property="userNameLabel" destination="Yma-hK-cHB" id="fV3-KD-NL2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2742" y="-186"/>
+            <point key="canvasLocation" x="-2743.1999999999998" y="-186.65667166416793"/>
         </scene>
     </scenes>
     <resources>
+        <image name="HeartThin" width="64" height="54"/>
         <image name="Icon 1" width="288" height="288"/>
         <image name="NameUnderbar" width="626" height="8"/>
+        <image name="PhotoThin" width="74" height="74"/>
+        <image name="PositionThin" width="65" height="74"/>
         <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
         <image name="矢印(5cm)" width="1181" height="1181"/>
         <systemColor name="systemBackgroundColor">
