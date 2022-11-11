@@ -32,15 +32,19 @@
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="initial_icon"/>
                 </button>
+
                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u3K-sb-dG6">
+
                     <rect key="frame" x="163" y="482" width="64" height="19"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+
                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgh-Mf-f55">
                     <rect key="frame" x="76" y="601" width="239" height="173"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="next_button"/>
+
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -50,10 +54,12 @@
                 <constraint firstItem="4QN-Qm-CmQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="5ef-dQ-m4V"/>
                 <constraint firstItem="4QN-Qm-CmQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Fid-0i-ixn"/>
                 <constraint firstAttribute="bottom" secondItem="4QN-Qm-CmQ" secondAttribute="bottom" id="Qyi-Vm-5bv"/>
+
                 <constraint firstItem="Dp9-SL-0yl" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="h8a-dF-87n"/>
                 <constraint firstItem="Pgh-Mf-f55" firstAttribute="top" secondItem="u3K-sb-dG6" secondAttribute="bottom" constant="100" id="i0S-Nq-tz1"/>
                 <constraint firstItem="u3K-sb-dG6" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="jVu-oW-kuu"/>
                 <constraint firstItem="u3K-sb-dG6" firstAttribute="top" secondItem="Dp9-SL-0yl" secondAttribute="bottom" constant="10" id="ocM-0a-EFW"/>
+
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4QN-Qm-CmQ" secondAttribute="trailing" id="wuc-zT-PX3"/>
             </constraints>
             <point key="canvasLocation" x="138.46153846153845" y="20.616113744075829"/>
