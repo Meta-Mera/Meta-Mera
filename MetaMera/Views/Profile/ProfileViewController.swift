@@ -31,10 +31,12 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var discriptionLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var photoImageButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var mapButton: UIButton!
     
     var loginUser: User!
     var user: User!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,11 +81,44 @@ class ProfileViewController: UIViewController {
     @IBAction func menuButtonAction(_ sender: Any) {
         
     }
+    //マップボタン押したら濃くなる
+    private var isSelectedMapButton = true
+    @IBAction func MapButtonAction(_ sender: Any) {
+        let img: UIImage = isSelectedMapButton ? UIImage(named: "PositionDark")! : UIImage(named: "PositionThin")!
+        mapButton.setImage(img, for: .normal)
+        isSelectedMapButton.toggle()
+        
+        moveScrollView(at: 2)
+    }
+    
+    //ハート押したら濃くなる
+    private var isSelectedFavoriteButton = true
+    @IBAction func favoriteButtonAction(_ sender: Any) {
+        let img: UIImage = isSelectedFavoriteButton ? UIImage(named: "HeartDark")! : UIImage(named: "HeartThin")!
+        favoriteButton.setImage(img, for: .normal)
+        isSelectedFavoriteButton.toggle()
+        moveScrollView(at: 1)
+        
+    }
+    //写真マーク押したら濃くなる
+    private var isSelectedPhotoButton = true
+    @IBAction func photoButtonAction(_ sender: Any) {
+        let img: UIImage = isSelectedPhotoButton ? UIImage(named: "PhotoDark")! : UIImage(named: "PhotoThin")!
+        photoImageButton.setImage(img, for: .normal)
+        isSelectedPhotoButton.toggle()
+        moveScrollView(at: 0)
+    }
+    
+    private func moveScrollView(at index: Int) {
+        collectionView.isPagingEnabled = false
+        collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .left, animated: true)
+        collectionView.isPagingEnabled = true
+    }
         
 }
 
 extension ProfileViewController: UICollectionViewDataSource {
-    
+    //この部分で３分割してる
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
