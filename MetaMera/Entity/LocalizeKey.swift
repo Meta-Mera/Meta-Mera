@@ -29,6 +29,7 @@ enum LocalizeKey: String {
     //投稿画面
     case edit
     case hide
+    case show
     case delete
     
     //プロフィール画面

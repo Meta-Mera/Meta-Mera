@@ -791,18 +791,20 @@ extension ARViewController: MKMapViewDelegate {
     //MARK: ピンをタップしたときのイベント
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotations = view.annotation{
+            print("subtitle: \(annotations.subtitle)")
             
-            guard let subtitle = annotations.subtitle else {
+            guard let unwrapSubTitle = annotations.subtitle,
+                  let subtitle = unwrapSubTitle else {
                 return
             }
             
-            Firestore.firestore().collection("Posts").document(subtitle!).getDocument {[weak self] (snapshot, err) in
+            Firestore.firestore().collection("Posts").document(subtitle).getDocument {[weak self] (snapshot, err) in
                 if let err = err {
                     print("投稿情報の取得に失敗しました。\(err)")
                     return
                 }
                 guard let dic = snapshot?.data() else { return }
-                let post = Post(dic: dic, postId: annotations.subtitle!!)
+                let post = Post(dic: dic, postId: subtitle)
                 
                 //TODO: 先に投稿画面に移行してその後非同期で画像を取得しよう
 //                AF.request(post.rawImageUrl).responseImage { [weak self] res in
