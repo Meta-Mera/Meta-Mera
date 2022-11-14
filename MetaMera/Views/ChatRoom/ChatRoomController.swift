@@ -172,20 +172,61 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
             let edit = UIAlertAction(title: LocalizeKey.edit.localizedString(), style: UIAlertAction.Style.default, handler: {[weak self]
                 (action: UIAlertAction!) -> Void in
                 print("edit")
-            })
-            
-            let hide = UIAlertAction(title: LocalizeKey.hide.localizedString(), style: UIAlertAction.Style.default, handler: {[weak self]
-                (action: UIAlertAction!) -> Void in
-                print("hide")
-            })
-            
-            let delete = UIAlertAction(title: LocalizeKey.delete.localizedString(), style: UIAlertAction.Style.destructive, handler: {[weak self]
-                (action: UIAlertAction!) -> Void in
-                print("delete")
+                
             })
             
             alertSheet.addAction(edit)
-            alertSheet.addAction(hide)
+            
+            //非表示、再表示化
+            if post.hidden {
+                let show = UIAlertAction(title: LocalizeKey.show.localizedString(), style: UIAlertAction.Style.default, handler: {[weak self]
+                    (action: UIAlertAction!) -> Void in
+                    print("hide")
+                    Firestore.firestore().collection("Posts").document((self?.postId)!).updateData([
+                        "hidden": false
+                    ]) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            print("再表示化成功")
+                        }
+                    }
+                })
+                alertSheet.addAction(show)
+            }else {
+                let hide = UIAlertAction(title: LocalizeKey.hide.localizedString(), style: UIAlertAction.Style.default, handler: {[weak self]
+                    (action: UIAlertAction!) -> Void in
+                    print("hide")
+                    Firestore.firestore().collection("Posts").document((self?.postId)!).updateData([
+                        "hidden": true
+                    ]) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            print("非表示化成功")
+                        }
+                    }
+                })
+                alertSheet.addAction(hide)
+            }
+            
+            //投稿削除
+            let delete = UIAlertAction(title: LocalizeKey.delete.localizedString(), style: UIAlertAction.Style.destructive, handler: {[weak self]
+                (action: UIAlertAction!) -> Void in
+                print("delete")
+                Firestore.firestore().collection("Posts").document((self?.postId)!).updateData([
+                    "deleted": true
+                ]) { err in
+                    if let err = err {
+                        print("Error updating document: \(err)")
+                    } else {
+                        print("削除成功")
+                    }
+                }
+            })
+            
+            
+            
             alertSheet.addAction(delete)
             
         } else {
@@ -351,7 +392,9 @@ extension ChatRoomController: ChatViewControllerDelegate {
         let docData = [
             "createdAt": Timestamp(),
             "uid": uid,
-            "message": text
+            "message": text,
+            "hidden": false,
+            "deleted": false
             ] as [String : Any]
         Firestore.firestore().collection("Posts").document(postId).collection("comments").addDocument(data: docData){ [weak self] (err) in
             if let err = err{
