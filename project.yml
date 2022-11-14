@@ -1,0 +1,182 @@
+name: MetaMera
+options:
+  deploymentTarget:
+    iOS: 14.0
+  developmentLanguage: ja
+configs:
+  DevelopDebug: debug
+  Develop: release
+  ReleaseDebug: debug
+  Release: release
+settings:
+  configs:
+    DevelopDebug:
+      OTHER_SWIFT_FLAGS:
+        - -D
+        - DEVELOP
+    Develop:
+      OTHER_SWIFT_FLAGS:
+        - -D
+        - DEVELOP
+      SWIFT_OPTIMIZATION_LEVEL:
+        - -Onone
+      GCC_OPTIMIZATION_LEVEL:
+        - 0
+    ReleaseDebug:
+      OTHER_SWIFT_FLAGS:
+        - -D
+        - RELEASE
+    Release:
+      OTHER_SWIFT_FLAGS:
+        - -D
+        - RELEASE
+#packages:
+#    firebase-ios-sdk:
+#        url: "https://github.com/firebase/firebase-ios-sdk.git"
+#        from: 9.0.0
+schemes:
+  MetaMera-Dev:
+    build:
+      targets:
+        MetaMera: [analyze, run, archive]
+    run:
+      config: DevelopDebug
+    test:
+      config: DevelopDebug
+      gatherCoverageData: true
+      coverageTargets:
+        - MetaMera
+      targets: []
+      environmentVariables:
+        - variable: isUnitTest
+          value: "true"
+          isEnabled: false
+    profile:
+      config: Develop
+    analyze:
+      config: Develop
+    archive:
+      config: Develop
+  MetaMera:
+    build:
+      targets:
+        MetaMera: [analyze, run, archive]
+    run:
+      config: ReleaseDebug
+    test:
+      config: ReleaseDebug
+      gatherCoverageData: true
+      coverageTargets:
+        - MetaMera
+      targets: []
+      environmentVariables:
+        - variable: isUnitTest
+          value: "true"
+          isEnabled: false
+    profile:
+      config: Release
+    analyze:
+      config: Release
+    archive:
+      config: Release
+targets:
+  MetaMera:
+    type: application
+    platform: iOS
+    sources:
+      - path: MetaMera
+        excludes:
+          - "**/.gitkeep"
+          - "SupportingFiles/GoogleService/**"
+          - README.md
+      - path: MetaMera/Generated/StoryboardScenes.swift
+        optional: true
+      - path: MetaMera/Generated/Strings.swift
+        optional: true
+      - path: MetaMera/Generated/Asset.swift
+        optional: true
+      - path: MetaMera/Generated/StoryboardSegues.swift
+        optional: true
+      - path: MetaMera/SupportingFiles/GoogleService-Info.plist
+        optional: true
+    dependencies:
+      - target: SwiftGen
+#      - framework: "Carthage/Build/Differentiator.xcframework"
+#      - framework: "Carthage/Build/RxBlocking.xcframework"
+#      - framework: "Carthage/Build/RxCocoa.xcframework"
+#      - framework: "Carthage/Build/RxDataSources.xcframework"
+#      - framework: "Carthage/Build/RxRelay.xcframework"
+#      - framework: "Carthage/Build/RxSwift.xcframework"
+#      - framework: "Carthage/Build/RxSwiftExt.xcframework"
+#      - framework: "Carthage/Build/KRProgressHUD.xcframework"
+#      - framework: "Carthage/Build/KRActivityIndicatorView.xcframework"
+    settings:
+      base:
+        TARGETED_DEVICE_FAMILY: 1
+        MARKETING_VERSION: 1.0.0
+        CURRENT_PROJECT_VERSION: 1.0
+        DEVELOPMENT_TEAM: 657Z774V99
+      configs:
+        DevelopDebug:
+          INFOPLIST_FILE: MetaMera/SupportingFiles/ja.lproj/Info.plist
+          PRODUCT_BUNDLE_IDENTIFIER: com.gmail.shin.dev201007.MetaMera
+          PROVISIONING_PROFILE_SPECIFIER: MetaMera develop
+          DEVELOPMENT_TEAM: 657Z774V99
+          CODE_SIGN_IDENTITY: Apple Development
+        Develop:
+          INFOPLIST_FILE: MetaMera/SupportingFiles/ja.lproj/Info.plist
+          PRODUCT_BUNDLE_IDENTIFIER: com.gmail.shin.dev201007.MetaMera
+          PROVISIONING_PROFILE_SPECIFIER: MetaMera develop
+          DEVELOPMENT_TEAM: 657Z774V99
+          CODE_SIGN_IDENTITY: Apple Development
+        ReleaseDebug:
+          INFOPLIST_FILE: MetaMera/SupportingFiles/ja.lproj/Info.plist
+          PRODUCT_BUNDLE_IDENTIFIER: com.gmail.shin.dev201007.MetaMera
+          PROVISIONING_PROFILE_SPECIFIER: MetaMera develop
+          DEVELOPMENT_TEAM: 657Z774V99
+          CODE_SIGN_IDENTITY: Apple Development
+        Release:
+          INFOPLIST_FILE: MetaMera/SupportingFiles/ja.lproj/Info.plist
+          PRODUCT_BUNDLE_IDENTIFIER: com.gmail.shin.dev201007.MetaMera
+          PROVISIONING_PROFILE_SPECIFIER: MetaMera develop
+          DEVELOPMENT_TEAM: 657Z774V99
+          CODE_SIGN_IDENTITY: Apple Development
+    preBuildScripts:
+      - name: Copy SupportingFiles
+        script: |
+          if [ "${CONFIGURATION}" = "Release" ]; then
+          cp "${SRCROOT}/MetaMera/SupportingFiles/GoogleService/GoogleService-Info.plist" "${SRCROOT}/MetaMera/SupportingFiles/GoogleService-Info.plist"
+          elif [ "${CONFIGURATION}" = "ReleaseDebug" ]; then
+          cp "${SRCROOT}/MetaMera/SupportingFiles/GoogleService/GoogleService-Info.plist" "${SRCROOT}/MetaMera/SupportingFiles/GoogleService-Info.plist"
+          else
+          cp "${SRCROOT}/MetaMera/SupportingFiles/GoogleService/GoogleService-Info.plist" "${SRCROOT}/MetaMera/SupportingFiles/GoogleService-Info.plist"
+          fi
+        outputFiles:
+          - $(PROJECT_DIR)/MetaMera/SupportingFiles/GoogleService-Info.plist
+  MetaMeraTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: MetaMeraTests
+        createIntermediateGroups: true
+    dependencies:
+      - target: MetaMera
+    settings:
+      LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)"
+  MetaMeraUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: MetaMeraUITests
+        createIntermediateGroups: true
+    dependencies:
+      - target: MetaMera
+      
+aggregateTargets:
+  SwiftGen:
+    buildScripts:
+      - name: SwiftGen
+        script: |
+          ${SRCROOT}/Pods/SwiftGen/bin/swiftgen
+        outputFileLists:
+          - $(SRCROOT)/Generated.xcfilelist
