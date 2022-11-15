@@ -95,8 +95,8 @@ targets:
         optional: true
       - path: MetaMera/Generated/Asset.swift
         optional: true
-      - path: MetaMera/Generated/StoryboardSegues.swift
-        optional: true
+#      - path: MetaMera/Generated/StoryboardSegues.swift
+#        optional: true
       - path: MetaMera/SupportingFiles/GoogleService-Info.plist
         optional: true
     dependencies:
