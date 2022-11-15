@@ -89,8 +89,8 @@ targets:
           - "**/.gitkeep"
           - "SupportingFiles/GoogleService/**"
           - README.md
-      - path: MetaMera/Generated/StoryboardScenes.swift
-        optional: true
+#      - path: MetaMera/Generated/StoryboardScenes.swift
+#        optional: true
       - path: MetaMera/Generated/Strings.swift
         optional: true
       - path: MetaMera/Generated/Asset.swift
