@@ -16,6 +16,7 @@ class User {
     let tokens: [String]
     let email: String
     let log: [String]
+    let bio: String
     
     let ban: Bool
     let limted: Int
@@ -40,6 +41,7 @@ class User {
         self.reCommend = dic["Recommend"] as? [String] ?? []
         self.ban = dic["ban"] as? Bool ?? false
         self.limted = dic["limted"] as? Int ?? 0
+        self.bio = dic["bio"] as? String ?? ""
         self.uid = uid
     }
     
