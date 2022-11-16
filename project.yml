@@ -113,33 +113,33 @@ targets:
     settings:
       base:
         TARGETED_DEVICE_FAMILY: 1
-        MARKETING_VERSION: 1.0.0
-        CURRENT_PROJECT_VERSION: 1.0
-        DEVELOPMENT_TEAM: 657Z774V99
+        MARKETING_VERSION: 1.5.0
+        CURRENT_PROJECT_VERSION: 1.5.0
+        DEVELOPMENT_TEAM: JH5QRQ7596
       configs:
         DevelopDebug:
           INFOPLIST_FILE: MetaMera/SupportingFiles/ja.lproj/Info.plist
-          PRODUCT_BUNDLE_IDENTIFIER: com.gmail.shin.dev201007.MetaMera
-          PROVISIONING_PROFILE_SPECIFIER: MetaMera develop
-          DEVELOPMENT_TEAM: 657Z774V99
+          PRODUCT_BUNDLE_IDENTIFIER: com.github.jim112o.MetaMera
+          PROVISIONING_PROFILE_SPECIFIER: MetaMeraDev
+          DEVELOPMENT_TEAM: JH5QRQ7596
           CODE_SIGN_IDENTITY: Apple Development
         Develop:
           INFOPLIST_FILE: MetaMera/SupportingFiles/ja.lproj/Info.plist
-          PRODUCT_BUNDLE_IDENTIFIER: com.gmail.shin.dev201007.MetaMera
-          PROVISIONING_PROFILE_SPECIFIER: MetaMera develop
-          DEVELOPMENT_TEAM: 657Z774V99
+          PRODUCT_BUNDLE_IDENTIFIER: com.github.jim112o.MetaMera
+          PROVISIONING_PROFILE_SPECIFIER: MetaMeraDev
+          DEVELOPMENT_TEAM: JH5QRQ7596
           CODE_SIGN_IDENTITY: Apple Development
         ReleaseDebug:
           INFOPLIST_FILE: MetaMera/SupportingFiles/ja.lproj/Info.plist
-          PRODUCT_BUNDLE_IDENTIFIER: com.gmail.shin.dev201007.MetaMera
-          PROVISIONING_PROFILE_SPECIFIER: MetaMera develop
-          DEVELOPMENT_TEAM: 657Z774V99
+          PRODUCT_BUNDLE_IDENTIFIER: com.github.jim112o.MetaMera
+          PROVISIONING_PROFILE_SPECIFIER: MetaMeraDev
+          DEVELOPMENT_TEAM: JH5QRQ7596
           CODE_SIGN_IDENTITY: Apple Development
         Release:
           INFOPLIST_FILE: MetaMera/SupportingFiles/ja.lproj/Info.plist
-          PRODUCT_BUNDLE_IDENTIFIER: com.gmail.shin.dev201007.MetaMera
-          PROVISIONING_PROFILE_SPECIFIER: MetaMera develop
-          DEVELOPMENT_TEAM: 657Z774V99
+          PRODUCT_BUNDLE_IDENTIFIER: com.github.jim112o.MetaMera
+          PROVISIONING_PROFILE_SPECIFIER: MetaMeraDev
+          DEVELOPMENT_TEAM: JH5QRQ7596
           CODE_SIGN_IDENTITY: Apple Development
     preBuildScripts:
       - name: Copy SupportingFiles
