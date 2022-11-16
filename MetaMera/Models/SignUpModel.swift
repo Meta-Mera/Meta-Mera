@@ -21,6 +21,7 @@ class SignUpModel {
         guard let email = signUpItem.email,
               let password = signUpItem.password,
               let confirmPassword = signUpItem.confirmPassword,
+              let bio = signUpItem.bio,
               let userName = signUpItem.userName else {
             completion(.failure(NSError(domain: "null error", code: 400)))
             return
@@ -54,6 +55,7 @@ class SignUpModel {
                            "ban" : false,
                            "limited" : 0,
                            "profileImage": "",
+                           "bio": bio,
                            "Log": [String]().self,
                             "Recommended": [String]().self,
                            "createAt": Timestamp()] as [String : Any]
