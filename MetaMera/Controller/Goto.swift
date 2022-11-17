@@ -128,4 +128,12 @@ class Goto : UIViewController{
         vc.postId = postId
         view.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    class func EditProfileViewController(view: UIViewController){
+        print("Goto-ReportView was called.")
+        let vc = UIStoryboard(name: "EditProfileViewController", bundle: nil).instantiateViewController(withIdentifier: "EditProfileViewController") as! EditProfileViewController
+        vc.modalPresentationStyle = .fullScreen
+        
+        view.navigationController?.pushViewController(vc, animated: true)
+    }
 }
