@@ -2,10 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>他のユーザのつぶやきを表示するために使用します。</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>他のユーザのつぶやきを表示するために使用します。</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>画像を投稿する時やプロフィール画像を変更するときに使用します。</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>他のユーザのつぶやきを表示するために使用します。</string>
 	<key>NSCameraUsageDescription</key>
 	<string>GPSを使ってオブジェクトを設置するために使用します</string>
 	<key>FirebaseMessagingAutoInitEnabled</key>

@@ -99,7 +99,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         //MARK: 位置情報のやつっぽい
         
         locationManager.requestWhenInUseAuthorization()
-        locationManager.requestAlwaysAuthorization()
         
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         locationManager.distanceFilter = kCLDistanceFilterNone
