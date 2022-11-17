@@ -99,6 +99,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         //MARK: 位置情報のやつっぽい
         
         locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
         
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         locationManager.distanceFilter = kCLDistanceFilterNone
@@ -849,6 +850,7 @@ extension ARViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //        print(locations.map { $0.coordinate })
+        
         if let location = manager.location?.coordinate {
             let center: CLLocationCoordinate2D = .init(latitude: location.latitude, longitude: location.longitude)
             //            mapView.userTrackingMode = .follow

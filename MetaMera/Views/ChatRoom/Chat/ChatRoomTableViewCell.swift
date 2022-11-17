@@ -40,6 +40,7 @@ class ChatRoomTableViewCell: UITableViewCell {
     let generator = UINotificationFeedbackGenerator()
     
     var delegate: UserProfileProtocol?
+    var optionDelegate: commentDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -84,12 +85,7 @@ class ChatRoomTableViewCell: UITableViewCell {
     
     
     @IBAction func pushLike(_ sender: Any) {
-        if(iLiked){
-            likeButton.setImage(UIImage(named: "ハート(押す前)"), for: .normal)
-        }else{
-            likeButton.setImage(UIImage(named: "ハート(押した後)"), for: .normal)
-        }
-        iLiked.toggle()
+        optionDelegate?.commentOption()
     }
     
     private func checkWhichUserMessage() {

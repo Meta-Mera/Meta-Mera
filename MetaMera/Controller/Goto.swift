@@ -128,4 +128,14 @@ class Goto : UIViewController{
         vc.postId = postId
         view.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    class func EditProfileViewController(view: UIViewController){
+    
+        print("Goto-EditProfileViewController was called.")
+        let vc = MetaMera.EditProfileViewController()
+        let navController = UINavigationController(rootViewController: vc)
+        navController.modalPresentationStyle = .fullScreen
+        
+        view.present(navController, animated: false,completion: nil)
+    }
 }

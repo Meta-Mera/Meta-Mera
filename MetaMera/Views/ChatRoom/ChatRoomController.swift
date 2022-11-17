@@ -459,7 +459,7 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
             cell.messageTextView.backgroundColor = UIColor.chatTextBackground
             cell.messageTextView.textColor = UIColor.chatText
             cell.delegate = self
-            
+            cell.optionDelegate = self
             return cell
         }
     }
@@ -497,6 +497,13 @@ extension ChatRoomController: UserProfileProtocol{
     func tapUser(user: User) {
         Goto.Profile(view: self, user: user)
 //        Goto.UserProfile(view: self, user: user)
+    }
+}
+
+extension ChatRoomController: commentDelegate {
+    
+    func commentOption() {
+        print("コメントオプション")
     }
 }
 
