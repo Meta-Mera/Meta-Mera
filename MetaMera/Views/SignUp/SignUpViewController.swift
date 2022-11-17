@@ -99,7 +99,7 @@ class SignUpViewController: UIViewController {
     private func handleAuthToFirebase(){
         HUD.show(.progress, onView: view)
         
-        signUpModel.signUp(signUpItem: .init(email: eMailTextField.text, password: passwordTextField.text, confirmPassword: confirmPasswordTextField.text, userName: userIdTextField.text)) { [weak self] result in
+        signUpModel.signUp(signUpItem: .init(email: eMailTextField.text, password: passwordTextField.text, confirmPassword: confirmPasswordTextField.text, bio: "", userName: userIdTextField.text)) { [weak self] result in
             switch result {
                 
             case .success(let user): //Sign up 成功
