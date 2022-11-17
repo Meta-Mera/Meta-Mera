@@ -79,7 +79,7 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func menuButtonAction(_ sender: Any) {
-        
+        Goto.EditProfileViewController(view: self)
     }
     //マップボタン押したら濃くなる
     private var isSelectedMapButton = true
