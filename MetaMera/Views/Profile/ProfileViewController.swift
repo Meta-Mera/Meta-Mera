@@ -129,22 +129,22 @@ class ProfileViewController: UIViewController {
         var active: UIImage {
             switch self {
             case .favorite:
-                return Asset.Images.heartThin.image
+                return Asset.Images.heartDark.image
             case .photo:
-                return Asset.Images.photoThin.image
+                return Asset.Images.photoDark.image
             case .map:
-                return Asset.Images.positionThin.image
+                return Asset.Images.positionDark.image
             }
         }
         
         var inActive: UIImage {
             switch self {
             case .favorite:
-                return Asset.Images.heartDark.image
+                return Asset.Images.heartThin.image
             case .photo:
-                return Asset.Images.photoDark.image
+                return Asset.Images.photoThin.image
             case .map:
-                return Asset.Images.positionDark.image
+                return Asset.Images.positionThin.image
             }
         }
     }
