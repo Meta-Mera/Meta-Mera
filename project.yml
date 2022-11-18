@@ -120,27 +120,27 @@ targets:
         DevelopDebug:
           INFOPLIST_FILE: MetaMera/SupportingFiles/ja.lproj/Info.plist
           PRODUCT_BUNDLE_IDENTIFIER: com.github.jim112o.MetaMera
-          PROVISIONING_PROFILE_SPECIFIER: MetaMeraDev
+          PROVISIONING_PROFILE_SPECIFIER: MetaMeraMain
           DEVELOPMENT_TEAM: JH5QRQ7596
-          CODE_SIGN_IDENTITY: Apple Development
+          CODE_SIGN_IDENTITY: Apple Distribution
         Develop:
           INFOPLIST_FILE: MetaMera/SupportingFiles/ja.lproj/Info.plist
           PRODUCT_BUNDLE_IDENTIFIER: com.github.jim112o.MetaMera
-          PROVISIONING_PROFILE_SPECIFIER: MetaMeraDev
+          PROVISIONING_PROFILE_SPECIFIER: MetaMeraMain
           DEVELOPMENT_TEAM: JH5QRQ7596
-          CODE_SIGN_IDENTITY: Apple Development
+          CODE_SIGN_IDENTITY: Apple Distribution
         ReleaseDebug:
           INFOPLIST_FILE: MetaMera/SupportingFiles/ja.lproj/Info.plist
           PRODUCT_BUNDLE_IDENTIFIER: com.github.jim112o.MetaMera
-          PROVISIONING_PROFILE_SPECIFIER: MetaMeraDev
+          PROVISIONING_PROFILE_SPECIFIER: MetaMeraMain
           DEVELOPMENT_TEAM: JH5QRQ7596
-          CODE_SIGN_IDENTITY: Apple Development
+          CODE_SIGN_IDENTITY: Apple Distribution
         Release:
           INFOPLIST_FILE: MetaMera/SupportingFiles/ja.lproj/Info.plist
           PRODUCT_BUNDLE_IDENTIFIER: com.github.jim112o.MetaMera
-          PROVISIONING_PROFILE_SPECIFIER: MetaMeraDev
+          PROVISIONING_PROFILE_SPECIFIER: MetaMeraMain
           DEVELOPMENT_TEAM: JH5QRQ7596
-          CODE_SIGN_IDENTITY: Apple Development
+          CODE_SIGN_IDENTITY: Apple Distribution
     preBuildScripts:
       - name: Copy SupportingFiles
         script: |
