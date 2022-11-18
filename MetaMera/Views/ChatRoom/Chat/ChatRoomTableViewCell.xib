@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -53,11 +53,12 @@
                     </label>
                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4om-OE-0kG">
                         <rect key="frame" x="440" y="28" width="20" height="20"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="4om-OE-0kG" secondAttribute="height" multiplier="1:1" id="4dm-fb-GpY"/>
                             <constraint firstAttribute="height" constant="20" id="fUS-x4-8pU"/>
                         </constraints>
-                        <color key="tintColor" red="0.88235294819999999" green="0.78823530669999997" blue="0.64705884459999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                         <state key="normal" image="ellipsis" catalog="system"/>
                         <connections>
@@ -83,9 +84,9 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="dateLabel" destination="9QL-ao-vgF" id="FbK-DB-Qgc"/>
-                <outlet property="likeButton" destination="4om-OE-0kG" id="f9e-KF-fa4"/>
                 <outlet property="messageTextView" destination="OEB-GZ-KjK" id="qpP-Pi-CNZ"/>
                 <outlet property="messageTextViewWidthConstraint" destination="MZ4-6J-2l7" id="LOP-pc-OPk"/>
+                <outlet property="optionButton" destination="4om-OE-0kG" id="f9e-KF-fa4"/>
                 <outlet property="sendUser" destination="JxN-Ol-9Yb" id="PRx-Lk-f2W"/>
                 <outlet property="userIconImageView" destination="wCA-9L-C1L" id="CKN-K1-u70"/>
             </connections>

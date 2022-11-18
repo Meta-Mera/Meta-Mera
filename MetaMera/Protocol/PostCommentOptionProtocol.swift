@@ -8,7 +8,7 @@
 import Foundation
 
 protocol commentDelegate {
-    func commentOption() -> Void
+    func commentOption(commentId: String) -> Void
 }
 
 extension commentDelegate {

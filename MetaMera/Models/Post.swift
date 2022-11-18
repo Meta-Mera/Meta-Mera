@@ -68,8 +68,8 @@ class Post {
         self.altitude = dic["altitude"] as? Double ?? 1.0
         self.comment = dic["comment"] as? String ?? ""
         self.imageStyle = dic["imageStyle"] as? Int ?? 0
-        self.deleted = dic["deleted"] as? Bool ?? true
-        self.hidden = dic["hidden"] as? Bool ?? true
+        self.deleted = dic["deleted"] as? Bool ?? false
+        self.hidden = dic["hidden"] as? Bool ?? false
         self.postId = postId
     }
 }

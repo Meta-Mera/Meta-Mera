@@ -840,6 +840,8 @@ extension ARViewController: MKMapViewDelegate {
 //        annotationView.image = UIImage(named: "katsu")!.reSizeImage(reSize: CGSize(width: 40, height: 40))
 //        return annotationView
 //    }
+    
+    
 }
 
 
@@ -854,12 +856,17 @@ extension ARViewController: CLLocationManagerDelegate {
             let center: CLLocationCoordinate2D = .init(latitude: location.latitude, longitude: location.longitude)
             //            mapView.userTrackingMode = .follow
             mapView.setUserTrackingMode(MKUserTrackingMode.followWithHeading, animated: true)
+            
             if flag {
+                
+                
                 mapView.region = .init(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
                 mapView.centerCoordinate = center
-                mapView.userTrackingMode = .followWithHeading
+                mapView.userTrackingMode = .none
                 flag.toggle()
+                
             }
+            
         }
     }
 }

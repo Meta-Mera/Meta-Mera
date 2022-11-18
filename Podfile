@@ -16,6 +16,7 @@ target 'MetaMera' do
   pod 'ARCL'
   pod 'IQKeyboardManagerSwift' 
   pod 'AlamofireImage', '~> 4.1'
+  pod 'FirebaseFirestoreSwift', '~> 7.0-beta'
 
   pod 'SwiftGen'
 

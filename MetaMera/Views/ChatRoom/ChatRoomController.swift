@@ -50,6 +50,8 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
     }
     
     
+    
+    
         
     func configView(){
         chatRoomTableView.delegate = self
@@ -97,6 +99,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
     //画面遷移しようとしたとき
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        messages.removeAll()
         //        postImageView.image = image
         setUpNotification()
         fetchMessages()
@@ -156,6 +159,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
             }
             
         })
+        messages.removeAll()
     }
     
     
@@ -311,54 +315,140 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
     
     private func fetchMessages() {
         
+        
+//        Firestore.firestore().collection("Users")
+//            .getDocuments { [weak self] snap, err in
+//                if let err = err {
+//                    print("err", err)
+//                    return
+//                }
+//
+//                guard let userDocs = snap?.documents else {
+//                    print("not found data")
+//                    return
+//                }
+//
+//                Firestore.firestore().collection("Posts").document(self!.postId).collection("comments")
+//                    .addSnapshotListener { [weak self] (snapshots, err) in
+//                        if let err = err {
+//                            print("err", err)
+//                            return
+//                        }
+//
+//                        guard let commentDocs = snapshots?.documentChanges else {
+//                            print("not found data")
+//                            return
+//                        }
+//
+//                        let dispatchGroup = DispatchGroup()
+//                        let dispatchQueue = DispatchQueue(label: "com.MetaMera.comment")
+//
+//                        commentDocs.forEach { documentChange in
+//
+//                            dispatchGroup.enter()
+//                            dispatchQueue.async {
+//                                switch documentChange.type {
+//                                case .added:
+//
+//                                    let dic = documentChange.document.data()
+//                                    let comment = Comment(dic: dic,commentId: documentChange.document.documentID)
+//
+//                                    if !comment.deleted {
+//
+//                                        for userDoc in userDocs where userDoc.documentID == comment.uid {
+//                                            let user = User(dic: userDoc.data(), uid: userDoc.documentID)
+//                                            comment.sendUser = user
+//                                            self?.messages.append(comment)
+//                                            self?.messages.sort { (m1, m2) -> Bool in
+//                                                let m1Date = m1.createdAt.dateValue()
+//                                                let m2Date = m2.createdAt.dateValue()
+//                                                return m1Date < m2Date
+//                                            }
+//                                            print("ユーザー情報の取得に成功しました。")
+//                                        }
+//                                    }
+//
+//
+//                                case .modified, .removed:
+//                                    break
+//                                }
+//                                dispatchGroup.leave()
+//                            }
+//                        }
+//
+//                        dispatchGroup.notify(queue: dispatchQueue) {
+//                            DispatchQueue.main.async {
+//                                self?.chatRoomTableView.reloadData()
+//                            }
+//                        }
+//
+//
+//
+//                    }
+//            }
+        
+        
+        
+        
+        
+        
+        
+        
+
         Firestore.firestore().collection("Posts").document(postId).collection("comments").addSnapshotListener {[weak self] (snapshots, err) in
-            
+
             if let err = err {
                 print("メッセージ情報の取得に失敗しました。\(err)")
                 return
             }
-            
+
             let dispatchGroup = DispatchGroup()
             let dispatchQueue = DispatchQueue(label: "com.MetaMera.comment")
-            self?.messages.removeAll()
-            
+
             snapshots?.documentChanges.forEach({ (documentChange) in
-                
+
                 dispatchGroup.enter()
                 dispatchQueue.async {
                     switch documentChange.type {
-                    case .added:
+                    case .added, .modified:
                         let dic = documentChange.document.data()
-                        let comment = Comment(dic: dic)
-                        Firestore.firestore().collection("Users").document(comment.uid).getDocument { (user, err) in
-                            if let err = err {
-                                print("ユーザー情報の取得に失敗しました。\(err)")
-                                return
+                        let comment = Comment(dic: dic,commentId: documentChange.document.documentID)
+                        print("comment deleted:\(comment.deleted)")
+                        if !comment.deleted {
+                            Firestore.firestore().collection("Users").document(comment.uid).getDocument { (user, err) in
+                                if let err = err {
+                                    print("ユーザー情報の取得に失敗しました。\(err)")
+                                    return
+                                }
+
+                                guard let dic = user?.data() else { return }
+                                let user = User(dic: dic, uid: comment.uid)
+                                comment.sendUser = user
+                                self?.messages.append(comment)
+                                self?.messages.sort { (m1, m2) -> Bool in
+                                    let m1Date = m1.createdAt.dateValue()
+                                    let m2Date = m2.createdAt.dateValue()
+                                    return m1Date < m2Date
+                                }
+                                print("ユーザー情報の取得に成功しました。")
+
+    //                            self?.chatRoomTableView.reloadData()
+                                dispatchGroup.leave()
                             }
-                            
-                            guard let dic = user?.data() else { return }
-                            let user = User(dic: dic, uid: comment.uid)
-                            comment.sendUser = user
-                            self?.messages.append(comment)
-                            self?.messages.sort { (m1, m2) -> Bool in
-                                let m1Date = m1.createdAt.dateValue()
-                                let m2Date = m2.createdAt.dateValue()
-                                return m1Date < m2Date
-                            }
-                            print("ユーザー情報の取得に成功しました。")
+                        }else {
                             dispatchGroup.leave()
-//                            self?.chatRoomTableView.reloadData()
                         }
-                        
-                    case .modified, .removed:
+                    case .removed:
                         print("nothing to do")
+                        dispatchGroup.leave()
                     }
                 }
-    
+
             })
-            
+
             dispatchGroup.notify(queue: dispatchQueue) {
                 DispatchQueue.main.async {
+
                     self?.chatRoomTableView.reloadData()
                 }
             }
@@ -460,6 +550,9 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
             cell.messageTextView.textColor = UIColor.chatText
             cell.delegate = self
             cell.optionDelegate = self
+            if (Profile.shared.loginUser.uid == messages[indexPath.row].uid) || (Profile.shared.loginUser.uid == post.postUserUid) {
+                cell.optionButton.isHidden = false
+            }
             return cell
         }
     }
@@ -502,8 +595,38 @@ extension ChatRoomController: UserProfileProtocol{
 
 extension ChatRoomController: commentDelegate {
     
-    func commentOption() {
+    func commentOption(commentId: String) {
         print("コメントオプション")
+        // styleをActionSheetに設定
+        let alertSheet = UIAlertController(title: "Option", message: "What happened?", preferredStyle: UIAlertController.Style.actionSheet)
+        
+        // アクションを追加
+        //投稿削除
+        let delete = UIAlertAction(title: LocalizeKey.delete.localizedString(), style: UIAlertAction.Style.destructive, handler: {[weak self]
+            (action: UIAlertAction!) -> Void in
+            print("delete")
+            Firestore.firestore().collection("Posts").document((self?.postId)!).collection("comments").document(commentId).updateData([
+                "deleted": true
+            ]) { err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                } else {
+                    print("削除成功")
+                }
+            }
+        })
+        
+        
+        
+        alertSheet.addAction(delete)
+        
+        let cancel = UIAlertAction(title: LocalizeKey.cancel.localizedString(), style: UIAlertAction.Style.cancel, handler: {
+            (action: UIAlertAction!) in
+        })
+        
+        alertSheet.addAction(cancel)
+        
+        self.present(alertSheet, animated: true, completion: nil)
     }
 }
 

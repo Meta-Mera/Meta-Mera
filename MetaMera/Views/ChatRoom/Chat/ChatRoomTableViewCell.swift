@@ -13,7 +13,7 @@ import AlamofireImage
 class ChatRoomTableViewCell: UITableViewCell {
     
     
-    var messageText: Comment?{
+    var messageText: Comment!{
         didSet{
 //            guard let text = messageText else { return }
 //            let width = estimateFrameForTextView(text: text).width + 20
@@ -31,7 +31,7 @@ class ChatRoomTableViewCell: UITableViewCell {
     @IBOutlet weak var responseDateLabel: UILabel!
     @IBOutlet weak var sendUser: UILabel!
     @IBOutlet weak var responseUser: UILabel!
-    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var optionButton: UIButton!
     
     @IBOutlet weak var messageTextViewWidthConstraint: NSLayoutConstraint!
     
@@ -85,7 +85,7 @@ class ChatRoomTableViewCell: UITableViewCell {
     
     
     @IBAction func pushLike(_ sender: Any) {
-        optionDelegate?.commentOption()
+        optionDelegate?.commentOption(commentId: messageText.commentId)
     }
     
     private func checkWhichUserMessage() {
