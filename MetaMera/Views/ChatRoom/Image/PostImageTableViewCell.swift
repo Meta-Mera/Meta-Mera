@@ -60,10 +60,10 @@ class PostImageTableViewCell: UITableViewCell {
         
         profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
         
-        if(!iLiked){
-            likeButton.setImage(UIImage(named: "ハート(押す前)"), for: .normal)
-        }else{
+        if(iLiked){
             likeButton.setImage(UIImage(named: "ハート(押した後)"), for: .normal)
+        }else{
+            likeButton.setImage(UIImage(named: "ハート(押す前)"), for: .normal)
         }
         
         postUserNameLabel.isUserInteractionEnabled = true
