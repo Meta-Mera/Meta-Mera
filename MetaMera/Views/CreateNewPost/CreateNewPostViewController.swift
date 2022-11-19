@@ -92,6 +92,7 @@ class CreateNewPostViewController: UIViewController {
         altitudeTextField.isUserInteractionEnabled = false
         
         altitude = floor(mapView.userLocation.location!.altitude) + 20
+        editAltitude = altitude
         altitudeTextField.text = "\(altitude)"
         
         commentTextView.placeHolder = "コメントを入力してください。"
