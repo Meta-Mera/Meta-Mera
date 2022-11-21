@@ -79,40 +79,89 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func menuButtonAction(_ sender: Any) {
-        
+        Goto.EditProfileViewController(view: self)
     }
+    
+    // CollectionView選択時動作
     //マップボタン押したら濃くなる
     private var isSelectedMapButton = true
     @IBAction func MapButtonAction(_ sender: Any) {
-        let img: UIImage = isSelectedMapButton ? UIImage(named: "PositionDark")! : UIImage(named: "PositionThin")!
-        mapButton.setImage(img, for: .normal)
-        isSelectedMapButton.toggle()
+//        let img: UIImage = isSelectedMapButton ? UIImage(named: "PositionDark")! : UIImage(named: "PositionThin")!
+//        mapButton.setImage(img, for: .normal)
+//        isSelectedMapButton.toggle()
         
         moveScrollView(at: 2)
+        updateMenuButtonLayout(type: .map)
     }
     
     //ハート押したら濃くなる
     private var isSelectedFavoriteButton = true
     @IBAction func favoriteButtonAction(_ sender: Any) {
-        let img: UIImage = isSelectedFavoriteButton ? UIImage(named: "HeartDark")! : UIImage(named: "HeartThin")!
-        favoriteButton.setImage(img, for: .normal)
-        isSelectedFavoriteButton.toggle()
+//        let img: UIImage = isSelectedFavoriteButton ? UIImage(named: "HeartDark")! : UIImage(named: "HeartThin")!
+//        favoriteButton.setImage(img, for: .normal)
+//        isSelectedFavoriteButton.toggle()
+        
         moveScrollView(at: 1)
+        updateMenuButtonLayout(type: .favorite)
         
     }
     //写真マーク押したら濃くなる
     private var isSelectedPhotoButton = true
     @IBAction func photoButtonAction(_ sender: Any) {
-        let img: UIImage = isSelectedPhotoButton ? UIImage(named: "PhotoDark")! : UIImage(named: "PhotoThin")!
-        photoImageButton.setImage(img, for: .normal)
-        isSelectedPhotoButton.toggle()
+//        let img: UIImage = isSelectedPhotoButton ? UIImage(named: "PhotoDark")! : UIImage(named: "PhotoThin")!
+//        photoImageButton.setImage(img, for: .normal)
+//        isSelectedPhotoButton.toggle()
         moveScrollView(at: 0)
+        updateMenuButtonLayout(type: .photo)
     }
     
     private func moveScrollView(at index: Int) {
         collectionView.isPagingEnabled = false
         collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .left, animated: true)
         collectionView.isPagingEnabled = true
+    }
+    
+    enum MenuButtonType {
+        case favorite
+        case photo
+        case map
+        
+        var active: UIImage {
+            switch self {
+            case .favorite:
+                return Asset.Images.heartDark.image
+            case .photo:
+                return Asset.Images.photoDark.image
+            case .map:
+                return Asset.Images.positionDark.image
+            }
+        }
+        
+        var inActive: UIImage {
+            switch self {
+            case .favorite:
+                return Asset.Images.heartThin.image
+            case .photo:
+                return Asset.Images.photoThin.image
+            case .map:
+                return Asset.Images.positionThin.image
+            }
+        }
+    }
+    
+    private func updateMenuButtonLayout(type: MenuButtonType) {
+        photoImageButton.setImage(MenuButtonType.photo.inActive, for: .normal)
+        favoriteButton.setImage(MenuButtonType.favorite.inActive, for: .normal)
+        mapButton.setImage(MenuButtonType.map.inActive, for: .normal)
+        
+        switch type {
+        case .favorite:
+            favoriteButton.setImage(type.active, for: .normal)
+        case .photo:
+            photoImageButton.setImage(type.active, for: .normal)
+        case .map:
+            mapButton.setImage(type.active, for: .normal)
+        }
     }
         
 }
