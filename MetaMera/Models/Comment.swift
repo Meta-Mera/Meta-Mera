@@ -15,16 +15,17 @@ class Comment {
     let createdAt: Timestamp
     let deleted: Bool
     let hidden: Bool
+    let commentId: String
     
     var sendUser: User?
     
-    init(dic: [String: Any]) {
+    init(dic: [String: Any], commentId: String) {
         self.message = dic["message"] as? String ?? ""
         self.uid = dic["uid"] as? String ?? ""
         self.createdAt = dic["createdAt"] as? Timestamp ?? Timestamp()
         self.hidden = dic["hidden"] as? Bool ?? false
         self.deleted = dic["deleted"] as? Bool ?? false
-        
+        self.commentId = commentId
     }
     
 }
