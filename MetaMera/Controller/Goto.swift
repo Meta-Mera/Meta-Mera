@@ -130,10 +130,12 @@ class Goto : UIViewController{
     }
     
     class func EditProfileViewController(view: UIViewController){
-        print("Goto-ReportView was called.")
-        let vc = UIStoryboard(name: "EditProfileViewController", bundle: nil).instantiateViewController(withIdentifier: "EditProfileViewController") as! EditProfileViewController
-        vc.modalPresentationStyle = .fullScreen
+    
+        print("Goto-EditProfileViewController was called.")
+        let vc = MetaMera.EditProfileViewController()
+        let navController = UINavigationController(rootViewController: vc)
+        navController.modalPresentationStyle = .fullScreen
         
-        view.navigationController?.pushViewController(vc, animated: true)
+        view.present(navController, animated: false,completion: nil)
     }
 }

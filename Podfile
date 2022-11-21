@@ -8,7 +8,7 @@ target 'MetaMera' do
   # Pods for MetaMera
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
-  pod 'Firebase/Firestore'
+  pod 'Firebase/Firestore', '~> 7.0'
   pod 'Firebase/Storage'
   pod 'Firebase/Messaging'
   pod 'Firebase/RemoteConfig'
@@ -16,6 +16,7 @@ target 'MetaMera' do
   pod 'ARCL'
   pod 'IQKeyboardManagerSwift' 
   pod 'AlamofireImage', '~> 4.1'
+  pod 'FirebaseFirestoreSwift', '~> 7.0-beta'
 
   pod 'SwiftGen'
 
@@ -27,14 +28,6 @@ target 'MetaMera' do
   target 'MetaMeraUITests' do
     # Pods for testing
   end
-  
-#  post_install do |installer|
-#   installer.pods_project.targets.each do |target|
-#      target.build_configurations.each do |config|
-#        config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
-#      end
-#    end
-#  end
 
 
 end

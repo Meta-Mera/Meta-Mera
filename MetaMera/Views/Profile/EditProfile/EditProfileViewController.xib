@@ -26,6 +26,9 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="editprofile_background" translatesAutoresizingMaskIntoConstraints="NO" id="5cG-Qc-3rY">
+                    <rect key="frame" x="0.0" y="0.0" width="1284" height="667"/>
+                </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="editprofile_header" translatesAutoresizingMaskIntoConstraints="NO" id="PVm-JT-5jF">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                     <constraints>
@@ -120,9 +123,6 @@
                         <action selector="backBottan:" destination="-1" eventType="touchUpInside" id="KZX-QX-24Q"/>
                     </connections>
                 </button>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="editprofile_background" translatesAutoresizingMaskIntoConstraints="NO" id="5cG-Qc-3rY">
-                    <rect key="frame" x="0.0" y="0.0" width="1284" height="667"/>
-                </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
