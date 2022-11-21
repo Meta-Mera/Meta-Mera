@@ -539,7 +539,7 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
             cell.delegate = self
             cell.goodDelegate = self
             cell.iLiked = iLiked
-            
+            cell.configView()
 
             return cell
         }else {
@@ -611,6 +611,13 @@ extension ChatRoomController: commentDelegate {
                 if let err = err {
                     print("Error updating document: \(err)")
                 } else {
+                    
+                    if let index = self?.messages.firstIndex(where: { $0.commentId == commentId }) {
+                        self?.messages.remove(at: index)
+                        self?.chatRoomTableView.reloadData()
+                    }
+                    
+                    
                     print("削除成功")
                 }
             }

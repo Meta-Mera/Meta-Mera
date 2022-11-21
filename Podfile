@@ -8,7 +8,7 @@ target 'MetaMera' do
   # Pods for MetaMera
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
-  pod 'Firebase/Firestore'
+  pod 'Firebase/Firestore', '~> 7.0'
   pod 'Firebase/Storage'
   pod 'Firebase/Messaging'
   pod 'Firebase/RemoteConfig'

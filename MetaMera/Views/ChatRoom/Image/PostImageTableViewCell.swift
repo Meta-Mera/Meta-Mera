@@ -56,14 +56,13 @@ class PostImageTableViewCell: UITableViewCell {
         updateImageTableView()
     }
     
-    private func configView() {
+    func configView() {
         
         profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
-        
         if(iLiked){
-            likeButton.setImage(UIImage(named: "ハート(押した後)"), for: .normal)
+            likeButton.setImage(Asset.Images.good.image, for: .normal)
         }else{
-            likeButton.setImage(UIImage(named: "ハート(押す前)"), for: .normal)
+            likeButton.setImage(Asset.Images.notGood.image, for: .normal)
         }
         
         postUserNameLabel.isUserInteractionEnabled = true
@@ -118,13 +117,13 @@ class PostImageTableViewCell: UITableViewCell {
     }
     
     @IBAction func pushLike(_ sender: Any) {
-        if(iLiked){
-            likeButton.setImage(UIImage(named: "ハート(押した後)"), for: .normal)
-        }else{
-            likeButton.setImage(UIImage(named: "ハート(押す前)"), for: .normal)
-        }
         iLiked.toggle()
         goodDelegate?.good()
+        if(iLiked){
+            likeButton.setImage(Asset.Images.good.image, for: .normal)
+        }else{
+            likeButton.setImage(Asset.Images.notGood.image, for: .normal)
+        }
     }
     
     
