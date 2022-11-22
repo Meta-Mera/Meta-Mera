@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -23,22 +23,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="矢印(5cm)" translatesAutoresizingMaskIntoConstraints="NO" id="S3a-hs-jYC">
-                                <rect key="frame" x="15" y="64" width="30" height="30"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="editprofile_back_button" translatesAutoresizingMaskIntoConstraints="NO" id="S3a-hs-jYC">
+                                <rect key="frame" x="15" y="64" width="18" height="26"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="91g-Bj-BuL"/>
-                                    <constraint firstAttribute="width" secondItem="S3a-hs-jYC" secondAttribute="height" multiplier="1:1" id="Jy4-ib-Qe2"/>
+                                    <constraint firstAttribute="width" constant="18" id="91g-Bj-BuL"/>
+                                    <constraint firstAttribute="width" secondItem="S3a-hs-jYC" secondAttribute="height" multiplier="9:13" id="Jy4-ib-Qe2"/>
                                 </constraints>
                             </imageView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IOg-za-f5a">
-                                <rect key="frame" x="0.0" y="109" width="414" height="250"/>
+                                <rect key="frame" x="0.0" y="105" width="414" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="xqr-ff-5lJ"/>
                                 </constraints>
                                 <standardMapConfiguration key="preferredConfiguration"/>
                             </mapView>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iK2-wn-Jhw">
-                                <rect key="frame" x="157" y="456" width="100" height="34"/>
+                                <rect key="frame" x="157" y="452" width="100" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="g7S-Yx-6wW"/>
                                 </constraints>
@@ -46,19 +46,19 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="altitude:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yia-Ky-a9n">
-                                <rect key="frame" x="80" y="462.5" width="62" height="21"/>
+                                <rect key="frame" x="80" y="458.5" width="62" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-30" maximumValue="30" stepValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="PZd-Zf-nS3">
-                                <rect key="frame" x="272" y="457" width="94" height="32"/>
+                                <rect key="frame" x="272" y="453" width="94" height="32"/>
                                 <connections>
                                     <action selector="pushStepper:" destination="Y6W-OH-hqX" eventType="valueChanged" id="QU2-zN-8xH"/>
                                 </connections>
                             </stepper>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bua-dK-tE9" customClass="PlaceTextView" customModule="MetaMera" customModuleProvider="target">
-                                <rect key="frame" x="20" y="505" width="374" height="150"/>
+                                <rect key="frame" x="20" y="501" width="374" height="150"/>
                                 <color key="backgroundColor" white="0.97374890734265729" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="syj-hH-atP"/>
@@ -68,7 +68,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" spellCheckingType="yes" returnKeyType="continue"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h4j-Nk-gOJ">
-                                <rect key="frame" x="160.5" y="670" width="93.5" height="35"/>
+                                <rect key="frame" x="160.5" y="666" width="93.5" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="投稿する"/>
                                 <connections>
@@ -76,7 +76,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9d-ac-KUq">
-                                <rect key="frame" x="109.5" y="389" width="195" height="27"/>
+                                <rect key="frame" x="109.5" y="385" width="195" height="27"/>
                                 <color key="backgroundColor" red="0.60000002379999995" green="0.54901963470000004" blue="0.4941176176" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name="BokutachinoGothic" family="BokutachinoGothic" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -128,7 +128,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="矢印(5cm)" width="1181" height="1181"/>
+        <image name="editprofile_back_button" width="54" height="78"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
