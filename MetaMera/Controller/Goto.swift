@@ -72,20 +72,20 @@ class Goto : UIViewController{
         print("Goto-Profile was called.")
         let vc = UIStoryboard(name: "ProfileViewController", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
         vc.modalPresentationStyle = .fullScreen
-        vc.loginUser = user
-        vc.user = user
+//        vc.loginUser = user
+//        vc.user = user
         view.navigationController?.pushViewController(vc, animated: true)
     }
     
-    class func UserProfile(view: UIViewController, user: User){
-        print("Goto-Profile was called.")
-        let vc = UIStoryboard(name: "ProfileViewController", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
-        vc.modalPresentationStyle = .fullScreen
-//        vc.delegate = view as! SignOutProtocol
-        vc.loginUser = user
-        vc.user = user
-        view.present(vc, animated: true, completion: nil)
-    }
+//    class func UserProfile(view: UIViewController, user: User){
+//        print("Goto-Profile was called.")
+//        let vc = UIStoryboard(name: "ProfileViewController", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController(user: user)
+//        vc.modalPresentationStyle = .fullScreen
+////        vc.delegate = view as! SignOutProtocol
+////        vc.loginUser = user
+////        vc.user = user
+//        view.present(vc, animated: true, completion: nil)
+//    }
     
     class func ChangeProfile(view: UIViewController, user: User){
         print("Goto-ChangeProfile was called.")
