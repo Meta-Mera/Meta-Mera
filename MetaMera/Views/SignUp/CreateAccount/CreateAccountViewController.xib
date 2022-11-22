@@ -23,7 +23,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dp9-SL-0yl">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dp9-SL-0yl">
                     <rect key="frame" x="137.66666666666666" y="356" width="100" height="100"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Dp9-SL-0yl" secondAttribute="height" multiplier="1:1" id="9hp-og-fhg"/>
@@ -37,7 +37,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgh-Mf-f55">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgh-Mf-f55">
                     <rect key="frame" x="97.666666666666686" y="585" width="180" height="55.666666666666629"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Pgh-Mf-f55" secondAttribute="height" multiplier="560:173" id="gIU-Da-gzm"/>
