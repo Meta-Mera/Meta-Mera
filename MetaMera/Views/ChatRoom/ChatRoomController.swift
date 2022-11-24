@@ -588,7 +588,7 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
 
 extension ChatRoomController: UserProfileProtocol{
     func tapUser(user: User) {
-        Goto.Profile(view: self, user: user)
+        Goto.ProfileViewController(view: self, user: user)
 //        Goto.UserProfile(view: self, user: user)
     }
 }

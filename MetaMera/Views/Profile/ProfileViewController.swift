@@ -51,6 +51,11 @@ class ProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        configCollectonViewLayout()
+    }
+    
     // 画面レイアウト
     private func configView() {
         userIconImageView.layer.cornerRadius = userIconImageView.bounds.width / 2
@@ -65,21 +70,31 @@ class ProfileViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.isPagingEnabled = true
         collectionView.register(UINib(nibName: "ProfileCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "ProfileCollectionViewCell")
+        collectionView.register(UINib(nibName: "MapViewCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "MapViewCollectionViewCell")
+        collectionView.register(UINib(nibName: "PhotosCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "PhotosCollectionViewCell")
+        
+        updateMenuButtonLayout(type: .photo)
+    }
+    
+    private func configCollectonViewLayout() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = .init(width: collectionView.bounds.width, height: collectionView.bounds.height)
+        layout.itemSize = .init(width: view.bounds.width, height: collectionView.bounds.height)
+        layout.minimumInteritemSpacing = .zero
+        layout.minimumLineSpacing = .zero
+        layout.sectionInset = .zero
+        layout.invalidateLayout()
         collectionView.collectionViewLayout = layout
     }
     
     /// ユーザープロフィールデータを表示
     private func setupProfileData() {
         userNameLabel.text = user.userName
+        discriptionLabel.text = user.bio
         if let userIconImageURL = URL(string: user.profileImage) {
             userIconImageView.af.setImage(withURL: userIconImageURL)
         }
-        collectionView.reloadData()
-        // 自己紹介文 DB ないんだが... to ジム
-//        discriptionLabel.text = profileData.
+//        collectionView.reloadData()
     }
 
     // MARK: Action Buttons
@@ -88,7 +103,7 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func menuButtonAction(_ sender: Any) {
-        Goto.EditProfileViewController(view: self)
+        Goto.EditProfileViewController(user: self.user, view: self)
     }
     
     // CollectionView選択時動作
@@ -130,10 +145,10 @@ class ProfileViewController: UIViewController {
         collectionView.isPagingEnabled = true
     }
     
-    enum MenuButtonType {
-        case favorite
-        case photo
-        case map
+    enum MenuButtonType: Int {
+        case favorite = 1
+        case photo = 0
+        case map = 2
         
         var active: UIImage {
             switch self {
@@ -186,8 +201,9 @@ extension ProfileViewController: UICollectionViewDataSource {
         
         if indexPath.row == 0 {
             // prof cell
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileCollectionViewCell", for: indexPath) as! ProfileCollectionViewCell
-            cell.bind(indexPath.row)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotosCollectionViewCell", for: indexPath) as! PhotosCollectionViewCell
+            cell.user = user
+            cell.getUserPostData()
             return cell
         }else if indexPath.row == 1 {
             // edit cell
@@ -196,8 +212,9 @@ extension ProfileViewController: UICollectionViewDataSource {
             return cell
         }else if indexPath.row == 2 {
             // map cell
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileCollectionViewCell", for: indexPath) as! ProfileCollectionViewCell
-            cell.bind(indexPath.row)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MapViewCollectionViewCell", for: indexPath) as! MapViewCollectionViewCell
+            cell.delegate = self
+            cell.getUserPostData()
             return cell
         }
         return UICollectionViewCell()
@@ -208,6 +225,33 @@ extension ProfileViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("item selected", indexPath.row)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let cell = collectionView.visibleCells.first,
+           let index = collectionView.indexPath(for: cell),
+           let menu = MenuButtonType(rawValue: index.row) {
+            print("scroll", menu)
+            updateMenuButtonLayout(type: menu)
+        }
+    }
+}
+
+extension ProfileViewController: pinTapDelegate {
+    func pinTap(postId: String) {
+        Firestore.firestore().collection("Posts").document(postId).getDocument {[weak self] (snapshot, err) in
+            if let err = err {
+                print("投稿情報の取得に失敗しました。\(err)")
+                return
+            }
+            guard let dic = snapshot?.data() else { return }
+            let post = Post(dic: dic, postId: postId)
+            
+            Goto.ChatRoomView(view: self!, image: URL(string: post.rawImageUrl)!, post: post)
+            
+        }
+    }
+    
+    
 }
 
 //class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {

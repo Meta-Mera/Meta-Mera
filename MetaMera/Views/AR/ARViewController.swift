@@ -358,7 +358,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     @objc func pushProfileImage(_ sender: Any){
         print("getName: ",ProfileImage.getName() as Any)
         print("Push profile image")
-        Goto.Profile(view: self, user: Profile.shared.loginUser)
+        Goto.ProfileViewController(view: self, user: Profile.shared.loginUser)
     }
     
     //MARK: プロフィール画像関連 -

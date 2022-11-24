@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,11 +11,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditProfileViewController" customModule="MetaMera" customModuleProvider="target">
             <connections>
+                <outlet property="backButton" destination="rbL-Qn-x3t" id="Tpo-Cb-YIX"/>
                 <outlet property="bioTextField" destination="5eV-Sd-AJm" id="siV-cX-DyG"/>
                 <outlet property="cancelButton" destination="dGB-t6-qQv" id="pD7-4S-Hup"/>
                 <outlet property="menuButton" destination="qzj-ve-39j" id="DTZ-wf-JKk"/>
                 <outlet property="selectHeaderPhotoButton" destination="e41-x4-vmv" id="0z6-2I-mH0"/>
-                <outlet property="selectIconPhotoButton" destination="kJS-2B-WCp" id="Mbu-r9-u6q"/>
+                <outlet property="selectIconPhotoButton" destination="UoT-rW-fxR" id="Boy-gy-SET"/>
+                <outlet property="userIconImageView" destination="48L-tL-4hM" id="66k-F7-ZCU"/>
                 <outlet property="userNameTextField" destination="JVD-Ym-tc6" id="vXe-ce-UWh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -29,9 +31,9 @@
                     <rect key="frame" x="0.0" y="0.0" width="1284" height="667"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="editprofile_header" translatesAutoresizingMaskIntoConstraints="NO" id="PVm-JT-5jF">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="150" id="Ibi-9f-7Qd"/>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="130" id="Ibi-9f-7Qd"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rbL-Qn-x3t">
@@ -42,6 +44,9 @@
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="Button" image="editprofile_back_button"/>
+                    <connections>
+                        <action selector="pushBackButton:" destination="-1" eventType="touchUpInside" id="jtj-gP-4Zm"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qzj-ve-39j">
                     <rect key="frame" x="339.5" y="15" width="20.5" height="18"/>
@@ -51,19 +56,15 @@
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="Hamburger"/>
+                    <connections>
+                        <action selector="pushMenuButton:" destination="-1" eventType="touchUpInside" id="a3p-1T-QZB"/>
+                    </connections>
                 </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="editprofile_initicon" translatesAutoresizingMaskIntoConstraints="NO" id="48L-tL-4hM">
-                    <rect key="frame" x="123.5" y="48" width="128" height="128"/>
+                    <rect key="frame" x="123.5" y="66" width="128" height="128"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="48L-tL-4hM" secondAttribute="height" multiplier="1:1" id="Erp-Oo-lYR"/>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="128" id="OsY-6l-rPL"/>
-                    </constraints>
-                </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="editprofile_selectphoto_button" translatesAutoresizingMaskIntoConstraints="NO" id="kJS-2B-WCp">
-                    <rect key="frame" x="123.5" y="48" width="128" height="128"/>
-                    <constraints>
-                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="128" id="7jP-BE-p10"/>
-                        <constraint firstAttribute="width" secondItem="kJS-2B-WCp" secondAttribute="height" multiplier="1:1" id="MpA-2P-uOe"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e41-x4-vmv">
@@ -85,7 +86,7 @@
                     <state key="normal" title="Button" image="editprofile_selectphoto_button"/>
                 </button>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User Name" textAlignment="natural" minimumFontSize="55" translatesAutoresizingMaskIntoConstraints="NO" id="JVD-Ym-tc6">
-                    <rect key="frame" x="62.5" y="196" width="250" height="40"/>
+                    <rect key="frame" x="62.5" y="214" width="250" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="250" id="M3o-Ft-UtB"/>
                         <constraint firstAttribute="height" constant="40" id="RHd-Bk-5q2"/>
@@ -94,13 +95,13 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NameUnderbar" translatesAutoresizingMaskIntoConstraints="NO" id="nWR-Sm-VRF">
-                    <rect key="frame" x="57.5" y="241" width="260" height="8"/>
+                    <rect key="frame" x="57.5" y="259" width="260" height="8"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="260" id="Dju-Eh-5B4"/>
                     </constraints>
                 </imageView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="自己紹介" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5eV-Sd-AJm">
-                    <rect key="frame" x="37.5" y="264" width="300" height="80"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="自己紹介" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5eV-Sd-AJm" customClass="PlaceTextView" customModule="MetaMera" customModuleProvider="target">
+                    <rect key="frame" x="37.5" y="282" width="300" height="80"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="eMN-I0-2zr"/>
@@ -110,25 +111,37 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UoT-rW-fxR">
+                    <rect key="frame" x="123.5" y="66" width="128" height="128"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="UoT-rW-fxR" secondAttribute="height" multiplier="1:1" id="69b-E8-UK6"/>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="128" id="aRE-Rn-zfC"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="photo_mark"/>
+                    <connections>
+                        <action selector="pushChangeIcoonButton:" destination="-1" eventType="touchUpInside" id="ZSv-hT-6xh"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="nWR-Sm-VRF" firstAttribute="top" secondItem="JVD-Ym-tc6" secondAttribute="bottom" constant="5" id="0ju-IO-88Z"/>
                 <constraint firstItem="dGB-t6-qQv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="55" id="2M5-4G-XPx"/>
-                <constraint firstItem="kJS-2B-WCp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2Vc-Nl-j5g"/>
                 <constraint firstItem="JVD-Ym-tc6" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2zg-qa-daE"/>
+                <constraint firstItem="UoT-rW-fxR" firstAttribute="centerY" secondItem="48L-tL-4hM" secondAttribute="centerY" id="3st-5O-Cxw"/>
                 <constraint firstItem="5eV-Sd-AJm" firstAttribute="top" secondItem="nWR-Sm-VRF" secondAttribute="bottom" constant="15" id="4sM-PF-1ZM"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PVm-JT-5jF" secondAttribute="trailing" id="5Uy-72-VNC"/>
                 <constraint firstItem="e41-x4-vmv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="-100" id="5hy-8f-NTt"/>
                 <constraint firstItem="5cG-Qc-3rY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="6tK-1d-4Vl"/>
                 <constraint firstItem="PVm-JT-5jF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Alr-hu-JdL"/>
+                <constraint firstItem="UoT-rW-fxR" firstAttribute="centerX" secondItem="48L-tL-4hM" secondAttribute="centerX" id="Cjf-kp-41j"/>
                 <constraint firstItem="5cG-Qc-3rY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="CrU-pf-Cv0"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qzj-ve-39j" secondAttribute="trailing" constant="15" id="EcH-UK-g2s"/>
                 <constraint firstItem="rbL-Qn-x3t" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="K2l-rp-0Ik"/>
                 <constraint firstItem="nWR-Sm-VRF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="N1x-pY-7ne"/>
-                <constraint firstItem="kJS-2B-WCp" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="48" id="Thr-wF-XE9"/>
-                <constraint firstItem="48L-tL-4hM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="48" id="VAc-Xu-CCJ"/>
+                <constraint firstItem="48L-tL-4hM" firstAttribute="centerY" secondItem="PVm-JT-5jF" secondAttribute="bottom" id="SJD-es-fkA"/>
                 <constraint firstItem="48L-tL-4hM" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="VfE-fJ-PFc"/>
                 <constraint firstAttribute="bottom" secondItem="5cG-Qc-3rY" secondAttribute="bottom" id="W3T-9i-VbJ"/>
                 <constraint firstItem="qzj-ve-39j" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="XDS-j2-3aI"/>
@@ -150,8 +163,9 @@
         <image name="editprofile_header" width="1284" height="347"/>
         <image name="editprofile_initicon" width="288" height="288"/>
         <image name="editprofile_selectphoto_button" width="241" height="243"/>
+        <image name="photo_mark" width="190" height="192"/>
         <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
