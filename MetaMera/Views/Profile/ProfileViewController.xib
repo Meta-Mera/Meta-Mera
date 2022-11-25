@@ -42,7 +42,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ここに自己紹介文を記入します" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyN-rJ-Qen">
-                    <rect key="frame" x="20" y="283" width="243" height="20.5"/>
+                    <rect key="frame" x="20" y="273" width="243" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -68,7 +68,7 @@
                     </connections>
                 </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NameUnderbar" translatesAutoresizingMaskIntoConstraints="NO" id="K00-Sh-bnZ">
-                    <rect key="frame" x="120" y="245" width="175" height="8"/>
+                    <rect key="frame" x="120" y="235" width="175" height="8"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eUO-cM-gW9">
                     <rect key="frame" x="369" y="64" width="30" height="30"/>
@@ -83,7 +83,7 @@
                     </connections>
                 </button>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Zz5-8X-z2N">
-                    <rect key="frame" x="0.0" y="373.5" width="414" height="522.5"/>
+                    <rect key="frame" x="0.0" y="363.5" width="414" height="532.5"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="f3E-km-6y9">
                         <size key="itemSize" width="128" height="128"/>
@@ -94,7 +94,7 @@
                     <cells/>
                 </collectionView>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="Lp3-9f-G99">
-                    <rect key="frame" x="40" y="333.5" width="334" height="30"/>
+                    <rect key="frame" x="40" y="323.5" width="334" height="30"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kaW-U6-pr1">
                             <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -144,7 +144,7 @@
                 <constraint firstItem="RgQ-dl-iXs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4ao-18-avF"/>
                 <constraint firstItem="Sbo-o8-2ua" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="153" id="De4-v9-nc0"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="RgQ-dl-iXs" secondAttribute="trailing" id="FQx-Zt-wfq"/>
-                <constraint firstItem="K00-Sh-bnZ" firstAttribute="top" secondItem="Sbo-o8-2ua" secondAttribute="bottom" constant="5" id="IGG-nC-a04"/>
+                <constraint firstItem="K00-Sh-bnZ" firstAttribute="top" secondItem="Sbo-o8-2ua" secondAttribute="bottom" constant="-5" id="IGG-nC-a04"/>
                 <constraint firstItem="RgQ-dl-iXs" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="OaG-NA-GsO"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="eUO-cM-gW9" secondAttribute="trailing" constant="15" id="PwO-ce-ia1"/>
                 <constraint firstItem="Lp3-9f-G99" firstAttribute="top" secondItem="pyN-rJ-Qen" secondAttribute="bottom" constant="30" id="Q3S-Tl-H6Y"/>

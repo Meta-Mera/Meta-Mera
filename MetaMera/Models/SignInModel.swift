@@ -75,26 +75,6 @@ class SignInModel {
 //                            topic='debugUser',
 //                        )
                         
-                        switch Profile.shared.updateProfileImage() {
-                        case .success(_):
-                            
-                            //LogGet
-                            //                    self.logGetModel.logPrint(uid: uid) { result in
-                            //                        switch result {
-                            //                        case .success(let res):
-                            //                            print(res)
-                            //                        case .failure(let error):
-                            //                            print(error)
-                            //                        }
-                            //                    }
-                            
-                            print("画像あるらしいよ: ",user.profileImage,"+",uid)
-                            break
-                        case .failure(_):
-                            print("画像保存されてないよ〜: ",user.profileImage,"+",uid)
-                            Profile.shared.saveImageToDevice(image: user.profileImage, fileName: uid)
-                            break
-                        }
                         completion(.success(true))
                         return
                     }
@@ -135,16 +115,6 @@ class SignInModel {
                         print("Subscribed to \(uid) topic")
                     }
                     
-                    
-                    switch Profile.shared.updateProfileImage() {
-                    case .success(_):
-                        print("画像あるらしいよ: ",user.profileImage,"+",uid)
-                        break
-                    case .failure(_):
-                        print("画像保存されてないよ〜: ",user.profileImage,"+",uid)
-                        Profile.shared.saveImageToDevice(image: user.profileImage, fileName: uid)
-                        break
-                    }
                     completion(.success(true))
                     return
                 }

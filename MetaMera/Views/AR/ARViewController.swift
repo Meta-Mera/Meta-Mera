@@ -235,11 +235,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        switch Profile.shared.updateProfileImage() {
-        case .success(let image):
-            ProfileImage.setImage(image: image, name: Profile.shared.loginUser.uid)
-        case .failure(_):
-            break
+        if let userIconImageURL = URL(string: Profile.shared.loginUser.profileImage) {
+            ProfileImage.af.setImage(withURL: userIconImageURL)
         }
         
         //MARK: ナビゲーションコントローラーを隠すよ！

@@ -48,6 +48,8 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         configView()
         setupProfileData()
+        getUserPostData()
+        getUserFavoriteData()
         // Do any additional setup after loading the view.
     }
     
@@ -188,6 +190,56 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    var postCount: Int?
+    var posts = [Post]()
+    
+    func getUserPostData(){
+        Firestore.firestore().collection("Posts").whereField("postUserUid", isEqualTo: user.uid).getDocuments(completion: {[weak self] (snapshot, error) in
+            if let error = error {
+                print("投稿データの取得に失敗しました。\(error)")
+                return
+            }
+            
+            self?.postCount = snapshot!.documents.count
+            for document in snapshot!.documents {
+                let post = Post(dic: document.data(), postId: document.documentID)
+                self?.posts.append(post)
+                self?.posts.sort { (m1, m2) -> Bool in
+                    let m1Date = m1.createdAt.dateValue()
+                    let m2Date = m2.createdAt.dateValue()
+                    return m1Date < m2Date
+                }
+            }
+            
+            self?.collectionView.reloadData()
+        })
+
+    }
+    
+    func getUserFavoriteData(){
+        
+        Firestore.firestore().collectionGroup("likeUsers").whereField("uid", isEqualTo: user.uid).getDocuments(completion: {[weak self] (snapshot, error) in
+            if let error = error {
+                print("投稿データの取得に失敗しました。\(error)")
+                return
+            }
+            
+            self?.postCount = snapshot!.documents.count
+            for document in snapshot!.documents {
+                print("dic\(document.data())")
+//                let post = Post(dic: document.data(), postId: document.documentID)
+//                self?.posts.append(post)
+//                self?.posts.sort { (m1, m2) -> Bool in
+//                    let m1Date = m1.createdAt.dateValue()
+//                    let m2Date = m2.createdAt.dateValue()
+//                    return m1Date < m2Date
+//                }
+            }
+            self?.collectionView.reloadData()
+        })
+
+    }
+    
 
 }
 
@@ -203,7 +255,10 @@ extension ProfileViewController: UICollectionViewDataSource {
             // prof cell
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotosCollectionViewCell", for: indexPath) as! PhotosCollectionViewCell
             cell.user = user
-            cell.getUserPostData()
+            cell.configView()
+            cell.posts = posts
+            cell.postCount = posts.count
+            cell.pictureTapDelegate = self
             return cell
         }else if indexPath.row == 1 {
             // edit cell
@@ -248,6 +303,14 @@ extension ProfileViewController: pinTapDelegate {
             
             Goto.ChatRoomView(view: self!, image: URL(string: post.rawImageUrl)!, post: post)
             
+        }
+    }
+}
+
+extension ProfileViewController: PictureTapDelegate {
+    func picutureTap(post: Post) {
+        if let imageUrl = URL(string: post.rawImageUrl) {
+            Goto.ChatRoomView(view: self, image: imageUrl, post: post)
         }
     }
     

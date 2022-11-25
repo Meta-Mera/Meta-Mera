@@ -9,6 +9,14 @@ import UIKit
 import Firebase
 
 class PhotosCollectionViewCell: UICollectionViewCell {
+    
+    var pictureTapDelegate: PictureTapDelegate?
+    var posts = [Post]() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    var postCount: Int = 0
 
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
@@ -26,53 +34,40 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         configView()
     }
     
-    private func configView(){
+    func configView(){
         collectionView.register(UINib(nibName: "PictureCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "PictureCollectionViewCell")
     }
     
-    var postCount: Int?
-    var posts = [Post]()
-    
-    func getUserPostData(){
-        Firestore.firestore().collection("Posts").whereField("postUserUid", isEqualTo: user.uid).getDocuments(completion: {[weak self] (snapshot, error) in
-            if let error = error {
-                print("投稿データの取得に失敗しました。\(error)")
-                return
-            }
-            
-            self?.postCount = snapshot!.documents.count
-            for document in snapshot!.documents {
-                let post = Post(dic: document.data(), postId: document.documentID)
-                self?.posts.append(post)
-                self?.posts.sort { (m1, m2) -> Bool in
-                    let m1Date = m1.createdAt.dateValue()
-                    let m2Date = m2.createdAt.dateValue()
-                    return m1Date < m2Date
-                }
-                
-                
-            }
-        })
-
-    }
 
 }
 
 extension PhotosCollectionViewCell: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PictureCollectionViewCell", for: indexPath) as! PictureCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PictureCollectionViewCell", for: indexPath) as? PictureCollectionViewCell else {
+            return UICollectionViewCell()
+        }
         if let postImageURL = URL(string: posts[indexPath.row].rawImageUrl){
             cell.postImageView.af.setImage(withURL: postImageURL)
         }
+        cell.post = posts[indexPath.row]
         return cell
-//        return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let postCount = postCount else{
-            return 0
-        }
         return postCount
+    }
+}
+
+extension PhotosCollectionViewCell: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? PictureCollectionViewCell {
+            guard let post = cell.post else {
+                print("投稿ID取得失敗")
+                return
+            }
+            pictureTapDelegate?.picutureTap(post: post)
+        }
     }
 }
 
