@@ -104,17 +104,19 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
         setUpNotification()
         fetchMessages()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-        Firestore.firestore().collection("Posts").document(postId).collection("likeUsers").whereField("uid", isEqualTo: Profile.shared.loginUser.uid).getDocuments(completion: { [weak self] (snapshot, error) in
+        Firestore.firestore().collection("Likes").whereField("uid", isEqualTo: Profile.shared.loginUser.uid).whereField("postId", isEqualTo: postId!).getDocuments(completion: { [weak self] (snapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
                 return
             }else {
                 guard snapshot!.documents.first?.value != nil else {
                     //いいねしてない
+                    print("like してない")
                     self?.iLiked = false
                     return
                 }
                 //いいねしてる
+                print("like してる")
                 self?.iLiked = true
                 
             }
@@ -127,7 +129,8 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
         super.viewWillDisappear(animated)
         tearDownNotification()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
-        Firestore.firestore().collection("Posts").document(postId).collection("likeUsers").whereField("uid", isEqualTo: Profile.shared.loginUser.uid).getDocuments(completion: { [weak self] (snapshot, error) in
+        
+        Firestore.firestore().collection("Likes").whereField("uid", isEqualTo: Profile.shared.loginUser.uid).whereField("postId", isEqualTo: postId!).getDocuments(completion: {[weak self] (snapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
                 return
@@ -136,21 +139,25 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
                     //いいねしてない
                     if((self?.iLiked)!){
                         let docData = ["uid" : Profile.shared.loginUser.uid,
+                                       "postId": (self?.post.postId)!,
                                        "createAt": Timestamp()] as [String : Any]
                         print("データなし")
-                        Firestore.firestore().collection("Posts").document((self?.postId)!).collection("likeUsers").document(Profile.shared.loginUser.uid).setData(docData) { error in
-                            if let error = error {
-                                print("いいねの登録に失敗しました。\(error)")
-                                return
-                            }
-                            print("いいねの登録に成功しました。")
+                        
+                        Firestore.firestore().collection("Likes").document().setData(docData){
+                            error in
+                                if let error = error {
+                                    print("いいねの登録に失敗しました。\(error)")
+                                    return
+                                }
+                                print("いいねの登録に成功しました。")
                         }
                     }
                     return
                 }
                 //いいねしてる
                 if(!(self?.iLiked)!){
-                    Firestore.firestore().collection("Posts").document((self?.postId)!).collection("likeUsers").document(Profile.shared.loginUser.uid).delete(){ error in
+                    
+                    Firestore.firestore().collection("Likes").document((snapshot?.documents.first!.documentID)!).delete(){ error in
                         if let error = error {
                             print("いいねの削除に失敗\(error)")
                         }
@@ -158,7 +165,43 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
                 }
             }
             
+            
         })
+        
+        
+        
+//        Firestore.firestore().collection("Posts").document(postId).collection("likeUsers").whereField("uid", isEqualTo: Profile.shared.loginUser.uid).getDocuments(completion: { [weak self] (snapshot, error) in
+//            if let error = error {
+//                print("Error getting documents: \(error)")
+//                return
+//            }else {
+//                guard snapshot!.documents.first?.value != nil else {
+//                    //いいねしてない
+//                    if((self?.iLiked)!){
+//                        let docData = ["uid" : Profile.shared.loginUser.uid,
+//                                       "createAt": Timestamp()] as [String : Any]
+//                        print("データなし")
+//                        Firestore.firestore().collection("Posts").document((self?.postId)!).collection("likeUsers").document(Profile.shared.loginUser.uid).setData(docData) { error in
+//                            if let error = error {
+//                                print("いいねの登録に失敗しました。\(error)")
+//                                return
+//                            }
+//                            print("いいねの登録に成功しました。")
+//                        }
+//                    }
+//                    return
+//                }
+//                //いいねしてる
+//                if(!(self?.iLiked)!){
+//                    Firestore.firestore().collection("Posts").document((self?.postId)!).collection("likeUsers").document(Profile.shared.loginUser.uid).delete(){ error in
+//                        if let error = error {
+//                            print("いいねの削除に失敗\(error)")
+//                        }
+//                    }
+//                }
+//            }
+//
+//        })
         messages.removeAll()
     }
     
