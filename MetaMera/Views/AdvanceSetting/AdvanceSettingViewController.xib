@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AdvanceSettingViewController" customModule="MetaMera" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="p5h-JO-XTF" id="HhS-vp-v5b"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -52,6 +53,10 @@
                         <constraint firstAttribute="width" constant="200" id="IRO-3p-snA"/>
                     </constraints>
                 </imageView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="p5h-JO-XTF">
+                    <rect key="frame" x="0.0" y="110" width="375" height="557"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -69,7 +74,7 @@
                 <constraint firstItem="WNC-G0-PMF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="s6Y-Xm-4PL"/>
                 <constraint firstItem="Zuc-gE-tE2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="60" id="wUg-Tj-dHF"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="114"/>
+            <point key="canvasLocation" x="138.40000000000001" y="113.79310344827587"/>
         </view>
     </objects>
     <resources>
