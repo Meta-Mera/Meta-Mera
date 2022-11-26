@@ -43,6 +43,29 @@ class PostImageTableViewCell: UITableViewCell {
 //        }
 //    }
     
+    func getGood(){
+        Firestore.firestore().collection("Likes").whereField("uid", isEqualTo: Profile.shared.loginUser.uid).whereField("postId", isEqualTo: post.postId!).getDocuments(completion: { [weak self] (snapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+                return
+            }else {
+                
+                guard snapshot!.documents.first?.value != nil else {
+                    //いいねしてない
+                    self?.iLiked = false
+                    self?.likeButton.setImage(Asset.Images.notGood.image, for: .normal)
+                    self?.goodDelegate?.notGood()
+                    return
+                }
+                //いいねしてる
+                self?.iLiked = true
+                self?.likeButton.setImage(Asset.Images.good.image, for: .normal)
+                self?.goodDelegate?.good()
+                return
+            }
+        })
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -118,11 +141,12 @@ class PostImageTableViewCell: UITableViewCell {
     
     @IBAction func pushLike(_ sender: Any) {
         iLiked.toggle()
-        goodDelegate?.good()
         if(iLiked){
             likeButton.setImage(Asset.Images.good.image, for: .normal)
+            goodDelegate?.good()
         }else{
             likeButton.setImage(Asset.Images.notGood.image, for: .normal)
+            goodDelegate?.notGood()
         }
     }
     

@@ -49,7 +49,7 @@ class ProfileViewController: UIViewController {
         configView()
         setupProfileData()
         getUserPostData()
-        getUserFavoriteData()
+//        getUserFavoriteData()
         // Do any additional setup after loading the view.
     }
     
@@ -203,11 +203,13 @@ class ProfileViewController: UIViewController {
             self?.postCount = snapshot!.documents.count
             for document in snapshot!.documents {
                 let post = Post(dic: document.data(), postId: document.documentID)
-                self?.posts.append(post)
-                self?.posts.sort { (m1, m2) -> Bool in
-                    let m1Date = m1.createdAt.dateValue()
-                    let m2Date = m2.createdAt.dateValue()
-                    return m1Date < m2Date
+                if !post.deleted {
+                    self?.posts.append(post)
+                    self?.posts.sort { (m1, m2) -> Bool in
+                        let m1Date = m1.createdAt.dateValue()
+                        let m2Date = m2.createdAt.dateValue()
+                        return m1Date < m2Date
+                    }
                 }
             }
             
