@@ -10,6 +10,7 @@ import Foundation
 
 protocol goodDelegate {
     func good() -> Void
+    func notGood() -> Void
 }
 
 extension goodDelegate {
