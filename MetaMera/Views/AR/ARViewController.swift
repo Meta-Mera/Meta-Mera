@@ -692,9 +692,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         //        Goto.Profile(view: self)
         sceneLocationView.removeAllNodes()
         mapView.removeAnnotations(annotationArray)
-        //        addNode(latitude: 35.75444876559928, longitude: 139.4811042224357, altitude: 170, imageName: "road",size: CGSize(width: 200, height: 300), pinUse: true, pinName: "road", postId: "test")
-        
-        //35.62473923766413, 139.34178926227506
+        Goto.ProfileViewController(view: self, user: Profile.shared.loginUser)
         
     }
     
