@@ -19,7 +19,7 @@ import FirebaseStorage
 import Alamofire
 import AlamofireImage
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var menuButton: UIButton!
@@ -67,6 +67,9 @@ class ProfileViewController: UIViewController {
             itsMe = true
         }
         
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
+        
         // collectionView
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -91,10 +94,18 @@ class ProfileViewController: UIViewController {
     
     /// ユーザープロフィールデータを表示
     private func setupProfileData() {
-        userNameLabel.text = user.userName
-        discriptionLabel.text = user.bio
-        if let userIconImageURL = URL(string: user.profileImage) {
-            userIconImageView.af.setImage(withURL: userIconImageURL)
+        if(itsMe){
+            userNameLabel.text = Profile.shared.loginUser.userName
+            discriptionLabel.text = Profile.shared.loginUser.bio
+            if let userIconImageURL = URL(string: Profile.shared.loginUser.profileImage) {
+                userIconImageView.af.setImage(withURL: userIconImageURL)
+            }
+        }else {
+            userNameLabel.text = user.userName
+            discriptionLabel.text = user.bio
+            if let userIconImageURL = URL(string: user.profileImage) {
+                userIconImageView.af.setImage(withURL: userIconImageURL)
+            }
         }
 //        collectionView.reloadData()
     }
@@ -105,7 +116,7 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func menuButtonAction(_ sender: Any) {
-        Goto.EditProfileViewController(user: self.user, view: self)
+        Goto.EditProfileViewController(user: Profile.shared.loginUser, view: self)
     }
     
     // CollectionView選択時動作
@@ -218,7 +229,42 @@ class ProfileViewController: UIViewController {
 
     }
     
+    var likePostCount: Int?
+    var likePosts = [Post]()
+    
     func getUserFavoriteData(){
+        
+        Firestore.firestore().collection("Likes").whereField("uid", isEqualTo: Profile.shared.loginUser.uid).getDocuments(completion: { [weak self] (snapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+                return
+            }else {
+                
+                self?.likePostCount = snapshot!.documents.count
+                for document in snapshot!.documents {
+                    let likeData = LikeUsers(dic: document.data())
+                    Firestore.firestore().collection("Posts").document(likeData.postId).getDocument { (postSnapshot, err) in
+                        if let err = err {
+                            print("投稿情報の取得に失敗しました。\(err)")
+                            return
+                        }
+                        guard let dic = postSnapshot?.data() else { return }
+                        let post = Post(dic: dic, postId: likeData.postId)
+                        if !post.deleted {
+                            self?.likePosts.append(post)
+                            self?.likePosts.sort { (m1, m2) -> Bool in
+                                let m1Date = m1.createdAt.dateValue()
+                                let m2Date = m2.createdAt.dateValue()
+                                return m1Date < m2Date
+                            }
+                        }
+                    }
+                }
+                
+                self?.collectionView.reloadData()
+            }
+        })
+        
         
         Firestore.firestore().collectionGroup("likeUsers").whereField("uid", isEqualTo: user.uid).getDocuments(completion: {[weak self] (snapshot, error) in
             if let error = error {
@@ -263,9 +309,13 @@ extension ProfileViewController: UICollectionViewDataSource {
             cell.pictureTapDelegate = self
             return cell
         }else if indexPath.row == 1 {
-            // edit cell
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileCollectionViewCell", for: indexPath) as! ProfileCollectionViewCell
-            cell.bind(indexPath.row)
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotosCollectionViewCell", for: indexPath) as! PhotosCollectionViewCell
+            cell.user = user
+            cell.configView()
+            cell.posts = likePosts
+            cell.postCount = likePosts.count
+            cell.pictureTapDelegate = self
             return cell
         }else if indexPath.row == 2 {
             // map cell

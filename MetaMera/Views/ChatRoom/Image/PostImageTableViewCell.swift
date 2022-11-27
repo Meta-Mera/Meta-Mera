@@ -54,13 +54,13 @@ class PostImageTableViewCell: UITableViewCell {
                     //いいねしてない
                     self?.iLiked = false
                     self?.likeButton.setImage(Asset.Images.notGood.image, for: .normal)
-                    self?.goodDelegate?.notGood()
+                    self?.goodDelegate?.good(good: false)
                     return
                 }
                 //いいねしてる
                 self?.iLiked = true
                 self?.likeButton.setImage(Asset.Images.good.image, for: .normal)
-                self?.goodDelegate?.good()
+                self?.goodDelegate?.good(good: true)
                 return
             }
         })
@@ -143,10 +143,10 @@ class PostImageTableViewCell: UITableViewCell {
         iLiked.toggle()
         if(iLiked){
             likeButton.setImage(Asset.Images.good.image, for: .normal)
-            goodDelegate?.good()
+            goodDelegate?.good(good: true)
         }else{
             likeButton.setImage(Asset.Images.notGood.image, for: .normal)
-            goodDelegate?.notGood()
+            goodDelegate?.good(good: false)
         }
     }
     

@@ -8,12 +8,18 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="bokutachi.otf">
+            <string>BokutachinoGothic</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditProfileViewController" customModule="MetaMera" customModuleProvider="target">
             <connections>
                 <outlet property="backButton" destination="rbL-Qn-x3t" id="Tpo-Cb-YIX"/>
                 <outlet property="bioTextField" destination="5eV-Sd-AJm" id="siV-cX-DyG"/>
                 <outlet property="cancelButton" destination="dGB-t6-qQv" id="pD7-4S-Hup"/>
+                <outlet property="limitLabel" destination="CTo-ve-0iK" id="91W-Qj-Ghe"/>
                 <outlet property="menuButton" destination="qzj-ve-39j" id="DTZ-wf-JKk"/>
                 <outlet property="selectHeaderPhotoButton" destination="e41-x4-vmv" id="0z6-2I-mH0"/>
                 <outlet property="selectIconPhotoButton" destination="UoT-rW-fxR" id="Boy-gy-SET"/>
@@ -49,10 +55,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qzj-ve-39j">
-                    <rect key="frame" x="339.5" y="15" width="20.5" height="18"/>
+                    <rect key="frame" x="331.5" y="16" width="28.5" height="25"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="qzj-ve-39j" secondAttribute="height" multiplier="31:27" id="NO8-t8-dhm"/>
-                        <constraint firstAttribute="height" constant="18" id="lES-3w-u4u"/>
+                        <constraint firstAttribute="height" constant="25" id="lES-3w-u4u"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="Hamburger"/>
@@ -91,7 +97,7 @@
                         <constraint firstAttribute="width" constant="250" id="M3o-Ft-UtB"/>
                         <constraint firstAttribute="height" constant="40" id="RHd-Bk-5q2"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="BokutachinoGothic" family="BokutachinoGothic" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NameUnderbar" translatesAutoresizingMaskIntoConstraints="NO" id="nWR-Sm-VRF">
@@ -100,15 +106,15 @@
                         <constraint firstAttribute="width" constant="260" id="Dju-Eh-5B4"/>
                     </constraints>
                 </imageView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="自己紹介" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5eV-Sd-AJm" customClass="PlaceTextView" customModule="MetaMera" customModuleProvider="target">
-                    <rect key="frame" x="37.5" y="282" width="300" height="80"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5eV-Sd-AJm" customClass="PlaceTextView" customModule="MetaMera" customModuleProvider="target">
+                    <rect key="frame" x="37.5" y="282" width="300" height="85"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="80" id="eMN-I0-2zr"/>
+                        <constraint firstAttribute="height" constant="85" id="kmm-JI-BzN"/>
                         <constraint firstAttribute="width" constant="300" id="rqA-Ts-ULw"/>
                     </constraints>
                     <color key="textColor" systemColor="labelColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="BokutachinoGothic" family="BokutachinoGothic" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UoT-rW-fxR">
@@ -123,6 +129,12 @@
                         <action selector="pushChangeIcoonButton:" destination="-1" eventType="touchUpInside" id="ZSv-hT-6xh"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTo-ve-0iK">
+                    <rect key="frame" x="307" y="352" width="20.5" height="11"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -140,16 +152,18 @@
                 <constraint firstItem="5cG-Qc-3rY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="CrU-pf-Cv0"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qzj-ve-39j" secondAttribute="trailing" constant="15" id="EcH-UK-g2s"/>
                 <constraint firstItem="rbL-Qn-x3t" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="K2l-rp-0Ik"/>
+                <constraint firstItem="CTo-ve-0iK" firstAttribute="top" secondItem="5eV-Sd-AJm" secondAttribute="bottom" constant="-15" id="KRf-5u-Yc7"/>
                 <constraint firstItem="nWR-Sm-VRF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="N1x-pY-7ne"/>
                 <constraint firstItem="48L-tL-4hM" firstAttribute="centerY" secondItem="PVm-JT-5jF" secondAttribute="bottom" id="SJD-es-fkA"/>
                 <constraint firstItem="48L-tL-4hM" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="VfE-fJ-PFc"/>
                 <constraint firstAttribute="bottom" secondItem="5cG-Qc-3rY" secondAttribute="bottom" id="W3T-9i-VbJ"/>
-                <constraint firstItem="qzj-ve-39j" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="XDS-j2-3aI"/>
+                <constraint firstItem="qzj-ve-39j" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="XDS-j2-3aI"/>
                 <constraint firstItem="5eV-Sd-AJm" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="eLT-1k-Ql4"/>
                 <constraint firstItem="rbL-Qn-x3t" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="g3j-NK-3qa"/>
                 <constraint firstItem="PVm-JT-5jF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gKy-bj-Nsn"/>
                 <constraint firstItem="e41-x4-vmv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="55" id="nEK-gx-M57"/>
                 <constraint firstItem="dGB-t6-qQv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="100" id="pga-NG-NAO"/>
+                <constraint firstItem="5eV-Sd-AJm" firstAttribute="trailing" secondItem="CTo-ve-0iK" secondAttribute="trailing" constant="10" id="qfu-sS-N97"/>
                 <constraint firstItem="JVD-Ym-tc6" firstAttribute="top" secondItem="48L-tL-4hM" secondAttribute="bottom" constant="20" id="zfl-5H-D8j"/>
             </constraints>
             <point key="canvasLocation" x="136.80000000000001" y="107.49625187406298"/>

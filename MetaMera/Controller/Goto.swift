@@ -117,7 +117,7 @@ class Goto : UIViewController{
         view.navigationController?.pushViewController(vc, animated: true)
     }
     
-    class func EditProfileViewController(user: User,view: UIViewController){
+    class func EditProfileViewController(user: User, view: UIViewController){
         print("Goto-EditProfileViewController was called.")
         let vc = MetaMera.EditProfileViewController(user: user)
         view.navigationController?.pushViewController(vc, animated: true)

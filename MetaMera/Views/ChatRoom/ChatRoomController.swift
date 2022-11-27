@@ -669,13 +669,9 @@ extension ChatRoomController: commentDelegate {
 }
 
 extension ChatRoomController: goodDelegate {
-    func notGood() {
-        iLiked = false
-        print("いいねされてないよ\(iLiked)")
-    }
     
-    func good() {
-        iLiked = true
-        print("いいねされてるよ\(iLiked)")
+    func good(good: Bool) {
+        iLiked = good
+        print("いいねされてるよ\(good)")
     }
 }

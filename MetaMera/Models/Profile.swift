@@ -25,6 +25,20 @@ class Profile {
     //エリアID
     var areaId: String!
     
+    func authenticationStatusCheck(complition: ((Bool) -> Void)? = nil) {
+        Auth.auth().addStateDidChangeListener { (_, user) in
+            // ユーザー情報があるかどうかをBool値で判断する
+            if user == nil {
+                // 新規ユーザーの場合
+                complition?(false)
+                
+            }else {
+                // ログイン済みユーザーの場合
+                complition?(true)
+            }
+        }
+    }
+    
     
     
 }
