@@ -29,7 +29,7 @@
                             <constraint firstAttribute="height" constant="250" id="C0F-bn-75F"/>
                         </constraints>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GUw-EG-5PL">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="editprofile_initicon" translatesAutoresizingMaskIntoConstraints="NO" id="GUw-EG-5PL">
                         <rect key="frame" x="30" y="433" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="4BO-xb-du5"/>
@@ -104,6 +104,7 @@ CgoKCg
         </tableViewCell>
     </objects>
     <resources>
+        <image name="editprofile_initicon" width="288" height="288"/>
         <image name="notGood" width="2362" height="2362"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

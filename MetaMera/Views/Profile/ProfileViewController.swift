@@ -36,7 +36,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     init(user: User, itsMe: Bool) {
         self.user = user
-        self.itsMe = true
+        self.itsMe = itsMe
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -64,7 +64,6 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         
         if user.uid != Profile.shared.loginUser.uid {
             mapButton.isHidden = true
-            itsMe = true
         }
         
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
@@ -94,6 +93,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     /// ユーザープロフィールデータを表示
     private func setupProfileData() {
+        print("\(user.userName) : if ",itsMe)
         if(itsMe){
             userNameLabel.text = Profile.shared.loginUser.userName
             discriptionLabel.text = Profile.shared.loginUser.bio
@@ -116,7 +116,33 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @IBAction func menuButtonAction(_ sender: Any) {
-        Goto.EditProfileViewController(user: Profile.shared.loginUser, view: self)
+        if itsMe {
+            Goto.EditProfileViewController(user: Profile.shared.loginUser, view: self)
+        }else {
+            let alertSheet = UIAlertController(title: "Option", message: "What happened?", preferredStyle: UIAlertController.Style.actionSheet)
+            
+            // アクションを追加.
+            
+            let block = UIAlertAction(title: LocalizeKey.block.localizedString(), style: UIAlertAction.Style.destructive, handler: {[weak self]
+                (action: UIAlertAction!) -> Void in
+                print("Block")
+            })
+            
+            let report = UIAlertAction(title: LocalizeKey.report.localizedString(), style: UIAlertAction.Style.destructive, handler: {[weak self]
+                (action: UIAlertAction!) -> Void in
+                print("Report")
+            })
+            
+            let cancel = UIAlertAction(title: LocalizeKey.cancel.localizedString(), style: UIAlertAction.Style.cancel, handler: {
+                (action: UIAlertAction!) in
+            })
+            
+            alertSheet.addAction(block)
+            alertSheet.addAction(report)
+            alertSheet.addAction(cancel)
+            
+            self.present(alertSheet, animated: true, completion: nil)
+        }
     }
     
     // CollectionView選択時動作
