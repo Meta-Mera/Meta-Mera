@@ -8,13 +8,13 @@ xcassets:
       params:
         publicAccess: 1
     
-strings:
-  inputs:
-    - MetaMera/Resources/en.lproj/Localizable_en.strings
-    - MetaMera/Resources/ja.lproj/Localizable_ja.strings
-  outputs:
-    - templateName: structured-swift5
-      output: MetaMera/Generated/Strings.swift
+#strings:
+#  inputs:
+#    - MetaMera/Resources/en.lproj/Localizable_en.strings
+#    - MetaMera/Resources/ja.lproj/Localizable_ja.strings
+#  outputs:
+#    - templateName: structured-swift5
+#      output: MetaMera/Generated/Strings.swift
 #
 #ib:
 #  inputs:

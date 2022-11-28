@@ -122,4 +122,10 @@ class Goto : UIViewController{
         let vc = MetaMera.EditProfileViewController(user: user)
         view.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    class func AdvanceSettingViewController(view: UIViewController){
+        print("Goto-AdvanceSettingViewController was called.")
+        let vc = MetaMera.AdvanceSettingViewController()
+        view.navigationController?.pushViewController(vc, animated: true)
+    }
 }
