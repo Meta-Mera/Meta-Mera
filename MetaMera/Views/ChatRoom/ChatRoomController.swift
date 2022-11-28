@@ -103,62 +103,97 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
         //        postImageView.image = image
         setUpNotification()
         fetchMessages()
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-        Firestore.firestore().collection("Posts").document(postId).collection("likeUsers").whereField("uid", isEqualTo: Profile.shared.loginUser.uid).getDocuments(completion: { [weak self] (snapshot, error) in
-            if let error = error {
-                print("Error getting documents: \(error)")
-                return
-            }else {
-                guard snapshot!.documents.first?.value != nil else {
-                    //いいねしてない
-                    self?.iLiked = false
-                    return
-                }
-                //いいねしてる
-                self?.iLiked = true
-                
-            }
-            
-        })
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self        
     }
     
     //画面から離れたとき
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        print("画面から離れるよ\(iLiked)")
         tearDownNotification()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
-        Firestore.firestore().collection("Posts").document(postId).collection("likeUsers").whereField("uid", isEqualTo: Profile.shared.loginUser.uid).getDocuments(completion: { [weak self] (snapshot, error) in
+        
+        Firestore.firestore().collection("Likes").whereField("uid", isEqualTo: Profile.shared.loginUser.uid).whereField("postId", isEqualTo: postId!).getDocuments(completion: {[weak self] (snapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
                 return
             }else {
+                guard let iLiked = self?.iLiked else {
+                    print("いいね状態の取得に失敗")
+                    return
+                }
                 guard snapshot!.documents.first?.value != nil else {
-                    //いいねしてない
-                    if((self?.iLiked)!){
+                    //過去にいいねしていない場合
+                    
+                    if(iLiked){//いいねしてる
                         let docData = ["uid" : Profile.shared.loginUser.uid,
+                                       "postId": (self?.post.postId)!,
                                        "createAt": Timestamp()] as [String : Any]
                         print("データなし")
-                        Firestore.firestore().collection("Posts").document((self?.postId)!).collection("likeUsers").document(Profile.shared.loginUser.uid).setData(docData) { error in
-                            if let error = error {
-                                print("いいねの登録に失敗しました。\(error)")
-                                return
-                            }
-                            print("いいねの登録に成功しました。")
+                        
+                        Firestore.firestore().collection("Likes").document().setData(docData){
+                            error in
+                                if let error = error {
+                                    print("いいねの登録に失敗しました。\(error)")
+                                    return
+                                }
+                                print("いいねの登録に成功しました。")
                         }
                     }
                     return
                 }
-                //いいねしてる
-                if(!(self?.iLiked)!){
-                    Firestore.firestore().collection("Posts").document((self?.postId)!).collection("likeUsers").document(Profile.shared.loginUser.uid).delete(){ error in
+                //過去にいいねしている場合
+
+                if(!iLiked){//いいねしてない
+                    Firestore.firestore().collection("Likes").document((snapshot?.documents.first!.documentID)!).delete(){ error in
                         if let error = error {
                             print("いいねの削除に失敗\(error)")
+                            return
                         }
+                        print("いいねの削除に成功")
+                        return
+                        
                     }
                 }
+                return
             }
             
         })
+        
+        
+        
+//        Firestore.firestore().collection("Posts").document(postId).collection("likeUsers").whereField("uid", isEqualTo: Profile.shared.loginUser.uid).getDocuments(completion: { [weak self] (snapshot, error) in
+//            if let error = error {
+//                print("Error getting documents: \(error)")
+//                return
+//            }else {
+//                guard snapshot!.documents.first?.value != nil else {
+//                    //いいねしてない
+//                    if((self?.iLiked)!){
+//                        let docData = ["uid" : Profile.shared.loginUser.uid,
+//                                       "createAt": Timestamp()] as [String : Any]
+//                        print("データなし")
+//                        Firestore.firestore().collection("Posts").document((self?.postId)!).collection("likeUsers").document(Profile.shared.loginUser.uid).setData(docData) { error in
+//                            if let error = error {
+//                                print("いいねの登録に失敗しました。\(error)")
+//                                return
+//                            }
+//                            print("いいねの登録に成功しました。")
+//                        }
+//                    }
+//                    return
+//                }
+//                //いいねしてる
+//                if(!(self?.iLiked)!){
+//                    Firestore.firestore().collection("Posts").document((self?.postId)!).collection("likeUsers").document(Profile.shared.loginUser.uid).delete(){ error in
+//                        if let error = error {
+//                            print("いいねの削除に失敗\(error)")
+//                        }
+//                    }
+//                }
+//            }
+//
+//        })
         messages.removeAll()
     }
     
@@ -538,7 +573,7 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
             cell.post = post
             cell.delegate = self
             cell.goodDelegate = self
-            cell.iLiked = iLiked
+            cell.getGood()
             cell.configView()
 
             return cell
@@ -588,7 +623,7 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
 
 extension ChatRoomController: UserProfileProtocol{
     func tapUser(user: User) {
-        Goto.Profile(view: self, user: user)
+        Goto.ProfileViewController(view: self, user: user)
 //        Goto.UserProfile(view: self, user: user)
     }
 }
@@ -596,7 +631,6 @@ extension ChatRoomController: UserProfileProtocol{
 extension ChatRoomController: commentDelegate {
     
     func commentOption(commentId: String) {
-        print("コメントオプション")
         // styleをActionSheetに設定
         let alertSheet = UIAlertController(title: "Option", message: "What happened?", preferredStyle: UIAlertController.Style.actionSheet)
         
@@ -616,9 +650,6 @@ extension ChatRoomController: commentDelegate {
                         self?.messages.remove(at: index)
                         self?.chatRoomTableView.reloadData()
                     }
-                    
-                    
-                    print("削除成功")
                 }
             }
         })
@@ -639,8 +670,8 @@ extension ChatRoomController: commentDelegate {
 
 extension ChatRoomController: goodDelegate {
     
-    func good() {
-        iLiked.toggle()
-        print("\(iLiked)")
+    func good(good: Bool) {
+        iLiked = good
+        print("いいねされてるよ\(good)")
     }
 }

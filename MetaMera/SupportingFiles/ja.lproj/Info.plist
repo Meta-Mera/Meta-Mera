@@ -59,28 +59,7 @@
 		</dict>
 	</dict>
 	<key>UIApplicationShortcutItems</key>
-	<array>
-		<dict>
-			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutIconTypeProhibit</string>
-			<key>UIApplicationShortcutItemSubtitle</key>
-			<string>g019c1053</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Abeのアカウントでログインします。</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>abe</string>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutIconTypeProhibit</string>
-			<key>UIApplicationShortcutItemSubtitle</key>
-			<string>g019c1045</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Jimのアカウントでログインします。</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>jim</string>
-		</dict>
-	</array>
+	<array/>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

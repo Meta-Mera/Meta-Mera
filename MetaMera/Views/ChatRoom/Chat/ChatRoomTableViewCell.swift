@@ -68,14 +68,10 @@ class ChatRoomTableViewCell: UITableViewCell {
         sendUser.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pushUser(_:))))
         
         
-
-        
-        switch Profile.shared.updateProfileImage() {
-        case .success(let image):
-            userIconImageView.setImage(image: image, name: Profile.shared.loginUser.uid)
-        case .failure(_):
-            break
+        if let userIconImageURL = URL(string: Profile.shared.loginUser.profileImage) {
+            userIconImageView.af.setImage(withURL: userIconImageURL)
         }
+
     }
     
     @objc func pushUser(_ sender: Any){

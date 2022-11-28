@@ -38,6 +38,7 @@ enum LocalizeKey: String {
     case signOut
     case mute
     case block
+    case bio
     
     
     // selfの値をローカライズして返す

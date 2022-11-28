@@ -68,24 +68,12 @@ class Goto : UIViewController{
         }
     }
     
-    class func Profile(view: UIViewController, user: User){
+    class func ProfileViewController(view: UIViewController, user: User){
         print("Goto-Profile was called.")
-        let vc = UIStoryboard(name: "ProfileViewController", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
-        vc.modalPresentationStyle = .fullScreen
-//        vc.loginUser = user
-//        vc.user = user
+        let vc = MetaMera.ProfileViewController(user: user, itsMe: Profile.shared.loginUser.uid == user.uid)
         view.navigationController?.pushViewController(vc, animated: true)
     }
-    
-//    class func UserProfile(view: UIViewController, user: User){
-//        print("Goto-Profile was called.")
-//        let vc = UIStoryboard(name: "ProfileViewController", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController(user: user)
-//        vc.modalPresentationStyle = .fullScreen
-////        vc.delegate = view as! SignOutProtocol
-////        vc.loginUser = user
-////        vc.user = user
-//        view.present(vc, animated: true, completion: nil)
-//    }
+
     
     class func ChangeProfile(view: UIViewController, user: User){
         print("Goto-ChangeProfile was called.")
@@ -129,13 +117,9 @@ class Goto : UIViewController{
         view.navigationController?.pushViewController(vc, animated: true)
     }
     
-    class func EditProfileViewController(view: UIViewController){
-    
+    class func EditProfileViewController(user: User, view: UIViewController){
         print("Goto-EditProfileViewController was called.")
-        let vc = MetaMera.EditProfileViewController()
-        let navController = UINavigationController(rootViewController: vc)
-        navController.modalPresentationStyle = .fullScreen
-        
-        view.present(navController, animated: false,completion: nil)
+        let vc = MetaMera.EditProfileViewController(user: user)
+        view.navigationController?.pushViewController(vc, animated: true)
     }
 }

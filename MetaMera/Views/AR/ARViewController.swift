@@ -235,11 +235,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        switch Profile.shared.updateProfileImage() {
-        case .success(let image):
-            ProfileImage.setImage(image: image, name: Profile.shared.loginUser.uid)
-        case .failure(_):
-            break
+        if let userIconImageURL = URL(string: Profile.shared.loginUser.profileImage) {
+            ProfileImage.af.setImage(withURL: userIconImageURL)
         }
         
         //MARK: ナビゲーションコントローラーを隠すよ！
@@ -358,7 +355,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     @objc func pushProfileImage(_ sender: Any){
         print("getName: ",ProfileImage.getName() as Any)
         print("Push profile image")
-        Goto.Profile(view: self, user: Profile.shared.loginUser)
+        Goto.ProfileViewController(view: self, user: Profile.shared.loginUser)
     }
     
     //MARK: プロフィール画像関連 -
@@ -695,9 +692,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         //        Goto.Profile(view: self)
         sceneLocationView.removeAllNodes()
         mapView.removeAnnotations(annotationArray)
-        //        addNode(latitude: 35.75444876559928, longitude: 139.4811042224357, altitude: 170, imageName: "road",size: CGSize(width: 200, height: 300), pinUse: true, pinName: "road", postId: "test")
-        
-        //35.62473923766413, 139.34178926227506
+        Goto.ProfileViewController(view: self, user: Profile.shared.loginUser)
         
     }
     
