@@ -29,6 +29,9 @@ class AdvanceSettingViewController: UIViewController {
         let items = model.items
         return items
     }()
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var optionButton: UIButton!
+    
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -42,6 +45,9 @@ class AdvanceSettingViewController: UIViewController {
         super.viewDidLoad()
     }
 
+    @IBAction func pushBackButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 extension AdvanceSettingViewController: UITableViewDataSource {

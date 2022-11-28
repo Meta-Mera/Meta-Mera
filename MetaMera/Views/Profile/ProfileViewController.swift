@@ -117,7 +117,31 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBAction func menuButtonAction(_ sender: Any) {
         if itsMe {
-            Goto.EditProfileViewController(user: Profile.shared.loginUser, view: self)
+            
+            let alertSheet = UIAlertController(title: "Option", message: "What happened?", preferredStyle: UIAlertController.Style.actionSheet)
+            
+            // アクションを追加.
+            
+            let profileEdit = UIAlertAction(title: LocalizeKey.accountSetting.localizedString(), style: UIAlertAction.Style.default, handler: {[weak self]
+                (action: UIAlertAction!) -> Void in
+                Goto.EditProfileViewController(user: Profile.shared.loginUser, view: self!)
+            })
+            
+            let advanceSetting = UIAlertAction(title: LocalizeKey.advanceSetting.localizedString(), style: UIAlertAction.Style.default, handler: {[weak self]
+                (action: UIAlertAction!) -> Void in
+                Goto.AdvanceSettingViewController(view: self!)
+            })
+            
+            let cancel = UIAlertAction(title: LocalizeKey.cancel.localizedString(), style: UIAlertAction.Style.cancel, handler: {
+                (action: UIAlertAction!) in
+            })
+            
+            alertSheet.addAction(profileEdit)
+            alertSheet.addAction(advanceSetting)
+            alertSheet.addAction(cancel)
+            
+            self.present(alertSheet, animated: true, completion: nil)
+            
         }else {
             let alertSheet = UIAlertController(title: "Option", message: "What happened?", preferredStyle: UIAlertController.Style.actionSheet)
             

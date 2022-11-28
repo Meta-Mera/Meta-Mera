@@ -39,6 +39,7 @@
             プロフィール画面
  ----------------------------------*/
 "accountSetting" = "アカウント設定";
+"advanceSetting" = "詳細設定";
 "changeYourProfile" = "プロフィール変更";
 "signOut" = "サインアウト";
 "mute" = "ミュート";

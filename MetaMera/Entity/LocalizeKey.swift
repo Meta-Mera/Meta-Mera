@@ -34,6 +34,7 @@ enum LocalizeKey: String {
     
     //プロフィール画面
     case accountSetting
+    case advanceSetting
     case changeYourProfile
     case signOut
     case mute

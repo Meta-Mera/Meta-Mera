@@ -38,6 +38,7 @@
             プロフィール画面
  ----------------------------------*/
 "accountSetting" = "Account setting";
+"advanceSetting" = "Advance setting";
 "changeYourProfile" = "Change your profile";
 "signOut" = "Sign out";
 "mute" = "Mute";
