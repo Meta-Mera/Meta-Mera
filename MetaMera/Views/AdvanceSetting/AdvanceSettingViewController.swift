@@ -43,6 +43,8 @@ class AdvanceSettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.backgroundColor = UIColor.clear
+        tableView.isScrollEnabled = false
     }
 
     @IBAction func pushBackButton(_ sender: Any) {
@@ -61,6 +63,7 @@ extension AdvanceSettingViewController: UITableViewDataSource {
         }
         let item = items[indexPath.row]
         cell.bind(item)
+        cell.backgroundColor = UIColor.clear
         return cell
     }
 }
