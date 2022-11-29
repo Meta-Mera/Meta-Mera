@@ -10,29 +10,38 @@ import UIKit
 public struct SettingItem {
     var title: String
     var description: String
+    var type: SettingType
+    
+    enum SettingType {
+        case emailAddressSettings
+        case changePassword
+        case notificationSettings
+        case contact
+        case withdrawalFromMetaMera
+    }
 }
 
 final class SettingModel {
     let items: [SettingItem] = [
         //Email Settings
         .init(title:LocalizeKey.emailAddressSettings.localizedString(),
-              description: LocalizeKey.emailAddressSettingsDescription.localizedString()),
+              description: LocalizeKey.emailAddressSettingsDescription.localizedString(), type: .emailAddressSettings),
         
         //Change Password
         .init(title: LocalizeKey.changePassword.localizedString(),
-              description: LocalizeKey.changePasswordDescription.localizedString()),
+              description: LocalizeKey.changePasswordDescription.localizedString(), type: .changePassword),
         
         //Notification
         .init(title: LocalizeKey.notificationSettings.localizedString(),
-              description: LocalizeKey.notificationSettingsDescription.localizedString()),
+              description: LocalizeKey.notificationSettingsDescription.localizedString(), type: .notificationSettings),
         
         //Contact
         .init(title: LocalizeKey.contact.localizedString(),
-              description: LocalizeKey.contactDescription.localizedString()),
+              description: LocalizeKey.contactDescription.localizedString(), type: .contact),
         
         //Withdrawal
         .init(title: LocalizeKey.withdrawalFromMetaMera.localizedString(),
-              description: LocalizeKey.withdrawalFromMetaMeraDescription.localizedString()),
+              description: LocalizeKey.withdrawalFromMetaMeraDescription.localizedString(), type: .withdrawalFromMetaMera),
     ]
 }
 
@@ -85,5 +94,33 @@ extension AdvanceSettingViewController: UITableViewDataSource {
 extension AdvanceSettingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected", indexPath.row)
+//
+//        let item = items[indexPath]
+//
+//        switch item. {
+//
+//        }
+        
+        switch indexPath.row {
+        case 0:
+            Goto.ChangeEmailAddressViewController(view: self)
+            break
+        case 1:
+            Goto.ChangePasswordViewController(view: self)
+            break
+        case 2:
+            Goto.NotificationViewController(view: self)
+            break
+        case 3:
+            Goto.ContactViewController(view: self)
+            break
+        case 4:
+            Goto.WithdrawalViewController(view: self)
+            break
+        default:
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
 }

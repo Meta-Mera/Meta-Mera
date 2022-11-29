@@ -115,9 +115,45 @@ class Goto : UIViewController{
         view.navigationController?.pushViewController(vc, animated: true)
     }
     
+    //MARK: - 詳細設定
+    
     class func AdvanceSettingViewController(view: UIViewController){
         print("Goto-AdvanceSettingViewController was called.")
         let vc = MetaMera.AdvanceSettingViewController()
         view.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    class func ChangeEmailAddressViewController(view: UIViewController){
+        print("Goto-ChangeEmailAddressViewController was called.")
+        let vc = MetaMera.ChangeEmailAddressViewController()
+        view.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    class func ChangePasswordViewController(view: UIViewController){
+        print("Goto-ChangePasswordViewController was called.")
+        let vc = MetaMera.ChangePasswordViewController()
+        view.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    class func ContactViewController(view: UIViewController){
+        print("Goto-ContactViewController was called.")
+        let vc = MetaMera.ContactViewController()
+        view.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    class func NotificationViewController(view: UIViewController){
+        print("Goto-NotificationViewController was called.")
+        let vc = MetaMera.NotificationViewController()
+        view.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    class func WithdrawalViewController(view: UIViewController){
+        print("Goto-WithdrawalViewController was called.")
+        let vc = MetaMera.WithdrawalViewController()
+        view.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    //MARK: 詳細設定 -
+    
+    
 }
