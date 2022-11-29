@@ -43,6 +43,7 @@ class AdvanceSettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.backgroundColor = UIColor.clear
     }
 
     @IBAction func pushBackButton(_ sender: Any) {
