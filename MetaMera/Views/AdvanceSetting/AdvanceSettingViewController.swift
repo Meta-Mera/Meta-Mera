@@ -62,6 +62,7 @@ extension AdvanceSettingViewController: UITableViewDataSource {
         }
         let item = items[indexPath.row]
         cell.bind(item)
+        cell.backgroundColor = UIColor.clear
         return cell
     }
 }

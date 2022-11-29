@@ -18,13 +18,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="メールアドレスの設定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Wr-cg-gl5">
-                        <rect key="frame" x="0.0" y="0.0" width="243.5" height="29"/>
+                        <rect key="frame" x="0.0" y="20" width="243.5" height="29"/>
                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="現在設定されているメールアドレスの確認と変更をすることができます。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCy-qj-b5c">
-                        <rect key="frame" x="0.0" y="34" width="390" height="43"/>
+                        <rect key="frame" x="0.0" y="54" width="390" height="43"/>
                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -32,10 +32,10 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="6Wr-cg-gl5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="5e2-VE-hSJ"/>
-                    <constraint firstItem="6Wr-cg-gl5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="B9N-QR-Erx"/>
+                    <constraint firstItem="6Wr-cg-gl5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="B9N-QR-Erx"/>
                     <constraint firstItem="uCy-qj-b5c" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="HPa-jC-sPE"/>
-                    <constraint firstAttribute="bottom" secondItem="uCy-qj-b5c" secondAttribute="bottom" id="Rr7-7L-JXi"/>
                     <constraint firstAttribute="trailing" secondItem="uCy-qj-b5c" secondAttribute="trailing" id="mxJ-ve-vbq"/>
+                    <constraint firstAttribute="bottom" secondItem="uCy-qj-b5c" secondAttribute="bottom" id="qsn-Ey-oWo"/>
                     <constraint firstItem="uCy-qj-b5c" firstAttribute="top" secondItem="6Wr-cg-gl5" secondAttribute="bottom" constant="5" id="wy0-BY-Imh"/>
                 </constraints>
             </tableViewCellContentView>
