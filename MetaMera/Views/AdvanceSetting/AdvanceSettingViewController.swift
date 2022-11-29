@@ -14,11 +14,25 @@ public struct SettingItem {
 
 final class SettingModel {
     let items: [SettingItem] = [
-        .init(title: "メールアドレスの設定", description: "現在登録されているメールアドレスの確認と変更をすることができます。"),
-        .init(title: "パスワードの変更", description: "現在登録しているパスワードを変更することができます。"),
-        .init(title: "通知設定", description: "通知の種類を設定することができます。"),
-        .init(title: "お問い合わせ", description: "何かお困りのことがある場合やバグの修正依頼などお気軽にお問合わせください。"),
-        .init(title: "退会", description: "Meta-Meraのアカウントを削除し退会する手続きを行います。"),
+        //Email Settings
+        .init(title:LocalizeKey.emailAddressSettings.localizedString(),
+              description: LocalizeKey.emailAddressSettingsDescription.localizedString()),
+        
+        //Change Password
+        .init(title: LocalizeKey.changePassword.localizedString(),
+              description: LocalizeKey.changePasswordDescription.localizedString()),
+        
+        //Notification
+        .init(title: LocalizeKey.notificationSettings.localizedString(),
+              description: LocalizeKey.notificationSettingsDescription.localizedString()),
+        
+        //Contact
+        .init(title: LocalizeKey.contact.localizedString(),
+              description: LocalizeKey.contactDescription.localizedString()),
+        
+        //Withdrawal
+        .init(title: LocalizeKey.withdrawalFromMetaMera.localizedString(),
+              description: LocalizeKey.withdrawalFromMetaMeraDescription.localizedString()),
     ]
 }
 

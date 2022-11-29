@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import Photos
 import Alamofire
 import AlamofireImage
 
@@ -23,6 +24,13 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var limitLabel: UILabel!
     
     private let user: User
+    
+    // image
+    private var imagePicker = UIImagePickerController()
+    private var userImage = UIImage()
+    private var changeProfileImage: Bool = false
+    
+    let accessory = Accessory()
     
     init(user: User){
         self.user = user
@@ -43,6 +51,8 @@ class EditProfileViewController: UIViewController {
     }
     
     func configView(){
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
         bioTextField.delegate = self
         limitLabel.text = ""
         userIconImageView.layer.cornerRadius = userIconImageView.bounds.width / 2
@@ -60,6 +70,10 @@ class EditProfileViewController: UIViewController {
               let userName = userNameTextField.text else {
             print("更新情報の取得に失敗しました。")
             return
+        }
+        
+        if(changeProfileImage){
+            saveFirebaseStorage(image: userImage)
         }
         
         Firestore.firestore().collection("Users").document(Profile.shared.loginUser.uid).updateData([
@@ -103,6 +117,9 @@ class EditProfileViewController: UIViewController {
 //        self.navigationController?.popViewController(animated: true)
         let preNC = self.navigationController!
         let preVC = preNC.viewControllers[preNC.viewControllers.count - 2] as! ProfileViewController
+        if(changeProfileImage){
+            preVC.userIconImageView.setImage(image: userImage, name: "")
+        }
         preVC.userNameLabel.text = userNameTextField.text
         preVC.discriptionLabel.text = bioTextField.text
         self.navigationController?.popViewController(animated: true)
@@ -114,6 +131,121 @@ class EditProfileViewController: UIViewController {
     
     @IBAction func pushChangeIcoonButton(_ sender: Any) {
         print("アイコン変更したいよ")
+        if #available(iOS 14.0, *) {
+            PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
+                switch status {
+                case .authorized:
+                    print("許可ずみ")
+                    break
+                case .limited:
+                    print("制限あり")
+                    break
+                case .denied:
+                    print("拒否ずみ")
+                    break
+                default:
+                    break
+                }
+            }
+        }else  {
+            if PHPhotoLibrary.authorizationStatus() != .authorized {
+                PHPhotoLibrary.requestAuthorization { status in
+                    if status == .authorized {
+                        print("許可ずみ")
+                    } else if status == .denied {
+                        print("拒否ずみ")
+                    }
+                }
+            } else {
+                
+            }
+        }
+        
+        
+        // 権限
+        let authPhotoLibraryStatus = PHPhotoLibrary.authorizationStatus()
+        // authPhotoLibraryStatus = .authorized : 許可
+        //                        = .limited    : 選択した画像のみ
+        //                        = .denied     : 拒否
+        
+        if authPhotoLibraryStatus == .limited {
+            
+            //アラートの設定
+            let alert = UIAlertController(title: "Failed to save image", message: "Allow this app to access Photos.", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "Enable photos access", style: .default) { (action) in
+                //設定を開く
+                if let settingURL = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.canOpenURL(settingURL)
+                    UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
+                }
+            }
+            let cancel = UIAlertAction(title: "cancel", style: .cancel) { (acrion) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            
+            //アラートの下にあるボタンを追加
+            alert.addAction(cancel)
+            alert.addAction(ok)
+            //アラートの表示
+            present(alert, animated: true, completion: nil)
+            
+            
+        }
+        if authPhotoLibraryStatus == .denied {
+            
+            //アラートの設定
+            let alert = UIAlertController(title: "Failed to save image", message: "Allow this app to access Photos.", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "Enable photos access", style: .default) { (action) in
+                //設定を開く
+                if let settingURL = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.canOpenURL(settingURL)
+                    UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
+                }
+            }
+            let cancel = UIAlertAction(title: "cancel", style: .cancel) { (acrion) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            
+            //アラートの下にあるボタンを追加
+            alert.addAction(cancel)
+            alert.addAction(ok)
+            //アラートの表示
+            present(alert, animated: true, completion: nil)
+        }
+        // fix/update_prof_image_#33 >>>
+        if authPhotoLibraryStatus == .authorized {
+            // <<<
+            present(imagePicker, animated: true)    // カメラロール起動
+        }
+        print("slect image")
+    }
+    
+    
+    func saveFirebaseStorage(image: UIImage){
+        accessory.saveToFireStorege(selectedImage: image, fileName: Profile.shared.loginUser.uid+".jpeg", folderName: "profile") { [weak self] result in
+            switch result {
+            case .success((let urlString, let returnImage)):
+                self?.updateProfileImageToFirestore(profileImageUrl: urlString, image: returnImage)
+            case .failure(let error):
+                print("\(error)")
+            }
+        }
+    }
+    
+    func updateProfileImageToFirestore(profileImageUrl: String, image: UIImage){
+        //        Firestore.firestore().document("users").collection(Profile.shared.userId).value(forKey: "")
+        let doc = Firestore.firestore().collection("Users").document(Profile.shared.loginUser.uid)
+        doc.updateData([
+            "profileImage" : profileImageUrl]
+        ) { err in
+            if let err = err {
+                print("firestoreの更新に失敗\(err)")
+                return
+            }
+            print("更新成功")
+            
+        }
+        
     }
     
     
@@ -140,5 +272,30 @@ extension EditProfileViewController: UITextViewDelegate {
         self.limitLabel.text = "\(textView.text.count)/50"
     }
 
+    
+}
+
+extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        print("呼ばれた")
+        
+        if let editImage = info[.editedImage] as? UIImage {
+            userIconImageView.setImage(image: editImage, name: "")
+            userImage = editImage
+            changeProfileImage = true
+        }else if let originalImage = info[.originalImage] as? UIImage {
+            userIconImageView.setImage(image: originalImage, name: "")
+            userImage = originalImage
+            changeProfileImage = true
+        }
+        dismiss(animated: true)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("imagePicker closed")
+        dismiss(animated: true)
+        
+    }
     
 }

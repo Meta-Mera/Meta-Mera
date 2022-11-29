@@ -44,3 +44,19 @@
 "mute" = "Mute";
 "block" = "Block";
 "bio" = "You can enter your personal statement here.";
+
+/*----------------------------------
+            詳細設定
+ ----------------------------------*/
+
+"emailAddressSettings" = "Email address settings";
+"changePassword" = "Change password";
+"notificationSettings" = "Notification settings";
+"contact" = "Contact";
+"withdrawalFromMetaMera" = "Withdrawal from Meta-Mera";
+
+"emailAddressSettingsDescription" = "You can check and change your currently registered e-mail address.";
+"changePasswordDescription" = "You can change your currently registered password.";
+"notificationSettingsDescription" = "You can set up notifications.";
+"contactDescription" = "Please feel free to contact us if you have any problems or request for bug fixes.";
+"withdrawalFromMetaMeraDescription" = "Delete your Meta-Mera account and cancel your membership.";

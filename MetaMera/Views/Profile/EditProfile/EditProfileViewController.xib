@@ -18,10 +18,8 @@
             <connections>
                 <outlet property="backButton" destination="rbL-Qn-x3t" id="Tpo-Cb-YIX"/>
                 <outlet property="bioTextField" destination="5eV-Sd-AJm" id="siV-cX-DyG"/>
-                <outlet property="cancelButton" destination="dGB-t6-qQv" id="pD7-4S-Hup"/>
                 <outlet property="limitLabel" destination="CTo-ve-0iK" id="91W-Qj-Ghe"/>
                 <outlet property="menuButton" destination="qzj-ve-39j" id="DTZ-wf-JKk"/>
-                <outlet property="selectHeaderPhotoButton" destination="e41-x4-vmv" id="0z6-2I-mH0"/>
                 <outlet property="selectIconPhotoButton" destination="UoT-rW-fxR" id="Boy-gy-SET"/>
                 <outlet property="userIconImageView" destination="48L-tL-4hM" id="66k-F7-ZCU"/>
                 <outlet property="userNameTextField" destination="JVD-Ym-tc6" id="vXe-ce-UWh"/>
@@ -73,24 +71,6 @@
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="128" id="OsY-6l-rPL"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e41-x4-vmv">
-                    <rect key="frame" x="55" y="55" width="65" height="65"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="e41-x4-vmv" secondAttribute="height" multiplier="1:1" id="UmS-VP-myv"/>
-                        <constraint firstAttribute="height" constant="65" id="WHw-03-gXD"/>
-                    </constraints>
-                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" image="editprofile_selectphoto_button"/>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dGB-t6-qQv">
-                    <rect key="frame" x="255" y="55" width="65" height="65"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="dGB-t6-qQv" secondAttribute="height" multiplier="1:1" id="8Q8-Zr-w4W"/>
-                        <constraint firstAttribute="height" constant="65" id="MzY-nx-Wlv"/>
-                    </constraints>
-                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="Button" image="editprofile_selectphoto_button"/>
-                </button>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User Name" textAlignment="natural" minimumFontSize="55" translatesAutoresizingMaskIntoConstraints="NO" id="JVD-Ym-tc6">
                     <rect key="frame" x="62.5" y="214" width="250" height="40"/>
                     <constraints>
@@ -140,12 +120,10 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="nWR-Sm-VRF" firstAttribute="top" secondItem="JVD-Ym-tc6" secondAttribute="bottom" constant="5" id="0ju-IO-88Z"/>
-                <constraint firstItem="dGB-t6-qQv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="55" id="2M5-4G-XPx"/>
                 <constraint firstItem="JVD-Ym-tc6" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2zg-qa-daE"/>
                 <constraint firstItem="UoT-rW-fxR" firstAttribute="centerY" secondItem="48L-tL-4hM" secondAttribute="centerY" id="3st-5O-Cxw"/>
                 <constraint firstItem="5eV-Sd-AJm" firstAttribute="top" secondItem="nWR-Sm-VRF" secondAttribute="bottom" constant="15" id="4sM-PF-1ZM"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PVm-JT-5jF" secondAttribute="trailing" id="5Uy-72-VNC"/>
-                <constraint firstItem="e41-x4-vmv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="-100" id="5hy-8f-NTt"/>
                 <constraint firstItem="5cG-Qc-3rY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="6tK-1d-4Vl"/>
                 <constraint firstItem="PVm-JT-5jF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Alr-hu-JdL"/>
                 <constraint firstItem="UoT-rW-fxR" firstAttribute="centerX" secondItem="48L-tL-4hM" secondAttribute="centerX" id="Cjf-kp-41j"/>
@@ -161,8 +139,6 @@
                 <constraint firstItem="5eV-Sd-AJm" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="eLT-1k-Ql4"/>
                 <constraint firstItem="rbL-Qn-x3t" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="g3j-NK-3qa"/>
                 <constraint firstItem="PVm-JT-5jF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gKy-bj-Nsn"/>
-                <constraint firstItem="e41-x4-vmv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="55" id="nEK-gx-M57"/>
-                <constraint firstItem="dGB-t6-qQv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="100" id="pga-NG-NAO"/>
                 <constraint firstItem="5eV-Sd-AJm" firstAttribute="trailing" secondItem="CTo-ve-0iK" secondAttribute="trailing" constant="10" id="qfu-sS-N97"/>
                 <constraint firstItem="JVD-Ym-tc6" firstAttribute="top" secondItem="48L-tL-4hM" secondAttribute="bottom" constant="20" id="zfl-5H-D8j"/>
             </constraints>
@@ -176,7 +152,6 @@
         <image name="editprofile_background" width="1284" height="2778"/>
         <image name="editprofile_header" width="1284" height="347"/>
         <image name="editprofile_initicon" width="288" height="288"/>
-        <image name="editprofile_selectphoto_button" width="241" height="243"/>
         <image name="photo_mark" width="190" height="192"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -41,6 +41,19 @@ enum LocalizeKey: String {
     case block
     case bio
     
+    //詳細設定
+    case emailAddressSettings
+    case changePassword
+    case notificationSettings
+    case contact
+    case withdrawalFromMetaMera
+
+    case emailAddressSettingsDescription
+    case changePasswordDescription
+    case notificationSettingsDescription
+    case contactDescription
+    case withdrawalFromMetaMeraDescription
+    
     
     // selfの値をローカライズして返す
     func localizedString() -> String {
