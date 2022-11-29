@@ -73,14 +73,6 @@ class Goto : UIViewController{
         let vc = MetaMera.ProfileViewController(user: user, itsMe: Profile.shared.loginUser.uid == user.uid)
         view.navigationController?.pushViewController(vc, animated: true)
     }
-
-    
-    class func ChangeProfile(view: UIViewController, user: User){
-        print("Goto-ChangeProfile was called.")
-        let vc = UIStoryboard(name: "ChangeProfileViewController", bundle: nil).instantiateViewController(withIdentifier: "ChangeProfileViewController") as! ChangeProfileViewController
-        vc.loginUser = user
-        view.navigationController?.pushViewController(vc, animated: true)
-    }
     
     class func ChatRoomView(view: UIViewController, image: URL, post: Post!){
         print("Goto-ChatRoom was called.")
