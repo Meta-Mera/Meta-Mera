@@ -22,7 +22,7 @@ final class SettingModel {
         .init(title: LocalizeKey.changePassword.localizedString(),
               description: LocalizeKey.changePasswordDescription.localizedString()),
         
-        //Contact
+        //Notification
         .init(title: LocalizeKey.notificationSettings.localizedString(),
               description: LocalizeKey.notificationSettingsDescription.localizedString()),
         
