@@ -199,11 +199,18 @@ class CreateNewPostViewController: UIViewController {
     
     
     @objc func mapViewLongTapped(_ sender: UILongPressGestureRecognizer){
+        
+        //TODO:  長押しじゃなくて通常タップでピンを配置できるようにする
+        
         let location:CGPoint = sender.location(in: mapView)
         mapView.removeAnnotation(pointAno)
         isAnnotation = false
         buttonCheck()
-        if (sender.state == UIGestureRecognizer.State.ended){
+        if (sender.state == .began){
+            let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.success)
+        }
+        if (sender.state == .ended){
             //タップした位置を緯度、経度の座標に変換する。
             let mapPoint:CLLocationCoordinate2D = mapView.convert(location,toCoordinateFrom: mapView)
 

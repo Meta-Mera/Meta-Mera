@@ -46,3 +46,19 @@
 "block" = "ブロック";
 "bio" = "ここに自己紹介文が入力できます。";
 
+/*----------------------------------
+            詳細設定
+ ----------------------------------*/
+
+"emailAddressSettings" = "メールアドレスの設定";
+"changePassword" = "パスワードの変更";
+"notificationSettings" = "通知設定";
+"contact" = "お問い合わせ";
+"withdrawalFromMetaMera" = "退会";
+
+"emailAddressSettingsDescription" = "現在登録されているメールアドレスの確認と変更をすることができます。";
+"changePasswordDescription" = "現在登録しているパスワードを変更することができます。";
+"notificationSettingsDescription" = "通知の種類を設定することができます。";
+"contactDescription" = "何かお困りのことがある場合やバグの修正依頼などお気軽にお問合わせください。";
+"withdrawalFromMetaMeraDescription" = "Meta-Meraのアカウントを削除し退会する手続きを行います。";
+
