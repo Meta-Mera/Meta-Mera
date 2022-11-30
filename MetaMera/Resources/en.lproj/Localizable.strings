@@ -44,6 +44,8 @@
 "mute" = "Mute";
 "block" = "Block";
 "bio" = "You can enter your personal statement here.";
+"deleted" = "This account diesn't exist";
+"deletedDescription" = "This account has been suspend or deleted.";
 
 /*----------------------------------
             詳細設定

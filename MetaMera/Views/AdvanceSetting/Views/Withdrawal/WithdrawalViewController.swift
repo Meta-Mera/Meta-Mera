@@ -16,14 +16,23 @@ class WithdrawalViewController: UIViewController {
     }
 
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    let userModel = UserModel()
+    let inmodel = SignInModel()
+    
+    func withdrawal() {
+        userModel.deleteUser(uid: "", email: "", password: "") {[weak self] result in
+            switch result {
+                
+            case .success(_):
+                print("アカウント削除に成功")
+                self?.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+            case .failure(let error):
+                print("アカウント削除に失敗しました。\(error.code)")
+            }
+        }
     }
-    */
+    
+    
+    
 
 }

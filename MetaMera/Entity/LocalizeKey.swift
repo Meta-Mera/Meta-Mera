@@ -40,6 +40,8 @@ enum LocalizeKey: String {
     case mute
     case block
     case bio
+    case deleted
+    case deletedDescription
     
     //詳細設定
     case emailAddressSettings

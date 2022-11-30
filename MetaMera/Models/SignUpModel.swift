@@ -23,29 +23,29 @@ class SignUpModel {
               let confirmPassword = signUpItem.confirmPassword,
               let bio = signUpItem.bio,
               let userName = signUpItem.userName else {
-            completion(.failure(NSError(domain: "null error", code: 400)))
+            completion(.failure(NSError(domain: "null error", code: 101)))
             return
         }
         
         guard password == confirmPassword else {
-            completion(.failure(NSError(domain: "パスワードの不一致", code: 400)))
+            completion(.failure(NSError(domain: "パスワードの不一致", code: 102)))
             return
         }
         
         guard password.count >= 6 else {
-            completion(.failure(NSError(domain: "パスワードが弱いです。", code: 400)))
+            completion(.failure(NSError(domain: "パスワードが弱いです。", code: 103)))
             return
         }
         
         Auth.auth().createUser(withEmail: email, password: password) { (res, err) in
             if let err = err{
                 let error = err.localizedDescription
-                completion(.failure(NSError(domain: error, code: 400)))
+                completion(.failure(NSError(domain: error, code: 104)))
                 return
             }
             
             guard let uid = Auth.auth().currentUser?.uid else {
-                completion(.failure(NSError(domain: "null error", code: 400)))
+                completion(.failure(NSError(domain: "null error", code: 101)))
                 return
                 
             }
@@ -64,14 +64,14 @@ class SignUpModel {
             
             userRef.setData(docData) { (err) in
                 if let err = err {
-                    completion(.failure(NSError(domain: "Firestoreへの登録に失敗しました: \(err)", code: 400)))
+                    completion(.failure(NSError(domain: "Firestoreへの登録に失敗しました: \(err)", code: 108)))
                     return
                 }
                 print("登録に成功しました")
                 
                 userRef.getDocument { (snapshot, err) in
                     if let err = err {
-                        completion(.failure(NSError(domain: "ユーザ情報の取得に失敗しました。\(err)", code: 400)))
+                        completion(.failure(NSError(domain: "ユーザ情報の取得に失敗しました。\(err)", code: 109)))
                         return
                     }
                     

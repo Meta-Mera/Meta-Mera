@@ -31,6 +31,10 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var mapButton: UIButton!
     
+    @IBOutlet weak var accountDeletedView: UIView!
+    @IBOutlet weak var deletedLabel: UILabel!
+    @IBOutlet weak var deletedDescriptionLabel: UILabel!
+    
     private let user: User
     private var itsMe: Bool
     
@@ -93,6 +97,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     /// ユーザープロフィールデータを表示
     private func setupProfileData() {
+        accountDeletedView.isHidden = true
         print("\(user.userName) : if ",itsMe)
         if(itsMe){
             userNameLabel.text = Profile.shared.loginUser.userName
@@ -101,10 +106,16 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
                 userIconImageView.af.setImage(withURL: userIconImageURL)
             }
         }else {
-            userNameLabel.text = user.userName
-            discriptionLabel.text = user.bio
-            if let userIconImageURL = URL(string: user.profileImage) {
-                userIconImageView.af.setImage(withURL: userIconImageURL)
+            if(!user.deleted && !user.ban){
+                userNameLabel.text = user.userName
+                discriptionLabel.text = user.bio
+                if let userIconImageURL = URL(string: user.profileImage) {
+                    userIconImageView.af.setImage(withURL: userIconImageURL)
+                }
+            }else{
+                accountDeletedView.isHidden = false
+                deletedLabel.text = LocalizeKey.deleted.localizedString()
+                deletedDescriptionLabel.text = LocalizeKey.deletedDescription.localizedString()
             }
         }
 //        collectionView.reloadData()
@@ -276,27 +287,29 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     var posts = [Post]()
     
     func getUserPostData(){
-        Firestore.firestore().collection("Posts").whereField("postUserUid", isEqualTo: user.uid).getDocuments(completion: {[weak self] (snapshot, error) in
-            if let error = error {
-                print("投稿データの取得に失敗しました。\(error)")
-                return
-            }
-            
-            self?.postCount = snapshot!.documents.count
-            for document in snapshot!.documents {
-                let post = Post(dic: document.data(), postId: document.documentID)
-                if !post.deleted {
-                    self?.posts.append(post)
-                    self?.posts.sort { (m1, m2) -> Bool in
-                        let m1Date = m1.createdAt.dateValue()
-                        let m2Date = m2.createdAt.dateValue()
-                        return m1Date < m2Date
+        if(!user.deleted && !user.ban){
+            Firestore.firestore().collection("Posts").whereField("postUserUid", isEqualTo: user.uid).getDocuments(completion: {[weak self] (snapshot, error) in
+                if let error = error {
+                    print("投稿データの取得に失敗しました。\(error)")
+                    return
+                }
+                
+                self?.postCount = snapshot!.documents.count
+                for document in snapshot!.documents {
+                    let post = Post(dic: document.data(), postId: document.documentID)
+                    if !post.deleted {
+                        self?.posts.append(post)
+                        self?.posts.sort { (m1, m2) -> Bool in
+                            let m1Date = m1.createdAt.dateValue()
+                            let m2Date = m2.createdAt.dateValue()
+                            return m1Date < m2Date
+                        }
                     }
                 }
-            }
-            
-            self?.collectionView.reloadData()
-        })
+                
+                self?.collectionView.reloadData()
+            })
+        }
 
     }
     
@@ -304,58 +317,59 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     var likePosts = [Post]()
     
     func getUserFavoriteData(){
-        
-        Firestore.firestore().collection("Likes").whereField("uid", isEqualTo: Profile.shared.loginUser.uid).getDocuments(completion: { [weak self] (snapshot, error) in
-            if let error = error {
-                print("Error getting documents: \(error)")
-                return
-            }else {
-                
-                self?.likePostCount = snapshot!.documents.count
-                for document in snapshot!.documents {
-                    let likeData = LikeUsers(dic: document.data())
-                    Firestore.firestore().collection("Posts").document(likeData.postId).getDocument { (postSnapshot, err) in
-                        if let err = err {
-                            print("投稿情報の取得に失敗しました。\(err)")
-                            return
-                        }
-                        guard let dic = postSnapshot?.data() else { return }
-                        let post = Post(dic: dic, postId: likeData.postId)
-                        if !post.deleted {
-                            self?.likePosts.append(post)
-                            self?.likePosts.sort { (m1, m2) -> Bool in
-                                let m1Date = m1.createdAt.dateValue()
-                                let m2Date = m2.createdAt.dateValue()
-                                return m1Date < m2Date
+        if(!user.deleted && !user.ban){
+            Firestore.firestore().collection("Likes").whereField("uid", isEqualTo: Profile.shared.loginUser.uid).getDocuments(completion: { [weak self] (snapshot, error) in
+                if let error = error {
+                    print("Error getting documents: \(error)")
+                    return
+                }else {
+                    
+                    self?.likePostCount = snapshot!.documents.count
+                    for document in snapshot!.documents {
+                        let likeData = LikeUsers(dic: document.data())
+                        Firestore.firestore().collection("Posts").document(likeData.postId).getDocument { (postSnapshot, err) in
+                            if let err = err {
+                                print("投稿情報の取得に失敗しました。\(err)")
+                                return
+                            }
+                            guard let dic = postSnapshot?.data() else { return }
+                            let post = Post(dic: dic, postId: likeData.postId)
+                            if !post.deleted {
+                                self?.likePosts.append(post)
+                                self?.likePosts.sort { (m1, m2) -> Bool in
+                                    let m1Date = m1.createdAt.dateValue()
+                                    let m2Date = m2.createdAt.dateValue()
+                                    return m1Date < m2Date
+                                }
                             }
                         }
                     }
+                    
+                    self?.collectionView.reloadData()
+                }
+            })
+            
+            
+            Firestore.firestore().collectionGroup("likeUsers").whereField("uid", isEqualTo: user.uid).getDocuments(completion: {[weak self] (snapshot, error) in
+                if let error = error {
+                    print("投稿データの取得に失敗しました。\(error)")
+                    return
                 }
                 
+                self?.postCount = snapshot!.documents.count
+                for document in snapshot!.documents {
+                    print("dic\(document.data())")
+    //                let post = Post(dic: document.data(), postId: document.documentID)
+    //                self?.posts.append(post)
+    //                self?.posts.sort { (m1, m2) -> Bool in
+    //                    let m1Date = m1.createdAt.dateValue()
+    //                    let m2Date = m2.createdAt.dateValue()
+    //                    return m1Date < m2Date
+    //                }
+                }
                 self?.collectionView.reloadData()
-            }
-        })
-        
-        
-        Firestore.firestore().collectionGroup("likeUsers").whereField("uid", isEqualTo: user.uid).getDocuments(completion: {[weak self] (snapshot, error) in
-            if let error = error {
-                print("投稿データの取得に失敗しました。\(error)")
-                return
-            }
-            
-            self?.postCount = snapshot!.documents.count
-            for document in snapshot!.documents {
-                print("dic\(document.data())")
-//                let post = Post(dic: document.data(), postId: document.documentID)
-//                self?.posts.append(post)
-//                self?.posts.sort { (m1, m2) -> Bool in
-//                    let m1Date = m1.createdAt.dateValue()
-//                    let m2Date = m2.createdAt.dateValue()
-//                    return m1Date < m2Date
-//                }
-            }
-            self?.collectionView.reloadData()
-        })
+            })
+        }
 
     }
     
