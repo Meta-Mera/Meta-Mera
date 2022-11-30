@@ -11,6 +11,7 @@ import IQKeyboardManagerSwift
 import Firebase
 import Alamofire
 import AlamofireImage
+import PKHUD
 
 class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate{
     
@@ -227,6 +228,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
                         if let err = err {
                             print("Error updating document: \(err)")
                         } else {
+                            HUD.flash(.label("投稿を世界に公開しました"), delay: 1)
                             print("再表示化成功")
                         }
                     }
@@ -242,6 +244,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
                         if let err = err {
                             print("Error updating document: \(err)")
                         } else {
+                            HUD.flash(.label("世界から投稿を非表示にしました。"), delay: 1)
                             print("非表示化成功")
                         }
                     }
@@ -259,6 +262,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
                     if let err = err {
                         print("Error updating document: \(err)")
                     } else {
+                        HUD.flash(.label("投稿を闇に葬りました。"), delay: 1)
                         print("削除成功")
                     }
                 }

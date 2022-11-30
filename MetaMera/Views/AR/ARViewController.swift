@@ -254,6 +254,9 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                 guard let placemark = placemarks?.first, error == nil else { return }
                 
                 if let locality = placemark.locality {
+                    self?.mapView.removeAnnotations(self!.annotationArray)
+                    self?.annotationArray = []
+                    self?.posts = []
                     self?.locality = locality
                     print("locality: ",locality as Any)
                     Firestore.firestore().collection("Areas").whereField("areaName", isEqualTo: locality).getDocuments(completion: { [weak self]
