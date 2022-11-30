@@ -132,12 +132,18 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
                 Goto.AdvanceSettingViewController(view: self!)
             })
             
+            let signOut = UIAlertAction(title: LocalizeKey.signOut.localizedString(), style: UIAlertAction.Style.destructive, handler: {[weak self]
+                (action: UIAlertAction!) in
+                self?.pushSignOut()
+            })
+            
             let cancel = UIAlertAction(title: LocalizeKey.cancel.localizedString(), style: UIAlertAction.Style.cancel, handler: {
                 (action: UIAlertAction!) in
             })
             
             alertSheet.addAction(profileEdit)
             alertSheet.addAction(advanceSetting)
+            alertSheet.addAction(signOut)
             alertSheet.addAction(cancel)
             
             self.present(alertSheet, animated: true, completion: nil)
@@ -157,15 +163,30 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
                 print("Report")
             })
             
+            let signOut = UIAlertAction(title: LocalizeKey.signOut.localizedString(), style: UIAlertAction.Style.destructive, handler: {
+                (action: UIAlertAction!) in
+            })
+            
             let cancel = UIAlertAction(title: LocalizeKey.cancel.localizedString(), style: UIAlertAction.Style.cancel, handler: {
                 (action: UIAlertAction!) in
             })
             
             alertSheet.addAction(block)
             alertSheet.addAction(report)
+            alertSheet.addAction(signOut)
             alertSheet.addAction(cancel)
             
             self.present(alertSheet, animated: true, completion: nil)
+        }
+    }
+    
+    func pushSignOut(){
+        do {
+            try Auth.auth().signOut()
+            Profile.shared.isLogin = false
+            self.dismiss(animated: true, completion: nil)
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
         }
     }
     
