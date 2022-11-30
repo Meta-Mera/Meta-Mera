@@ -19,7 +19,7 @@ class ReportModel {
               let postId = reportItem.postId,
               let reportGenre = reportItem.reportGenre
         else {
-            completion(.failure(NSError(domain: "null error", code: 400)))
+            completion(.failure(NSError(domain: "null error", code: 601)))
             return
         }
         
@@ -33,6 +33,7 @@ class ReportModel {
         Firestore.firestore().collection("Reports").addDocument(data:userDocData){ err in
             if let err = err {
                 print("通報データの保存に失敗しました。\(err)")
+                completion(.failure(NSError(domain: "通報データの保存に失敗しました。\(err)", code: 608)))
                 return
             }
             completion(.success(true))

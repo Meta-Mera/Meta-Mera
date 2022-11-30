@@ -109,7 +109,10 @@ extension AdvanceSettingViewController: UITableViewDelegate {
             Goto.ChangePasswordViewController(view: self)
             break
         case 2:
-            Goto.NotificationViewController(view: self)
+            if let settingURL = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.canOpenURL(settingURL)
+                UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
+            }
             break
         case 3:
             Goto.ContactViewController(view: self)

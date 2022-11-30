@@ -54,7 +54,7 @@ class Accessory {
 
             if let err = err{//保存に失敗した場合
                 print("firestorageへの情報の保存に失敗\(err)")
-                completion(.failure(NSError(domain: "firestorageへの情報の保存に失敗\(err)", code: 400)))
+                completion(.failure(NSError(domain: "firestorageへの情報の保存に失敗\(err)", code: 806)))
                 return
             }
             //保存に成功した場合
@@ -64,7 +64,7 @@ class Accessory {
             storageRef.downloadURL {(url, err) in
 
                 if let err = err {//URLがダウンロードできなかった場合
-                    completion(.failure(NSError(domain: "firestorageからURLの取得に失敗しました。\(err)", code: 400)))
+                    completion(.failure(NSError(domain: "firestorageからURLの取得に失敗しました。\(err)", code: 807)))
                     return
                 }
                 //ダウンロードできた場合
@@ -104,7 +104,7 @@ class Accessory {
         //加工用画像を保存していく
         storageEditRef.putData(uploadImage, metadata: metaData) { (metadata, err) in
             if let err = err{//保存に失敗
-                completion(.failure(NSError(domain: "firestorageへ加工用画像の保存に失敗\(err)", code: 400)))
+                completion(.failure(NSError(domain: "firestorageへ加工用画像の保存に失敗\(err)", code: 802)))
                 return
             }
             //保存成功
@@ -113,7 +113,7 @@ class Accessory {
             //URLを取得
             storageEditRef.downloadURL {(editUrl, err) in
                 if let err = err {//取得に失敗
-                    completion(.failure(NSError(domain: "firestorageからEditURLの取得に失敗しました。\(err)", code: 400)))
+                    completion(.failure(NSError(domain: "firestorageからEditURLの取得に失敗しました。\(err)", code: 803)))
                     return
                 }
                 //取得に成功したからURLをString型に変更
@@ -122,7 +122,7 @@ class Accessory {
                 //生画像を保存していく
                 storageRawRef.putData(uploadImage, metadata: metaData) { (metadata, err) in
                     if let err = err{//保存に失敗
-                        completion(.failure(NSError(domain: "firestorageへ生画像の保存に失敗\(err)", code: 400)))
+                        completion(.failure(NSError(domain: "firestorageへ生画像の保存に失敗\(err)", code: 804)))
                         return
                     }
                     //保存に成功
@@ -131,7 +131,7 @@ class Accessory {
                     //URLを取得
                     storageRawRef.downloadURL { (rawUrl, err) in
                         if let err = err {//取得できなかった
-                            completion(.failure(NSError(domain: "firestorageからrawURLの取得に失敗しました。\(err)", code: 400)))
+                            completion(.failure(NSError(domain: "firestorageからrawURLの取得に失敗しました。\(err)", code: 805)))
                             return
                         }
                         //取得に成功したからURLをString型に変更

@@ -45,6 +45,8 @@
 "mute" = "ミュート";
 "block" = "ブロック";
 "bio" = "ここに自己紹介文が入力できます。";
+"deleted" = "このアカウントは存在しません";
+"deletedDescription" = "このアカウントは凍結、もしくは削除されています。";
 
 /*----------------------------------
             詳細設定
@@ -58,7 +60,8 @@
 
 "emailAddressSettingsDescription" = "現在登録されているメールアドレスの確認と変更をすることができます。";
 "changePasswordDescription" = "現在登録しているパスワードを変更することができます。";
-"notificationSettingsDescription" = "通知の種類を設定することができます。";
+//"notificationSettingsDescription" = "通知の種類を設定することができます。";
+"notificationSettingsDescription" = "設定へ移動します。";
 "contactDescription" = "何かお困りのことがある場合やバグの修正依頼などお気軽にお問合わせください。";
 "withdrawalFromMetaMeraDescription" = "Meta-Meraのアカウントを削除し退会する手続きを行います。";
 
