@@ -35,6 +35,8 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var deletedLabel: UILabel!
     @IBOutlet weak var deletedDescriptionLabel: UILabel!
     
+    @IBOutlet weak var headerImageView: UIImageView!
+    
     private let user: User
     private var itsMe: Bool
     
@@ -95,16 +97,43 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         collectionView.collectionViewLayout = layout
     }
     
+    enum HeaderColor: Int {
+        case lightBlue = 0
+        case lightGreen = 1
+        case orange = 2
+        case beige = 3
+        case varmilion = 4
+        
+        var image: UIImage {
+            switch self {
+                
+            case .lightBlue:
+                return Asset.Images.headerLightblue.image
+            case .lightGreen:
+                return Asset.Images.headerLightgreen.image
+            case .orange:
+                return Asset.Images.headerOrange.image
+            case .beige:
+                return Asset.Images.headerBeige.image
+            case .varmilion:
+                return Asset.Images.headerVermilion.image
+            }
+        }
+    }
+    
     /// ユーザープロフィールデータを表示
     private func setupProfileData() {
         accountDeletedView.isHidden = true
         print("\(user.userName) : if ",itsMe)
+        
         if(itsMe){
             userNameLabel.text = Profile.shared.loginUser.userName
             discriptionLabel.text = Profile.shared.loginUser.bio
             if let userIconImageURL = URL(string: Profile.shared.loginUser.profileImage) {
                 userIconImageView.af.setImage(withURL: userIconImageURL)
             }
+            let headerColor = HeaderColor(rawValue: Profile.shared.loginUser.headerColor)!
+            headerImageView.setImage(image: headerColor.image, name: "")
         }else {
             if(!user.deleted && !user.ban){
                 userNameLabel.text = user.userName
@@ -112,6 +141,8 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
                 if let userIconImageURL = URL(string: user.profileImage) {
                     userIconImageView.af.setImage(withURL: userIconImageURL)
                 }
+                let headerColor = HeaderColor(rawValue: user.headerColor)!
+                headerImageView.setImage(image: headerColor.image, name: "")
             }else{
                 accountDeletedView.isHidden = false
                 deletedLabel.text = LocalizeKey.deleted.localizedString()
