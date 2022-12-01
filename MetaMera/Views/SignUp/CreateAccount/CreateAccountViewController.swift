@@ -8,7 +8,21 @@
 import UIKit
 
 class CreateAccountViewController: UIViewController {
-
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var photoMarkButton: UIButton!
+    
+    @IBOutlet weak var userNameTextField: UITextField!
+    @IBOutlet weak var backButton: UIButton!
+    
+    @IBOutlet weak var nextButton: UIButton!
+    
+    
+    
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
