@@ -38,6 +38,12 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         collectionView.register(UINib(nibName: "PictureCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "PictureCollectionViewCell")
     }
     
+    var row: Int?
+
+    func setLessonData(row: Int) {
+        self.row = row
+    }
+    
 
 }
 

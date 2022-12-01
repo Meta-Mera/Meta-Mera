@@ -155,5 +155,15 @@ class Goto : UIViewController{
     
     //MARK: 詳細設定 -
     
+    //MARK: - 試作品
+    
+    class func fixProfileViewController(view: UIViewController){
+//        print("Goto-fixProfileViewController was called.")
+        let vc = MetaMera.ProfileSwipeViewController()
+        view.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    //MARK: 試作品 -
+    
     
 }

@@ -44,6 +44,13 @@ class MapViewCollectionViewCell: UICollectionViewCell {
         })
 
     }
+    
+    var row: Int?
+
+    func setLessonData(row: Int) {
+        // セルのインデックスを持たせておく
+        self.row = row
+    }
 
 }
 

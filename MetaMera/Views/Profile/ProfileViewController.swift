@@ -26,7 +26,9 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var userIconImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var discriptionLabel: UILabel!
+    
     @IBOutlet weak var collectionView: UICollectionView!
+    
     @IBOutlet weak var photoImageButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var mapButton: UIButton!
@@ -231,11 +233,13 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
 //        photoImageButton.setImage(img, for: .normal)
 //        isSelectedPhotoButton.toggle()
         moveScrollView(at: 0)
+        collectionView.setContentOffset(CGPoint(x: 00, y: 0), animated: true)
         updateMenuButtonLayout(type: .photo)
     }
     
     private func moveScrollView(at index: Int) {
         collectionView.isPagingEnabled = false
+        scrollBeginingPoint = collectionView.contentOffset;
         collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .left, animated: true)
         collectionView.isPagingEnabled = true
     }
@@ -373,6 +377,10 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
 
     }
     
+    // スクロール開始した位置
+    var scrollBeginingPoint: CGPoint!
+    // スクロールした方向
+    var scrollDirection: Bool = true
 
 }
 
@@ -392,6 +400,7 @@ extension ProfileViewController: UICollectionViewDataSource {
             cell.posts = posts
             cell.postCount = posts.count
             cell.pictureTapDelegate = self
+            cell.setLessonData(row: indexPath.row)
             return cell
         }else if indexPath.row == 1 {
             
@@ -400,17 +409,60 @@ extension ProfileViewController: UICollectionViewDataSource {
             cell.configView()
             cell.posts = likePosts
             cell.postCount = likePosts.count
+            cell.setLessonData(row: indexPath.row)
             cell.pictureTapDelegate = self
             return cell
         }else if indexPath.row == 2 {
             // map cell
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MapViewCollectionViewCell", for: indexPath) as! MapViewCollectionViewCell
+            cell.setLessonData(row: indexPath.row)
             cell.delegate = self
             cell.getUserPostData()
             return cell
         }
         return UICollectionViewCell()
     }
+    
+    // 画面のスクロールを開始した位置を保存
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        scrollBeginingPoint = scrollView.contentOffset;
+    }
+    
+    // 画面をスクロールした瞬間の位置を保存
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentPoint = scrollView.contentOffset;
+        // スクロール開始位置とスクロールした直後の位置を比較
+        // スクロールした方向を判定
+        if scrollBeginingPoint.x < currentPoint.x {
+            scrollDirection = true
+        } else {
+            scrollDirection = false
+        }
+    }
+    
+    // 画面のスクロールが止まったら自動スクロールさせる
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        print("画面のスクロールが止まった")
+        // 画面に表示されているセルを取得
+        let cells = collectionView.visibleCells
+        var indexArray: [Int] = []
+        var indexRow: Int?
+        // カスタムセルに持たせておいたインデックスを取得しておく
+        for cell in cells {
+            guard let safeCell = cell as? PhotosCollectionViewCell else { return }
+            indexArray.append(safeCell.row ?? 0)
+        }
+        guard !indexArray.isEmpty else { return }
+        // スクロール方向によって取得したインデックス番号の最大値or最小値を取得する
+        if scrollDirection {
+            indexRow = indexArray.max()
+        } else {
+            indexRow = indexArray.min()
+        }
+        // 最後に取得したインデックスまで自動スクロールさせる
+        collectionView.scrollToItem(at: IndexPath(item: indexRow ?? 0, section: 0), at: .centeredHorizontally, animated: true)
+    }
+    
 }
 
 extension ProfileViewController: UICollectionViewDelegate {
@@ -423,6 +475,7 @@ extension ProfileViewController: UICollectionViewDelegate {
            let index = collectionView.indexPath(for: cell),
            let menu = MenuButtonType(rawValue: index.row) {
             print("scroll", menu)
+            //TODO: 端から端へ移動するときにこいつが悪さをして変になってる
             updateMenuButtonLayout(type: menu)
         }
     }

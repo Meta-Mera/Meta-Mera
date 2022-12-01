@@ -695,7 +695,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         //        Goto.Profile(view: self)
         sceneLocationView.removeAllNodes()
         mapView.removeAnnotations(annotationArray)
-        Goto.ProfileViewController(view: self, user: Profile.shared.loginUser)
+//        Goto.ProfileViewController(view: self, user: Profile.shared.loginUser)
+        Goto.fixProfileViewController(view: self)
         
     }
     
