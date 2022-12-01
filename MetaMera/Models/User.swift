@@ -17,10 +17,11 @@ class User {
     let email: String
     let log: [String]
     let bio: String
-    let deleted: Bool
+    let headerColor: Int
     
     let ban: Bool
     let limted: Int
+    let deleted: Bool
     
     
     let reCommend:  [String]
@@ -44,6 +45,7 @@ class User {
         self.limted = dic["limted"] as? Int ?? 0
         self.bio = dic["bio"] as? String ?? ""
         self.deleted = dic["deleted"] as? Bool ?? false
+        self.headerColor = dic["headerColor"] as? Int ?? Int.random(in: 0...4)
         self.uid = uid
     }
         

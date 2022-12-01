@@ -54,6 +54,8 @@ class SignUpModel {
                            "userName": userName,
                            "ban" : false,
                            "limited" : 0,
+                           "deleted": false,
+                           "headerColor" : Int.random(in: 0...4),
                            "profileImage": "",
                            "bio": bio,
                            "Log": [String]().self,
