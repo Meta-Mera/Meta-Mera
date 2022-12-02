@@ -264,7 +264,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
                         if let err = err {
                             print("Error updating document: \(err)")
                         } else {
-                            HUD.flash(.label("投稿が甦りました。"), delay: 1)
+                            HUD.flash(.label("投稿が復活しました。"), delay: 1)
                             print("死者蘇生成功")
                         }
                     }
@@ -280,7 +280,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
                         if let err = err {
                             print("Error updating document: \(err)")
                         } else {
-                            HUD.flash(.label("投稿を闇に葬りました。"), delay: 1)
+                            HUD.flash(.label("投稿を削除しました。"), delay: 1)
                             print("削除成功")
                         }
                     }
