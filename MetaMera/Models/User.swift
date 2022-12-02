@@ -23,6 +23,9 @@ class User {
     let limted: Int
     let deleted: Bool
     
+    //TODO: 配信時元に戻すこと(developer)
+    let developer: Bool
+    
     
     let reCommend:  [String]
     //ここにお気に入りのリストを書く
@@ -46,6 +49,8 @@ class User {
         self.bio = dic["bio"] as? String ?? ""
         self.deleted = dic["deleted"] as? Bool ?? false
         self.headerColor = dic["headerColor"] as? Int ?? Int.random(in: 0...4)
+        //TODO: 配信時元に戻すこと(developer)
+        self.developer = dic["developer"] as? Bool ?? false
         self.uid = uid
     }
         
