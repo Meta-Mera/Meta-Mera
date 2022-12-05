@@ -118,6 +118,13 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChangeMailAddress_ruledline" translatesAutoresizingMaskIntoConstraints="NO" id="eIc-Xd-5go">
+                    <rect key="frame" x="37.5" y="183" width="300" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="300" id="m4e-EY-b9r"/>
+                        <constraint firstAttribute="height" constant="45" id="n69-j1-Nc4"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -128,6 +135,7 @@
                 <constraint firstItem="Yu2-2Z-Z6a" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="6no-gp-dGA"/>
                 <constraint firstItem="PRo-z1-dBx" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="6uT-zh-KGn"/>
                 <constraint firstItem="tIO-df-E8B" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="77Q-MX-oeJ"/>
+                <constraint firstItem="eIc-Xd-5go" firstAttribute="top" secondItem="83B-7O-dqj" secondAttribute="bottom" constant="-20" id="7Ko-kt-Uj7"/>
                 <constraint firstItem="IZ3-gY-vYF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="16" id="8w8-wh-fNU"/>
                 <constraint firstItem="oH1-HR-Mly" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="9Qj-kh-9Q7"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="guN-Qh-Spi" secondAttribute="trailing" constant="50" id="Aie-Ke-X6G"/>
@@ -139,6 +147,7 @@
                 <constraint firstItem="3jA-gI-kms" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="KFB-SC-wsd"/>
                 <constraint firstItem="83B-7O-dqj" firstAttribute="top" secondItem="PRo-z1-dBx" secondAttribute="bottom" constant="5" id="Krf-m6-90a"/>
                 <constraint firstAttribute="trailing" secondItem="WSm-cy-1kZ" secondAttribute="trailing" constant="35" id="KtZ-mH-ddC"/>
+                <constraint firstItem="eIc-Xd-5go" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Rst-Zl-dGY"/>
                 <constraint firstItem="tIO-df-E8B" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="RwR-Zn-9xE"/>
                 <constraint firstItem="guN-Qh-Spi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="SOO-eJ-opU"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Tuz-GN-oyh" secondAttribute="trailing" constant="50" id="Sap-ue-wQo"/>
@@ -177,6 +186,7 @@
         <image name="ChangeMailAddress_background" width="1284" height="2778"/>
         <image name="ChangeMailAddress_button" width="660" height="171"/>
         <image name="ChangeMailAddress_icon" width="1011" height="447"/>
+        <image name="ChangeMailAddress_ruledline" width="626" height="8"/>
         <image name="back_button" width="54" height="78"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
