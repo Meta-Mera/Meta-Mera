@@ -11,6 +11,7 @@ import IQKeyboardManagerSwift
 import Firebase
 import Alamofire
 import AlamofireImage
+import PKHUD
 
 class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate{
     
@@ -205,8 +206,8 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
         let alertSheet = UIAlertController(title: "Option", message: "What happened?", preferredStyle: UIAlertController.Style.actionSheet)
         
         // アクションを追加.
-        
-        if post.postUserUid == Profile.shared.loginUser.uid {
+        //TODO: 配信時元に戻すこと(developer)
+        if post.postUserUid == Profile.shared.loginUser.uid || Profile.shared.loginUser.developer {
             
             let edit = UIAlertAction(title: LocalizeKey.edit.localizedString(), style: UIAlertAction.Style.default, handler: {[weak self]
                 (action: UIAlertAction!) -> Void in
@@ -227,6 +228,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
                         if let err = err {
                             print("Error updating document: \(err)")
                         } else {
+                            HUD.flash(.label("投稿を世界に公開しました"), delay: 1)
                             print("再表示化成功")
                         }
                     }
@@ -242,6 +244,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
                         if let err = err {
                             print("Error updating document: \(err)")
                         } else {
+                            HUD.flash(.label("世界から投稿を非表示にしました。"), delay: 1)
                             print("非表示化成功")
                         }
                     }
@@ -250,25 +253,44 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
             }
             
             //投稿削除
-            let delete = UIAlertAction(title: LocalizeKey.delete.localizedString(), style: UIAlertAction.Style.destructive, handler: {[weak self]
-                (action: UIAlertAction!) -> Void in
-                print("delete")
-                Firestore.firestore().collection("Posts").document((self?.postId)!).updateData([
-                    "deleted": true
-                ]) { err in
-                    if let err = err {
-                        print("Error updating document: \(err)")
-                    } else {
-                        print("削除成功")
+            //TODO: 配信時元に戻すこと(developer)
+            if post.deleted {
+                let delete = UIAlertAction(title: "死者蘇生", style: UIAlertAction.Style.destructive, handler: {[weak self]
+                    (action: UIAlertAction!) -> Void in
+                    print("delete")
+                    Firestore.firestore().collection("Posts").document((self?.postId)!).updateData([
+                        "deleted": false
+                    ]) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            HUD.flash(.label("投稿が復活しました。"), delay: 1)
+                            print("死者蘇生成功")
+                        }
                     }
-                }
-            })
+                })
+                alertSheet.addAction(delete)
+            }else {
+                let delete = UIAlertAction(title: LocalizeKey.delete.localizedString(), style: UIAlertAction.Style.destructive, handler: {[weak self]
+                    (action: UIAlertAction!) -> Void in
+                    print("delete")
+                    Firestore.firestore().collection("Posts").document((self?.postId)!).updateData([
+                        "deleted": true
+                    ]) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            HUD.flash(.label("投稿を削除しました。"), delay: 1)
+                            print("削除成功")
+                        }
+                    }
+                })
+                alertSheet.addAction(delete)
+            }
             
-            
-            
-            alertSheet.addAction(delete)
-            
-        } else {
+        }
+        //TODO: 配信時元に戻すこと(developer)
+        if post.postUserUid != Profile.shared.loginUser.uid || Profile.shared.loginUser.developer {
             
             let report = UIAlertAction(title: LocalizeKey.report.localizedString(), style: UIAlertAction.Style.destructive, handler: {[weak self]
                 (action: UIAlertAction!) -> Void in

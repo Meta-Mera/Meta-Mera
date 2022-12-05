@@ -22,6 +22,7 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var bioTextField: PlaceTextView!
     @IBOutlet weak var limitLabel: UILabel!
+    @IBOutlet weak var userNameLimitLabel: UILabel!
     
     private let user: User
     
@@ -54,7 +55,9 @@ class EditProfileViewController: UIViewController {
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
         bioTextField.delegate = self
+        userNameTextField.delegate = self
         limitLabel.text = ""
+        userNameLimitLabel.text = ""
         userIconImageView.layer.cornerRadius = userIconImageView.bounds.width / 2
         if user.bio.isEmpty {
             bioTextField.placeHolder = LocalizeKey.bio.localizedString()
@@ -273,6 +276,18 @@ extension EditProfileViewController: UITextViewDelegate {
     }
 
     
+}
+
+extension EditProfileViewController: UITextFieldDelegate {
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard let userName = userNameTextField.text else { return }
+        self.userNameLimitLabel.text = "\(userName.count)/30"
+
+        if userName.count > 30 {
+            userNameTextField.text = String(userName.prefix(30))
+        }
+    }
 }
 
 extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{

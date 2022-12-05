@@ -75,6 +75,7 @@ class TopViewController: UIViewController {
         
         #if RELEASE
         check()
+        TESTautoLogin()
         #endif
 
     }
@@ -128,6 +129,26 @@ class TopViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         Auth.auth().removeStateDidChangeListener(self)
+    }
+    
+    func TESTautoLogin(){
+        check()
+        Auth.auth().addStateDidChangeListener {[weak self] auth, user in
+            if user != nil{
+                DispatchQueue.main.async {
+                    self?.signInModel.signIn(user: user!) {result in
+                        switch result{
+                        case .success(_): //Sign in 成功
+                            Goto.ARView(view: self!)
+                            break
+                        case .failure(_): //Sign in 失敗
+                            break
+                        }
+                        
+                    }
+                }
+            }
+        }
     }
     
     func autoLogin(){

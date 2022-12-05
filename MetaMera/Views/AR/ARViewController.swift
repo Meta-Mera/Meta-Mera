@@ -254,6 +254,9 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                 guard let placemark = placemarks?.first, error == nil else { return }
                 
                 if let locality = placemark.locality {
+                    self?.mapView.removeAnnotations(self!.annotationArray)
+                    self?.annotationArray = []
+                    self?.posts = []
                     self?.locality = locality
                     print("locality: ",locality as Any)
                     Firestore.firestore().collection("Areas").whereField("areaName", isEqualTo: locality).getDocuments(completion: { [weak self]
@@ -302,23 +305,44 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                             let areaIds = AreaId(dic: snapshot!.documents.first!.data())
                             let areaId = areaIds.areaId
                             Profile.shared.areaId = areaId
-                            Firestore.firestore().collection("Posts").whereField("areaId", isEqualTo: areaId as Any).getDocuments(completion: {
-                                (postSnapshots, err) in
-                                if let err = err {
-                                    print("Error getting documents: \(err)")
-                                }else {
-                                    for document in postSnapshots!.documents {
-                                        print("\(document.documentID) => \(document.data())")
-                                        let post = Post(dic: document.data(), postId: document.documentID)
-                                        if !post.deleted && !post.hidden {
+                            
+                            //MARK: - 配信時必ず消すこと
+                            if(Profile.shared.loginUser.developer){
+                                Firestore.firestore().collection("Posts").whereField("genreId", isEqualTo: "debug").getDocuments(completion: {
+                                    (postSnapshots, err) in
+                                    if let err = err {
+                                        print("Error getting documents: \(err)")
+                                    }else {
+                                        for document in postSnapshots!.documents {
+                                            print("\(document.documentID) => \(document.data())")
+                                            let post = Post(dic: document.data(), postId: document.documentID)
                                             self?.posts?.append(post)
+                                            
+                                            
                                         }
-                                        
-                                        
+                                        self?.addSceneModels()
                                     }
-                                    self?.addSceneModels()
-                                }
-                            })
+                                })
+                                //MARK: 配信時必ず消すこと -
+                            }else {
+                                Firestore.firestore().collection("Posts").whereField("areaId", isEqualTo: areaId as Any).whereField("deleted", isEqualTo: false).whereField("hidden", isEqualTo: false).getDocuments(completion: {
+                                    (postSnapshots, err) in
+                                    if let err = err {
+                                        print("Error getting documents: \(err)")
+                                    }else {
+                                        for document in postSnapshots!.documents {
+                                            print("\(document.documentID) => \(document.data())")
+                                            let post = Post(dic: document.data(), postId: document.documentID)
+                                            if !post.deleted && !post.hidden {
+                                                self?.posts?.append(post)
+                                            }
+                                            
+                                            
+                                        }
+                                        self?.addSceneModels()
+                                    }
+                                })
+                            }
                         }
                     })
                     
@@ -410,7 +434,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                 default:
                     imageStyle = CGSize(width: 400, height: 300)
                 }
-                self.buildNode(latitude: post.latitude, longitude: post.longitude, altitude: post.altitude, imageURL: URL(string: post.editedImageUrl)!, size: imageStyle, pinUse: true, pinName: post.postId!, postId: post.postId!) { node in
+                self.buildNode(latitude: post.latitude, longitude: post.longitude, altitude: post.altitude, imageURL: URL(string: post.editedImageUrl)!, size: imageStyle, pinUse: true, pinName: post.postId!, postId: post.postId!, post: post) { node in
                     nodes.append(node)
                     dispatchGroup.leave()
                 }
@@ -464,12 +488,14 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     ///   - pinUse: ピン使いますか？
     ///   - pinName: ピンの表示名
     ///   - postId: 投稿ID
+    ///   - post : 投稿データ
     ///   - completion: completion description
     func buildNode(latitude: CLLocationDegrees, longitude: CLLocationDegrees,
                    altitude: CLLocationDistance,
                    imageURL: URL, size: CGSize,
                    pinUse: Bool, pinName: String,
                    postId: String,
+                   post: Post,
                    completion: @escaping(LocationAnnotationNode) -> Void) {
         //座標
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -486,27 +512,39 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             switch res.result {
                 //画像からURLが取得できた場合
             case .success(let getImage):
-                print("IMAGE", getImage)
                 //取得した画像をimageに入れる
                 image = getImage.reSizeImage(reSize: size)
                 
                 //投稿IDを画像のタグに書き込む
                 image.accessibilityIdentifier = postId
+#if DEBUG
                 print("---------------------------------------")
                 print("accessibilityIdentifier: ",image.accessibilityIdentifier as Any)
                 print("---------------------------------------")
+#endif
                 if pinUse {//地図にピンを表示する場合
                     //ピンの座標
                     annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
                     //ピンのタイトル
-//                    annotation.title = pinName
+                    //TODO: 配信時元に戻すこと(developer)
+                    if(post.deleted){
+                        annotation.title = "削除済み"
+                    }
+                    
                     //ピンのサブタイトル
                     annotation.subtitle = pinName
+//                    annotation.accessibilityValue = pinName
+                    
+                    //ピンの色を追加
+                    let annotationView = self?.mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier, for: annotation) as! MKMarkerAnnotationView
+                    annotationView.markerTintColor = .brown
                     
                     //ピンをピンリストに追加
                     self?.annotationArray.append(annotation)
+                    
                     //マップにピンを表示
                     self?.mapView.addAnnotation(annotation)
+//                    self?.mapView.addSubview(annotationView)
                 }
                 
                 //Nodeを生成
@@ -783,23 +821,40 @@ extension ARViewController: SignOutProtocol {
 
 extension ARViewController: MKMapViewDelegate {
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
+        }
+        let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier, for: annotation) as! MKMarkerAnnotationView
+        annotationView.displayPriority = .required
+        annotationView.markerTintColor = selectTintColor(annotation) // 色の変更
+        annotationView.accessibilityValue = annotation.subtitle as? String ?? ""
+        return annotationView
+    }
+    
+    private func selectTintColor(_ annotation: MKAnnotation?) -> UIColor? {
+        guard let annotation = annotation as? MKPointAnnotation else { return nil }
+        let colors: [UIColor] = [.systemRed, .systemBlue, .systemYellow, .systemGreen]
+        let index = annotation.title == "削除済み" ? 2 : 0
+        let remainder = index % colors.count
+        return colors[remainder]
+    }
+    
     //MARK: ピンをタップしたときのイベント
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotations = view.annotation{
-            print("subtitle: \(annotations.subtitle)")
-            
-            guard let unwrapSubTitle = annotations.subtitle,
-                  let subtitle = unwrapSubTitle else {
+            print("accessibilityValue:",view.accessibilityValue)
+            guard let postId = view.accessibilityValue else {
                 return
             }
             
-            Firestore.firestore().collection("Posts").document(subtitle).getDocument {[weak self] (snapshot, err) in
+            Firestore.firestore().collection("Posts").document(postId).getDocument {[weak self] (snapshot, err) in
                 if let err = err {
                     print("投稿情報の取得に失敗しました。\(err)")
                     return
                 }
                 guard let dic = snapshot?.data() else { return }
-                let post = Post(dic: dic, postId: subtitle)
+                let post = Post(dic: dic, postId: postId)
                 
                 //TODO: 先に投稿画面に移行してその後非同期で画像を取得しよう
 //                AF.request(post.rawImageUrl).responseImage { [weak self] res in
