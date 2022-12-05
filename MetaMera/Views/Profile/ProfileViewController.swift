@@ -319,7 +319,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func getUserPostData(){
         if(!user.deleted && !user.ban){
-            Firestore.firestore().collection("Posts").whereField("postUserUid", isEqualTo: user.uid).getDocuments(completion: {[weak self] (snapshot, error) in
+            Firestore.firestore().collection("Posts").whereField("postUserUid", isEqualTo: user.uid).whereField("deleted", isEqualTo: "false").getDocuments(completion: {[weak self] (snapshot, error) in
                 if let error = error {
                     print("投稿データの取得に失敗しました。\(error)")
                     return
