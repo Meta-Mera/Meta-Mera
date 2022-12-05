@@ -22,6 +22,7 @@ class SignUpModel {
               let password = signUpItem.password,
               let confirmPassword = signUpItem.confirmPassword,
               let bio = signUpItem.bio,
+              let userIcon = signUpItem.userIconURL,
               let userName = signUpItem.userName else {
             completion(.failure(NSError(domain: "null error", code: 101)))
             return
@@ -56,8 +57,8 @@ class SignUpModel {
                            "limited" : 0,
                            "deleted": false,
                            "headerColor" : Int.random(in: 0...4),
-                           "profileImage": "",
                            "bio": bio,
+                           "profileImage" : userIcon,
                            "Log": [String]().self,
                             "Recommended": [String]().self,
                            "createAt": Timestamp()] as [String : Any]

@@ -147,6 +147,22 @@ class Accessory {
         }
     }
     
+    func updateProfileImageToFirestore(profileImageUrl: String){
+        //        Firestore.firestore().document("users").collection(Profile.shared.userId).value(forKey: "")
+        let doc = Firestore.firestore().collection("Users").document(Profile.shared.loginUser.uid)
+        doc.updateData([
+            "profileImage" : profileImageUrl]
+        ) { err in
+            if let err = err {
+                print("firestoreの更新に失敗\(err)")
+                return
+            }
+            print("更新成功")
+            
+        }
+        
+    }
+    
     ///タイムスタンプを日本時間で表示するやつ
     func dateFormatterForDateLabel(date: Date) -> String {
         let formatter = DateFormatter()
