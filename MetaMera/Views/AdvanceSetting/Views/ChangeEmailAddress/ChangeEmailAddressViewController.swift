@@ -8,22 +8,72 @@
 import UIKit
 
 class ChangeEmailAddressViewController: UIViewController {
+    
+    @IBOutlet weak var newEmailTextField: UITextField!
+    @IBOutlet weak var confirmEmailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var changeButton: UIButton!
+    
+    
+    
+    let userModel = UserModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        configView()
+    }
+    
+    func configView(){
+        newEmailTextField.delegate = self
+        confirmEmailTextField.delegate = self
+        passwordTextField.delegate = self
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
 
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func pushBackButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
-    */
+    
+    @IBAction func pushNextButton(_ sender: Any) {
+        guard let email = newEmailTextField.text,
+              let confirmEmail = confirmEmailTextField.text,
+              let password = passwordTextField.text else {
+            print("null")
+            return
+        }
+        
+        if email != confirmEmail {
+            print("\(email) != \(confirmEmail)")
+            return
+        }
+        
+        userModel.changeEmail(oldEmail: Profile.shared.loginUser.email, newEmail: email, password: password) { result in
+            switch result {
+                
+            case .success(_):
+                print("メール変更に成功しました。")
+            case .failure(let error):
+                print("メール変更に失敗",error.code)
+            }
+        }
+    }
+}
 
+extension ChangeEmailAddressViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //今フォーカスが当たっているテキストボックスからフォーカスを外す
+        textField.resignFirstResponder()
+        //次のTag番号を持っているテキストボックスがあれば、フォーカスする
+        let nextTag = textField.tag + 1
+        if let nextTextField: UITextField = self.view.viewWithTag(nextTag) as? UITextField {
+            nextTextField.becomeFirstResponder()
+        }
+        return true
+    }
 }
