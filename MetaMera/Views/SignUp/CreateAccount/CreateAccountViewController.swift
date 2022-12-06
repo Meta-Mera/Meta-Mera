@@ -56,7 +56,9 @@ class CreateAccountViewController: UIViewController {
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
         userNameTextField.delegate = self
+        userNameTextField.text = userName
         iconImageView.layer.cornerRadius = iconImageView.bounds.width / 2
+        self.navigationItem.hidesBackButton = true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -196,10 +198,16 @@ class CreateAccountViewController: UIViewController {
     
     //問題なく登録できた際、 Main画面に遷移
     private func presentToARViewController(){
-        let storyBoard = UIStoryboard(name: "ARViewController", bundle: nil)
-        let homeViewController = storyBoard.instantiateViewController(identifier: "ARViewController") as! ARViewController
-        homeViewController.modalPresentationStyle = .fullScreen
-        self.present(homeViewController, animated: true, completion: nil)
+//        let storyBoard = UIStoryboard(name: "ARViewController", bundle: nil)
+//        let homeViewController = storyBoard.instantiateViewController(identifier: "ARViewController") as! ARViewController
+//        homeViewController.modalPresentationStyle = .fullScreen
+//        self.present(homeViewController, animated: true, completion: nil)
+//
+        if let vc = UIStoryboard.instantiateInitialViewController(.init(name: "ARViewController", bundle: .main))() as? ARViewController {
+            let navController = UINavigationController(rootViewController: vc)
+            navController.modalPresentationStyle = .fullScreen
+            self.present(navController, animated: true)
+        }
     }
     
     func saveFirebaseStorage(image: UIImage){
