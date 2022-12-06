@@ -113,8 +113,8 @@ targets:
     settings:
       base:
         TARGETED_DEVICE_FAMILY: 1
-        MARKETING_VERSION: 1.7.4
-        CURRENT_PROJECT_VERSION: 1.7.4
+        MARKETING_VERSION: 1.8.0
+        CURRENT_PROJECT_VERSION: 1.8.0
         DEVELOPMENT_TEAM: JH5QRQ7596
       configs:
         DevelopDebug:
@@ -153,6 +153,20 @@ targets:
           fi
         outputFiles:
           - $(PROJECT_DIR)/MetaMera/SupportingFiles/GoogleService-Info.plist
+    preBuildScripts:
+      - name: LaunchScreen Script
+        script: |
+            # Type a script or drag a script file from your workspace to insert its path.
+            #   ON/OFF Script Toggle (script ON with #, script OFF without #)
+            #exit 0
+
+            #   App vesion / Build version constants
+            sourceFilePath="$PROJECT_DIR/$PROJECT_NAME/Base.lproj/LaunchScreen.storyboard"
+            versionNumber="$MARKETING_VERSION"
+
+            #   Output version & build numbers into a label on LaunchScreen.storyboard
+            sed -i .bak -e "/userLabel=\"APP_VERSION\"/s/text=\"[^\"]*\"/text=\"Ver $versionNumber\"/" "$sourceFilePath"
+        shell: /bin/sh
   MetaMeraTests:
     type: bundle.unit-test
     platform: iOS
