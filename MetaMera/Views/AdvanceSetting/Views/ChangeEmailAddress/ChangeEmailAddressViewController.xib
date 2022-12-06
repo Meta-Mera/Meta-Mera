@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -16,21 +16,21 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChangeMailAddress_background" translatesAutoresizingMaskIntoConstraints="NO" id="tIO-df-E8B">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChangeMailAddress_icon" translatesAutoresizingMaskIntoConstraints="NO" id="PRo-z1-dBx">
-                    <rect key="frame" x="37.5" y="15" width="300" height="138"/>
+                    <rect key="frame" x="57" y="15" width="300" height="138"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="PRo-z1-dBx" secondAttribute="height" multiplier="87:40" id="H9y-wG-6TJ"/>
                         <constraint firstAttribute="width" constant="300" id="Xfk-rf-qXg"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アドレス確認と変更" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83B-7O-dqj">
-                    <rect key="frame" x="37.5" y="158" width="300" height="45"/>
+                    <rect key="frame" x="57" y="158" width="300" height="45"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="300" id="4mk-8u-ORa"/>
                         <constraint firstAttribute="height" constant="45" id="WIe-5V-BuR"/>
@@ -40,54 +40,43 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="現在のメールアドレスはmetamera-account.co.jpです。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aq5-5F-4wh">
-                    <rect key="frame" x="35" y="208" width="305" height="43"/>
+                    <rect key="frame" x="35" y="208" width="344" height="43"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="現在のメールアドレスと新しいメールアドレスを入力し、変更ボタンをタップしてください。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSm-cy-1kZ">
-                    <rect key="frame" x="35" y="266" width="305" height="64.5"/>
+                    <rect key="frame" x="35" y="266" width="344" height="64.666666666666686"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tuz-GN-oyh">
-                    <rect key="frame" x="35" y="351" width="290" height="34"/>
+                    <rect key="frame" x="35" y="428" width="329" height="34"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新しいメールアドレス再入力" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sve-0L-dTl">
-                    <rect key="frame" x="35" y="390" width="199" height="18"/>
+                    <rect key="frame" x="35" y="487" width="199" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yu2-2Z-Z6a">
-                    <rect key="frame" x="35" y="408" width="290" height="34"/>
+                    <rect key="frame" x="35" y="505" width="329" height="34"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rzr-d1-wvV">
-                    <rect key="frame" x="100" y="582" width="175" height="70"/>
+                    <rect key="frame" x="150" y="646" width="114" height="45"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="70" id="GIk-fA-RHQ"/>
+                        <constraint firstAttribute="height" constant="45" id="GIk-fA-RHQ"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="Button" image="ChangeMailAddress_button"/>
                 </button>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nIG-X2-kHq">
-                    <rect key="frame" x="35" y="465" width="290" height="34"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="パスワード再入力" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gNE-RX-CqI">
-                    <rect key="frame" x="35" y="504" width="123" height="18"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="guN-Qh-Spi">
-                    <rect key="frame" x="35" y="523" width="290" height="34"/>
+                    <rect key="frame" x="35" y="582" width="329" height="34"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
@@ -101,25 +90,25 @@
                     <state key="normal" image="back_button"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="変更" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jA-gI-kms">
-                    <rect key="frame" x="170" y="603.5" width="35" height="21"/>
+                    <rect key="frame" x="189.66666666666666" y="657" width="35" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="パスワード" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oH1-HR-Mly">
-                    <rect key="frame" x="35" y="447" width="77" height="18"/>
+                    <rect key="frame" x="35" y="564" width="77" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新しいメールアドレス" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GD0-Yj-fNY">
-                    <rect key="frame" x="35" y="333" width="153" height="18"/>
+                    <rect key="frame" x="35" y="410" width="153" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChangeMailAddress_ruledline" translatesAutoresizingMaskIntoConstraints="NO" id="eIc-Xd-5go">
-                    <rect key="frame" x="37.5" y="183" width="300" height="45"/>
+                    <rect key="frame" x="57" y="183" width="300" height="45"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="300" id="m4e-EY-b9r"/>
                         <constraint firstAttribute="height" constant="45" id="n69-j1-Nc4"/>
@@ -129,7 +118,7 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="3jA-gI-kms" secondAttribute="bottom" constant="42.5" id="00p-nh-IAo"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="3jA-gI-kms" secondAttribute="bottom" constant="58" id="00p-nh-IAo"/>
                 <constraint firstItem="nIG-X2-kHq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="08x-4R-bie"/>
                 <constraint firstItem="tIO-df-E8B" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="2nw-dE-gB6"/>
                 <constraint firstItem="Yu2-2Z-Z6a" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="6no-gp-dGA"/>
@@ -138,8 +127,6 @@
                 <constraint firstItem="eIc-Xd-5go" firstAttribute="top" secondItem="83B-7O-dqj" secondAttribute="bottom" constant="-20" id="7Ko-kt-Uj7"/>
                 <constraint firstItem="IZ3-gY-vYF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="16" id="8w8-wh-fNU"/>
                 <constraint firstItem="oH1-HR-Mly" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="9Qj-kh-9Q7"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="guN-Qh-Spi" secondAttribute="trailing" constant="50" id="Aie-Ke-X6G"/>
-                <constraint firstItem="gNE-RX-CqI" firstAttribute="top" secondItem="nIG-X2-kHq" secondAttribute="bottom" constant="5" id="Dwc-nX-YvQ"/>
                 <constraint firstItem="Yu2-2Z-Z6a" firstAttribute="top" secondItem="sve-0L-dTl" secondAttribute="bottom" id="Eto-K4-RDl"/>
                 <constraint firstAttribute="trailing" secondItem="aq5-5F-4wh" secondAttribute="trailing" constant="35" id="IpT-JB-ifx"/>
                 <constraint firstItem="aq5-5F-4wh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="35" id="Jve-4c-eka"/>
@@ -149,33 +136,30 @@
                 <constraint firstAttribute="trailing" secondItem="WSm-cy-1kZ" secondAttribute="trailing" constant="35" id="KtZ-mH-ddC"/>
                 <constraint firstItem="eIc-Xd-5go" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Rst-Zl-dGY"/>
                 <constraint firstItem="tIO-df-E8B" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="RwR-Zn-9xE"/>
-                <constraint firstItem="guN-Qh-Spi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="SOO-eJ-opU"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Tuz-GN-oyh" secondAttribute="trailing" constant="50" id="Sap-ue-wQo"/>
                 <constraint firstAttribute="trailing" secondItem="tIO-df-E8B" secondAttribute="trailing" id="Sz8-QH-4ec"/>
                 <constraint firstItem="Tuz-GN-oyh" firstAttribute="top" secondItem="GD0-Yj-fNY" secondAttribute="bottom" id="Th4-vd-FXg"/>
                 <constraint firstItem="aq5-5F-4wh" firstAttribute="top" secondItem="83B-7O-dqj" secondAttribute="bottom" constant="5" id="VMV-9u-gKz"/>
-                <constraint firstAttribute="trailing" secondItem="rzr-d1-wvV" secondAttribute="trailing" constant="100" id="WVe-jb-Hb5"/>
+                <constraint firstItem="rzr-d1-wvV" firstAttribute="top" secondItem="nIG-X2-kHq" secondAttribute="bottom" constant="30" id="VbG-TJ-vKf"/>
+                <constraint firstAttribute="trailing" secondItem="rzr-d1-wvV" secondAttribute="trailing" constant="150" id="WVe-jb-Hb5"/>
                 <constraint firstItem="sve-0L-dTl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="ZmK-7z-PGf"/>
                 <constraint firstItem="rzr-d1-wvV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="aBy-Dm-cm9"/>
                 <constraint firstItem="aq5-5F-4wh" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="anp-Ja-ehA"/>
-                <constraint firstItem="rzr-d1-wvV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="100" id="b2D-Xu-f0i"/>
+                <constraint firstItem="rzr-d1-wvV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="150" id="b2D-Xu-f0i"/>
                 <constraint firstAttribute="bottom" secondItem="tIO-df-E8B" secondAttribute="bottom" id="bRh-DN-U3J"/>
                 <constraint firstItem="tIO-df-E8B" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ejh-pN-UaX"/>
-                <constraint firstItem="guN-Qh-Spi" firstAttribute="top" secondItem="gNE-RX-CqI" secondAttribute="bottom" constant="1" id="epO-6q-q1b"/>
                 <constraint firstItem="IZ3-gY-vYF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="faA-Ac-vy9"/>
                 <constraint firstItem="83B-7O-dqj" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="gAc-9M-6Bf"/>
                 <constraint firstItem="GD0-Yj-fNY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="ikn-Om-LR4"/>
-                <constraint firstItem="sve-0L-dTl" firstAttribute="top" secondItem="Tuz-GN-oyh" secondAttribute="bottom" constant="5" id="nAH-Ad-d3o"/>
+                <constraint firstItem="sve-0L-dTl" firstAttribute="top" secondItem="Tuz-GN-oyh" secondAttribute="bottom" constant="25" id="nAH-Ad-d3o"/>
                 <constraint firstItem="Tuz-GN-oyh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="nSD-JR-szU"/>
                 <constraint firstItem="nIG-X2-kHq" firstAttribute="top" secondItem="oH1-HR-Mly" secondAttribute="bottom" id="oc8-gV-Cfj"/>
                 <constraint firstItem="WSm-cy-1kZ" firstAttribute="top" secondItem="aq5-5F-4wh" secondAttribute="bottom" constant="15" id="or6-0h-9H0"/>
                 <constraint firstItem="PRo-z1-dBx" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="qhq-AF-emD"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="rzr-d1-wvV" secondAttribute="bottom" constant="15" id="qtx-vb-1ZT"/>
-                <constraint firstItem="rzr-d1-wvV" firstAttribute="top" secondItem="guN-Qh-Spi" secondAttribute="bottom" constant="25" id="rtc-Bz-sZT"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="rzr-d1-wvV" secondAttribute="bottom" constant="45" id="qtx-vb-1ZT"/>
                 <constraint firstItem="WSm-cy-1kZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="35" id="sPM-Na-fh7"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Yu2-2Z-Z6a" secondAttribute="trailing" constant="50" id="skt-cY-Cde"/>
-                <constraint firstItem="oH1-HR-Mly" firstAttribute="top" secondItem="Yu2-2Z-Z6a" secondAttribute="bottom" constant="5" id="uIV-71-jGP"/>
-                <constraint firstItem="gNE-RX-CqI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="uLc-Lg-aEf"/>
+                <constraint firstItem="oH1-HR-Mly" firstAttribute="top" secondItem="Yu2-2Z-Z6a" secondAttribute="bottom" constant="25" id="uIV-71-jGP"/>
                 <constraint firstAttribute="bottom" secondItem="tIO-df-E8B" secondAttribute="bottom" id="yvl-rn-tUf"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="nIG-X2-kHq" secondAttribute="trailing" constant="50" id="zBe-NI-MqW"/>
             </constraints>
