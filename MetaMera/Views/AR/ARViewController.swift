@@ -536,8 +536,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
 //                    annotation.accessibilityValue = pinName
                     
                     //ピンの色を追加
-                    let annotationView = self?.mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier, for: annotation) as! MKMarkerAnnotationView
-                    annotationView.markerTintColor = .brown
+//                    let annotationView = self?.mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier, for: annotation) as! MKMarkerAnnotationView
+//                    annotationView.markerTintColor = .brown
                     
                     //ピンをピンリストに追加
                     self?.annotationArray.append(annotation)
