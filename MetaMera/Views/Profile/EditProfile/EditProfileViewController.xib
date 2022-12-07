@@ -18,6 +18,7 @@
             <connections>
                 <outlet property="backButton" destination="rbL-Qn-x3t" id="Tpo-Cb-YIX"/>
                 <outlet property="bioTextField" destination="5eV-Sd-AJm" id="siV-cX-DyG"/>
+                <outlet property="headerImageView" destination="PVm-JT-5jF" id="Ynx-XO-ayK"/>
                 <outlet property="limitLabel" destination="CTo-ve-0iK" id="91W-Qj-Ghe"/>
                 <outlet property="menuButton" destination="qzj-ve-39j" id="DTZ-wf-JKk"/>
                 <outlet property="selectIconPhotoButton" destination="UoT-rW-fxR" id="Boy-gy-SET"/>

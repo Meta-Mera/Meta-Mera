@@ -23,6 +23,7 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var bioTextField: PlaceTextView!
     @IBOutlet weak var limitLabel: UILabel!
     @IBOutlet weak var userNameLimitLabel: UILabel!
+    @IBOutlet weak var headerImageView: UIImageView!
     
     private let user: User
     
@@ -61,6 +62,30 @@ class EditProfileViewController: UIViewController {
         userIconImageView.layer.cornerRadius = userIconImageView.bounds.width / 2
         if user.bio.isEmpty {
             bioTextField.placeHolder = LocalizeKey.bio.localizedString()
+        }
+    }
+    
+    enum HeaderColor: Int {
+        case lightBlue = 0
+        case lightGreen = 1
+        case orange = 2
+        case beige = 3
+        case varmilion = 4
+        
+        var image: UIImage {
+            switch self {
+                
+            case .lightBlue:
+                return Asset.Images.headerLightblue.image
+            case .lightGreen:
+                return Asset.Images.headerLightgreen.image
+            case .orange:
+                return Asset.Images.headerOrange.image
+            case .beige:
+                return Asset.Images.headerBeige.image
+            case .varmilion:
+                return Asset.Images.headerVermilion.image
+            }
         }
     }
 
@@ -110,6 +135,8 @@ class EditProfileViewController: UIViewController {
         if let userIconImageURL = URL(string: user.profileImage) {
             userIconImageView.af.setImage(withURL: userIconImageURL)
         }
+        let headerColor = HeaderColor(rawValue: user.headerColor)!
+        headerImageView.setImage(image: headerColor.image, name: "")
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

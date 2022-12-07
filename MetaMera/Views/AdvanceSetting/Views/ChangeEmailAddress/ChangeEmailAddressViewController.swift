@@ -57,8 +57,10 @@ class ChangeEmailAddressViewController: UIViewController {
                 
             case .success(_):
                 print("メール変更に成功しました。")
+                return
             case .failure(let error):
                 print("メール変更に失敗",error.code)
+                return
             }
         }
     }
