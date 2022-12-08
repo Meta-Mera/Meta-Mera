@@ -21,7 +21,6 @@
                 <outlet property="nowEmailLabel" destination="aq5-5F-4wh" id="i1r-OR-IrV"/>
                 <outlet property="passwordLabel" destination="oH1-HR-Mly" id="LGw-zB-mye"/>
                 <outlet property="passwordTextField" destination="nIG-X2-kHq" id="UJX-KZ-Jhc"/>
-                <outlet property="titleLabel" destination="83B-7O-dqj" id="hmB-3O-7F7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

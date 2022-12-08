@@ -22,6 +22,9 @@ import AlamofireImage
 
 class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate {
     
+    // Models
+    private var postGetter: PostGetter<PostFetchAPI, PostInput>?
+    
     //AR系
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var contentView: UIView!
@@ -778,19 +781,29 @@ extension ARViewController: LNTouchDelegate {
             print("[nodeImage: getName]", nodeImage.accessibilityIdentifier ?? "null")
             
             //            guard let uid = Auth.auth().currentUser?.uid else { return }
-            guard let selectImage = nodeImage.accessibilityIdentifier else { return }
+//            guard let selectImage = nodeImage.accessibilityIdentifier else { return }
+            
+            let input = PostInput(postId: nodeImage.accessibilityIdentifier)
+            postGetter = PostGetter(api: PostFetchAPI(), input: input)
+            postGetter?.fetchData(completion: { response in
+                if case .success(let post) = response {
+                    Goto.ChatRoomView(view: self, image: URL(string: post.rawImageUrl)!, post: post)
+                }else if case .failure(let error) = response {
+                    print(error)
+                }
+            })
             
             //TODO: チャットルームを渡す方法を考える
-            Firestore.firestore().collection("Posts").document(selectImage).getDocument { (snapshot, err) in
-                if let err = err {
-                    print("投稿情報の取得に失敗しました。\(err)")
-                    return
-                }
-                
-                guard let dic = snapshot?.data() else { return }
-                let post = Post(dic: dic, postId: selectImage)
-                Goto.ChatRoomView(view: self, image: URL(string: post.rawImageUrl)!, post: post)
-            }
+//            Firestore.firestore().collection("Posts").document(selectImage).getDocument { (snapshot, err) in
+//                if let err = err {
+//                    print("投稿情報の取得に失敗しました。\(err)")
+//                    return
+//                }
+//
+//                guard let dic = snapshot?.data() else { return }
+//                let post = Post(dic: dic, postId: selectImage)
+//                Goto.ChatRoomView(view: self, image: URL(string: post.rawImageUrl)!, post: post)
+//            }
             //            Goto.ChatRoomView(view: self, image: node.image!, chatroomId: chatroom)
             //            Goto.PostView(view: self, image: node.image!, chatroomId: selectImage)
         }

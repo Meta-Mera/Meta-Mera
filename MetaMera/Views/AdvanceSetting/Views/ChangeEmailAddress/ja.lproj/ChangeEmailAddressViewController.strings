@@ -1,0 +1,24 @@
+
+/* Class = "UILabel"; text = "変更"; ObjectID = "3jA-gI-kms"; */
+"3jA-gI-kms.text" = "Change";
+
+/* Class = "UILabel"; text = "アドレス確認と変更"; ObjectID = "83B-7O-dqj"; */
+"83B-7O-dqj.text" = "アドレス確認と変更";
+
+/* Class = "UILabel"; text = "新しいメールアドレス"; ObjectID = "GD0-Yj-fNY"; */
+"GD0-Yj-fNY.text" = "新しいメールアドレス";
+
+/* Class = "UILabel"; text = "現在のメールアドレスと新しいメールアドレスを入力し、変更ボタンをタップしてください。"; ObjectID = "WSm-cy-1kZ"; */
+"WSm-cy-1kZ.text" = "現在のメールアドレスと新しいメールアドレスを入力し、変更ボタンをタップしてください。";
+
+/* Class = "UILabel"; text = "現在のメールアドレスはmetamera-account.co.jpです。"; ObjectID = "aq5-5F-4wh"; */
+"aq5-5F-4wh.text" = "現在のメールアドレスはmetamera-account.co.jpです。";
+
+/* Class = "UILabel"; text = "パスワード"; ObjectID = "oH1-HR-Mly"; */
+"oH1-HR-Mly.text" = "パスワード";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "rzr-d1-wvV"; */
+"rzr-d1-wvV.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "新しいメールアドレス再入力"; ObjectID = "sve-0L-dTl"; */
+"sve-0L-dTl.text" = "新しいメールアドレス再入力";
