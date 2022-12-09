@@ -128,6 +128,13 @@ class EditProfileViewController: UIViewController {
         
     }
     
+    @IBAction func pushButton(_ sender: Any) {
+        let alertModel = AlertModel()
+        let test = alertModel.OpenSetting(title: "", message: "") { action in
+            print("test")
+        }
+        present(test, animated: true)
+    }
     //ユーザープロフィールデータを表示
     private func setupProfileData() {
         bioTextField.text = user.bio

@@ -11,7 +11,12 @@ import Firebase
 enum FirebaseManager: String {
     
     // collections
-    case post = "Post"
+    case area = "Areas"
+    case genre = "Genres"
+    case like = "Likes"
+    case post = "Posts"
+    case report = "Reports"
+    case user = "Users"
     
     var ref: CollectionReference {
         let db = Firestore.firestore()
@@ -27,6 +32,7 @@ enum FirebaseManager: String {
     }
     
     enum SubCollection: String {
-        case aaa
+        case token = "tokens"
+        case comment = "comments"
     }
 }

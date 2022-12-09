@@ -319,27 +319,32 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func getUserPostData(){
         if(!user.deleted && !user.ban){
-            Firestore.firestore().collection("Posts").whereField("postUserUid", isEqualTo: user.uid).whereField("deleted", isEqualTo: "false").getDocuments(completion: {[weak self] (snapshot, error) in
-                if let error = error {
-                    print("投稿データの取得に失敗しました。\(error)")
-                    return
-                }
-                
-                self?.postCount = snapshot!.documents.count
-                for document in snapshot!.documents {
-                    let post = Post(dic: document.data(), postId: document.documentID)
-                    if !post.deleted {
-                        self?.posts.append(post)
-                        self?.posts.sort { (m1, m2) -> Bool in
-                            let m1Date = m1.createdAt.dateValue()
-                            let m2Date = m2.createdAt.dateValue()
-                            return m1Date < m2Date
+            DispatchQueue.main.async { [weak self] in
+                Firestore.firestore().collection("Posts")
+                    .whereField("postUserUid", isEqualTo: self?.user.uid)
+                    .whereField("deleted", isEqualTo: false)
+                    .getDocuments(completion: {[weak self] (snapshot, error) in
+                    if let error = error {
+                        print("投稿データの取得に失敗しました。\(error)")
+                        return
+                    }
+                    
+                    self?.postCount = snapshot!.documents.count
+                    for document in snapshot!.documents {
+                        let post = Post(dic: document.data(), postId: document.documentID)
+                        if !post.deleted {
+                            self?.posts.append(post)
+                            self?.posts.sort { (m1, m2) -> Bool in
+                                let m1Date = m1.createdAt.dateValue()
+                                let m2Date = m2.createdAt.dateValue()
+                                return m1Date < m2Date
+                            }
                         }
                     }
-                }
-                
-                self?.collectionView.reloadData()
-            })
+                    
+                    self?.collectionView.reloadData()
+                })
+            }
         }
 
     }

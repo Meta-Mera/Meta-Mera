@@ -55,7 +55,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     var updateInfoLabelTimer: Timer?
     
     //AR系2
-    var sceneLocationView = SceneLocationView()
+    var sceneLocationView: SceneLocationView? = nil
     var locationManager = CLLocationManager()
     
     //投稿リスト
@@ -64,12 +64,18 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     //市区町村名とか
     var locality : String?
     
+    deinit {
+        sceneLocationView = nil
+        locationManager.stopUpdatingLocation()
+//        locationManager = nil
+    }
     
     
     
     //MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+//        sceneLocationView = sceneLocationView()
         
         posts = [Post]()
         
@@ -456,7 +462,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         // 1. Don't try to add the models to the scene until we have a current location
         guard sceneLocationView.sceneLocationManager.currentLocation != nil else {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                self?.addSceneModels()
+//                self?.addSceneModels()
             }
             return
         }
@@ -465,6 +471,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         buildPostData { [weak self] nodes in
             nodes.forEach {
                 self?.sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0)
+                self?.sceneLocationView.moveSceneHeadingAntiClockwise()
                 
             }
         }
@@ -552,6 +559,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                 
                 //Nodeを生成
                 let annotationNode = LocationAnnotationNode(location: location, image: image)
+                annotationNode.scaleRelativeToDistance = true
                 completion(annotationNode)
                 
             case .failure(let error):
