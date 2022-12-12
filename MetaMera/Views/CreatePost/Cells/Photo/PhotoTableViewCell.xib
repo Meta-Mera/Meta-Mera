@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="1026" id="KGk-i7-Jjw" customClass="PhotoTableViewCell" customModule="MetaMera" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="851" height="1026"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="851" height="1026"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CreatePost_mark_title" translatesAutoresizingMaskIntoConstraints="NO" id="Dbc-8X-vch">
+                        <rect key="frame" x="275.66666666666669" y="0.0" width="300.00000000000006" height="100"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="300" id="jHX-sA-W52"/>
+                            <constraint firstAttribute="height" constant="100" id="wpP-WD-yhn"/>
+                        </constraints>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CreatePost_partitionline" translatesAutoresizingMaskIntoConstraints="NO" id="93f-SD-GFd">
+                        <rect key="frame" x="20" y="115" width="811" height="29"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投稿する写真を選択" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LqP-dW-GP0">
+                        <rect key="frame" x="20" y="144" width="183.66666666666666" height="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="キャプションを入力" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="otQ-fc-rtq">
+                        <rect key="frame" x="20" y="935" width="811" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="SQQ-Cm-V51"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1F-4U-YqI">
+                        <rect key="frame" x="220" y="198" width="411" height="446"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" title="Button" image="CreatePost_mark_photo"/>
+                    </button>
+                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MK2-lk-6ee">
+                        <rect key="frame" x="20" y="1006" width="811" height="34"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="MK2-lk-6ee" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" constant="25" id="32D-f8-jkz"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="93f-SD-GFd" secondAttribute="trailing" id="3zv-cJ-5eU"/>
+                    <constraint firstItem="93f-SD-GFd" firstAttribute="top" secondItem="Dbc-8X-vch" secondAttribute="bottom" constant="15" id="7cp-43-2NU"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="otQ-fc-rtq" secondAttribute="bottom" constant="30" id="AKh-pC-2OK"/>
+                    <constraint firstItem="MK2-lk-6ee" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Aeh-EL-5wZ"/>
+                    <constraint firstItem="Dbc-8X-vch" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="JNT-44-hwP"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="otQ-fc-rtq" secondAttribute="trailing" id="KYd-4B-pie"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="MK2-lk-6ee" secondAttribute="trailing" id="Krc-a6-XdR"/>
+                    <constraint firstItem="LqP-dW-GP0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="MbV-o6-IYB"/>
+                    <constraint firstItem="A1F-4U-YqI" firstAttribute="top" secondItem="LqP-dW-GP0" secondAttribute="bottom" constant="30" id="Rgw-eP-ROV"/>
+                    <constraint firstItem="LqP-dW-GP0" firstAttribute="top" secondItem="93f-SD-GFd" secondAttribute="bottom" id="Rwd-OR-uGA"/>
+                    <constraint firstItem="A1F-4U-YqI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="200" id="SLQ-Zp-Cfk"/>
+                    <constraint firstItem="93f-SD-GFd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="YCj-3u-aRj"/>
+                    <constraint firstItem="Dbc-8X-vch" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="a34-cj-4uf"/>
+                    <constraint firstItem="otQ-fc-rtq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="s4d-Ka-U1L"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="A1F-4U-YqI" secondAttribute="trailing" constant="200" id="uyb-GZ-CPL"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <point key="canvasLocation" x="444" y="235"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="CreatePost_mark_photo" width="447" height="446"/>
+        <image name="CreatePost_mark_title" width="1080" height="371"/>
+        <image name="CreatePost_partitionline" width="1188" height="29"/>
+    </resources>
+</document>
