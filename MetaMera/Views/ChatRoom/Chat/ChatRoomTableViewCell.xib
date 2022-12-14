@@ -94,7 +94,7 @@
                 <outlet property="sendUser" destination="JxN-Ol-9Yb" id="PRx-Lk-f2W"/>
                 <outlet property="userIconImageView" destination="wCA-9L-C1L" id="CKN-K1-u70"/>
             </connections>
-            <point key="canvasLocation" x="255.07246376811597" y="1.6741071428571428"/>
+            <point key="canvasLocation" x="506" y="16"/>
         </tableViewCell>
     </objects>
     <resources>
