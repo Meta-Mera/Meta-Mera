@@ -20,6 +20,9 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CreataPost_back" translatesAutoresizingMaskIntoConstraints="NO" id="RSI-mM-fpD">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                </imageView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="yPv-CT-bKp">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -28,15 +31,20 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="RSI-mM-fpD" secondAttribute="trailing" id="18F-vz-dgq"/>
+                <constraint firstAttribute="bottom" secondItem="RSI-mM-fpD" secondAttribute="bottom" id="39Y-Xx-AWo"/>
                 <constraint firstAttribute="bottom" secondItem="yPv-CT-bKp" secondAttribute="bottom" id="3O1-of-oiH"/>
                 <constraint firstItem="yPv-CT-bKp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="9ON-3c-7v1"/>
                 <constraint firstItem="yPv-CT-bKp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="BD3-ZJ-17d"/>
+                <constraint firstItem="RSI-mM-fpD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="IPl-Cv-wBJ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="yPv-CT-bKp" secondAttribute="trailing" id="XZP-dQ-rpy"/>
+                <constraint firstItem="RSI-mM-fpD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="nLL-ak-DNW"/>
             </constraints>
             <point key="canvasLocation" x="-2626.4000000000001" y="93.842364532019715"/>
         </view>
     </objects>
     <resources>
+        <image name="CreataPost_back" width="1284" height="4498"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
