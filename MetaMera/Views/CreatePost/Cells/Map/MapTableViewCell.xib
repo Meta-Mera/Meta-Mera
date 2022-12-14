@@ -18,17 +18,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="390" height="829"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="CreataPost_back" translatesAutoresizingMaskIntoConstraints="NO" id="KnW-ob-iJj">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="4498"/>
-                    </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CreatePost_partitionline" translatesAutoresizingMaskIntoConstraints="NO" id="dfK-tO-aCp">
-                        <rect key="frame" x="0.0" y="15" width="295" height="30"/>
+                        <rect key="frame" x="10" y="15" width="370" height="50"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="byl-wQ-4zo"/>
+                            <constraint firstAttribute="width" constant="370" id="0PX-kb-vLF"/>
+                            <constraint firstAttribute="height" constant="50" id="gv3-US-02i"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投稿位置を確認" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ygt-Y3-9up">
-                        <rect key="frame" x="19.999999999999993" y="60" width="121.33333333333331" height="30"/>
+                        <rect key="frame" x="19.999999999999993" y="80" width="121.33333333333331" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="xw0-1a-x1j"/>
                         </constraints>
@@ -37,14 +35,15 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LaJ-3D-PYz">
-                        <rect key="frame" x="30" y="115" width="235" height="500"/>
+                        <rect key="frame" x="30" y="135" width="330" height="500"/>
                         <constraints>
+                            <constraint firstAttribute="width" constant="330" id="9Yf-uc-9BE"/>
                             <constraint firstAttribute="height" constant="500" id="Iel-no-0GH"/>
                         </constraints>
                         <standardMapConfiguration key="preferredConfiguration"/>
                     </mapView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GNJ-lk-xJC">
-                        <rect key="frame" x="60" y="675" width="175" height="50"/>
+                        <rect key="frame" x="110" y="695" width="175" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="QmQ-d3-xRF"/>
                             <constraint firstAttribute="width" constant="175" id="xgV-tR-Und"/>
@@ -54,29 +53,23 @@
                     </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="dfK-tO-aCp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="8jX-Hh-pHq"/>
                     <constraint firstAttribute="trailing" secondItem="GNJ-lk-xJC" secondAttribute="trailing" constant="60" id="A8T-Th-mVS"/>
-                    <constraint firstItem="KnW-ob-iJj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="BFD-3G-UHh"/>
-                    <constraint firstAttribute="trailing" secondItem="dfK-tO-aCp" secondAttribute="trailing" id="BgG-pZ-LjR"/>
-                    <constraint firstItem="dfK-tO-aCp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="HtJ-lb-Ws9"/>
-                    <constraint firstItem="KnW-ob-iJj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Iqz-uh-ifM"/>
-                    <constraint firstItem="LaJ-3D-PYz" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="JdQ-ox-D68"/>
+                    <constraint firstItem="dfK-tO-aCp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="PDJ-Pq-ttW"/>
                     <constraint firstItem="LaJ-3D-PYz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="SMQ-QT-su1"/>
                     <constraint firstItem="LaJ-3D-PYz" firstAttribute="top" secondItem="Ygt-Y3-9up" secondAttribute="bottom" constant="25" id="Sdy-v3-V8j"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="LaJ-3D-PYz" secondAttribute="trailing" constant="10" id="fs7-oS-aVX"/>
                     <constraint firstItem="Ygt-Y3-9up" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="g64-pq-Ijy"/>
-                    <constraint firstItem="GNJ-lk-xJC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="60" id="iQP-vR-OGf"/>
-                    <constraint firstItem="dfK-tO-aCp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="jwI-HA-fQW"/>
+                    <constraint firstItem="GNJ-lk-xJC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="110" id="iQP-vR-OGf"/>
                     <constraint firstAttribute="bottom" secondItem="GNJ-lk-xJC" secondAttribute="bottom" constant="30" id="mhG-rN-Og9"/>
                     <constraint firstItem="GNJ-lk-xJC" firstAttribute="top" secondItem="LaJ-3D-PYz" secondAttribute="bottom" constant="60" id="sCz-eU-nHI"/>
                     <constraint firstItem="Ygt-Y3-9up" firstAttribute="top" secondItem="dfK-tO-aCp" secondAttribute="bottom" constant="15" id="xU4-1n-mAR"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <point key="canvasLocation" x="240.57971014492756" y="305.29891304347831"/>
+            <point key="canvasLocation" x="229" y="304"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="CreataPost_back" width="1284" height="4498"/>
         <image name="CreatePost_button_post" width="660" height="171"/>
         <image name="CreatePost_partitionline" width="1188" height="29"/>
     </resources>
