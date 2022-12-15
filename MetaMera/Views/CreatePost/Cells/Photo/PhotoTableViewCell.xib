@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,11 +24,11 @@
                             <constraint firstAttribute="height" constant="150" id="2DJ-xm-nDa"/>
                         </constraints>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="CreatePost_partitionline" translatesAutoresizingMaskIntoConstraints="NO" id="bdG-w6-Org">
-                        <rect key="frame" x="20" y="150" width="314" height="29"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CreatePost_partitionline" translatesAutoresizingMaskIntoConstraints="NO" id="bdG-w6-Org">
+                        <rect key="frame" x="20" y="150" width="314" height="21"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="投稿する写真を選択" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dw1-U9-TUK">
-                        <rect key="frame" x="20" y="179" width="156" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="投稿する写真を選択" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dw1-U9-TUK">
+                        <rect key="frame" x="20" y="171" width="156" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -41,19 +42,21 @@
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                         <state key="normal" image="CreatePost_mark_photo"/>
                     </button>
-                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="キャプションを入力" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eOR-k0-P7V">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="キャプションを入力" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Y7T-jY-FDq">
                         <rect key="frame" x="20" y="472" width="314" height="75"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="75" id="D7h-mU-fBv"/>
+                            <constraint firstAttribute="height" constant="75" id="Gfl-SC-pea"/>
                         </constraints>
+                        <color key="textColor" systemColor="labelColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits"/>
-                    </textField>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="bdG-w6-Org" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="05A-RL-Q2N"/>
                     <constraint firstItem="bdG-w6-Org" firstAttribute="top" secondItem="ZKY-U4-Sa8" secondAttribute="bottom" id="226-Vn-lZ3"/>
-                    <constraint firstItem="eOR-k0-P7V" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="2tc-Kp-ydp"/>
+                    <constraint firstItem="Y7T-jY-FDq" firstAttribute="top" secondItem="Hbc-UH-aV1" secondAttribute="bottom" constant="50" id="50F-GU-jsP"/>
                     <constraint firstItem="Dw1-U9-TUK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="5Lw-7i-0Cj"/>
                     <constraint firstItem="Hbc-UH-aV1" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="9xe-gQ-7lY"/>
                     <constraint firstAttribute="trailingMargin" secondItem="bdG-w6-Org" secondAttribute="trailing" id="HyU-zV-fX5"/>
@@ -61,10 +64,10 @@
                     <constraint firstItem="Dw1-U9-TUK" firstAttribute="top" secondItem="bdG-w6-Org" secondAttribute="bottom" id="JNx-vZ-veN"/>
                     <constraint firstItem="ZKY-U4-Sa8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="T6v-yi-t2n"/>
                     <constraint firstItem="Hbc-UH-aV1" firstAttribute="top" secondItem="Dw1-U9-TUK" secondAttribute="bottom" constant="30" id="W4w-6V-aZf"/>
+                    <constraint firstItem="Y7T-jY-FDq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Y4u-O4-Ugx"/>
                     <constraint firstAttribute="trailing" secondItem="ZKY-U4-Sa8" secondAttribute="trailing" constant="75" id="dhF-kj-zc0"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="eOR-k0-P7V" secondAttribute="trailing" id="mRy-Aw-zMb"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="eOR-k0-P7V" secondAttribute="bottom" constant="30" id="nB8-BW-usq"/>
-                    <constraint firstItem="eOR-k0-P7V" firstAttribute="top" secondItem="Hbc-UH-aV1" secondAttribute="bottom" constant="50" id="sYR-gl-W2f"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Y7T-jY-FDq" secondAttribute="bottom" constant="30" id="eMJ-y4-Fth"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Y7T-jY-FDq" secondAttribute="trailing" id="uLq-1C-5wc"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -75,5 +78,11 @@
         <image name="CreatePost_mark_photo" width="447" height="446"/>
         <image name="CreatePost_mark_title" width="1080" height="371"/>
         <image name="CreatePost_partitionline" width="1188" height="29"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
