@@ -10,6 +10,7 @@ import UIKit
 class CreatePostViewController: UIViewController {
 
     @IBOutlet weak var createPostTableView: UITableView!
+    @IBOutlet weak var backButton: UIButton!
     
     private let mapCellId = "MapTableViewCell"
     private let photoCellId = "PhotoTableViewCell"
@@ -34,22 +35,28 @@ class CreatePostViewController: UIViewController {
         createPostTableView.contentInset = tableViewContentInset
         createPostTableView.scrollIndicatorInsets = tableViewIndicatorInser
         createPostTableView.keyboardDismissMode = .interactive
+        createPostTableView.backgroundColor = .clear
+        createPostTableView.allowsSelection = false
     }
+    
+    @IBAction func pushBack(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 
 
 }
 
 extension CreatePostViewController: UITableViewDelegate, UITableViewDataSource{
 //
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if indexPath.section == 0 {
-//            createPostTableView.estimatedRowHeight = 50
-//            return UITableView.automaticDimension
-//        }else{
-//            createPostTableView.estimatedRowHeight = 20
-//            return UITableView.automaticDimension
-//        }
-//    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            createPostTableView.estimatedRowHeight = 400
+            return UITableView.automaticDimension
+        }else{
+            return UITableView.automaticDimension
+        }
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -63,10 +70,14 @@ extension CreatePostViewController: UITableViewDelegate, UITableViewDataSource{
         print("indexPath.section: ",indexPath.section)
         if indexPath.section == 0 {
             let cell = createPostTableView.dequeueReusableCell(withIdentifier: photoCellId, for: indexPath) as! PhotoTableViewCell
+            cell.backgroundColor = .clear
+            
+            cell.configView()
             
             return cell
         }else {
             let cell = createPostTableView.dequeueReusableCell(withIdentifier: mapCellId, for: indexPath) as! MapTableViewCell
+            cell.backgroundColor = .clear
             
             return cell
         }

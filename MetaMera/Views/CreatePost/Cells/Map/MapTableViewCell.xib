@@ -42,7 +42,7 @@
                         </constraints>
                         <standardMapConfiguration key="preferredConfiguration"/>
                     </mapView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GNJ-lk-xJC">
+                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GNJ-lk-xJC">
                         <rect key="frame" x="107.66666666666669" y="695" width="175" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="QmQ-d3-xRF"/>
@@ -66,6 +66,10 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="mapView" destination="LaJ-3D-PYz" id="F5E-1Y-EBS"/>
+                <outlet property="postButton" destination="GNJ-lk-xJC" id="T9N-fK-OzR"/>
+            </connections>
             <point key="canvasLocation" x="229" y="304"/>
         </tableViewCell>
     </objects>

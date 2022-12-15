@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import MapKit
 
 class MapTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var postButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
