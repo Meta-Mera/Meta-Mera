@@ -43,7 +43,7 @@
                         <standardMapConfiguration key="preferredConfiguration"/>
                     </mapView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GNJ-lk-xJC">
-                        <rect key="frame" x="110" y="695" width="175" height="50"/>
+                        <rect key="frame" x="107.66666666666669" y="695" width="175" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="QmQ-d3-xRF"/>
                             <constraint firstAttribute="width" constant="175" id="xgV-tR-Und"/>
@@ -54,12 +54,12 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="dfK-tO-aCp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="8jX-Hh-pHq"/>
-                    <constraint firstAttribute="trailing" secondItem="GNJ-lk-xJC" secondAttribute="trailing" constant="60" id="A8T-Th-mVS"/>
+                    <constraint firstItem="GNJ-lk-xJC" firstAttribute="centerX" secondItem="LaJ-3D-PYz" secondAttribute="centerX" id="EB7-Si-MIb"/>
+                    <constraint firstItem="GNJ-lk-xJC" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="KBV-NM-NQI"/>
                     <constraint firstItem="dfK-tO-aCp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="PDJ-Pq-ttW"/>
                     <constraint firstItem="LaJ-3D-PYz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="SMQ-QT-su1"/>
                     <constraint firstItem="LaJ-3D-PYz" firstAttribute="top" secondItem="Ygt-Y3-9up" secondAttribute="bottom" constant="25" id="Sdy-v3-V8j"/>
                     <constraint firstItem="Ygt-Y3-9up" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="g64-pq-Ijy"/>
-                    <constraint firstItem="GNJ-lk-xJC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="110" id="iQP-vR-OGf"/>
                     <constraint firstAttribute="bottom" secondItem="GNJ-lk-xJC" secondAttribute="bottom" constant="30" id="mhG-rN-Og9"/>
                     <constraint firstItem="GNJ-lk-xJC" firstAttribute="top" secondItem="LaJ-3D-PYz" secondAttribute="bottom" constant="60" id="sCz-eU-nHI"/>
                     <constraint firstItem="Ygt-Y3-9up" firstAttribute="top" secondItem="dfK-tO-aCp" secondAttribute="bottom" constant="15" id="xU4-1n-mAR"/>
