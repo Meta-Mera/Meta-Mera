@@ -56,14 +56,18 @@
                             <constraint firstItem="LGM-Bf-aZ8" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="CMB-ka-xHa"/>
                             <constraint firstItem="sj5-Yk-ZuO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="EGE-ex-bzA"/>
                             <constraint firstItem="otA-28-cah" firstAttribute="centerY" secondItem="sj5-Yk-ZuO" secondAttribute="centerY" id="HIi-Iq-mcY"/>
+                            <constraint firstItem="LGM-Bf-aZ8" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="Mvn-CM-8s7"/>
                             <constraint firstItem="LGM-Bf-aZ8" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="NcT-YU-eOP"/>
                             <constraint firstAttribute="bottom" secondItem="LGM-Bf-aZ8" secondAttribute="bottom" id="SUB-qE-Nru"/>
                             <constraint firstItem="Mv6-qx-6HW" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="T2S-RI-wEV"/>
+                            <constraint firstItem="Mv6-qx-6HW" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="TtZ-PY-AfJ"/>
                             <constraint firstItem="sj5-Yk-ZuO" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="ZBG-i9-ZDR"/>
+                            <constraint firstItem="Mv6-qx-6HW" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="bhw-f6-Ffd"/>
                             <constraint firstItem="Mv6-qx-6HW" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="fIb-JO-nak"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="otA-28-cah" secondAttribute="trailing" constant="15" id="g8k-tC-iNZ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Mv6-qx-6HW" secondAttribute="trailing" id="gVI-OF-4M0"/>
                             <constraint firstAttribute="bottom" secondItem="Mv6-qx-6HW" secondAttribute="bottom" id="lo0-k1-ySk"/>
+                            <constraint firstItem="LGM-Bf-aZ8" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="va1-Q2-Eb9"/>
                             <constraint firstItem="LGM-Bf-aZ8" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="xBG-vx-sW2"/>
                         </constraints>
                     </view>
