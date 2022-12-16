@@ -18,14 +18,38 @@ class CreatePostViewController: UIViewController {
     private let tableViewContentInset : UIEdgeInsets = .init(top: 0, left: 0, bottom: 60, right: 0)
     private let tableViewIndicatorInser : UIEdgeInsets = .init(top: 0, left: 0, bottom: 60, right: 0)
     
+    let locationManager = LocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configView()
+        setUpTableView()
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        locationManager.startLocation()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        locationManager.stopLocation()
+    }
+    
+    
+    
     func configView() {
+
+    }
+    
+
+    
+    
+    func setUpTableView(){
         createPostTableView.delegate = self
         createPostTableView.dataSource = self
         createPostTableView.register(UINib(nibName: "MapTableViewCell", bundle: nil) , forCellReuseIdentifier: mapCellId)

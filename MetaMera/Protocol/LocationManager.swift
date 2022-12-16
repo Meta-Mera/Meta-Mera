@@ -27,7 +27,13 @@ class LocationManager: NSObject {
     }
     
     func startLocation() {
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = kCLHeadingFilterNone
         locationManager.startUpdatingLocation()
+    }
+    
+    func stopLocation(){
+        locationManager.stopUpdatingLocation()
     }
     
 }
