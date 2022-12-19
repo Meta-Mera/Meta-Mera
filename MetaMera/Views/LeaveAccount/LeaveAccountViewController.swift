@@ -9,6 +9,10 @@ import UIKit
 
 class LeaveAccountViewController: UIViewController {
 
+    @IBOutlet weak var leaveAccountButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
