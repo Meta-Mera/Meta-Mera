@@ -42,7 +42,7 @@
                         </constraints>
                         <standardMapConfiguration key="preferredConfiguration"/>
                     </mapView>
-                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GNJ-lk-xJC">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GNJ-lk-xJC">
                         <rect key="frame" x="107.66666666666669" y="695" width="175" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="QmQ-d3-xRF"/>
@@ -50,6 +50,9 @@
                         </constraints>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                         <state key="normal" title="Button" image="CreatePost_button_post"/>
+                        <connections>
+                            <action selector="pushPostButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="jOm-rY-gy8"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>

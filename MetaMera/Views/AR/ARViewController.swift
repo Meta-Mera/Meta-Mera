@@ -425,7 +425,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                     imageStyle = CGSize(width: 300, height: 300)
                     break
                 case 2:
-                    imageStyle = CGSize(width: 400, height: 300)
+                    imageStyle = CGSize(width: 600, height: 400)
                     break
                 case 3:
                     imageStyle = CGSize(width: 300, height: 400)
@@ -549,6 +549,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                 
                 //Nodeを生成
                 let annotationNode = LocationAnnotationNode(location: location, image: image)
+                annotationNode.scaleRelativeToDistance = true
                 completion(annotationNode)
                 
             case .failure(let error):

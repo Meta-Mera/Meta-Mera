@@ -50,7 +50,7 @@ extension LocationManager: CLLocationManagerDelegate {
             return
         }
         
-        print("lat", coordinate.latitude)
-        print("lon", coordinate.longitude)
+//        print("lat", coordinate.latitude)
+//        print("lon", coordinate.longitude)
     }
 }

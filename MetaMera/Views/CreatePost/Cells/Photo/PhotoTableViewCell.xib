@@ -24,18 +24,12 @@
                             <constraint firstAttribute="height" constant="150" id="2DJ-xm-nDa"/>
                         </constraints>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CreatePost_partitionline" translatesAutoresizingMaskIntoConstraints="NO" id="bdG-w6-Org">
-                        <rect key="frame" x="20" y="150" width="314" height="30"/>
-                    </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hbc-UH-aV1">
-                        <rect key="frame" x="77" y="210" width="200" height="200"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CreatePost_partitionline" translatesAutoresizingMaskIntoConstraints="NO" id="bdG-w6-Org">
+                        <rect key="frame" x="20" y="150" width="314" height="10"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="200" id="5Sr-mt-85c"/>
-                            <constraint firstAttribute="width" secondItem="Hbc-UH-aV1" secondAttribute="height" multiplier="1:1" id="hsV-Hp-LHN"/>
+                            <constraint firstAttribute="height" constant="10" id="AMp-ha-ysR"/>
                         </constraints>
-                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                        <state key="normal" image="CreatePost_mark_photo"/>
-                    </button>
+                    </imageView>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Y7T-jY-FDq" customClass="PlaceTextView" customModule="MetaMera" customModuleProvider="target">
                         <rect key="frame" x="20" y="460" width="314" height="90"/>
                         <color key="backgroundColor" red="0.92156863209999995" green="0.91764706370000004" blue="0.92156863209999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -46,19 +40,40 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CreatePost_selectImage" translatesAutoresizingMaskIntoConstraints="NO" id="vMe-hH-1Jv">
+                        <rect key="frame" x="27" y="170" width="300" height="240"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="300" id="dUa-NC-rY9"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="jxB-IZ-Aqh"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hbc-UH-aV1">
+                        <rect key="frame" x="127" y="240" width="100" height="100"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="100" id="5Sr-mt-85c"/>
+                            <constraint firstAttribute="width" secondItem="Hbc-UH-aV1" secondAttribute="height" multiplier="1:1" id="hsV-Hp-LHN"/>
+                        </constraints>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="CreateAccount_photoMark"/>
+                        <connections>
+                            <action selector="pushPhotoButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Q4M-AP-eM9"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="bdG-w6-Org" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="05A-RL-Q2N"/>
                     <constraint firstItem="bdG-w6-Org" firstAttribute="top" secondItem="ZKY-U4-Sa8" secondAttribute="bottom" id="226-Vn-lZ3"/>
-                    <constraint firstItem="Y7T-jY-FDq" firstAttribute="top" secondItem="Hbc-UH-aV1" secondAttribute="bottom" constant="50" id="50F-GU-jsP"/>
+                    <constraint firstItem="Y7T-jY-FDq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="vMe-hH-1Jv" secondAttribute="bottom" constant="50" id="50F-GU-jsP"/>
                     <constraint firstItem="Hbc-UH-aV1" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="9xe-gQ-7lY"/>
+                    <constraint firstItem="vMe-hH-1Jv" firstAttribute="centerX" secondItem="Hbc-UH-aV1" secondAttribute="centerX" id="Fd6-ez-eI4"/>
                     <constraint firstAttribute="trailingMargin" secondItem="bdG-w6-Org" secondAttribute="trailing" id="HyU-zV-fX5"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Y7T-jY-FDq" secondAttribute="bottom" constant="27" id="Ihp-6w-62b"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Y7T-jY-FDq" secondAttribute="bottom" constant="27" id="Ihp-6w-62b"/>
                     <constraint firstItem="ZKY-U4-Sa8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="75" id="Io0-gX-Orz"/>
                     <constraint firstItem="ZKY-U4-Sa8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="T6v-yi-t2n"/>
                     <constraint firstItem="Y7T-jY-FDq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Y4u-O4-Ugx"/>
                     <constraint firstAttribute="trailing" secondItem="ZKY-U4-Sa8" secondAttribute="trailing" constant="75" id="dhF-kj-zc0"/>
-                    <constraint firstItem="Hbc-UH-aV1" firstAttribute="top" secondItem="bdG-w6-Org" secondAttribute="bottom" constant="30" id="f39-q6-Rce"/>
+                    <constraint firstItem="vMe-hH-1Jv" firstAttribute="centerY" secondItem="Hbc-UH-aV1" secondAttribute="centerY" id="i3x-VN-hYQ"/>
+                    <constraint firstItem="vMe-hH-1Jv" firstAttribute="top" secondItem="bdG-w6-Org" secondAttribute="bottom" constant="10" id="sxL-mB-zZQ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Y7T-jY-FDq" secondAttribute="trailing" id="uLq-1C-5wc"/>
                 </constraints>
             </tableViewCellContentView>
@@ -66,14 +81,16 @@
             <connections>
                 <outlet property="commentTextView" destination="Y7T-jY-FDq" id="GA1-sU-WmF"/>
                 <outlet property="photoButton" destination="Hbc-UH-aV1" id="S7z-Bf-at3"/>
+                <outlet property="selectImageView" destination="vMe-hH-1Jv" id="aBV-BH-tjF"/>
             </connections>
             <point key="canvasLocation" x="302.29007633587787" y="23.943661971830988"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="CreatePost_mark_photo" width="447" height="446"/>
+        <image name="CreateAccount_photoMark" width="190" height="192"/>
         <image name="CreatePost_mark_title" width="1080" height="371"/>
         <image name="CreatePost_partitionline" width="1188" height="29"/>
+        <image name="CreatePost_selectImage" width="447" height="446"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
