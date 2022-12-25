@@ -113,8 +113,8 @@ targets:
     settings:
       base:
         TARGETED_DEVICE_FAMILY: 1
-        MARKETING_VERSION: 1.9.0
-        CURRENT_PROJECT_VERSION: 1.9.0
+        MARKETING_VERSION: 1.9.1
+        CURRENT_PROJECT_VERSION: 1.9.1
         DEVELOPMENT_TEAM: JH5QRQ7596
       configs:
         DevelopDebug:

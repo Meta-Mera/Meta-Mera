@@ -103,6 +103,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         case orange = 2
         case beige = 3
         case varmilion = 4
+        case purple = 5
         
         var image: UIImage {
             switch self {
@@ -117,6 +118,8 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
                 return Asset.Images.headerBeige.image
             case .varmilion:
                 return Asset.Images.headerVermilion.image
+            case .purple:
+                return Asset.Images.headerPurple.image
             }
         }
     }
