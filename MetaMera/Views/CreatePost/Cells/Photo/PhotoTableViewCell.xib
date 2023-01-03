@@ -8,6 +8,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="bokutachi.otf">
+            <string>BokutachinoGothic</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -59,6 +64,12 @@
                             <action selector="pushPhotoButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Q4M-AP-eM9"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/200" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyy-B8-NIl">
+                        <rect key="frame" x="296" y="530" width="30" height="12"/>
+                        <fontDescription key="fontDescription" name="BokutachinoGothic" family="BokutachinoGothic" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="bdG-w6-Org" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="05A-RL-Q2N"/>
@@ -73,13 +84,16 @@
                     <constraint firstItem="Y7T-jY-FDq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Y4u-O4-Ugx"/>
                     <constraint firstAttribute="trailing" secondItem="ZKY-U4-Sa8" secondAttribute="trailing" constant="75" id="dhF-kj-zc0"/>
                     <constraint firstItem="vMe-hH-1Jv" firstAttribute="centerY" secondItem="Hbc-UH-aV1" secondAttribute="centerY" id="i3x-VN-hYQ"/>
+                    <constraint firstItem="Y7T-jY-FDq" firstAttribute="bottomMargin" secondItem="dyy-B8-NIl" secondAttribute="bottom" id="lio-uZ-5eu"/>
                     <constraint firstItem="vMe-hH-1Jv" firstAttribute="top" secondItem="bdG-w6-Org" secondAttribute="bottom" constant="10" id="sxL-mB-zZQ"/>
+                    <constraint firstItem="Y7T-jY-FDq" firstAttribute="trailingMargin" secondItem="dyy-B8-NIl" secondAttribute="trailing" id="tU6-C0-fCs"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Y7T-jY-FDq" secondAttribute="trailing" id="uLq-1C-5wc"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="commentTextView" destination="Y7T-jY-FDq" id="GA1-sU-WmF"/>
+                <outlet property="limitLabel" destination="dyy-B8-NIl" id="nOm-Oy-75D"/>
                 <outlet property="photoButton" destination="Hbc-UH-aV1" id="S7z-Bf-at3"/>
                 <outlet property="selectImageView" destination="vMe-hH-1Jv" id="aBV-BH-tjF"/>
             </connections>

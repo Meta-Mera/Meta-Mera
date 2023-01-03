@@ -20,23 +20,32 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ロゴ" translatesAutoresizingMaskIntoConstraints="NO" id="U5z-XC-TFO">
                         <rect key="frame" x="0.0" y="0.0" width="281" height="247"/>
                     </imageView>
+                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CreateAccount_initialIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bMw-3D-Nqu">
+                        <rect key="frame" x="0.0" y="0.0" width="281" height="247"/>
+                    </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="bMw-3D-Nqu" secondAttribute="trailing" id="A0V-VD-xwz"/>
                 <constraint firstItem="U5z-XC-TFO" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="LMy-8x-kzu"/>
+                <constraint firstItem="bMw-3D-Nqu" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="P5A-Fe-iVC"/>
+                <constraint firstAttribute="bottom" secondItem="bMw-3D-Nqu" secondAttribute="bottom" id="Uke-0T-nz2"/>
                 <constraint firstItem="U5z-XC-TFO" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Wtn-ID-0gQ"/>
                 <constraint firstAttribute="bottom" secondItem="U5z-XC-TFO" secondAttribute="bottom" id="c28-F7-BwS"/>
+                <constraint firstItem="bMw-3D-Nqu" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="sp9-Ao-fek"/>
                 <constraint firstAttribute="trailing" secondItem="U5z-XC-TFO" secondAttribute="trailing" id="yVb-Os-n1s"/>
             </constraints>
             <size key="customSize" width="281" height="247"/>
             <connections>
+                <outlet property="hidenPostImage" destination="bMw-3D-Nqu" id="X6o-CR-H80"/>
                 <outlet property="postImageView" destination="U5z-XC-TFO" id="tO3-f5-NxY"/>
             </connections>
             <point key="canvasLocation" x="315.26717557251908" y="89.08450704225352"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="CreateAccount_initialIcon" width="288" height="288"/>
         <image name="ロゴ" width="272.5" height="208.5"/>
     </resources>
 </document>

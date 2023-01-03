@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Firebase
 import FirebaseStorage
+import Photos
 
 class Accessory {
     
@@ -159,6 +160,80 @@ class Accessory {
             }
             print("更新成功")
             
+        }
+        
+    }
+    
+    func photoRequestAuthorization(){
+        if #available(iOS 14.0, *) {
+            PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
+                switch status {
+                case .authorized:
+                    print("許可ずみ")
+                    break
+                case .limited:
+                    print("制限あり")
+                    break
+                case .denied:
+                    print("拒否ずみ")
+                    break
+                default:
+                    break
+                }
+            }
+        }else  {
+            if PHPhotoLibrary.authorizationStatus() != .authorized {
+                PHPhotoLibrary.requestAuthorization { status in
+                    if status == .authorized {
+                        print("許可ずみ")
+                    } else if status == .denied {
+                        print("拒否ずみ")
+                    }
+                }
+            } else {
+                
+            }
+        }
+    }
+    
+    func checkAuthorizationStatus(view: UIViewController) -> PHAuthorizationStatus{
+        // 権限
+        let authPhotoLibraryStatus = PHPhotoLibrary.authorizationStatus()
+        // authPhotoLibraryStatus = .authorized : 許可
+        //                        = .limited    : 選択した画像のみ
+        //                        = .denied     : 拒否
+        
+        if authPhotoLibraryStatus == .limited  || authPhotoLibraryStatus == .denied{
+            
+            //アラートの設定
+            let alert = UIAlertController(title: "Failed to save image", message: "Allow this app to access Photos.", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "Enable photos access", style: .default) { (action) in
+                //設定を開く
+                if let settingURL = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.canOpenURL(settingURL)
+                    UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
+                }
+            }
+            let cancel = UIAlertAction(title: "cancel", style: .cancel) { (acrion) in
+//                self.dismiss(animated: true, completion: nil)
+            }
+            
+            //アラートの下にあるボタンを追加
+            alert.addAction(cancel)
+            alert.addAction(ok)
+            //アラートの表示
+            view.present(alert, animated: true, completion: nil)
+            
+        }
+        return authPhotoLibraryStatus
+    }
+    
+    func openPhotoLibrary(view: UIViewController,imagePicker: UIImagePickerController){
+        photoRequestAuthorization()
+        // 権限
+        let authPhotoLibraryStatus = checkAuthorizationStatus(view: view)
+        if authPhotoLibraryStatus == .authorized {
+            view.present(imagePicker, animated: true)    // カメラロール起動
         }
         
     }

@@ -12,7 +12,7 @@ class PhotoTableViewCell: UITableViewCell {
     @IBOutlet weak var commentTextView: PlaceTextView!
     @IBOutlet weak var photoButton: UIButton!
     @IBOutlet weak var selectImageView: UIImageView!
-    
+    @IBOutlet weak var limitLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,6 +23,7 @@ class PhotoTableViewCell: UITableViewCell {
     var delegate : CreatePostDelegate?
     
     func configView(){
+        limitLabel.text = ""
         commentTextView.layer.borderColor = UIColor.gray.cgColor
         commentTextView.layer.borderWidth = 1.0
         commentTextView.layer.cornerRadius = 10.0
@@ -51,7 +52,12 @@ extension PhotoTableViewCell: UITextViewDelegate {
         return linesAfterChange <= 5 && textView.text.count + (text.count - range.length) <= 200
     }
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        self.limitLabel.text = "\(textView.text.count)/200"
+    }
+    
     func textViewDidChange(_ textView: UITextView) {
+        self.limitLabel.text = "\(textView.text.count)/200"
         delegate?.postPhoto(comment: textView.text)
     }
     

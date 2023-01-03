@@ -42,9 +42,12 @@ class MapTableViewCell: UITableViewCell, MKMapViewDelegate{
     
     func setUpCircle(){
         locationManager.startLocation()
+        mapView.layer.cornerRadius = 10
         mapView.showsUserLocation = true
         mapView.delegate = self
         mapView.addGestureRecognizer(mapViewLongTapGuester)
+        
+        mapView.removeOverlays(mapView.overlays)
         
         var region = mapView.region
         region.center = CLLocationCoordinate2D(
@@ -84,8 +87,7 @@ class MapTableViewCell: UITableViewCell, MKMapViewDelegate{
         //TODO:  長押しじゃなくて通常タップでピンを配置できるようにする
         
         let location:CGPoint = sender.location(in: mapView)
-        mapView.removeAnnotation(pointAno)
-        isAnnotation = false
+//        isAnnotation = false
         if (sender.state == .began){
             let generator = UINotificationFeedbackGenerator()
             generator.notificationOccurred(.success)
@@ -98,6 +100,7 @@ class MapTableViewCell: UITableViewCell, MKMapViewDelegate{
             let radius: CLLocationDistance = 500
             let circularRegion = CLCircularRegion(center: centerLocation, radius: radius, identifier: "identifier")
             if circularRegion.contains(mapPoint) {
+                mapView.removeAnnotation(pointAno)
                 // 含まれる
                 //ピンを作成してマップビューに登録する。
                 pointAno.coordinate = CLLocationCoordinate2DMake(mapPoint.latitude, mapPoint.longitude)
@@ -106,6 +109,7 @@ class MapTableViewCell: UITableViewCell, MKMapViewDelegate{
                 mapView.addAnnotation(pointAno)
                 
                 isAnnotation = true
+                delegate?.postLocation(postLocation: pointAno.coordinate, altitude: mapView.userLocation.location!.altitude + 30)
             }
         }
     }
@@ -135,7 +139,7 @@ class MapTableViewCell: UITableViewCell, MKMapViewDelegate{
     
     
     @IBAction func pushPostButton(_ sender: Any) {
-        delegate?.postLocation(postLocation: pointAno.coordinate, altitude: mapView.userLocation.location!.altitude + 30)
+        delegate?.pushPostButton()
     }
     
 }

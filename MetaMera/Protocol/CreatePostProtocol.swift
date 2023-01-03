@@ -16,6 +16,8 @@ protocol CreatePostDelegate {
     func postPhoto(comment: String) -> Void
     
     func pushPhotoButton() -> Void
+    
+    func pushPostButton() -> Void
 }
 
 protocol photoUploadDelegate {

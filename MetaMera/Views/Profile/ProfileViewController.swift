@@ -55,7 +55,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         configView()
         setupProfileData()
         getUserPostData()
-//        getUserFavoriteData()
+        getUserFavoriteData()
         // Do any additional setup after loading the view.
     }
     
@@ -322,7 +322,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func getUserPostData(){
         if(!user.deleted && !user.ban){
-            Firestore.firestore().collection("Posts").whereField("postUserUid", isEqualTo: user.uid).whereField("deleted", isEqualTo: "false").getDocuments(completion: {[weak self] (snapshot, error) in
+            Firestore.firestore().collection("Posts").whereField("postUserUid", isEqualTo: user.uid).whereField("deleted", isEqualTo: false).getDocuments(completion: {[weak self] (snapshot, error) in
                 if let error = error {
                     print("投稿データの取得に失敗しました。\(error)")
                     return
@@ -352,7 +352,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func getUserFavoriteData(){
         if(!user.deleted && !user.ban){
-            Firestore.firestore().collection("Likes").whereField("uid", isEqualTo: Profile.shared.loginUser.uid).getDocuments(completion: { [weak self] (snapshot, error) in
+            Firestore.firestore().collection("Likes").whereField("uid", isEqualTo: user.uid).getDocuments(completion: { [weak self] (snapshot, error) in
                 if let error = error {
                     print("Error getting documents: \(error)")
                     return
@@ -382,32 +382,8 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
                     self?.collectionView.reloadData()
                 }
             })
-            
-            
-            Firestore.firestore().collectionGroup("likeUsers").whereField("uid", isEqualTo: user.uid).getDocuments(completion: {[weak self] (snapshot, error) in
-                if let error = error {
-                    print("投稿データの取得に失敗しました。\(error)")
-                    return
-                }
-                
-                self?.postCount = snapshot!.documents.count
-                for document in snapshot!.documents {
-                    print("dic\(document.data())")
-    //                let post = Post(dic: document.data(), postId: document.documentID)
-    //                self?.posts.append(post)
-    //                self?.posts.sort { (m1, m2) -> Bool in
-    //                    let m1Date = m1.createdAt.dateValue()
-    //                    let m2Date = m2.createdAt.dateValue()
-    //                    return m1Date < m2Date
-    //                }
-                }
-                self?.collectionView.reloadData()
-            })
         }
-
     }
-    
-
 }
 
 extension ProfileViewController: UICollectionViewDataSource {
