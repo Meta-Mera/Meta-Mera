@@ -134,92 +134,7 @@ class EditProfileViewController: UIViewController {
     
     @IBAction func pushChangeIcoonButton(_ sender: Any) {
         print("アイコン変更したいよ")
-        if #available(iOS 14.0, *) {
-            PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
-                switch status {
-                case .authorized:
-                    print("許可ずみ")
-                    break
-                case .limited:
-                    print("制限あり")
-                    break
-                case .denied:
-                    print("拒否ずみ")
-                    break
-                default:
-                    break
-                }
-            }
-        }else  {
-            if PHPhotoLibrary.authorizationStatus() != .authorized {
-                PHPhotoLibrary.requestAuthorization { status in
-                    if status == .authorized {
-                        print("許可ずみ")
-                    } else if status == .denied {
-                        print("拒否ずみ")
-                    }
-                }
-            } else {
-                
-            }
-        }
-        
-        
-        // 権限
-        let authPhotoLibraryStatus = PHPhotoLibrary.authorizationStatus()
-        // authPhotoLibraryStatus = .authorized : 許可
-        //                        = .limited    : 選択した画像のみ
-        //                        = .denied     : 拒否
-        
-        if authPhotoLibraryStatus == .limited {
-            
-            //アラートの設定
-            let alert = UIAlertController(title: "Failed to save image", message: "Allow this app to access Photos.", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "Enable photos access", style: .default) { (action) in
-                //設定を開く
-                if let settingURL = URL(string: UIApplication.openSettingsURLString) {
-                    UIApplication.shared.canOpenURL(settingURL)
-                    UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
-                }
-            }
-            let cancel = UIAlertAction(title: "cancel", style: .cancel) { (acrion) in
-                self.dismiss(animated: true, completion: nil)
-            }
-            
-            //アラートの下にあるボタンを追加
-            alert.addAction(cancel)
-            alert.addAction(ok)
-            //アラートの表示
-            present(alert, animated: true, completion: nil)
-            
-            
-        }
-        if authPhotoLibraryStatus == .denied {
-            
-            //アラートの設定
-            let alert = UIAlertController(title: "Failed to save image", message: "Allow this app to access Photos.", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "Enable photos access", style: .default) { (action) in
-                //設定を開く
-                if let settingURL = URL(string: UIApplication.openSettingsURLString) {
-                    UIApplication.shared.canOpenURL(settingURL)
-                    UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
-                }
-            }
-            let cancel = UIAlertAction(title: "cancel", style: .cancel) { (acrion) in
-                self.dismiss(animated: true, completion: nil)
-            }
-            
-            //アラートの下にあるボタンを追加
-            alert.addAction(cancel)
-            alert.addAction(ok)
-            //アラートの表示
-            present(alert, animated: true, completion: nil)
-        }
-        // fix/update_prof_image_#33 >>>
-        if authPhotoLibraryStatus == .authorized {
-            // <<<
-            present(imagePicker, animated: true)    // カメラロール起動
-        }
+        accessory.openPhotoLibrary(view: self, imagePicker: imagePicker)
         print("slect image")
     }
     
@@ -248,7 +163,6 @@ class EditProfileViewController: UIViewController {
             print("更新成功")
             
         }
-        
     }
     
     
@@ -293,7 +207,6 @@ extension EditProfileViewController: UITextFieldDelegate {
 extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        print("呼ばれた")
         
         if let editImage = info[.editedImage] as? UIImage {
             userIconImageView.setImage(image: editImage, name: "")

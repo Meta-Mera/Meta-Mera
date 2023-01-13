@@ -27,7 +27,13 @@ class LocationManager: NSObject {
     }
     
     func startLocation() {
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = kCLHeadingFilterNone
         locationManager.startUpdatingLocation()
+    }
+    
+    func stopLocation(){
+        locationManager.stopUpdatingLocation()
     }
     
 }
@@ -44,7 +50,7 @@ extension LocationManager: CLLocationManagerDelegate {
             return
         }
         
-        print("lat", coordinate.latitude)
-        print("lon", coordinate.longitude)
+//        print("lat", coordinate.latitude)
+//        print("lon", coordinate.longitude)
     }
 }

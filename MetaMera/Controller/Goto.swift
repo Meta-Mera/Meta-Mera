@@ -93,6 +93,12 @@ class Goto : UIViewController{
         view.navigationController?.pushViewController(vc, animated: true)
     }
     
+    class func CreatePost(view: UIViewController){
+        print("Goto-CreatePostViewController was called.")
+        let vc = MetaMera.CreatePostViewController()
+        view.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     class func DebugView(view: UIViewController){
         print("Goto-DebugView was called.")
         let vc = UIStoryboard(name: "DebugViewController", bundle: nil).instantiateViewController(withIdentifier: "DebugViewController") as! DebugViewController

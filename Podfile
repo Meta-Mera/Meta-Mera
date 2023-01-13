@@ -8,6 +8,7 @@ target 'MetaMera' do
   # Pods for MetaMera
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
+  pod 'Firebase/Crashlytics'
   pod 'Firebase/Firestore', '~> 7.0'
   pod 'Firebase/Storage'
   pod 'Firebase/Messaging'
@@ -19,6 +20,11 @@ target 'MetaMera' do
   pod 'FirebaseFirestoreSwift', '~> 7.0-beta'
 
   pod 'SwiftGen'
+
+  script_phase name: 'Run Firebase Crashlytics',
+               shell_path: '/bin/sh',
+               script: '"${PODS_ROOT}/FirebaseCrashlytics/run"',
+               input_files: ['${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}', '$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)']
 
   target 'MetaMeraTests' do
     inherit! :search_paths
