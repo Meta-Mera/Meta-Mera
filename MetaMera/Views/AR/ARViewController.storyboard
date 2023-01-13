@@ -45,7 +45,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.69999998807907104" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UNc-Jd-p1P">
+                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.69999998807907104" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UNc-Jd-p1P">
                                 <rect key="frame" x="0.0" y="528" width="375" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="RjN-gs-uci"/>
@@ -147,7 +147,7 @@
                         <outlet property="backView" destination="5xn-ya-I9u" id="mjy-3B-pEA"/>
                         <outlet property="contentView" destination="0g4-UK-JMB" id="gmO-ii-G2K"/>
                         <outlet property="createRoomButton" destination="asd-mO-hrb" id="HpU-9m-dsS"/>
-                        <outlet property="mapView" destination="UNc-Jd-p1P" id="xWO-8O-FgL"/>
+                        <outlet property="mapView" destination="UNc-Jd-p1P" id="vGj-vY-MM2"/>
                         <outlet property="plusButton" destination="czh-4h-UIa" id="OEW-ek-P8V"/>
                         <outlet property="profileButton" destination="e4y-40-dW5" id="EXc-aP-cfD"/>
                         <outlet property="selectCategoryButton" destination="6FL-tj-Fkr" id="jlB-V9-DNc"/>
