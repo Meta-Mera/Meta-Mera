@@ -15,6 +15,7 @@ class User {
     let profileImage: String
     let tokens: [String]
     let email: String
+    let oldEmail: String
     let log: [String]
     let bio: String
     let headerColor: Int
@@ -41,6 +42,7 @@ class User {
         self.createAt = dic["createAt"] as? Timestamp ?? Timestamp()
         self.tokens = dic["tokens"] as? [String] ?? []
         self.email = dic["email"] as? String ?? ""
+        self.oldEmail = dic["oldEmail"] as? String ?? ""
         self.profileImage = dic["profileImage"] as? String ?? ""
         self.log = dic["Log"] as? [String]  ?? []
         self.reCommend = dic["Recommend"] as? [String] ?? []

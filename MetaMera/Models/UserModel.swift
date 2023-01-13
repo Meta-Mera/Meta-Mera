@@ -55,7 +55,8 @@ class UserModel {
                                 return
                             }else {
                                 Firestore.firestore().collection("Users").document(Profile.shared.loginUser.uid).updateData([
-                                    "email": newEmail
+                                    "email": newEmail,
+                                    "oldEmail": Profile.shared.loginUser.email
                                 ]){ err in
                                     if let err = err {
                                         completion(.failure(NSError(domain: "[change Email] Firestoreの更新に失敗しました。\(err)", code: 508)))
