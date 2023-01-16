@@ -765,7 +765,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     @IBAction func pushSelectCategory(_ sender: Any) {
         backTap()
-        Goto.DebugView(view: self)
     }
     //MARK: プラスボタンのやつ(90%) -
     

@@ -19,8 +19,10 @@ class TopViewController: UIViewController {
     @IBOutlet weak var versionLabel: UILabel!
     
     let signInModel = SignInModel()
+    let alertModel = AlertModel()
     
     var maintenance = false
+    var createAccountBool = true
     
     
     override func viewDidLoad() {
@@ -113,8 +115,31 @@ class TopViewController: UIViewController {
 
     
     @objc func PushSignUp(_ sender: Any) {
-        if(!maintenance){
-            Goto.SignUp(view: self)
+        if(!maintenance && createAccountBool){
+            if(createAccount()){
+                Goto.SignUp(view: self)
+            }else {
+                createAccountBool = false
+                let alert: UIAlertController = UIAlertController(title: "新規登録一時停止中", message: "大変申し訳ありませんが、ただいま一時的に新規登録を停止させていただいております。再開までもうしばらくお待ちください。", preferredStyle:  UIAlertController.Style.alert)
+                let defaultAction: UIAlertAction = UIAlertAction(title: "閉じる", style: UIAlertAction.Style.default, handler:{
+                    // ボタンが押された時の処理を書く（クロージャ実装）
+                    (action: UIAlertAction!) -> Void in
+                })
+                
+                alert.addAction(defaultAction)
+                self.present(alert, animated: true, completion: nil)
+            }
+        }else {
+            if !createAccountBool {
+                let alert: UIAlertController = UIAlertController(title: "新規登録一時停止中", message: "大変申し訳ありませんが、ただいま一時的に新規登録を停止させていただいております。再開までもうしばらくお待ちください。", preferredStyle:  UIAlertController.Style.alert)
+                let defaultAction: UIAlertAction = UIAlertAction(title: "閉じる", style: UIAlertAction.Style.default, handler:{
+                    // ボタンが押された時の処理を書く（クロージャ実装）
+                    (action: UIAlertAction!) -> Void in
+                })
+                
+                alert.addAction(defaultAction)
+                self.present(alert, animated: true, completion: nil)
+            }
         }
 
         
@@ -123,6 +148,19 @@ class TopViewController: UIViewController {
         if(!maintenance){
             autoLogin()
         }
+    }
+    
+    func createAccount() -> Bool{
+        var counter : Int = 10000
+        FirebaseManager.user.ref.whereField("uid", isEqualTo: "count").getDocuments { snapshot, error in
+            if let error = error {
+                print("管理データの取得に失敗\(error)")
+            }
+            guard let dic = snapshot?.documents.first?.data() else { return }
+            let data  = User(dic: dic, uid: "Counter")
+            counter = data.limted
+        }
+        return counter < 2000 ? true : false
     }
     
 //    var authListener
