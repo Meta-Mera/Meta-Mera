@@ -564,7 +564,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                 
             case .failure(let error):
                 print("IMAGE", error)
-                fatalError()
+//                fatalError()
             }
         }
     }

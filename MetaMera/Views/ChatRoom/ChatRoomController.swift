@@ -37,6 +37,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
     @IBOutlet weak var chatRoomTableView: UITableView!
     @IBOutlet weak var backImageView: UIImageView!
     @IBOutlet weak var optionButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
     
     //    static let shared = Profile()
     
@@ -310,6 +311,11 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
         self.present(alertSheet, animated: true, completion: nil)
     }
     //MARK: - ハンバーガーボタン
+    
+    
+    @IBAction func pushBackButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     //MARK: 前の画面に戻る
     @objc func backView(_ sender: Any){
@@ -621,7 +627,7 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 0 {
             let headerView = UIView()
-            headerView.backgroundColor = .gray
+//            headerView.backgroundColor = .clear
             
 //            let titleLabel = UILabel()
 //            titleLabel.text = "header"
