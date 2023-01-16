@@ -54,7 +54,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
         configView()
         setupProfileData()
-        getUserPostData()
+        itsMe ? getPostDataByMe() : getUserPostData()
         getUserFavoriteData()
         // Do any additional setup after loading the view.
     }
@@ -322,22 +322,22 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func getUserPostData(){
             if(!user.deleted && !user.ban){
-                Firestore.firestore().collection("Posts").whereField("postUserUid", isEqualTo: user.uid).whereField("deleted", isEqualTo: false).getDocuments(completion: {[weak self] (snapshot, error) in
+                FirebaseManager.post.ref.whereField("postUserUid", isEqualTo: user.uid).whereField("deleted", isEqualTo: false).whereField("hidden", isEqualTo: false).getDocuments(completion: {[weak self] (snapshot, error) in
                     if let error = error {
                         print("投稿データの取得に失敗しました。\(error)")
                         return
                     }
-                    
                     self?.postCount = snapshot!.documents.count
                     for document in snapshot!.documents {
                         let post = Post(dic: document.data(), postId: document.documentID)
-                        if !post.deleted {
+                        if !post.deleted && !post.hidden {
                             self?.posts.append(post)
                             self?.posts.sort { (m1, m2) -> Bool in
                                 let m1Date = m1.createdAt.dateValue()
                                 let m2Date = m2.createdAt.dateValue()
                                 return m1Date < m2Date
                             }
+                            
                         }
                     }
                     
@@ -346,6 +346,33 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
             }
 
         }
+    
+    func getPostDataByMe(){
+        if(!user.deleted && !user.ban){
+            FirebaseManager.post.ref.whereField("postUserUid", isEqualTo: user.uid).whereField("deleted", isEqualTo: false).getDocuments(completion: {[weak self] (snapshot, error) in
+                if let error = error {
+                    print("投稿データの取得に失敗しました。\(error)")
+                    return
+                }
+                
+                self?.postCount = snapshot!.documents.count
+                for document in snapshot!.documents {
+                    let post = Post(dic: document.data(), postId: document.documentID)
+                    if !post.deleted {
+                        self?.posts.append(post)
+                        self?.posts.sort { (m1, m2) -> Bool in
+                            let m1Date = m1.createdAt.dateValue()
+                            let m2Date = m2.createdAt.dateValue()
+                            return m1Date < m2Date
+                        }
+                        
+                    }
+                }
+                
+                self?.collectionView.reloadData()
+            })
+        }
+    }
     
     var likePostCount: Int?
     var likePosts = [Post]()
@@ -368,7 +395,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
                             }
                             guard let dic = postSnapshot?.data() else { return }
                             let post = Post(dic: dic, postId: likeData.postId)
-                            if !post.deleted {
+                            if !post.deleted && !post.hidden {
                                 self?.likePosts.append(post)
                                 self?.likePosts.sort { (m1, m2) -> Bool in
                                     let m1Date = m1.createdAt.dateValue()

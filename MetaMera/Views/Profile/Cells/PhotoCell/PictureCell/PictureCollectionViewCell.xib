@@ -20,7 +20,7 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ロゴ" translatesAutoresizingMaskIntoConstraints="NO" id="U5z-XC-TFO">
                         <rect key="frame" x="0.0" y="0.0" width="281" height="247"/>
                     </imageView>
-                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CreateAccount_initialIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bMw-3D-Nqu">
+                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hiden" translatesAutoresizingMaskIntoConstraints="NO" id="bMw-3D-Nqu">
                         <rect key="frame" x="0.0" y="0.0" width="281" height="247"/>
                     </imageView>
                 </subviews>
@@ -45,7 +45,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="CreateAccount_initialIcon" width="288" height="288"/>
+        <image name="hiden" width="408" height="401"/>
         <image name="ロゴ" width="272.5" height="208.5"/>
     </resources>
 </document>

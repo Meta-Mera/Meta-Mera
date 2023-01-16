@@ -85,13 +85,13 @@ class Goto : UIViewController{
     }
 
     
-    class func CreateNewPost(view: UIViewController){
-        print("Goto-ChatRoomCreate was called.")
-        let vc = UIStoryboard(name: "CreateNewPostViewController", bundle: nil).instantiateViewController(withIdentifier: "CreateNewPostViewController") as! CreateNewPostViewController
-        vc.modalPresentationStyle = .fullScreen
-//        view.present(vc, animated: true, completion: nil)
-        view.navigationController?.pushViewController(vc, animated: true)
-    }
+//    class func CreateNewPost(view: UIViewController){
+//        print("Goto-ChatRoomCreate was called.")
+//        let vc = UIStoryboard(name: "CreateNewPostViewController", bundle: nil).instantiateViewController(withIdentifier: "CreateNewPostViewController") as! CreateNewPostViewController
+//        vc.modalPresentationStyle = .fullScreen
+////        view.present(vc, animated: true, completion: nil)
+//        view.navigationController?.pushViewController(vc, animated: true)
+//    }
     
     class func CreatePost(view: UIViewController){
         print("Goto-CreatePostViewController was called.")
