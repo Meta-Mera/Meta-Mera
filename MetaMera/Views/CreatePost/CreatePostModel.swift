@@ -62,6 +62,18 @@ class CreatePostModel {
                             HUD.hide { (_) in
                                 HUD.flash(.success, onView: view.view, delay: 1) { (_) in
                                     print("投稿成功")
+                                    let url = URL(string: "http://18.178.90.17:8000/"+fileName)
+                                    let request = URLRequest(url: url!)
+                                    let session = URLSession.shared
+                                    session.dataTask(with: request) { (data, response, error) in
+                                        if error == nil, let data = data, let response = response as? HTTPURLResponse {
+                                            // HTTPヘッダの取得
+                                            print("Content-Type: \(response.allHeaderFields["Content-Type"] ?? "")")
+                                            // HTTPステータスコード
+                                            print("statusCode: \(response.statusCode)")
+                                            print(String(data: data, encoding: String.Encoding.utf8) ?? "")
+                                        }
+                                    }.resume()
                                     view.navigationController?.popViewController(animated: true)
                                 }
                             }

@@ -23,6 +23,9 @@ class TopViewController: UIViewController {
     
     var maintenance = false
     var createAccountBool = true
+    var remoteConfigBool = false
+    var remoteConfigLimit = 100
+    var firstCheck = true
     
     
     override func viewDidLoad() {
@@ -84,83 +87,119 @@ class TopViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-#if RELEASE
-        check()
-#endif
     }
     
     
-    func check(){
+    func maintenanceCheck(completion: ((Bool,String, String) -> Void)? = nil){
         RemoteConfigClient.shared.fetchServerMaintenanceConfig(
             succeeded: { [weak self] config in
                 self?.maintenance = config.isUnderMaintenance
-                if config.isUnderMaintenance {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
-                        guard let `self` = self else { return }
-                        let alert: UIAlertController = UIAlertController(title: config.title, message: config.message, preferredStyle:  UIAlertController.Style.alert)
-                        let defaultAction: UIAlertAction = UIAlertAction(title: "Reload", style: UIAlertAction.Style.default, handler:{
-                            // ボタンが押された時の処理を書く（クロージャ実装）
-                            (action: UIAlertAction!) -> Void in
-                            self.check()
-                        })
-                        
-                        alert.addAction(defaultAction)
-                        self.present(alert, animated: true, completion: nil)
-                    }
-                }
+                completion?(config.isUnderMaintenance,config.title,config.message)
             }, failed: { [weak self] errorMessage in
             }
         )
     }
+    
+    func check(completion: ((Bool) -> Void)? = nil){
+        maintenanceCheck {[weak self] isMaintenance,title,message in
+            self?.maintenance = isMaintenance
+            if isMaintenance {
+                let defaultAction = UIAlertAction(
+                    title: "閉じる",
+                    style: .default) { Void in
+                        self?.maintenanceCheck()
+                    }
+                let alert = AlartManager.shared.setting(
+                    title: title,
+                    message: message,
+                    style: .alert,
+                    actions: [defaultAction]
+                )
+                self?.present(alert, animated: true, completion: nil)
+                
+            }
+            completion?(isMaintenance)
+        }
+    }
 
     
     @objc func PushSignUp(_ sender: Any) {
-        if(!maintenance && createAccountBool){
-            if(createAccount()){
-                Goto.SignUp(view: self)
-            }else {
-                createAccountBool = false
-                let alert: UIAlertController = UIAlertController(title: "新規登録一時停止中", message: "大変申し訳ありませんが、ただいま一時的に新規登録を停止させていただいております。再開までもうしばらくお待ちください。", preferredStyle:  UIAlertController.Style.alert)
-                let defaultAction: UIAlertAction = UIAlertAction(title: "閉じる", style: UIAlertAction.Style.default, handler:{
-                    // ボタンが押された時の処理を書く（クロージャ実装）
-                    (action: UIAlertAction!) -> Void in
-                })
-                
-                alert.addAction(defaultAction)
-                self.present(alert, animated: true, completion: nil)
-            }
-        }else {
-            if !createAccountBool {
-                let alert: UIAlertController = UIAlertController(title: "新規登録一時停止中", message: "大変申し訳ありませんが、ただいま一時的に新規登録を停止させていただいております。再開までもうしばらくお待ちください。", preferredStyle:  UIAlertController.Style.alert)
-                let defaultAction: UIAlertAction = UIAlertAction(title: "閉じる", style: UIAlertAction.Style.default, handler:{
-                    // ボタンが押された時の処理を書く（クロージャ実装）
-                    (action: UIAlertAction!) -> Void in
-                })
-                
-                alert.addAction(defaultAction)
-                self.present(alert, animated: true, completion: nil)
+        let defaultAction = UIAlertAction(
+            title: "閉じる",
+            style: .default
+        )
+        let alert = AlartManager.shared.setting(
+            title: "新規登録一時停止中",
+            message: "大変申し訳ありませんが、ただいま一時的に新規登録を停止させていただいております。再開までもうしばらくお待ちください。",
+            style: .alert,
+            actions: [defaultAction]
+        )
+        check{[weak self] isMaintenance in
+            if !isMaintenance {
+                self?.createAccountCheck { [weak self] limitCheck in
+                    if(!(self?.maintenance ?? true) && (self?.createAccountBool ?? false) && !limitCheck){
+                        
+                        if (self?.firstCheck ?? true){
+                            self?.createAccount { [weak self] isCountRange in
+                                if let me = self, isCountRange {
+                                    // アカウント作成可
+                                    // サインアップへ遷移
+                                    Goto.SignUp(view: me)
+                                }else {
+                                    // アカウント作成不可
+                                    // アラート表示
+                                    self?.present(alert, animated: true)
+                                }
+                                self?.firstCheck = false
+                            }
+                        }else{
+                            if let me = self {
+                                Goto.SignUp(view: me)
+                            }
+                        }
+                    }
+                    if (!(self?.createAccountBool ?? false) || limitCheck || (self?.maintenance ?? true)){
+                        self?.present(alert, animated: true)
+                    }
+                }
             }
         }
+        
 
         
     }
     @objc func PushSignIn(_ sender: Any) {
-        if(!maintenance){
-            autoLogin()
+        check{[weak self] isMaintenance in
+            if !isMaintenance {
+                self?.autoLogin()
+            }
         }
     }
     
-    func createAccount() -> Bool{
+    func createAccount(completion: ((Bool) -> Void)? = nil) {
         var counter : Int = 10000
-        FirebaseManager.user.ref.whereField("uid", isEqualTo: "count").getDocuments { snapshot, error in
+        FirebaseManager.user.ref.document("Counter").getDocument {[weak self] snapshot, error in
             if let error = error {
                 print("管理データの取得に失敗\(error)")
             }
-            guard let dic = snapshot?.documents.first?.data() else { return }
+            guard let dic = snapshot?.data() else { return }
             let data  = User(dic: dic, uid: "Counter")
-            counter = data.limted
+            counter = data.limited
+            let isCountRange = counter < self?.remoteConfigLimit ?? 100
+            self?.createAccountBool = isCountRange
+            completion?(isCountRange)
         }
-        return counter < 2000 ? true : false
+    }
+    
+    func createAccountCheck(completion: ((Bool) -> Void)? = nil){
+        RemoteConfigClient.shared.fetchRestrictionsConfig(
+            succeeded: { [weak self] config in
+                self?.remoteConfigBool = config.newRegistrationRestrictions
+                self?.remoteConfigLimit = config.limit
+                completion?(config.newRegistrationRestrictions)
+            }, failed: { errorMessage in
+            }
+        )
     }
     
 //    var authListener

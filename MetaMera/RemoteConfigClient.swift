@@ -11,6 +11,7 @@ import FirebaseRemoteConfig
 
 enum RemoteConfigParameterKey: String, CaseIterable {
     case serverMaintenance = "server_maintenance_config"
+    case newRegistrationRestrictions = "new_registration_restrictions"
 }
 
 
@@ -51,6 +52,39 @@ class RemoteConfigClient: RemoteConfigClientProtocol {
                 
                 do {
                     let config = try JSONDecoder().decode(ServerMaintenanceConfig.self, from: jsonData)
+                    succeeded(config)
+                } catch let error as NSError {
+                    let errorMessage = error.localizedDescription
+                    failed(errorMessage)
+                }
+                
+            case .error:
+                if let error = error {
+                    let errorMessage = error.localizedDescription
+                    failed(errorMessage)
+                }
+            default:
+                return
+            }
+        })
+    }
+    
+    func fetchRestrictionsConfig(succeeded: @escaping (newRegistrationRestrictionsConfig) -> Void, failed: @escaping (String) -> Void) {
+        remoteConfig.fetchAndActivate(completionHandler: { [weak self] status, error in
+            
+            guard let `self` = self else { return }
+            
+            switch status {
+            case .successFetchedFromRemote, .successUsingPreFetchedData:
+                
+                guard
+                    let jsonString = self.remoteConfig[RemoteConfigParameterKey.newRegistrationRestrictions.rawValue].stringValue,
+                    let jsonData = jsonString.data(using: .utf8) else {
+                    return
+                }
+                
+                do {
+                    let config = try JSONDecoder().decode(newRegistrationRestrictionsConfig.self, from: jsonData)
                     succeeded(config)
                 } catch let error as NSError {
                     let errorMessage = error.localizedDescription
