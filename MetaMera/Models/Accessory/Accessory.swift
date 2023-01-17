@@ -139,7 +139,7 @@ class Accessory {
                         guard let rawUrlString = rawUrl?.absoluteString else { return }
                         
                         //二つのURLを渡す
-                        completion(.success((editUrlString, rawUrlString)))
+                        completion(.success((rawUrlString, editUrlString)))
                         return
                         
                     }
