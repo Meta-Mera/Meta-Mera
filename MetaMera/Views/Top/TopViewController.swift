@@ -209,19 +209,22 @@ class TopViewController: UIViewController {
     }
     
     func TESTautoLogin(){
-        check()
-        Auth.auth().addStateDidChangeListener {[weak self] auth, user in
-            if user != nil{
-                DispatchQueue.main.async {
-                    self?.signInModel.signIn(user: user!) {result in
-                        switch result{
-                        case .success(_): //Sign in 成功
-                            Goto.ARView(view: self!)
-                            break
-                        case .failure(_): //Sign in 失敗
-                            break
+        check{[weak self] isMaintenance in
+            if !isMaintenance {
+                Auth.auth().addStateDidChangeListener {[weak self] auth, user in
+                    if user != nil{
+                        DispatchQueue.main.async {
+                            self?.signInModel.signIn(user: user!) {result in
+                                switch result{
+                                case .success(_): //Sign in 成功
+                                    Goto.ARView(view: self!)
+                                    break
+                                case .failure(_): //Sign in 失敗
+                                    break
+                                }
+                                
+                            }
                         }
-                        
                     }
                 }
             }
