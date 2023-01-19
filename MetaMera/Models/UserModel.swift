@@ -85,7 +85,7 @@ class UserModel {
     /// - Parameters:
     ///   - email: ログインしているメールアドレス
     ///   - oldPassword: 古いメールアドレス
-    ///   - newPassword: 新しいメールアドレス
+    ///   - newPassword: 新しいパスワード
     //TODO: Firestoreに新しいメールアドレスを保存するようにすること!!
     public func changePassword(email: String, oldPassword: String, newPassword: String, completion: @escaping(Result<Bool, NSError>) -> Void){
         reauthenticate(email: email, password: oldPassword) { result in
