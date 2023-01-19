@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class ChangePasswordViewController: UIViewController {
     
@@ -40,6 +42,11 @@ class ChangePasswordViewController: UIViewController {
         confirmPasswordTextField.delegate = self
     }
     
+    
+    @IBAction func backButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     @IBAction func pushChangePassword(_ sender: Any) {
         guard let mailAddress = mailAddressTextField.text,
               let oldPassword = oldPasswordTextField.text,
@@ -63,6 +70,13 @@ class ChangePasswordViewController: UIViewController {
             switch result {
             case .success(_):
                 print("パスワード変更に成功")
+                do {
+                    try Auth.auth().signOut()
+                    Profile.shared.isLogin = false
+                    self.dismiss(animated: true, completion: nil)
+                } catch let signOutError as NSError {
+                    print("Error signing out: %@", signOutError)
+                }
             case .failure(let error):
                 print("パスワード変更に失敗しました。\(error.code)")
             }
