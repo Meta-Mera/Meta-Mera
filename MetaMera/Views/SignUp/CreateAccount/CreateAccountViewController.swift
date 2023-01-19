@@ -179,8 +179,8 @@ class CreateAccountViewController: UIViewController {
                     HUD.flash(.success, onView: self?.view, delay: 1) { [weak self] (_) in
                         Profile.shared.loginUser = user
                         Profile.shared.isLogin = true
-                        if(self!.changeProfileImage){
-                            self?.saveFirebaseStorage(image: self!.userImage)
+                        if((self?.changeProfileImage ?? false)){
+                            self?.saveFirebaseStorage(image: (self?.userImage)!)
                         }
                         self?.presentToARViewController()
                     }

@@ -62,7 +62,7 @@ class CreatePostModel {
                             HUD.hide { (_) in
                                 HUD.flash(.success, onView: view.view, delay: 1) { (_) in
                                     print("投稿成功")
-                                    let url = URL(string: "http://18.178.90.17:8000/"+fileName)
+                                    let url = URL(string: "http://54.238.107.22:8000/"+fileName)
                                     let request = URLRequest(url: url!)
                                     let session = URLSession.shared
                                     session.dataTask(with: request) { (data, response, error) in

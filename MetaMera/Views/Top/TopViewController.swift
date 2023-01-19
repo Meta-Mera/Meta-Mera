@@ -90,16 +90,26 @@ class TopViewController: UIViewController {
     }
     
     
+    /// RemoteConfigからメンテナンス状態を取得します。
+    /// - Parameter completion: メンテナンス状態, タイトル, メッセージ を返します。
     func maintenanceCheck(completion: ((Bool,String, String) -> Void)? = nil){
         RemoteConfigClient.shared.fetchServerMaintenanceConfig(
             succeeded: { [weak self] config in
+                //RemoteConfigから取得ができた場合
+                
+                //メンテナンス状態をmaintenanceに入れる
                 self?.maintenance = config.isUnderMaintenance
+                
+                //取得してきたデータをそのまま返す
                 completion?(config.isUnderMaintenance,config.title,config.message)
-            }, failed: { [weak self] errorMessage in
+            }, failed: { errorMessage in
+                //RemoteConfigから情報が取得できなかった場合
             }
         )
     }
     
+    /// メンテナンス状態を確認してメンテナンス中であればアラートを表示します。
+    /// - Parameter completion: メンテナンス状態をBool値で返します。
     func check(completion: ((Bool) -> Void)? = nil){
         maintenanceCheck {[weak self] isMaintenance,title,message in
             self?.maintenance = isMaintenance
@@ -135,11 +145,11 @@ class TopViewController: UIViewController {
             actions: [defaultAction]
         )
         check{[weak self] isMaintenance in
-            if !isMaintenance {
+            if !isMaintenance {//メンテナンス中ではない
                 self?.createAccountCheck { [weak self] limitCheck in
                     if(!(self?.maintenance ?? true) && (self?.createAccountBool ?? false) && !limitCheck){
-                        
-                        if (self?.firstCheck ?? true){
+                        //メンテナンス中でなく、新規登録も許可されていて、制限未満の場合
+                        if (self?.firstCheck ?? true){//初回チェック
                             self?.createAccount { [weak self] isCountRange in
                                 if let me = self, isCountRange {
                                     // アカウント作成可
@@ -150,15 +160,17 @@ class TopViewController: UIViewController {
                                     // アラート表示
                                     self?.present(alert, animated: true)
                                 }
-                                self?.firstCheck = false
+                                self?.firstCheck = false //次からはFirestoreへユーザー数を取得しない
                             }
-                        }else{
+                        }else{//2回目移行
                             if let me = self {
+                                // サインアップへ遷移
                                 Goto.SignUp(view: me)
                             }
                         }
                     }
                     if (!(self?.createAccountBool ?? false) || limitCheck || (self?.maintenance ?? true)){
+                        //新規登録できないことをユーザーに表示
                         self?.present(alert, animated: true)
                     }
                 }
@@ -176,8 +188,10 @@ class TopViewController: UIViewController {
         }
     }
     
+    /// Firestoreから現在のユーザー数を取得して新規登録して良いのかを確認します。
+    /// - Parameter completion: 新規登録をして良いかBool値で返します。
     func createAccount(completion: ((Bool) -> Void)? = nil) {
-        var counter : Int = 10000
+        var counter : Int = 10000 //もし値が取れなかった用
         FirebaseManager.user.ref.document("Counter").getDocument {[weak self] snapshot, error in
             if let error = error {
                 print("管理データの取得に失敗\(error)")
@@ -191,13 +205,21 @@ class TopViewController: UIViewController {
         }
     }
     
+    /// 新規登録をして良いかRemoteConfigから取得します。
+    /// - Parameter completion: 新規登録をして良いかをBool値で返します。
     func createAccountCheck(completion: ((Bool) -> Void)? = nil){
         RemoteConfigClient.shared.fetchRestrictionsConfig(
             succeeded: { [weak self] config in
+                //RemoteConfigから情報の取得に成功
+                
+                //新規登録をして良いかをBool値で入れる。
                 self?.remoteConfigBool = config.newRegistrationRestrictions
+                //ユーザー制限数を入れる
                 self?.remoteConfigLimit = config.limit
+                //新規登録をして良いかをBool値で返します。
                 completion?(config.newRegistrationRestrictions)
             }, failed: { errorMessage in
+                //RemoteConfigから情報の取得に失敗
             }
         )
     }

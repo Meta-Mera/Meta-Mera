@@ -89,7 +89,7 @@ class Accessory {
     ///   失敗すれば：.failure()でエラー内容が返ってくる
     func savePostImageToFireStorege(selectedImage: UIImage, fileName : String, completion: @escaping(Result<(String, String), NSError>) -> Void){
         //画像を圧縮する
-        guard let uploadImage = selectedImage.jpegData(compressionQuality: 0.5) else { return }
+        guard let uploadImage = selectedImage.jpegData(compressionQuality: 0.3) else { return }
         
         //加工用画像用
         let storageEditRef = Storage.storage().reference().child("Posts").child("edit").child(fileName)
