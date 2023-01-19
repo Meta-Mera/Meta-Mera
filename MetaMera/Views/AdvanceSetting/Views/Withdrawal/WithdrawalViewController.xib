@@ -92,6 +92,15 @@
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="LeaveAccount_button_cancel"/>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bqV-BX-xhb">
+                    <rect key="frame" x="15" y="16" width="18" height="26"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="18" id="3tG-yk-qtC"/>
+                        <constraint firstAttribute="width" secondItem="bqV-BX-xhb" secondAttribute="height" multiplier="9:13" id="Z4v-zN-D8h"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="back_button"/>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -101,6 +110,7 @@
                 <constraint firstItem="Nm1-IA-kVm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="8T6-lE-FeH"/>
                 <constraint firstItem="rI3-1x-5od" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="9vo-54-NPd"/>
                 <constraint firstItem="ljE-KK-f8t" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="B8o-Px-Q9I"/>
+                <constraint firstItem="bqV-BX-xhb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="BTY-Sh-fF9"/>
                 <constraint firstAttribute="trailing" secondItem="K4E-QU-N77" secondAttribute="trailing" constant="45" id="BVL-bW-VUP"/>
                 <constraint firstItem="LWB-7h-Jsg" firstAttribute="top" secondItem="ljE-KK-f8t" secondAttribute="bottom" id="Bdy-LN-Vmk"/>
                 <constraint firstItem="HbK-kP-jz6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="BnM-wj-O3z"/>
@@ -109,6 +119,7 @@
                 <constraint firstItem="LWB-7h-Jsg" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="F59-ac-qe3"/>
                 <constraint firstItem="UP8-Ol-PyN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="FPx-xf-eNJ"/>
                 <constraint firstAttribute="trailing" secondItem="HbK-kP-jz6" secondAttribute="trailing" constant="45" id="FYx-8I-J0A"/>
+                <constraint firstItem="bqV-BX-xhb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="16" id="Jar-rF-qfK"/>
                 <constraint firstItem="ljE-KK-f8t" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="60" id="JvD-Pb-h0W"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="UWO-rb-Jkm" secondAttribute="trailing" constant="45" id="M3H-XU-Kne"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="UWO-rb-Jkm" secondAttribute="bottom" constant="45" id="Myv-Jt-Uqu"/>
@@ -137,6 +148,7 @@
         <image name="LeaveAccount_image_ruledLine" width="626" height="8"/>
         <image name="LeaveAccount_image_taikai" width="405" height="137"/>
         <image name="LeaveAccount_image_title" width="983" height="399"/>
+        <image name="back_button" width="54" height="78"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
