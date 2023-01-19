@@ -116,10 +116,26 @@ class PostImageTableViewCell: UITableViewCell {
             guard let postUserUid = self?.post?.postUserUid else { return }
             self?.postUser = User(dic: dic,uid: postUserUid)
             
-            self?.postUserNameLabel.text = self?.postUser?.userName
-            self?.postUserNameLabel.accessibilityIdentifier = self?.postUser?.uid
-            self?.postTextView.text = self?.post?.comment.replacingOccurrences(of: "\\\\n", with: "\n").replacingOccurrences(of: "\\", with: "")
-            self?.profileImageView.loadImageAsynchronously(url: URL(string:(self?.postUser!.profileImage)!))
+            if( (self?.postUser?.ban)! || (self?.postUser?.deleted)!){
+                self?.postTextView.text = "Submission has been deleted or hidden."
+                self?.postDateLabel.text = ""
+                self?.postImageView.setImage(image: Asset.Images.ロゴ.image, name: "")
+                if ((self?.postUser?.deleted) != nil){
+//                    FirebaseManager.post.document(id: (self?.post.postId)!).updateData([
+//                        "deleted":true
+//                    ]){ err in
+//                        if let err = err {
+//                            print("投稿の削除に失敗しました。\(err)")
+//                        }
+//                    }
+                    return
+                }
+            }else{
+                self?.postUserNameLabel.text = self?.postUser?.userName
+                self?.postUserNameLabel.accessibilityIdentifier = self?.postUser?.uid
+                self?.postTextView.text = self?.post?.comment.replacingOccurrences(of: "\\\\n", with: "\n").replacingOccurrences(of: "\\", with: "")
+                self?.profileImageView.loadImageAsynchronously(url: URL(string:(self?.postUser!.profileImage)!))
+            }
         }
         postImageView.af.setImage(withURL: URL(string: post.rawImageUrl)!, placeholderImage: UIImage(named: "ロゴ"))
     }
