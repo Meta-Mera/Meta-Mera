@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -15,22 +15,28 @@
             <objects>
                 <viewController storyboardIdentifier="ChatRoomController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="ChatRoomController" customModule="MetaMera" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChatRoom_background" translatesAutoresizingMaskIntoConstraints="NO" id="Hpx-MV-DjE">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Mv6-qx-6HW">
-                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
+                                <rect key="frame" x="0.0" y="47" width="375" height="731"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header_beige" translatesAutoresizingMaskIntoConstraints="NO" id="rZs-mr-NFd">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="98.666666666666671"/>
+                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="editprofile_back_button" translatesAutoresizingMaskIntoConstraints="NO" id="sj5-Yk-ZuO">
-                                <rect key="frame" x="15" y="64" width="18" height="26"/>
+                                <rect key="frame" x="15" y="63" width="18" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="18" id="Nns-5R-0Ai"/>
                                     <constraint firstAttribute="width" secondItem="sj5-Yk-ZuO" secondAttribute="height" multiplier="9:13" id="szP-YY-7wc"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="otA-28-cah">
-                                <rect key="frame" x="369" y="64.5" width="30" height="25"/>
+                                <rect key="frame" x="330" y="63.666666666666657" width="30" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="gDO-42-utV"/>
                                     <constraint firstAttribute="height" constant="25" id="ycb-x4-6Y5"/>
@@ -46,21 +52,43 @@
                                     <action selector="pushOptionButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="sKd-rE-6uR"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qRc-L8-JEe">
+                                <rect key="frame" x="6.6666666666666679" y="58.666666666666657" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="Xww-K7-9CR"/>
+                                    <constraint firstAttribute="height" constant="35" id="b7x-c5-3fQ"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="pushBackButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="kQp-qf-g4z"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="rZs-mr-NFd" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="54S-Vk-c1b"/>
+                            <constraint firstItem="Hpx-MV-DjE" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="ANm-ij-5N3"/>
                             <constraint firstItem="sj5-Yk-ZuO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="EGE-ex-bzA"/>
                             <constraint firstItem="otA-28-cah" firstAttribute="centerY" secondItem="sj5-Yk-ZuO" secondAttribute="centerY" id="HIi-Iq-mcY"/>
+                            <constraint firstItem="rZs-mr-NFd" firstAttribute="bottom" secondItem="qRc-L8-JEe" secondAttribute="bottom" constant="5" id="QeP-aC-sJI"/>
+                            <constraint firstItem="qRc-L8-JEe" firstAttribute="centerY" secondItem="sj5-Yk-ZuO" secondAttribute="centerY" id="Ric-pv-Ofd"/>
                             <constraint firstItem="Mv6-qx-6HW" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="T2S-RI-wEV"/>
+                            <constraint firstItem="Hpx-MV-DjE" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="UYg-wS-2R8"/>
+                            <constraint firstItem="qRc-L8-JEe" firstAttribute="centerX" secondItem="sj5-Yk-ZuO" secondAttribute="centerX" id="V2a-BM-0er"/>
                             <constraint firstItem="sj5-Yk-ZuO" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="ZBG-i9-ZDR"/>
+                            <constraint firstAttribute="bottom" secondItem="Hpx-MV-DjE" secondAttribute="bottom" id="arH-bE-TPd"/>
                             <constraint firstItem="Mv6-qx-6HW" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="fIb-JO-nak"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="otA-28-cah" secondAttribute="trailing" constant="15" id="g8k-tC-iNZ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Mv6-qx-6HW" secondAttribute="trailing" id="gVI-OF-4M0"/>
+                            <constraint firstItem="Hpx-MV-DjE" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="ipc-uW-2tV"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Mv6-qx-6HW" secondAttribute="bottom" id="lo0-k1-ySk"/>
+                            <constraint firstAttribute="trailing" secondItem="rZs-mr-NFd" secondAttribute="trailing" id="xk1-5q-C65"/>
+                            <constraint firstItem="rZs-mr-NFd" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="zce-lt-5Se"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="qRc-L8-JEe" id="y8O-Lf-iZ2"/>
                         <outlet property="backImageView" destination="sj5-Yk-ZuO" id="hCu-9T-2cn"/>
                         <outlet property="chatRoomTableView" destination="Mv6-qx-6HW" id="NKR-Cj-3eP"/>
                         <outlet property="optionButton" destination="otA-28-cah" id="6C8-Fk-6xq"/>
@@ -72,8 +100,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ChatRoom_background" width="1284" height="2778"/>
         <image name="Hamburger" width="62" height="54"/>
         <image name="editprofile_back_button" width="54" height="78"/>
+        <image name="header_beige" width="1284" height="347"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

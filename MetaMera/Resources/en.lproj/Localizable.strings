@@ -13,6 +13,8 @@
  ----------------------------------*/
 "report" = "Report";
 "cancel" = "Cancel";
+"change" = "Change";
+"password" = "Password";
 
 /*----------------------------------
             通報
@@ -62,3 +64,12 @@
 "notificationSettingsDescription" = "You can set up notifications.";
 "contactDescription" = "Please feel free to contact us if you have any problems or request for bug fixes.";
 "withdrawalFromMetaMeraDescription" = "Delete your Meta-Mera account and cancel your membership.";
+
+/*----------------------------------
+        メールアドレス変更
+ ----------------------------------*/
+"nowEmail" = "The current email address is %NOWEMAILL%";
+"emailDescription" = "Enter your current and new email addresses and tap the Change button.";
+"newEmail" = "New e-mail address";
+"confirmEmail" = "Re-enter new email address";
+"changeEmailTitle" = "Confirm or change your e-mail address";

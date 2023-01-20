@@ -49,6 +49,9 @@ extension PhotosCollectionViewCell: UICollectionViewDataSource {
         }
         if let postImageURL = URL(string: posts[indexPath.row].rawImageUrl){
             cell.postImageView.af.setImage(withURL: postImageURL)
+            if posts[indexPath.row].hidden {
+                cell.hidenPostImage.isHidden = false
+            }
         }
         cell.post = posts[indexPath.row]
         return cell

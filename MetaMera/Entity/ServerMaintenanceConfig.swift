@@ -13,3 +13,8 @@ struct ServerMaintenanceConfig: Codable {
     let message: String
 }
 
+struct newRegistrationRestrictionsConfig: Codable {
+    let newRegistrationRestrictions: Bool
+    let limit: Int
+}
+

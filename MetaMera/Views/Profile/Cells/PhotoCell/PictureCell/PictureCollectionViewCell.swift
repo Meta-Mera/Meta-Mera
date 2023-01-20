@@ -9,6 +9,7 @@ import UIKit
 
 class PictureCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var hidenPostImage: UIImageView!
     @IBOutlet weak var postImageView: UIImageView!
     var post: Post?
     
@@ -21,6 +22,7 @@ class PictureCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         
         postImageView.image = nil
+        hidenPostImage.isHidden = true
     }
 
 }
