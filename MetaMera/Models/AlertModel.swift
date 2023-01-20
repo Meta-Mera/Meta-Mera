@@ -34,3 +34,19 @@ class AlertModel{
     
     
 }
+
+class AlartManager {
+    static let shared = AlartManager()
+    
+    func setting(title: String = "", message: String = "", style: UIAlertController.Style = .alert, actions: [UIAlertAction] = []) -> UIAlertController {
+        let alart = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: style
+        )
+        actions.forEach {
+            alart.addAction($0)
+        }
+        return alart
+    }
+}

@@ -99,13 +99,13 @@ class Goto : UIViewController{
         view.navigationController?.pushViewController(vc, animated: true)
     }
     
-    class func DebugView(view: UIViewController){
-        print("Goto-DebugView was called.")
-        let vc = UIStoryboard(name: "DebugViewController", bundle: nil).instantiateViewController(withIdentifier: "DebugViewController") as! DebugViewController
-        vc.modalPresentationStyle = .fullScreen
-//        view.present(vc, animated: true, completion: nil)
-        view.navigationController?.pushViewController(vc, animated: true)
-    }
+//    class func DebugView(view: UIViewController){
+//        print("Goto-DebugView was called.")
+//        let vc = UIStoryboard(name: "DebugViewController", bundle: nil).instantiateViewController(withIdentifier: "DebugViewController") as! DebugViewController
+//        vc.modalPresentationStyle = .fullScreen
+////        view.present(vc, animated: true, completion: nil)
+//        view.navigationController?.pushViewController(vc, animated: true)
+//    }
     
     class func ReportViewController(view: UIViewController, postId: String){
         print("Goto-ReportView was called.")
