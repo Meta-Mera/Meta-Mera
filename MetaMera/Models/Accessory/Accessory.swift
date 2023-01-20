@@ -92,7 +92,7 @@ class Accessory {
         guard let uploadImage = selectedImage.jpegData(compressionQuality: 0.3) else { return }
         
         //加工用画像用
-        let storageEditRef = Storage.storage().reference().child("Posts").child("edit").child(fileName)
+//        let storageEditRef = Storage.storage().reference().child("Posts").child("edit").child(fileName)
         //生データ用
         let storageRawRef = Storage.storage().reference().child("Posts").child("raw").child(fileName)
         
@@ -102,48 +102,28 @@ class Accessory {
         //jpegって教えてあげる
         metaData.contentType = "image/jpeg"
         
-        //加工用画像を保存していく
-        storageEditRef.putData(uploadImage, metadata: metaData) { (metadata, err) in
+        //生画像を保存していく
+        storageRawRef.putData(uploadImage, metadata: metaData) { (metadata, err) in
             if let err = err{//保存に失敗
-                completion(.failure(NSError(domain: "firestorageへ加工用画像の保存に失敗\(err)", code: 802)))
+                completion(.failure(NSError(domain: "firestorageへ生画像の保存に失敗\(err)", code: 804)))
                 return
             }
-            //保存成功
-            print("EditFileに保存成功")
+            //保存に成功
+            print("RawFileに保存成功")
             
             //URLを取得
-            storageEditRef.downloadURL {(editUrl, err) in
-                if let err = err {//取得に失敗
-                    completion(.failure(NSError(domain: "firestorageからEditURLの取得に失敗しました。\(err)", code: 803)))
+            storageRawRef.downloadURL { (rawUrl, err) in
+                if let err = err {//取得できなかった
+                    completion(.failure(NSError(domain: "firestorageからrawURLの取得に失敗しました。\(err)", code: 805)))
                     return
                 }
                 //取得に成功したからURLをString型に変更
-                guard let editUrlString = editUrl?.absoluteString else { return }
+                guard let rawUrlString = rawUrl?.absoluteString else { return }
                 
-                //生画像を保存していく
-                storageRawRef.putData(uploadImage, metadata: metaData) { (metadata, err) in
-                    if let err = err{//保存に失敗
-                        completion(.failure(NSError(domain: "firestorageへ生画像の保存に失敗\(err)", code: 804)))
-                        return
-                    }
-                    //保存に成功
-                    print("RawFileに保存成功")
-                    
-                    //URLを取得
-                    storageRawRef.downloadURL { (rawUrl, err) in
-                        if let err = err {//取得できなかった
-                            completion(.failure(NSError(domain: "firestorageからrawURLの取得に失敗しました。\(err)", code: 805)))
-                            return
-                        }
-                        //取得に成功したからURLをString型に変更
-                        guard let rawUrlString = rawUrl?.absoluteString else { return }
-                        
-                        //二つのURLを渡す
-                        completion(.success((rawUrlString, editUrlString)))
-                        return
-                        
-                    }
-                }
+                //二つのURLを渡す
+                completion(.success((rawUrlString, rawUrlString)))
+                return
+                
             }
         }
     }
