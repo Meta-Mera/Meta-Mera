@@ -19,8 +19,13 @@ class TopViewController: UIViewController {
     @IBOutlet weak var versionLabel: UILabel!
     
     let signInModel = SignInModel()
+    let alertModel = AlertModel()
     
     var maintenance = false
+    var createAccountBool = true
+    var remoteConfigBool = false
+    var remoteConfigLimit = 100
+    var firstCheck = true
     
     
     override func viewDidLoad() {
@@ -75,53 +80,148 @@ class TopViewController: UIViewController {
         
         #if RELEASE
         check()
+        TESTautoLogin()
         #endif
 
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-#if RELEASE
-        check()
-#endif
     }
     
     
-    func check(){
+    /// RemoteConfigからメンテナンス状態を取得します。
+    /// - Parameter completion: メンテナンス状態, タイトル, メッセージ を返します。
+    func maintenanceCheck(completion: ((Bool,String, String) -> Void)? = nil){
         RemoteConfigClient.shared.fetchServerMaintenanceConfig(
             succeeded: { [weak self] config in
+                //RemoteConfigから取得ができた場合
+                
+                //メンテナンス状態をmaintenanceに入れる
                 self?.maintenance = config.isUnderMaintenance
-                if config.isUnderMaintenance {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
-                        guard let `self` = self else { return }
-                        let alert: UIAlertController = UIAlertController(title: config.title, message: config.message, preferredStyle:  UIAlertController.Style.alert)
-                        let defaultAction: UIAlertAction = UIAlertAction(title: "Reload", style: UIAlertAction.Style.default, handler:{
-                            // ボタンが押された時の処理を書く（クロージャ実装）
-                            (action: UIAlertAction!) -> Void in
-                            self.check()
-                        })
-                        
-                        alert.addAction(defaultAction)
-                        self.present(alert, animated: true, completion: nil)
-                    }
-                }
-            }, failed: { [weak self] errorMessage in
+                
+                //取得してきたデータをそのまま返す
+                completion?(config.isUnderMaintenance,config.title,config.message)
+            }, failed: { errorMessage in
+                //RemoteConfigから情報が取得できなかった場合
             }
         )
+    }
+    
+    /// メンテナンス状態を確認してメンテナンス中であればアラートを表示します。
+    /// - Parameter completion: メンテナンス状態をBool値で返します。
+    func check(completion: ((Bool) -> Void)? = nil){
+        maintenanceCheck {[weak self] isMaintenance,title,message in
+            self?.maintenance = isMaintenance
+            if isMaintenance {
+                let defaultAction = UIAlertAction(
+                    title: "閉じる",
+                    style: .default) { Void in
+                        self?.maintenanceCheck()
+                    }
+                let alert = AlartManager.shared.setting(
+                    title: title,
+                    message: message,
+                    style: .alert,
+                    actions: [defaultAction]
+                )
+                self?.present(alert, animated: true, completion: nil)
+                
+            }
+            completion?(isMaintenance)
+        }
     }
 
     
     @objc func PushSignUp(_ sender: Any) {
-        if(!maintenance){
-            Goto.SignUp(view: self)
+        let defaultAction = UIAlertAction(
+            title: "閉じる",
+            style: .default
+        )
+        let alert = AlartManager.shared.setting(
+            title: "新規登録一時停止中",
+            message: "大変申し訳ありませんが、ただいま一時的に新規登録を停止させていただいております。再開までもうしばらくお待ちください。",
+            style: .alert,
+            actions: [defaultAction]
+        )
+        check{[weak self] isMaintenance in
+            if !isMaintenance {//メンテナンス中ではない
+                self?.createAccountCheck { [weak self] limitCheck in
+                    if(!(self?.maintenance ?? true) && (self?.createAccountBool ?? false) && !limitCheck){
+                        //メンテナンス中でなく、新規登録も許可されていて、制限未満の場合
+                        if (self?.firstCheck ?? true){//初回チェック
+                            self?.createAccount { [weak self] isCountRange in
+                                if let me = self, isCountRange {
+                                    // アカウント作成可
+                                    // サインアップへ遷移
+                                    Goto.SignUp(view: me)
+                                }else {
+                                    // アカウント作成不可
+                                    // アラート表示
+                                    self?.present(alert, animated: true)
+                                }
+                                self?.firstCheck = false //次からはFirestoreへユーザー数を取得しない
+                            }
+                        }else{//2回目移行
+                            if let me = self {
+                                // サインアップへ遷移
+                                Goto.SignUp(view: me)
+                            }
+                        }
+                    }
+                    if (!(self?.createAccountBool ?? false) || limitCheck || (self?.maintenance ?? true)){
+                        //新規登録できないことをユーザーに表示
+                        self?.present(alert, animated: true)
+                    }
+                }
+            }
         }
+        
 
         
     }
     @objc func PushSignIn(_ sender: Any) {
-        if(!maintenance){
-            autoLogin()
+        check{[weak self] isMaintenance in
+            if !isMaintenance {
+                self?.autoLogin()
+            }
         }
+    }
+    
+    /// Firestoreから現在のユーザー数を取得して新規登録して良いのかを確認します。
+    /// - Parameter completion: 新規登録をして良いかBool値で返します。
+    func createAccount(completion: ((Bool) -> Void)? = nil) {
+        var counter : Int = 10000 //もし値が取れなかった用
+        FirebaseManager.user.ref.document("Counter").getDocument {[weak self] snapshot, error in
+            if let error = error {
+                print("管理データの取得に失敗\(error)")
+            }
+            guard let dic = snapshot?.data() else { return }
+            let data  = User(dic: dic, uid: "Counter")
+            counter = data.limited
+            let isCountRange = counter < self?.remoteConfigLimit ?? 100
+            self?.createAccountBool = isCountRange
+            completion?(isCountRange)
+        }
+    }
+    
+    /// 新規登録をして良いかRemoteConfigから取得します。
+    /// - Parameter completion: 新規登録をして良いかをBool値で返します。
+    func createAccountCheck(completion: ((Bool) -> Void)? = nil){
+        RemoteConfigClient.shared.fetchRestrictionsConfig(
+            succeeded: { [weak self] config in
+                //RemoteConfigから情報の取得に成功
+                
+                //新規登録をして良いかをBool値で入れる。
+                self?.remoteConfigBool = config.newRegistrationRestrictions
+                //ユーザー制限数を入れる
+                self?.remoteConfigLimit = config.limit
+                //新規登録をして良いかをBool値で返します。
+                completion?(config.newRegistrationRestrictions)
+            }, failed: { errorMessage in
+                //RemoteConfigから情報の取得に失敗
+            }
+        )
     }
     
 //    var authListener
@@ -130,10 +230,32 @@ class TopViewController: UIViewController {
         Auth.auth().removeStateDidChangeListener(self)
     }
     
+    func TESTautoLogin(){
+        check{[weak self] isMaintenance in
+            if !isMaintenance {
+                Auth.auth().addStateDidChangeListener {[weak self] auth, user in
+                    if user != nil{
+                        DispatchQueue.main.async {
+                            self?.signInModel.signIn(user: user!) {result in
+                                switch result{
+                                case .success(_): //Sign in 成功
+                                    Goto.ARView(view: self!)
+                                    break
+                                case .failure(_): //Sign in 失敗
+                                    break
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     func autoLogin(){
         //TODO: imageViewをbuttonに変更してtapしたら無効化させること
         Auth.auth().addStateDidChangeListener {[weak self] auth, user in
-//            Auth.auth().removeStateDidChangeListener(self!)
             if user != nil{
                 DispatchQueue.main.async {
                     self?.signInModel.signIn(user: user!) {result in

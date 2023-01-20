@@ -1,0 +1,75 @@
+/* 
+  Localizable.strings
+  MetaMera
+
+  Created by Jim on 2022/10/27.
+  
+*/
+
+"language" = "en";
+
+/*----------------------------------
+            共用
+ ----------------------------------*/
+"report" = "Report";
+"cancel" = "Cancel";
+"change" = "Change";
+"password" = "Password";
+
+/*----------------------------------
+            通報
+ ----------------------------------*/
+"spam" = "It's spam";
+"fraud" = "Scam or fraud";
+"bullying" = "Bullying or harassment";
+"sexualHarassment" = "Sexual harassment or secual activity";
+"violence" = "Violence or Dangerous organizations";
+"notLiking" = "I don't like it";
+"reportReason" = "Please elaborate on the reason for your report.";
+"selectReportReason" = "Please select the reason for the report.";
+
+/*----------------------------------
+            投稿画面
+ ----------------------------------*/
+"edit" = "Edit";
+"hide" = "Hide";
+"show" = "Show";
+"delete" = "Delete";
+
+/*----------------------------------
+            プロフィール画面
+ ----------------------------------*/
+"accountSetting" = "Account setting";
+"advanceSetting" = "Advance setting";
+"changeYourProfile" = "Change your profile";
+"signOut" = "Sign out";
+"mute" = "Mute";
+"block" = "Block";
+"bio" = "You can enter your personal statement here.";
+"deleted" = "This account diesn't exist";
+"deletedDescription" = "This account has been suspend or deleted.";
+
+/*----------------------------------
+            詳細設定
+ ----------------------------------*/
+
+"emailAddressSettings" = "Email address settings";
+"changePassword" = "Change password";
+"notificationSettings" = "Notification settings";
+"contact" = "Contact";
+"withdrawalFromMetaMera" = "Withdrawal from Meta-Mera";
+
+"emailAddressSettingsDescription" = "You can check and change your currently registered e-mail address.";
+"changePasswordDescription" = "You can change your currently registered password.";
+"notificationSettingsDescription" = "You can set up notifications.";
+"contactDescription" = "Please feel free to contact us if you have any problems or request for bug fixes.";
+"withdrawalFromMetaMeraDescription" = "Delete your Meta-Mera account and cancel your membership.";
+
+/*----------------------------------
+        メールアドレス変更
+ ----------------------------------*/
+"nowEmail" = "The current email address is %NOWEMAILL%";
+"emailDescription" = "Enter your current and new email addresses and tap the Change button.";
+"newEmail" = "New e-mail address";
+"confirmEmail" = "Re-enter new email address";
+"changeEmailTitle" = "Confirm or change your e-mail address";

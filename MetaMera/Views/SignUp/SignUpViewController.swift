@@ -29,7 +29,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var nextButtonImage: UIImageView!
     @IBOutlet weak var backButtonImage: UIImageView!
     
-    let signUpModel = SignUpModel()
+
   
   
     
@@ -91,44 +91,36 @@ class SignUpViewController: UIViewController {
   //NextButton押した時の処理
   @objc func pushCreateAccountButton(_ sender: Any) {
         self.view.endEditing(true)
-        
-        handleAuthToFirebase()
+      
+      guard let password = passwordTextField.text,
+            let confirmPassword = confirmPasswordTextField.text,
+            let eMail = eMailTextField.text,
+            let userName = userIdTextField.text else {
+          return
+      }
+      
+      if(password.isEmpty || confirmPassword.isEmpty || eMail.isEmpty || userName.isEmpty){
+          HUD.flash(.label("入力不備があります。"), delay: 1.0) { _ in
+          }
+          return
+      }
+      
+      guard password == confirmPassword else {
+          HUD.flash(.label("パスワードの不一致"), delay: 1.0) { _ in
+          }
+          return
+      }
+      
+      guard password.count >= 6 else {
+          HUD.flash(.label("パスワードが弱いです。"), delay: 1.0) { _ in
+          }
+          return
+      }
+      
+      let vc = CreateAccountViewController(password: password, confirmPassword: confirmPassword, eMail: eMail, userName: userName)
+      self.navigationController?.pushViewController(vc, animated: true)
     }
     
-  //Firebase登録処理
-    private func handleAuthToFirebase(){
-        HUD.show(.progress, onView: view)
-        
-        signUpModel.signUp(signUpItem: .init(email: eMailTextField.text, password: passwordTextField.text, confirmPassword: confirmPasswordTextField.text, userName: userIdTextField.text)) { [weak self] result in
-            switch result {
-                
-            case .success(let user): //Sign up 成功
-                
-                HUD.hide { (_) in
-                    HUD.flash(.success, onView: self?.view, delay: 1) { [weak self] (_) in
-                        Profile.shared.loginUser = user
-                        Profile.shared.isLogin = true
-                        self?.presentToARViewController()
-                    }
-                }
-            case .failure(let error): //Sign up 失敗
-                
-                HUD.hide { (_) in
-                    HUD.flash(.label(error.domain), delay: 1.0) { _ in
-                        print(error)
-                    }
-                }
-            }
-        }
-    }
-    
-  //問題なく登録できた際、 Main画面に遷移
-    private func presentToARViewController(){
-        let storyBoard = UIStoryboard(name: "ARViewController", bundle: nil)
-        let homeViewController = storyBoard.instantiateViewController(identifier: "ARViewController") as! ARViewController
-        homeViewController.modalPresentationStyle = .fullScreen
-        self.present(homeViewController, animated: true, completion: nil)
-    }
   
     
 

@@ -13,7 +13,7 @@ import AlamofireImage
 class ChatRoomTableViewCell: UITableViewCell {
     
     
-    var messageText: Comment?{
+    var messageText: Comment!{
         didSet{
 //            guard let text = messageText else { return }
 //            let width = estimateFrameForTextView(text: text).width + 20
@@ -31,7 +31,7 @@ class ChatRoomTableViewCell: UITableViewCell {
     @IBOutlet weak var responseDateLabel: UILabel!
     @IBOutlet weak var sendUser: UILabel!
     @IBOutlet weak var responseUser: UILabel!
-    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var optionButton: UIButton!
     
     @IBOutlet weak var messageTextViewWidthConstraint: NSLayoutConstraint!
     
@@ -40,6 +40,7 @@ class ChatRoomTableViewCell: UITableViewCell {
     let generator = UINotificationFeedbackGenerator()
     
     var delegate: UserProfileProtocol?
+    var optionDelegate: commentDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -67,14 +68,10 @@ class ChatRoomTableViewCell: UITableViewCell {
         sendUser.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pushUser(_:))))
         
         
-
-        
-        switch Profile.shared.updateProfileImage() {
-        case .success(let image):
-            userIconImageView.setImage(image: image, name: Profile.shared.loginUser.uid)
-        case .failure(_):
-            break
+        if let userIconImageURL = URL(string: Profile.shared.loginUser.profileImage) {
+            userIconImageView.af.setImage(withURL: userIconImageURL)
         }
+
     }
     
     @objc func pushUser(_ sender: Any){
@@ -84,12 +81,7 @@ class ChatRoomTableViewCell: UITableViewCell {
     
     
     @IBAction func pushLike(_ sender: Any) {
-        if(iLiked){
-            likeButton.setImage(UIImage(named: "ハート(押す前)"), for: .normal)
-        }else{
-            likeButton.setImage(UIImage(named: "ハート(押した後)"), for: .normal)
-        }
-        iLiked.toggle()
+        optionDelegate?.commentOption(commentId: messageText.commentId)
     }
     
     private func checkWhichUserMessage() {

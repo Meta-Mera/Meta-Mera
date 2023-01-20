@@ -7,9 +7,50 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 
-class LocationManager {
+protocol locationAuthDelegate: AnyObject {
+    func locationAuth()
+}
+
+class LocationManager: NSObject {
     
+    let locationManager = CLLocationManager()
     
+    override init(){
+        super.init()
+        locationManager.delegate = self
+    }
     
+    func auth() {
+        locationManager.requestAlwaysAuthorization()
+    }
+    
+    func startLocation() {
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = kCLHeadingFilterNone
+        locationManager.startUpdatingLocation()
+    }
+    
+    func stopLocation(){
+        locationManager.stopUpdatingLocation()
+    }
+    
+}
+
+extension LocationManager: CLLocationManagerDelegate {
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        let status = manager.authorizationStatus
+        print("location status", status)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let coordinate = manager.location?.coordinate else {
+            return
+        }
+        
+//        print("lat", coordinate.latitude)
+//        print("lon", coordinate.longitude)
+    }
 }

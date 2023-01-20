@@ -9,12 +9,18 @@ import Foundation
 import UIKit
 import IQKeyboardManagerSwift
 import Firebase
+import Alamofire
+import AlamofireImage
+import PKHUD
 
-class ChatRoomController: UIViewController, UITextFieldDelegate{
+class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate{
     
     var postId: String!
     var post: Post!
     var user: User?
+    var imageUrl: URL!
+    
+    var iLiked = false
     
     
     private let cellId = "ChatRoomTableViewCell"
@@ -31,10 +37,11 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var chatRoomTableView: UITableView!
     @IBOutlet weak var backImageView: UIImageView!
     @IBOutlet weak var optionButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
     
     //    static let shared = Profile()
     
-    var image: UIImage!
+//    var image: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,9 +49,12 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         setUpNotification()
         tearDownNotification()
         configView()
-        setSwipeBack()
     }
     
+    
+    
+    
+        
     func configView(){
         chatRoomTableView.delegate = self
         chatRoomTableView.dataSource = self
@@ -69,6 +79,8 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
         optionButton.contentHorizontalAlignment = .fill
         optionButton.contentVerticalAlignment = .fill
         
+//        image.af.setImage(withURL: imageUrl, placeholderImage: UIImage(named: "ロゴ"))
+        
     }
     
     
@@ -89,49 +101,199 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     //画面遷移しようとしたとき
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        messages.removeAll()
         //        postImageView.image = image
         setUpNotification()
         fetchMessages()
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self        
     }
     
     //画面から離れたとき
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        print("画面から離れるよ\(iLiked)")
         tearDownNotification()
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        
+        Firestore.firestore().collection("Likes").whereField("uid", isEqualTo: Profile.shared.loginUser.uid).whereField("postId", isEqualTo: postId!).getDocuments(completion: {[weak self] (snapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+                return
+            }else {
+                guard let iLiked = self?.iLiked else {
+                    print("いいね状態の取得に失敗")
+                    return
+                }
+                guard snapshot!.documents.first?.value != nil else {
+                    //過去にいいねしていない場合
+                    
+                    if(iLiked){//いいねしてる
+                        let docData = ["uid" : Profile.shared.loginUser.uid,
+                                       "postId": (self?.post.postId)!,
+                                       "createAt": Timestamp()] as [String : Any]
+                        print("データなし")
+                        
+                        Firestore.firestore().collection("Likes").document().setData(docData){
+                            error in
+                                if let error = error {
+                                    print("いいねの登録に失敗しました。\(error)")
+                                    return
+                                }
+                                print("いいねの登録に成功しました。")
+                        }
+                    }
+                    return
+                }
+                //過去にいいねしている場合
+
+                if(!iLiked){//いいねしてない
+                    Firestore.firestore().collection("Likes").document((snapshot?.documents.first!.documentID)!).delete(){ error in
+                        if let error = error {
+                            print("いいねの削除に失敗\(error)")
+                            return
+                        }
+                        print("いいねの削除に成功")
+                        return
+                        
+                    }
+                }
+                return
+            }
+            
+        })
+        
+        
+        
+//        Firestore.firestore().collection("Posts").document(postId).collection("likeUsers").whereField("uid", isEqualTo: Profile.shared.loginUser.uid).getDocuments(completion: { [weak self] (snapshot, error) in
+//            if let error = error {
+//                print("Error getting documents: \(error)")
+//                return
+//            }else {
+//                guard snapshot!.documents.first?.value != nil else {
+//                    //いいねしてない
+//                    if((self?.iLiked)!){
+//                        let docData = ["uid" : Profile.shared.loginUser.uid,
+//                                       "createAt": Timestamp()] as [String : Any]
+//                        print("データなし")
+//                        Firestore.firestore().collection("Posts").document((self?.postId)!).collection("likeUsers").document(Profile.shared.loginUser.uid).setData(docData) { error in
+//                            if let error = error {
+//                                print("いいねの登録に失敗しました。\(error)")
+//                                return
+//                            }
+//                            print("いいねの登録に成功しました。")
+//                        }
+//                    }
+//                    return
+//                }
+//                //いいねしてる
+//                if(!(self?.iLiked)!){
+//                    Firestore.firestore().collection("Posts").document((self?.postId)!).collection("likeUsers").document(Profile.shared.loginUser.uid).delete(){ error in
+//                        if let error = error {
+//                            print("いいねの削除に失敗\(error)")
+//                        }
+//                    }
+//                }
+//            }
+//
+//        })
+        messages.removeAll()
     }
     
     
+    //MARK: - ハンバーガーボタン
     @IBAction func pushOptionButton(_ sender: Any) {
         
         // styleをActionSheetに設定
         let alertSheet = UIAlertController(title: "Option", message: "What happened?", preferredStyle: UIAlertController.Style.actionSheet)
         
         // アクションを追加.
-        
-        if post.postUserUid == Profile.shared.loginUser.uid {
+        //TODO: 配信時元に戻すこと(developer)
+        if post.postUserUid == Profile.shared.loginUser.uid || Profile.shared.loginUser.developer {
             
-            let edit = UIAlertAction(title: "Edit", style: UIAlertAction.Style.default, handler: {[weak self]
+            let edit = UIAlertAction(title: LocalizeKey.edit.localizedString(), style: UIAlertAction.Style.default, handler: {[weak self]
                 (action: UIAlertAction!) -> Void in
                 print("edit")
-            })
-            
-            let hide = UIAlertAction(title: "Hide", style: UIAlertAction.Style.default, handler: {[weak self]
-                (action: UIAlertAction!) -> Void in
-                print("hide")
-            })
-            
-            let delete = UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: {[weak self]
-                (action: UIAlertAction!) -> Void in
-                print("delete")
+                
             })
             
             alertSheet.addAction(edit)
-            alertSheet.addAction(hide)
-            alertSheet.addAction(delete)
             
-        } else {
+            //非表示、再表示化
+            if post.hidden {
+                let show = UIAlertAction(title: LocalizeKey.show.localizedString(), style: UIAlertAction.Style.default, handler: {[weak self]
+                    (action: UIAlertAction!) -> Void in
+                    print("hide")
+                    Firestore.firestore().collection("Posts").document((self?.postId)!).updateData([
+                        "hidden": false
+                    ]) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            HUD.flash(.label("投稿を世界に公開しました"), delay: 1)
+                            print("再表示化成功")
+                        }
+                    }
+                })
+                alertSheet.addAction(show)
+            }else {
+                let hide = UIAlertAction(title: LocalizeKey.hide.localizedString(), style: UIAlertAction.Style.default, handler: {[weak self]
+                    (action: UIAlertAction!) -> Void in
+                    print("hide")
+                    Firestore.firestore().collection("Posts").document((self?.postId)!).updateData([
+                        "hidden": true
+                    ]) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            HUD.flash(.label("世界から投稿を非表示にしました。"), delay: 1)
+                            print("非表示化成功")
+                        }
+                    }
+                })
+                alertSheet.addAction(hide)
+            }
             
-            let report = UIAlertAction(title: "Report", style: UIAlertAction.Style.destructive, handler: {[weak self]
+            //投稿削除
+            //TODO: 配信時元に戻すこと(developer)
+            if post.deleted {
+                let delete = UIAlertAction(title: "死者蘇生", style: UIAlertAction.Style.destructive, handler: {[weak self]
+                    (action: UIAlertAction!) -> Void in
+                    print("delete")
+                    Firestore.firestore().collection("Posts").document((self?.postId)!).updateData([
+                        "deleted": false
+                    ]) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            HUD.flash(.label("投稿が復活しました。"), delay: 1)
+                            print("死者蘇生成功")
+                        }
+                    }
+                })
+                alertSheet.addAction(delete)
+            }else {
+                let delete = UIAlertAction(title: LocalizeKey.delete.localizedString(), style: UIAlertAction.Style.destructive, handler: {[weak self]
+                    (action: UIAlertAction!) -> Void in
+                    print("delete")
+                    Firestore.firestore().collection("Posts").document((self?.postId)!).updateData([
+                        "deleted": true
+                    ]) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            HUD.flash(.label("投稿を削除しました。"), delay: 1)
+                            print("削除成功")
+                        }
+                    }
+                })
+                alertSheet.addAction(delete)
+            }
+            
+        }
+        //TODO: 配信時元に戻すこと(developer)
+        if post.postUserUid != Profile.shared.loginUser.uid || Profile.shared.loginUser.developer {
+            
+            let report = UIAlertAction(title: LocalizeKey.report.localizedString(), style: UIAlertAction.Style.destructive, handler: {[weak self]
                 (action: UIAlertAction!) -> Void in
                 print("Report")
                 self!.gotoReport()
@@ -140,13 +302,19 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
             alertSheet.addAction(report)
         }
         
-        let cancel = UIAlertAction(title: "cancel", style: UIAlertAction.Style.cancel, handler: {
+        let cancel = UIAlertAction(title: LocalizeKey.cancel.localizedString(), style: UIAlertAction.Style.cancel, handler: {
             (action: UIAlertAction!) in
         })
         
         alertSheet.addAction(cancel)
         
         self.present(alertSheet, animated: true, completion: nil)
+    }
+    //MARK: - ハンバーガーボタン
+    
+    
+    @IBAction func pushBackButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     //MARK: 前の画面に戻る
@@ -210,44 +378,143 @@ class ChatRoomController: UIViewController, UITextFieldDelegate{
     
     private func fetchMessages() {
         
+        
+//        Firestore.firestore().collection("Users")
+//            .getDocuments { [weak self] snap, err in
+//                if let err = err {
+//                    print("err", err)
+//                    return
+//                }
+//
+//                guard let userDocs = snap?.documents else {
+//                    print("not found data")
+//                    return
+//                }
+//
+//                Firestore.firestore().collection("Posts").document(self!.postId).collection("comments")
+//                    .addSnapshotListener { [weak self] (snapshots, err) in
+//                        if let err = err {
+//                            print("err", err)
+//                            return
+//                        }
+//
+//                        guard let commentDocs = snapshots?.documentChanges else {
+//                            print("not found data")
+//                            return
+//                        }
+//
+//                        let dispatchGroup = DispatchGroup()
+//                        let dispatchQueue = DispatchQueue(label: "com.MetaMera.comment")
+//
+//                        commentDocs.forEach { documentChange in
+//
+//                            dispatchGroup.enter()
+//                            dispatchQueue.async {
+//                                switch documentChange.type {
+//                                case .added:
+//
+//                                    let dic = documentChange.document.data()
+//                                    let comment = Comment(dic: dic,commentId: documentChange.document.documentID)
+//
+//                                    if !comment.deleted {
+//
+//                                        for userDoc in userDocs where userDoc.documentID == comment.uid {
+//                                            let user = User(dic: userDoc.data(), uid: userDoc.documentID)
+//                                            comment.sendUser = user
+//                                            self?.messages.append(comment)
+//                                            self?.messages.sort { (m1, m2) -> Bool in
+//                                                let m1Date = m1.createdAt.dateValue()
+//                                                let m2Date = m2.createdAt.dateValue()
+//                                                return m1Date < m2Date
+//                                            }
+//                                            print("ユーザー情報の取得に成功しました。")
+//                                        }
+//                                    }
+//
+//
+//                                case .modified, .removed:
+//                                    break
+//                                }
+//                                dispatchGroup.leave()
+//                            }
+//                        }
+//
+//                        dispatchGroup.notify(queue: dispatchQueue) {
+//                            DispatchQueue.main.async {
+//                                self?.chatRoomTableView.reloadData()
+//                            }
+//                        }
+//
+//
+//
+//                    }
+//            }
+        
+        
+        
+        
+        
+        
+        
+        
+
         Firestore.firestore().collection("Posts").document(postId).collection("comments").addSnapshotListener {[weak self] (snapshots, err) in
-            
+
             if let err = err {
                 print("メッセージ情報の取得に失敗しました。\(err)")
                 return
             }
-            
-            self?.messages.removeAll()
-            
+
+            let dispatchGroup = DispatchGroup()
+            let dispatchQueue = DispatchQueue(label: "com.MetaMera.comment")
+
             snapshots?.documentChanges.forEach({ (documentChange) in
-                switch documentChange.type {
-                case .added:
-                    let dic = documentChange.document.data()
-                    let comment = Comment(dic: dic)
-                    Firestore.firestore().collection("Users").document(comment.uid).getDocument { (user, err) in
-                        if let err = err {
-                            print("ユーザー情報の取得に失敗しました。\(err)")
-                            return
+
+                dispatchGroup.enter()
+                dispatchQueue.async {
+                    switch documentChange.type {
+                    case .added, .modified:
+                        let dic = documentChange.document.data()
+                        let comment = Comment(dic: dic,commentId: documentChange.document.documentID)
+                        print("comment deleted:\(comment.deleted)")
+                        if !comment.deleted {
+                            Firestore.firestore().collection("Users").document(comment.uid).getDocument { (user, err) in
+                                if let err = err {
+                                    print("ユーザー情報の取得に失敗しました。\(err)")
+                                    return
+                                }
+
+                                guard let dic = user?.data() else { return }
+                                let user = User(dic: dic, uid: comment.uid)
+                                comment.sendUser = user
+                                self?.messages.append(comment)
+                                self?.messages.sort { (m1, m2) -> Bool in
+                                    let m1Date = m1.createdAt.dateValue()
+                                    let m2Date = m2.createdAt.dateValue()
+                                    return m1Date < m2Date
+                                }
+                                print("ユーザー情報の取得に成功しました。")
+
+    //                            self?.chatRoomTableView.reloadData()
+                                dispatchGroup.leave()
+                            }
+                        }else {
+                            dispatchGroup.leave()
                         }
-                        
-                        guard let dic = user?.data() else { return }
-                        let user = User(dic: dic, uid: comment.uid)
-                        comment.sendUser = user
-                        self?.messages.append(comment)
-                        self?.messages.sort { (m1, m2) -> Bool in
-                            let m1Date = m1.createdAt.dateValue()
-                            let m2Date = m2.createdAt.dateValue()
-                            return m1Date < m2Date
-                        }
-                        print("ユーザー情報の取得に成功しました。")
-                        
-                        self?.chatRoomTableView.reloadData()
+                    case .removed:
+                        print("nothing to do")
+                        dispatchGroup.leave()
                     }
-                    
-                case .modified, .removed:
-                    print("nothing to do")
                 }
+
             })
+
+            dispatchGroup.notify(queue: dispatchQueue) {
+                DispatchQueue.main.async {
+
+                    self?.chatRoomTableView.reloadData()
+                }
+            }
         }
     }
     
@@ -278,7 +545,9 @@ extension ChatRoomController: ChatViewControllerDelegate {
         let docData = [
             "createdAt": Timestamp(),
             "uid": uid,
-            "message": text
+            "message": text,
+            "hidden": false,
+            "deleted": false
             ] as [String : Any]
         Firestore.firestore().collection("Posts").document(postId).collection("comments").addDocument(data: docData){ [weak self] (err) in
             if let err = err{
@@ -325,17 +594,15 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("indexPath.section: ",indexPath.section)
+        print("message", messages)
         if indexPath.section == 0 {
             let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: tableUpCellId, for: indexPath) as! PostImageTableViewCell
 
-            cell.postImageView.image = image
             cell.post = post
             cell.delegate = self
-//            let border = CALayer()
-//            border.frame = CGRect(x: 0, y: cell.frame.height - 20, width: cell.frame.width, height: 0.25)
-//            border.backgroundColor = UIColor.black.cgColor
-//            cell.layer.addSublayer(border)
-            
+            cell.goodDelegate = self
+            cell.getGood()
+            cell.configView()
 
             return cell
         }else {
@@ -345,7 +612,10 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
             cell.messageTextView.backgroundColor = UIColor.chatTextBackground
             cell.messageTextView.textColor = UIColor.chatText
             cell.delegate = self
-            
+            cell.optionDelegate = self
+            if (Profile.shared.loginUser.uid == messages[indexPath.row].uid) || (Profile.shared.loginUser.uid == post.postUserUid) {
+                cell.optionButton.isHidden = false
+            }
             return cell
         }
     }
@@ -357,7 +627,7 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 0 {
             let headerView = UIView()
-            headerView.backgroundColor = .gray
+//            headerView.backgroundColor = .clear
             
 //            let titleLabel = UILabel()
 //            titleLabel.text = "header"
@@ -381,7 +651,55 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource{
 
 extension ChatRoomController: UserProfileProtocol{
     func tapUser(user: User) {
-        Goto.Profile(view: self, user: user)
+        Goto.ProfileViewController(view: self, user: user)
 //        Goto.UserProfile(view: self, user: user)
+    }
+}
+
+extension ChatRoomController: commentDelegate {
+    
+    func commentOption(commentId: String) {
+        // styleをActionSheetに設定
+        let alertSheet = UIAlertController(title: "Option", message: "What happened?", preferredStyle: UIAlertController.Style.actionSheet)
+        
+        // アクションを追加
+        //投稿削除
+        let delete = UIAlertAction(title: LocalizeKey.delete.localizedString(), style: UIAlertAction.Style.destructive, handler: {[weak self]
+            (action: UIAlertAction!) -> Void in
+            print("delete")
+            Firestore.firestore().collection("Posts").document((self?.postId)!).collection("comments").document(commentId).updateData([
+                "deleted": true
+            ]) { err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                } else {
+                    
+                    if let index = self?.messages.firstIndex(where: { $0.commentId == commentId }) {
+                        self?.messages.remove(at: index)
+                        self?.chatRoomTableView.reloadData()
+                    }
+                }
+            }
+        })
+        
+        
+        
+        alertSheet.addAction(delete)
+        
+        let cancel = UIAlertAction(title: LocalizeKey.cancel.localizedString(), style: UIAlertAction.Style.cancel, handler: {
+            (action: UIAlertAction!) in
+        })
+        
+        alertSheet.addAction(cancel)
+        
+        self.present(alertSheet, animated: true, completion: nil)
+    }
+}
+
+extension ChatRoomController: goodDelegate {
+    
+    func good(good: Bool) {
+        iLiked = good
+        print("いいねされてるよ\(good)")
     }
 }

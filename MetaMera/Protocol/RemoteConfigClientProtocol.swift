@@ -9,4 +9,5 @@ import Foundation
 
 protocol RemoteConfigClientProtocol {
     func fetchServerMaintenanceConfig(succeeded: @escaping (ServerMaintenanceConfig) -> Void, failed: @escaping (String) -> Void)
+    func fetchRestrictionsConfig(succeeded: @escaping (newRegistrationRestrictionsConfig) -> Void, failed: @escaping (String) -> Void)
 }

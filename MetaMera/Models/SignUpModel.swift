@@ -21,37 +21,44 @@ class SignUpModel {
         guard let email = signUpItem.email,
               let password = signUpItem.password,
               let confirmPassword = signUpItem.confirmPassword,
+              let bio = signUpItem.bio,
+              let userIcon = signUpItem.userIconURL,
               let userName = signUpItem.userName else {
-            completion(.failure(NSError(domain: "null error", code: 400)))
+            completion(.failure(NSError(domain: "null error", code: 101)))
             return
         }
         
         guard password == confirmPassword else {
-            completion(.failure(NSError(domain: "パスワードの不一致", code: 400)))
+            completion(.failure(NSError(domain: "パスワードの不一致", code: 102)))
             return
         }
         
         guard password.count >= 6 else {
-            completion(.failure(NSError(domain: "パスワードが弱いです。", code: 400)))
+            completion(.failure(NSError(domain: "パスワードが弱いです。", code: 103)))
             return
         }
         
         Auth.auth().createUser(withEmail: email, password: password) { (res, err) in
             if let err = err{
                 let error = err.localizedDescription
-                completion(.failure(NSError(domain: error, code: 400)))
+                completion(.failure(NSError(domain: error, code: 104)))
                 return
             }
             
             guard let uid = Auth.auth().currentUser?.uid else {
-                completion(.failure(NSError(domain: "null error", code: 400)))
+                completion(.failure(NSError(domain: "null error", code: 101)))
                 return
                 
             }
             
             let docData = ["email": email,
                            "userName": userName,
-                           "profileImage": "",
+                           "ban" : false,
+                           "limited" : 0,
+                           "deleted": false,
+                           "headerColor" : Int.random(in: 0...4),
+                           "bio": bio,
+                           "profileImage" : userIcon,
                            "Log": [String]().self,
                             "Recommended": [String]().self,
                            "createAt": Timestamp()] as [String : Any]
@@ -60,14 +67,23 @@ class SignUpModel {
             
             userRef.setData(docData) { (err) in
                 if let err = err {
-                    completion(.failure(NSError(domain: "Firestoreへの登録に失敗しました: \(err)", code: 400)))
+                    completion(.failure(NSError(domain: "Firestoreへの登録に失敗しました: \(err)", code: 108)))
                     return
                 }
                 print("登録に成功しました")
                 
+                FirebaseManager.user.document(id: "Counter").updateData([
+                    "limited": FieldValue.increment(Int64(1))
+                ]){ err in
+                    if let err = err {
+                        print("Firestoreの更新に失敗しました。\(err)")
+                    }
+                }
+                
+                
                 userRef.getDocument { (snapshot, err) in
                     if let err = err {
-                        completion(.failure(NSError(domain: "ユーザ情報の取得に失敗しました。\(err)", code: 400)))
+                        completion(.failure(NSError(domain: "ユーザ情報の取得に失敗しました。\(err)", code: 109)))
                         return
                     }
                     

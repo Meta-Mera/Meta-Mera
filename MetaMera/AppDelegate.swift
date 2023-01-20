@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestore
@@ -16,47 +17,6 @@ import IQKeyboardManagerSwift
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
     var window: UIWindow?
-    
-    #if DEBUG
-    
-    //MARK: Quick Action
-    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem) async -> Bool {
-        window = UIWindow(frame: UIScreen.main.bounds)
-        let signInModel = SignInModel()
-        switch shortcutItem.type {
-        case "jim":
-            
-            signInModel.signIn(signInItem: .init(email: "g019c1045@g.neec.ac.jp", password: "123456")) {[weak self] result in
-                switch result{
-                case .success(_):
-                    self?.window?.rootViewController = UIStoryboard.instantiateInitialViewController(.init(name: "TopViewController", bundle: .main))()
-                    self?.window?.makeKeyAndVisible()
-                    IQKeyboardManager.shared.enable = true
-                    IQKeyboardManager.shared.enableAutoToolbar = false
-                case .failure(_): break
-                }
-            }
-        case "abe":
-            signInModel.signIn(signInItem: .init(email: "g019c1053@g.neec.ac.jp", password: "123456")) {[weak self] result in
-                switch result{
-                case .success(_):
-                    self?.window?.rootViewController = UIStoryboard.instantiateInitialViewController(.init(name: "TopViewController", bundle: .main))()
-                    self?.window?.makeKeyAndVisible()
-                    IQKeyboardManager.shared.enable = true
-                    IQKeyboardManager.shared.enableAutoToolbar = false
-                case .failure(_): break
-                }
-            }
-        default:
-            let navigationController =  UINavigationController(rootViewController: SignUpViewController())
-            window?.rootViewController = navigationController
-        }
-        window?.makeKeyAndVisible()
-        return true
-    }
-#endif
-    
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -67,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         window = UIWindow()
         window?.rootViewController = UIStoryboard.instantiateInitialViewController(.init(name: "TopViewController", bundle: .main))()
         window?.makeKeyAndVisible()
+        
         
 //        window = UIWindow()
 //        window?.makeKeyAndVisible()

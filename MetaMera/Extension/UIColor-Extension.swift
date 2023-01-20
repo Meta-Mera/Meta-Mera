@@ -14,13 +14,6 @@ extension UIColor {
     class func rgb(red: Int, green: Int, blue: Int) -> UIColor{
         return UIColor(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1)
     }
-//    let dynamicColor = UIColor { (traitCollection: UITraitCollection) -> UIColor in
-//       if traitCollection.userInterfaceStyle == .dark {
-//           return .black
-//       } else {
-//           return .white
-//       }
-//   }
     
     public class func dynamicColor(light: UIColor, dark: UIColor) -> UIColor {
         if #available(iOS 13, *) {
@@ -43,27 +36,31 @@ extension UIColor {
         )
     }
     
+    //投稿画面背景色
     public static var chatRoomBackground: UIColor {
         return dynamicColor(
-            light: .rgb(red: 255, green: 255, blue: 255),
+            light: .clear,
             dark: .rgb(red: 0, green: 0, blue: 0)
         )
     }
     
+    //TextFieldの背景色
     public static var inputChatTextBackground: UIColor {
         return dynamicColor(
-            light: .rgb(red: 255, green: 255, blue: 255),
-            dark: .rgb(red: 40, green: 40, blue: 40)
+            light: .rgb(red: 250, green: 250, blue: 250),
+            dark: .rgb(red: 60, green: 60, blue: 60)
         )
     }
     
+    //コメントの背景色
     public static var chatTextBackground: UIColor {
         return dynamicColor(
-            light: .rgb(red: 255, green: 255, blue: 255),
+            light: .clear,
             dark: .rgb(red: 0, green: 0, blue: 0)
         )
     }
     
+    //コメントの文字色
     public static var chatText: UIColor {
         return dynamicColor(
             light: .rgb(red: 0, green: 0, blue: 0),
@@ -71,18 +68,29 @@ extension UIColor {
         )
     }
     
+    //TextFieldのPlaceholderの色
     public static var textFieldPlaceholderColor: UIColor {
         return dynamicColor(
             light: .rgb(red: 190, green: 190, blue: 190),
             dark: rgb(red: 200, green: 200, blue: 200))
     }
     
+    //Sign Inのボーダーカラー
     class func signInBorderColor() -> UIColor {
         return UIColor.rgb(red: 93, green: 69, blue: 65)
     }
     
+    //Sign Upのボーダーカラー
     class func signUpBorderColor() -> UIColor {
         return UIColor.rgb(red: 65, green: 93, blue: 90)
+    }
+    
+    //ノーマルButtonカラー
+    class func normalButtonBackground() -> UIColor {
+        return dynamicColor(
+            light: .rgb(red: 250, green: 250, blue: 250),
+            dark: .rgb(red: 60, green: 60, blue: 60)
+        )
     }
     
     

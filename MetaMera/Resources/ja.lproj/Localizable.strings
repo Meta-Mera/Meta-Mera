@@ -1,0 +1,79 @@
+/*
+  Localizable.strings
+  MetaMera
+
+  Created by Jim on 2022/10/27.
+  
+*/
+
+"language" = "jp";
+
+/*----------------------------------
+            共用
+ ----------------------------------*/
+"report" = "通報";
+"cancel" = "キャンセル";
+"change" = "更新";
+"password" = "パスワード";
+
+/*----------------------------------
+            通報
+ ----------------------------------*/
+"spam" = "スパム行為";
+"fraud" =  "詐欺、欺瞞行為";
+"bullying" = "いじめ、嫌がらせ行為";
+"sexualHarassment" = "セクハラ、性的行為";
+"violence" = "暴力、危険な団体";
+"notLiking" = "気に入らない";
+"reportReason" = "報告する理由を詳しく書いてください。";
+"selectReportReason" = "通報理由を選択してください。";
+
+/*----------------------------------
+            投稿画面
+ ----------------------------------*/
+"edit" = "編集";
+"hide" = "非表示";
+"show" = "表示";
+"delete" = "削除";
+
+
+/*----------------------------------
+            プロフィール画面
+ ----------------------------------*/
+"accountSetting" = "アカウント設定";
+"advanceSetting" = "詳細設定";
+"changeYourProfile" = "プロフィール変更";
+"signOut" = "サインアウト";
+"mute" = "ミュート";
+"block" = "ブロック";
+"bio" = "ここに自己紹介文が入力できます。";
+"deleted" = "このアカウントは存在しません";
+"deletedDescription" = "このアカウントは凍結、もしくは削除されています。";
+
+/*----------------------------------
+            詳細設定
+ ----------------------------------*/
+
+"emailAddressSettings" = "メールアドレスの設定";
+"changePassword" = "パスワードの変更";
+"notificationSettings" = "通知設定";
+"contact" = "お問い合わせ";
+"withdrawalFromMetaMera" = "退会";
+
+"emailAddressSettingsDescription" = "現在登録されているメールアドレスの確認と変更をすることができます。";
+"changePasswordDescription" = "現在登録しているパスワードを変更することができます。";
+//"notificationSettingsDescription" = "通知の種類を設定することができます。";
+"notificationSettingsDescription" = "設定へ移動します。";
+"contactDescription" = "何かお困りのことがある場合やバグの修正依頼などお気軽にお問合わせください。";
+"withdrawalFromMetaMeraDescription" = "Meta-Meraのアカウントを削除し退会する手続きを行います。";
+
+
+/*----------------------------------
+        メールアドレス変更
+ ----------------------------------*/
+"nowEmail" = "現在のメールアドレスは%NOWEMAILL%です。";
+"emailDescription" = "現在のメールアドレスと新しいメールアドレスを入力し、変更ボタンをタップしてください。";
+"newEmail" = "新しいメールアドレス";
+"confirmEmail" = "新しいメールアドレス再入力";
+"changeEmailTitle" = "メールアドレス確認と変更";
+

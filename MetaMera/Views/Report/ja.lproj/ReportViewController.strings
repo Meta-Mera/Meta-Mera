@@ -1,0 +1,42 @@
+
+/* Class = "UILabel"; text = "通報内容"; ObjectID = "Dvd-bw-i9c"; */
+"Dvd-bw-i9c.text" = "通報内容";
+
+/* Class = "UIButton"; configuration.title = "気に入らない"; ObjectID = "G24-V2-ORy"; */
+"G24-V2-ORy.configuration.title" = "気に入らない";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "G24-V2-ORy"; */
+"G24-V2-ORy.normalTitle" = "気に入らない";
+
+/* Class = "UIButton"; configuration.title = "いじめ、嫌がらせ行為"; ObjectID = "G70-Z0-yvw"; */
+"G70-Z0-yvw.configuration.title" = "いじめ、嫌がらせ行為";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "G70-Z0-yvw"; */
+"G70-Z0-yvw.normalTitle" = "いじめ、嫌がらせ行為";
+
+/* Class = "UIButton"; configuration.title = "セクハラ、性的行為"; ObjectID = "HIp-Kf-kxx"; */
+"HIp-Kf-kxx.configuration.title" = "セクハラ、性的行為";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "HIp-Kf-kxx"; */
+"HIp-Kf-kxx.normalTitle" = "セクハラ、性的行為";
+
+/* Class = "UIButton"; configuration.title = "スパム行為"; ObjectID = "NUs-R8-Rn3"; */
+"NUs-R8-Rn3.configuration.title" = "スパム行為";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "NUs-R8-Rn3"; */
+"NUs-R8-Rn3.normalTitle" = "スパム行為";
+
+/* Class = "UILabel"; text = "緊急事態の場合は、今すぐに地域の警察や消防に通報してください。"; ObjectID = "Vd4-P2-Mz7"; */
+"Vd4-P2-Mz7.text" = "緊急事態の場合は、今すぐに地域の警察や消防に通報してください。";
+
+/* Class = "UIButton"; configuration.title = "詐欺、欺瞞行為"; ObjectID = "WAw-RM-xQk"; */
+"WAw-RM-xQk.configuration.title" = "詐欺、欺瞞行為";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "WAw-RM-xQk"; */
+"WAw-RM-xQk.normalTitle" = "詐欺、欺瞞行為";
+
+/* Class = "UIButton"; configuration.title = "暴力、危険な団体"; ObjectID = "lCQ-7i-QA4"; */
+"lCQ-7i-QA4.configuration.title" = "暴力、危険な団体";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "lCQ-7i-QA4"; */
+"lCQ-7i-QA4.normalTitle" = "暴力、危険な団体";

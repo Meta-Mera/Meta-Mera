@@ -25,7 +25,7 @@ class PostUploadModel {
               let imageStyle = postItem.imageStyle,
               let id = postItem.id
         else {
-            completion(.failure(NSError(domain: "null error", code: 400)))
+            completion(.failure(NSError(domain: "null error", code: 701)))
             return
         }
         
@@ -36,6 +36,8 @@ class PostUploadModel {
                        "postUserUid": Profile.shared.loginUser.uid,
                        "rawImageUrl": rawImageUrl,
                        "editedImageUrl": editedImageUrl,
+                       "deleted" : false,
+                       "hidden" : false,
                        "good": 0,
                        "latitude": latitude,
                        "longitude": longitude,
@@ -46,7 +48,7 @@ class PostUploadModel {
         
         Firestore.firestore().collection("Posts").document(id).setData(docData){ (err) in
             if let err = err {
-                completion(.failure(NSError(domain: "Firestoreへの登録に失敗しました:  \(err)", code: 400)))
+                completion(.failure(NSError(domain: "Firestoreへの登録に失敗しました:  \(err)", code: 708)))
                 return
             }
             print("登録に成功しました")

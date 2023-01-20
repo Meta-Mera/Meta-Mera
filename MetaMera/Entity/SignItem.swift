@@ -20,5 +20,7 @@ struct SignUpItem{
     var email: String?
     var password: String?
     var confirmPassword: String?
+    var bio: String?
     var userName: String?
+    var userIconURL: String?
 }

@@ -8,7 +8,8 @@
 import Foundation
 import UIKit
 import Firebase
-
+import Alamofire
+import AlamofireImage
 
 class PostImageTableViewCell: UITableViewCell {
     
@@ -23,16 +24,13 @@ class PostImageTableViewCell: UITableViewCell {
     
     
     var delegate: UserProfileProtocol?
+    var goodDelegate: goodDelegate?
     var iLiked = false
     
     let generator = UINotificationFeedbackGenerator()
     
     
-    var post: Post?{
-        didSet{
-            
-        }
-    }
+    var post: Post!
     var postUser: User?{
         didSet{
             
@@ -45,12 +43,34 @@ class PostImageTableViewCell: UITableViewCell {
 //        }
 //    }
     
+    func getGood(){
+        Firestore.firestore().collection("Likes").whereField("uid", isEqualTo: Profile.shared.loginUser.uid).whereField("postId", isEqualTo: post.postId!).getDocuments(completion: { [weak self] (snapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+                return
+            }else {
+                
+                guard snapshot!.documents.first?.value != nil else {
+                    //いいねしてない
+                    self?.iLiked = false
+                    self?.likeButton.setImage(Asset.Images.notGood.image, for: .normal)
+                    self?.goodDelegate?.good(good: false)
+                    return
+                }
+                //いいねしてる
+                self?.iLiked = true
+                self?.likeButton.setImage(Asset.Images.good.image, for: .normal)
+                self?.goodDelegate?.good(good: true)
+                return
+            }
+        })
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         configView()
     }
-    
     
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -59,9 +79,14 @@ class PostImageTableViewCell: UITableViewCell {
         updateImageTableView()
     }
     
-    private func configView() {
+    func configView() {
         
         profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
+        if(iLiked){
+            likeButton.setImage(Asset.Images.good.image, for: .normal)
+        }else{
+            likeButton.setImage(Asset.Images.notGood.image, for: .normal)
+        }
         
         postUserNameLabel.isUserInteractionEnabled = true
         profileImageView.isUserInteractionEnabled = true
@@ -78,6 +103,7 @@ class PostImageTableViewCell: UITableViewCell {
         delegate?.tapUser(user: postUser!)
     }
     
+    
     private func updateImageTableView(){
         postDateLabel.text = dateFormatterForDateLabel(date: (post?.createdAt.dateValue())!)
         
@@ -90,11 +116,28 @@ class PostImageTableViewCell: UITableViewCell {
             guard let postUserUid = self?.post?.postUserUid else { return }
             self?.postUser = User(dic: dic,uid: postUserUid)
             
-            self?.postUserNameLabel.text = self?.postUser?.userName
-            self?.postUserNameLabel.accessibilityIdentifier = self?.postUser?.uid
-            self?.postTextView.text = self?.post?.comment.replacingOccurrences(of: "\\\\n", with: "\n").replacingOccurrences(of: "\\", with: "")
-            self?.profileImageView.loadImageAsynchronously(url: URL(string:(self?.postUser!.profileImage)!))
+            if( (self?.postUser?.ban)! || (self?.postUser?.deleted)!){
+                self?.postTextView.text = "Submission has been deleted or hidden."
+                self?.postDateLabel.text = ""
+                self?.postImageView.setImage(image: Asset.Images.ロゴ.image, name: "")
+                if ((self?.postUser?.deleted) != nil){
+//                    FirebaseManager.post.document(id: (self?.post.postId)!).updateData([
+//                        "deleted":true
+//                    ]){ err in
+//                        if let err = err {
+//                            print("投稿の削除に失敗しました。\(err)")
+//                        }
+//                    }
+                    return
+                }
+            }else{
+                self?.postUserNameLabel.text = self?.postUser?.userName
+                self?.postUserNameLabel.accessibilityIdentifier = self?.postUser?.uid
+                self?.postTextView.text = self?.post?.comment.replacingOccurrences(of: "\\\\n", with: "\n").replacingOccurrences(of: "\\", with: "")
+                self?.profileImageView.loadImageAsynchronously(url: URL(string:(self?.postUser!.profileImage)!))
+            }
         }
+        postImageView.af.setImage(withURL: URL(string: post.rawImageUrl)!, placeholderImage: UIImage(named: "ロゴ"))
     }
     
     private func estimateFrameForTextView(text: String) -> CGRect{
@@ -113,12 +156,14 @@ class PostImageTableViewCell: UITableViewCell {
     }
     
     @IBAction func pushLike(_ sender: Any) {
-        if(iLiked){
-            likeButton.setImage(UIImage(named: "ハート(押す前)"), for: .normal)
-        }else{
-            likeButton.setImage(UIImage(named: "ハート(押した後)"), for: .normal)
-        }
         iLiked.toggle()
+        if(iLiked){
+            likeButton.setImage(Asset.Images.good.image, for: .normal)
+            goodDelegate?.good(good: true)
+        }else{
+            likeButton.setImage(Asset.Images.notGood.image, for: .normal)
+            goodDelegate?.good(good: false)
+        }
     }
     
     

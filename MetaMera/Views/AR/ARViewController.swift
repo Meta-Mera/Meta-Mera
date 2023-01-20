@@ -20,36 +20,29 @@ import Alamofire
 import AlamofireImage
 
 
-class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate, MKMapViewDelegate {
+class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate {
+    
+    // Models
+    private var postGetter: PostGetter<PostFetchAPI, PostInput>?
     
     //AR系
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var contentView: UIView!
-
+    
     //多分いらなくなります
     //現在位置を表示するためのやつ
     @IBOutlet weak var textLabel: UILabel!
     //プロフィール画面に移行する用だけど多分プラスボタン系に結合されると思う
     @IBOutlet weak var ProfileImage: UIImageView!
     
-    //プラスボタン系
+    //MARK: -プラスボタン系
     @IBOutlet weak var backView: UIView!
-    
     @IBOutlet weak var plusButton: UIButton!
-    @IBOutlet weak var plusLeftConstraint: NSLayoutConstraint!
-    @IBOutlet weak var plusBottomConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var profileButton: UIButton!
-    @IBOutlet weak var profileLeftConstraint: NSLayoutConstraint!
-    @IBOutlet weak var profileBottomConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var createRoomButton: UIButton!
-    @IBOutlet weak var createRoomLeftConstraint: NSLayoutConstraint!
-    @IBOutlet weak var createRoomBottomConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var selectCategoryButton: UIButton!
-    @IBOutlet weak var selectCategoryLeftConstraint: NSLayoutConstraint!
-    @IBOutlet weak var selectCategoryBottomConstraint: NSLayoutConstraint!
+    
+    //MARK: -プラスボタン系
     
     
     //プラスボタンを長押しした時用のやつ
@@ -62,24 +55,30 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     var updateInfoLabelTimer: Timer?
     
     //AR系2
-    var sceneLocationView = SceneLocationView()
+    var sceneLocationView: SceneLocationView? = SceneLocationView()
     var locationManager = CLLocationManager()
     
     //投稿リスト
     var posts : [Post]?
     
-    //市区町村名？
+    //市区町村名とか
     var locality : String?
     
+    deinit {
+        sceneLocationView = nil
+        locationManager.stopUpdatingLocation()
+//        locationManager = nil
+    }
     
     
     
     //MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        sceneLocationView! = SceneLocationView()
         
         posts = [Post]()
-
+        
         configView()
         setUpPlusButtons()
         enableAutoLayout()
@@ -115,9 +114,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         locationManager.headingFilter = kCLHeadingFilterNone
         locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.delegate = self
-//        locationManager.startUpdatingHeading()
         locationManager.startUpdatingLocation()
-    
+        
         mapView.showsUserLocation = true
         mapView.delegate = self
         
@@ -128,7 +126,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                                                queue: nil) { [weak self] _ in
             self?.pauseAnimation()
         }
-        // swiftlint:disable:next discarded_notification_center_observer
         NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification,
                                                object: nil,
                                                queue: nil) { [weak self] _ in
@@ -137,37 +134,28 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         
         
-        sceneLocationView.showAxesNode = false
-        sceneLocationView.locationNodeTouchDelegate = self
-//        sceneLocationView.delegate = self // Causes an assertionFailure - use the `arViewDelegate` instead:
-        sceneLocationView.arViewDelegate = self
-        sceneLocationView.locationNodeTouchDelegate = self
-        sceneLocationView.orientToTrueNorth = false
+        sceneLocationView!.showAxesNode = false
+        sceneLocationView!.locationNodeTouchDelegate = self
+        sceneLocationView!.arViewDelegate = self
+        sceneLocationView!.locationNodeTouchDelegate = self
+        sceneLocationView!.orientToTrueNorth = false
         
         
         
         addSceneModels()
         
-        //36.35801663766492, 138.63498898207519
         let pin = MKPointAnnotation()
         pin.title = "テストピン"
         pin.subtitle = "サブタイトル"
-//        pin.setValue(Any?, forKey: "ddd")
         pin.accessibilityValue = "tesofihasdfoihasdofhasdoift"
-//        pin.description() = desc
         MKPointAnnotation.description()
         pin.coordinate = CLLocationCoordinate2DMake(36.35801663766492, 138.63498898207519)
         mapView.addAnnotation(pin)
         
         
-//        sceneLocationView.run()
-        contentView.addSubview(sceneLocationView)
+        contentView.addSubview(sceneLocationView!)
         
-        sceneLocationView.frame = .zero
-        
-//        sceneLocationView.run()
-        
-        // Do any additional setup after loading the view.
+        sceneLocationView!.frame = .zero
         
         updateInfoLabelTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
             self?.updateInfoLabel()
@@ -177,35 +165,36 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     func setUpPlusButtons(){
         
-        // プラスボタンにタップジェスチャー追加
-        plusButton.addGestureRecognizer(plusButtonLongTapGuester)
         
         //MARK: プロフィール画像
-        ProfileImage.layer.cornerRadius = 25
+        ProfileImage.layer.cornerRadius = ProfileImage.bounds.width / 2
         ProfileImage.isUserInteractionEnabled = true
         ProfileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pushProfileImage(_:))))
+        
+        //MARK: - プラスボタン系
+        
+        // プラスボタンにタップジェスチャー追加
+        plusButton.addGestureRecognizer(plusButtonLongTapGuester)
         
         self.view.bringSubviewToFront(selectCategoryButton)
         self.view.bringSubviewToFront(createRoomButton)
         self.view.bringSubviewToFront(plusButton)
         self.view.bringSubviewToFront(profileButton)
         
-        //MARK: プラスボタン系
         let tapGestureRecognizer = UITapGestureRecognizer(target: self,
-                                                                  action: #selector(backTap))
+                                                          action: #selector(backTap))
         self.backView.addGestureRecognizer(tapGestureRecognizer)
-        
         
         plusButton.imageView?.contentMode = .scaleAspectFill
         profileButton.imageView?.contentMode = .scaleAspectFill
         createRoomButton.imageView?.contentMode = .scaleAspectFill
         selectCategoryButton.imageView?.contentMode = .scaleAspectFill
-
+        
         plusButton.contentHorizontalAlignment = .fill
         profileButton.contentHorizontalAlignment = .fill
         createRoomButton.contentHorizontalAlignment = .fill
         selectCategoryButton.contentHorizontalAlignment = .fill
-
+        
         plusButton.contentVerticalAlignment = .fill
         profileButton.contentVerticalAlignment = .fill
         createRoomButton.contentVerticalAlignment = .fill
@@ -231,28 +220,15 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         createRoomButton.imageView?.layer.borderColor = borderColor
         selectCategoryButton.imageView?.layer.borderColor = borderColor
         
+        //MARK: プラスボタン系 -
+        
     }
-    
-    
-    //    override var inputAccessoryView: UIView? {
-    //        get {
-    //            return chatView
-    //        }
-    //    }
-    //
-    //    override var canBecomeFirstResponder: Bool {
-    //        return true
-    //    }
-    //
-    //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    //        self.view.endEditing(true)
-    //    }
     
     //MARK: わかんない！
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        sceneLocationView.frame = view.bounds
+        sceneLocationView!.frame = view.bounds
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -260,7 +236,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         if Profile.shared.isLogin == false {
             print("呼ばれた: ",Profile.shared.isLogin!)
-            sleep(1)
             self.dismiss(animated: true)
         }
     }
@@ -269,13 +244,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        switch Profile.shared.updateProfileImage() {
-        case .success(let image):
-            ProfileImage.setImage(image: image, name: Profile.shared.loginUser.uid)
-//            ProfileImage.image = image
-//            ProfileImage.setImage(url: Profile.shared.userIconImageUrl, name: Profile.shared.userId)
-        case .failure(_):
-            break
+        if let userIconImageURL = URL(string: Profile.shared.loginUser.profileImage) {
+            ProfileImage.af.setImage(withURL: userIconImageURL)
         }
         
         //MARK: ナビゲーションコントローラーを隠すよ！
@@ -293,12 +263,15 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                 guard let placemark = placemarks?.first, error == nil else { return }
                 
                 if let locality = placemark.locality {
+                    self?.mapView.removeAnnotations(self!.annotationArray)
+                    self?.annotationArray = []
+                    self?.posts = []
                     self?.locality = locality
                     print("locality: ",locality as Any)
                     Firestore.firestore().collection("Areas").whereField("areaName", isEqualTo: locality).getDocuments(completion: { [weak self]
                         (snapshot, error) in
                         let language = NSLocale.preferredLanguages.first?.components(separatedBy: "-").first
-
+                        
                         print("🐱: \(String(describing: language))") // 🐱: Optional("ja")
                         if let error = error {
                             print("Error getting documents: \(error)")
@@ -321,7 +294,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                                         print("DocumentID:\(docId)")
                                         
                                         let updateRef = Firestore.firestore().collection("Areas").document(docId)
-
+                                        
                                         // Set the "capital" field of the city 'DC'
                                         updateRef.updateData([
                                             "areaId": docId
@@ -341,20 +314,44 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                             let areaIds = AreaId(dic: snapshot!.documents.first!.data())
                             let areaId = areaIds.areaId
                             Profile.shared.areaId = areaId
-                            Firestore.firestore().collection("Posts").whereField("areaId", isEqualTo: areaId as Any).getDocuments(completion: {
-                                (postSnapshots, err) in
-                                if let err = err {
-                                    print("Error getting documents: \(err)")
-                                }else {
-                                    for document in postSnapshots!.documents {
-                                        print("\(document.documentID) => \(document.data())")
-                                        let post = Post(dic: document.data(), postId: document.documentID)
-                                        self?.posts?.append(post)
-                                        
+                            
+                            //MARK: - 配信時必ず消すこと
+                            if(Profile.shared.loginUser.developer){
+                                Firestore.firestore().collection("Posts").whereField("genreId", isEqualTo: "debug").getDocuments(completion: {
+                                    (postSnapshots, err) in
+                                    if let err = err {
+                                        print("Error getting documents: \(err)")
+                                    }else {
+                                        for document in postSnapshots!.documents {
+                                            print("\(document.documentID) => \(document.data())")
+                                            let post = Post(dic: document.data(), postId: document.documentID)
+                                            self?.posts?.append(post)
+                                            
+                                            
+                                        }
+                                        self?.addSceneModels()
                                     }
-                                    self?.addSceneModels()
-                                }
-                            })
+                                })
+                                //MARK: 配信時必ず消すこと -
+                            }else {
+                                Firestore.firestore().collection("Posts").whereField("areaId", isEqualTo: areaId as Any).whereField("deleted", isEqualTo: false).whereField("hidden", isEqualTo: false).getDocuments(completion: {
+                                    (postSnapshots, err) in
+                                    if let err = err {
+                                        print("Error getting documents: \(err)")
+                                    }else {
+                                        for document in postSnapshots!.documents {
+                                            print("\(document.documentID) => \(document.data())")
+                                            let post = Post(dic: document.data(), postId: document.documentID)
+                                            if !post.deleted && !post.hidden {
+                                                self?.posts?.append(post)
+                                            }
+                                            
+                                            
+                                        }
+                                        self?.addSceneModels()
+                                    }
+                                })
+                            }
                         }
                     })
                     
@@ -391,7 +388,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     @objc func pushProfileImage(_ sender: Any){
         print("getName: ",ProfileImage.getName() as Any)
         print("Push profile image")
-        Goto.Profile(view: self, user: Profile.shared.loginUser)
+        Goto.ProfileViewController(view: self, user: Profile.shared.loginUser)
     }
     
     //MARK: プロフィール画像関連 -
@@ -402,16 +399,16 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     //MARK: ARを止めるよ！
     func pauseAnimation() {
         print("pause")
-        sceneLocationView.pause()
+        sceneLocationView!.pause()
     }
     
     //MARK: ARを再開するよ！
     func restartAnimation() {
-        sceneLocationView.isPlaying = true
+        sceneLocationView!.isPlaying = true
         DispatchQueue.main.async { [weak self] in
             
             print("run")
-            self?.sceneLocationView.run()
+            self?.sceneLocationView!.run()
         }
     }
     
@@ -437,16 +434,16 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                     imageStyle = CGSize(width: 300, height: 300)
                     break
                 case 2:
-                    imageStyle = CGSize(width: 400, height: 300)
+                    imageStyle = CGSize(width: 600, height: 400)
                     break
                 case 3:
                     imageStyle = CGSize(width: 300, height: 400)
                     break
-
+                    
                 default:
                     imageStyle = CGSize(width: 400, height: 300)
                 }
-                self.buildNode(latitude: post.latitude, longitude: post.longitude, altitude: post.altitude, imageURL: URL(string: post.editedImageUrl)!, size: imageStyle, pinUse: true, pinName: post.postId!, postId: post.postId!) { node in
+                self.buildNode(latitude: post.latitude, longitude: post.longitude, altitude: post.altitude, imageURL: URL(string: post.editedImageUrl)!, size: imageStyle, pinUse: true, pinName: post.postId!, postId: post.postId!, post: post) { node in
                     nodes.append(node)
                     dispatchGroup.leave()
                 }
@@ -463,39 +460,22 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     //MARK: まだ勉強してるよ！
     func addSceneModels() {
         // 1. Don't try to add the models to the scene until we have a current location
-        guard sceneLocationView.sceneLocationManager.currentLocation != nil else {
+        guard sceneLocationView!.sceneLocationManager.currentLocation != nil else {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                self?.addSceneModels()
+//                self?.addSceneModels()
             }
             return
         }
         
-//        buildDemoData().forEach {
-//            sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0)
-////            sceneLocationView.moveSceneHeadingAntiClockwise()
-////            sceneLocationView.moveSceneHeadingClockwise()
-//        }
         
         buildPostData { [weak self] nodes in
             nodes.forEach {
-                self?.sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0)
+                self?.sceneLocationView!.addLocationNodeWithConfirmedLocation(locationNode: $0)
+                self?.sceneLocationView!.moveSceneHeadingAntiClockwise()
                 
             }
         }
-        
-//        buildPostData().forEach {
-//            sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0)
-//        }
-        
-        //        let cubeNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
-        //        cubeNode.position = SCNVector3(0, 0, -0.2) // SceneKit/AR coordinates are in meters
-        
-        //        sceneLocationView.scene.rootNode.addChildNode(cubeNode)
-        
-        // There are many different ways to add lighting to a scene, but even this mechanism (the absolute simplest)
-        // keeps 3D objects fron looking flat
-        sceneLocationView.autoenablesDefaultLighting = true
-        //sceneLocationView.useTrueNorth = false
+        sceneLocationView!.autoenablesDefaultLighting = true
         
         
     }
@@ -505,8 +485,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     
     //MARK: - ここからオブジェクトを生成するためのやつだよ
-
-
+    
+    
     
     /// AR生成するためのfunc
     /// - Parameters:
@@ -518,96 +498,75 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     ///   - pinUse: ピン使いますか？
     ///   - pinName: ピンの表示名
     ///   - postId: 投稿ID
+    ///   - post : 投稿データ
     ///   - completion: completion description
     func buildNode(latitude: CLLocationDegrees, longitude: CLLocationDegrees,
                    altitude: CLLocationDistance,
                    imageURL: URL, size: CGSize,
                    pinUse: Bool, pinName: String,
                    postId: String,
+                   post: Post,
                    completion: @escaping(LocationAnnotationNode) -> Void) {
+        //座標
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        //高さ込みの設置する座標
         let location = CLLocation(coordinate: coordinate, altitude: altitude)
+        //地図に設置するピン
         let annotation = MKPointAnnotation()
-//        let image:UIImage = UIImage(url: imageURL, defaultUIImage: UIImage(named: "ロゴ")).reSizeImage(reSize: size)
+        
+        
+        //初期画像
         var image:UIImage = UIImage(named: "ロゴ")!
+        //URLから画像を取得してannotationNodeに入れる(非同期)
         AF.request(imageURL.absoluteString).responseImage { [weak self] res in
             switch res.result {
+                //画像からURLが取得できた場合
             case .success(let getImage):
-                print("IMAGE", getImage)
+                //取得した画像をimageに入れる
                 image = getImage.reSizeImage(reSize: size)
                 
-                
+                //投稿IDを画像のタグに書き込む
                 image.accessibilityIdentifier = postId
+#if DEBUG
                 print("---------------------------------------")
                 print("accessibilityIdentifier: ",image.accessibilityIdentifier as Any)
                 print("---------------------------------------")
-                if pinUse {
+#endif
+                if pinUse {//地図にピンを表示する場合
+                    //ピンの座標
                     annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
-                    annotation.title = pinName
-                    annotation.subtitle = "高さ"+String(altitude)
+                    //ピンのタイトル
+                    //TODO: 配信時元に戻すこと(developer)
+                    if(post.deleted){
+                        annotation.title = "削除済み"
+                    }
+                    
+                    //ピンのサブタイトル
+                    annotation.subtitle = pinName
+//                    annotation.accessibilityValue = pinName
+                    
+                    //ピンの色を追加
+//                    let annotationView = self?.mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier, for: annotation) as! MKMarkerAnnotationView
+//                    annotationView.markerTintColor = .brown
+                    
+                    //ピンをピンリストに追加
                     self?.annotationArray.append(annotation)
+                    
+                    //マップにピンを表示
                     self?.mapView.addAnnotation(annotation)
+//                    self?.mapView.addSubview(annotationView)
                 }
                 
+                //Nodeを生成
                 let annotationNode = LocationAnnotationNode(location: location, image: image)
-//                annotationNode
+                annotationNode.scaleRelativeToDistance = true
                 completion(annotationNode)
-
+                
             case .failure(let error):
                 print("IMAGE", error)
-                fatalError()
+//                fatalError()
             }
         }
-
-//        let image:UIImage = UIImage.af.setImage
-//        let downloader = ImageDownloader()
-//        let urlRequest = URLRequest(url: imageURL)
-//        var image:UIImage = UIImage(named: "ロゴ")!.reSizeImage(reSize: size)
-//        let sample = UIImage(named: "ロゴ")
-//        var test:UIImageView = UIImageView()
-//        test.af.setImage(withURL: imageURL, placeholderImage: sample)
-//        var image:UIImage = test.image
-//        downloader.download(urlRequest) {[weak self] response in
-//
-//            if case .success(let imageUrl) = response.result {
-//                image = imageUrl.reSizeImage(reSize: size)
-//
-//                image.accessibilityIdentifier = postId
-//                print("---------------------------------------")
-//                print("URL accessibilityIdentifier: ",image.accessibilityIdentifier as Any)
-//                print("---------------------------------------")
-//                if pinUse {
-//                    annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
-//                    annotation.title = pinName
-//                    annotation.subtitle = "高さ"+String(altitude)
-//                    self?.annotationArray.append(annotation)
-//                    self?.mapView.addAnnotation(annotation)
-//                }
-//
-//            }else{
-//
-//            }
-//        }
-        
-        
-//        image.accessibilityIdentifier = postId
-//        print("---------------------------------------")
-//        print("accessibilityIdentifier: ",image.accessibilityIdentifier as Any)
-//        print("---------------------------------------")
-//        if pinUse {
-//            annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
-//            annotation.title = pinName
-//            annotation.subtitle = "高さ"+String(altitude)
-//            annotationArray.append(annotation)
-//            mapView.addAnnotation(annotation)
-//        }
-//
-//        return LocationAnnotationNode(location: location, image: image)
-//        let image:UIImage = UIImage(named: "ロゴ")!.reSizeImage(reSize: size)
-//        let imageView: UIImageView
-//        imageView = UIImageView()
-//        Nuke.loadImage(with: imageURL, into: imageView)
-//        let image:UIImage = imageView.image
     }
     
     
@@ -667,13 +626,13 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     @objc
     func updateInfoLabel() {
-        if let eulerAngles = sceneLocationView.currentEulerAngles,
-           let heading = sceneLocationView.sceneLocationManager.locationManager.heading,
-           let headingAccuracy = sceneLocationView.sceneLocationManager.locationManager.headingAccuracy {
+        if let eulerAngles = sceneLocationView!.currentEulerAngles,
+           let heading = sceneLocationView!.sceneLocationManager.locationManager.heading,
+           let headingAccuracy = sceneLocationView!.sceneLocationManager.locationManager.headingAccuracy {
             let yDegrees = (((0 - eulerAngles.y.radiansToDegrees) + 360).truncatingRemainder(dividingBy: 360) ).short
-//            textLabel.text = "\(yDegrees)° • \(Float(heading).short)° • \(headingAccuracy)°\n \(locality ?? "")"
+            //            textLabel.text = "\(yDegrees)° • \(Float(heading).short)° • \(headingAccuracy)°\n \(locality ?? "")"
             textLabel.text = "\(locality ?? "")"
-//            textLabel.isHidden = true
+            //            textLabel.isHidden = true
         }
     }
     //MARK: ここまでオブジェクトを生成するためのやつだよ -
@@ -737,8 +696,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             
             //振動
             AudioServicesPlaySystemSound(1519)
-//            AudioServicesPlaySystemSound(1001)
-//            AudioServicesPlaySystemSound(1519)
+            //            AudioServicesPlaySystemSound(1001)
+            //            AudioServicesPlaySystemSound(1519)
             // 背景設定
             backView.alpha = 0
             backView.isHidden = false
@@ -752,14 +711,15 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                     self?.moveDefaultButtonPosision()
                     self?.showButton()
                     self?.isSettingShowing = true
-            })
+                })
         }
         
     }
     
     @IBAction func pushPlusButton(_ sender: Any) {
         print("plus 普通のタップ")
-        Goto.CreateNewPost(view: self)
+//        Goto.CreateNewPost(view: self)
+        Goto.CreatePost(view: self)
     }
     
     @objc func backTap(){
@@ -769,7 +729,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                 
                 self?.moveMenuButtonPosision()
                 self?.hiddenButton()
-//                self?.backView.isHidden = true
+                //                self?.backView.isHidden = true
                 self?.backView.alpha = 0
                 self?.isSettingShowing = false
                 self?.plusButton.isHidden = false
@@ -778,13 +738,11 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     @IBAction func pushProfileButton(_ sender: Any) {
         backTap()
-//        Goto.ChatRoom(view: self, image: UIImage(named: "drink")!)
-//        Goto.Profile(view: self)
-        sceneLocationView.removeAllNodes()
+        //        Goto.ChatRoom(view: self, image: UIImage(named: "drink")!)
+        //        Goto.Profile(view: self)
+        sceneLocationView!.removeAllNodes()
         mapView.removeAnnotations(annotationArray)
-//        addNode(latitude: 35.75444876559928, longitude: 139.4811042224357, altitude: 170, imageName: "road",size: CGSize(width: 200, height: 300), pinUse: true, pinName: "road", postId: "test")
-        
-        //35.62473923766413, 139.34178926227506
+        Goto.ProfileViewController(view: self, user: Profile.shared.loginUser)
         
     }
     
@@ -800,28 +758,17 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             print("投稿情報の取得に成功しました。")
             let post = Post(dic: dic,postId: "Uz93q4hTLBHvLUFglhxp")
             print(post.createdAt.dateValue())
-            Goto.ChatRoomView(view: self, image: UIImage(named: "katsu")!, post: post)
+            Goto.ChatRoomView(view: self, image: URL(string: post.rawImageUrl)!, post: post)
         }
         
     }
     
     @IBAction func pushSelectCategory(_ sender: Any) {
         backTap()
-        Goto.DebugView(view: self)
     }
     //MARK: プラスボタンのやつ(90%) -
     
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if let annotations = view.annotation{
-//            print(annotation.accessibilityValue)
-            print(annotations.title!!)
-//            print(view.accessibilityValue)
-//            view.annotation?.description
-            
-            
-        }
-    }
-
+    
     
     
 }
@@ -829,7 +776,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
 extension ARViewController: LNTouchDelegate {
     func annotationNodeTouched(node: AnnotationNode) {
         print("[tapEvent]: ", node.view?.tag as Any)
-        print("[findNodes]: ", sceneLocationView.findNodes(tagged: "drink"))
+        print("[findNodes]: ", sceneLocationView!.findNodes(tagged: "drink"))
         if let nodeView = node.view{
             // Do stuffs with the nodeView
             // ...
@@ -841,22 +788,32 @@ extension ARViewController: LNTouchDelegate {
             // ...
             print("[nodeImage: getName]", nodeImage.accessibilityIdentifier ?? "null")
             
-//            guard let uid = Auth.auth().currentUser?.uid else { return }
-            guard let selectImage = nodeImage.accessibilityIdentifier else { return }
+            //            guard let uid = Auth.auth().currentUser?.uid else { return }
+//            guard let selectImage = nodeImage.accessibilityIdentifier else { return }
+            
+            let input = PostInput(postId: nodeImage.accessibilityIdentifier)
+            postGetter = PostGetter(api: PostFetchAPI(), input: input)
+            postGetter?.fetchData(completion: { response in
+                if case .success(let post) = response {
+                    Goto.ChatRoomView(view: self, image: URL(string: post.rawImageUrl)!, post: post)
+                }else if case .failure(let error) = response {
+                    print(error)
+                }
+            })
             
             //TODO: チャットルームを渡す方法を考える
-            Firestore.firestore().collection("Posts").document(selectImage).getDocument { (snapshot, err) in
-                if let err = err {
-                    print("投稿情報の取得に失敗しました。\(err)")
-                    return
-                }
-                
-                guard let dic = snapshot?.data() else { return }
-                let post = Post(dic: dic, postId: selectImage)
-                Goto.ChatRoomView(view: self, image: node.image!, post: post)
-            }
-//            Goto.ChatRoomView(view: self, image: node.image!, chatroomId: chatroom)
-//            Goto.PostView(view: self, image: node.image!, chatroomId: selectImage)
+//            Firestore.firestore().collection("Posts").document(selectImage).getDocument { (snapshot, err) in
+//                if let err = err {
+//                    print("投稿情報の取得に失敗しました。\(err)")
+//                    return
+//                }
+//
+//                guard let dic = snapshot?.data() else { return }
+//                let post = Post(dic: dic, postId: selectImage)
+//                Goto.ChatRoomView(view: self, image: URL(string: post.rawImageUrl)!, post: post)
+//            }
+            //            Goto.ChatRoomView(view: self, image: node.image!, chatroomId: chatroom)
+            //            Goto.PostView(view: self, image: node.image!, chatroomId: selectImage)
         }
         
     }
@@ -883,23 +840,104 @@ extension ARViewController: SignOutProtocol {
     
 }
 
+extension ARViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
+        }
+        let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier, for: annotation) as! MKMarkerAnnotationView
+        annotationView.displayPriority = .required
+        annotationView.markerTintColor = selectTintColor(annotation) // 色の変更
+        annotationView.accessibilityValue = annotation.subtitle as? String ?? ""
+        return annotationView
+    }
+    
+    private func selectTintColor(_ annotation: MKAnnotation?) -> UIColor? {
+        guard let annotation = annotation as? MKPointAnnotation else { return nil }
+        let colors: [UIColor] = [.systemRed, .systemBlue, .systemYellow, .systemGreen]
+        let index = annotation.title == "削除済み" ? 2 : 0
+        let remainder = index % colors.count
+        return colors[remainder]
+    }
+    
+    //MARK: ピンをタップしたときのイベント
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let annotations = view.annotation{
+            print("accessibilityValue:",view.accessibilityValue)
+            guard let postId = view.accessibilityValue else {
+                return
+            }
+            
+            Firestore.firestore().collection("Posts").document(postId).getDocument {[weak self] (snapshot, err) in
+                if let err = err {
+                    print("投稿情報の取得に失敗しました。\(err)")
+                    return
+                }
+                guard let dic = snapshot?.data() else { return }
+                let post = Post(dic: dic, postId: postId)
+                
+                //TODO: 先に投稿画面に移行してその後非同期で画像を取得しよう
+//                AF.request(post.rawImageUrl).responseImage { [weak self] res in
+//                    switch res.result {
+//                        //画像からURLが取得できた場合
+//                    case .success(let downloadImage):
+//                        Goto.ChatRoomView(view: self!, image: URL(string: post.rawImageUrl)!, post: post)
+//
+//                    case .failure(let error):
+//                        print("IMAGE", error)
+//                        fatalError()
+//                    }
+//                }
+                Goto.ChatRoomView(view: self!, image: URL(string: post.rawImageUrl)!, post: post)
+                
+            }
+            
+            
+        }
+    }
+    
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//
+//        let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier, for: annotation) as! MKMarkerAnnotationView
+//
+//        if annotation is MKUserLocation {
+//            return nil
+//        }
+//
+//        annotationView.displayPriority = .required
+//        //        annotationView.glyphImage = UIImage(named: "katsu")! // SF Symbols の画像を使用
+//        annotationView.glyphImage = nil
+//        annotationView.image = UIImage(named: "katsu")!.reSizeImage(reSize: CGSize(width: 40, height: 40))
+//        return annotationView
+//    }
+    
+    
+}
+
 
 //MARK: 位置情報のやつ
 var flag: Bool = true
 extension ARViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        print(locations.map { $0.coordinate })
+        //        print(locations.map { $0.coordinate })
+        
         if let location = manager.location?.coordinate {
             let center: CLLocationCoordinate2D = .init(latitude: location.latitude, longitude: location.longitude)
-//            mapView.userTrackingMode = .follow
+            //            mapView.userTrackingMode = .follow
             mapView.setUserTrackingMode(MKUserTrackingMode.followWithHeading, animated: true)
+            
             if flag {
+                
+                
                 mapView.region = .init(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
                 mapView.centerCoordinate = center
-                mapView.userTrackingMode = .followWithHeading
+                mapView.userTrackingMode = .none
                 flag.toggle()
+                
             }
+            
         }
     }
 }

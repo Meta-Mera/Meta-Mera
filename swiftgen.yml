@@ -1,0 +1,30 @@
+xcassets:
+  inputs:
+    - MetaMera/Resources/Images.xcassets
+    - MetaMera/Resources/Colors.xcassets
+  outputs:
+    - templateName: swift5
+      output: MetaMera/Generated/Asset.swift
+      params:
+        publicAccess: 1
+    
+#strings:
+#  inputs:
+#    - MetaMera/Resources/en.lproj/Localizable_en.strings
+#    - MetaMera/Resources/ja.lproj/Localizable_ja.strings
+#  outputs:
+#    - templateName: structured-swift5
+#      output: MetaMera/Generated/Strings.swift
+#
+#ib:
+#  inputs:
+#    - MetaMera/Views
+#  outputs:
+#    - templateName: scenes-swift5
+#      output: MetaMera/Generated/StoryboardScenes.swift
+#      params:
+#        ignoreTargetModule: true
+#    - templateName: segues-swift5
+#      output: MetaMera/Generated/StoryboardSegues.swift
+
+
