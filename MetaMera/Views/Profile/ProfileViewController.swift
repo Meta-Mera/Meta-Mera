@@ -135,7 +135,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
             if let userIconImageURL = URL(string: Profile.shared.loginUser.profileImage) {
                 userIconImageView.af.setImage(withURL: userIconImageURL)
             }
-            let headerColor = HeaderColor(rawValue: Profile.shared.loginUser.headerColor)!
+            let headerColor = HeaderColor(rawValue: Profile.shared.loginUser.headerColor) ?? HeaderColor.lightBlue
             headerImageView.setImage(image: headerColor.image, name: "")
         }else {
             if(!user.deleted && !user.ban){
