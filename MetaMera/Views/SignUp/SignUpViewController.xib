@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -30,13 +30,13 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="signupTopbg" translatesAutoresizingMaskIntoConstraints="NO" id="j5T-YA-tT3">
-                    <rect key="frame" x="50" y="204" width="314" height="40"/>
+                    <rect key="frame" x="50" y="160" width="314" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="MHI-B1-NJl"/>
                     </constraints>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="TWZ-0y-VDo">
-                    <rect key="frame" x="60" y="264" width="274" height="50"/>
+                    <rect key="frame" x="60" y="220" width="274" height="50"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="E-mail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JnQ-HJ-CgU">
                             <rect key="frame" x="0.0" y="0.0" width="274" height="20"/>
@@ -67,7 +67,7 @@
                     </subviews>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="UPG-G7-2IU">
-                    <rect key="frame" x="60" y="334" width="274" height="50"/>
+                    <rect key="frame" x="60" y="290" width="274" height="50"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTb-LL-674">
                             <rect key="frame" x="0.0" y="0.0" width="274" height="20"/>
@@ -92,7 +92,7 @@
                                     <color key="textColor" red="0.25490196078431371" green="0.36470588235294116" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="next" textContentType="new-password">
-                                        <passwordRules key="passwordRules" passwordRulesDescriptor="minlength: 6; maxlength: 30; required: lower; required: upper; required: digit; required: [-];"/>
+                                        <passwordRules key="passwordRules" passwordRulesDescriptor="minlength: 8; maxlength: 30; required: lower; required: upper; required: digit; required: [-];"/>
                                     </textInputTraits>
                                 </textField>
                             </subviews>
@@ -100,7 +100,7 @@
                     </subviews>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="DLd-Vp-4j9">
-                    <rect key="frame" x="60" y="404" width="274" height="50"/>
+                    <rect key="frame" x="60" y="360" width="274" height="50"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Confirm Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rww-X4-DzX">
                             <rect key="frame" x="0.0" y="0.0" width="274" height="20"/>
@@ -133,13 +133,13 @@
                     </subviews>
                 </stackView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="signupBottombg" translatesAutoresizingMaskIntoConstraints="NO" id="4CC-6X-3ta">
-                    <rect key="frame" x="50" y="564" width="314" height="40"/>
+                    <rect key="frame" x="50" y="608" width="314" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="pQu-Oe-TRg"/>
                     </constraints>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="GEe-ag-fNe">
-                    <rect key="frame" x="50" y="604" width="314" height="130"/>
+                    <rect key="frame" x="50" y="648" width="314" height="130"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_back_img" translatesAutoresizingMaskIntoConstraints="NO" id="36A-dm-Ysg">
                             <rect key="frame" x="0.0" y="0.0" width="142" height="130"/>
@@ -153,7 +153,7 @@
                     </constraints>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="GAR-9E-pNB">
-                    <rect key="frame" x="60" y="474" width="274" height="50"/>
+                    <rect key="frame" x="60" y="430" width="274" height="50"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5r-3Y-6CD">
                             <rect key="frame" x="0.0" y="0.0" width="274" height="20"/>
