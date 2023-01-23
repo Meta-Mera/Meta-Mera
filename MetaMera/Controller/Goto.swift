@@ -135,6 +135,13 @@ class Goto : UIViewController{
         view.navigationController?.pushViewController(vc, animated: true)
     }
     
+    class func ChangedPasswordViewController(view: UIViewController){
+        print("Goto-ChangedPasswordViewController was called.")
+        let vc = MetaMera.ChangedPasswordViewController()
+        vc.modalPresentationStyle = .fullScreen
+        view.present(vc, animated: true, completion: nil)
+    }
+    
     class func ChangePasswordViewController(view: UIViewController){
         print("Goto-ChangePasswordViewController was called.")
         let vc = MetaMera.ChangePasswordViewController()

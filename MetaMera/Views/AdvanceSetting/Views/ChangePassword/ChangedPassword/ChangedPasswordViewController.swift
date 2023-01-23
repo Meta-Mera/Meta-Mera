@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ChangedPasswordViewController: UIViewController {
 
@@ -14,7 +15,11 @@ class ChangedPasswordViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-
+    
+    @IBAction func pushExitButton(_ sender: Any) {
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+    }
+    
 
     /*
     // MARK: - Navigation

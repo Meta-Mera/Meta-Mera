@@ -21,7 +21,7 @@ class UserModel {
 
         user?.reauthenticate(with: credential) { reslut,err  in
           if let err = err {
-              completion(.failure(NSError(domain: "アカウントの再認証に失敗しました。\(err)", code: 501)))
+              completion(.failure(NSError(domain: "\(err.localizedDescription)", code: 501)))
               return
           } else {
             // User re-authenticated.
@@ -29,8 +29,8 @@ class UserModel {
               return
           }
         }
-        completion(.failure(NSError(domain: "アカウントの再認証に失敗しました。", code: 501)))
-        return
+//        completion(.failure(NSError(domain: "アカウントの再認証に失敗しました。", code: 501)))
+//        return
     }
     
     /// メールアドレス変更
@@ -74,7 +74,7 @@ class UserModel {
                 }
             case .failure(let error):
                 print("\(error)")
-                completion(.failure(NSError(domain: "再認証に失敗しました。", code: 501)))
+                completion(.failure(NSError(domain: "\(error)", code: 501)))
                 return
             }
             
@@ -94,7 +94,7 @@ class UserModel {
             case .success(_):
                 Auth.auth().currentUser?.updatePassword(to: newPassword) { error in
                     if let error = error {
-                        completion(.failure(NSError(domain: "パスワードの更新に失敗しました。\(error)", code: 504)))
+                        completion(.failure(NSError(domain: "\(error.localizedDescription)", code: 504)))
                         print("パスワードの更新に失敗しました。\(error)")
                         return
                     }else {
@@ -113,7 +113,7 @@ class UserModel {
                     }
                 }
             case .failure(let error):
-                print("\(error)")
+                print("\(error.localizedDescription)")
                 completion(.failure(NSError(domain: "再認証に失敗しました。", code: 501)))
                 return
             }

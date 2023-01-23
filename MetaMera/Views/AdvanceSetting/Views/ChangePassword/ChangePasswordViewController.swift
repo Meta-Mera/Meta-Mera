@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import PKHUD
 
 class ChangePasswordViewController: UIViewController {
     
@@ -56,29 +57,61 @@ class ChangePasswordViewController: UIViewController {
             return
         }
         if mailAddress.isEmpty || oldPassword.isEmpty || newPassword.isEmpty || confirmPassword.isEmpty {
-            //TODO: 不備があることを知らせるアラートを表示
+            HUD.flash(.label("入力不備があります。"), delay: 1.0) { _ in
+            }
             return
         }
         
-        if newPassword == confirmPassword {
-            
+        if newPassword.count < 8 {
+            HUD.flash(.label("パスワードは8文字以上にしてください。"), delay: 1.0) { _ in
+            }
+            return
         }
         
+        if newPassword != confirmPassword {
+            HUD.flash(.label("新しいパスワードが一致していません。"), delay: 1.0) { _ in
+            }
+            return
+        }
+        
+        HUD.show(.progress)
         userModel.changePassword(email: mailAddress,
                                  oldPassword: oldPassword,
-                                 newPassword: newPassword) { result in
+                                 newPassword: newPassword) {[weak self] result in
+            
+            guard let `self` = self else { return }
+            
             switch result {
             case .success(_):
-                print("パスワード変更に成功")
-                do {
-                    try Auth.auth().signOut()
-                    Profile.shared.isLogin = false
-                    self.dismiss(animated: true, completion: nil)
-                } catch let signOutError as NSError {
-                    print("Error signing out: %@", signOutError)
+                HUD.hide { (_) in
+                    HUD.flash(.success, onView: self.view, delay: 1) { (_) in
+                        do {
+                            try Auth.auth().signOut()
+                            Profile.shared.isLogin = false
+                            Goto.ChangedPasswordViewController(view: self)
+                        } catch let signOutError as NSError {
+                            print("Error signing out: %@", signOutError)
+                        }
+                    }
                 }
             case .failure(let error):
                 print("パスワード変更に失敗しました。\(error.code)")
+                if(error.localizedDescription.contains("Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later")){
+                    HUD.hide { (_) in
+                        HUD.flash(.label("Access to this account has been temporarily disabled due to many failed login attempts. "), delay: 3.0) { _ in
+                        }
+                    }
+                }else if (error.localizedDescription.contains("The password is invalid or the user does not have a password")) {
+                    HUD.hide { (_) in
+                        HUD.flash(.label("The password is invalid."), delay: 3.0) { _ in
+                        }
+                    }
+                }else {
+                    HUD.hide { (_) in
+                        HUD.flash(.label("\(error.domain)"), delay: 3.0) { _ in
+                        }
+                    }
+                }
             }
         }
         
