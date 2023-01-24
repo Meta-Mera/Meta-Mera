@@ -14,7 +14,12 @@ class WithdrewViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-
+    
+    
+    @IBAction func pushClose(_ sender: Any) {
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+    }
+    
 
     /*
     // MARK: - Navigation

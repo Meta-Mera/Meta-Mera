@@ -49,6 +49,9 @@
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="LeaveAccount_button_close"/>
+                    <connections>
+                        <action selector="pushClose:" destination="-1" eventType="touchUpInside" id="0Iv-Qh-zDT"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meta-Meraの退会手続きが無事終了しました。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SdU-lc-Hn6">
                     <rect key="frame" x="45" y="318" width="303" height="48"/>
