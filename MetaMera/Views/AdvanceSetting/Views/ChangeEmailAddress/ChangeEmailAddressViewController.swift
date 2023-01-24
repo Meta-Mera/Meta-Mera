@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import PKHUD
 
 class ChangeEmailAddressViewController: UIViewController {
     
@@ -73,29 +74,42 @@ class ChangeEmailAddressViewController: UIViewController {
             return
         }
         
-        if email != confirmEmail {
-            print("\(email) != \(confirmEmail)")
+        if email.isEmpty || confirmEmail.isEmpty || password.isEmpty {
+            HUD.flash(.label("入力不備があります。"), delay: 1.0) { _ in
+            }
             return
         }
         
+        if email != confirmEmail {
+            HUD.flash(.label("新しいメールアドレスが一致していません。"), delay: 1.0) { _ in
+            }
+            return
+        }
+        HUD.show(.progress)
         userModel.changeEmail(oldEmail: Profile.shared.loginUser.email, newEmail: email, password: password) { result in
             switch result {
                 
             case .success(_):
                 print("メール変更に成功しました。")
-                Firestore.firestore().collection("Users").document(Profile.shared.loginUser.uid).getDocument { snapshot, error in
-                    if let error = error {
-                        print(error)
+                HUD.hide { (_) in
+                    HUD.flash(.success, onView: self.view, delay: 1) { (_) in
+                        do {
+                            try Auth.auth().signOut()
+                            Profile.shared.isLogin = false
+                            let vc = ChangedEmailAddressViewController()
+                            vc.modalPresentationStyle = .fullScreen
+                            self.present(vc, animated: true, completion: nil)
+                        } catch let signOutError as NSError {
+                            print("Error signing out: %@", signOutError)
+                        }
                     }
-                    guard let dic = snapshot?.data() else { return }
-                    guard let uid = snapshot?.documentID else { return }
-                    let user = User(dic: dic,uid: uid)
-                    Profile.shared.loginUser = user
-                    let vc = ChangedEmailAddressViewController()
-                    self.navigationController?.pushViewController(vc, animated: true)
                 }
                 return
             case .failure(let error):
+                HUD.hide { (_) in
+                    HUD.flash(.label("メールアドレスの変更に失敗しました。\(error.code)"), delay: 3.0) { _ in
+                    }
+                }
                 print("メール変更に失敗",error.code)
                 return
             }

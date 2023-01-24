@@ -16,6 +16,6 @@ class ChangedEmailAddressViewController: UIViewController {
     }
 
     @IBAction func pushCloseButton(_ sender: Any) {
-        navigationController?.popViewControllers(viewsToPop: 2)
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
 }
