@@ -136,22 +136,21 @@ class UserModel {
               return
             // An error happened.
           } else {
-            // User re-authenticated.
-              Auth.auth().currentUser?.delete{ error in
-                  if let error = error {
-                      print("アカウント削除に失敗しました。\(error)")
-                      completion(.failure(NSError(domain: "アカウント削除に失敗しました。\(error)", code: 505)))
-                      return
-                  }else{//TODO: 多分サブコレクションとか消えてくれないよ
-                      Firestore.firestore().collection("Users").document(uid).delete { err in
-                          if let err = err {
-                              print("Firestoreの削除に失敗しました。\(err)")
-                              completion(.failure(NSError(domain: "Firestoreの削除に失敗しました。\(err)", code: 500)))
-                              return
-                          }
-                      }
+              // User re-authenticated.
+              let url = URL(string: "http://18.178.90.17:8000/userdelete/"+Profile.shared.loginUser.uid)
+              let request = URLRequest(url: url!)
+              let session = URLSession.shared
+              session.dataTask(with: request) { (data, response, error) in
+                  if error == nil, let data = data, let response = response as? HTTPURLResponse {
+                      // HTTPヘッダの取得
+                      print("Content-Type: \(response.allHeaderFields["Content-Type"] ?? "")")
+                      // HTTPステータスコード
+                      print("statusCode: \(response.statusCode)")
+                      print(String(data: data, encoding: String.Encoding.utf8) ?? "")
                   }
-              }
+              }.resume()
+              completion(.success(true))
+              return
           }
         }
     }
