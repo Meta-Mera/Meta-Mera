@@ -96,7 +96,6 @@ class ChangeEmailAddressViewController: UIViewController {
                         do {
                             try Auth.auth().signOut()
                             Profile.shared.isLogin = false
-                            Goto.ChangedPasswordViewController(view: self)
                             let vc = ChangedEmailAddressViewController()
                             vc.modalPresentationStyle = .fullScreen
                             self.present(vc, animated: true, completion: nil)

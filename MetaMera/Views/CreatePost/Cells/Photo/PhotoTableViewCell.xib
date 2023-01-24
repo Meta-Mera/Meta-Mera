@@ -37,7 +37,7 @@
                     </imageView>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Y7T-jY-FDq" customClass="PlaceTextView" customModule="MetaMera" customModuleProvider="target">
                         <rect key="frame" x="20" y="460" width="314" height="90"/>
-                        <color key="backgroundColor" red="0.92156863209999995" green="0.91764706370000004" blue="0.92156863209999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.88148356958762886" green="0.88148356958762886" blue="0.88148356958762886" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="90" id="Gfl-SC-pea"/>
                         </constraints>

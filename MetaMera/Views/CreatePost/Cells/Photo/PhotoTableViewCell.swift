@@ -25,6 +25,7 @@ class PhotoTableViewCell: UITableViewCell {
     func configView(){
         limitLabel.text = ""
         commentTextView.layer.borderColor = UIColor.gray.cgColor
+        commentTextView.backgroundColor = UIColor.placeTextViewBackground
         commentTextView.layer.borderWidth = 1.0
         commentTextView.layer.cornerRadius = 10.0
         commentTextView.layer.masksToBounds = true
