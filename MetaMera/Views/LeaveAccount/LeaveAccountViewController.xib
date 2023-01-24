@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LeaveAccountViewController" customModule="MetaMera" customModuleProvider="target">
+            <connections>
+                <outlet property="cancel" destination="3da-tQ-nvh" id="HM4-hv-fHu"/>
+                <outlet property="cancelButton" destination="3da-tQ-nvh" id="o5T-tr-6jx"/>
+                <outlet property="leaveAccount" destination="jXW-O7-saV" id="g4E-UK-q9J"/>
+                <outlet property="leaveAccountButton" destination="jXW-O7-saV" id="sS7-vi-fic"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LeaveAccount_image_background" translatesAutoresizingMaskIntoConstraints="NO" id="dzB-FT-fHc">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LeaveAccount_image_title" translatesAutoresizingMaskIntoConstraints="NO" id="iNB-XC-s50">
+                    <rect key="frame" x="60" y="74" width="273" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="CMz-pl-Cr2"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退会" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xY-Ch-z9x">
+                    <rect key="frame" x="166" y="174" width="61" height="36"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LeaveAccount_image_ruledLine" translatesAutoresizingMaskIntoConstraints="NO" id="YEB-Mf-4Vw">
+                    <rect key="frame" x="96.666666666666686" y="210" width="200" height="10"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="Kz5-j9-SfE"/>
+                        <constraint firstAttribute="height" constant="10" id="g5K-9V-730"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meta-Meraのアカウントを削除し退会手続きを行います。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqR-SQ-Ofy">
+                    <rect key="frame" x="45" y="265" width="303" height="52.666666666666686"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zo2-h1-Gx4">
+                    <rect key="frame" x="45" y="337.66666666666669" width="303" height="79"/>
+                    <string key="text">    - ユーザー名
+    - プロフィール
+    - 今までの投稿内容</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退会後にアカウントを復活させることはできません。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PM9-1A-Dvo">
+                    <rect key="frame" x="45" y="535.66666666666663" width="303" height="52.666666666666629"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meta-Meraのアカウントを削除し退会しますか？" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFV-Ih-Bjn">
+                    <rect key="frame" x="45" y="608.33333333333337" width="303" height="52.666666666666629"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jXW-O7-saV">
+                    <rect key="frame" x="45" y="733" width="120" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="Ink-3w-VT6"/>
+                        <constraint firstAttribute="width" constant="120" id="M4L-PU-A6X"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="LeaveAccount_image_taikai"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3da-tQ-nvh">
+                    <rect key="frame" x="228" y="733" width="120" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="dAp-bh-6WY"/>
+                        <constraint firstAttribute="width" constant="120" id="gPx-tW-Nmd"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="LeaveAccount_button_cancel"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上記の内容はすべて削除され、一切の表示・閲覧をすることができなくなります。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NcI-DH-IAg">
+                    <rect key="frame" x="45" y="436.66666666666669" width="303" height="79.000000000000057"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="iNB-XC-s50" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="0dJ-53-ryD"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3da-tQ-nvh" secondAttribute="trailing" constant="45" id="8NH-Fq-Gcn"/>
+                <constraint firstItem="IFV-Ih-Bjn" firstAttribute="top" secondItem="PM9-1A-Dvo" secondAttribute="bottom" constant="20" id="ATr-Br-ICf"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PM9-1A-Dvo" secondAttribute="trailing" constant="45" id="AYZ-EK-O7I"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="iNB-XC-s50" secondAttribute="trailing" constant="60" id="DLS-wx-erO"/>
+                <constraint firstItem="YEB-Mf-4Vw" firstAttribute="centerX" secondItem="3xY-Ch-z9x" secondAttribute="centerX" id="DOl-Lg-jRs"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="3da-tQ-nvh" secondAttribute="bottom" constant="45" id="Dsv-v4-QGt"/>
+                <constraint firstItem="Zo2-h1-Gx4" firstAttribute="top" secondItem="vqR-SQ-Ofy" secondAttribute="bottom" constant="20" id="FDM-cO-2mV"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="NcI-DH-IAg" secondAttribute="trailing" constant="45" id="H6w-tj-CQF"/>
+                <constraint firstItem="dzB-FT-fHc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="I95-o3-JIW"/>
+                <constraint firstItem="PM9-1A-Dvo" firstAttribute="top" secondItem="NcI-DH-IAg" secondAttribute="bottom" constant="20" id="KEF-BP-cP8"/>
+                <constraint firstItem="NcI-DH-IAg" firstAttribute="top" secondItem="Zo2-h1-Gx4" secondAttribute="bottom" constant="20" id="LG4-v7-6Fo"/>
+                <constraint firstItem="NcI-DH-IAg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="UeE-ff-hCd"/>
+                <constraint firstItem="iNB-XC-s50" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="60" id="aQW-Gc-Poz"/>
+                <constraint firstItem="vqR-SQ-Ofy" firstAttribute="top" secondItem="YEB-Mf-4Vw" secondAttribute="bottom" constant="45" id="b5e-7N-xzW"/>
+                <constraint firstItem="3xY-Ch-z9x" firstAttribute="centerX" secondItem="iNB-XC-s50" secondAttribute="centerX" id="biy-xC-V5U"/>
+                <constraint firstAttribute="trailing" secondItem="dzB-FT-fHc" secondAttribute="trailing" id="dy2-CG-dDv"/>
+                <constraint firstItem="vqR-SQ-Ofy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="fI5-TE-8sk"/>
+                <constraint firstAttribute="bottom" secondItem="dzB-FT-fHc" secondAttribute="bottom" id="fRe-Fc-EMN"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="IFV-Ih-Bjn" secondAttribute="trailing" constant="45" id="gF9-S8-uhJ"/>
+                <constraint firstItem="PM9-1A-Dvo" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="hm6-7o-Ly8"/>
+                <constraint firstItem="jXW-O7-saV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="j6K-l4-qRP"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="vqR-SQ-Ofy" secondAttribute="trailing" constant="45" id="k9m-84-9vy"/>
+                <constraint firstItem="IFV-Ih-Bjn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="kas-V9-r7g"/>
+                <constraint firstItem="iNB-XC-s50" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="lX8-sw-QuN"/>
+                <constraint firstItem="dzB-FT-fHc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="mcx-Ff-VU0"/>
+                <constraint firstItem="3xY-Ch-z9x" firstAttribute="top" secondItem="iNB-XC-s50" secondAttribute="bottom" id="p3Y-Bs-tEs"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Zo2-h1-Gx4" secondAttribute="trailing" constant="45" id="pJO-R0-Upt"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="jXW-O7-saV" secondAttribute="bottom" constant="45" id="t5a-J7-kqQ"/>
+                <constraint firstItem="YEB-Mf-4Vw" firstAttribute="top" secondItem="3xY-Ch-z9x" secondAttribute="bottom" id="yDD-I0-eBK"/>
+                <constraint firstItem="Zo2-h1-Gx4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="yTE-jP-ciJ"/>
+            </constraints>
+            <point key="canvasLocation" x="43.511450381679388" y="20.422535211267608"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="LeaveAccount_button_cancel" width="407" height="137"/>
+        <image name="LeaveAccount_image_background" width="1284" height="2778"/>
+        <image name="LeaveAccount_image_ruledLine" width="626" height="8"/>
+        <image name="LeaveAccount_image_taikai" width="405" height="137"/>
+        <image name="LeaveAccount_image_title" width="983" height="399"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
