@@ -85,21 +85,27 @@ class Goto : UIViewController{
     }
 
     
-    class func CreateNewPost(view: UIViewController){
-        print("Goto-ChatRoomCreate was called.")
-        let vc = UIStoryboard(name: "CreateNewPostViewController", bundle: nil).instantiateViewController(withIdentifier: "CreateNewPostViewController") as! CreateNewPostViewController
-        vc.modalPresentationStyle = .fullScreen
-//        view.present(vc, animated: true, completion: nil)
+//    class func CreateNewPost(view: UIViewController){
+//        print("Goto-ChatRoomCreate was called.")
+//        let vc = UIStoryboard(name: "CreateNewPostViewController", bundle: nil).instantiateViewController(withIdentifier: "CreateNewPostViewController") as! CreateNewPostViewController
+//        vc.modalPresentationStyle = .fullScreen
+////        view.present(vc, animated: true, completion: nil)
+//        view.navigationController?.pushViewController(vc, animated: true)
+//    }
+    
+    class func CreatePost(view: UIViewController){
+        print("Goto-CreatePostViewController was called.")
+        let vc = MetaMera.CreatePostViewController()
         view.navigationController?.pushViewController(vc, animated: true)
     }
     
-    class func DebugView(view: UIViewController){
-        print("Goto-DebugView was called.")
-        let vc = UIStoryboard(name: "DebugViewController", bundle: nil).instantiateViewController(withIdentifier: "DebugViewController") as! DebugViewController
-        vc.modalPresentationStyle = .fullScreen
-//        view.present(vc, animated: true, completion: nil)
-        view.navigationController?.pushViewController(vc, animated: true)
-    }
+//    class func DebugView(view: UIViewController){
+//        print("Goto-DebugView was called.")
+//        let vc = UIStoryboard(name: "DebugViewController", bundle: nil).instantiateViewController(withIdentifier: "DebugViewController") as! DebugViewController
+//        vc.modalPresentationStyle = .fullScreen
+////        view.present(vc, animated: true, completion: nil)
+//        view.navigationController?.pushViewController(vc, animated: true)
+//    }
     
     class func ReportViewController(view: UIViewController, postId: String){
         print("Goto-ReportView was called.")
@@ -127,6 +133,13 @@ class Goto : UIViewController{
         print("Goto-ChangeEmailAddressViewController was called.")
         let vc = MetaMera.ChangeEmailAddressViewController()
         view.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    class func ChangedPasswordViewController(view: UIViewController){
+        print("Goto-ChangedPasswordViewController was called.")
+        let vc = MetaMera.ChangedPasswordViewController()
+        vc.modalPresentationStyle = .fullScreen
+        view.present(vc, animated: true, completion: nil)
     }
     
     class func ChangePasswordViewController(view: UIViewController){

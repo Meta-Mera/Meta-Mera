@@ -72,6 +72,15 @@ class SignUpModel {
                 }
                 print("登録に成功しました")
                 
+                FirebaseManager.user.document(id: "Counter").updateData([
+                    "limited": FieldValue.increment(Int64(1))
+                ]){ err in
+                    if let err = err {
+                        print("Firestoreの更新に失敗しました。\(err)")
+                    }
+                }
+                
+                
                 userRef.getDocument { (snapshot, err) in
                     if let err = err {
                         completion(.failure(NSError(domain: "ユーザ情報の取得に失敗しました。\(err)", code: 109)))

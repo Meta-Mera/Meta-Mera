@@ -39,7 +39,7 @@ extension UIColor {
     //投稿画面背景色
     public static var chatRoomBackground: UIColor {
         return dynamicColor(
-            light: .rgb(red: 255, green: 255, blue: 255),
+            light: .clear,
             dark: .rgb(red: 0, green: 0, blue: 0)
         )
     }
@@ -55,9 +55,15 @@ extension UIColor {
     //コメントの背景色
     public static var chatTextBackground: UIColor {
         return dynamicColor(
-            light: .rgb(red: 255, green: 255, blue: 255),
-            dark: .rgb(red: 0, green: 0, blue: 0)
+            light: .clear,
+            dark: .clear
         )
+    }
+    
+    public static var placeTextViewBackground: UIColor {
+        return dynamicColor(
+            light: .rgb(red: 255, green: 255, blue: 255),
+            dark: .rgb(red: 100, green: 100, blue: 100))
     }
     
     //コメントの文字色

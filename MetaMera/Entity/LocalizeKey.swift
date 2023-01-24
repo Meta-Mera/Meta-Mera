@@ -15,6 +15,8 @@ enum LocalizeKey: String {
     //共用
     case report
     case cancel
+    case change
+    case password
     
     //通報
     case spam
@@ -55,6 +57,13 @@ enum LocalizeKey: String {
     case notificationSettingsDescription
     case contactDescription
     case withdrawalFromMetaMeraDescription
+    
+    //メールアドレス変更
+    case nowEmail
+    case emailDescription
+    case newEmail
+    case confirmEmail
+    case changeEmailTitle
     
     
     // selfの値をローカライズして返す

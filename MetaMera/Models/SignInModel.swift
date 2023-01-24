@@ -47,24 +47,29 @@ class SignInModel {
                     } else if let token = token {
                         guard let dic = userSnapshot?.data() else { return }
                         let user = User(dic: dic,uid: uid)
-                        Profile.shared.loginUser = user
-//                        var firebaseTokens = user.tokens
-                        let doc = Firestore.firestore().collection("Users").document(Profile.shared.loginUser.uid)
-//                        doc.collection("tokens").addDocument(data: [token ®: token])
-                        doc.collection("tokens").document(token).setData([token:token]) { err in
-                            if let err = err {
-                                print("Error writing document: \(err)")
-                            } else {
-                                print("Document successfully written!")
+                        if user.deleted || user.ban {
+                            completion(.failure(NSError(domain: "ユーザーが削除もしくはSignIn制限がされています。", code: 209)))
+                        }else {
+                            Profile.shared.loginUser = user
+    //                        var firebaseTokens = user.tokens
+                            let doc = Firestore.firestore().collection("Users").document(Profile.shared.loginUser.uid)
+    //                        doc.collection("tokens").addDocument(data: [token ®: token])
+                            doc.collection("tokens").document(token).setData([token:token]) { err in
+                                if let err = err {
+                                    print("Error writing document: \(err)")
+                                } else {
+                                    print("Document successfully written!")
+                                }
                             }
+                            Messaging.messaging().subscribe(toTopic: "debugUser") { error in
+                              print("Subscribed to debugUser topic")
+                            }
+                            Messaging.messaging().subscribe(toTopic: uid) { error in
+                                print("Subscribed to \(uid) topic")
+                            }
+                            completion(.success(true))
+                            return
                         }
-                        Messaging.messaging().subscribe(toTopic: "debugUser") { error in
-                          print("Subscribed to debugUser topic")
-                        }
-                        Messaging.messaging().subscribe(toTopic: uid) { error in
-                            print("Subscribed to \(uid) topic")
-                        }
-                        
                         
                         
 //                        message = messaging.Message(
@@ -75,8 +80,6 @@ class SignInModel {
 //                            topic='debugUser',
 //                        )
                         
-                        completion(.success(true))
-                        return
                     }
                 }
             }

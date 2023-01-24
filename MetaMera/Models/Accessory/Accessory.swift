@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Firebase
 import FirebaseStorage
+import Photos
 
 class Accessory {
     
@@ -88,10 +89,10 @@ class Accessory {
     ///   失敗すれば：.failure()でエラー内容が返ってくる
     func savePostImageToFireStorege(selectedImage: UIImage, fileName : String, completion: @escaping(Result<(String, String), NSError>) -> Void){
         //画像を圧縮する
-        guard let uploadImage = selectedImage.jpegData(compressionQuality: 0.5) else { return }
+        guard let uploadImage = selectedImage.jpegData(compressionQuality: 0.3) else { return }
         
         //加工用画像用
-        let storageEditRef = Storage.storage().reference().child("Posts").child("edit").child(fileName)
+//        let storageEditRef = Storage.storage().reference().child("Posts").child("edit").child(fileName)
         //生データ用
         let storageRawRef = Storage.storage().reference().child("Posts").child("raw").child(fileName)
         
@@ -101,48 +102,28 @@ class Accessory {
         //jpegって教えてあげる
         metaData.contentType = "image/jpeg"
         
-        //加工用画像を保存していく
-        storageEditRef.putData(uploadImage, metadata: metaData) { (metadata, err) in
+        //生画像を保存していく
+        storageRawRef.putData(uploadImage, metadata: metaData) { (metadata, err) in
             if let err = err{//保存に失敗
-                completion(.failure(NSError(domain: "firestorageへ加工用画像の保存に失敗\(err)", code: 802)))
+                completion(.failure(NSError(domain: "firestorageへ生画像の保存に失敗\(err)", code: 804)))
                 return
             }
-            //保存成功
-            print("EditFileに保存成功")
+            //保存に成功
+            print("RawFileに保存成功")
             
             //URLを取得
-            storageEditRef.downloadURL {(editUrl, err) in
-                if let err = err {//取得に失敗
-                    completion(.failure(NSError(domain: "firestorageからEditURLの取得に失敗しました。\(err)", code: 803)))
+            storageRawRef.downloadURL { (rawUrl, err) in
+                if let err = err {//取得できなかった
+                    completion(.failure(NSError(domain: "firestorageからrawURLの取得に失敗しました。\(err)", code: 805)))
                     return
                 }
                 //取得に成功したからURLをString型に変更
-                guard let editUrlString = editUrl?.absoluteString else { return }
+                guard let rawUrlString = rawUrl?.absoluteString else { return }
                 
-                //生画像を保存していく
-                storageRawRef.putData(uploadImage, metadata: metaData) { (metadata, err) in
-                    if let err = err{//保存に失敗
-                        completion(.failure(NSError(domain: "firestorageへ生画像の保存に失敗\(err)", code: 804)))
-                        return
-                    }
-                    //保存に成功
-                    print("RawFileに保存成功")
-                    
-                    //URLを取得
-                    storageRawRef.downloadURL { (rawUrl, err) in
-                        if let err = err {//取得できなかった
-                            completion(.failure(NSError(domain: "firestorageからrawURLの取得に失敗しました。\(err)", code: 805)))
-                            return
-                        }
-                        //取得に成功したからURLをString型に変更
-                        guard let rawUrlString = rawUrl?.absoluteString else { return }
-                        
-                        //二つのURLを渡す
-                        completion(.success((editUrlString, rawUrlString)))
-                        return
-                        
-                    }
-                }
+                //二つのURLを渡す
+                completion(.success((rawUrlString, rawUrlString)))
+                return
+                
             }
         }
     }
@@ -159,6 +140,80 @@ class Accessory {
             }
             print("更新成功")
             
+        }
+        
+    }
+    
+    func photoRequestAuthorization(){
+        if #available(iOS 14.0, *) {
+            PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
+                switch status {
+                case .authorized:
+                    print("許可ずみ")
+                    break
+                case .limited:
+                    print("制限あり")
+                    break
+                case .denied:
+                    print("拒否ずみ")
+                    break
+                default:
+                    break
+                }
+            }
+        }else  {
+            if PHPhotoLibrary.authorizationStatus() != .authorized {
+                PHPhotoLibrary.requestAuthorization { status in
+                    if status == .authorized {
+                        print("許可ずみ")
+                    } else if status == .denied {
+                        print("拒否ずみ")
+                    }
+                }
+            } else {
+                
+            }
+        }
+    }
+    
+    func checkAuthorizationStatus(view: UIViewController) -> PHAuthorizationStatus{
+        // 権限
+        let authPhotoLibraryStatus = PHPhotoLibrary.authorizationStatus()
+        // authPhotoLibraryStatus = .authorized : 許可
+        //                        = .limited    : 選択した画像のみ
+        //                        = .denied     : 拒否
+        
+        if authPhotoLibraryStatus == .limited  || authPhotoLibraryStatus == .denied{
+            
+            //アラートの設定
+            let alert = UIAlertController(title: "Failed to save image", message: "Allow this app to access Photos.", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "Enable photos access", style: .default) { (action) in
+                //設定を開く
+                if let settingURL = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.canOpenURL(settingURL)
+                    UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
+                }
+            }
+            let cancel = UIAlertAction(title: "cancel", style: .cancel) { (acrion) in
+//                self.dismiss(animated: true, completion: nil)
+            }
+            
+            //アラートの下にあるボタンを追加
+            alert.addAction(cancel)
+            alert.addAction(ok)
+            //アラートの表示
+            view.present(alert, animated: true, completion: nil)
+            
+        }
+        return authPhotoLibraryStatus
+    }
+    
+    func openPhotoLibrary(view: UIViewController,imagePicker: UIImagePickerController){
+        photoRequestAuthorization()
+        // 権限
+        let authPhotoLibraryStatus = checkAuthorizationStatus(view: view)
+        if authPhotoLibraryStatus == .authorized {
+            view.present(imagePicker, animated: true)    // カメラロール起動
         }
         
     }

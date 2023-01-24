@@ -89,7 +89,7 @@ class SignInViewController: UIViewController {
                 
             case .failure(let error): //Sign in 失敗
                 HUD.hide { (_) in
-                    HUD.flash(.label(error.domain), delay: 1.0) { _ in
+                    HUD.flash(.label(error.domain), delay: 3.0) { _ in
                         print(error)
                     }
                 }

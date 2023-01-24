@@ -22,6 +22,9 @@ import AlamofireImage
 
 class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate {
     
+    // Models
+    private var postGetter: PostGetter<PostFetchAPI, PostInput>?
+    
     //AR系
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var contentView: UIView!
@@ -52,7 +55,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     var updateInfoLabelTimer: Timer?
     
     //AR系2
-    var sceneLocationView = SceneLocationView()
+    var sceneLocationView: SceneLocationView? = SceneLocationView()
     var locationManager = CLLocationManager()
     
     //投稿リスト
@@ -61,12 +64,18 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     //市区町村名とか
     var locality : String?
     
+    deinit {
+        sceneLocationView = nil
+        locationManager.stopUpdatingLocation()
+//        locationManager = nil
+    }
     
     
     
     //MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        sceneLocationView! = SceneLocationView()
         
         posts = [Post]()
         
@@ -125,11 +134,11 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         
         
-        sceneLocationView.showAxesNode = false
-        sceneLocationView.locationNodeTouchDelegate = self
-        sceneLocationView.arViewDelegate = self
-        sceneLocationView.locationNodeTouchDelegate = self
-        sceneLocationView.orientToTrueNorth = false
+        sceneLocationView!.showAxesNode = false
+        sceneLocationView!.locationNodeTouchDelegate = self
+        sceneLocationView!.arViewDelegate = self
+        sceneLocationView!.locationNodeTouchDelegate = self
+        sceneLocationView!.orientToTrueNorth = false
         
         
         
@@ -144,9 +153,9 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         mapView.addAnnotation(pin)
         
         
-        contentView.addSubview(sceneLocationView)
+        contentView.addSubview(sceneLocationView!)
         
-        sceneLocationView.frame = .zero
+        sceneLocationView!.frame = .zero
         
         updateInfoLabelTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
             self?.updateInfoLabel()
@@ -219,7 +228,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        sceneLocationView.frame = view.bounds
+        sceneLocationView!.frame = view.bounds
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -390,16 +399,16 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     //MARK: ARを止めるよ！
     func pauseAnimation() {
         print("pause")
-        sceneLocationView.pause()
+        sceneLocationView!.pause()
     }
     
     //MARK: ARを再開するよ！
     func restartAnimation() {
-        sceneLocationView.isPlaying = true
+        sceneLocationView!.isPlaying = true
         DispatchQueue.main.async { [weak self] in
             
             print("run")
-            self?.sceneLocationView.run()
+            self?.sceneLocationView!.run()
         }
     }
     
@@ -425,7 +434,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                     imageStyle = CGSize(width: 300, height: 300)
                     break
                 case 2:
-                    imageStyle = CGSize(width: 400, height: 300)
+                    imageStyle = CGSize(width: 600, height: 400)
                     break
                 case 3:
                     imageStyle = CGSize(width: 300, height: 400)
@@ -451,9 +460,9 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     //MARK: まだ勉強してるよ！
     func addSceneModels() {
         // 1. Don't try to add the models to the scene until we have a current location
-        guard sceneLocationView.sceneLocationManager.currentLocation != nil else {
+        guard sceneLocationView!.sceneLocationManager.currentLocation != nil else {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                self?.addSceneModels()
+//                self?.addSceneModels()
             }
             return
         }
@@ -461,11 +470,12 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         buildPostData { [weak self] nodes in
             nodes.forEach {
-                self?.sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0)
+                self?.sceneLocationView!.addLocationNodeWithConfirmedLocation(locationNode: $0)
+                self?.sceneLocationView!.moveSceneHeadingAntiClockwise()
                 
             }
         }
-        sceneLocationView.autoenablesDefaultLighting = true
+        sceneLocationView!.autoenablesDefaultLighting = true
         
         
     }
@@ -549,11 +559,12 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                 
                 //Nodeを生成
                 let annotationNode = LocationAnnotationNode(location: location, image: image)
+                annotationNode.scaleRelativeToDistance = true
                 completion(annotationNode)
                 
             case .failure(let error):
                 print("IMAGE", error)
-                fatalError()
+//                fatalError()
             }
         }
     }
@@ -615,9 +626,9 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     @objc
     func updateInfoLabel() {
-        if let eulerAngles = sceneLocationView.currentEulerAngles,
-           let heading = sceneLocationView.sceneLocationManager.locationManager.heading,
-           let headingAccuracy = sceneLocationView.sceneLocationManager.locationManager.headingAccuracy {
+        if let eulerAngles = sceneLocationView!.currentEulerAngles,
+           let heading = sceneLocationView!.sceneLocationManager.locationManager.heading,
+           let headingAccuracy = sceneLocationView!.sceneLocationManager.locationManager.headingAccuracy {
             let yDegrees = (((0 - eulerAngles.y.radiansToDegrees) + 360).truncatingRemainder(dividingBy: 360) ).short
             //            textLabel.text = "\(yDegrees)° • \(Float(heading).short)° • \(headingAccuracy)°\n \(locality ?? "")"
             textLabel.text = "\(locality ?? "")"
@@ -707,7 +718,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     @IBAction func pushPlusButton(_ sender: Any) {
         print("plus 普通のタップ")
-        Goto.CreateNewPost(view: self)
+//        Goto.CreateNewPost(view: self)
+        Goto.CreatePost(view: self)
     }
     
     @objc func backTap(){
@@ -728,7 +740,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         backTap()
         //        Goto.ChatRoom(view: self, image: UIImage(named: "drink")!)
         //        Goto.Profile(view: self)
-        sceneLocationView.removeAllNodes()
+        sceneLocationView!.removeAllNodes()
         mapView.removeAnnotations(annotationArray)
         Goto.ProfileViewController(view: self, user: Profile.shared.loginUser)
         
@@ -753,7 +765,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     @IBAction func pushSelectCategory(_ sender: Any) {
         backTap()
-        Goto.DebugView(view: self)
     }
     //MARK: プラスボタンのやつ(90%) -
     
@@ -765,7 +776,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
 extension ARViewController: LNTouchDelegate {
     func annotationNodeTouched(node: AnnotationNode) {
         print("[tapEvent]: ", node.view?.tag as Any)
-        print("[findNodes]: ", sceneLocationView.findNodes(tagged: "drink"))
+        print("[findNodes]: ", sceneLocationView!.findNodes(tagged: "drink"))
         if let nodeView = node.view{
             // Do stuffs with the nodeView
             // ...
@@ -778,19 +789,29 @@ extension ARViewController: LNTouchDelegate {
             print("[nodeImage: getName]", nodeImage.accessibilityIdentifier ?? "null")
             
             //            guard let uid = Auth.auth().currentUser?.uid else { return }
-            guard let selectImage = nodeImage.accessibilityIdentifier else { return }
+//            guard let selectImage = nodeImage.accessibilityIdentifier else { return }
+            
+            let input = PostInput(postId: nodeImage.accessibilityIdentifier)
+            postGetter = PostGetter(api: PostFetchAPI(), input: input)
+            postGetter?.fetchData(completion: { response in
+                if case .success(let post) = response {
+                    Goto.ChatRoomView(view: self, image: URL(string: post.rawImageUrl)!, post: post)
+                }else if case .failure(let error) = response {
+                    print(error)
+                }
+            })
             
             //TODO: チャットルームを渡す方法を考える
-            Firestore.firestore().collection("Posts").document(selectImage).getDocument { (snapshot, err) in
-                if let err = err {
-                    print("投稿情報の取得に失敗しました。\(err)")
-                    return
-                }
-                
-                guard let dic = snapshot?.data() else { return }
-                let post = Post(dic: dic, postId: selectImage)
-                Goto.ChatRoomView(view: self, image: URL(string: post.rawImageUrl)!, post: post)
-            }
+//            Firestore.firestore().collection("Posts").document(selectImage).getDocument { (snapshot, err) in
+//                if let err = err {
+//                    print("投稿情報の取得に失敗しました。\(err)")
+//                    return
+//                }
+//
+//                guard let dic = snapshot?.data() else { return }
+//                let post = Post(dic: dic, postId: selectImage)
+//                Goto.ChatRoomView(view: self, image: URL(string: post.rawImageUrl)!, post: post)
+//            }
             //            Goto.ChatRoomView(view: self, image: node.image!, chatroomId: chatroom)
             //            Goto.PostView(view: self, image: node.image!, chatroomId: selectImage)
         }
