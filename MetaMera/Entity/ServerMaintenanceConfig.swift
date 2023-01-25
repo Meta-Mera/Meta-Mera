@@ -18,3 +18,9 @@ struct newRegistrationRestrictionsConfig: Codable {
     let limit: Int
 }
 
+struct updateInfoConfig: Codable {
+    let updateInfo: Bool
+    let current_version: String
+    let title: String
+    let message: String
+}

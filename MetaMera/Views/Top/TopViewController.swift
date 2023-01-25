@@ -26,6 +26,7 @@ class TopViewController: UIViewController {
     var remoteConfigBool = false
     var remoteConfigLimit = 100
     var firstCheck = true
+    var newest = false
     
     
     override func viewDidLoad() {
@@ -176,14 +177,29 @@ class TopViewController: UIViewController {
                 }
             }
         }
-        
-
-        
     }
+    
     @objc func PushSignIn(_ sender: Any) {
-        check{[weak self] isMaintenance in
-            if !isMaintenance {
-                self?.autoLogin()
+        let defaultAction = UIAlertAction(
+            title: "閉じる",
+            style: .default
+        )
+        let alert = AlartManager.shared.setting(
+            title: "お知らせ",
+            message: "最新のバージョンが存在しています。\n至急、バージョンアップをお願いします。",
+            style: .alert,
+            actions: [defaultAction]
+        )
+        updateCheck{ [weak self] result in
+            if result {
+                self?.present(alert, animated: true)
+                return
+            }else {
+                self?.check{ isMaintenance in
+                    if !isMaintenance {
+                        self?.autoLogin()
+                    }
+                }
             }
         }
     }
@@ -224,6 +240,19 @@ class TopViewController: UIViewController {
         )
     }
     
+    func updateCheck(completion: ((Bool) -> Void)? = nil){
+        let localVersionString = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        RemoteConfigClient.shared.fetchUpdateInfoConfig(
+            succeeded: { [weak self] config in
+                self?.newest = localVersionString != config.current_version
+                completion?(localVersionString != config.current_version)
+            },failed: { [weak self] errorMessage in
+                self?.newest = false
+                completion?(false)
+            }
+        )
+    }
+    
 //    var authListener
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -231,20 +260,36 @@ class TopViewController: UIViewController {
     }
     
     func TESTautoLogin(){
-        check{[weak self] isMaintenance in
-            if !isMaintenance {
-                Auth.auth().addStateDidChangeListener {[weak self] auth, user in
-                    if user != nil{
-                        DispatchQueue.main.async {
-                            self?.signInModel.signIn(user: user!) {result in
-                                switch result{
-                                case .success(_): //Sign in 成功
-                                    Goto.ARView(view: self!)
-                                    break
-                                case .failure(_): //Sign in 失敗
-                                    break
+        let defaultAction = UIAlertAction(
+            title: "閉じる",
+            style: .default
+        )
+        let alert = AlartManager.shared.setting(
+            title: "お知らせ",
+            message: "最新のバージョンが存在しています。\n至急、バージョンアップをお願いします。",
+            style: .alert,
+            actions: [defaultAction]
+        )
+        updateCheck{ [weak self] result in
+            if result {
+                
+            }else {
+                self?.check{ isMaintenance in
+                    if !isMaintenance {
+                        Auth.auth().addStateDidChangeListener {[weak self] auth, user in
+                            if user != nil{
+                                DispatchQueue.main.async {
+                                    self?.signInModel.signIn(user: user!) {result in
+                                        switch result{
+                                        case .success(_): //Sign in 成功
+                                            Goto.ARView(view: self!)
+                                            break
+                                        case .failure(_): //Sign in 失敗
+                                            break
+                                        }
+                                        
+                                    }
                                 }
-                                
                             }
                         }
                     }
