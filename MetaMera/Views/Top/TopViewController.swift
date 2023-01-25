@@ -80,7 +80,11 @@ class TopViewController: UIViewController {
         }
         
         #if RELEASE
-        check()
+//        updateCheck{[weak self] result in
+//            if !result {
+//                self?.check()
+//            }
+//        }
         TESTautoLogin()
         #endif
 
@@ -139,40 +143,53 @@ class TopViewController: UIViewController {
             title: "閉じる",
             style: .default
         )
-        let alert = AlartManager.shared.setting(
-            title: "新規登録一時停止中",
-            message: "大変申し訳ありませんが、ただいま一時的に新規登録を停止させていただいております。再開までもうしばらくお待ちください。",
+        let updateAlert = AlartManager.shared.setting(
+            title: "お知らせ",
+            message: "最新のバージョンが存在しています。\n至急、バージョンアップをお願いします。",
             style: .alert,
             actions: [defaultAction]
         )
-        check{[weak self] isMaintenance in
-            if !isMaintenance {//メンテナンス中ではない
-                self?.createAccountCheck { [weak self] limitCheck in
-                    if(!(self?.maintenance ?? true) && (self?.createAccountBool ?? false) && !limitCheck){
-                        //メンテナンス中でなく、新規登録も許可されていて、制限未満の場合
-                        if (self?.firstCheck ?? true){//初回チェック
-                            self?.createAccount { [weak self] isCountRange in
-                                if let me = self, isCountRange {
-                                    // アカウント作成可
-                                    // サインアップへ遷移
-                                    Goto.SignUp(view: me)
-                                }else {
-                                    // アカウント作成不可
-                                    // アラート表示
-                                    self?.present(alert, animated: true)
+        updateCheck{ [weak self] result in
+            if result {
+                self?.present(updateAlert, animated: true)
+                return
+            }else {
+                let alert = AlartManager.shared.setting(
+                    title: "新規登録一時停止中",
+                    message: "大変申し訳ありませんが、ただいま一時的に新規登録を停止させていただいております。再開までもうしばらくお待ちください。",
+                    style: .alert,
+                    actions: [defaultAction]
+                )
+                self?.check{[weak self] isMaintenance in
+                    if !isMaintenance {//メンテナンス中ではない
+                        self?.createAccountCheck { [weak self] limitCheck in
+                            if(!(self?.maintenance ?? true) && (self?.createAccountBool ?? false) && !limitCheck){
+                                //メンテナンス中でなく、新規登録も許可されていて、制限未満の場合
+                                if (self?.firstCheck ?? true){//初回チェック
+                                    self?.createAccount { [weak self] isCountRange in
+                                        if let me = self, isCountRange {
+                                            // アカウント作成可
+                                            // サインアップへ遷移
+                                            Goto.SignUp(view: me)
+                                        }else {
+                                            // アカウント作成不可
+                                            // アラート表示
+                                            self?.present(alert, animated: true)
+                                        }
+                                        self?.firstCheck = false //次からはFirestoreへユーザー数を取得しない
+                                    }
+                                }else{//2回目移行
+                                    if let me = self {
+                                        // サインアップへ遷移
+                                        Goto.SignUp(view: me)
+                                    }
                                 }
-                                self?.firstCheck = false //次からはFirestoreへユーザー数を取得しない
                             }
-                        }else{//2回目移行
-                            if let me = self {
-                                // サインアップへ遷移
-                                Goto.SignUp(view: me)
+                            if (!(self?.createAccountBool ?? false) || limitCheck || (self?.maintenance ?? true)){
+                                //新規登録できないことをユーザーに表示
+                                self?.present(alert, animated: true)
                             }
                         }
-                    }
-                    if (!(self?.createAccountBool ?? false) || limitCheck || (self?.maintenance ?? true)){
-                        //新規登録できないことをユーザーに表示
-                        self?.present(alert, animated: true)
                     }
                 }
             }
@@ -248,7 +265,7 @@ class TopViewController: UIViewController {
                 completion?(localVersionString != config.current_version)
             },failed: { [weak self] errorMessage in
                 self?.newest = false
-                completion?(false)
+                completion?(true)
             }
         )
     }
@@ -272,7 +289,7 @@ class TopViewController: UIViewController {
         )
         updateCheck{ [weak self] result in
             if result {
-                
+                self?.present(alert, animated: true, completion: nil)
             }else {
                 self?.check{ isMaintenance in
                     if !isMaintenance {
