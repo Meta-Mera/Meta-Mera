@@ -28,8 +28,8 @@ class ChangePasswordViewController: UIViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-            view.endEditing(true)
-        }
+        view.endEditing(true)
+    }
     
     func configView(){
         mailAddressTextField.text = Profile.shared.loginUser.email

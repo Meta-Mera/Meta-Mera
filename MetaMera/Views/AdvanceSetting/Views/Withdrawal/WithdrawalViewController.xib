@@ -83,7 +83,7 @@
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="LeaveAccount_image_taikai"/>
                     <connections>
-                        <action selector="pushWithdrawal:" destination="-1" eventType="touchUpInside" id="Go5-SN-yAf"/>
+                        <action selector="pushNextButton:" destination="-1" eventType="touchUpInside" id="yUM-mr-sCW"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWO-rb-Jkm">
@@ -94,15 +94,21 @@
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="LeaveAccount_button_cancel"/>
+                    <connections>
+                        <action selector="pushCancelButton:" destination="-1" eventType="touchUpInside" id="ytW-F1-OHh"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bqV-BX-xhb">
-                    <rect key="frame" x="15" y="16" width="18" height="26"/>
+                    <rect key="frame" x="15" y="75" width="18" height="26"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="18" id="3tG-yk-qtC"/>
                         <constraint firstAttribute="width" secondItem="bqV-BX-xhb" secondAttribute="height" multiplier="9:13" id="Z4v-zN-D8h"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="back_button"/>
+                    <connections>
+                        <action selector="pushBackButon:" destination="-1" eventType="touchUpInside" id="UaD-3A-FVw"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -122,7 +128,7 @@
                 <constraint firstItem="LWB-7h-Jsg" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="F59-ac-qe3"/>
                 <constraint firstItem="UP8-Ol-PyN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="FPx-xf-eNJ"/>
                 <constraint firstAttribute="trailing" secondItem="HbK-kP-jz6" secondAttribute="trailing" constant="45" id="FYx-8I-J0A"/>
-                <constraint firstItem="bqV-BX-xhb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="16" id="Jar-rF-qfK"/>
+                <constraint firstItem="bqV-BX-xhb" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="Jar-rF-qfK"/>
                 <constraint firstItem="ljE-KK-f8t" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="60" id="JvD-Pb-h0W"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="UWO-rb-Jkm" secondAttribute="trailing" constant="45" id="M3H-XU-Kne"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="UWO-rb-Jkm" secondAttribute="bottom" constant="45" id="Myv-Jt-Uqu"/>
