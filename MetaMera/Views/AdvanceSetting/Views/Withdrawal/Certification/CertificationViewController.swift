@@ -6,24 +6,85 @@
 //
 
 import UIKit
+import PKHUD
 
 class CertificationViewController: UIViewController {
-
+    
+    @IBOutlet weak var mailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        configView()
     }
+    
+    func configView(){
+        mailTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
+        passwordTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        mailTextField.delegate = self
+        passwordTextField.delegate = self
+        
+        mailTextField.attributedPlaceholder = NSAttributedString(string: "　example@meta-mera.com", attributes: [NSAttributedString.Key.foregroundColor: UIColor.textFieldPlaceholderColor])
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "　Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.textFieldPlaceholderColor])
     }
-    */
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    let withdrawalModel = WithdrawalModel()
+    
+    @IBAction func nextButton(_ sender: Any) {
+        
+        guard let email = mailTextField.text,
+              let password = passwordTextField.text else {return}
+        
+        if email.isEmpty || password.isEmpty {
+            print("不備あり")
+            HUD.flash(.label("入力不備があります。"), delay: 2)
+            return
+        }
+        
+        let cancel = UIAlertAction(
+            title: "Cancel",
+            style: .cancel
+        )
+        let defaultAction = UIAlertAction(
+            title: "退会",
+            style: .destructive) { alearAction in
+                self.withdrawalModel.withdrawal(view: self, email: email, password: password)
+            }
+        let alert = AlartManager.shared.setting(
+            title: "退会処理",
+            message: "この処理は取り消すことができません。退会処理を実行してよろしいですか？",
+            style: .alert,
+            actions: [cancel,defaultAction]
+        )
+        self.present(alert, animated: true)
+    }
+    
+    
+    @IBAction func pushCancel(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 
+}
+
+extension CertificationViewController: UITextFieldDelegate {
+
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //今フォーカスが当たっているテキストボックスからフォーカスを外す
+        textField.resignFirstResponder()
+        //次のTag番号を持っているテキストボックスがあれば、フォーカスする
+        let nextTag = textField.tag + 1
+        if let nextTextField: UITextField = self.view.viewWithTag(nextTag) as? UITextField {
+            nextTextField.becomeFirstResponder()
+        }
+        return true
+    }
+    
 }
