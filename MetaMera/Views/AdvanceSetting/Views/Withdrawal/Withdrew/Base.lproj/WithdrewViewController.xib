@@ -25,7 +25,7 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LeaveAccount_image_background" translatesAutoresizingMaskIntoConstraints="NO" id="9Il-m0-Qoj">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book" translatesAutoresizingMaskIntoConstraints="NO" id="9Il-m0-Qoj">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LeaveAccount_image_title" translatesAutoresizingMaskIntoConstraints="NO" id="4Cd-Bo-MI8">
@@ -107,9 +107,9 @@
         </view>
     </objects>
     <resources>
-        <image name="LeaveAccount_image_background" width="1284" height="2778"/>
         <image name="LeaveAccount_image_ruledLine" width="626" height="8"/>
         <image name="LeaveAccount_image_title" width="983" height="399"/>
+        <image name="book" width="1284" height="2778"/>
         <image name="button_gray(S)" width="405" height="137"/>
         <namedColor name="color">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

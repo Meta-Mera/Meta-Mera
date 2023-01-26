@@ -19,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChangeMailAddress_background" translatesAutoresizingMaskIntoConstraints="NO" id="ztw-zh-oe4">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book" translatesAutoresizingMaskIntoConstraints="NO" id="ztw-zh-oe4">
                     <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChangeMailAddress_icon" translatesAutoresizingMaskIntoConstraints="NO" id="obl-Fx-XV8">
@@ -100,10 +100,10 @@
         </view>
     </objects>
     <resources>
-        <image name="ChangeMailAddress_background" width="1284" height="2778"/>
         <image name="ChangeMailAddress_button" width="660" height="171"/>
         <image name="ChangeMailAddress_icon" width="1011" height="447"/>
         <image name="ChangeMailAddress_ruledline" width="626" height="8"/>
+        <image name="book" width="1284" height="2778"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -20,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LeaveAccount_image_background" translatesAutoresizingMaskIntoConstraints="NO" id="UP8-Ol-PyN">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book" translatesAutoresizingMaskIntoConstraints="NO" id="UP8-Ol-PyN">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LeaveAccount_image_title" translatesAutoresizingMaskIntoConstraints="NO" id="ljE-KK-f8t">
@@ -169,10 +169,10 @@
         </view>
     </objects>
     <resources>
-        <image name="LeaveAccount_image_background" width="1284" height="2778"/>
         <image name="LeaveAccount_image_ruledLine" width="626" height="8"/>
         <image name="LeaveAccount_image_title" width="983" height="399"/>
         <image name="back_button" width="54" height="78"/>
+        <image name="book" width="1284" height="2778"/>
         <image name="button_gray(S)" width="405" height="137"/>
         <image name="button_white(S)" width="405" height="137"/>
         <namedColor name="color">
