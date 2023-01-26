@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -49,19 +50,27 @@
                             <constraint firstAttribute="width" constant="175" id="xgV-tR-Und"/>
                         </constraints>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                        <state key="normal" title="Button" image="CreatePost_button_post"/>
+                        <state key="normal" title="Button" image="button_green"/>
                         <connections>
                             <action selector="pushPostButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="jOm-rY-gy8"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLp-jo-NWb">
+                        <rect key="frame" x="178" y="709.66666666666663" width="34" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" name="color"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="jLp-jo-NWb" firstAttribute="centerX" secondItem="GNJ-lk-xJC" secondAttribute="centerX" id="8X2-Jo-gp8"/>
                     <constraint firstItem="dfK-tO-aCp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="8jX-Hh-pHq"/>
                     <constraint firstItem="GNJ-lk-xJC" firstAttribute="centerX" secondItem="LaJ-3D-PYz" secondAttribute="centerX" id="EB7-Si-MIb"/>
                     <constraint firstItem="GNJ-lk-xJC" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="KBV-NM-NQI"/>
                     <constraint firstItem="dfK-tO-aCp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="PDJ-Pq-ttW"/>
                     <constraint firstItem="LaJ-3D-PYz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="SMQ-QT-su1"/>
                     <constraint firstItem="LaJ-3D-PYz" firstAttribute="top" secondItem="Ygt-Y3-9up" secondAttribute="bottom" constant="25" id="Sdy-v3-V8j"/>
+                    <constraint firstItem="jLp-jo-NWb" firstAttribute="centerY" secondItem="GNJ-lk-xJC" secondAttribute="centerY" id="f7S-ib-9Xs"/>
                     <constraint firstItem="Ygt-Y3-9up" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="g64-pq-Ijy"/>
                     <constraint firstAttribute="bottom" secondItem="GNJ-lk-xJC" secondAttribute="bottom" constant="30" id="mhG-rN-Og9"/>
                     <constraint firstItem="GNJ-lk-xJC" firstAttribute="top" secondItem="LaJ-3D-PYz" secondAttribute="bottom" constant="60" id="sCz-eU-nHI"/>
@@ -77,7 +86,10 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="CreatePost_button_post" width="660" height="171"/>
         <image name="CreatePost_partitionline" width="1188" height="29"/>
+        <image name="button_green" width="660" height="171"/>
+        <namedColor name="color">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

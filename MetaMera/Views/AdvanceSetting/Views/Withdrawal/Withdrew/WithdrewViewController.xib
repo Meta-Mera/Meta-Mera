@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -48,7 +49,7 @@
                         <constraint firstAttribute="width" constant="155" id="y7Z-te-syg"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" image="LeaveAccount_button_close"/>
+                    <state key="normal" image="button_gray(S)"/>
                     <connections>
                         <action selector="pushClose:" destination="-1" eventType="touchUpInside" id="0Iv-Qh-zDT"/>
                     </connections>
@@ -63,6 +64,12 @@
                     <rect key="frame" x="45" y="391" width="308" height="24"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="close" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPj-eF-cYN">
+                    <rect key="frame" x="176" y="740" width="41" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" name="color"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -81,22 +88,27 @@
                 <constraint firstItem="4Cd-Bo-MI8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="60" id="UiV-tR-9BW"/>
                 <constraint firstItem="9Il-m0-Qoj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ahO-Tu-Gaf"/>
                 <constraint firstAttribute="trailing" secondItem="fYx-RZ-ii8" secondAttribute="trailing" constant="40" id="bkL-Y5-GoE"/>
+                <constraint firstItem="hPj-eF-cYN" firstAttribute="centerX" secondItem="978-0y-RTd" secondAttribute="centerX" id="c04-3R-H2z"/>
                 <constraint firstItem="4Cd-Bo-MI8" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="eF0-bZ-tFs"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="9Il-m0-Qoj" secondAttribute="trailing" id="ff3-vB-8JX"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="978-0y-RTd" secondAttribute="bottom" constant="45" id="hXF-gp-1er"/>
                 <constraint firstAttribute="trailing" secondItem="SdU-lc-Hn6" secondAttribute="trailing" constant="45" id="iyt-gB-655"/>
                 <constraint firstItem="fui-4Q-AgM" firstAttribute="top" secondItem="Bhc-pR-9JL" secondAttribute="bottom" id="j75-iR-Pjp"/>
                 <constraint firstItem="978-0y-RTd" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="rUr-fH-Qs1"/>
+                <constraint firstItem="hPj-eF-cYN" firstAttribute="centerY" secondItem="978-0y-RTd" secondAttribute="centerY" id="tvv-PU-n5o"/>
                 <constraint firstItem="fYx-RZ-ii8" firstAttribute="top" secondItem="SdU-lc-Hn6" secondAttribute="bottom" constant="25" id="zAq-ES-bFb"/>
             </constraints>
             <point key="canvasLocation" x="48" y="21"/>
         </view>
     </objects>
     <resources>
-        <image name="LeaveAccount_button_close" width="660" height="171"/>
         <image name="LeaveAccount_image_background" width="1284" height="2778"/>
         <image name="LeaveAccount_image_ruledLine" width="626" height="8"/>
         <image name="LeaveAccount_image_title" width="983" height="399"/>
+        <image name="button_gray(S)" width="405" height="137"/>
+        <namedColor name="color">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

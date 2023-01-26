@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -82,7 +83,7 @@
                         <constraint firstAttribute="width" constant="120" id="sQT-am-RFc"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" image="LeaveAccount_image_taikai"/>
+                    <state key="normal" image="button_white(S)"/>
                     <connections>
                         <action selector="nextButton:" destination="-1" eventType="touchUpInside" id="Gho-re-JSW"/>
                     </connections>
@@ -94,17 +95,31 @@
                         <constraint firstAttribute="width" constant="120" id="tuE-eZ-hjM"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" image="LeaveAccount_button_cancel"/>
+                    <state key="normal" image="button_gray(S)"/>
                     <connections>
                         <action selector="pushCancel:" destination="-1" eventType="touchUpInside" id="AW5-N7-zqI"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退会" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rU7-Ds-JzR">
+                    <rect key="frame" x="87.666666666666671" y="742.66666666666663" width="34.666666666666671" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cancel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arp-nC-gbc">
+                    <rect key="frame" x="263" y="742.66666666666663" width="50" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" name="color"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="rU7-Ds-JzR" firstAttribute="centerY" secondItem="p82-lC-qCk" secondAttribute="centerY" id="0cN-QB-bKx"/>
                 <constraint firstItem="K5l-Og-Izg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="14g-MZ-Trr"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Xcg-om-8Wv" secondAttribute="trailing" constant="85" id="1Pw-RX-B06"/>
+                <constraint firstItem="rU7-Ds-JzR" firstAttribute="centerX" secondItem="p82-lC-qCk" secondAttribute="centerX" id="3Zi-9X-NnE"/>
                 <constraint firstItem="Xcg-om-8Wv" firstAttribute="top" secondItem="NXM-Oa-mFi" secondAttribute="bottom" id="7PD-UI-cBu"/>
                 <constraint firstItem="5Cf-T7-3fP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="7l3-SL-hM5"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="FvP-11-yhz" secondAttribute="bottom" constant="45" id="FeA-13-Q5B"/>
@@ -129,6 +144,8 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="p82-lC-qCk" secondAttribute="bottom" constant="45" id="qVW-FY-h8o"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5Cf-T7-3fP" secondAttribute="trailing" constant="85" id="r6v-Ec-Y4j"/>
                 <constraint firstItem="Xcg-om-8Wv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="rQx-Wt-z5t"/>
+                <constraint firstItem="arp-nC-gbc" firstAttribute="centerX" secondItem="FvP-11-yhz" secondAttribute="centerX" id="vJw-Nr-yCV"/>
+                <constraint firstItem="arp-nC-gbc" firstAttribute="centerY" secondItem="FvP-11-yhz" secondAttribute="centerY" id="wOO-tz-aoU"/>
                 <constraint firstItem="8W6-Ht-D3w" firstAttribute="top" secondItem="Xcg-om-8Wv" secondAttribute="bottom" constant="25" id="y2A-TR-6oB"/>
                 <constraint firstItem="K5l-Og-Izg" firstAttribute="top" secondItem="3Sc-mE-Q5H" secondAttribute="bottom" constant="20" id="zf7-ma-a6o"/>
             </constraints>
@@ -136,11 +153,14 @@
         </view>
     </objects>
     <resources>
-        <image name="LeaveAccount_button_cancel" width="407" height="137"/>
         <image name="LeaveAccount_image_background" width="1284" height="2778"/>
         <image name="LeaveAccount_image_ruledLine" width="626" height="8"/>
-        <image name="LeaveAccount_image_taikai" width="405" height="137"/>
         <image name="LeaveAccount_image_title" width="983" height="399"/>
+        <image name="button_gray(S)" width="405" height="137"/>
+        <image name="button_white(S)" width="405" height="137"/>
+        <namedColor name="color">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

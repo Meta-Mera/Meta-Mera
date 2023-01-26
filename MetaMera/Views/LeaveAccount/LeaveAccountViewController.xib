@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -79,7 +80,7 @@
                         <constraint firstAttribute="width" constant="120" id="M4L-PU-A6X"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" image="LeaveAccount_image_taikai"/>
+                    <state key="normal" image="button_white(S)"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3da-tQ-nvh">
                     <rect key="frame" x="228" y="733" width="120" height="40"/>
@@ -88,11 +89,23 @@
                         <constraint firstAttribute="width" constant="120" id="gPx-tW-Nmd"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" image="LeaveAccount_button_cancel"/>
+                    <state key="normal" image="button_gray(S)"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上記の内容はすべて削除され、一切の表示・閲覧をすることができなくなります。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NcI-DH-IAg">
                     <rect key="frame" x="45" y="436.66666666666669" width="303" height="79.000000000000057"/>
                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cancel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsD-8o-gwz">
+                    <rect key="frame" x="263" y="742.66666666666663" width="50" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" name="color"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退会" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YGR-z3-MOD">
+                    <rect key="frame" x="87.666666666666671" y="742.66666666666663" width="34.666666666666671" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -101,6 +114,7 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="iNB-XC-s50" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="0dJ-53-ryD"/>
+                <constraint firstItem="YGR-z3-MOD" firstAttribute="centerY" secondItem="jXW-O7-saV" secondAttribute="centerY" id="3J0-ob-the"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3da-tQ-nvh" secondAttribute="trailing" constant="45" id="8NH-Fq-Gcn"/>
                 <constraint firstItem="IFV-Ih-Bjn" firstAttribute="top" secondItem="PM9-1A-Dvo" secondAttribute="bottom" constant="20" id="ATr-Br-ICf"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PM9-1A-Dvo" secondAttribute="trailing" constant="45" id="AYZ-EK-O7I"/>
@@ -112,7 +126,9 @@
                 <constraint firstItem="dzB-FT-fHc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="I95-o3-JIW"/>
                 <constraint firstItem="PM9-1A-Dvo" firstAttribute="top" secondItem="NcI-DH-IAg" secondAttribute="bottom" constant="20" id="KEF-BP-cP8"/>
                 <constraint firstItem="NcI-DH-IAg" firstAttribute="top" secondItem="Zo2-h1-Gx4" secondAttribute="bottom" constant="20" id="LG4-v7-6Fo"/>
+                <constraint firstItem="vsD-8o-gwz" firstAttribute="centerY" secondItem="3da-tQ-nvh" secondAttribute="centerY" id="SeP-ES-iQv"/>
                 <constraint firstItem="NcI-DH-IAg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="UeE-ff-hCd"/>
+                <constraint firstItem="vsD-8o-gwz" firstAttribute="centerX" secondItem="3da-tQ-nvh" secondAttribute="centerX" id="a1l-Ob-OnC"/>
                 <constraint firstItem="iNB-XC-s50" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="60" id="aQW-Gc-Poz"/>
                 <constraint firstItem="vqR-SQ-Ofy" firstAttribute="top" secondItem="YEB-Mf-4Vw" secondAttribute="bottom" constant="45" id="b5e-7N-xzW"/>
                 <constraint firstItem="3xY-Ch-z9x" firstAttribute="centerX" secondItem="iNB-XC-s50" secondAttribute="centerX" id="biy-xC-V5U"/>
@@ -120,6 +136,7 @@
                 <constraint firstItem="vqR-SQ-Ofy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="fI5-TE-8sk"/>
                 <constraint firstAttribute="bottom" secondItem="dzB-FT-fHc" secondAttribute="bottom" id="fRe-Fc-EMN"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="IFV-Ih-Bjn" secondAttribute="trailing" constant="45" id="gF9-S8-uhJ"/>
+                <constraint firstItem="YGR-z3-MOD" firstAttribute="centerX" secondItem="jXW-O7-saV" secondAttribute="centerX" id="hc1-1g-U5W"/>
                 <constraint firstItem="PM9-1A-Dvo" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="hm6-7o-Ly8"/>
                 <constraint firstItem="jXW-O7-saV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="j6K-l4-qRP"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="vqR-SQ-Ofy" secondAttribute="trailing" constant="45" id="k9m-84-9vy"/>
@@ -136,11 +153,14 @@
         </view>
     </objects>
     <resources>
-        <image name="LeaveAccount_button_cancel" width="407" height="137"/>
         <image name="LeaveAccount_image_background" width="1284" height="2778"/>
         <image name="LeaveAccount_image_ruledLine" width="626" height="8"/>
-        <image name="LeaveAccount_image_taikai" width="405" height="137"/>
         <image name="LeaveAccount_image_title" width="983" height="399"/>
+        <image name="button_gray(S)" width="405" height="137"/>
+        <image name="button_white(S)" width="405" height="137"/>
+        <namedColor name="color">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

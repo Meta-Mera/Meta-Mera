@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -81,7 +82,7 @@
                         <constraint firstAttribute="width" constant="120" id="WdI-re-tyN"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" image="LeaveAccount_image_taikai"/>
+                    <state key="normal" image="button_white(S)"/>
                     <connections>
                         <action selector="pushNextButton:" destination="-1" eventType="touchUpInside" id="yUM-mr-sCW"/>
                     </connections>
@@ -93,7 +94,7 @@
                         <constraint firstAttribute="width" constant="120" id="zKo-34-BgE"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" image="LeaveAccount_button_cancel"/>
+                    <state key="normal" image="button_gray(S)"/>
                     <connections>
                         <action selector="pushCancelButton:" destination="-1" eventType="touchUpInside" id="ytW-F1-OHh"/>
                     </connections>
@@ -110,10 +111,23 @@
                         <action selector="pushBackButon:" destination="-1" eventType="touchUpInside" id="UaD-3A-FVw"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退会" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b57-5P-n7x">
+                    <rect key="frame" x="87.666666666666671" y="742.66666666666663" width="34.666666666666671" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cancel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EjL-0x-16K">
+                    <rect key="frame" x="263" y="742.66666666666663" width="50" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" name="color"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="b57-5P-n7x" firstAttribute="centerX" secondItem="c4b-cd-unZ" secondAttribute="centerX" id="256-tr-opF"/>
                 <constraint firstItem="rI3-1x-5od" firstAttribute="top" secondItem="HbK-kP-jz6" secondAttribute="bottom" constant="20" id="5Ak-zg-Zr1"/>
                 <constraint firstItem="c4b-cd-unZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="7TA-z8-daD"/>
                 <constraint firstItem="Nm1-IA-kVm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="8T6-lE-FeH"/>
@@ -131,14 +145,17 @@
                 <constraint firstItem="bqV-BX-xhb" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="Jar-rF-qfK"/>
                 <constraint firstItem="ljE-KK-f8t" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="60" id="JvD-Pb-h0W"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="UWO-rb-Jkm" secondAttribute="trailing" constant="45" id="M3H-XU-Kne"/>
+                <constraint firstItem="EjL-0x-16K" firstAttribute="centerX" secondItem="UWO-rb-Jkm" secondAttribute="centerX" id="MPf-Gb-nSg"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="UWO-rb-Jkm" secondAttribute="bottom" constant="45" id="Myv-Jt-Uqu"/>
                 <constraint firstItem="Nm1-IA-kVm" firstAttribute="top" secondItem="K4E-QU-N77" secondAttribute="bottom" constant="20" id="Olk-Tj-4d2"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="UP8-Ol-PyN" secondAttribute="trailing" id="Qqh-xl-bRh"/>
                 <constraint firstAttribute="trailing" secondItem="1aQ-4F-5vD" secondAttribute="trailing" constant="45" id="TJv-gP-JON"/>
                 <constraint firstItem="80D-14-uUz" firstAttribute="centerX" secondItem="LWB-7h-Jsg" secondAttribute="centerX" id="TcN-Vh-hE2"/>
+                <constraint firstItem="b57-5P-n7x" firstAttribute="centerY" secondItem="c4b-cd-unZ" secondAttribute="centerY" id="TnT-lJ-9ya"/>
                 <constraint firstItem="80D-14-uUz" firstAttribute="top" secondItem="LWB-7h-Jsg" secondAttribute="bottom" id="UrY-xU-fW5"/>
                 <constraint firstItem="ljE-KK-f8t" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="WNq-qz-Enz"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ljE-KK-f8t" secondAttribute="trailing" constant="60" id="XxA-No-vTT"/>
+                <constraint firstItem="EjL-0x-16K" firstAttribute="centerY" secondItem="UWO-rb-Jkm" secondAttribute="centerY" id="aMh-wZ-zZ5"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="c4b-cd-unZ" secondAttribute="bottom" constant="45" id="emz-EK-DXM"/>
                 <constraint firstItem="HbK-kP-jz6" firstAttribute="top" secondItem="80D-14-uUz" secondAttribute="bottom" constant="20" id="iGs-uM-c4N"/>
                 <constraint firstItem="1aQ-4F-5vD" firstAttribute="top" secondItem="Nm1-IA-kVm" secondAttribute="bottom" constant="20" id="kTU-yv-SSM"/>
@@ -152,12 +169,15 @@
         </view>
     </objects>
     <resources>
-        <image name="LeaveAccount_button_cancel" width="407" height="137"/>
         <image name="LeaveAccount_image_background" width="1284" height="2778"/>
         <image name="LeaveAccount_image_ruledLine" width="626" height="8"/>
-        <image name="LeaveAccount_image_taikai" width="405" height="137"/>
         <image name="LeaveAccount_image_title" width="983" height="399"/>
         <image name="back_button" width="54" height="78"/>
+        <image name="button_gray(S)" width="405" height="137"/>
+        <image name="button_white(S)" width="405" height="137"/>
+        <namedColor name="color">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
