@@ -17,6 +17,8 @@ enum LocalizeKey: String {
     case cancel
     case change
     case password
+    case incompleteEntry
+    case ReAuthFailed
     
     //通報
     case spam
@@ -64,6 +66,17 @@ enum LocalizeKey: String {
     case newEmail
     case confirmEmail
     case changeEmailTitle
+    case emailaddressesDoNotMatch
+    case emailChangeFailed
+    
+    //パスワード変更
+    case passwordCharacters
+    case passwordNotMatch
+    
+    //退会処理
+    case withdrawalProcess
+    case finalConfirmation
+    case withdrawalFailed
     
     
     // selfの値をローカライズして返す

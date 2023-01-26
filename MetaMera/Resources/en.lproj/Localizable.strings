@@ -15,6 +15,8 @@
 "cancel" = "Cancel";
 "change" = "Change";
 "password" = "Password";
+"incompleteEntry" = "Incomplete entry.";
+"ReAuthFailed" = "Re-authentication failed.";
 
 /*----------------------------------
             通報
@@ -73,3 +75,21 @@
 "newEmail" = "New e-mail address";
 "confirmEmail" = "Re-enter new email address";
 "changeEmailTitle" = "Confirm or change your e-mail address";
+"emailaddressesDoNotMatch" = "The new email addresses do not match.";
+"emailChangeFailed" = "Email address change failed.";
+
+
+/*----------------------------------
+           パスワード変更
+ ----------------------------------*/
+"passwordCharacters" = "Passwords must be at least 8 characters long.";
+"passwordNotMatch" = "New password does not match.";
+
+
+/*----------------------------------
+              退会
+ ----------------------------------*/
+"withdrawalProcess" = "Withdrawal process";
+"finalConfirmation" = "This process is irrevocable. Would you like to withdrawal?";
+"withdrawalFailed" = "Account deletion failed.";
+
