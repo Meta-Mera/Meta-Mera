@@ -9,6 +9,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="bokutachi.otf">
+            <string>BokutachinoGothic</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WithdrewViewController" customModule="MetaMera" customModuleProvider="target">
             <connections>
@@ -30,13 +35,13 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退会" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bhc-pR-9JL">
-                    <rect key="frame" x="168" y="174" width="57" height="34"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                    <rect key="frame" x="168.66666666666666" y="174" width="56" height="28"/>
+                    <fontDescription key="fontDescription" name="BokutachinoGothic" family="BokutachinoGothic" pointSize="28"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LeaveAccount_image_ruledLine" translatesAutoresizingMaskIntoConstraints="NO" id="fui-4Q-AgM">
-                    <rect key="frame" x="96.666666666666686" y="208" width="200" height="10"/>
+                    <rect key="frame" x="96.666666666666686" y="202" width="200" height="10"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="10" id="qLs-xU-mFI"/>
                         <constraint firstAttribute="width" constant="200" id="tKW-5x-xuw"/>
@@ -54,21 +59,21 @@
                         <action selector="pushClose:" destination="-1" eventType="touchUpInside" id="0Iv-Qh-zDT"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meta-Meraの退会手続きが無事終了しました。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SdU-lc-Hn6">
-                    <rect key="frame" x="45" y="318" width="303" height="48"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退会処理の手続きは終了しました。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SdU-lc-Hn6">
+                    <rect key="frame" x="45" y="312" width="303" height="18"/>
+                    <fontDescription key="fontDescription" name="BokutachinoGothic" family="BokutachinoGothic" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ご利用ありがとうございました。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fYx-RZ-ii8">
-                    <rect key="frame" x="45" y="391" width="308" height="24"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ご利用ありがとうございました。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fYx-RZ-ii8">
+                    <rect key="frame" x="45" y="355" width="308" height="18"/>
+                    <fontDescription key="fontDescription" name="BokutachinoGothic" family="BokutachinoGothic" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="close" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPj-eF-cYN">
-                    <rect key="frame" x="176" y="740" width="41" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="閉じる" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPj-eF-cYN">
+                    <rect key="frame" x="171" y="740.66666666666663" width="51" height="20"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                     <color key="textColor" name="color"/>
                     <nil key="highlightedColor"/>
                 </label>
