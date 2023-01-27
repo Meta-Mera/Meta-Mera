@@ -1,6 +1,6 @@
 
 /* Class = "UILabel"; text = "変更"; ObjectID = "3jA-gI-kms"; */
-"3jA-gI-kms.text" = "Change";
+"3jA-gI-kms.text" = "変更";
 
 /* Class = "UILabel"; text = "アドレス確認と変更"; ObjectID = "83B-7O-dqj"; */
 "83B-7O-dqj.text" = "アドレス確認と変更";
@@ -12,7 +12,7 @@
 "WSm-cy-1kZ.text" = "現在のメールアドレスと新しいメールアドレスを入力し、変更ボタンをタップしてください。";
 
 /* Class = "UILabel"; text = "現在のメールアドレスはmetamera-account.co.jpです。"; ObjectID = "aq5-5F-4wh"; */
-"aq5-5F-4wh.text" = "現在のメールアドレスは%NOWEMAILL%です。";
+"aq5-5F-4wh.text" = "The current email address is %NOWEMAILL%.";
 
 /* Class = "UILabel"; text = "パスワード"; ObjectID = "oH1-HR-Mly"; */
 "oH1-HR-Mly.text" = "パスワード";

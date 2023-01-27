@@ -15,6 +15,8 @@
 "cancel" = "キャンセル";
 "change" = "更新";
 "password" = "パスワード";
+"incompleteEntry" = "入力不備があります。";
+"ReAuthFailed" = "Re-authentication failed.";
 
 /*----------------------------------
             通報
@@ -76,4 +78,21 @@
 "newEmail" = "新しいメールアドレス";
 "confirmEmail" = "新しいメールアドレス再入力";
 "changeEmailTitle" = "メールアドレス確認と変更";
+"emailaddressesDoNotMatch" = "新しいメールアドレスが一致していません。";
+"emailChangeFailed" = "メールアドレスの変更に失敗しました。";
+
+
+/*----------------------------------
+           パスワード変更
+ ----------------------------------*/
+"passwordCharacters" = "パスワードは8文字以上にしてください。";
+"passwordNotMatch" = "新しいパスワードが一致していません。";
+
+
+/*----------------------------------
+              退会
+ ----------------------------------*/
+"withdrawalProcess" = "退会処理";
+"finalConfirmation" = "この処理は取り消すことができません。退会処理を実行してよろしいですか？";
+"withdrawalFailed" = "アカウント削除に失敗しました。";
 

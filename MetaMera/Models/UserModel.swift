@@ -45,13 +45,13 @@ class UserModel {
             case .success(_):
                 Auth.auth().currentUser?.updateEmail(to: newEmail) { error in
                     if let error = error {
-                        completion(.failure(NSError(domain: "メールアドレスの変更に失敗しました。\(error)", code: 502)))
+                        completion(.failure(NSError(domain: LocalizeKey.emailChangeFailed.rawValue+"\(error)", code: 502)))
                         return
                     }else {
-                        Auth.auth().languageCode = "jp"
+                        Auth.auth().languageCode = LocalizeKey.language.rawValue
                         Auth.auth().currentUser?.sendEmailVerification { error in
                             if let error = error {
-                                completion(.failure(NSError(domain: "確認メールの送信に失敗しました。\(error)", code: 503)))
+                                completion(.failure(NSError(domain: "Failed to send confirmation email.\(error)", code: 503)))
                                 return
                             }else {
                                 Firestore.firestore().collection("Users").document(Profile.shared.loginUser.uid).updateData([
@@ -59,7 +59,7 @@ class UserModel {
                                     "oldEmail": Profile.shared.loginUser.email
                                 ]){ err in
                                     if let err = err {
-                                        completion(.failure(NSError(domain: "[change Email] Firestoreの更新に失敗しました。\(err)", code: 508)))
+                                        completion(.failure(NSError(domain: "[change Email] Database update failed.\(err)", code: 508)))
                                         return
                                     }else{
                                         completion(.success(true))
@@ -98,10 +98,10 @@ class UserModel {
                         print("パスワードの更新に失敗しました。\(error)")
                         return
                     }else {
-                        Auth.auth().languageCode = "jp"
+                        Auth.auth().languageCode = LocalizeKey.language.rawValue
                         Auth.auth().sendPasswordReset(withEmail: email) { error in
                             if let error = error{
-                                completion(.failure(NSError(domain: "確認メールの送信に失敗しました。\(error)", code: 503)))
+                                completion(.failure(NSError(domain: "LocalizeKey.language.rawValue\(error)", code: 503)))
                                 print("パスワード変更を通知するためのメールの送信に失敗しました。\(error)")
                                 return
                             }else {
@@ -114,7 +114,7 @@ class UserModel {
                 }
             case .failure(let error):
                 print("\(error.localizedDescription)")
-                completion(.failure(NSError(domain: "再認証に失敗しました。", code: 501)))
+                completion(.failure(NSError(domain: LocalizeKey.ReAuthFailed.rawValue, code: 501)))
                 return
             }
             
@@ -132,7 +132,7 @@ class UserModel {
 
         user?.reauthenticate(with: credential) { reslut,err  in
           if let err = err {
-              completion(.failure(NSError(domain: "再認証に失敗しました。", code: 501)))
+              completion(.failure(NSError(domain: LocalizeKey.ReAuthFailed.rawValue, code: 501)))
               print("アカウントの再認証に失敗しました。\(err)")
               return
             // An error happened.
