@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <accessibilityOverrides dynamicTypePreference="3"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,22 +19,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Yky-6f-f62">
-                                <rect key="frame" x="10" y="89" width="394" height="783"/>
+                                <rect key="frame" x="10" y="93" width="394" height="779"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u9a-1M-Wwa">
-                                        <rect key="frame" x="0.0" y="0.0" width="394" height="112"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="111.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="tgh-Vd-fOs">
-                                                <rect key="frame" x="0.0" y="0.0" width="394" height="112"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="111.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="通報内容" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dvd-bw-i9c">
-                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="56"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="55.5"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="緊急事態の場合は、今すぐに地域の警察や消防に通報してください。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vd4-P2-Mz7">
-                                                        <rect key="frame" x="0.0" y="56" width="394" height="56"/>
+                                                        <rect key="frame" x="0.0" y="55.5" width="394" height="56"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -53,7 +53,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NUs-R8-Rn3">
-                                        <rect key="frame" x="0.0" y="112" width="394" height="111.5"/>
+                                        <rect key="frame" x="0.0" y="111.5" width="394" height="111"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="スパム行為"/>
                                         <connections>
@@ -61,7 +61,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WAw-RM-xQk">
-                                        <rect key="frame" x="0.0" y="223.5" width="394" height="112"/>
+                                        <rect key="frame" x="0.0" y="222.5" width="394" height="111.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="詐欺、欺瞞行為"/>
                                         <connections>
@@ -69,7 +69,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G70-Z0-yvw">
-                                        <rect key="frame" x="0.0" y="335.5" width="394" height="112"/>
+                                        <rect key="frame" x="0.0" y="334" width="394" height="111"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="いじめ、嫌がらせ行為"/>
                                         <connections>
@@ -77,7 +77,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIp-Kf-kxx">
-                                        <rect key="frame" x="0.0" y="447.5" width="394" height="112"/>
+                                        <rect key="frame" x="0.0" y="445" width="394" height="111.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="セクハラ、性的行為"/>
                                         <connections>
@@ -85,7 +85,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lCQ-7i-QA4">
-                                        <rect key="frame" x="0.0" y="559.5" width="394" height="111.5"/>
+                                        <rect key="frame" x="0.0" y="556.5" width="394" height="111"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="暴力、危険な団体"/>
                                         <connections>
@@ -93,7 +93,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G24-V2-ORy">
-                                        <rect key="frame" x="0.0" y="671" width="394" height="112"/>
+                                        <rect key="frame" x="0.0" y="667.5" width="394" height="111.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="気に入らない"/>
                                         <connections>
@@ -103,14 +103,14 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lD9-7u-QLW">
-                                <rect key="frame" x="15" y="60" width="18" height="26"/>
+                                <rect key="frame" x="15" y="64" width="18" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="18" id="gmJ-LB-jvE"/>
                                     <constraint firstAttribute="width" secondItem="lD9-7u-QLW" secondAttribute="height" multiplier="9:13" id="xFo-Im-Dnm"/>
                                 </constraints>
                                 <color key="tintColor" red="0.60000002379999995" green="0.54901963470000004" blue="0.4941176176" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="editprofile_back_button">
+                                <state key="normal" image="back_button">
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -145,7 +145,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="editprofile_back_button" width="54" height="78"/>
+        <image name="back_button" width="54" height="78"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

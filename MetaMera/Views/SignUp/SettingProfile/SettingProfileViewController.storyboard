@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -38,7 +38,7 @@
                                     <constraint firstAttribute="height" constant="50" id="ebb-iI-Wx9"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="アカウント作成画面_nextボタン"/>
+                                <state key="normal" image="next_button"/>
                                 <connections>
                                     <action selector="nextButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="wdS-iZ-R39"/>
                                 </connections>
@@ -77,7 +77,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="アカウント作成画面_nextボタン" width="560" height="173"/>
+        <image name="next_button" width="560" height="173"/>
         <image name="アカウント作成画面_写真マーク" width="190" height="192"/>
         <image name="アカウント作成画面_背景" width="1284" height="2778"/>
         <systemColor name="systemBackgroundColor">
