@@ -18,6 +18,7 @@ public struct SettingItem {
         case notificationSettings
         case contact
         case withdrawalFromMetaMera
+        case appInfo
     }
 }
 
@@ -38,6 +39,10 @@ final class SettingModel {
         //Contact
         .init(title: LocalizeKey.contact.localizedString(),
               description: LocalizeKey.contactDescription.localizedString(), type: .contact),
+        
+        //appInfo
+        .init(title: "アプリ情報",
+              description: "このアプリのバージョンなどが確認できます。", type: .withdrawalFromMetaMera),
         
         //Withdrawal
         .init(title: LocalizeKey.withdrawalFromMetaMera.localizedString(),
@@ -118,6 +123,10 @@ extension AdvanceSettingViewController: UITableViewDelegate {
             Goto.ContactViewController(view: self)
             break
         case 4:
+            let vc = MetaMera.ResetPassViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+            break
+        case 5:
             Goto.WithdrawalViewController(view: self)
             break
         default:
