@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
-    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -13,32 +13,32 @@
             <objects>
                 <viewController storyboardIdentifier="TopViewController" id="Y6W-OH-hqX" customClass="TopViewController" customModule="MetaMera" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="背景" translatesAutoresizingMaskIntoConstraints="NO" id="wRj-h7-hy7">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="ZZm-B4-XLM">
-                                <rect key="frame" x="187.66666666666666" y="516" width="0.0" height="0.0"/>
+                                <rect key="frame" x="187.5" y="443.5" width="0.0" height="0.0"/>
                                 <subviews>
                                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sign_in (1)" translatesAutoresizingMaskIntoConstraints="NO" id="ihG-pB-ATF">
-                                        <rect key="frame" x="0.0" y="0.0" width="222.66666666666666" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="0.0"/>
                                     </imageView>
                                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sign_up (1)" translatesAutoresizingMaskIntoConstraints="NO" id="36K-kK-ANE">
-                                        <rect key="frame" x="0.0" y="0.0" width="222.66666666666666" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="0.0"/>
                                     </imageView>
                                 </subviews>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ロゴ" translatesAutoresizingMaskIntoConstraints="NO" id="OoH-k2-pZQ">
-                                <rect key="frame" x="127.66666666666669" y="236" width="120" height="140"/>
+                                <rect key="frame" x="127.5" y="163.5" width="120" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="i9F-bq-b3c"/>
                                     <constraint firstAttribute="height" constant="140" id="kYD-Ge-Vh3"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ver: 0.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5H8-jf-MZi">
-                                <rect key="frame" x="273" y="771.66666666666663" width="72" height="20.333333333333371"/>
+                                <rect key="frame" x="248" y="626.5" width="72" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.67058825489999996" green="0.39215683940000001" blue="0.23921570180000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -56,7 +56,7 @@
                             <constraint firstItem="wRj-h7-hy7" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="dGJ-6T-Ksu"/>
                             <constraint firstItem="OoH-k2-pZQ" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" constant="-100" id="dWX-7W-MZc"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="wRj-h7-hy7" secondAttribute="trailing" id="h79-zR-uW8"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="5H8-jf-MZi" secondAttribute="trailing" constant="30" id="iJ4-8T-SkV"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="5H8-jf-MZi" secondAttribute="trailing" constant="55" id="iJ4-8T-SkV"/>
                             <constraint firstAttribute="bottom" secondItem="5H8-jf-MZi" secondAttribute="bottom" constant="20" id="rra-L4-q8d"/>
                             <constraint firstItem="wRj-h7-hy7" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="vSE-ga-85B"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ZZm-B4-XLM" secondAttribute="trailing" constant="30" id="xTc-RU-Xvx"/>
@@ -76,8 +76,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="sign_in (1)" width="222.66667175292969" height="81"/>
-        <image name="sign_up (1)" width="222.66667175292969" height="81"/>
+        <image name="sign_in (1)" width="334" height="121.5"/>
+        <image name="sign_up (1)" width="334" height="121.5"/>
         <image name="ロゴ" width="272.5" height="208.5"/>
         <image name="背景" width="1284" height="2778"/>
     </resources>
