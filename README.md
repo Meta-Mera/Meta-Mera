@@ -1,22 +1,39 @@
 # Meta-Mera
-![icon](./images/icon.png)
+![icon](./images/icon.gif)
 
 ## Table of Contents
 
 - [Introduction](#introduction)
+- [Charm](#charm)
 - [Features](#features)
 - [Setup](#set-up)
 - [Usage](#usage)
 
 # Introduction
-Meta-Meraは **場所** にフォーカスしたSNSです。
+Meta-Meraは **Location** にフォーカスしたSNSです。
 
 Meta-Meraを通してみる世界には、さまざまな情報が表示されます。
 
 ![PR](./images/PR.png)
 
+# Charm
+
+## 脱検索
+
+Meta-Meraを通して世界を見ることで、自分では思いつかなかった・気づかなかったその土地の魅力や歴史に出会えるかもしれません。
+## 新たなコミュニケーションの提供
+
+過去にその場にいた人たちと非同期的にコミュニケーションをとれます。
+例えば、観光地などでいい写真が撮れた場所に対して「ここベストスポット」と投稿しておくことで、その後に訪れるたくさんの方々と時間軸を超えてコミュニケーションを取れます。
+## フィルタリング
+
+ある人は日記のように使うかもしれませんし、ある人は道案内のために投稿するかもしれません。
+そのような情報に溢れかえってしまうとほんとに欲しい情報にアクセスできなくなってしまいます。
+その際に、フィルタリングすることで本当に必要な情報を得ることができます。
+
 
 # Feature
+
 ## 機能
 
 - チャットを投稿できます。
@@ -29,17 +46,5 @@ Meta-Meraを通してみる世界には、さまざまな情報が表示され�
 - 新たなコミュニケーションの提供
 - 屋外広告の景観の悪化を抑制
 
-# Set up
-- system requirements.
-  - Xcode 13.4.1
-  - CocoaPods 1.11.3
-- Clone of download the repositories.
-- `pod install` to install dependencies.
-
-```
-git clone git@github.com:Meta-Mera/Meta-Mera.git
-cd Meta-Mera
-pod install
-```
 
 <!-- # Usage -->
