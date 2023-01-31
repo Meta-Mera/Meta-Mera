@@ -43,7 +43,7 @@ class CertificationViewController: UIViewController {
         
         if email.isEmpty || password.isEmpty {
             print("不備あり")
-            HUD.flash(.label(LocalizeKey.incompleteEntry.rawValue), delay: 2)
+            HUD.flash(.label(LocalizeKey.incompleteEntry.localizedString()), delay: 2)
             return
         }
         
