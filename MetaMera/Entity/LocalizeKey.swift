@@ -78,6 +78,9 @@ enum LocalizeKey: String {
     case finalConfirmation
     case withdrawalFailed
     
+    //パスワードリセット
+    case failedToSendEmail
+    
     
     // selfの値をローカライズして返す
     func localizedString() -> String {

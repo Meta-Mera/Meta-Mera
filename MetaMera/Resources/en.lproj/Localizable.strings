@@ -93,3 +93,9 @@
 "finalConfirmation" = "This process is irrevocable. Would you like to withdrawal?";
 "withdrawalFailed" = "Account deletion failed.";
 
+
+/*----------------------------------
+        　パスワードリセット
+ ----------------------------------*/
+"failedToSendEmail" = "Failed to send email.\nPlease check your e-mail address again.";
+

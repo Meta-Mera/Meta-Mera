@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import PKHUD
 
 class ResetPassViewController: UIViewController {
 
@@ -14,7 +15,7 @@ class ResetPassViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        configView()
         // Do any additional setup after loading the view.
     }
     
@@ -27,17 +28,23 @@ class ResetPassViewController: UIViewController {
         
         emailTextField.attributedPlaceholder = NSAttributedString(string: "example@meta-mera.com", attributes: [NSAttributedString.Key.foregroundColor: UIColor.textFieldPlaceholderColor])
     }
+    
+    @IBAction func exit(_ sender: Any) {
+    }
+    
 
     @IBAction func pushSendButton(_ sender: Any) {
         guard let email = emailTextField.text else { return }
         if email.isEmpty {
             print("不備")
+            HUD.flash(.label(LocalizeKey.incompleteEntry.localizedString()), delay: 2)
             return
         }
         Auth.auth().languageCode = LocalizeKey.language.localizedString()
         Auth.auth().sendPasswordReset(withEmail: email){ error in
             if let error = error {
                 print("再設定用メールアドレスの送信に失敗しました。\(error)")
+                HUD.flash(.label(LocalizeKey.failedToSendEmail.localizedString()), delay: 2)
                 return
             }
             do {

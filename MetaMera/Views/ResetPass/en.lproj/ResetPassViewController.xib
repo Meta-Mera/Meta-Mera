@@ -34,8 +34,8 @@
                         <constraint firstAttribute="height" constant="100" id="82y-UT-I0B"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="パスワード再設定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z0H-M5-T6g">
-                    <rect key="frame" x="99" y="159" width="216" height="27"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password reset" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z0H-M5-T6g">
+                    <rect key="frame" x="105.66666666666669" y="159" width="203" height="27"/>
                     <fontDescription key="fontDescription" name="BokutachinoGothic" family="BokutachinoGothic" pointSize="27"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -47,23 +47,26 @@
                         <constraint firstAttribute="width" constant="200" id="zMi-HA-NHJ"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ご入力いただいたメールアドレスにパスワード再設定用のリンクを送付いたします。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RG1-dj-BmP">
-                    <rect key="frame" x="35" y="246" width="329" height="66"/>
-                    <fontDescription key="fontDescription" name="BokutachinoGothic" family="BokutachinoGothic" pointSize="22"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A link to reset your password will be sent to the email address you provide." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RG1-dj-BmP">
+                    <rect key="frame" x="35" y="246" width="329" height="79"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メールアドレス" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Egk-Lp-Zib">
-                    <rect key="frame" x="35" y="392" width="140" height="20"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="e-mail address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Egk-Lp-Zib">
+                    <rect key="frame" x="35" y="405" width="150" height="20"/>
                     <fontDescription key="fontDescription" name="BokutachinoGothic" family="BokutachinoGothic" pointSize="20"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="example@meta-mera.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5hk-Eh-GOC">
-                    <rect key="frame" x="50" y="412" width="284" height="18.666666666666686"/>
+                    <rect key="frame" x="50" y="425" width="284" height="23.333333333333314"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
+                    <connections>
+                        <action selector="exit:" destination="-1" eventType="editingDidEndOnExit" id="3iM-pd-4Be"/>
+                    </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qag-ts-Kig">
                     <rect key="frame" x="129.66666666666666" y="762" width="154.99999999999997" height="55"/>
@@ -77,7 +80,7 @@
                         <action selector="pushSendButton:" destination="-1" eventType="touchUpInside" id="B2O-p2-AqW"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="送信" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LqW-JC-dea">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LqW-JC-dea">
                     <rect key="frame" x="190" y="781" width="34" height="17"/>
                     <fontDescription key="fontDescription" name="BokutachinoGothic" family="BokutachinoGothic" pointSize="17"/>
                     <nil key="textColor"/>
