@@ -257,12 +257,18 @@ class TopViewController: UIViewController {
         )
     }
     
+    /// 最新のバージョンか確認します。
+    /// - Parameter completion: アップデートが必要ならtrueを返します。
     func updateCheck(completion: ((Bool) -> Void)? = nil){
         let localVersionString = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
         RemoteConfigClient.shared.fetchUpdateInfoConfig(
             succeeded: { [weak self] config in
-                self?.newest = localVersionString != config.current_version
-                completion?(localVersionString != config.current_version)
+                if config.updateInfo {
+                    self?.newest = localVersionString != config.current_version
+                    completion?(localVersionString != config.current_version)
+                }else{
+                    completion?(false)
+                }
             },failed: { [weak self] errorMessage in
                 self?.newest = false
                 completion?(true)
