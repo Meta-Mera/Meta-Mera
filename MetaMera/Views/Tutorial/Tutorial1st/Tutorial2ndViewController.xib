@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Tutorial2ndViewController" customModule="MetaMera" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_main" translatesAutoresizingMaskIntoConstraints="NO" id="i7H-Tw-QNi">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投稿しよう" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dA5-xU-e8x">
+                    <rect key="frame" x="120.66666666666669" y="139" width="152" height="36"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5lO-jh-Ujt">
+                    <rect key="frame" x="68.333333333333343" y="210" width="256.33333333333326" height="50.333333333333314"/>
+                    <string key="text">訪れた場所の写真を撮って
+魅力を綴りましょう</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="illustrations2nd" translatesAutoresizingMaskIntoConstraints="NO" id="m7v-Y9-Krm">
+                    <rect key="frame" x="30" y="290.33333333333331" width="333" height="299.99999999999994"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="300" id="Gpf-d0-Ogi"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2h-id-USS">
+                    <rect key="frame" x="100" y="605.33333333333337" width="193" height="72"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="72" id="aOM-On-x5v"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="button_next"/>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="m7v-Y9-Krm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="0hk-6f-d57"/>
+                <constraint firstItem="X2h-id-USS" firstAttribute="top" secondItem="m7v-Y9-Krm" secondAttribute="bottom" constant="15" id="6Zu-Jf-C1D"/>
+                <constraint firstItem="m7v-Y9-Krm" firstAttribute="top" secondItem="5lO-jh-Ujt" secondAttribute="bottom" constant="30" id="DNZ-bi-SDq"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="i7H-Tw-QNi" secondAttribute="trailing" id="FWS-pX-pUM"/>
+                <constraint firstItem="5lO-jh-Ujt" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Kgn-5m-7JX"/>
+                <constraint firstAttribute="trailing" secondItem="X2h-id-USS" secondAttribute="trailing" constant="100" id="TRY-UX-0dL"/>
+                <constraint firstAttribute="bottom" secondItem="i7H-Tw-QNi" secondAttribute="bottom" id="X10-9g-mUg"/>
+                <constraint firstItem="i7H-Tw-QNi" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="hLO-wO-YDa"/>
+                <constraint firstItem="X2h-id-USS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="100" id="mCS-2A-lEv"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="m7v-Y9-Krm" secondAttribute="trailing" constant="30" id="mQ4-h3-RGb"/>
+                <constraint firstItem="dA5-xU-e8x" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="sTX-M8-ZA4"/>
+                <constraint firstItem="5lO-jh-Ujt" firstAttribute="top" secondItem="dA5-xU-e8x" secondAttribute="bottom" constant="35" id="tMm-Io-4PT"/>
+                <constraint firstItem="i7H-Tw-QNi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="xrD-E6-Rpx"/>
+                <constraint firstItem="dA5-xU-e8x" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="80" id="yhJ-0o-miL"/>
+            </constraints>
+            <point key="canvasLocation" x="80" y="20"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="background_main" width="1284" height="2778"/>
+        <image name="button_next" width="647" height="227"/>
+        <image name="illustrations2nd" width="994" height="994"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
