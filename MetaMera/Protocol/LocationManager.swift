@@ -27,8 +27,11 @@ class LocationManager: NSObject {
     }
     
     func startLocation() {
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = kCLHeadingFilterNone
+        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.headingFilter = kCLHeadingFilterNone
+        locationManager.pausesLocationUpdatesAutomatically = false
+        locationManager.startUpdatingHeading()
         locationManager.startUpdatingLocation()
     }
     

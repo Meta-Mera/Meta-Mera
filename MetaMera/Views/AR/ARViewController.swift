@@ -56,7 +56,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     //AR系2
     var sceneLocationView: SceneLocationView? = SceneLocationView()
-    var locationManager = CLLocationManager()
+//    var locationManager = CLLocationManager()
+    var locationManager = LocationManager()
     
     //投稿リスト
     var posts : [Post]?
@@ -66,7 +67,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     deinit {
         sceneLocationView = nil
-        locationManager.stopUpdatingLocation()
+        locationManager.stopLocation()
+//        locationManager.stopUpdatingLocation()
 //        locationManager = nil
     }
     
@@ -85,6 +87,10 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         saveDefaultButtonPosision()
         moveMenuButtonPosision()
         hiddenButton()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
     
     func configView(){
@@ -107,14 +113,17 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         //MARK: 位置情報のやつっぽい
         
-        locationManager.requestWhenInUseAuthorization()
+//        locationManager.requestWhenInUseAuthorization()
+        locationManager.auth()
         
-        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-        locationManager.distanceFilter = kCLDistanceFilterNone
-        locationManager.headingFilter = kCLHeadingFilterNone
-        locationManager.pausesLocationUpdatesAutomatically = false
-        locationManager.delegate = self
-        locationManager.startUpdatingLocation()
+//        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+//        locationManager.distanceFilter = kCLDistanceFilterNone
+//        locationManager.headingFilter = kCLHeadingFilterNone
+//        locationManager.pausesLocationUpdatesAutomatically = false
+//        locationManager.delegate = self
+//        locationManager.startUpdatingHeading()
+//        locationManager.startUpdatingLocation()
+        locationManager.startLocation()
         
         mapView.showsUserLocation = true
         mapView.delegate = self
@@ -254,7 +263,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         restartAnimation()
         
         //MARK: 位置情報から[市区町村名、郵便番号、関心のあるエリア名]のうち取得できたものを表示します。
-        if let lastLocation = self.locationManager.location {
+        if let lastLocation = self.locationManager.locationManager.location {
             let geocoder = CLGeocoder()
             
             // Look up the location and pass it to the completion handler
@@ -481,6 +490,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     }
     
     var annotationArray: [MKAnnotation] = []
+    
     
     
     
@@ -767,10 +777,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         backTap()
     }
     //MARK: プラスボタンのやつ(90%) -
-    
-    
-    
-    
 }
 //MARK: ARのオブジェクトをタップしたときに呼び出される
 extension ARViewController: LNTouchDelegate {
