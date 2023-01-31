@@ -30,19 +30,13 @@ class SignInViewController: UIViewController {
     func viewConfig(){
         emailTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
         passwordTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
-
+        
         emailTextField.delegate = self
         passwordTextField.delegate = self
-
+        
         
         emailTextField.attributedPlaceholder = NSAttributedString(string: "　example@meta-mera.com", attributes: [NSAttributedString.Key.foregroundColor: UIColor.textFieldPlaceholderColor])
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "　Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.textFieldPlaceholderColor])
-
-        backButtonImage.isUserInteractionEnabled = true
-        backButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gotoTopView(_:))))
-
-        nextButtonImage.isUserInteractionEnabled = true
-        nextButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(PushSignIn(_:))))
         
     }
     
@@ -57,24 +51,27 @@ class SignInViewController: UIViewController {
         }
     }
     
-  override func viewWillLayoutSubviews() {
-      super.viewWillLayoutSubviews()
-      let rgba = UIColor.signInBorderColor()
-      emailTextField.addBorderBottom(height: 2.5, color: rgba)
-      passwordTextField.addBorderBottom(height: 2.5, color: rgba)
-    
-  }
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        let rgba = UIColor.signInBorderColor()
+        emailTextField.addBorderBottom(height: 2.5, color: rgba)
+        passwordTextField.addBorderBottom(height: 2.5, color: rgba)
+        
+    }
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
+    @IBAction func pushPassReset(_ sender: Any) {
+        let vc = MetaMera.ResetPassViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     
-
-
-    @objc func PushSignIn(_ sender: Any) {
+    
+    @IBAction func pushNextButton(_ sender: Any) {
         self.view.endEditing(true)
         HUD.show(.progress, onView: view)
         signInModel.signIn(signInItem: .init(email: emailTextField.text, password: passwordTextField.text)) { [weak self] result in
@@ -96,22 +93,21 @@ class SignInViewController: UIViewController {
             }
         }
     }
-
-
+    
+    @IBAction func pushBackButton(_ sender: Any) {
+        print("push back")
+        Goto.Top(view: self, completion: nil)
+    }
+    
     private func presentToARViewController(){
         HUD.show(.progress, onView: view)
         Goto.ARView(view: self)
         HUD.hide(afterDelay: 2.0)
     }
-
-    @objc func gotoTopView(_ sender: Any) {
-        print("push back")
-        Goto.Top(view: self, completion: nil)
-    }
 }
 
 extension SignInViewController: UITextFieldDelegate {
-
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //今フォーカスが当たっているテキストボックスからフォーカスを外す
