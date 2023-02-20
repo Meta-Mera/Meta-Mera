@@ -41,8 +41,8 @@ final class SettingModel {
               description: LocalizeKey.contactDescription.localizedString(), type: .contact),
         
         //appInfo
-        .init(title: "アプリ情報",
-              description: "このアプリのバージョンなどが確認できます。", type: .withdrawalFromMetaMera),
+        .init(title: LocalizeKey.appInfo.localizedString(),
+              description: LocalizeKey.appInfoDescription.localizedString(), type: .withdrawalFromMetaMera),
         
         //Withdrawal
         .init(title: LocalizeKey.withdrawalFromMetaMera.localizedString(),

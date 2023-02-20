@@ -56,6 +56,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         setupProfileData()
         itsMe ? getPostDataByMe() : getUserPostData()
         getUserFavoriteData()
+        collectionView.contentInsetAdjustmentBehavior = .never
         // Do any additional setup after loading the view.
     }
     
@@ -268,10 +269,22 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         updateMenuButtonLayout(type: .photo)
     }
     
+//    private func moveScrollView(at index: Int) {
+//        collectionView.isPagingEnabled = false
+//        collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .left, animated: true)
+//        collectionView.isPagingEnabled = true
+//    }
+    
     private func moveScrollView(at index: Int) {
-        collectionView.isPagingEnabled = false
+        let cellWidth = collectionView.bounds.width / 3
+        let contentWidth = CGFloat(collectionView.numberOfItems(inSection: 0)) * cellWidth
+        
+        let leftInset = max(0, (collectionView.bounds.width - contentWidth) / 2)
+        let rightInset = max(0, collectionView.bounds.width - leftInset - contentWidth)
+        
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
+        
         collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .left, animated: true)
-        collectionView.isPagingEnabled = true
     }
     
     enum MenuButtonType: Int {
@@ -455,11 +468,19 @@ extension ProfileViewController: UICollectionViewDelegate {
         print("item selected", indexPath.row)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if let cell = collectionView.visibleCells.first,
-           let index = collectionView.indexPath(for: cell),
-           let menu = MenuButtonType(rawValue: index.row) {
-            print("scroll", menu)
+//    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        if let cell = collectionView.visibleCells.first,
+//           let index = collectionView.indexPath(for: cell),
+//           let menu = MenuButtonType(rawValue: index.row) {
+//            print("scroll", menu)
+//            updateMenuButtonLayout(type: menu)
+//        }
+//    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if let visibleCell = collectionView.visibleCells.first,
+           let visibleIndexPath = collectionView.indexPath(for: visibleCell),
+           let menu = MenuButtonType(rawValue: visibleIndexPath.row) {
             updateMenuButtonLayout(type: menu)
         }
     }

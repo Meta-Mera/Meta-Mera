@@ -93,3 +93,10 @@ iOSInjectionProject/
 Generated/
 Carthage/
 MetaMera.xcodeproj/
+
+
+#Firebase
+MetaMera/SupportingFiles/GoogleService-Info.plist
+MetaMera/SupportingFiles/GoogleService
+
+

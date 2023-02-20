@@ -8,19 +8,22 @@
 import ARCL
 import UIKit
 import ARKit
-import RealityKit
+//import RealityKit
 import MapKit
 import SceneKit
-import CoreLocation
-import FirebaseCore
-import FirebaseStorage
+//import CoreLocation
+//import FirebaseCore
+//import FirebaseStorage
 import Firebase
 import AudioToolbox
 import Alamofire
 import AlamofireImage
 
+import UIKit
+import CoreLocation
 
-class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate {
+
+class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate, SceneLocationViewDelegate {
     
     // Models
     private var postGetter: PostGetter<PostFetchAPI, PostInput>?
@@ -114,6 +117,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         //MARK: 位置情報のやつっぽい
         
 //        locationManager.requestWhenInUseAuthorization()
+        locationManager.sceneLocationView = sceneLocationView
         locationManager.auth()
         
 //        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
@@ -146,8 +150,12 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         sceneLocationView!.showAxesNode = false
         sceneLocationView!.locationNodeTouchDelegate = self
         sceneLocationView!.arViewDelegate = self
-        sceneLocationView!.locationNodeTouchDelegate = self
         sceneLocationView!.orientToTrueNorth = false
+        
+        sceneLocationView!.locationEstimateMethod = .mostRelevantEstimate
+        sceneLocationView!.delegate = self
+        
+//        sceneLocationView!.orientToTrueNorth = true
         
         
         
@@ -231,6 +239,36 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         //MARK: プラスボタン系 -
         
+    }
+    
+//
+//    func adjustNorth(sceneLocationView: SceneLocationView, userLocation: CLLocation) {
+//        let trueHeading = sceneLocationView.sceneLocationManager.currentHeading?.magneticHeading ?? 0
+//        let location = CLLocation(coordinate: userLocation.coordinate, altitude: 0, horizontalAccuracy: 0, verticalAccuracy: 0, timestamp: Date())
+//        let north = -1 * Float(trueHeading).toRadians
+//        sceneLocationView.locationEstimateMethod = .coreLocationData(location: location)
+//        sceneLocationView.orientation = .custom(z: north, y: 0, x: 0)
+//    }
+    
+    func sceneLocationViewDidAddSceneLocationEstimate(sceneLocationView: SceneLocationView, position: SCNVector3, location: CLLocation) {
+        // 位置情報が更新されたときに呼ばれる
+        updateObjectPosition()
+    }
+    
+    func updateObjectPosition() {
+        let heading = locationManager.currentHeading
+        
+        // シーン内のオブジェクトを回転させる
+        let camera = sceneLocationView!.scene.rootNode.childNode(withName: "camera", recursively: false)
+        camera?.eulerAngles.y = -Float(heading)
+        
+        // 座標も更新する
+        let currentLocation = locationManager.locationManager.location
+        let currentScenePosition = sceneLocationView!.currentScenePosition
+        let deltaLatitude = (currentScenePosition?.latitude ?? 0) - (currentLocation?.coordinate.latitude ?? 0)
+        let deltaLongitude = currentScenePosition?.longitude ?? 0 - currentLocation?.coordinate.longitude ?? 0
+        let newScenePosition = CLLocation(latitude: currentLocation?.coordinate.latitude ?? 0 + deltaLatitude, longitude: currentLocation?.coordinate.longitude ?? 0 + deltaLongitude)
+        sceneLocationView!.moveSceneHeading(heading, from: currentLocation, to: newScenePosition)
     }
     
     //MARK: わかんない！
@@ -391,6 +429,22 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         pauseAnimation()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        guard let touch = touches.first,
+            let view = touch.view else { return }
+
+        let location = touch.location(in: self.view)
+
+        if location.x <= 40 {
+            print("left side of the screen")
+            sceneLocationView?.moveSceneHeadingAntiClockwise()
+        } else if location.x >= view.frame.size.width - 40 {
+            print("right side of the screen")
+            sceneLocationView?.moveSceneHeadingClockwise()
+        }
+    }
+    
     //MARK: - プロフィール画像関連
     
     //MARK: プロフィール画面に遷移するよ！
@@ -464,6 +518,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         }
     }
     
+    
     //MARK: - ここからわからん
     
     //MARK: まだ勉強してるよ！
@@ -533,7 +588,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                 //画像からURLが取得できた場合
             case .success(let getImage):
                 //取得した画像をimageに入れる
-                image = getImage.reSizeImage(reSize: size)
+                image = getImage
                 
                 //投稿IDを画像のタグに書き込む
                 image.accessibilityIdentifier = postId
@@ -945,5 +1000,26 @@ extension ARViewController: CLLocationManagerDelegate {
             }
             
         }
+    }
+    
+//    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+//            // デバイスの方位に合わせてSceneLocationViewを回転させる
+//        let camera = sceneLocationView!.scene.rootNode.childNode(withName: "camera", recursively: false)
+//        camera?.eulerAngles.y = Float(-1 * CGFloat(newHeading.trueHeading).toRadians())
+//    }
+    
+}
+
+extension CGFloat {
+    func toRadians() -> CGFloat {
+        return self * CGFloat.pi / 180.0
+    }
+}
+
+extension DispatchQueue {
+    func asyncAfter(timeInterval: TimeInterval, execute: @escaping () -> Void) {
+        self.asyncAfter(
+            deadline: DispatchTime.now() + Double(Int64(timeInterval * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC),
+            execute: execute)
     }
 }

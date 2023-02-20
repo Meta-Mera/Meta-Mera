@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import AlamofireImage
 
 class PhotosCollectionViewCell: UICollectionViewCell {
     
@@ -38,20 +39,37 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         collectionView.register(UINib(nibName: "PictureCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "PictureCollectionViewCell")
     }
     
+    let imageCache = AutoPurgingImageCache()
+    
 
 }
 
 extension PhotosCollectionViewCell: UICollectionViewDataSource {
     
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PictureCollectionViewCell", for: indexPath) as? PictureCollectionViewCell else {
             return UICollectionViewCell()
         }
-        if let postImageURL = URL(string: posts[indexPath.row].rawImageUrl){
-            cell.postImageView.af.setImage(withURL: postImageURL)
-            if posts[indexPath.row].hidden {
-                cell.hidenPostImage.isHidden = false
+        let postImageURL = URL(string: posts[indexPath.row].rawImageUrl)!
+        
+        let imageRequest = URLRequest(url: postImageURL)
+        
+        if let cachedImage = imageCache.image(for: imageRequest, withIdentifier: postImageURL.absoluteString) {
+//            cell.postImageView.image = cachedImage
+            DispatchQueue.main.async {
+                cell.postImageView.image = cachedImage
             }
+        } else {
+            cell.postImageView.af.setImage(withURLRequest: imageRequest, placeholderImage: Asset.Images.ロゴ.image, completion:  { response in
+                if case .success(let image) = response.result {
+                    self.imageCache.add(image, for: imageRequest, withIdentifier: postImageURL.absoluteString)
+                }
+            })
+        }
+        if posts[indexPath.row].hidden {
+            cell.hidenPostImage.isHidden = false
+            cell.postImageView.alpha = 0.1
         }
         cell.post = posts[indexPath.row]
         return cell

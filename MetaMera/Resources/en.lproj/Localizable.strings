@@ -59,12 +59,14 @@
 "changePassword" = "Change password";
 "notificationSettings" = "Notification settings";
 "contact" = "Contact";
+"appInfo" = "App Info";
 "withdrawalFromMetaMera" = "Withdrawal from Meta-Mera";
 
 "emailAddressSettingsDescription" = "You can check and change your currently registered e-mail address.";
 "changePasswordDescription" = "You can change your currently registered password.";
 "notificationSettingsDescription" = "You can set up notifications.";
 "contactDescription" = "Please feel free to contact us if you have any problems or request for bug fixes.";
+"appInfoDescription" = "You can check the version of this application and other information.";
 "withdrawalFromMetaMeraDescription" = "Delete your Meta-Mera account and cancel your membership.";
 
 /*----------------------------------

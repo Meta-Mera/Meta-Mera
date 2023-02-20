@@ -60,6 +60,7 @@
 "changePassword" = "パスワードの変更";
 "notificationSettings" = "通知設定";
 "contact" = "お問い合わせ";
+"appInfo" = "アプリ情報";
 "withdrawalFromMetaMera" = "退会";
 
 "emailAddressSettingsDescription" = "現在登録されているメールアドレスの確認と変更をすることができます。";
@@ -67,6 +68,7 @@
 //"notificationSettingsDescription" = "通知の種類を設定することができます。";
 "notificationSettingsDescription" = "設定へ移動します。";
 "contactDescription" = "何かお困りのことがある場合やバグの修正依頼などお気軽にお問合わせください。";
+"appInfoDescription" = "このアプリのバージョンなどが確認できます。";
 "withdrawalFromMetaMeraDescription" = "Meta-Meraのアカウントを削除し退会する手続きを行います。";
 
 

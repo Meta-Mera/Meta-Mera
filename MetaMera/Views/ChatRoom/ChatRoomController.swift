@@ -96,6 +96,7 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
         IQKeyboardManager.shared.enable = true
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
+        
     }
     
     //画面遷移しようとしたとき
@@ -135,17 +136,17 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
                         
                         Firestore.firestore().collection("Likes").document().setData(docData){
                             error in
-                                if let error = error {
-                                    print("いいねの登録に失敗しました。\(error)")
-                                    return
-                                }
-                                print("いいねの登録に成功しました。")
+                            if let error = error {
+                                print("いいねの登録に失敗しました。\(error)")
+                                return
+                            }
+                            print("いいねの登録に成功しました。")
                         }
                     }
                     return
                 }
                 //過去にいいねしている場合
-
+                
                 if(!iLiked){//いいねしてない
                     Firestore.firestore().collection("Likes").document((snapshot?.documents.first!.documentID)!).delete(){ error in
                         if let error = error {
@@ -162,40 +163,6 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
             
         })
         
-        
-        
-//        Firestore.firestore().collection("Posts").document(postId).collection("likeUsers").whereField("uid", isEqualTo: Profile.shared.loginUser.uid).getDocuments(completion: { [weak self] (snapshot, error) in
-//            if let error = error {
-//                print("Error getting documents: \(error)")
-//                return
-//            }else {
-//                guard snapshot!.documents.first?.value != nil else {
-//                    //いいねしてない
-//                    if((self?.iLiked)!){
-//                        let docData = ["uid" : Profile.shared.loginUser.uid,
-//                                       "createAt": Timestamp()] as [String : Any]
-//                        print("データなし")
-//                        Firestore.firestore().collection("Posts").document((self?.postId)!).collection("likeUsers").document(Profile.shared.loginUser.uid).setData(docData) { error in
-//                            if let error = error {
-//                                print("いいねの登録に失敗しました。\(error)")
-//                                return
-//                            }
-//                            print("いいねの登録に成功しました。")
-//                        }
-//                    }
-//                    return
-//                }
-//                //いいねしてる
-//                if(!(self?.iLiked)!){
-//                    Firestore.firestore().collection("Posts").document((self?.postId)!).collection("likeUsers").document(Profile.shared.loginUser.uid).delete(){ error in
-//                        if let error = error {
-//                            print("いいねの削除に失敗\(error)")
-//                        }
-//                    }
-//                }
-//            }
-//
-//        })
         messages.removeAll()
     }
     
@@ -377,86 +344,6 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
     
     
     private func fetchMessages() {
-        
-        
-//        Firestore.firestore().collection("Users")
-//            .getDocuments { [weak self] snap, err in
-//                if let err = err {
-//                    print("err", err)
-//                    return
-//                }
-//
-//                guard let userDocs = snap?.documents else {
-//                    print("not found data")
-//                    return
-//                }
-//
-//                Firestore.firestore().collection("Posts").document(self!.postId).collection("comments")
-//                    .addSnapshotListener { [weak self] (snapshots, err) in
-//                        if let err = err {
-//                            print("err", err)
-//                            return
-//                        }
-//
-//                        guard let commentDocs = snapshots?.documentChanges else {
-//                            print("not found data")
-//                            return
-//                        }
-//
-//                        let dispatchGroup = DispatchGroup()
-//                        let dispatchQueue = DispatchQueue(label: "com.MetaMera.comment")
-//
-//                        commentDocs.forEach { documentChange in
-//
-//                            dispatchGroup.enter()
-//                            dispatchQueue.async {
-//                                switch documentChange.type {
-//                                case .added:
-//
-//                                    let dic = documentChange.document.data()
-//                                    let comment = Comment(dic: dic,commentId: documentChange.document.documentID)
-//
-//                                    if !comment.deleted {
-//
-//                                        for userDoc in userDocs where userDoc.documentID == comment.uid {
-//                                            let user = User(dic: userDoc.data(), uid: userDoc.documentID)
-//                                            comment.sendUser = user
-//                                            self?.messages.append(comment)
-//                                            self?.messages.sort { (m1, m2) -> Bool in
-//                                                let m1Date = m1.createdAt.dateValue()
-//                                                let m2Date = m2.createdAt.dateValue()
-//                                                return m1Date < m2Date
-//                                            }
-//                                            print("ユーザー情報の取得に成功しました。")
-//                                        }
-//                                    }
-//
-//
-//                                case .modified, .removed:
-//                                    break
-//                                }
-//                                dispatchGroup.leave()
-//                            }
-//                        }
-//
-//                        dispatchGroup.notify(queue: dispatchQueue) {
-//                            DispatchQueue.main.async {
-//                                self?.chatRoomTableView.reloadData()
-//                            }
-//                        }
-//
-//
-//
-//                    }
-//            }
-        
-        
-        
-        
-        
-        
-        
-        
 
         Firestore.firestore().collection("Posts").document(postId).collection("comments").addSnapshotListener {[weak self] (snapshots, err) in
 
@@ -511,7 +398,6 @@ class ChatRoomController: UIViewController, UITextFieldDelegate, UIGestureRecogn
 
             dispatchGroup.notify(queue: dispatchQueue) {
                 DispatchQueue.main.async {
-
                     self?.chatRoomTableView.reloadData()
                 }
             }

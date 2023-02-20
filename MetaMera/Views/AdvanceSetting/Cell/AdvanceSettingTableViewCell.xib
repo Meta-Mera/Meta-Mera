@@ -32,7 +32,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="6Wr-cg-gl5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="5e2-VE-hSJ"/>
-                    <constraint firstItem="6Wr-cg-gl5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="B9N-QR-Erx"/>
+                    <constraint firstItem="6Wr-cg-gl5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="B9N-QR-Erx"/>
                     <constraint firstItem="uCy-qj-b5c" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="HPa-jC-sPE"/>
                     <constraint firstAttribute="bottom" secondItem="uCy-qj-b5c" secondAttribute="bottom" id="i4a-ji-Z9R"/>
                     <constraint firstAttribute="trailing" secondItem="uCy-qj-b5c" secondAttribute="trailing" constant="10" id="mxJ-ve-vbq"/>

@@ -75,13 +75,13 @@ class ChangeEmailAddressViewController: UIViewController {
         }
         
         if email.isEmpty || confirmEmail.isEmpty || password.isEmpty {
-            HUD.flash(.label(LocalizeKey.incompleteEntry.rawValue), delay: 1.0) { _ in
+            HUD.flash(.label(LocalizeKey.incompleteEntry.localizedString()), delay: 1.0) { _ in
             }
             return
         }
         
         if email != confirmEmail {
-            HUD.flash(.label(LocalizeKey.emailaddressesDoNotMatch.rawValue), delay: 1.0) { _ in
+            HUD.flash(.label(LocalizeKey.emailaddressesDoNotMatch.localizedString()), delay: 1.0) { _ in
             }
             return
         }
@@ -107,7 +107,7 @@ class ChangeEmailAddressViewController: UIViewController {
                 return
             case .failure(let error):
                 HUD.hide { (_) in
-                    HUD.flash(.label(LocalizeKey.emailChangeFailed.rawValue+"\(error.code)"), delay: 3.0) { _ in
+                    HUD.flash(.label(LocalizeKey.emailChangeFailed.localizedString()+"\(error.code)"), delay: 3.0) { _ in
                     }
                 }
                 print("メール変更に失敗",error.code)
