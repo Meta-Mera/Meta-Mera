@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book" translatesAutoresizingMaskIntoConstraints="NO" id="zwu-9q-4pg">
-                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LeaveAccount_image_title" translatesAutoresizingMaskIntoConstraints="NO" id="7CL-nC-nOz">
                     <rect key="frame" x="60" y="15" width="255" height="100"/>
@@ -32,7 +32,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Withdrawal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voH-ba-zqf">
-                    <rect key="frame" x="128" y="174" width="137" height="34"/>
+                    <rect key="frame" x="119" y="115" width="137" height="34"/>
                     <fontDescription key="fontDescription" type="system" pointSize="28"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -45,7 +45,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K5l-Og-Izg">
-                    <rect key="frame" x="45" y="238" width="303" height="79"/>
+                    <rect key="frame" x="45" y="179" width="285" height="79"/>
                     <string key="text">User authentication.
 Please enter your email address and password.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
@@ -53,7 +53,7 @@ Please enter your email address and password.</string>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="e-mail address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXM-Oa-mFi">
-                    <rect key="frame" x="35" y="377" width="130" height="24"/>
+                    <rect key="frame" x="35" y="318" width="130" height="24"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -65,7 +65,7 @@ Please enter your email address and password.</string>
                     <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8W6-Ht-D3w">
-                    <rect key="frame" x="35" y="444.66666666666669" width="85" height="24"/>
+                    <rect key="frame" x="35" y="385.5" width="85" height="24"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -101,7 +101,7 @@ Please enter your email address and password.</string>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Withdrawal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rU7-Ds-JzR">
-                    <rect key="frame" x="62.666666666666657" y="742.66666666666663" width="85" height="21"/>
+                    <rect key="frame" x="62.5" y="576.5" width="85" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -113,9 +113,13 @@ Please enter your email address and password.</string>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96R-zB-43F">
-                    <rect key="frame" x="35" y="610" width="215" height="35"/>
+                    <rect key="frame" x="35" y="617" width="215" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="D4n-AJ-ium"/>
+                        <constraint firstAttribute="width" constant="215" id="H3n-gp-qqW"/>
+                    </constraints>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="パスワードを忘れた場合"/>
+                    <buttonConfiguration key="configuration" style="plain" title="forget your password"/>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -128,11 +132,11 @@ Please enter your email address and password.</string>
                 <constraint firstItem="rU7-Ds-JzR" firstAttribute="centerX" secondItem="p82-lC-qCk" secondAttribute="centerX" id="3Zi-9X-NnE"/>
                 <constraint firstItem="Xcg-om-8Wv" firstAttribute="top" secondItem="NXM-Oa-mFi" secondAttribute="bottom" id="7PD-UI-cBu"/>
                 <constraint firstItem="5Cf-T7-3fP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="7l3-SL-hM5"/>
-                <constraint firstItem="96R-zB-43F" firstAttribute="top" secondItem="FvP-11-yhz" secondAttribute="bottom" constant="3" id="EbQ-aj-5uQ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="FvP-11-yhz" secondAttribute="bottom" constant="60" id="FeA-13-Q5B"/>
                 <constraint firstItem="p82-lC-qCk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="HSk-hb-WTH"/>
                 <constraint firstItem="zwu-9q-4pg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="QRv-DC-btK"/>
                 <constraint firstAttribute="trailing" secondItem="K5l-Og-Izg" secondAttribute="trailing" constant="45" id="Qsm-ic-een"/>
+                <constraint firstItem="96R-zB-43F" firstAttribute="top" secondItem="p82-lC-qCk" secondAttribute="bottom" constant="10" id="SI5-5O-S6e"/>
                 <constraint firstItem="7CL-nC-nOz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="V1o-Af-eKA"/>
                 <constraint firstItem="3Sc-mE-Q5H" firstAttribute="top" secondItem="voH-ba-zqf" secondAttribute="bottom" id="VP0-JB-Uuh"/>
                 <constraint firstItem="NXM-Oa-mFi" firstAttribute="top" secondItem="K5l-Og-Izg" secondAttribute="bottom" constant="60" id="VhQ-rk-Qds"/>

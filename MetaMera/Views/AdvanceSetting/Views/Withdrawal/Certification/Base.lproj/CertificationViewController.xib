@@ -82,7 +82,7 @@
                     <textInputTraits key="textInputTraits" keyboardType="alphabet" secureTextEntry="YES"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p82-lC-qCk">
-                    <rect key="frame" x="45" y="733" width="120" height="40"/>
+                    <rect key="frame" x="45" y="718" width="120" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="bNw-Ne-W4N"/>
                         <constraint firstAttribute="width" constant="120" id="sQT-am-RFc"/>
@@ -94,7 +94,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FvP-11-yhz">
-                    <rect key="frame" x="228" y="733" width="120" height="40"/>
+                    <rect key="frame" x="228" y="718" width="120" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="JwD-mE-6Pr"/>
                         <constraint firstAttribute="width" constant="120" id="tuE-eZ-hjM"/>
@@ -106,17 +106,26 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退会" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rU7-Ds-JzR">
-                    <rect key="frame" x="88" y="744.66666666666663" width="34" height="17"/>
+                    <rect key="frame" x="88" y="729.66666666666663" width="34" height="17"/>
                     <fontDescription key="fontDescription" name="BokutachinoGothic" family="BokutachinoGothic" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="キャンセル" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arp-nC-gbc">
-                    <rect key="frame" x="245.66666666666663" y="744.66666666666663" width="85" height="17"/>
+                    <rect key="frame" x="245.66666666666663" y="729.66666666666663" width="85" height="17"/>
                     <fontDescription key="fontDescription" name="BokutachinoGothic" family="BokutachinoGothic" pointSize="17"/>
                     <color key="textColor" name="color"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zv3-Xa-5fA">
+                    <rect key="frame" x="35" y="756.66666666666663" width="215" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="953-pZ-igM"/>
+                        <constraint firstAttribute="width" constant="215" id="JBL-Rc-oO2"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="パスワードを忘れた場合"/>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -127,8 +136,9 @@
                 <constraint firstItem="rU7-Ds-JzR" firstAttribute="centerX" secondItem="p82-lC-qCk" secondAttribute="centerX" id="3Zi-9X-NnE"/>
                 <constraint firstItem="Xcg-om-8Wv" firstAttribute="top" secondItem="NXM-Oa-mFi" secondAttribute="bottom" id="7PD-UI-cBu"/>
                 <constraint firstItem="5Cf-T7-3fP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="7l3-SL-hM5"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="FvP-11-yhz" secondAttribute="bottom" constant="45" id="FeA-13-Q5B"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="FvP-11-yhz" secondAttribute="bottom" constant="60" id="FeA-13-Q5B"/>
                 <constraint firstItem="p82-lC-qCk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="HSk-hb-WTH"/>
+                <constraint firstItem="Zv3-Xa-5fA" firstAttribute="top" secondItem="rU7-Ds-JzR" secondAttribute="bottom" constant="10" id="IhE-6i-skk"/>
                 <constraint firstItem="zwu-9q-4pg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="QRv-DC-btK"/>
                 <constraint firstAttribute="trailing" secondItem="K5l-Og-Izg" secondAttribute="trailing" constant="45" id="Qsm-ic-een"/>
                 <constraint firstItem="7CL-nC-nOz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="V1o-Af-eKA"/>
@@ -136,6 +146,7 @@
                 <constraint firstItem="NXM-Oa-mFi" firstAttribute="top" secondItem="K5l-Og-Izg" secondAttribute="bottom" constant="60" id="VhQ-rk-Qds"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7CL-nC-nOz" secondAttribute="trailing" constant="60" id="WS8-6i-7XS"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="FvP-11-yhz" secondAttribute="trailing" constant="45" id="WlM-Vy-wDs"/>
+                <constraint firstItem="Zv3-Xa-5fA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="Xi0-7x-gDJ"/>
                 <constraint firstItem="8W6-Ht-D3w" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="YOd-P1-gV3"/>
                 <constraint firstItem="zwu-9q-4pg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Yud-f9-owU"/>
                 <constraint firstItem="3Sc-mE-Q5H" firstAttribute="centerX" secondItem="voH-ba-zqf" secondAttribute="centerX" id="bYA-kq-Qmb"/>
@@ -146,7 +157,7 @@
                 <constraint firstItem="NXM-Oa-mFi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="n8C-MN-Gw4"/>
                 <constraint firstItem="7CL-nC-nOz" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="60" id="oNY-sg-H0k"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="zwu-9q-4pg" secondAttribute="trailing" id="ohS-dj-EH6"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="p82-lC-qCk" secondAttribute="bottom" constant="45" id="qVW-FY-h8o"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="p82-lC-qCk" secondAttribute="bottom" constant="60" id="qVW-FY-h8o"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5Cf-T7-3fP" secondAttribute="trailing" constant="85" id="r6v-Ec-Y4j"/>
                 <constraint firstItem="Xcg-om-8Wv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="rQx-Wt-z5t"/>
                 <constraint firstItem="arp-nC-gbc" firstAttribute="centerX" secondItem="FvP-11-yhz" secondAttribute="centerX" id="vJw-Nr-yCV"/>
