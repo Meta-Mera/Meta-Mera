@@ -283,7 +283,6 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         let rightInset = max(0, collectionView.bounds.width - leftInset - contentWidth)
         
         collectionView.contentInset = UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
-        
         collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .left, animated: true)
     }
     
