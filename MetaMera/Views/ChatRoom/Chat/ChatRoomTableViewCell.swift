@@ -47,6 +47,10 @@ class ChatRoomTableViewCell: UITableViewCell {
         // Initialization code
         configView()
     }
+    
+    deinit {
+//        statements
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

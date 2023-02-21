@@ -52,12 +52,14 @@ enum LocalizeKey: String {
     case changePassword
     case notificationSettings
     case contact
+    case appInfo
     case withdrawalFromMetaMera
 
     case emailAddressSettingsDescription
     case changePasswordDescription
     case notificationSettingsDescription
     case contactDescription
+    case appInfoDescription
     case withdrawalFromMetaMeraDescription
     
     //メールアドレス変更

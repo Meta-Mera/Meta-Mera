@@ -109,7 +109,7 @@ class MapTableViewCell: UITableViewCell, MKMapViewDelegate{
                 mapView.addAnnotation(pointAno)
                 
                 isAnnotation = true
-                delegate?.postLocation(postLocation: pointAno.coordinate, altitude: mapView.userLocation.location!.altitude + 30)
+                delegate?.postLocation(postLocation: pointAno.coordinate, altitude: mapView.userLocation.location!.altitude)
             }
         }
     }

@@ -18,11 +18,13 @@ class PictureCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         
         postImageView.image = nil
         hidenPostImage.isHidden = true
+        postImageView.alpha = 1
     }
 
 }

@@ -48,17 +48,17 @@ class CertificationViewController: UIViewController {
         }
         
         let cancel = UIAlertAction(
-            title: LocalizeKey.cancel.rawValue,
+            title: LocalizeKey.cancel.localizedString(),
             style: .cancel
         )
         let defaultAction = UIAlertAction(
-            title: LocalizeKey.withdrawalFromMetaMera.rawValue,
+            title: LocalizeKey.withdrawalFromMetaMera.localizedString(),
             style: .destructive) { alearAction in
                 self.withdrawalModel.withdrawal(view: self, email: email, password: password)
             }
         let alert = AlartManager.shared.setting(
-            title: LocalizeKey.withdrawalProcess.rawValue,
-            message: LocalizeKey.finalConfirmation.rawValue,
+            title: LocalizeKey.withdrawalProcess.localizedString(),
+            message: LocalizeKey.finalConfirmation.localizedString(),
             style: .alert,
             actions: [cancel,defaultAction]
         )

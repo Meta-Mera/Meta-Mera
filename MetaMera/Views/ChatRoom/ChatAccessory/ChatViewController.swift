@@ -28,6 +28,10 @@ class ChatViewController: UIView{
         inputChatText.delegate = self
     }
     
+    deinit {
+        delegate = nil
+    }
+    
     private func setupViews(){
         
         

@@ -45,7 +45,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.69999998807907104" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UNc-Jd-p1P">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.69999998807907104" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UNc-Jd-p1P">
                                 <rect key="frame" x="0.0" y="528" width="375" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="RjN-gs-uci"/>
@@ -56,7 +56,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" alpha="0.75" contentMode="scaleAspectFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czh-4h-UIa">
-                                <rect key="frame" x="30" y="702" width="60" height="60"/>
+                                <rect key="frame" x="30" y="698" width="60" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="1vk-5d-9oD"/>
@@ -133,6 +133,7 @@
                             <constraint firstItem="0g4-UK-JMB" firstAttribute="trailing" secondItem="5EZ-qb-Rvc" secondAttribute="trailing" id="HZK-Ny-kpi"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="ApQ-CF-4sq" secondAttribute="bottom" constant="600" id="K1t-Py-zl6"/>
                             <constraint firstItem="ApQ-CF-4sq" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="PcH-oI-zZB"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="czh-4h-UIa" secondAttribute="bottom" constant="30" id="bkU-YL-g7S"/>
                             <constraint firstAttribute="bottom" secondItem="0g4-UK-JMB" secondAttribute="bottom" id="fiY-bz-BOt"/>
                             <constraint firstItem="5xn-ya-I9u" firstAttribute="trailing" secondItem="UNc-Jd-p1P" secondAttribute="trailing" id="jeg-XL-jI1"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="CYJ-Ku-gip" secondAttribute="trailing" id="lKu-H7-FxN"/>
