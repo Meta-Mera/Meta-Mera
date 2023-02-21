@@ -57,19 +57,19 @@ class ChangePasswordViewController: UIViewController {
             return
         }
         if mailAddress.isEmpty || oldPassword.isEmpty || newPassword.isEmpty || confirmPassword.isEmpty {
-            HUD.flash(.label("入力不備があります。"), delay: 1.0) { _ in
+            HUD.flash(.label(LocalizeKey.incompleteEntry.rawValue), delay: 1.0) { _ in
             }
             return
         }
         
         if newPassword.count < 8 {
-            HUD.flash(.label("パスワードは8文字以上にしてください。"), delay: 1.0) { _ in
+            HUD.flash(.label(LocalizeKey.passwordCharacters.rawValue), delay: 1.0) { _ in
             }
             return
         }
         
         if newPassword != confirmPassword {
-            HUD.flash(.label("新しいパスワードが一致していません。"), delay: 1.0) { _ in
+            HUD.flash(.label(LocalizeKey.passwordNotMatch.rawValue), delay: 1.0) { _ in
             }
             return
         }

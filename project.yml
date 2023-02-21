@@ -113,8 +113,8 @@ targets:
     settings:
       base:
         TARGETED_DEVICE_FAMILY: 1
-        MARKETING_VERSION: 1.16.0
-        CURRENT_PROJECT_VERSION: 1.16.0
+        MARKETING_VERSION: 1.17.1
+        CURRENT_PROJECT_VERSION: 1.17.1
         DEVELOPMENT_TEAM: JH5QRQ7596
       configs:
         DevelopDebug:
@@ -165,7 +165,7 @@ targets:
             versionNumber="$MARKETING_VERSION"
 
             #   Output version & build numbers into a label on LaunchScreen.storyboard
-            sed -i .bak -e "/userLabel=\"APP_VERSION\"/s/text=\"[^\"]*\"/text=\"Ver $versionNumber\"/" "$sourceFilePath"
+            sed -i .bak -e "/userLabel=\"APP_VERSION\"/s/text=\"[^\"]*\"/text=\"Ver: $versionNumber\"/" "$sourceFilePath"
         shell: /bin/sh
   MetaMeraTests:
     type: bundle.unit-test

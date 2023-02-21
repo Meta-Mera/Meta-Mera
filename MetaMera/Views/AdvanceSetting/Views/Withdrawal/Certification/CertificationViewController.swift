@@ -26,8 +26,8 @@ class CertificationViewController: UIViewController {
         mailTextField.delegate = self
         passwordTextField.delegate = self
         
-        mailTextField.attributedPlaceholder = NSAttributedString(string: "　example@meta-mera.com", attributes: [NSAttributedString.Key.foregroundColor: UIColor.textFieldPlaceholderColor])
-        passwordTextField.attributedPlaceholder = NSAttributedString(string: "　Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.textFieldPlaceholderColor])
+        mailTextField.attributedPlaceholder = NSAttributedString(string: "example@meta-mera.com", attributes: [NSAttributedString.Key.foregroundColor: UIColor.textFieldPlaceholderColor])
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.textFieldPlaceholderColor])
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -43,22 +43,22 @@ class CertificationViewController: UIViewController {
         
         if email.isEmpty || password.isEmpty {
             print("不備あり")
-            HUD.flash(.label("入力不備があります。"), delay: 2)
+            HUD.flash(.label(LocalizeKey.incompleteEntry.localizedString()), delay: 2)
             return
         }
         
         let cancel = UIAlertAction(
-            title: "Cancel",
+            title: LocalizeKey.cancel.rawValue,
             style: .cancel
         )
         let defaultAction = UIAlertAction(
-            title: "退会",
+            title: LocalizeKey.withdrawalFromMetaMera.rawValue,
             style: .destructive) { alearAction in
                 self.withdrawalModel.withdrawal(view: self, email: email, password: password)
             }
         let alert = AlartManager.shared.setting(
-            title: "退会処理",
-            message: "この処理は取り消すことができません。退会処理を実行してよろしいですか？",
+            title: LocalizeKey.withdrawalProcess.rawValue,
+            message: LocalizeKey.finalConfirmation.rawValue,
             style: .alert,
             actions: [cancel,defaultAction]
         )

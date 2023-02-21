@@ -28,7 +28,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header_beige" translatesAutoresizingMaskIntoConstraints="NO" id="rZs-mr-NFd">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="98.666666666666671"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="editprofile_back_button" translatesAutoresizingMaskIntoConstraints="NO" id="sj5-Yk-ZuO">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back_button" translatesAutoresizingMaskIntoConstraints="NO" id="sj5-Yk-ZuO">
                                 <rect key="frame" x="15" y="63" width="18" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="18" id="Nns-5R-0Ai"/>
@@ -102,7 +102,7 @@
     <resources>
         <image name="ChatRoom_background" width="1284" height="2778"/>
         <image name="Hamburger" width="62" height="54"/>
-        <image name="editprofile_back_button" width="54" height="78"/>
+        <image name="back_button" width="54" height="78"/>
         <image name="header_beige" width="1284" height="347"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

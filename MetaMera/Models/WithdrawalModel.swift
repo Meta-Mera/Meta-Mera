@@ -38,7 +38,7 @@ class WithdrawalModel {
                 return
             case .failure(let error):
                 HUD.hide { (_) in
-                    HUD.flash(.label("アカウント削除に失敗しました。\(error.code)"), delay: 3.0) { _ in
+                    HUD.flash(.label(LocalizeKey.withdrawalFailed.rawValue+"\(error.code)"), delay: 3.0) { _ in
                     }
                 }
             }

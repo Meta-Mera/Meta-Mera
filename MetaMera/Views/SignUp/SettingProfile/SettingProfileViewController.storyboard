@@ -38,7 +38,11 @@
                                     <constraint firstAttribute="height" constant="50" id="ebb-iI-Wx9"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+<<<<<<< HEAD
                                 <state key="normal" image="button_blue"/>
+=======
+                                <state key="normal" image="next_button"/>
+>>>>>>> develop
                                 <connections>
                                     <action selector="nextButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="wdS-iZ-R39"/>
                                 </connections>
@@ -85,7 +89,11 @@
         </scene>
     </scenes>
     <resources>
+<<<<<<< HEAD
         <image name="button_blue" width="281" height="137"/>
+=======
+        <image name="next_button" width="560" height="173"/>
+>>>>>>> develop
         <image name="アカウント作成画面_写真マーク" width="190" height="192"/>
         <image name="アカウント作成画面_背景" width="1284" height="2778"/>
         <systemColor name="systemBackgroundColor">
