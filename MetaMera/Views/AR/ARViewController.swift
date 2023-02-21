@@ -262,13 +262,13 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         let camera = sceneLocationView!.scene.rootNode.childNode(withName: "camera", recursively: false)
         camera?.eulerAngles.y = -Float(heading)
         
-        // 座標も更新する
-        let currentLocation = locationManager.locationManager.location
-        let currentScenePosition = sceneLocationView!.currentScenePosition
-        let deltaLatitude = (currentScenePosition?.latitude ?? 0) - (currentLocation?.coordinate.latitude ?? 0)
-        let deltaLongitude = currentScenePosition?.longitude ?? 0 - currentLocation?.coordinate.longitude ?? 0
-        let newScenePosition = CLLocation(latitude: currentLocation?.coordinate.latitude ?? 0 + deltaLatitude, longitude: currentLocation?.coordinate.longitude ?? 0 + deltaLongitude)
-        sceneLocationView!.moveSceneHeading(heading, from: currentLocation, to: newScenePosition)
+//        // 座標も更新する
+//        let currentLocation = locationManager.locationManager.location
+//        let currentScenePosition = sceneLocationView!.currentScenePosition
+//        let deltaLatitude = (currentScenePosition?.latitude ?? 0) - (currentLocation?.coordinate.latitude ?? 0)
+//        let deltaLongitude = currentScenePosition?.longitude ?? 0 - currentLocation?.coordinate.longitude ?? 0
+//        let newScenePosition = CLLocation(latitude: currentLocation?.coordinate.latitude ?? 0 + deltaLatitude, longitude: currentLocation?.coordinate.longitude ?? 0 + deltaLongitude)
+//        sceneLocationView!.moveSceneHeading(heading, from: currentLocation, to: newScenePosition)
     }
     
     //MARK: わかんない！
