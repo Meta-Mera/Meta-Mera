@@ -38,7 +38,11 @@
                                     <constraint firstAttribute="height" constant="50" id="ebb-iI-Wx9"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+<<<<<<< HEAD
+                                <state key="normal" image="button_blue"/>
+=======
                                 <state key="normal" image="next_button"/>
+>>>>>>> develop
                                 <connections>
                                     <action selector="nextButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="wdS-iZ-R39"/>
                                 </connections>
@@ -48,12 +52,19 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qeG-85-eNR">
+                                <rect key="frame" x="177" y="615.33333333333337" width="36" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="9kR-Pl-ktl" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="100" id="6Td-iK-DiJ"/>
                             <constraint firstItem="9kR-Pl-ktl" firstAttribute="top" secondItem="3x2-Kp-HCt" secondAttribute="bottom" constant="100" id="9v4-eX-ABq"/>
+                            <constraint firstItem="qeG-85-eNR" firstAttribute="centerX" secondItem="9kR-Pl-ktl" secondAttribute="centerX" id="CyZ-YO-NJH"/>
                             <constraint firstItem="3x2-Kp-HCt" firstAttribute="top" secondItem="ypA-Yx-qWn" secondAttribute="bottom" constant="10" id="MLQ-dJ-Xjo"/>
                             <constraint firstItem="zfG-Pc-hLo" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Woh-Ko-ERE"/>
                             <constraint firstAttribute="bottom" secondItem="zfG-Pc-hLo" secondAttribute="bottom" id="cIG-bn-GE8"/>
@@ -63,6 +74,7 @@
                             <constraint firstItem="ypA-Yx-qWn" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="fF0-Ci-GU7"/>
                             <constraint firstItem="ypA-Yx-qWn" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="ftd-yq-TnY"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="9kR-Pl-ktl" secondAttribute="trailing" constant="100" id="pmA-SA-cYm"/>
+                            <constraint firstItem="qeG-85-eNR" firstAttribute="centerY" secondItem="9kR-Pl-ktl" secondAttribute="centerY" id="rrh-Jv-ZJz"/>
                         </constraints>
                     </view>
                     <connections>
@@ -77,7 +89,11 @@
         </scene>
     </scenes>
     <resources>
+<<<<<<< HEAD
+        <image name="button_blue" width="281" height="137"/>
+=======
         <image name="next_button" width="560" height="173"/>
+>>>>>>> develop
         <image name="アカウント作成画面_写真マーク" width="190" height="192"/>
         <image name="アカウント作成画面_背景" width="1284" height="2778"/>
         <systemColor name="systemBackgroundColor">
