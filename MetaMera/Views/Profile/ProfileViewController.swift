@@ -217,8 +217,6 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
                 (action: UIAlertAction!) in
             })
             
-            alertSheet.addAction(block)
-            alertSheet.addAction(report)
             alertSheet.addAction(signOut)
             alertSheet.addAction(cancel)
             

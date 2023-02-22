@@ -54,7 +54,7 @@ class SignUpModel {
             let docData = ["email": email,
                            "userName": userName,
                            "ban" : false,
-                           "limited" : 0,
+                           "limited" : 1,
                            "deleted": false,
                            "headerColor" : Int.random(in: 0...4),
                            "bio": bio,

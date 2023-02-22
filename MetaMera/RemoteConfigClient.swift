@@ -10,7 +10,7 @@ import Firebase
 import FirebaseRemoteConfig
 
 enum RemoteConfigParameterKey: String, CaseIterable {
-    case serverMaintenance = "server_maintenance_config"
+    case serverMaintenance = "day1"
     case newRegistrationRestrictions = "new_registration_restrictions"
     case updateInfo = "updateInfo"
 }
