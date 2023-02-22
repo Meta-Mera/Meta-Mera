@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Firebase
+import AudioToolbox
 import Alamofire
 import AlamofireImage
 
@@ -22,6 +23,7 @@ class PostImageTableViewCell: UITableViewCell {
     @IBOutlet weak var commentTextViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var likeButton: UIButton!
     
+    @IBOutlet weak var likeImageView: UIImageView!
     
     var delegate: UserProfileProtocol?
     var goodDelegate: goodDelegate?
@@ -37,11 +39,11 @@ class PostImageTableViewCell: UITableViewCell {
         }
     }
     
-//    var messageText: Comment?{
-//        didSet{
-//
-//        }
-//    }
+    //    var messageText: Comment?{
+    //        didSet{
+    //
+    //        }
+    //    }
     
     func getGood(){
         Firestore.firestore().collection("Likes").whereField("uid", isEqualTo: Profile.shared.loginUser.uid).whereField("postId", isEqualTo: post.postId!).getDocuments(completion: { [weak self] (snapshot, error) in
@@ -93,8 +95,41 @@ class PostImageTableViewCell: UITableViewCell {
         postUserNameLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pushPostUser(_:))))
         profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pushPostUser(_:))))
         
+        // UITapGestureRecognizerを作成し、UIImageViewに追加する
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        tapGesture.numberOfTapsRequired = 2 // ダブルタップを設定する
+        postImageView.isUserInteractionEnabled = true
+        postImageView.addGestureRecognizer(tapGesture)
+        
         backgroundColor = .clear
         
+        
+    }
+    
+    // ダブルタップを検知した場合の処理
+    @objc func imageTapped() {
+        // ここに処理を記述する
+        
+        if(!iLiked){
+            iLiked.toggle()
+            AudioServicesPlaySystemSound(1519)
+            likeButton.setImage(Asset.Images.good.image, for: .normal)
+            goodDelegate?.good(good: true)
+            
+            self.likeImageView?.isHidden = false
+            self.likeImageView?.alpha = 1.0
+            
+            UIView.animate(withDuration: 0.5, delay: 0.4, options: UIView.AnimationOptions.curveEaseIn, animations: {
+                
+                self.likeImageView?.alpha = 0
+                
+            }, completion: {
+                (value:Bool) in
+                
+                self.likeImageView?.isHidden = true
+            })
+            
+        }
         
     }
     
@@ -121,13 +156,13 @@ class PostImageTableViewCell: UITableViewCell {
                 self?.postDateLabel.text = ""
                 self?.postImageView.setImage(image: Asset.Images.ロゴ.image, name: "")
                 if ((self?.postUser?.deleted) != nil){
-//                    FirebaseManager.post.document(id: (self?.post.postId)!).updateData([
-//                        "deleted":true
-//                    ]){ err in
-//                        if let err = err {
-//                            print("投稿の削除に失敗しました。\(err)")
-//                        }
-//                    }
+                    //                    FirebaseManager.post.document(id: (self?.post.postId)!).updateData([
+                    //                        "deleted":true
+                    //                    ]){ err in
+                    //                        if let err = err {
+                    //                            print("投稿の削除に失敗しました。\(err)")
+                    //                        }
+                    //                    }
                     return
                 }
             }else{
@@ -167,5 +202,5 @@ class PostImageTableViewCell: UITableViewCell {
     }
     
     
-
+    
 }

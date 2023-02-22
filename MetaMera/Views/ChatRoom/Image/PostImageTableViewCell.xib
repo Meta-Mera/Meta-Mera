@@ -80,6 +80,14 @@ CgoKCg
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="JfX-st-1fs">
+                        <rect key="frame" x="158.5" y="141.5" width="128" height="125.5"/>
+                        <color key="tintColor" red="0.97254908080000002" green="0.97254908080000002" blue="0.97254908080000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="128" id="Pcg-yG-Lcb"/>
+                            <constraint firstAttribute="height" constant="128" id="SbS-1l-Nag"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
@@ -104,6 +112,8 @@ CgoKCg
                     <constraint firstItem="GKQ-a3-L5D" firstAttribute="centerY" secondItem="GUw-EG-5PL" secondAttribute="centerY" id="fx6-oy-9G6"/>
                     <constraint firstItem="XmB-ve-k8s" firstAttribute="leading" secondItem="YyA-eJ-GtJ" secondAttribute="leadingMargin" id="hLd-SB-9P5"/>
                     <constraint firstAttribute="trailing" secondItem="hBh-eZ-ZMA" secondAttribute="trailing" constant="20" id="hMG-wp-3vo"/>
+                    <constraint firstItem="JfX-st-1fs" firstAttribute="centerY" secondItem="36L-jy-pEx" secondAttribute="centerY" id="ins-9G-JBk"/>
+                    <constraint firstItem="JfX-st-1fs" firstAttribute="centerX" secondItem="36L-jy-pEx" secondAttribute="centerX" id="l8J-sF-e9v"/>
                     <constraint firstItem="XmB-ve-k8s" firstAttribute="top" secondItem="6xW-1G-LJc" secondAttribute="bottom" constant="-8" id="llK-wD-THf"/>
                     <constraint firstItem="36L-jy-pEx" firstAttribute="leading" secondItem="YyA-eJ-GtJ" secondAttribute="leadingMargin" constant="10" id="pMB-AE-J6f"/>
                     <constraint firstItem="XmB-ve-k8s" firstAttribute="centerX" secondItem="YyA-eJ-GtJ" secondAttribute="centerX" id="pXf-sl-416"/>
@@ -115,6 +125,7 @@ CgoKCg
             </tableViewCellContentView>
             <connections>
                 <outlet property="likeButton" destination="18I-jx-FED" id="3xb-85-Guf"/>
+                <outlet property="likeImageView" destination="JfX-st-1fs" id="qkN-H9-8pq"/>
                 <outlet property="postDateLabel" destination="6xW-1G-LJc" id="lAI-ei-bkz"/>
                 <outlet property="postImageView" destination="36L-jy-pEx" id="Xlf-L3-Eui"/>
                 <outlet property="postTextView" destination="hBh-eZ-ZMA" id="94V-kx-vHa"/>
@@ -128,6 +139,7 @@ CgoKCg
         <image name="ChatRoom_ruled1line" width="1188" height="6"/>
         <image name="ChatRoom_ruled3line" width="1188" height="29"/>
         <image name="editprofile_initicon" width="288" height="288"/>
+        <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="notGood" width="2362" height="2362"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
