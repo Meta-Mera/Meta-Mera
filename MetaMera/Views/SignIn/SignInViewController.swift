@@ -16,9 +16,7 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var backGroundImageView: UIImageView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-//    @IBOutlet weak var nextButtonImage: UIImageView!
-//    @IBOutlet weak var backButtonImage: UIImageView!
-    
+    @IBOutlet weak var passwordForgetButton: UIButton!
     @IBOutlet weak var buckButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
@@ -74,6 +72,9 @@ class SignInViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    @IBAction func pushForget(_ sender: Any) {
+        Goto.ResetPassViewController(view: self)
+    }
     
     @IBAction func pushBack(_ sender: Any) {
         print("push back")

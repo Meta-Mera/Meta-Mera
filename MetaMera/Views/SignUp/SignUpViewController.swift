@@ -25,9 +25,8 @@ class SignUpViewController: UIViewController {
     
 //    @IBOutlet weak var stackView: UIStackView!
     
-  
-    @IBOutlet weak var nextButtonImage: UIImageView!
-    @IBOutlet weak var backButtonImage: UIImageView!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
     
 
   
@@ -41,12 +40,6 @@ class SignUpViewController: UIViewController {
         userIdTextField.delegate = self
 
 
-        
-      
-        backButtonImage.isUserInteractionEnabled = true
-        backButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gotoTopView(_:))))
-        nextButtonImage.isUserInteractionEnabled = true
-        nextButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pushCreateAccountButton(_:))))
         
         configView()
 
@@ -87,9 +80,7 @@ class SignUpViewController: UIViewController {
     @IBAction func Exit(_ sender: Any) {
     }
     
-    
-  //NextButton押した時の処理
-  @objc func pushCreateAccountButton(_ sender: Any) {
+    @IBAction func pushNext(_ sender: Any) {
         self.view.endEditing(true)
       
       guard let password = passwordTextField.text,
@@ -123,10 +114,7 @@ class SignUpViewController: UIViewController {
     
   
     
-
-    
-    //BackBotton処理
-    @objc func gotoTopView(_ sender: Any){
+    @IBAction func pushBack(_ sender: Any) {
         Goto.Top(view: self, completion: nil)
     }
     

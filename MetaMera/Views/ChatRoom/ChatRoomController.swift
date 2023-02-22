@@ -427,23 +427,37 @@ extension ChatRoomController: ChatViewControllerDelegate {
 //        guard let name = user?.username else { return }
         guard let uid = Auth.auth().currentUser?.uid else { return }
 //        let messageId = randomString(length: 20)
-
-        let docData = [
-            "createdAt": Timestamp(),
-            "uid": uid,
-            "message": text,
-            "hidden": false,
-            "deleted": false
-            ] as [String : Any]
-        Firestore.firestore().collection("Posts").document(postId).collection("comments").addDocument(data: docData){ [weak self] (err) in
-            if let err = err{
-                print("メッセージ情報の保存に失敗しました。\(err)")
-                return
+        
+        if(Profile.shared.loginUser.limited == 2 || Profile.shared.loginUser.limited == 3){
+            let defaultAction = UIAlertAction(
+                title: "閉じる",
+                style: .default
+            )
+            let alert = AlartManager.shared.setting(
+                title: "お知らせ",
+                message: "現在ログインしている\nユーザーにはコメントをする\n権限が付与されていません。",
+                style: .alert,
+                actions: [defaultAction]
+            )
+            self.chatView.removeText()
+            self.present(alert, animated: true)
+        }else {
+            let docData = [
+                "createdAt": Timestamp(),
+                "uid": uid,
+                "message": text,
+                "hidden": false,
+                "deleted": false
+                ] as [String : Any]
+            Firestore.firestore().collection("Posts").document(postId).collection("comments").addDocument(data: docData){ [weak self] (err) in
+                if let err = err{
+                    print("メッセージ情報の保存に失敗しました。\(err)")
+                    return
+                }
+                print("メッセージの保存に成功しました。")
+                self?.chatView.removeText()
+                
             }
-            print("メッセージの保存に成功しました。")
-            self?.chatView.removeText()
-            
-            
         }
 
     }

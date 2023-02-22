@@ -12,8 +12,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpViewController" customModule="MetaMera" customModuleProvider="target">
             <connections>
+                <outlet property="backButton" destination="bft-6d-wJn" id="0kf-fE-Q2i"/>
                 <outlet property="confirmPasswordTextField" destination="DQX-j0-CEj" id="Vl5-h9-oNd"/>
                 <outlet property="eMailTextField" destination="boh-Y8-yM1" id="6VI-vG-qm4"/>
+                <outlet property="nextButton" destination="dDd-Y6-N9U" id="jgq-qf-2wz"/>
                 <outlet property="passwordTextField" destination="7gq-P0-8fi" id="BjN-kT-GSc"/>
                 <outlet property="userIdTextField" destination="GN1-An-DDr" id="jdQ-MP-k42"/>
                 <outlet property="view" destination="eJ1-JO-fzl" id="s7s-lY-EQr"/>
@@ -175,6 +177,9 @@
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="button_blue"/>
+                    <connections>
+                        <action selector="pushBack:" destination="-1" eventType="touchUpInside" id="mXS-Vg-2ED"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDd-Y6-N9U">
                     <rect key="frame" x="225" y="768" width="125" height="62"/>
@@ -184,6 +189,9 @@
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="button_blue"/>
+                    <connections>
+                        <action selector="pushNext:" destination="-1" eventType="touchUpInside" id="KsI-lW-LVF"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Back" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8XT-0A-aO5">
                     <rect key="frame" x="107.5" y="789" width="38" height="20.5"/>

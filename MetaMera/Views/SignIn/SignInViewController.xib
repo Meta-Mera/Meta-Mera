@@ -15,6 +15,7 @@
                 <outlet property="buckButton" destination="Wgw-cs-LoK" id="J81-3A-yYr"/>
                 <outlet property="emailTextField" destination="Zjq-8M-Jbt" id="S4i-ZY-7ur"/>
                 <outlet property="nextButton" destination="Qhb-Xn-sBq" id="FsB-CQ-B5e"/>
+                <outlet property="passwordForgetButton" destination="3gr-XB-aum" id="a70-0Y-ymn"/>
                 <outlet property="passwordTextField" destination="Ept-yV-k7J" id="HrA-pt-EQM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -137,6 +138,9 @@
                     <rect key="frame" x="79" y="649" width="232" height="35"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="パスワードをを忘れた場合"/>
+                    <connections>
+                        <action selector="pushForget:" destination="-1" eventType="touchUpInside" id="n1d-rr-KbI"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

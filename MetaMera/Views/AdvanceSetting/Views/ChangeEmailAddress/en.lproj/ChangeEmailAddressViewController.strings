@@ -14,6 +14,9 @@
 /* Class = "UILabel"; text = "現在のメールアドレスはmetamera-account.co.jpです。"; ObjectID = "aq5-5F-4wh"; */
 "aq5-5F-4wh.text" = "現在のメールアドレスは%NOWEMAILL%です。";
 
+/* Class = "UIButton"; normalTitle = "パスワードを忘れた場合"; ObjectID = "oSc-Gd-YMM"; */
+"oSc-Gd-YMM.normalTitle" = "Forgot your password?";
+
 /* Class = "UILabel"; text = "パスワード"; ObjectID = "oH1-HR-Mly"; */
 "oH1-HR-Mly.text" = "Password";
 

@@ -130,6 +130,15 @@
                         <constraint firstAttribute="height" constant="45" id="n69-j1-Nc4"/>
                     </constraints>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSc-Gd-YMM">
+                    <rect key="frame" x="122" y="716" width="124" height="26"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="パスワードを忘れた場合"/>
+                    <connections>
+                        <action selector="pushForget:" destination="-1" eventType="touchUpInside" id="EoV-xV-rid"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -143,6 +152,7 @@
                 <constraint firstItem="eIc-Xd-5go" firstAttribute="top" secondItem="83B-7O-dqj" secondAttribute="bottom" constant="-20" id="7Ko-kt-Uj7"/>
                 <constraint firstItem="IZ3-gY-vYF" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="8w8-wh-fNU"/>
                 <constraint firstItem="oH1-HR-Mly" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="9Qj-kh-9Q7"/>
+                <constraint firstItem="oSc-Gd-YMM" firstAttribute="leading" secondItem="oH1-HR-Mly" secondAttribute="trailing" constant="10" id="Dho-IH-O9T"/>
                 <constraint firstItem="Yu2-2Z-Z6a" firstAttribute="top" secondItem="sve-0L-dTl" secondAttribute="bottom" id="Eto-K4-RDl"/>
                 <constraint firstAttribute="trailing" secondItem="aq5-5F-4wh" secondAttribute="trailing" constant="35" id="IpT-JB-ifx"/>
                 <constraint firstItem="aq5-5F-4wh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="35" id="Jve-4c-eka"/>
@@ -170,6 +180,7 @@
                 <constraint firstItem="Tuz-GN-oyh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="nSD-JR-szU"/>
                 <constraint firstItem="nIG-X2-kHq" firstAttribute="top" secondItem="oH1-HR-Mly" secondAttribute="bottom" id="oc8-gV-Cfj"/>
                 <constraint firstItem="WSm-cy-1kZ" firstAttribute="top" secondItem="aq5-5F-4wh" secondAttribute="bottom" constant="15" id="or6-0h-9H0"/>
+                <constraint firstItem="oSc-Gd-YMM" firstAttribute="centerY" secondItem="oH1-HR-Mly" secondAttribute="centerY" id="q6f-Nx-1TX"/>
                 <constraint firstItem="PRo-z1-dBx" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="qhq-AF-emD"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="rzr-d1-wvV" secondAttribute="bottom" constant="45" id="qtx-vb-1ZT"/>
                 <constraint firstItem="WSm-cy-1kZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="35" id="sPM-Na-fh7"/>

@@ -165,6 +165,7 @@ class Goto : UIViewController{
         let vc = MetaMera.WithdrawalViewController()
         view.navigationController?.pushViewController(vc, animated: true)
     }
+    //MARK: 詳細設定 -
     
     class func SelectGenreIdViewController(view: UIViewController){
         print("Goto-SelectGenreIdViewController was called.")
@@ -172,7 +173,15 @@ class Goto : UIViewController{
         view.navigationController?.pushViewController(vc, animated: true)
     }
     
-    //MARK: 詳細設定 -
+    class func ResetPassViewController(view: UIViewController){
+        print("Goto-ResetPassViewController was called.")
+        let vc = MetaMera.ResetPassViewController()
+        view.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+    
+    
     
     
 }

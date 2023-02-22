@@ -123,7 +123,7 @@ extension AdvanceSettingViewController: UITableViewDelegate {
             Goto.ContactViewController(view: self)
             break
         case 4:
-            let vc = MetaMera.ResetPassViewController()
+            let vc = MetaMera.AppInfoViewController()
             self.navigationController?.pushViewController(vc, animated: true)
             break
         case 5:

@@ -26,6 +26,11 @@ class ChangeEmailAddressViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     
     
+    @IBAction func pushForget(_ sender: Any) {
+        Goto.ResetPassViewController(view: self)
+    }
+    
+    
     
     
     let userModel = UserModel()
