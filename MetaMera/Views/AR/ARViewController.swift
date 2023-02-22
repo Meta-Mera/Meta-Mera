@@ -788,6 +788,17 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     @IBAction func pushCreateRoom(_ sender: Any) {
         backTap()
+        let defaultAction = UIAlertAction(
+            title: "閉じる",
+            style: .default
+        )
+        let alert = AlartManager.shared.setting(
+            title: "お知らせ",
+            message: "この機能は現在開発中です。実装までお待ちください。",
+            style: .alert,
+            actions: [defaultAction]
+        )
+        self.present(alert, animated: true)
         
     }
     
