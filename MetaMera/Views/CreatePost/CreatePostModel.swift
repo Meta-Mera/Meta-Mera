@@ -26,6 +26,8 @@ class CreatePostModel {
     var genreId : String = "general"
     var postImage = UIImage()
     
+    var arDelegate: PostUploadDelegate!
+    
     func postCheck() -> Bool{
         if PhotoSelected && LocationIsSet {
             return true
@@ -76,6 +78,7 @@ class CreatePostModel {
                                         }
                                     }.resume()
                                     view.navigationController?.popViewController(animated: true)
+                                    self?.arDelegate?.postUpload()
                                 }
                             }
                             break

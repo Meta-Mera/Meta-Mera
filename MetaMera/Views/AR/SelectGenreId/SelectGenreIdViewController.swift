@@ -23,7 +23,7 @@ class SelectGenreIdViewController: UIViewController {
     var selectedMenuType = GenreType.creator
     
     func configView(){
-        selectButton.setTitle(NSLocalizedString("カレッジ名を選択", comment: ""), for: .normal)
+        selectButton.setTitle(NSLocalizedString(LocalizeKey.creator.localizedString(), comment: ""), for: .normal)
     }
     
     
@@ -73,7 +73,7 @@ class SelectGenreIdViewController: UIViewController {
         }))
         
         // UIButtonにUIMenuを設定
-        selectButton.menu = UIMenu(title: LocalizeKey.creator.localizedString(), options: .displayInline, children: actions)
+        selectButton.menu = UIMenu(title: "Please select the name of the college", options: .displayInline, children: actions)
         // こちらを書かないと表示できない場合があるので注意
         selectButton.showsMenuAsPrimaryAction = true
     }

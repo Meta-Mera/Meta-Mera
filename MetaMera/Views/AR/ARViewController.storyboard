@@ -63,7 +63,7 @@
                                     <constraint firstAttribute="width" secondItem="czh-4h-UIa" secondAttribute="height" multiplier="1:1" id="o31-TF-O7I"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="プラス">
+                                <state key="normal" image="plus_button">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -78,7 +78,7 @@
                                     <constraint firstAttribute="width" constant="50" id="cpg-zC-qgD"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="" image="プロフィール">
+                                <state key="normal" title="" image="profile_button">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -93,7 +93,7 @@
                                     <constraint firstAttribute="width" secondItem="6FL-tj-Fkr" secondAttribute="height" multiplier="1:1" id="f0R-CX-3WD"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="" image="カテゴリー選択">
+                                <state key="normal" title="" image="category_button">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -108,7 +108,7 @@
                                     <constraint firstAttribute="width" constant="50" id="yh5-OK-l7b"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="" image="ルーム作成">
+                                <state key="normal" title="" image="notification_button">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -161,10 +161,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="カテゴリー選択" width="85.333335876464844" height="85.333335876464844"/>
-        <image name="プラス" width="85.333335876464844" height="85.333335876464844"/>
-        <image name="プロフィール" width="85.333335876464844" height="85.333335876464844"/>
-        <image name="ルーム作成" width="85.333335876464844" height="85.333335876464844"/>
+        <image name="category_button" width="3600" height="3600"/>
+        <image name="notification_button" width="512" height="512"/>
+        <image name="plus_button" width="512" height="512"/>
+        <image name="profile_button" width="512" height="512"/>
         <image name="ロゴ" width="272.5" height="208.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

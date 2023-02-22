@@ -10,6 +10,10 @@ import CoreLocation
 import Photos
 import PKHUD
 
+protocol PostUploadDelegate {
+    func postUpload()
+}
+
 class CreatePostViewController: UIViewController {
 
     @IBOutlet weak var createPostTableView: UITableView!

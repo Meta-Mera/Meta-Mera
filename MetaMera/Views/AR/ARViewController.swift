@@ -225,7 +225,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         selectCategoryButton.imageView?.layer.cornerRadius = selectCategoryButton.bounds.width / 2
         
         let borderWidthInt : CGFloat = 3
-        let borderColor : CGColor = UIColor.rgb(red: 120, green: 200, blue: 255).cgColor
+        let borderColor : CGColor = UIColor.rgb(red: 211, green: 202, blue: 202).cgColor
         
         plusButton.imageView?.layer.borderWidth = borderWidthInt
         profileButton.imageView?.layer.borderWidth = borderWidthInt
@@ -758,7 +758,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             )
             self.present(alert, animated: true)
         }else {
-            Goto.CreatePost(view: self)
+            let vc = MetaMera.CreatePostViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -972,4 +973,12 @@ extension DispatchQueue {
             deadline: DispatchTime.now() + Double(Int64(timeInterval * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC),
             execute: execute)
     }
+}
+
+extension ARViewController: PostUploadDelegate {
+    func postUpload() {
+        restartAnimation()
+    }
+    
+    
 }
