@@ -30,6 +30,14 @@ enum LocalizeKey: String {
     case reportReason
     case selectReportReason
     
+    //ジャンル
+    case creator
+    case design
+    case music
+    case It
+    case technology
+    case sports
+    
     //投稿画面
     case edit
     case hide

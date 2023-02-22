@@ -23,6 +23,7 @@ class CreatePostModel {
     var postLocation: CLLocationCoordinate2D = CLLocationCoordinate2D()
     var altitude: Double = 0
     var comment: String = ""
+    var genreId : String = "general"
     var postImage = UIImage()
     
     func postCheck() -> Bool{
@@ -47,7 +48,7 @@ class CreatePostModel {
                 case .success((let rawUrl, let editedUrl)):
                     self?.postUploadModel.upload(postItem: .init(
                         areaId: Profile.shared.areaId,
-                        genreId: "debug",
+                        genreId: self?.genreId,
                         rawImageUrl: rawUrl,
                         editedImageUrl: editedUrl,
                         latitude: self?.postLocation.latitude,

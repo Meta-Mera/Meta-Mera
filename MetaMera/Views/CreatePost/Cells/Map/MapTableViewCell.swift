@@ -16,6 +16,7 @@ class MapTableViewCell: UITableViewCell, MKMapViewDelegate{
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var postButton: UIButton!
+    @IBOutlet weak var genreIdTextField: UITextField!
     
     var locationManager = LocationManager()
     
@@ -97,7 +98,7 @@ class MapTableViewCell: UITableViewCell, MKMapViewDelegate{
             let mapPoint:CLLocationCoordinate2D = mapView.convert(location,toCoordinateFrom: mapView)
             
             // 半径のメートル指定
-            let radius: CLLocationDistance = 500
+            let radius: CLLocationDistance = 500000
             let circularRegion = CLCircularRegion(center: centerLocation, radius: radius, identifier: "identifier")
             if circularRegion.contains(mapPoint) {
                 mapView.removeAnnotation(pointAno)
@@ -109,7 +110,7 @@ class MapTableViewCell: UITableViewCell, MKMapViewDelegate{
                 mapView.addAnnotation(pointAno)
                 
                 isAnnotation = true
-                delegate?.postLocation(postLocation: pointAno.coordinate, altitude: mapView.userLocation.location!.altitude)
+                delegate?.postLocation(postLocation: pointAno.coordinate, altitude: mapView.userLocation.location!.altitude, genreId: genreIdTextField.text ?? "yuta")
             }
         }
     }

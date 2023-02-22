@@ -154,10 +154,11 @@ extension CreatePostViewController: CreatePostDelegate {
         accessory.openPhotoLibrary(view: self, imagePicker: imagePicker)
     }
     
-    func postLocation(postLocation: CLLocationCoordinate2D, altitude: Double) {
+    func postLocation(postLocation: CLLocationCoordinate2D, altitude: Double, genreId: String) {
         createPostModel.postLocation = postLocation
         createPostModel.altitude = altitude
         createPostModel.LocationIsSet = true
+        createPostModel.genreId = genreId
         createPostTableView.reloadData()
     }
     

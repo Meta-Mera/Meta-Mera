@@ -25,3 +25,12 @@ enum MenuType: String {
     case violence
     case notLiking
 }
+
+enum GenreType: String{
+    case creator
+    case design
+    case music
+    case It
+    case technology
+    case sports
+}

@@ -16,8 +16,12 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var backGroundImageView: UIImageView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var nextButtonImage: UIImageView!
-    @IBOutlet weak var backButtonImage: UIImageView!
+//    @IBOutlet weak var nextButtonImage: UIImageView!
+//    @IBOutlet weak var backButtonImage: UIImageView!
+    
+    @IBOutlet weak var buckButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+    
     
     let signInModel = SignInModel()
     
@@ -38,11 +42,11 @@ class SignInViewController: UIViewController {
         emailTextField.attributedPlaceholder = NSAttributedString(string: "　example@meta-mera.com", attributes: [NSAttributedString.Key.foregroundColor: UIColor.textFieldPlaceholderColor])
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "　Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.textFieldPlaceholderColor])
 
-        backButtonImage.isUserInteractionEnabled = true
-        backButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gotoTopView(_:))))
-
-        nextButtonImage.isUserInteractionEnabled = true
-        nextButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(PushSignIn(_:))))
+//        backButtonImage.isUserInteractionEnabled = true
+//        backButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gotoTopView(_:))))
+//
+//        nextButtonImage.isUserInteractionEnabled = true
+//        nextButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(PushSignIn(_:))))
         
     }
     
@@ -71,10 +75,11 @@ class SignInViewController: UIViewController {
     }
     
     
-    
-
-
-    @objc func PushSignIn(_ sender: Any) {
+    @IBAction func pushBack(_ sender: Any) {
+        print("push back")
+        Goto.Top(view: self, completion: nil)
+    }
+    @IBAction func pushNext(_ sender: Any) {
         self.view.endEditing(true)
         HUD.show(.progress, onView: view)
         signInModel.signIn(signInItem: .init(email: emailTextField.text, password: passwordTextField.text)) { [weak self] result in
@@ -96,6 +101,13 @@ class SignInViewController: UIViewController {
             }
         }
     }
+    
+    
+
+
+    @objc func PushSignIn(_ sender: Any) {
+        
+    }
 
 
     private func presentToARViewController(){
@@ -105,8 +117,7 @@ class SignInViewController: UIViewController {
     }
 
     @objc func gotoTopView(_ sender: Any) {
-        print("push back")
-        Goto.Top(view: self, completion: nil)
+        
     }
 }
 

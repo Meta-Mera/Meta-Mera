@@ -12,7 +12,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignInViewController" customModule="MetaMera" customModuleProvider="target">
             <connections>
                 <outlet property="backGroundImageView" destination="Vms-vG-qL1" id="xLX-JS-xBJ"/>
+                <outlet property="buckButton" destination="Wgw-cs-LoK" id="J81-3A-yYr"/>
                 <outlet property="emailTextField" destination="Zjq-8M-Jbt" id="S4i-ZY-7ur"/>
+                <outlet property="nextButton" destination="Qhb-Xn-sBq" id="FsB-CQ-B5e"/>
                 <outlet property="passwordTextField" destination="Ept-yV-k7J" id="HrA-pt-EQM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -103,6 +105,9 @@
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="button_red(S)"/>
+                    <connections>
+                        <action selector="pushBack:" destination="-1" eventType="touchUpInside" id="MQn-Bn-q39"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qhb-Xn-sBq">
                     <rect key="frame" x="186" y="684" width="125" height="62"/>
@@ -112,6 +117,9 @@
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="button_red(S)"/>
+                    <connections>
+                        <action selector="pushNext:" destination="-1" eventType="touchUpInside" id="kNa-6j-507"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Back" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V5n-db-cSL">
                     <rect key="frame" x="107.66666666666667" y="705" width="37.666666666666671" height="20.333333333333371"/>

@@ -11,7 +11,7 @@ import CoreLocation
 
 protocol CreatePostDelegate {
     
-    func postLocation(postLocation: CLLocationCoordinate2D, altitude: Double) -> Void
+    func postLocation(postLocation: CLLocationCoordinate2D, altitude: Double, genreId: String) -> Void
     
     func postPhoto(comment: String) -> Void
     

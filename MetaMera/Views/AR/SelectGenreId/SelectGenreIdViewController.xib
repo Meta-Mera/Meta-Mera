@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="bokutachi.otf">
+            <string>BokutachinoGothic</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SelectGenreIdViewController" customModule="MetaMera" customModuleProvider="target">
+            <connections>
+                <outlet property="nextButton" destination="G2C-sF-hmT" id="cdm-CU-6G1"/>
+                <outlet property="selectButton" destination="QY7-Df-Q6n" id="E0E-yN-8fg"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book" translatesAutoresizingMaskIntoConstraints="NO" id="MNN-oi-F8y">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="BtV-Ne-fsD">
+                    <rect key="frame" x="35" y="183.5" width="305" height="100"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="カレッジ名を選択: " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BD0-Sv-4ZF">
+                            <rect key="frame" x="0.0" y="0.0" width="152.5" height="100"/>
+                            <fontDescription key="fontDescription" name="BokutachinoGothic" family="BokutachinoGothic" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QY7-Df-Q6n">
+                            <rect key="frame" x="152.5" y="0.0" width="152.5" height="100"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="学科名"/>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="JvD-Ea-9tl"/>
+                    </constraints>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2C-sF-hmT">
+                    <rect key="frame" x="70" y="393.5" width="235" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="8ZH-Az-WLd"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="button_gray(S)"/>
+                    <connections>
+                        <action selector="pushNext:" destination="-1" eventType="touchUpInside" id="wKa-0i-4Ue"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="決定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUw-v9-7sI">
+                    <rect key="frame" x="170" y="423.5" width="35" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="MNN-oi-F8y" secondAttribute="bottom" id="3I4-Kt-ghQ"/>
+                <constraint firstItem="G2C-sF-hmT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3wd-ys-0Zc"/>
+                <constraint firstAttribute="trailing" secondItem="G2C-sF-hmT" secondAttribute="trailing" constant="70" id="66B-Hl-8TO"/>
+                <constraint firstItem="zUw-v9-7sI" firstAttribute="centerX" secondItem="G2C-sF-hmT" secondAttribute="centerX" id="68w-G4-yJ3"/>
+                <constraint firstItem="zUw-v9-7sI" firstAttribute="centerY" secondItem="G2C-sF-hmT" secondAttribute="centerY" id="7EW-Hu-r2m"/>
+                <constraint firstItem="BtV-Ne-fsD" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="D1D-0m-gJ5"/>
+                <constraint firstItem="MNN-oi-F8y" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="D3T-jw-tc7"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="MNN-oi-F8y" secondAttribute="trailing" id="IcD-cQ-Rz1"/>
+                <constraint firstItem="MNN-oi-F8y" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="S2o-Fo-YPd"/>
+                <constraint firstItem="BtV-Ne-fsD" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-100" id="U95-Uq-NR0"/>
+                <constraint firstItem="G2C-sF-hmT" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="100" id="dSn-r6-2jM"/>
+                <constraint firstItem="BtV-Ne-fsD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="krp-y3-sDv"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BtV-Ne-fsD" secondAttribute="trailing" constant="35" id="mmt-zS-nue"/>
+                <constraint firstItem="G2C-sF-hmT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="70" id="qHJ-kD-RDi"/>
+            </constraints>
+            <point key="canvasLocation" x="11" y="20"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="book" width="1284" height="2778"/>
+        <image name="button_gray(S)" width="405" height="137"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

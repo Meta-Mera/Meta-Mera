@@ -339,7 +339,7 @@ class TopViewController: UIViewController {
                     }
                 }
             }else{
-                Goto.SignIn(view: self ?? TopViewController())
+                Goto.SignIn(view: self!)
             }
         }
     }

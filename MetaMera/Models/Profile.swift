@@ -24,6 +24,8 @@ class Profile {
     var isLogin: Bool!
     //エリアID
     var areaId: String!
+    //ジャンルID
+    var genreId: String!
     
     func authenticationStatusCheck(complition: ((Bool) -> Void)? = nil) {
         Auth.auth().addStateDidChangeListener { (_, user) in

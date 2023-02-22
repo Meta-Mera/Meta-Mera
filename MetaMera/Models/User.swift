@@ -21,7 +21,15 @@ class User {
     let headerColor: Int
     
     let ban: Bool
+    
+    /**
+     0: 制限なし
+     1: 投稿制限
+     2: コメント制限
+     3: 全制限
+     */
     let limited: Int
+    
     let deleted: Bool
     
     //TODO: 配信時元に戻すこと(developer)

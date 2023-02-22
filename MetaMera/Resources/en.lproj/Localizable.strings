@@ -31,6 +31,17 @@
 "selectReportReason" = "Please select the reason for the report.";
 
 /*----------------------------------
+            ジャンルID
+ ----------------------------------*/
+
+"creator" = "Creators College";
+"design" = "Design College";
+"music" = "Music College";
+"It" = "IT　College";
+"technology" = "Technology College";
+"sports" = "Sports/Medical College";
+
+/*----------------------------------
             投稿画面
  ----------------------------------*/
 "edit" = "Edit";

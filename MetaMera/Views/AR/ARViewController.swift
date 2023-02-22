@@ -8,10 +8,10 @@
 import ARCL
 import UIKit
 import ARKit
-//import RealityKit
+import RealityKit
 import MapKit
 import SceneKit
-//import CoreLocation
+import CoreLocation
 //import FirebaseCore
 //import FirebaseStorage
 import Firebase
@@ -23,7 +23,7 @@ import UIKit
 import CoreLocation
 
 
-class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate, SceneLocationViewDelegate {
+class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate {
     
     // Models
     private var postGetter: PostGetter<PostFetchAPI, PostInput>?
@@ -117,7 +117,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         //MARK: 位置情報のやつっぽい
         
 //        locationManager.requestWhenInUseAuthorization()
-        locationManager.sceneLocationView = sceneLocationView
+//        locationManager.sceneLocationView = sceneLocationView
         locationManager.auth()
         
 //        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
@@ -147,13 +147,13 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         
         
-        sceneLocationView!.showAxesNode = false
+        sceneLocationView!.showAxesNode = true
         sceneLocationView!.locationNodeTouchDelegate = self
         sceneLocationView!.arViewDelegate = self
         sceneLocationView!.orientToTrueNorth = false
         
-        sceneLocationView!.locationEstimateMethod = .mostRelevantEstimate
-        sceneLocationView!.delegate = self
+//        sceneLocationView!.locationEstimateMethod = .mostRelevantEstimate
+//        sceneLocationView!.delegate = self
         
 //        sceneLocationView!.orientToTrueNorth = true
         
@@ -250,27 +250,6 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
 //        sceneLocationView.orientation = .custom(z: north, y: 0, x: 0)
 //    }
     
-    func sceneLocationViewDidAddSceneLocationEstimate(sceneLocationView: SceneLocationView, position: SCNVector3, location: CLLocation) {
-        // 位置情報が更新されたときに呼ばれる
-        updateObjectPosition()
-    }
-    
-    func updateObjectPosition() {
-        let heading = locationManager.currentHeading
-        
-        // シーン内のオブジェクトを回転させる
-        let camera = sceneLocationView!.scene.rootNode.childNode(withName: "camera", recursively: false)
-        camera?.eulerAngles.y = -Float(heading)
-        
-//        // 座標も更新する
-//        let currentLocation = locationManager.locationManager.location
-//        let currentScenePosition = sceneLocationView!.currentScenePosition
-//        let deltaLatitude = (currentScenePosition?.latitude ?? 0) - (currentLocation?.coordinate.latitude ?? 0)
-//        let deltaLongitude = currentScenePosition?.longitude ?? 0 - currentLocation?.coordinate.longitude ?? 0
-//        let newScenePosition = CLLocation(latitude: currentLocation?.coordinate.latitude ?? 0 + deltaLatitude, longitude: currentLocation?.coordinate.longitude ?? 0 + deltaLongitude)
-//        sceneLocationView!.moveSceneHeading(heading, from: currentLocation, to: newScenePosition)
-    }
-    
     //MARK: わかんない！
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -364,7 +343,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                             
                             //MARK: - 配信時必ず消すこと
                             if(Profile.shared.loginUser.developer){
-                                Firestore.firestore().collection("Posts").whereField("genreId", isEqualTo: "debug").getDocuments(completion: {
+                                Firestore.firestore().collection("Posts").whereField("genreId", isEqualTo: Profile.shared.genreId ?? "debug").getDocuments(completion: {
                                     (postSnapshots, err) in
                                     if let err = err {
                                         print("Error getting documents: \(err)")
@@ -381,7 +360,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                                 })
                                 //MARK: 配信時必ず消すこと -
                             }else {
-                                Firestore.firestore().collection("Posts").whereField("areaId", isEqualTo: areaId as Any).whereField("deleted", isEqualTo: false).whereField("hidden", isEqualTo: false).getDocuments(completion: {
+                                Firestore.firestore().collection("Posts").whereField("areaId", isEqualTo: areaId as Any).whereField("deleted", isEqualTo: false).whereField("hidden", isEqualTo: false).whereField("genreId", isEqualTo: Profile.shared.genreId ?? LocalizeKey.creator.rawValue).getDocuments(completion: {
                                     (postSnapshots, err) in
                                     if let err = err {
                                         print("Error getting documents: \(err)")
@@ -461,7 +440,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     //MARK: ARを止めるよ！
     func pauseAnimation() {
-        print("pause")
+        print("sceneLocationView pause")
         sceneLocationView!.pause()
     }
     
@@ -470,7 +449,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         sceneLocationView!.isPlaying = true
         DispatchQueue.main.async { [weak self] in
             
-            print("run")
+            print("sceneLocationView run")
             self?.sceneLocationView!.run()
         }
     }
@@ -486,27 +465,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
             
             dispatchGroup.enter()
             dispatchQueue.async {
-                var imageStyle: CGSize
                 
-                switch post.imageStyle {
-                    
-                case 0:
-                    imageStyle = CGSize(width: 400, height: 300)
-                    break
-                case 1:
-                    imageStyle = CGSize(width: 300, height: 300)
-                    break
-                case 2:
-                    imageStyle = CGSize(width: 600, height: 400)
-                    break
-                case 3:
-                    imageStyle = CGSize(width: 300, height: 400)
-                    break
-                    
-                default:
-                    imageStyle = CGSize(width: 400, height: 300)
-                }
-                self.buildNode(latitude: post.latitude, longitude: post.longitude, altitude: post.altitude, imageURL: URL(string: post.editedImageUrl)!, size: imageStyle, pinUse: true, pinName: post.postId!, postId: post.postId!, post: post) { node in
+                self.buildNode(latitude: post.latitude, longitude: post.longitude, altitude: post.altitude, imageURL: URL(string: post.editedImageUrl)!, pinUse: true, pinName: post.postId!, postId: post.postId!, post: post) { node in
                     nodes.append(node)
                     dispatchGroup.leave()
                 }
@@ -526,7 +486,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         // 1. Don't try to add the models to the scene until we have a current location
         guard sceneLocationView!.sceneLocationManager.currentLocation != nil else {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-//                self?.addSceneModels()
+                self?.addSceneModels()
             }
             return
         }
@@ -567,7 +527,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     ///   - completion: completion description
     func buildNode(latitude: CLLocationDegrees, longitude: CLLocationDegrees,
                    altitude: CLLocationDistance,
-                   imageURL: URL, size: CGSize,
+                   imageURL: URL,
                    pinUse: Bool, pinName: String,
                    postId: String,
                    post: Post,
@@ -624,6 +584,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
                 
                 //Nodeを生成
                 let annotationNode = LocationAnnotationNode(location: location, image: image)
+                //MARK: 距離によってサイズが調節される
                 annotationNode.scaleRelativeToDistance = true
                 completion(annotationNode)
                 
@@ -783,8 +744,22 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     @IBAction func pushPlusButton(_ sender: Any) {
         print("plus 普通のタップ")
-//        Goto.CreateNewPost(view: self)
-        Goto.CreatePost(view: self)
+        print("[plus] \(Profile.shared.loginUser.limited)")
+        if(Profile.shared.loginUser.limited == 1 || Profile.shared.loginUser.limited == 3){
+            let defaultAction = UIAlertAction(
+                title: "閉じる",
+                style: .default
+            )
+            let alert = AlartManager.shared.setting(
+                title: "お知らせ",
+                message: "現在ログインしている\nユーザーには投稿をする\n権限が付与されていません。\n\n詳しくはブースにおります作成者にお聞きください。",
+                style: .alert,
+                actions: [defaultAction]
+            )
+            self.present(alert, animated: true)
+        }else {
+            Goto.CreatePost(view: self)
+        }
     }
     
     @objc func backTap(){
@@ -813,23 +788,13 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     @IBAction func pushCreateRoom(_ sender: Any) {
         backTap()
-        Firestore.firestore().collection("Posts").document("Uz93q4hTLBHvLUFglhxp").getDocument { (snapshot, err) in
-            if let err = err {
-                print("投稿情報の取得に失敗しました。\(err)")
-                return
-            }
-            
-            guard let dic = snapshot?.data() else { return }
-            print("投稿情報の取得に成功しました。")
-            let post = Post(dic: dic,postId: "Uz93q4hTLBHvLUFglhxp")
-            print(post.createdAt.dateValue())
-            Goto.ChatRoomView(view: self, image: URL(string: post.rawImageUrl)!, post: post)
-        }
         
     }
     
     @IBAction func pushSelectCategory(_ sender: Any) {
         backTap()
+        Goto.SelectGenreIdViewController(view: self)
+        
     }
     //MARK: プラスボタンのやつ(90%) -
 }
@@ -861,20 +826,6 @@ extension ARViewController: LNTouchDelegate {
                     print(error)
                 }
             })
-            
-            //TODO: チャットルームを渡す方法を考える
-//            Firestore.firestore().collection("Posts").document(selectImage).getDocument { (snapshot, err) in
-//                if let err = err {
-//                    print("投稿情報の取得に失敗しました。\(err)")
-//                    return
-//                }
-//
-//                guard let dic = snapshot?.data() else { return }
-//                let post = Post(dic: dic, postId: selectImage)
-//                Goto.ChatRoomView(view: self, image: URL(string: post.rawImageUrl)!, post: post)
-//            }
-            //            Goto.ChatRoomView(view: self, image: node.image!, chatroomId: chatroom)
-            //            Goto.PostView(view: self, image: node.image!, chatroomId: selectImage)
         }
         
     }
@@ -938,18 +889,6 @@ extension ARViewController: MKMapViewDelegate {
                 guard let dic = snapshot?.data() else { return }
                 let post = Post(dic: dic, postId: postId)
                 
-                //TODO: 先に投稿画面に移行してその後非同期で画像を取得しよう
-//                AF.request(post.rawImageUrl).responseImage { [weak self] res in
-//                    switch res.result {
-//                        //画像からURLが取得できた場合
-//                    case .success(let downloadImage):
-//                        Goto.ChatRoomView(view: self!, image: URL(string: post.rawImageUrl)!, post: post)
-//
-//                    case .failure(let error):
-//                        print("IMAGE", error)
-//                        fatalError()
-//                    }
-//                }
                 Goto.ChatRoomView(view: self!, image: URL(string: post.rawImageUrl)!, post: post)
                 
             }

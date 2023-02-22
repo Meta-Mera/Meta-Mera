@@ -38,14 +38,14 @@
                                     <constraint firstAttribute="width" constant="50" id="Yl1-hI-Tca"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="おはようございます。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ApQ-CF-4sq">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="おはようございます。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ApQ-CF-4sq">
                                 <rect key="frame" x="24" y="158" width="327" height="20"/>
                                 <color key="backgroundColor" red="0.70552110180412364" green="0.70552110180412364" blue="0.70552110180412364" alpha="0.54346082182873134" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name="BokutachinoGothic" family="BokutachinoGothic" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.69999998807907104" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UNc-Jd-p1P">
+                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.69999998807907104" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UNc-Jd-p1P">
                                 <rect key="frame" x="0.0" y="528" width="375" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="RjN-gs-uci"/>

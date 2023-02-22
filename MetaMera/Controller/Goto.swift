@@ -166,6 +166,12 @@ class Goto : UIViewController{
         view.navigationController?.pushViewController(vc, animated: true)
     }
     
+    class func SelectGenreIdViewController(view: UIViewController){
+        print("Goto-SelectGenreIdViewController was called.")
+        let vc = MetaMera.SelectGenreIdViewController()
+        view.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     //MARK: 詳細設定 -
     
     
