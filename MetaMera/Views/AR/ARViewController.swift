@@ -147,7 +147,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         
         
-        sceneLocationView!.showAxesNode = true
+        sceneLocationView!.showAxesNode = false
         sceneLocationView!.locationNodeTouchDelegate = self
         sceneLocationView!.arViewDelegate = self
         sceneLocationView!.orientToTrueNorth = false
