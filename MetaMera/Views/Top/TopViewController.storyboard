@@ -20,13 +20,21 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="ZZm-B4-XLM">
-                                <rect key="frame" x="187.5" y="443.5" width="0.0" height="0.0"/>
+                                <rect key="frame" x="187.5" y="333.5" width="0.0" height="0.0"/>
                                 <subviews>
                                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sign_in (1)" translatesAutoresizingMaskIntoConstraints="NO" id="ihG-pB-ATF">
-                                        <rect key="frame" x="0.0" y="0.0" width="334" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="215" height="121.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="121.5" id="6Lq-Hj-0tq"/>
+                                            <constraint firstAttribute="width" constant="215" id="cox-Aq-Gwh"/>
+                                        </constraints>
                                     </imageView>
                                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sign_up (1)" translatesAutoresizingMaskIntoConstraints="NO" id="36K-kK-ANE">
-                                        <rect key="frame" x="0.0" y="0.0" width="334" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="215" height="121.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="121.5" id="Axe-Aj-g5w"/>
+                                            <constraint firstAttribute="width" constant="215" id="dmN-q0-l9J"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
                             </stackView>
@@ -58,9 +66,9 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="wRj-h7-hy7" secondAttribute="trailing" id="h79-zR-uW8"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="5H8-jf-MZi" secondAttribute="trailing" constant="55" id="iJ4-8T-SkV"/>
                             <constraint firstAttribute="bottom" secondItem="5H8-jf-MZi" secondAttribute="bottom" constant="20" id="rra-L4-q8d"/>
+                            <constraint firstItem="ZZm-B4-XLM" firstAttribute="top" secondItem="OoH-k2-pZQ" secondAttribute="bottom" constant="30" id="uCl-c0-op3"/>
                             <constraint firstItem="wRj-h7-hy7" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="vSE-ga-85B"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ZZm-B4-XLM" secondAttribute="trailing" constant="30" id="xTc-RU-Xvx"/>
-                            <constraint firstItem="ZZm-B4-XLM" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" constant="110" id="xzp-oA-Bw4"/>
                         </constraints>
                     </view>
                     <connections>
