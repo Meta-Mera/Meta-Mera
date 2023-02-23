@@ -113,6 +113,166 @@ class TopViewController: UIViewController {
         )
     }
     
+    func day1Check(completion: ((Bool,String, String) -> Void)? = nil){
+        RemoteConfigClient.shared.fetchDay1Config(
+            succeeded: { [weak self] config in
+                //RemoteConfigから取得ができた場合
+                
+                //メンテナンス状態をmaintenanceに入れる
+                self?.maintenance = config.isUnderMaintenance
+                
+                //取得してきたデータをそのまま返す
+                completion?(config.isUnderMaintenance,config.title,config.message)
+            }, failed: { errorMessage in
+                //RemoteConfigから情報が取得できなかった場合
+            }
+        )
+    }
+    
+    func day2Check(completion: ((Bool,String, String) -> Void)? = nil){
+        RemoteConfigClient.shared.fetchDay2Config(
+            succeeded: { [weak self] config in
+                //RemoteConfigから取得ができた場合
+                
+                //メンテナンス状態をmaintenanceに入れる
+                self?.maintenance = config.isUnderMaintenance
+                
+                //取得してきたデータをそのまま返す
+                completion?(config.isUnderMaintenance,config.title,config.message)
+            }, failed: { errorMessage in
+                //RemoteConfigから情報が取得できなかった場合
+            }
+        )
+    }
+    
+    func day3Check(completion: ((Bool,String, String) -> Void)? = nil){
+        RemoteConfigClient.shared.fetchDay3Config(
+            succeeded: { [weak self] config in
+                //RemoteConfigから取得ができた場合
+                
+                //メンテナンス状態をmaintenanceに入れる
+                self?.maintenance = config.isUnderMaintenance
+                
+                //取得してきたデータをそのまま返す
+                completion?(config.isUnderMaintenance,config.title,config.message)
+            }, failed: { errorMessage in
+                //RemoteConfigから情報が取得できなかった場合
+            }
+        )
+    }
+    
+    func daysCheck(completion: ((Bool) -> Void)? = nil){
+        
+        maintenanceCheck {[weak self] isMaintenance,title,message in
+            self?.maintenance = isMaintenance
+            if isMaintenance {
+                let defaultAction = UIAlertAction(
+                    title: "閉じる",
+                    style: .default) { Void in
+                        self?.maintenanceCheck()
+                    }
+                let alert = AlartManager.shared.setting(
+                    title: title,
+                    message: message,
+                    style: .alert,
+                    actions: [defaultAction]
+                )
+                self?.present(alert, animated: true, completion: nil)
+                
+            }else {
+                let dt = Date()
+                let dateFormatter = DateFormatter()
+
+                // DateFormatter を使用して書式とロケールを指定する
+                dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "Md", options: 0, locale: Locale(identifier: "ja_JP"))
+
+                let day = dateFormatter.string(from: dt)
+                if (day == "2/24") {
+                    self?.day1Check {[weak self] isMaintenance,title,message in
+                        self?.maintenance = isMaintenance
+                        if isMaintenance {
+                            let defaultAction = UIAlertAction(
+                                title: "閉じる",
+                                style: .default) { Void in
+                                    self?.day1Check()
+                                }
+                            let alert = AlartManager.shared.setting(
+                                title: title,
+                                message: message,
+                                style: .alert,
+                                actions: [defaultAction]
+                            )
+                            self?.present(alert, animated: true, completion: nil)
+                            
+                        }
+                        completion?(isMaintenance)
+                    }
+                }else if (day == "2/25") {
+                    self?.day2Check {[weak self] isMaintenance,title,message in
+                        self?.maintenance = isMaintenance
+                        if isMaintenance {
+                            let defaultAction = UIAlertAction(
+                                title: "閉じる",
+                                style: .default) { Void in
+                                    self?.day2Check()
+                                }
+                            let alert = AlartManager.shared.setting(
+                                title: title,
+                                message: message,
+                                style: .alert,
+                                actions: [defaultAction]
+                            )
+                            self?.present(alert, animated: true, completion: nil)
+                            
+                        }
+                        completion?(isMaintenance)
+                    }
+                }else if (day == "2/26") {
+                    self?.day3Check {[weak self] isMaintenance,title,message in
+                        self?.maintenance = isMaintenance
+                        if isMaintenance {
+                            let defaultAction = UIAlertAction(
+                                title: "閉じる",
+                                style: .default) { Void in
+                                    self?.day3Check()
+                                }
+                            let alert = AlartManager.shared.setting(
+                                title: title,
+                                message: message,
+                                style: .alert,
+                                actions: [defaultAction]
+                            )
+                            self?.present(alert, animated: true, completion: nil)
+                            
+                        }
+                        completion?(isMaintenance)
+                    }
+                }else {
+                    self?.maintenanceCheck {[weak self] isMaintenance,title,message in
+                        self?.maintenance = isMaintenance
+                        if isMaintenance {
+                            let defaultAction = UIAlertAction(
+                                title: "閉じる",
+                                style: .default) { Void in
+                                    self?.maintenanceCheck()
+                                }
+                            let alert = AlartManager.shared.setting(
+                                title: title,
+                                message: message,
+                                style: .alert,
+                                actions: [defaultAction]
+                            )
+                            self?.present(alert, animated: true, completion: nil)
+                            
+                        }
+                        completion?(isMaintenance)
+                    }
+                }
+            }
+            completion?(isMaintenance)
+        }
+    }
+    
     /// メンテナンス状態を確認してメンテナンス中であればアラートを表示します。
     /// - Parameter completion: メンテナンス状態をBool値で返します。
     func check(completion: ((Bool) -> Void)? = nil){
@@ -160,7 +320,7 @@ class TopViewController: UIViewController {
                     style: .alert,
                     actions: [defaultAction]
                 )
-                self?.check{[weak self] isMaintenance in
+                self?.daysCheck{[weak self] isMaintenance in
                     if !isMaintenance {//メンテナンス中ではない
                         self?.createAccountCheck { [weak self] limitCheck in
                             if(!(self?.maintenance ?? true) && (self?.createAccountBool ?? false) && !limitCheck){
@@ -212,7 +372,7 @@ class TopViewController: UIViewController {
                 self?.present(alert, animated: true)
                 return
             }else {
-                self?.check{ isMaintenance in
+                self?.daysCheck{ isMaintenance in
                     if !isMaintenance {
                         self?.autoLogin()
                     }
@@ -297,7 +457,7 @@ class TopViewController: UIViewController {
             if result {
                 self?.present(alert, animated: true, completion: nil)
             }else {
-                self?.check{ isMaintenance in
+                self?.daysCheck{ isMaintenance in
                     if !isMaintenance {
                         Auth.auth().addStateDidChangeListener {[weak self] auth, user in
                             if user != nil{

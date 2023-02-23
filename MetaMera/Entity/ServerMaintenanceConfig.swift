@@ -24,3 +24,9 @@ struct updateInfoConfig: Codable {
     let title: String
     let message: String
 }
+
+struct days: Codable {
+    let isUnderMaintenance: Bool
+    let title: String
+    let message: String
+}
