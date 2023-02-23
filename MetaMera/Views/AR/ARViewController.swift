@@ -147,10 +147,11 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         
         
         
-        sceneLocationView!.showAxesNode = true
+        sceneLocationView!.showAxesNode = false
         sceneLocationView!.locationNodeTouchDelegate = self
         sceneLocationView!.arViewDelegate = self
         sceneLocationView!.orientToTrueNorth = false
+//        sceneLocationView!.locationEstimateMethod = .coreLocation
         
 //        sceneLocationView!.locationEstimateMethod = .mostRelevantEstimate
 //        sceneLocationView!.delegate = self
@@ -167,7 +168,7 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         pin.accessibilityValue = "tesofihasdfoihasdofhasdoift"
         MKPointAnnotation.description()
         pin.coordinate = CLLocationCoordinate2DMake(36.35801663766492, 138.63498898207519)
-        mapView.addAnnotation(pin)
+//        mapView.addAnnotation(pin)
         
         
         contentView.addSubview(sceneLocationView!)
@@ -483,6 +484,8 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
     
     //MARK: まだ勉強してるよ！
     func addSceneModels() {
+        self.sceneLocationView?.removeAllNodes()
+        
         // 1. Don't try to add the models to the scene until we have a current location
         guard sceneLocationView!.sceneLocationManager.currentLocation != nil else {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in

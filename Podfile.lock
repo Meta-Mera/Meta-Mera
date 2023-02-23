@@ -404,7 +404,7 @@ PODS:
 
 DEPENDENCIES:
   - AlamofireImage (~> 4.1)
-  - ARCL
+  - ARCL (= 1.3.0)
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Crashlytics
@@ -484,6 +484,6 @@ SPEC CHECKSUMS:
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SwiftGen: 1366a7f71aeef49954ca5a63ba4bef6b0f24138c
 
-PODFILE CHECKSUM: 18fe7922d4aecf9958eb1b048c12a8d366926fce
+PODFILE CHECKSUM: 8c669e2f65e8522241486306bb81370c15d09693
 
 COCOAPODS: 1.11.3

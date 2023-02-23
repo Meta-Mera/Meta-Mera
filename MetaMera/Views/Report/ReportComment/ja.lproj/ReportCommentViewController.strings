@@ -3,7 +3,7 @@
 "FFa-k3-wUl.configuration.title" = "報告する";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "FFa-k3-wUl"; */
-"FFa-k3-wUl.normalTitle" = "Button";
+"FFa-k3-wUl.normalTitle" = "通報する";
 
 /* Class = "UILabel"; text = "理由:"; ObjectID = "Sjk-kH-yyO"; */
 "Sjk-kH-yyO.text" = "理由:";

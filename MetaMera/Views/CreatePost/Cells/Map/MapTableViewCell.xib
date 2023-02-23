@@ -61,43 +61,43 @@
                         <color key="textColor" name="color"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Tb-yk-YUz">
-                        <rect key="frame" x="240" y="26" width="110" height="44"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="110" id="kzJ-qj-zHg"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits"/>
-                    </textField>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ジャンルID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0b1-I5-SO7">
-                        <rect key="frame" x="139" y="37.666666666666686" width="86" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ジャンルID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0b1-I5-SO7">
+                        <rect key="frame" x="80" y="38" width="90" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uxy-vV-5AI">
+                        <rect key="frame" x="185" y="31" width="150" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="150" id="byD-SK-pAT"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="ジャンルを選択"/>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="Uxy-vV-5AI" secondAttribute="trailing" constant="35" id="2vG-k5-osR"/>
                     <constraint firstItem="jLp-jo-NWb" firstAttribute="centerX" secondItem="GNJ-lk-xJC" secondAttribute="centerX" id="8X2-Jo-gp8"/>
-                    <constraint firstItem="dfK-tO-aCp" firstAttribute="top" secondItem="3Tb-yk-YUz" secondAttribute="bottom" constant="-1" id="8jX-Hh-pHq"/>
                     <constraint firstItem="GNJ-lk-xJC" firstAttribute="centerX" secondItem="LaJ-3D-PYz" secondAttribute="centerX" id="EB7-Si-MIb"/>
-                    <constraint firstItem="0b1-I5-SO7" firstAttribute="centerY" secondItem="3Tb-yk-YUz" secondAttribute="centerY" id="GCA-3i-ewh"/>
                     <constraint firstItem="GNJ-lk-xJC" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="KBV-NM-NQI"/>
+                    <constraint firstItem="0b1-I5-SO7" firstAttribute="centerY" secondItem="Uxy-vV-5AI" secondAttribute="centerY" id="KiI-Fw-8Vp"/>
+                    <constraint firstItem="Uxy-vV-5AI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="20" id="M7G-6H-HM8"/>
                     <constraint firstItem="dfK-tO-aCp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="PDJ-Pq-ttW"/>
                     <constraint firstItem="LaJ-3D-PYz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="SMQ-QT-su1"/>
                     <constraint firstItem="LaJ-3D-PYz" firstAttribute="top" secondItem="Ygt-Y3-9up" secondAttribute="bottom" constant="25" id="Sdy-v3-V8j"/>
-                    <constraint firstItem="3Tb-yk-YUz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="15" id="UvD-rV-nYZ"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="3Tb-yk-YUz" secondAttribute="trailing" constant="20" id="VOD-qZ-vcb"/>
-                    <constraint firstItem="3Tb-yk-YUz" firstAttribute="leading" secondItem="0b1-I5-SO7" secondAttribute="trailing" constant="15" id="c6C-ec-ErV"/>
                     <constraint firstItem="jLp-jo-NWb" firstAttribute="centerY" secondItem="GNJ-lk-xJC" secondAttribute="centerY" id="f7S-ib-9Xs"/>
                     <constraint firstItem="Ygt-Y3-9up" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="g64-pq-Ijy"/>
+                    <constraint firstItem="dfK-tO-aCp" firstAttribute="top" secondItem="Uxy-vV-5AI" secondAttribute="bottom" constant="3" id="jiu-4A-VRG"/>
                     <constraint firstAttribute="bottom" secondItem="GNJ-lk-xJC" secondAttribute="bottom" constant="30" id="mhG-rN-Og9"/>
                     <constraint firstItem="GNJ-lk-xJC" firstAttribute="top" secondItem="LaJ-3D-PYz" secondAttribute="bottom" constant="60" id="sCz-eU-nHI"/>
                     <constraint firstItem="Ygt-Y3-9up" firstAttribute="top" secondItem="dfK-tO-aCp" secondAttribute="bottom" constant="15" id="xU4-1n-mAR"/>
+                    <constraint firstItem="Uxy-vV-5AI" firstAttribute="leading" secondItem="0b1-I5-SO7" secondAttribute="trailing" constant="15" id="zSe-yY-sHl"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="genreIdTextField" destination="3Tb-yk-YUz" id="rHv-31-a2H"/>
+                <outlet property="genreIdButton" destination="Uxy-vV-5AI" id="oaN-vd-OD7"/>
                 <outlet property="mapView" destination="LaJ-3D-PYz" id="F5E-1Y-EBS"/>
                 <outlet property="postButton" destination="GNJ-lk-xJC" id="T9N-fK-OzR"/>
             </connections>
