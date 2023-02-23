@@ -132,6 +132,18 @@ class ARViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate
         mapView.showsUserLocation = true
         mapView.delegate = self
         
+        mapView.centerCoordinate = CLLocationCoordinate2DMake(35.62559859503456, 139.34175439676338)
+        
+        // 縮尺を変更.
+        // 倍率を指定.
+        let span : MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+        
+        // MapViewで指定した中心位置とMKCoordinateSapnで宣言したspanを指定する.
+        let region : MKCoordinateRegion = MKCoordinateRegion(center: mapView.centerCoordinate, span: span)
+        
+        // MapViewのregionプロパティにregionを指定.
+        mapView.region = region
+        
         // MARK: - ここからARのやつのやつ
         
         NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification,
